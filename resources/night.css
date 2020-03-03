@@ -1,0 +1,37 @@
+/*
+Désign sombre pour la nuit, avec halo d'éclairage autour du personnage.
+Pas utilisé pour le moment (2018)
+*/
+
+body {
+    background:black;
+    color:lightgrey;
+}
+h1 {
+    color:darkred;
+}
+h2 {
+    color:lightblue;
+}
+h3 {
+    color:lightblue;
+}
+/* Halo d'éclairage autour du citoyen */
+.halo {    
+    background:#161616;
+    border-radius:50%;
+    width:12.5em;
+    height:12.5em;
+    position:absolute;
+    margin-left:-5em;
+    margin-top:-5em;
+    z-index:-1;
+}
+/* Le rond central entre les flèches */
+#movement_paddle #central {
+    background:grey;
+}
+
+fieldset {
+    background:#161616;
+}

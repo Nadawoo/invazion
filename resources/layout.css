@@ -1,0 +1,218 @@
+/*
+ * Cette CSS définit la disposition des blocs composant la page
+ */
+
+/* Bloc contenant la carte et les blocs d'action (nombre de zombies, sac...) */
+#game_container {
+    position:relative;
+    width:100%;
+    
+    /* Au cas où l'enceinte de la ville descendrait trop bas
+      (notamment si liste des chantiers trop longue)
+       Désactivé pour le moment car cache les infobulles en haut de la carte */
+    /*overflow:auto; */
+}
+
+/* La barre de connexion en haut de la page */
+#connectionbar {
+    text-align:center;
+    border-top:1px solid grey;
+    border-bottom:1px solid grey;
+}
+#connectionbar .button {
+    display:inline-block;
+    padding: 0.1em 0.4em;
+    border-radius:1em;
+    margin:auto 0.2em;
+    background-color:navy;
+    color:white;
+    font-size:120%;
+    font-weight:bold;
+    font-variant:small-caps;
+    border:2px solid white;
+}
+#connectionbar .button:hover {
+    border:2px solid red;
+}
+#connectionbar .button:focus {
+    outline:none;
+}
+#connectionbar form {
+    display:inline;
+    margin-left:1em;
+}
+
+/* Bloc invitant à se connecter ou à créer son 1er citoyen à droite de la carte */
+#identification_near_map {
+    height:19em;
+    padding-top:3em;
+    text-align:center;
+    overflow:hidden;
+    border:2px solid red;
+}
+/* Choix du métier du citoyen */
+#specialities {
+    display:none;
+    text-align:left;
+    margin-left:auto;
+    margin-right:auto;
+    max-width:30em;
+}
+
+/* Barre des états au dessus de la carte */
+#citizen_caracs {
+    margin-bottom:1.5em;
+    padding-bottom:0.4em;
+    text-align:center;
+}
+.hl_carac {
+    font-weight:bold;
+    font-size:110%;
+    color:green;
+}
+
+/* Boutons de déplacement du joueur */
+#movement_paddle {
+    width:8em;
+    margin:2em auto 0 auto;
+    text-align:center;
+}
+#movement_paddle td {
+    padding:0;
+    border:none;
+    /* Assure un écartement symétrique des flèches */
+    width:2em;
+    height:2em;
+}
+#movement_paddle input {
+    min-width:0;
+    padding:0;
+    font-size:1.5em;
+    color:darkred;
+    background:none;
+    border:none;
+}
+#movement_paddle input:hover {
+    color:red;
+}
+/* Le rond central entre les flèches */
+#movement_paddle #central {
+    height:3em;
+    width: 3em;
+    margin:auto;
+    padding-top:0.8em;
+    color:black;
+    background:ivory;
+    border:2px solid black;
+    border-radius:50%;
+    box-sizing:border-box;
+    cursor:default;
+}
+
+/* Affiche les objets dans le sac et au sol en bas de la carte */
+#bag_panel,
+#ground_panel,
+#state_panel {
+    position:fixed;
+    bottom:0;
+    background:#566573;
+    padding:0 0.5em;
+    height:9.5em;
+    width:15em;
+    border:1px solid white;
+    color:white;
+    font-size:95%;
+    z-index:2;
+}
+#bag_panel legend,
+#ground_panel legend,
+#state_panel legend {
+    margin-top:-1.3em;
+    float:left; /* Hack CSS pour que l'onglet soit bien remonté dans Chrome */
+    padding:0 0.5em;
+    padding-bottom: 0.2em;
+    background:#566573;
+    border-top:1px solid white;
+    border-radius:0.4em;
+    color:white;
+    font-variant:small-caps;
+}
+#bag_panel var,
+#ground_panel var {
+    color:black;
+}
+.inactive_tab { /* Onglet en arrière-plan */
+    z-index:1 !important;
+    opacity:0.6;
+}
+.active_tab { /* Onglet actif au premier plan */
+    z-index:3 !important;
+    opacity:1 !important;
+}
+
+#bag_panel {
+    margin-left:-28.7em;
+    border-top-left-radius:0.5em;
+}
+#bag_panel legend {
+    margin-left:0.5em;
+}
+
+
+#state_panel {
+    margin-left:-16.3em;
+    border-top-right-radius:0.5em;
+    z-index:1;
+}
+
+#ground_panel {
+    margin-left:-16.3em;
+    border-top-right-radius:0.5em;
+}
+#ground_panel legend {
+    margin-left:6.3em;
+}
+#ground_panel legend:hover,
+#state_panel legend:hover,
+.inactive_tab:hover {
+    background:darkred;
+    cursor:pointer;
+    opacity:1;
+}
+
+.big_panel { /* Pour agrandir la hauteur du panneau en javascript */
+    height:20em !important;
+    overflow:auto !important; /* Nécessaire pour fonctionner sous Firefox */
+}
+.big_panel legend {
+    background:darkred !important;
+    /* Hack temporaire car l'onglet est masqué du fait du overflow:auto, mais
+       ce dernier est nécessaire pour que le volet s'agrandisse sous Firefox */
+    margin-top:0 !important; 
+}
+
+/* Bloc rouge indiquant que le joueur est bloqué par les zombies */
+#alert_control {
+    width:66%;
+    min-height:13em; /* Même hauteur que le smartphone du jeu */
+    border:2px outset black;
+    text-align:center;
+    background:#a93226;
+    animation: fadein 2.8s;
+}
+#alert_control .title {
+    padding:0.3em 0;
+    background:#940a0a;
+    color:white;
+    font-weight:bold;
+}
+#alert_control .text {
+    padding:0.8em 0 0.1em 0;
+    font-size:0.9em;
+    color:#fbeee6;
+}
+
+@keyframes fadein {
+    0%   { opacity: 0;   }
+    100% { opacity: 1;   }
+}

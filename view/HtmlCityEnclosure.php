@@ -1,0 +1,555 @@
+<?php
+require_once 'controller/autoload.php';
+safely_require('view/BuildHtml.php');
+safely_require('view/HtmlButtons.php');
+
+
+/**
+ * Génère les éléments de l'intérieur de la ville
+ */
+class HtmlCityEnclosure
+{
+    
+    
+    /**
+     * Le menu horizontal pour les différentes parties de la ville
+     * (banque, maison, porte...)
+     * 
+     * @return string
+     */
+    function city_menu()
+    {
+        
+        return '<div class="row">
+                    <div class="item" onclick="switchCityTab(\'city_perso\')">Chez moi</div>
+                    <div class="item" onclick="switchCityTab(\'city_build\')">Bâtir la&nbsp;ville</div>
+                    <div class="vertical">
+                        <div class="item" onclick="switchCityTab(\'city_fellows\')">Concitoyens</div>
+                        <div class="item" onclick="switchCityTab(\'city_common\') ">Réserves</div>
+                        <div class="item" onclick="switchCityTab(\'city_craft\')  ">Atelier</div>
+                    </div>
+                    <div class="item" onclick="switchCityTab(\'city_door\') ">Sortir explorer</div>
+                </div>';
+    }
+    
+    
+    /**
+     * Bloc à l'intérieur de la ville :
+     * le puits
+     * 
+     * @param int $well_current_water le nombre de rations d'eau actuellement dans le puits
+     * @return string
+     */
+    function block_well($well_current_water)
+    {
+        
+        return '
+            <div class="city_block">
+                <h2>Réserves d\'eau</h2>
+                <br>
+                <br>
+                <strong style="font-size:1.8em;color:navy;">'.$well_current_water.'&nbsp;rations&nbsp;/&nbsp;50</strong>
+            </div>';
+    }
+    
+    
+    /**
+     * Bloc à l'intérieur de la ville :
+     * liste des objets dans la banque de la ville
+     * 
+     * @param  string $html_zone_items La liste HTML des objets de la zone, générée
+     *                                 par la classe BuildHtml->zone_items()
+     * @return string
+     */
+    function block_bank($html_zone_items)
+    {
+        
+        if ($html_zone_items === '') {
+            
+            $html_bank_items = '<div style="color:grey;">
+                    <br>Aucun objet dans la banque&nbsp;!
+                    Vous devriez y déposer quelques objets personnels pour la remplir...
+                </div>';
+        }
+        else {
+            
+            $html_bank_items = $html_zone_items;
+        }
+        
+        return '
+            <div class="city_block">
+                <h2>Banque</h2>
+                <div class="contents">
+                '. $html_bank_items .'
+                </div>
+            </div>';
+    }
+    
+    
+    function block_home()
+    {
+        
+        return '
+            <div class="city_block">
+                <h2>Ma maison</h2>
+                <br>
+                <br>
+                (à venir)
+            </div>';
+    }
+    
+    
+    /**
+     * Bloc à l'intérieur de la ville :
+     * Liste des concitoyens
+     * 
+     * @param array $fellows        Les caractéristiques des citoyens de la ville
+     * @param array $specialities   Les caractéristiques des spécialités (fouineur...)
+     * @return string HTML
+     */
+    function block_fellows_list($fellows, $specialities)
+    {
+        
+        $html_citizens  = '';
+        
+        foreach ($fellows as $citizen) {
+            
+            $localization = ($citizen['distance_to_city'] === 0)
+                ? '<span class="discreet">[en ville]</span>'
+                : '<span class="highlight">[à&nbsp;'.$citizen['distance_to_city'].'&nbsp;km]</span>';
+            
+            $html_citizens .= '
+                <div style="" onclick="toggleHouse(\'citizen'.$citizen['citizen_id'].'\')">
+                    '.$localization.'
+                    <a><strong>'.$citizen['citizen_pseudo'].'</strong></a>
+                    ('.$specialities[$citizen['speciality']]['name'].')
+                </div>';
+        }
+        
+        return '
+            <div id="citizens_list" class="city_block">
+                <h2>Habitants de la ville</h2>
+                '.$html_citizens.'
+            </div>';
+    }
+    
+    
+    /**
+     * Bloc à l'intérieur de la ville :
+     * Toutes les maisons des concitoyens (masquées par défaut)
+     * 
+     * @param array $fellows        Les caractéristiques des citoyens de la ville
+     * @param array $specialities   Les caractéristiques des spécialités (fouineur...)
+     * @param int   $city_x         Coordonnée X de la ville
+     * @param int   $city_y         Coordonnée Y de la ville      
+     * @return string HTML
+     */
+    function block_fellows_homes($fellows, $specialities, $city_x, $city_y)
+    {
+        
+        $html_houses = '';
+        
+        foreach ($fellows as $citizen) {
+            
+            $pseudo = $citizen['citizen_pseudo'];
+            
+            $html_houses .= '
+                <div id="citizen'.$citizen['citizen_id'].'" style="display:none">
+                    <div class="city_description">
+                        <div class="back_button" onclick="toggleHouse(\'citizen'.$citizen['citizen_id'].'\')"
+                            title="Retourner à la liste des citoyens">
+                            &#10096;&#10096;
+                        </div>
+                        <h3 style="margin:0.5em">Infos sur <span style="font-variant:small-caps">'.$pseudo.'</span></h3>
+                    </div>
+                    
+                    <div class="city_row"style="display:flex;">
+                        '.$this->block_fellow_situation($citizen, $specialities, $citizen['distance_to_city']).'
+                        '.$this->block_fellow_home($pseudo).'
+                    </div>
+                    <div class="city_row" style="display:flex;">
+                        '.$this->block_fellow_notes().'
+                    </div>
+                    
+                </div>';
+        }
+        
+        return $html_houses;
+    }
+    
+    
+    /**
+     * Maison d'un concitoyen
+     * 
+     * @param string $pseudo Le nom du concitoyen propriétaire de la maison
+     * @return string HTML
+     */
+    private function block_fellow_home($pseudo)
+    {
+        
+        return '
+            <div class="city_block">
+                <h2>Sa maison</h2>
+                <p style="text-align:left;margin-left:0.4em">
+                    • <span class="highlight">Habitation :</span> Tente (niveau 2)<br>
+                    • <span class="highlight">Défenses :</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2 points <abbr title="Le niveau de défense dépend du type d\'habitation et des objets stockés dans son coffre.">[?]</abbr><br>
+                    • <span class="highlight">Décorations :</span> 3 points
+                </p>
+                <hr>
+                <p><strong>'.$pseudo.'</strong> détient ces objets dans son coffre&nbsp;:</p>
+                <p class="discreet" >(rien)</p>
+                <p>[Voler un objet]<br>(si le citoyen est sorti)</p>
+            </div>';
+    }
+    
+    
+    /**
+     * Bloc à l'intérieur de la ville :
+     * La situation générale du citoyen (spécialité, localisation...)
+     * 
+     * @param array $citizen        Les caractéristiques du citoyen
+     * @param array $specialities   Les caractéristiques des spécialités (fouineur...)
+     * @param int   $city_x         Coordonnée X de la ville
+     * @param int   $city_y         Coordonnée Y de la ville      
+     * @return string HTML
+     */
+    private function block_fellow_situation($citizen, $specialities, $distance_to_city)
+    {
+        
+        $localization = ($distance_to_city === 0)
+                        ? 'se trouve <span class="highlight">en ville</span>'
+                        : 'se trouve à <span class="highlight">'.$distance_to_city.' km</span> de la ville,<br>
+                           &nbsp;&nbsp;en zone <span class="highlight">['.$citizen['coord_x'].':'.$citizen['coord_y'].']</span>';
+        
+        return '
+        <div class="city_block">
+            <h2>Sa situation</h2>
+            <div>
+                <p style="text-align:left;margin-left:0.4em">
+                    Le citoyen <strong>'.$citizen['citizen_pseudo'].'</strong>&nbsp;:<br>
+                    • est spécialisé <span class="highlight">'.$specialities[$citizen['speciality']]['name'].'</span><br> 
+                    • '.$localization.'<br>
+                </p>
+                <hr>
+                <p>
+                    <em class="discreet">Personne ne se plaint de '.$citizen['citizen_pseudo'].' pour le moment.</em>
+                </p>
+                <p>
+                    [Déposer une plainte !]<br>
+                    [Agresser '.$citizen['citizen_pseudo'].' !]
+                </p>
+            </div>
+        </div>';
+    }
+    
+    
+    private function block_fellow_notes()
+    {
+        
+        return '
+            <div class="city_block">
+                <h2>Mots sur sa porte</h2>
+                <p>« Fonctionnalité à venir... » <em class="discreet">(Administrateur)</em></p>
+                <p>[Ajouter un mot sur la porte]</p>
+            </div>
+            ';
+    }
+    
+    
+    /**
+     * Bloc à l'intérieur de la ville :
+     * liste des objets dans le sac du joueur
+     * 
+     * @param  string $html_bag_items La liste HTML des objets du sac, générée
+     *                                par la classe BuildHtml->bag_items()
+     * @return string
+     */
+    function block_bag($html_bag_items)
+    {
+        
+        return '
+            <div class="city_block">
+                <h2>Mon sac</h2>
+                <div class="contents">
+                '.$html_bag_items.'
+                </div>
+            </div>';
+    }
+    
+    
+    /**
+     * Bloc à l'intérieur de la ville :
+     * liste des chantiers construits ou constructibles en ville
+     * 
+     * @param array $constructions_caracs Les caraéristiques statiques des chantiers (nom...)
+     * @param array $city_constructions   L'état des chantiers de la ville (avancement...)
+     * @param int   $total_defenses       Total des points de défense de la ville
+     *                                    (somme des points de tous les chantiers achevés)
+     * @param array $items_caracs         Les caractéristiques statiques des objets
+     * @param array $zone_items           Les objets disponibles dans la banque de la ville
+     *                                    (qui sont, à ce jour, les objets au sol)
+     * @return string
+     */
+    function block_constructions($constructions_caracs, $city_constructions, $total_defenses,
+                                 $items_caracs, $zone_items)
+    {
+        
+        $buttons = new HtmlButtons;
+        $html_constructions = '';
+        
+        foreach ($constructions_caracs as $id=>$constr) {
+            
+            $html_resources = '';
+            
+            // Valeurs par défaut si le chantier n'est pas du tout commencé
+            if (!isset($city_constructions[$id])) {
+                
+                $city_constructions[$id] = ['AP_invested'   => 0,
+                                            'is_completed'  => 0,
+                                            ];
+            }
+            
+            // Jauge des ressources requises/disponibles pour la construction
+            foreach ($constr['resources'] as $item_id=>$required_amount) {
+
+                $html_resources .= $this->html_progressbar( $items_caracs[$item_id]['name'],
+                                                            $this->item_amount($zone_items, $item_id),
+                                                            $required_amount,
+                                                            'constructions');
+            }
+
+            // Jauge des points d'action déjà investis dans le chantier
+            $html_AP_invested = $this->html_progressbar('Points d\'action',
+                                                        $city_constructions[$id]['AP_invested'],
+                                                        $constr['action_points'],
+                                                        'action_points');
+            
+            if ($city_constructions[$id]['is_completed'] === 1) { 
+                
+                $html_constructions .= '
+                    <tr style="background:lightgreen">
+                        <td style="padding:0 0.2em">
+                            <h3>» '.$constr['name'].'</h3>
+                        </td>
+                        <td rowspan="2" style="background:lightgreen;cursor:help" 
+                            title="Ce chantier augmente de '.$constr['defenses'].' points les défenses de la ville !">
+                            <strong>+&nbsp;'.$constr['defenses'].'</strong><br>défenses
+                        </td>
+                    </tr>
+                    <tr style="border-bottom:1px solid grey">
+                        <td style="font-size:0.85em">&#9727; Chantier terminé &#9722;</td>
+                    </tr>
+                    ';
+            }
+            else {
+                
+                $html_constructions .= '
+                    <tr style="background:lightsteelblue;border-top:1px solid grey">
+                        <td style="padding:0 0.2em">
+                            <h3>» '.$constr['name'].'</h3>
+                        </td>
+                        <td rowspan="2" style="background:lightsteelblue;color:grey;cursor:help"
+                            title="Ce chantier augmenterait de '.$constr['defenses'].' points les défenses de la ville s\'il était construit.">
+                            <strong>+&nbsp;'.$constr['defenses'].'</strong><br>défenses
+                        </td>
+                    </tr>
+                    <tr style="border-bottom:1px solid grey">
+                        <td style="width:95%">
+                            <ul class="items_list" style="padding-left:0">
+                                ' . $html_resources . '
+                                ' . $html_AP_invested . '
+                                ' . $buttons->construct($id) . '
+                            </ul>
+                        </td>
+                    </tr>
+                    ';
+            }
+
+        }
+        
+        return '
+            <div class="city_block" style="width:21.5em">
+                <h2>Chantiers</h2>
+                <div style="height:1.7em;vertical-align:center;font-weight:bold;background:lightgreen;margin-bottom:0.8em;line-height:250%;">
+                    <div style="position:relative;top:-0.5em">
+                        <span style="font-variant:small-caps">Défenses totales :</span>
+                        <div style="display:inline-block;height:1.8em;width:1.8em;font-weight:normal;font-size:1.5em;color:white;background:green;border-radius:2em">'.$total_defenses.'</div> points
+                    </div>
+                </div>
+                <table style="margin:0">
+                    '.$html_constructions.'
+                </table>
+            </div>';
+    }
+    
+    
+    /**
+     * Bloc à l'intérieur de la ville :
+     * la porte de la ville
+     * 
+     * @param int $is_door_closed   Vaut 1 (TRUE)  si la porte est fermée
+     *                              Vaut 0 (FALSE) si la porte est ouverte
+     * @return string
+     */
+    function block_door($is_door_closed)
+    {
+        
+        $buttons = new HtmlButtons();
+        
+        if ((bool)$is_door_closed === TRUE) {
+            
+            $door_status = 'Les portes de la ville sont <strong style="color:red">fermées</strong>';
+            $door_button = $buttons->open_city_door();
+        }
+        else {
+            
+            $door_status = 'Les portes de la ville sont <strong style="color:green">ouvertes</strong>';
+            $door_button = $buttons->close_city_door();
+        }
+        
+        return '
+            <div class="city_block">
+                <h2>Porte de la ville</h2>
+                <p>Partez en expédition dans le désert pour récuperer de précieuses ressources...</p>
+                <p>' . $buttons->get_out_city() . '</p>
+                <hr>
+                <p>' . $door_status . '</p>
+                <p>' . $door_button . '</p>
+            </div>';
+    }
+    
+    
+    /**
+     * Bloc à l'intérieur de la ville :
+     * l'atelier (pour assembler des des objets)
+     */
+    function block_workshop($zone_items, $items_caracs)
+    {
+        
+        $buttons = new HtmlButtons();
+        $html_craftable_items = '';
+        
+        // Parcourt la liste des objets du jeu
+        foreach($items_caracs as $item_id=>$caracs) {
+            
+            $compo_list = '';
+            
+            // empty et pas isset car un objet pourrait avoir l'attribut "craftable_from"
+            // par défaut mais vide
+            if (!empty($caracs['craftable_from'])) {
+                
+                foreach($caracs['craftable_from'] as $compo_id=>$required_amount) {
+                    
+                    $compo_list .= $this->html_progressbar( $items_caracs[$compo_id]['name'],
+                                                            $this->item_amount($zone_items, $compo_id),
+                                                            $required_amount,
+                                                            'workshop');
+                }
+                
+                $html_craftable_items  .= '<h3>» '.$caracs['name'].'</h3>'
+                    . '<ul class="items_list">'
+                    . $compo_list
+                    . '<li>'.$buttons->craft($item_id).'</li>'
+                    . '</ul>'
+                    . '<hr>';
+            }
+        }
+        
+        return '
+            <div class="city_block" style="width:21.5em">
+                <h2>Atelier</h2>
+                <div class="contents">
+                '.$html_craftable_items.'
+                </div>
+            </div>';
+    }
+    
+    
+    /**
+     * Affiche un ✓ ou ✘ devant une ressource pour montrer 
+     * si on en a suffisamment ou non
+     * 
+     * @param  int $progress Le pourcentage de progression par rapport à la quantité 
+     *                       nécessaire de ressources.
+     *                       Si vaut 100, le signe sera ✓, sinon sera ✘.
+     * @return string
+     */
+    private function html_check_sign($progress)
+    {
+        
+        return  ($progress >= 100) 
+                ? "<span style=\"color:green;font-weight:bold;\">&check;</span>"
+                : "<span style=\"color:orangered;cursor:help\">&#x2718;</span>";
+    }
+    
+    
+   /**
+    * Quantité disponible en banque pour un objet donné
+    * 
+    * @param  array $zone_items Liste des objets de la case (de la banque)
+    * @param  int   $item_id    L'ID de l'objet dont on veut connaître la quantité
+    * @return int La quantié de l'objet
+    */
+    private function item_amount($zone_items, $item_id)
+    {
+        
+        return  (isset($zone_items[$item_id])) ? ($zone_items[$item_id]) : 0;
+    }
+    
+    /**
+     * Affiche la barre de progression du stock d'un objet nécessaire 
+     * pour fabriquer un objet ou construire un chantier
+     * 
+     * @param  string $item_name        Le nom de l'objet
+     * @param  int    $available_amount La quantité disponible en banque
+     * @param  int    $required_amount  La quantité requise pour la fabrication
+     * @param  string $comment_for      Code indiquant quels textes explicatifs devront 
+     *                                  être affichés dans les infobulles
+     * @return string
+     */
+    private function html_progressbar($item_name, $available_amount, $required_amount, $comment_for)
+    {
+        
+        if ($comment_for === 'workshop') {
+            
+            $enough     = "La banque de la ville contient suffisamment de ressources de ce type\n"
+                        . "pour fabriquer l'objet.";
+            $not_enough = "Vous devez accumuler davantage de ressources de ce type\n"
+                        . "dans la banque de la ville avant de pouvoir fabriquer l'objet.";
+        }
+        elseif ($comment_for === 'constructions') {
+            
+            $enough     = "La banque de la ville contient suffisamment de ressources de ce type\n"
+                        . "pour envisager de construire ce chantier.";
+            $not_enough = "Il n'y a pas assez de ressources de ce type\n"
+                        . "dans la banque de la ville pour construire ce chantier.";
+        }
+        elseif ($comment_for === 'action_points') {
+            
+            $enough     = "";
+            $not_enough = "Vous et les autres citoyens de la ville devez investir\n"
+                        . "davantage de points d'action dans ce chantier\n "
+                        . "pour achever sa construction et bénéficier de ses effets.";
+        }
+        
+        // Calcule le taux de remplissage de la barre de progression
+        $progress = round($available_amount/$required_amount * 100);
+        
+        $title        = ($progress >= 100) ? $enough : $not_enough;
+        $bar_color    = ($progress >= 100) ? "lightgreen" : "sandybrown";
+        $amount_color = ($progress >= 100) ? "green" : "orangered";
+        
+        // Quick fix sale pour un meilleur alignement selon le nombre de chiffres
+        $nbsp = str_repeat('&nbsp;', 3-strlen($available_amount));
+        
+        return '
+            <li style="font-size:0.95em;cursor:help" title="'.$title.'">
+                ' . $this->html_check_sign($progress, $comment_for) . '
+                <var class="progressbar_empty">
+                    <span class="progressbar_filling" style="width:'.$progress.'%;background:'.$bar_color.'">' . $item_name . '</span>
+                </var>
+                <span style="color:'.$amount_color.'">'.$nbsp.$available_amount.'&nbsp;/&nbsp;<strong>'.$required_amount.'</strong></span>
+            </li>';
+    }
+}
+

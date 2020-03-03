@@ -1,0 +1,251 @@
+/*
+ * Zoom sur la case où se trouve le joueur
+ */
+
+/* Fond opaque par-dessus la carte */
+#my_zone {
+    position:absolute;
+    top:0;
+    left:0;
+    z-index:1;
+    width:100%;
+    height:100%;
+    text-align:center; /* Garantit que l'hexagone est centré (sinon léger décalage) */
+    background:rgba(0, 0, 0, 0.5);
+}
+/* Hexagone délimitant la case */
+#my_zone #hexagon {
+    color:cornsilk;
+    font-size:33em;
+    line-height:74%;
+}
+#back_to_map {
+    position:absolute;
+    right:0;
+    top:0;
+    width:      5em;
+    height:     2.2em;
+    padding:0.2em 0;
+    z-index:1;
+    background:darkred;
+    border-bottom-left-radius:1em;
+    text-align:center;
+    color:white;
+    font-weight:bold;
+    font-variant:small-caps;
+    cursor:pointer;
+    opacity:0.7;
+}
+#back_to_map:hover {
+    opacity:1;
+}
+
+/* Centre tout le contenu de la zone au mileu du fond hexagonal
+   sans besoin de positionner chaque élément 1 par 1 (la ville, le joueur...) */
+#my_zone #zone_container {
+    position:relative;
+    top:-22em;
+    width:20em;
+    margin:auto;
+    text-align:center;
+}
+/* Boutons d'action de zone (ramasser, attaquer...) */
+#my_zone input[type="submit"] {
+    border:none;
+    background:none;
+    font-variant:normal;
+    color:navy;
+    font-weight:bold;
+    text-decoration:underline;
+}
+#my_zone input[type="submit"]:hover {
+    color:red;
+}
+#my_zone input[type="submit"].inactive {
+    color:grey;
+    text-decoration:line-through;
+}
+
+/* Commun aux blocs humains/zombies à l'intérieur de la case */
+#my_zone #zombies,
+#my_zone #citizens {
+    display:flex;
+    flex-flow:row wrap-reverse; /* Remplit de bas en haut pour un effet jauge */
+    align-content: flex-start; /* Force à coller au bas du bloc même si bloc pas rempli */
+    height:6em;
+    width: 7em;
+    margin-top:2em;
+    padding-top:1em;
+    padding-bottom:0.3em;
+    text-align:center;
+    border-radius:50%;
+    z-index:5;
+}
+#my_zone #zombies .zombie,
+#my_zone #citizens .citizen,
+#my_zone #citizens .reinforcement {
+    display:inline-block;
+    height:1.5em; /* Zombies et citoyens doivent faire la même hauteur pour l'effet jauge */
+    text-align:center;
+    font-weight:bold;
+}
+#my_zone #nbr_citizens,
+#my_zone #nbr_zombies {
+    text-align:center;
+    font-size:80%;
+    padding:0;
+}
+
+/* Zombies */
+#my_zone #container_zombies {
+    margin-left:12em;
+}
+#my_zone #zombies {
+    justify-content:center;
+    align-content:flex-start;
+    border:2px dashed salmon;
+}
+#my_zone #zombies .zombie {
+    width: 1.5em;
+    border-radius:1em;
+    font-size:90%;
+    background:red;
+}
+#my_zone .zombie_line {
+    margin-left:-2.2em;
+    width:100%;
+    white-space:nowrap;
+    text-align:left;
+}
+/* Citoyens */
+#my_zone #container_citizens {
+    float:left;
+    margin-left:0.5em;
+}
+#my_zone #citizens {
+    border:2px dashed green;
+}
+#my_zone #citizens .citizen,
+#my_zone #citizens .reinforcement {
+    display:flex;
+    align-items:center; /* Centrage vertical du nom du citoyen dans son étiquette */
+    width:8em;
+    border-radius:0.5em;
+    font-size:90%;
+    background:green;
+    color:antiquewhite;
+    overflow:hidden;
+    white-space:nowrap;
+    box-sizing: border-box;
+}
+
+/* Cases vides si citoyens manquants par rapport au nombre de zombies */
+#my_zone #citizens .reinforcement {
+    background:lightgrey;
+    border:1px dotted red;
+    font-weight:normal;
+    color:red;
+}
+
+/* Objets */
+#my_zone #items {
+    height:6em;
+    width: 6em;
+    margin:auto;
+    overflow:hidden;
+    border-radius:0.5em;
+    text-align:center;
+    background:burlywood;
+    cursor:pointer;
+}
+#my_zone #items:hover {
+    border:1px solid salmon;
+    box-sizing:border-box;
+}
+/* Boutons d'action sur les objets */
+#my_zone #button_dig {
+    position:absolute;
+    top: 4.5em;
+    left:12em;
+    z-index:1;
+}
+#my_zone #button_pickup {
+    position:absolute;
+    top:2.5em;
+    left:11.3em;
+}
+#my_zone #button_kill {
+    margin-top:1em;
+    font-family:Calibri;
+}
+
+/**
+ * Si la case contient une ville, la zone n'affiche pas les mêmes éléments
+ * (ville au mileur, pas de zombies...))
+ */
+/* Trace l'enceinte de la ville */
+#zone_container #city_enclosure { 
+    padding:0.5em;
+    width:8.5em;
+    height:6.5em;
+    margin:0.5em auto;
+    border:6px solid grey;
+    border-radius:0.3em;
+}
+#zone_container #city_icon {
+    font-size:3em;
+    cursor:default;
+    float:left;
+}
+#city_enclosure #citizens_in_city {
+    height:4em;
+    text-align:left;
+}
+#city_enclosure .citizen {
+    display:inline-block;
+    width:1.5em;
+    height:1.5em;
+    background:lightgreen;
+    border-radius:1em;
+    text-align:center;
+    white-space:nowrap;
+    font-size:80%;
+    cursor:help;
+}
+#city_enclosure .citizen:hover {
+    background-color:green;
+    color:white;
+}
+#zone_container #constructions_slots {
+    display:flex;
+    justify-content:center;
+}
+#zone_container .construction_slot {
+    width: 1.5em;
+    height:1.5em;
+    margin:0.1em;
+    margin-top:0.4em;
+    border:1px solid grey;
+    border-radius:0.2em;
+    cursor:default;
+}
+
+#zone_container .city_gates {
+    position:relative;
+    top:0.4em;
+}
+#zone_container #city_name {
+    width:10em;
+    padding:0.2em 0;
+    margin:auto;
+    margin-top:1.5em;
+    font-weight:bold;
+    text-transform:uppercase;
+    border:2px solid #d80900;
+    border-radius:0.2em;
+    background-color:white;
+}
+#zone_container #city_descr {
+    font-size:0.9em;
+    color:grey;
+}

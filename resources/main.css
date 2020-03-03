@@ -1,0 +1,409 @@
+/*
+ * Cette CSS contient tout ce qui ne rentre pas dans 
+ * les autres fichiers CSS spécifiques (city.css...)
+ */
+
+body {
+    max-width:50em;
+    margin:auto;
+    padding:0.5em;
+    font-family: Arial, Helvetica, "Liberation Sans", FreeSans, sans-serif;
+}
+h1 {
+    text-align:center;
+    margin:0;
+    font-family:"Courier New";
+}
+.slogan {
+    text-align:center;
+    font-weight:bold;
+    letter-spacing:0.1em;
+    color:grey;
+}
+/* Met en évidence un mot important (par ex. dans la maison du citoyen) */
+.highlight {
+    color:darkblue;
+}
+/* Rend plus discrets les mots peu importants */
+.discreet {
+    color:grey;
+}
+
+/* Menu horizontal du site */
+#sitemenu {
+    margin:2em;
+    text-align:center;
+    font-weight:bold;
+}
+#sitemenu a {
+    padding:0.5em;
+    white-space:nowrap;
+}
+
+h2 {
+    color:navy;
+    margin-top:1em;
+}
+h3 {
+    color:navy;
+    margin-top:3em;
+}
+/* 
+ * a = les liens HTML classiques
+ * .formlink = boutons de formulaire caché (notamment pour appeler l'API)
+ */
+a, .formlink {
+    text-decoration:none;
+    color:darkred;
+}
+/* Force le curseur "main" même quand il n'y a pas l'attribut href */
+a {
+    cursor:pointer;
+}
+a:hover, .formlink:hover, .as_link:hover {
+    color:red;
+}
+
+/* Centre les icônes verticalement par rapport à la ligne de texte */
+p img {
+    vertical-align:middle;
+}
+
+table {
+    margin-bottom:2em;
+    border-collapse:collapse;
+    width:100%;
+}
+caption {
+    padding:0.4em;
+    font-weight:bold;
+    border:1px solid grey;
+    border-bottom:none;
+    color:black;
+    background:grey;
+}
+td {
+    padding:0.5em;
+    border:1px solid grey;
+}
+hr {
+    margin-top:3em;
+}
+code {
+    display:block;
+    overflow:auto;
+    margin-left:3em;
+    padding:0.5em;
+    line-height:125%;
+    border-left:0.3em solid darkgreen;
+    color:black;
+    background:lightblue;
+}
+input[type="submit"], .button {
+    font-size:0.9em;
+    font-variant:small-caps;
+    min-width:10em;
+    cursor:pointer;
+}
+button {
+    cursor:pointer;
+}
+/* Pour afficher les boutons de formulaire comme des liens */
+.as_link {
+    text-align:left;
+    border:none;
+    background:none;
+    padding:0;
+    color:darkred;
+    font-family:sans-serif;
+    font-variant:small-caps;
+    font-weight:bold;
+    font-size:0.95em;
+}
+
+/*
+ * Mini carte à côté du pavé de déplacement
+ */
+#gps {
+    position:relative;
+    float:right;
+    border:3px solid black;
+    border-bottom:1em solid black;
+    border-radius:0.7em;
+}
+#gps .title {
+    background:black;
+    color:grey;
+    text-align:center;
+    font-weight:bold;
+    border-radius:0.5em 0.5em 0 0;
+}
+#gps .container {
+    display:flex;
+    height:11em; /* Le ratio hauteur/largeur fait ressembler à un smartphone */
+    width: 7em; 
+    border-top:1px solid black;
+    overflow:hidden;
+}
+#gps .sideicons {
+    width:2.3em;
+    overflow:hidden;
+    background:#212f3d;
+    text-align:center;
+}
+#gps .sideicons span {
+    color:white;
+    font-size:0.55em;
+}
+.minimap {
+    height:100%;
+    width: 100%;
+    background-color:  #145a32 /*#82e0aa*/ ;
+    /* Trace des lignes horizontales pour décorer le fond de la mini carte */
+    background-image: linear-gradient(transparent 23px,  #1e8449  24px, transparent 24px);
+    background-size: 100% 24px;
+    overflow:hidden;
+}
+.minimap:hover {
+    background-color:darkgreen;
+    cursor:pointer;
+}
+.minimap .dot {
+    line-height:10%;
+    font-size:1.5em;
+    color:white;
+    animation: blinker 2s linear infinite;
+}
+.minimap .label {
+    position:absolute;
+    top:-1em;
+    left:-0.6em;
+    font-size:0.7em;
+    color:lightgrey;
+}
+#gps .notif {
+    position:absolute;
+    bottom:1em;
+    width:100%;
+    height:2.5em;
+    background:white;
+    border-radius:0.3em;
+    text-align:center;
+    color:darkred;
+    font-size:0.7em;
+    
+    animation: fadeout 3s; /* La notif disparaît progressivement */
+    animation-delay: 2s;
+    animation-fill-mode: forwards; /* Empêche de réapparaître après disparition */
+}
+/* Effet de clignotement pour le point de localisation du GPS */
+@keyframes blinker {
+    50% {
+        opacity: 0.2;
+    }
+}
+/* Effet de disparition progressif pour les notifications */
+@keyframes fadeout {
+   0% {opacity: 1;}
+   100% {opacity: 0;} 
+} 
+
+/* Bouton de dépôt avec un aspect moderne et non le défaut HTML en relief */
+.drop_button {
+    background:lightsteelblue;
+    border:none;
+    vertical-align:middle;
+    height:1.3em;
+    width: 1.3em;
+    line-height:1em;
+    padding:0;
+    border-radius:30%;
+    font-size:1.1em;
+}
+.drop_button:hover {
+    background:darkred;
+    color:white;
+}
+/* Boutons de formulaire caché simulant un lien (notamment pour appeler l'API) */
+.formlink {
+    background:none;
+    border:none;
+    padding:0;
+    font-size:1em !important;
+    font-variant:normal !important;
+}
+
+fieldset {
+    margin-top:0.5em;
+    padding-top:0;
+}
+legend {
+    font-weight:bold;
+    font-variant:small-caps;
+}
+abbr {
+    cursor:help;
+}
+
+/*
+ * Listes
+ */
+li {
+    line-height:1.4em;
+}
+.expanded li {
+    padding-top:0.5em;
+    padding-bottom:0.5em;
+}
+.items_list {
+    text-align:left;
+    padding-left:0;
+    list-style-type:none;
+}
+.city_block .items_list {
+    margin:0;
+}
+
+/*
+ * Bulles d'information sur la carte
+ */
+.bubble {
+    display:none;
+    position:absolute;
+    bottom:3.2em;
+    left:-4em;
+    line-height:1em;
+    width:17em;
+    padding:0.3em;
+    text-align:left;
+    white-space: normal;
+    hyphens: auto;
+    background:black;
+    color:white;
+    border-radius:0.4em;
+    font-family:Calibri;
+    font-size:0.8em;
+}
+.triangle_down {
+    width:0;
+    height:0;
+    border-left: 0.4em solid transparent;
+    border-right:0.4em solid transparent;
+    border-top:  0.75em solid black;
+    position:absolute;
+    left:5em;
+    bottom:-0.7em;
+    z-index:2;
+}
+
+/* Etiquette pour un nom d'objet */
+var {
+    display:inline-block;
+    width:11em;
+    font-size:0.9em;
+    margin: 0.1em;
+    padding:0 0.3em;
+    background:lightgrey;
+    font-style:normal;
+    border-radius:0.3em;
+    white-space:nowrap;
+    box-sizing: border-box;
+}
+/* Emplacement vide dans le sac */
+.empty_slot {
+    background:none;
+    border:1px solid grey;
+    text-align:center;
+    color:grey;
+    margin-left:2em;
+}
+
+
+.center {
+    text-align:center;
+}
+.small {
+    font-size:0.8em;
+}
+.bold {
+    font-weight:bold;
+}
+.red {
+    color:red;
+}
+.green {
+    color:green;
+}
+.aside {
+    /* Texte en aparté */
+    display:block;
+    margin-left:1em;
+    padding:0.4em 0;
+    font-size:80%;
+    font-style:italic;
+}
+.circle {
+    /* Cercle de séparation dans les menus horizontaux */
+    font-size:130%;
+}
+var[class="key"] {
+    /* Noms de clés dans la doc des API */
+    width:auto;
+}
+
+/* Message d'erreur, ex : "Vous n'avez plus assez de PA"
+   Important : utiliser les alias retournés par les API 
+   (info, warning, critical) */
+.warning, .critical {
+    background:red;
+    color:white;
+}
+.info {
+    background:green;
+    color:white;
+}
+
+/* Table des matières de la page de documentation des API */
+#api_toc {
+    max-width:20em;
+    border:1px solid grey;
+    background:#f8f9fa
+}
+#api_toc h4 {
+    text-align:center;
+    font-variant:small-caps;
+    margin:0.5em 0 0 0;
+}
+#api_toc ol {
+    padding-left:2em;
+}
+#api_toc ol ul {
+    margin-left:0em;
+    padding-left:1em;
+}
+
+
+@media (max-width:700px) {
+  .box{
+    width: 80%;
+  }
+  .popup{
+    width: 80%;
+  }
+  #map {
+    width:50%;
+    margin-right:0.2em;
+  }
+  /* Actions à droite de la carte */
+  fieldset {
+      padding:0 0.5em 0.5em 0.5em;
+  }
+}
+
+@media (max-width:575px) {
+    /* Met en colonne les blocs à l'intérieur de la ville */
+    .city_row {
+        flex-direction:column;
+        align-items:center;
+    }
+}
