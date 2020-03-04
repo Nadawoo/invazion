@@ -9,5 +9,5 @@
 function is_development_server()
 {
     
-    return $_SERVER['SERVER_NAME'] === 'invazion.localhost' ? TRUE : FALSE;
+    return $_SERVER['SERVER_NAME'] === 'invaziongame.localhost' ? TRUE : FALSE;
 }
