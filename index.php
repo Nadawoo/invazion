@@ -146,14 +146,14 @@ if ($action_get === 'specialize') {
  * À laisser *après* l'exécution des actions, sinon l'affichage aura un retard 
  * d'actualisation (pseudo non modifié, citoyen non déplacé...)
  */
-// Si le jeton existe *et* n'a pas encore expiré
-if ($api->get_token_data()['exp'] > time()) {
+// Si le joueur est authentifié *et* que son jeton n'est pas expiré
+if ($api->user_seems_connected() === true) {
     
     $user_id        = $api->get_token_data('user_id');
     $citizen_id     = $api->get_token_data('citizen_id');
     $citizen_pseudo = $api->get_token_data('citizen_pseudo');
 }
-
+// Récupère les données de jeu en appelant les API
 $citizens           = $api->get_citizens($map_id)['datas'];
 $citizens_by_coord  = sort_citizens_by_coord($citizens);
 $get_map            = $api->get_map($map_id);
