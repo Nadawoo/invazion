@@ -1,0 +1,86 @@
+/*
+ * Mini-carte/smartphone à côté du pavé de déplacement
+ */
+#gps {
+    position:relative;
+    float:right;
+    border:3px solid black;
+    border-bottom:1em solid black;
+    border-radius:0.7em;
+}
+#gps .title {
+    background:black;
+    color:grey;
+    text-align:center;
+    font-weight:bold;
+    border-radius:0.5em 0.5em 0 0;
+}
+#gps .container {
+    display:flex;
+    height:11em; /* Le ratio hauteur/largeur fait ressembler à un smartphone */
+    width: 7em; 
+    border-top:1px solid black;
+    overflow:hidden;
+}
+#gps .sideicons {
+    width:2.3em;
+    overflow:hidden;
+    background:#212f3d;
+    text-align:center;
+}
+#gps .sideicons span {
+    color:white;
+    font-size:0.55em;
+}
+.minimap {
+    height:100%;
+    width: 100%;
+    background-color:  #145a32 /*#82e0aa*/ ;
+    /* Trace des lignes horizontales pour décorer le fond de la mini carte */
+    background-image: linear-gradient(transparent 23px,  #1e8449  24px, transparent 24px);
+    background-size: 100% 24px;
+    overflow:hidden;
+}
+.minimap:hover {
+    background-color:darkgreen;
+    cursor:pointer;
+}
+.minimap .dot {
+    line-height:10%;
+    font-size:1.5em;
+    color:white;
+    animation: blinker 2s linear infinite;
+}
+.minimap .label {
+    position:absolute;
+    top:-1em;
+    left:-0.6em;
+    font-size:0.7em;
+    color:lightgrey;
+}
+#gps .notif {
+    position:absolute;
+    bottom:1em;
+    width:100%;
+    height:2.5em;
+    background:white;
+    border-radius:0.3em;
+    text-align:center;
+    color:darkred;
+    font-size:0.7em;
+    
+    animation: fadeout 3s; /* La notif disparaît progressivement */
+    animation-delay: 2s;
+    animation-fill-mode: forwards; /* Empêche de réapparaître après disparition */
+}
+/* Effet de clignotement pour le point de localisation du GPS */
+@keyframes blinker {
+    50% {
+        opacity: 0.2;
+    }
+}
+/* Effet de disparition progressif pour les notifications */
+@keyframes fadeout {
+   0% {opacity: 1;}
+   100% {opacity: 0;} 
+} 

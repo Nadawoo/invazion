@@ -27,6 +27,7 @@ class HtmlPage
                 <link rel="stylesheet" type="text/css" href="resources/main.css?v2.9">
                 <link rel="stylesheet" type="text/css" href="resources/layout.css?v1.5">
                 <link rel="stylesheet" type="text/css" href="resources/map.css?v1.8">
+                <link rel="stylesheet" type="text/css" href="resources/gps.css?v1.0">
                 <link rel="stylesheet" type="text/css" href="resources/myzone.css?v1.1">
                 <link rel="stylesheet" type="text/css" href="resources/city.css?v1.61">
                 <link rel="stylesheet" type="text/css" href="resources/popup.css?v1.1">
