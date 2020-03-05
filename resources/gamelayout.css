@@ -3,6 +3,16 @@
  * (carte, pavé de déplacement, contôle de zone...)
  */
 
+/* Encadrés à droite de la carte (conrôle de zone, actions...) */
+fieldset {
+    margin-top:0.5em;
+    padding-top:0;
+}
+legend {
+    font-weight:bold;
+    font-variant:small-caps;
+}
+
 /* Bloc contenant la carte et les blocs d'action (nombre de zombies, sac...) */
 #game_container {
     position:relative;
@@ -201,7 +211,60 @@
     margin-top:0 !important; 
 }
 
-/* Bloc rouge indiquant que le joueur est bloqué par les zombies */
+
+/*
+ * Boutons
+ */
+input[type="submit"], .button {
+    font-size:0.9em;
+    font-variant:small-caps;
+    min-width:10em;
+    cursor:pointer;
+}
+button {
+    cursor:pointer;
+}
+/* Pour afficher les boutons de formulaire comme des liens */
+.as_link {
+    text-align:left;
+    border:none;
+    background:none;
+    padding:0;
+    color:darkred;
+    font-family:sans-serif;
+    font-variant:small-caps;
+    font-weight:bold;
+    font-size:0.95em;
+}
+/* Bouton de dépôt d'objet avec un aspect moderne et non le défaut HTML en relief */
+.drop_button {
+    background:lightsteelblue;
+    border:none;
+    vertical-align:middle;
+    height:1.3em;
+    width: 1.3em;
+    line-height:1em;
+    padding:0;
+    border-radius:30%;
+    font-size:1.1em;
+}
+.drop_button:hover {
+    background:darkred;
+    color:white;
+}
+/* Boutons de formulaire caché simulant un lien (notamment pour appeler l'API) */
+.formlink {
+    background:none;
+    border:none;
+    padding:0;
+    font-size:1em !important;
+    font-variant:normal !important;
+}
+
+
+/*
+ * Bloc rouge indiquant que le joueur est bloqué par les zombies
+ */
 #alert_control {
     width:66%;
     min-height:13em; /* Même hauteur que le smartphone du jeu */
