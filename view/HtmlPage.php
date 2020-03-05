@@ -25,7 +25,7 @@ class HtmlPage
                 <meta charset="utf-8">
                 <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
                 <link rel="stylesheet" type="text/css" href="resources/main.css?v2.9">
-                <link rel="stylesheet" type="text/css" href="resources/layout.css?v1.5">
+                <link rel="stylesheet" type="text/css" href="resources/gamelayout.css?v1.5">
                 <link rel="stylesheet" type="text/css" href="resources/map.css?v1.8">
                 <link rel="stylesheet" type="text/css" href="resources/gps.css?v1.0">
                 <link rel="stylesheet" type="text/css" href="resources/myzone.css?v1.1">
