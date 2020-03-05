@@ -289,3 +289,16 @@ button {
     0%   { opacity: 0;   }
     100% { opacity: 1;   }
 }
+
+
+/* Message d'erreur, ex : "Vous n'avez plus assez de PA"
+   Important : utiliser les alias retournés par les API 
+   (info, warning, critical) */
+.warning, .critical {
+    background:red;
+    color:white;
+}
+.info {
+    background:green;
+    color:white;
+}

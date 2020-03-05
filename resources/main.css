@@ -141,15 +141,3 @@ var[class="key"] {
 .discreet {
     color:grey;
 }
-
-/* Message d'erreur, ex : "Vous n'avez plus assez de PA"
-   Important : utiliser les alias retournés par les API 
-   (info, warning, critical) */
-.warning, .critical {
-    background:red;
-    color:white;
-}
-.info {
-    background:green;
-    color:white;
-}
