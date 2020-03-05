@@ -72,9 +72,7 @@ abbr {
     cursor:help;
 }
 
-/*
- * Listes
- */
+/* Listes */
 li {
     line-height:1.4em;
 }
@@ -82,15 +80,10 @@ li {
     padding-top:0.5em;
     padding-bottom:0.5em;
 }
-.items_list {
-    text-align:left;
-    padding-left:0;
-    list-style-type:none;
-}
-.city_block .items_list {
-    margin:0;
-}
 
+/*
+ * Mises en forme rapides
+ */
 .center {
     text-align:center;
 }
