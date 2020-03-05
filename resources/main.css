@@ -190,14 +190,6 @@ var {
     white-space:nowrap;
     box-sizing: border-box;
 }
-/* Emplacement vide dans le sac */
-.empty_slot {
-    background:none;
-    border:1px solid grey;
-    text-align:center;
-    color:grey;
-    margin-left:2em;
-}
 
 
 .center {

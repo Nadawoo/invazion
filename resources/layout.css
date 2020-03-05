@@ -150,6 +150,7 @@
     opacity:1 !important;
 }
 
+/* Sac à dos du joueur */
 #bag_panel {
     margin-left:-28.7em;
     border-top-left-radius:0.5em;
@@ -157,14 +158,22 @@
 #bag_panel legend {
     margin-left:0.5em;
 }
+.empty_slot {
+    background:none;
+    border:1px solid grey;
+    text-align:center;
+    color:grey;
+    margin-left:2em;
+}
 
-
+/* Panneau de santé du joueur en bas de la carte */
 #state_panel {
     margin-left:-16.3em;
     border-top-right-radius:0.5em;
     z-index:1;
 }
 
+/* Panneau listant les objets au sol en bas de la carte */
 #ground_panel {
     margin-left:-16.3em;
     border-top-right-radius:0.5em;
