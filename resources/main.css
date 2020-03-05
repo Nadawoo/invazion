@@ -264,38 +264,6 @@ li {
     margin:0;
 }
 
-/*
- * Bulles d'information sur la carte
- */
-.bubble {
-    display:none;
-    position:absolute;
-    bottom:3.2em;
-    left:-4em;
-    line-height:1em;
-    width:17em;
-    padding:0.3em;
-    text-align:left;
-    white-space: normal;
-    hyphens: auto;
-    background:black;
-    color:white;
-    border-radius:0.4em;
-    font-family:Calibri;
-    font-size:0.8em;
-}
-.triangle_down {
-    width:0;
-    height:0;
-    border-left: 0.4em solid transparent;
-    border-right:0.4em solid transparent;
-    border-top:  0.75em solid black;
-    position:absolute;
-    left:5em;
-    bottom:-0.7em;
-    z-index:2;
-}
-
 /* Etiquette pour un nom d'objet */
 var {
     display:inline-block;
@@ -380,30 +348,4 @@ var[class="key"] {
 #api_toc ol ul {
     margin-left:0em;
     padding-left:1em;
-}
-
-
-@media (max-width:700px) {
-  .box{
-    width: 80%;
-  }
-  .popup{
-    width: 80%;
-  }
-  #map {
-    width:50%;
-    margin-right:0.2em;
-  }
-  /* Actions à droite de la carte */
-  fieldset {
-      padding:0 0.5em 0.5em 0.5em;
-  }
-}
-
-@media (max-width:575px) {
-    /* Met en colonne les blocs à l'intérieur de la ville */
-    .city_row {
-        flex-direction:column;
-        align-items:center;
-    }
 }
