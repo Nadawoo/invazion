@@ -235,22 +235,3 @@ var[class="key"] {
     background:green;
     color:white;
 }
-
-/* Table des matières de la page de documentation des API */
-#api_toc {
-    max-width:20em;
-    border:1px solid grey;
-    background:#f8f9fa
-}
-#api_toc h4 {
-    text-align:center;
-    font-variant:small-caps;
-    margin:0.5em 0 0 0;
-}
-#api_toc ol {
-    padding-left:2em;
-}
-#api_toc ol ul {
-    margin-left:0em;
-    padding-left:1em;
-}
