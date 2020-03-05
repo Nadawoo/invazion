@@ -69,36 +69,10 @@ p img {
     vertical-align:middle;
 }
 
-table {
-    margin-bottom:2em;
-    border-collapse:collapse;
-    width:100%;
-}
-caption {
-    padding:0.4em;
-    font-weight:bold;
-    border:1px solid grey;
-    border-bottom:none;
-    color:black;
-    background:grey;
-}
-td {
-    padding:0.5em;
-    border:1px solid grey;
-}
 hr {
     margin-top:3em;
 }
-code {
-    display:block;
-    overflow:auto;
-    margin-left:3em;
-    padding:0.5em;
-    line-height:125%;
-    border-left:0.3em solid darkgreen;
-    color:black;
-    background:lightblue;
-}
+
 input[type="submit"], .button {
     font-size:0.9em;
     font-variant:small-caps;
