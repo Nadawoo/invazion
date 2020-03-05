@@ -1,0 +1,9 @@
+
+# Performance : compression gzip des fichiers texte, html, css, javascript, json
+# NB : le "deflate_module" d'Apache doit être activé
+<IfModule mod_deflate.c>
+	AddOutputFilterByType DEFLATE text/plain
+	AddOutputFilterByType DEFLATE text/html application/xhtml+xml text/css
+	AddOutputFilterByType DEFLATE application/javascript application/x-javascript
+	AddOutputFilterByType DEFLATE application/json
+</IfModule>
