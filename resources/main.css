@@ -91,25 +91,6 @@ li {
     margin:0;
 }
 
-/* Etiquette pour un nom d'objet */
-var {
-    display:inline-block;
-    width:11em;
-    font-size:0.9em;
-    margin: 0.1em;
-    padding:0 0.3em;
-    background:lightgrey;
-    font-style:normal;
-    border-radius:0.3em;
-    white-space:nowrap;
-    box-sizing: border-box;
-}
-var[class="key"] {
-    /* Noms de clés dans la doc des API */
-    width:auto;
-}
-
-
 .center {
     text-align:center;
 }
