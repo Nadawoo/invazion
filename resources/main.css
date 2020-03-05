@@ -20,14 +20,6 @@ h1 {
     letter-spacing:0.1em;
     color:grey;
 }
-/* Met en évidence un mot important (par ex. dans la maison du citoyen) */
-.highlight {
-    color:darkblue;
-}
-/* Rend plus discrets les mots peu importants */
-.discreet {
-    color:grey;
-}
 
 /* Menu horizontal du site */
 #sitemenu {
@@ -38,6 +30,10 @@ h1 {
 #sitemenu a {
     padding:0.5em;
     white-space:nowrap;
+}
+.circle {
+    /* Cercle de séparation dans les menus horizontaux */
+    font-size:130%;
 }
 
 h2 {
@@ -73,6 +69,9 @@ hr {
     margin-top:3em;
 }
 
+/*
+ * Boutons
+ */
 input[type="submit"], .button {
     font-size:0.9em;
     font-variant:small-caps;
@@ -164,6 +163,10 @@ var {
     white-space:nowrap;
     box-sizing: border-box;
 }
+var[class="key"] {
+    /* Noms de clés dans la doc des API */
+    width:auto;
+}
 
 
 .center {
@@ -189,13 +192,13 @@ var {
     font-size:80%;
     font-style:italic;
 }
-.circle {
-    /* Cercle de séparation dans les menus horizontaux */
-    font-size:130%;
+/* Met en évidence un mot important (par ex. dans la maison du citoyen) */
+.highlight {
+    color:darkblue;
 }
-var[class="key"] {
-    /* Noms de clés dans la doc des API */
-    width:auto;
+/* Rend plus discrets les mots peu importants */
+.discreet {
+    color:grey;
 }
 
 /* Message d'erreur, ex : "Vous n'avez plus assez de PA"
