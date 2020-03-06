@@ -28,7 +28,7 @@ class HtmlPage
                 <link rel="stylesheet" type="text/css" href="resources/gamelayout.css?v3.0">
                 <link rel="stylesheet" type="text/css" href="resources/map.css?v1.8">
                 <link rel="stylesheet" type="text/css" href="resources/gps.css?v1.0">
-                <link rel="stylesheet" type="text/css" href="resources/myzone.css?v1.1">
+                <link rel="stylesheet" type="text/css" href="resources/myzone.css?v1.2">
                 <link rel="stylesheet" type="text/css" href="resources/city.css?v1.61">
                 <link rel="stylesheet" type="text/css" href="resources/popup.css?v1.1">
                 ' . $css_link . '

@@ -18,6 +18,9 @@
     color:cornsilk;
     font-size:33em;
     line-height:74%;
+    /* Important : empêche qu'un masque invisible couvre le bouton de spécialités
+       (dû au line-height) */
+    overflow:hidden;
 }
 #back_to_map {
     position:absolute;
