@@ -34,13 +34,14 @@ Démo jouable : https://invaziongame.nadazone.fr/
 
 ### Dossier /resources
 * /img : contient les images
+* / css
+  * sitelayout.css : mise en page du site. Ne contient aucun élément relatif au jeu.
+  * gamelayout.css : CSS principale du jeu. Contient tous les styles du jeu qui ne sont pas placés dans une CSS dédiée.
+  * map.css : CSS de la carte
+  * city.css : CSS de l'intérieur de la ville
+  * myzone.css : CSS de la zone où se rouve le joueur
+  * gps.css : CSS du smartphone-gps à côté de la carte
+  * popup.css : gère la pop-up 100% CSS
+  * night.css : essai de design sombre pour le site. Inutilisé à ce jour.
 * script.js : fonctions javascript
-* sitelayout.css : mise en page du site. Ne contient aucun élément relatif au jeu.
-* gamelayout.css : CSS principale du jeu. Contient tous les styles du jeu qui ne sont pas placés dans une CSS dédiée.
-* map.css : CSS de la carte
-* city.css : CSS de l'intérieur de la ville
-* myzone.css : CSS de la zone où se rouve le joueur
-* gps.css : CSS du smartphone-gps à côté de la carte
-* popup.css : gère la pop-up 100% CSS
-* night.css : essai de design sombre pour le site. Inutilisé à ce jour.
  
