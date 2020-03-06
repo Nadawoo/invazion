@@ -25,7 +25,7 @@
     /* TEMPORAIRE */
     __border:1px solid red;
     
-    background-image:url("img/hexagon.png");
+    background-image:url("../img/hexagon.png");
     background-repeat:no-repeat;
     background-size:100%;
     text-align:center;
@@ -117,7 +117,7 @@
 }
 /* Les cases non encore explorées sont en plus sombre */
 .not_visited {
-    background-image:url("img/hexagon_dark.png");
+    background-image:url("../img/hexagon_dark.png");
     /* Pour ne pas chevaucher la ligne de la horde */
     z-index:0;
 }
