@@ -15,7 +15,7 @@ echo $html->page_header()
 <p>Pour des raisons de sécurité, vous devez créer votre compte sur le serveur central d'InvaZion :</p>
 
 <p class="center" style="font-size:1.3em">
-    <strong><a href="<?php echo 'https://invazion.nadazone.fr/register?redirect='.urlencode($http_host) ?>">► Créer mon compte ◄</a></strong>
+    <strong><a href="<?php echo 'https://invazion.nadazone.fr/register?redirect='.urlencode('http://'.$http_host) ?>">► Créer mon compte ◄</a></strong>
 </p>
 
 <p>Vous pourrez ensuite revenir ici pour jouer.</p>
