@@ -364,7 +364,7 @@ echo $html->popup('popsuccess', nl2br($msg_popup));
         
         // Si le joueur est connecté mais n'a pas encore créé son citoyen, 
         // affiche le panneau de création de citoyen
-        echo $html->citizen_creation_block($invalid_pseudo_message);
+        echo $html->block_citizen_creation($invalid_pseudo_message);
     }
     else {
         // Si le joueur est connecté et a déjà créé son citoyen,
