@@ -3,9 +3,9 @@
 **Jouer :** https://invaziongame.nadazone.fr/  
 **Discord** : https://discord.gg/2GRPTyM
 
-* **Le concept :** développer un jeu basé sur les principes essentiels du jeu Hordes (http://hordes.fr), à savoir : des joueurs devant s'organiser ensemble pour assurer leur survie face aux zombies. (Cela dit, les zombies ne sont là que pour donner un cadre. Si vous préférez voir un affrontement des chocolatines contre les pains au chocolat, vous en avez le droit.)
-* **La question qui se posait :** Hordes est un jeu complexe qui ne peut pas être développé par une personne seule. Il fallait donc permettre un travail collaboratif fluide, durable et le plus ouvert possible.
-* **La solution retenue :** la méthode « API First ». Développer d'un côté le moteur du jeu, le rendre public au moyen d'APIs, et permettre à toutes les personnes volontaires de contribuer à l'interface graphique sur Github. 
+**Le concept :** développer un jeu basé sur les principes essentiels du jeu Hordes (http://hordes.fr), à savoir : des joueurs devant s'organiser ensemble pour assurer leur survie face aux zombies. (Cela dit, les zombies ne sont là que pour donner un cadre. Si vous préférez voir un affrontement des chocolatines contre les pains au chocolat, vous en avez le droit.)
+
+Le jeu vise à être hautement customisable et le plus ouvert possible (interface, plugins...)  afin que la communauté puisse participer à son évolution indépendamment des développements officiels.
 
 # Principes directeurs du projet
 ## Principes de jeu
@@ -20,6 +20,7 @@
 * Gestion du temps : permettre des rythmes de jeu adaptés aux différents profils de joueurs.
 	
 ## Principes de développement
+* Méthode « API First » : développer d'un côté le moteur du jeu, le rendre public au moyen d'APIs, et permettre à toutes les personnes volontaires de contribuer à l'interface graphique. 
 * Ouvrir le jeu au maximum afin que la communauté puisse se l'approprier :
   * Permettre aux joueurs de modifier les éléments du jeu (objets, chantiers, actions...) 
   * Interface open-source sur Github
