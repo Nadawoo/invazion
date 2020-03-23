@@ -70,7 +70,13 @@ Ainsi, même avec des bots, le joueur devra :
 
 ## A moyen terme
 
-* **Plantes et toxicité :** voir https://github.com/Nadawoo/invazion/issues/3
+* **Plantes et toxicité :** 
+Des champignons sont disposés aléatoirement sur la carte. Dilemme pour les joueurs :
+   - Plus une case contient de champignons et moins les zombies y apparaissent => intérêt à les laisser
+   - Cependant, récupérer ces champignons donne une ressource => intérêt à les prendre   
+   (La nature de la ressource reste à déterminer : un carburant artisanal ?)   
+Par ailleurs, moins il y a de champignons sur la carte et plus le taux toxicité global de la carte augmente (matérialisé par une jauge). Lié ensuite à l'idée de Skaen sur les "pro-tox" et les "anti-tox" https://github.com/Nadawoo/invazion/issues/3   
+(à affiner)
 
 * **Interface pour que les joueurs puissent éditer/créer :**
 	* Les objets
