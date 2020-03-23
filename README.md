@@ -28,4 +28,4 @@
 * Serveur commun afin de ne pas fragmenter la communauté (important pour un jeu multijoueurs)
 
 # Organisation des fichiers
-Voir [FILE-STRUCTURE.md](FILE-STRUCTURE.md) 
+Voir [FILES-STRUCTURE.md](FILES-STRUCTURE.md) 
