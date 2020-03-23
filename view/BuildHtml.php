@@ -322,7 +322,10 @@ class BuildHtml extends HtmlPage
                     Les <strong style="font-size:1.3em">'.$zombies.'</strong> zombies 
                     sont trop nombreux et vous encerclent ! Vous pouvez tenter 
                     d\'attaquer ces putrides afin de dégager le passage...
-                    <p>'.$buttons->kill_zombie($zombies).'</p>
+                    <p>
+                        '.$buttons->kill_zombie($zombies).'<br>
+                        '.$buttons->kill_mass_zombies($zombies).'
+                    </p>
                     '.$msg_zombies_killed.'
                 </div>
             </div>';

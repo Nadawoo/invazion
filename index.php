@@ -113,6 +113,12 @@ elseif ($action_post === 'fight') {
     $api_result         = $api->fight();
     $msg_zombies_killed = '<span class="'.$api_result['metas']['error_class'].'">'.$api_result['metas']['error_message'].'</span>';
 }
+// Attaquer un zombie à mains nues
+elseif ($action_post === 'bigfight') {
+    
+    $api_result         = $api->fight('bigfight');
+    $msg_zombies_killed = '<span class="'.$api_result['metas']['error_class'].'">'.$api_result['metas']['error_message'].'</span>';
+}
 // Créer un citoyen
 elseif ($action_post === 'create_citizen') {
     

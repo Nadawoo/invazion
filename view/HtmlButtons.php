@@ -70,7 +70,7 @@ class HtmlButtons
     {
         
         $class = '';
-        $title = 'Attaquer un zombies à mains nues (peut échouer)';
+        $title = 'Attaquer un zombies à mains nues. Vous gagnerez un picto en cas de succès.';
         
         if ($nbr_zombies === 0) {
             $class = 'inactive';
@@ -80,7 +80,34 @@ class HtmlButtons
         return
         '<form method="post" action="#Outside">
             <input type="hidden" name="action" value="fight">
-            <input type="submit" value="Attaquer un zombie !" class="'.$class.'"  title="'.$title.'">
+            <input type="submit" value="Attaquer à mains nues !" class="'.$class.'"  title="'.$title.'">
+        </form>';
+    }
+    
+    
+    /**
+     * Retourne le bouton pour attaquer des zombies en masse
+     * 
+     * @param int $nbr_zombies  Le nombre de zombies dans la zone
+     * @return string
+     */
+    function kill_mass_zombies($nbr_zombies)
+    {
+        
+        $class = '';
+        $title = "Comme les zombies sont particulièrement nombreux ici, vous pouvez "
+               . "les attaquer par groupe. C'est très efficace, mais en contrepartie "
+               . "vous ne gagnerez aucun picto.";
+        
+        if ($nbr_zombies === 0) {
+            $class = 'inactive';
+            $title = "Il n'y a aucun zombie dans la zone";
+        }
+                
+        return
+        '<form method="post" action="#Outside">
+            <input type="hidden" name="action" value="bigfight">
+            <input type="submit" value="Nettoyer la zone au lance-flammes" class="'.$class.'"  title="'.$title.'">
         </form>';
     }
     
