@@ -9,7 +9,9 @@ Le jeu vise à être hautement customisable et le plus ouvert possible (interfac
 
 # Principes directeurs du projet
 ## Principes de jeu
-* Objectif : survivre aux Hordes zombies
+* Bases similiraies à hordes :
+   * Objectif : survivre aux Hordes zombies
+   * Les actions faites en jeu débloquent des récompenses (pictos), y compris si l'action n'est pas cruciale. Plus les récompenses sont nombreuses et plus les possibilités d'objectifs individuels seront variés.
 * Le jeu est collaboratif façon Hordes :
   * Pas de collaboration imposée, le jeu solo voire la trahison sont possibles.
   * Pas de rôle ni de camp défini comme ils peuvent l'être dans les jeux de rôle. Le joueur décide au fur et à mesure comment il agit.
@@ -37,7 +39,7 @@ Le jeu vise à être hautement customisable et le plus ouvert possible (interfac
 * Générer automatiquement des zombies à intervalles réguliers. Le bouton de pop actuel est provisoire pour les tests.  
 Le rythme d'apparition des zombies dépendra du rythme de la partie.
 
-* Créer une page de profil pour afficher les pictos gagnés. Ils sont d'ores et déjà enregistrés mais il n'y a pas d'interface pour les voir.
+* Créer une page de profil pour afficher les récompenses (pictos) gagnés. Ils sont d'ores et déjà enregistrés (nombre de zombies tués...) mais il n'y a pas d'interface pour les voir.
 
 ## A moyen terme : cartes multiples & mécanismes de dynamisation du jeu
 
