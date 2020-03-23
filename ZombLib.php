@@ -4,7 +4,7 @@
  * pour récupérer ou/et écrire des données sur le serveur
  * http://invazion.nadazone.fr
  * 
- * Version 3.8
+ * Version 3.9
  */
 class ZombLib
 {
@@ -426,12 +426,14 @@ class ZombLib
     /**
      * Attaquer un zombie à mains nues
      * 
+     * @param string $action Si vaut 'fight' (par défaut) = attaquer un zombie
+     *                       Si vaut 'bigfight' = attaquer des zombies en masse
      * @return array Le résultat retourné par l'API
      */
-    public function fight()
+    public function fight($action='fight')
     {
         
-        $json = $this->get_api_output($this->url.'/zone?action=fight&token='.$this->get_token());
+        $json = $this->get_api_output($this->url.'/zone?action='.$action.'&token='.$this->get_token());
         
         return $this->json_to_array($json);
     }
