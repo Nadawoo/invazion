@@ -392,7 +392,7 @@ echo $html->popup('popsuccess', nl2br($msg_popup));
                 // Affiche les flèches de déplacement            
                 echo movement_paddle($citizen['coord_x'], $citizen['coord_y']);
                 
-                echo '<div class="center" style="min-height:4em">' . $msg_move . '</div>';
+                echo '<div class="center" style="min-height:5em">' . $msg_move . '</div>';
             }
             
             // Affiche le bouton pour entrer dans la crypte s'il y en a une

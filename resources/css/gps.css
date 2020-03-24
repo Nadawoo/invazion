@@ -5,7 +5,7 @@
     position:relative;
     float:right;
     border:3px solid black;
-    border-bottom:1em solid black;
+    border-bottom:1.3em solid black;
     border-radius:0.7em;
 }
 #gps .title {
@@ -17,13 +17,13 @@
 }
 #gps .container {
     display:flex;
-    height:11em; /* Le ratio hauteur/largeur fait ressembler à un smartphone */
-    width: 7em; 
+    height:12em; /* Le ratio hauteur/largeur fait ressembler à un smartphone */
+    width: 8em; 
     border-top:1px solid black;
     overflow:hidden;
 }
 #gps .sideicons {
-    width:2.3em;
+    width:2.2em;
     overflow:hidden;
     background:#212f3d;
     text-align:center;
@@ -58,6 +58,24 @@
     font-size:0.7em;
     color:lightgrey;
 }
+
+#gps .blocktext {
+    width:100%;
+    background:#34495e;
+    text-align:center;
+    color:white;
+    font-size:0.9em;
+}
+#gps h4 {
+    background:#273746;
+    font-variant:small-caps;
+    font-size:0.8em;
+    margin-bottom:0.2em;
+    font-weight:normal;
+    padding:0.15em 0;
+    color:#d5f5e3;
+}
+
 #gps .notif {
     position:absolute;
     bottom:1em;

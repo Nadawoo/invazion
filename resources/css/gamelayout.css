@@ -289,8 +289,8 @@ button {
  * Bloc rouge indiquant que le joueur est bloqué par les zombies
  */
 #alert_control {
-    width:66%;
-    min-height:13em; /* Même hauteur que le smartphone du jeu */
+    width:62%;
+    min-height:14.3em; /* Même hauteur que le smartphone du jeu */
     border:2px outset black;
     text-align:center;
     background:#a93226;

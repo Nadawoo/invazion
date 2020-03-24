@@ -50,6 +50,10 @@ function minimap($map_cols, $map_rows, $coord_x, $coord_y, $actionpoints, $zone)
                 <div class="sideicons">
                     &#128205;<br>
                     <span style="color:red;font-variant:small-caps">gps</span><br>
+                    
+                    <br>
+                    &#x1FA78;<br>
+                    <span style="color:red;font-variant:small-caps">santé</span><br>
                 <!--                    
                     <br>
                     &#9888;&#65039;<br>
@@ -59,12 +63,20 @@ function minimap($map_cols, $map_rows, $coord_x, $coord_y, $actionpoints, $zone)
                     <span>notif</span><br>
                 -->
                 </div>
-                <div class="minimap" onclick="toggle(\'my_zone\');setCookie(\'show_zone\', 1)">
+                <div class="minimap" onclick="toggle(\'my_zone\');setCookie(\'show_zone\', 1)" style="display:none">
                     <div style="position:relative;left:'.$x_percent.'%;top:'.$y_percent.'%">
                         <span class="dot">•</span>
                         <!-- Laisser ce texte APRES le point afin de ne pas décaler le point vers le bas -->
                         <span class="label">['.$coord_x.':'.$coord_y.']</span>
                     </div>
+                </div>
+                <div class="blocktext">
+                    <h4>Ma spécialité</h4>
+                    Bâtisseur
+                    <h4>Points d\'action</h4>
+                    12/12
+                    <h4>Durée fouille</h4>
+                    2h30
                 </div>
             </div>
             '.$notif.'
