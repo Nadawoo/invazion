@@ -381,7 +381,7 @@ echo $html->popup('popsuccess', nl2br($msg_popup));
             
             <?php
             // Affiche le GPS (la mini carte)
-            echo minimap($map_cols, $map_rows, $citizen['coord_x'], $citizen['coord_y'], $citizen['action_points'], $zone);
+            echo minimap($map_cols, $map_rows, $citizen['coord_x'], $citizen['coord_y'], $specialities[$citizen['speciality']], $citizen['action_points'], $zone);
             
             if ($zone['controlpoints_citizens'] < $zone['controlpoints_zombies']) {
             

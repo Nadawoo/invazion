@@ -6,11 +6,13 @@
  * @param int $map_rows Le nombre de lignes de la carte réelle
  * @param int $coord_x  La coordonnée X de la case où est le joueur
  * @param int $coord_y  La coordonnée Y de la case où est le joueur
+ * @param array $speciality Caractéristiques de la spécialité du citoyen (nom, PA max...)
+ * @param int actionpoints  Nombre de PA du joueur
  * @param array $zone   Les données de zone extraites de la BDD (nombre de zombies...)
  * 
  * @return string HTML
  */
-function minimap($map_cols, $map_rows, $coord_x, $coord_y, $actionpoints, $zone)
+function minimap($map_cols, $map_rows, $coord_x, $coord_y, $speciality, $actionpoints, $zone)
 {
     
     // L'emplacement du joueur sur l'axe horizontal de la mini carte sera 
@@ -72,11 +74,11 @@ function minimap($map_cols, $map_rows, $coord_x, $coord_y, $actionpoints, $zone)
                 </div>
                 <div class="blocktext">
                     <h4>Ma spécialité</h4>
-                    Bâtisseur
+                    '.$speciality['name'].'
                     <h4>Points d\'action</h4>
-                    12/12
+                    '.$actionpoints.' / '.$speciality['action_points'].'
                     <h4>Durée fouille</h4>
-                    2h30
+                    '.$speciality['digging_duration'].'&nbsp;mn
                 </div>
             </div>
             '.$notif.'
