@@ -178,8 +178,8 @@ class BuildHtml extends HtmlPage
     
     
     /**
-     * Barre contenant les caractéristiques du joueur
-     * (points d'action, temps de fouillle...)
+     * Bloc contenant les caractéristiques du joueur (points d'action, temps de fouille...)
+     * INUTILISÉ depuis que ces données sont affichés dans le smartphone à droite de la carte
      * 
      * @param array $speciality_caracs Les caractéristiques de la spécialité du citoyen,
      *                                 issues de l'API (points d'action, temps de fouille..)

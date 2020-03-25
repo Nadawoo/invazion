@@ -425,13 +425,6 @@ Sortez groupés...">?</abbr>]
                 <?php echo $html_bag_items ?>
             </fieldset>
             
-            <fieldset id="state_panel" class="inactive_tab" onclick="switch_tab('state_panel', 'ground_panel')">
-                <legend>Mon état</legend>
-                <?php
-                echo $html->block_health($specialities[$citizen['speciality']], $citizen['action_points'], $citizen['is_wounded']);
-                ?>
-            </fieldset>
-            
             <fieldset id="ground_panel">
                 <legend onclick="switch_tab('ground_panel', 'state_panel')">Objets au sol</legend>
                 <?php 
