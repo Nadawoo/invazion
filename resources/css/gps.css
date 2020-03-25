@@ -1,5 +1,6 @@
 /*
- * Mini-carte/smartphone à côté du pavé de déplacement
+ * La mini-carte/smartphone à côté du pavé de déplacement.
+ * Rien à voir avec le responsive design pour support mobile.
  */
 #gps {
     position:relative;
@@ -22,17 +23,33 @@
     border-top:1px solid black;
     overflow:hidden;
 }
+
+/* Liste des icônes à gauche du smartphone */
 #gps .sideicons {
     width:2.2em;
     overflow:hidden;
     background:#212f3d;
     text-align:center;
 }
-#gps .sideicons span {
+.sideicons div {
+    margin:0.2em 0 0.5em 0;
+    padding:0.5em 0 0.1em 0;
+    line-height:80%;
+}
+.sideicons span {
     color:white;
+    font-variant:small-caps;
     font-size:0.55em;
 }
-.minimap {
+.sideicons div:hover {
+    cursor:pointer;
+    background: #2874a6 ;
+    border-radius:0.3em 0 0 0.3em;
+    color:red;
+}
+
+/* La minicarte/GPS verte dans le smartphone */
+#minimap {
     height:100%;
     width: 100%;
     background-color:  #145a32 /*#82e0aa*/ ;
@@ -41,17 +58,17 @@
     background-size: 100% 24px;
     overflow:hidden;
 }
-.minimap:hover {
+#minimap:hover {
     background-color:darkgreen;
     cursor:pointer;
 }
-.minimap .dot {
+#minimap .dot {
     line-height:10%;
     font-size:1.5em;
     color:white;
     animation: blinker 2s linear infinite;
 }
-.minimap .label {
+#minimap .label {
     position:absolute;
     top:-1em;
     left:-0.6em;
@@ -59,12 +76,14 @@
     color:lightgrey;
 }
 
+/* Santé du joueur ou autre onglet textuel du smartphone */
 #gps .blocktext {
     width:100%;
     background:#34495e;
     text-align:center;
     color:white;
     font-size:0.9em;
+    display:none;
 }
 #gps h4 {
     background:#273746;
@@ -76,6 +95,7 @@
     color:#d5f5e3;
 }
 
+/* Notification à l'écran su smartphone */
 #gps .notif {
     position:absolute;
     bottom:1em;

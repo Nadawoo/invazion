@@ -50,12 +50,15 @@ function minimap($map_cols, $map_rows, $coord_x, $coord_y, $speciality, $actionp
             <div class="title">––</div>
             <div class="container">
                 <div class="sideicons">
-                    &#128205;<br>
-                    <span style="color:red;font-variant:small-caps">gps</span><br>
+                    <div onclick="display(\'minimap\');hide(\'health\')">
+                        &#128205;<br>
+                        <span>gps</span>
+                    </div>
                     
-                    <br>
-                    &#x1FA78;<br>
-                    <span style="color:red;font-variant:small-caps">santé</span><br>
+                    <div onclick="display(\'health\');hide(\'minimap\')">
+                        &#x1FA78;<br>
+                        <span>santé</span>
+                    </div>
                 <!--                    
                     <br>
                     &#9888;&#65039;<br>
@@ -65,16 +68,16 @@ function minimap($map_cols, $map_rows, $coord_x, $coord_y, $speciality, $actionp
                     <span>notif</span><br>
                 -->
                 </div>
-                <div class="minimap" onclick="toggle(\'my_zone\');setCookie(\'show_zone\', 1)" style="display:none">
+                <div id="minimap" onclick="toggle(\'my_zone\');setCookie(\'show_zone\', 1)">
                     <div style="position:relative;left:'.$x_percent.'%;top:'.$y_percent.'%">
                         <span class="dot">•</span>
                         <!-- Laisser ce texte APRES le point afin de ne pas décaler le point vers le bas -->
                         <span class="label">['.$coord_x.':'.$coord_y.']</span>
                     </div>
                 </div>
-                <div class="blocktext">
+                <div id="health" class="blocktext">
                     <h4>Ma spécialité</h4>
-                    '.$speciality['name'].'
+                    '.ucfirst($speciality['name']).'
                     <h4>Points d\'action</h4>
                     '.$actionpoints.' / '.$speciality['action_points'].'
                     <h4>Durée fouille</h4>
