@@ -12,7 +12,7 @@
  * 
  * @return string HTML
  */
-function smartphone($map_cols, $map_rows, $coord_x, $coord_y, $speciality, $actionpoints, $zone)
+function smartphone($map_cols, $map_rows, $coord_x, $coord_y, $speciality, $actionpoints, $is_wounded, $zone)
 {
     
     // L'emplacement du joueur sur l'axe horizontal de la mini carte sera 
@@ -45,6 +45,18 @@ function smartphone($map_cols, $map_rows, $coord_x, $coord_y, $speciality, $acti
         
         $notif = '<div class="notif">Une ville ! L\'occasion de s\'abriter...</div>';
     }
+    
+    
+    // Affiche si le citoyen est blessé
+    $wound = 'Parfaite';
+    
+    if ($is_wounded === 1) {
+    
+        $wound = '<a href="#popwounded">
+            <strong style="color:#f44336;border-bottom:2px dotted red;">Blessé !</strong>
+            </a>';
+    }
+    
     
     echo '<div id="phone">
             <div class="title">––</div>
@@ -80,6 +92,8 @@ function smartphone($map_cols, $map_rows, $coord_x, $coord_y, $speciality, $acti
                     '.ucfirst($speciality['name']).'
                     <h4>Points d\'action</h4>
                     '.$actionpoints.' / '.$speciality['action_points'].'
+                    <h4>Santé</h4>
+                    '.$wound.'
                     <h4>Durée fouille</h4>
                     '.$speciality['digging_duration'].'&nbsp;mn
                 </div>
