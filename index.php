@@ -6,7 +6,7 @@ safely_require('view/HtmlMap.php');
 safely_require('view/HtmlMyZone.php');
 safely_require('view/HtmlCityEnclosure.php');
 safely_require('view/movement_paddle.php');
-safely_require('view/minimap.php');
+safely_require('view/smartphone.php');
 safely_require('controller/is_development_server.php');
 safely_require('controller/sort_citizens_by_coord.php');
 safely_require('controller/filter_citizens_by_city.php');
@@ -380,8 +380,8 @@ echo $html->popup('popsuccess', nl2br($msg_popup));
         <div style="margin-bottom:3em;overflow:auto">
             
             <?php
-            // Affiche le GPS (la mini carte)
-            echo minimap($map_cols, $map_rows, $citizen['coord_x'], $citizen['coord_y'], $specialities[$citizen['speciality']], $citizen['action_points'], $zone);
+            // Affiche le smartphone à droite de la carte (GPS...)
+            echo smartphone($map_cols, $map_rows, $citizen['coord_x'], $citizen['coord_y'], $specialities[$citizen['speciality']], $citizen['action_points'], $zone);
             
             if ($zone['controlpoints_citizens'] < $zone['controlpoints_zombies']) {
             

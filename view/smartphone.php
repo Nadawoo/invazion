@@ -12,7 +12,7 @@
  * 
  * @return string HTML
  */
-function minimap($map_cols, $map_rows, $coord_x, $coord_y, $speciality, $actionpoints, $zone)
+function smartphone($map_cols, $map_rows, $coord_x, $coord_y, $speciality, $actionpoints, $zone)
 {
     
     // L'emplacement du joueur sur l'axe horizontal de la mini carte sera 
