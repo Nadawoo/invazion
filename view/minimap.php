@@ -46,7 +46,7 @@ function minimap($map_cols, $map_rows, $coord_x, $coord_y, $speciality, $actionp
         $notif = '<div class="notif">Une ville ! L\'occasion de s\'abriter...</div>';
     }
     
-    echo '<div id="gps">
+    echo '<div id="phone">
             <div class="title">––</div>
             <div class="container">
                 <div class="sideicons">

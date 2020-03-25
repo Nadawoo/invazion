@@ -2,21 +2,21 @@
  * La mini-carte/smartphone à côté du pavé de déplacement.
  * Rien à voir avec le responsive design pour support mobile.
  */
-#gps {
+#phone {
     position:relative;
     float:right;
     border:3px solid black;
     border-bottom:1.3em solid black;
     border-radius:0.7em;
 }
-#gps .title {
+#phone .title {
     background:black;
     color:grey;
     text-align:center;
     font-weight:bold;
     border-radius:0.5em 0.5em 0 0;
 }
-#gps .container {
+#phone .container {
     display:flex;
     height:12em; /* Le ratio hauteur/largeur fait ressembler à un smartphone */
     width: 8em; 
@@ -25,7 +25,7 @@
 }
 
 /* Liste des icônes à gauche du smartphone */
-#gps .sideicons {
+#phone .sideicons {
     width:2.2em;
     overflow:hidden;
     background:#212f3d;
@@ -77,7 +77,7 @@
 }
 
 /* Santé du joueur ou autre onglet textuel du smartphone */
-#gps .blocktext {
+#phone .blocktext {
     width:100%;
     background:#34495e;
     text-align:center;
@@ -85,7 +85,7 @@
     font-size:0.9em;
     display:none;
 }
-#gps h4 {
+#phone h4 {
     background:#273746;
     font-variant:small-caps;
     font-size:0.8em;
@@ -96,7 +96,7 @@
 }
 
 /* Notification à l'écran su smartphone */
-#gps .notif {
+#phone .notif {
     position:absolute;
     bottom:1em;
     width:100%;
