@@ -4,16 +4,20 @@
  * 
  * @param int $map_cols Le nombre de colonnes de la carte réelle
  * @param int $map_rows Le nombre de lignes de la carte réelle
- * @param int $coord_x  La coordonnée X de la case où est le joueur
- * @param int $coord_y  La coordonnée Y de la case où est le joueur
+ * @param array $citizen Les caractéristiques du citoyen telles que retournées par l'API
+ *                       (points d'action, coordonnées...)
  * @param array $speciality Caractéristiques de la spécialité du citoyen (nom, PA max...)
- * @param int actionpoints  Nombre de PA du joueur
  * @param array $zone   Les données de zone extraites de la BDD (nombre de zombies...)
  * 
  * @return string HTML
  */
-function smartphone($map_cols, $map_rows, $coord_x, $coord_y, $speciality, $actionpoints, $is_wounded, $zone)
+function smartphone($map_cols, $map_rows, $citizen, $speciality, $zone)
 {
+    
+    $coord_x    = $citizen['coord_x'];
+    $coord_y    = $citizen['coord_y'];
+    $AP         = $citizen['action_points'];
+    $is_wounded = $citizen['is_wounded'];
     
     // L'emplacement du joueur sur l'axe horizontal de la mini carte sera 
     // en % de la largeur de la carte réelle. NB : on divise la coordonnée 
@@ -25,17 +29,17 @@ function smartphone($map_cols, $map_rows, $coord_x, $coord_y, $speciality, $acti
     // Affiche une notification si le déplacement coûte des PA
     $notif = '';
     
-    if ($actionpoints > 0 and $zone['controlpoints_citizens'] < $zone['controlpoints_zombies']) {
+    if ($AP > 0 and $zone['controlpoints_citizens'] < $zone['controlpoints_zombies']) {
         
         $notif = '<div class="notif">Vous êtes bloqué par les zombies !</div>';
     }
-    elseif ($actionpoints === 0) {
+    elseif ($AP === 0) {
         
         $notif = '<div class="notif">Vous n\'avez plus de PA pour bouger !</div>';
     }
     elseif ($zone['zombies'] > 0) {
         
-        $notif = '<div class="notif">Partir vous coûtera 1 PA ('.$actionpoints.' restants)</div>';
+        $notif = '<div class="notif">Partir vous coûtera 1 PA ('.$AP.' restants)</div>';
     }
     elseif (is_int($zone['city_id']) and $zone['city_size'] === 1) {
         
@@ -91,7 +95,7 @@ function smartphone($map_cols, $map_rows, $coord_x, $coord_y, $speciality, $acti
                     <h4>Ma spécialité</h4>
                     '.ucfirst($speciality['name']).'
                     <h4>Points d\'action</h4>
-                    '.$actionpoints.' / '.$speciality['action_points'].'
+                    '.$AP.' / '.$speciality['action_points'].'
                     <h4>Santé</h4>
                     '.$wound.'
                     <h4>Durée fouille</h4>

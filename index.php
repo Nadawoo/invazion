@@ -381,7 +381,7 @@ echo $html->popup('popsuccess', nl2br($msg_popup));
             
             <?php
             // Affiche le smartphone à droite de la carte (GPS...)
-            echo smartphone($map_cols, $map_rows, $citizen['coord_x'], $citizen['coord_y'], $specialities[$citizen['speciality']], $citizen['action_points'], $citizen['is_wounded'], $zone);
+            echo smartphone($map_cols, $map_rows, $citizen, $specialities[$citizen['speciality']], $zone);
             
             if ($zone['controlpoints_citizens'] < $zone['controlpoints_zombies']) {
             
