@@ -202,6 +202,32 @@ function resize_panel(panelId) {
 
 
 /*
+ * Active l'onglet du smartphone à droite de la carte
+ *
+ * @param {str} tabId L'id HTML de l'onglet du smartphone à afficher (gps, health...)
+ */
+function activatePhoneTab(tabId=null) {
+    
+    // Si clic sur un onglet, on mémorise son nom
+    // (ignoré si on exécute la fonction au 1er chargement de la page)
+    if (tabId !== null) {
+        
+        setCookie('phonetab', tabId);
+    }
+    
+    if (getCookie('phonetab') === "health") {
+
+        display('health');
+        hide('minimap');
+    }
+    else {
+        display('minimap');
+        hide('health');
+    }
+}
+
+
+/*
  * Exécuté dès le chargement de la page, sans action du visiteur
  */
 // Si on est à l'intérieur d'une ville
@@ -220,3 +246,5 @@ if (getCookie('show_zone') === "0") {
 else {
 	display('my_zone');
 }
+
+activatePhoneTab();

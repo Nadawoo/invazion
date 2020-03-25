@@ -50,12 +50,12 @@ function minimap($map_cols, $map_rows, $coord_x, $coord_y, $speciality, $actionp
             <div class="title">––</div>
             <div class="container">
                 <div class="sideicons">
-                    <div onclick="display(\'minimap\');hide(\'health\')">
+                    <div onclick="activatePhoneTab(\'gps\')">
                         &#128205;<br>
                         <span>gps</span>
                     </div>
                     
-                    <div onclick="display(\'health\');hide(\'minimap\')">
+                    <div onclick="activatePhoneTab(\'health\')">
                         &#x1FA78;<br>
                         <span>santé</span>
                     </div>

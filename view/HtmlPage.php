@@ -57,7 +57,7 @@ class HtmlPage
     function page_footer()
     {
         
-        return '    <script type="text/javascript" src="resources/scripts.js?v1.5"></script>
+        return '    <script type="text/javascript" src="resources/scripts.js?v1.6"></script>
                 </body>
             </html>';
     }
