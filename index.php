@@ -421,12 +421,12 @@ Sortez groupés...">?</abbr>]
             
             
             <fieldset id="bag_panel">
-                <legend>Dans mon sac</legend>
+                <legend>&#128188; Dans mon sac</legend>
                 <?php echo $html_bag_items ?>
             </fieldset>
             
             <fieldset id="ground_panel">
-                <legend onclick="switch_tab('ground_panel', 'state_panel')">Objets au sol</legend>
+                <legend onclick="switch_tab('ground_panel', 'state_panel')">Objets au sol &#9935;&#65039;</legend>
                 <?php 
                 echo $html_zone_items 
                 ?>
