@@ -98,6 +98,7 @@ function smartphone($map_cols, $map_rows, $citizen, $speciality, $zone)
                     <span>notif</span><br>
                 -->
                 </div>
+                
                 <div id="minimap" class="screen" onclick="toggle(\'my_zone\');setCookie(\'show_zone\', 1)">
                     <div style="position:relative;left:'.$x_percent.'%;top:'.$y_percent.'%">
                         <span class="dot">•</span>
@@ -105,6 +106,7 @@ function smartphone($map_cols, $map_rows, $citizen, $speciality, $zone)
                         <span class="label">['.$coord_x.':'.$coord_y.']</span>
                     </div>
                 </div>
+                
                 <div id="health" class="screen blocktext">
                     <h4>Ma spécialité</h4>
                     '.ucfirst($speciality['name']).'
@@ -115,7 +117,9 @@ function smartphone($map_cols, $map_rows, $citizen, $speciality, $zone)
                     <h4>Durée fouille</h4>
                     '.$speciality['digging_duration'].'&nbsp;mn
                 </div>
+                
                 <div id="zone" class="screen blocktext">
+                <a href="#popcontrol" style="color:inherit">
                     <h4 style="margin-top:0">Contrôle zone</h4>
                     <div style="color:lightgreen;margin:0.2em 0">
                         <div style="font-variant:small-caps">Humains</div>
@@ -128,7 +132,13 @@ function smartphone($map_cols, $map_rows, $citizen, $speciality, $zone)
                     <hr>     
                     '.$control.'
                     ('.signed_int($cp_diff).' pts)
+                     
+                    <div style="margin-top:1em;color:#90a4ae">
+                        Aide
+                    </div>
+                </a>
                 </div>
+                
             </div>
             '.$notif.'
         </div>';

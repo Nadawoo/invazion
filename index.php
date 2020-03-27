@@ -240,6 +240,27 @@ echo $html->popup('popwounded',
         </ul>
         ');
 
+echo $html->popup('popcontrol',
+        "<p>Plus les citoyens sont nombreux dans votre zone, plus vous disposez 
+            de <strong>points de contrôle</strong> pour contenir les zombies.
+            <strong>Sortez groupés</strong> pour éviter les mésaventures...
+        </p>
+            
+        <p>Si la somme des points des zombies devient supérieure à celle des humains, 
+        <strong>vous ne pouvez plus quitter la zone !</strong><p>
+        <ul>
+            <li>• Chaque humain vaut 10 points</li>
+            <li>• Chaque zombie vaut 1 points.</li>
+        </ul>
+        <p><strong>Si vous êtes bloqué</strong>, reprenez votre liberté en inversant le rapport de forces :</p>
+        <ul>
+            <li>• soit en demandant à <strong>d'autres joueurs</strong> de vous rejoindre dans la zone 
+            (augmentera le contrôle des humains) ;</li>
+            <li>• soit en <strong>tuant des zombies</strong>
+            (réduira le contrôle des zombies).</li>
+        </ul>
+        ");
+
 // Pop-up indiquant le résultat d'une action
 echo $html->popup('popsuccess', nl2br($msg_popup));
 ?>
