@@ -94,8 +94,15 @@
     padding:0.15em 0;
     color:#d5f5e3;
 }
+#phone hr {
+    margin:-0.2em 0.7em 0.5em 0.7em;
+    color:white;
+    height:10px;
+    border:none;
+    border-bottom:1px solid white;
+}
 
-/* Notification à l'écran su smartphone */
+/* Notification à l'écran du smartphone */
 #phone .notif {
     position:absolute;
     bottom:1em;

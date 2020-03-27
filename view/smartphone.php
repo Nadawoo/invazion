@@ -1,4 +1,6 @@
 <?php
+require 'signed_int.php';
+
 /**
  * Génère le HTML de la mini carte (le GPS à droite de la carte)
  * 
@@ -18,6 +20,10 @@ function smartphone($map_cols, $map_rows, $citizen, $speciality, $zone)
     $coord_y    = $citizen['coord_y'];
     $AP         = $citizen['action_points'];
     $is_wounded = $citizen['is_wounded'];
+    $cp_zombies  = $zone['controlpoints_zombies'];
+    $cp_citizens = $zone['controlpoints_citizens'];
+    // Nombre de points de contrôle d'écrat enhumains et zombies
+    $cp_diff     = $cp_citizens-$cp_zombies;
     
     // L'emplacement du joueur sur l'axe horizontal de la mini carte sera 
     // en % de la largeur de la carte réelle. NB : on divise la coordonnée 
@@ -61,6 +67,11 @@ function smartphone($map_cols, $map_rows, $citizen, $speciality, $zone)
             </a>';
     }
     
+    // Affiche le contrôle de zone
+    $control = ($cp_diff >= 0)
+                ? '<div style="background-color:green;border-radius:1em">= Zone sûre</div>'
+                : '<div style="background-color:red;border-radius:1em">= Submergé !</div>';
+    
     
     echo '<div id="phone">
             <div class="title">––</div>
@@ -70,10 +81,13 @@ function smartphone($map_cols, $map_rows, $citizen, $speciality, $zone)
                         &#128205;<br>
                         <span>gps</span>
                     </div>
-                    
                     <div onclick="activatePhoneTab(\'health\')">
                         &#x1FA78;<br>
                         <span>santé</span>
+                    </div>
+                    <div onclick="activatePhoneTab(\'zone\')">
+                        &#129503;<br>
+                        <span>zone</span>
                     </div>
                 <!--                    
                     <br>
@@ -100,6 +114,20 @@ function smartphone($map_cols, $map_rows, $citizen, $speciality, $zone)
                     '.$wound.'
                     <h4>Durée fouille</h4>
                     '.$speciality['digging_duration'].'&nbsp;mn
+                </div>
+                <div id="zone" class="blocktext">
+                    <h4 style="margin-top:0">Contrôle zone</h4>
+                    <div style="color:lightgreen;margin:0.2em 0">
+                        <div style="font-variant:small-caps">Humains</div>
+                        + <span style="font-size:1.5em">'.$cp_citizens.'</span> pts
+                    </div>
+                    <div style="color:orange">
+                        <div style="font-variant:small-caps">Zombies</div>
+                        - <span style="font-size:1.5em">'.$cp_zombies.'</span> pts
+                    </div>
+                    <hr>     
+                    '.$control.'
+                    ('.signed_int($cp_diff).' pts)
                 </div>
             </div>
             '.$notif.'

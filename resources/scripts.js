@@ -219,6 +219,13 @@ function activatePhoneTab(tabId=null) {
 
         display('health');
         hide('minimap');
+        hide('zone');
+    }
+    else if (getCookie('phonetab') === "zone") {
+
+        display('zone');
+        hide('minimap');
+        hide('health');
     }
     else {
         display('minimap');
