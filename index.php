@@ -181,7 +181,6 @@ if ($citizen_id !== NULL) {
     $zone               = $cells[$citizen['coord_x'].'_'.$citizen['coord_y']];
     
     $html_zone_items    = $html->block_zone_items($cells, $items, $citizen);
-    $html_versus        = $html->block_citizens_vs_zombies($zone['citizens'], $zone['zombies'], $zone['controlpoints_citizens'], $zone['controlpoints_zombies']);
     $html_bag_items     = $html->block_bag_items($citizen_id, $citizen['bag_items'], $items, $citizen['bag_size']);
     $html_zone_citizens = $html->block_zone_citizens($zone_citizens, $citizen_id);
     
@@ -428,17 +427,9 @@ echo $html->popup('popsuccess', nl2br($msg_popup));
             
                     
             <fieldset>
-                <legend>Contrôle de la zone
-                [<abbr title="Plus les citoyens sont nombreux dans la zone,
-plus ils disposent de points de contrôle (PDC)
-pour contrer les zombies.
-Sortez groupés...">?</abbr>]
-                </legend>
+                <legend>Citoyens dans ma zone</legend>
                 
-                <?php
-                echo $html_versus;
-                echo $html_zone_citizens;
-                ?>
+                <?php echo $html_zone_citizens ?>
             </fieldset>
             
             
