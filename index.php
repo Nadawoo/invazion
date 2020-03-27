@@ -252,6 +252,7 @@ echo $html->popup('popcontrol',
             <li>• Chaque humain vaut 10 points</li>
             <li>• Chaque zombie vaut 1 points.</li>
         </ul>
+        <hr style=\"margin-top:1em;border:none;border-bottom:1px solid grey\">
         <p><strong>Si vous êtes bloqué</strong>, reprenez votre liberté en inversant le rapport de forces :</p>
         <ul>
             <li>• soit en demandant à <strong>d'autres joueurs</strong> de vous rejoindre dans la zone 
