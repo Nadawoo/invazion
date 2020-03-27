@@ -177,7 +177,7 @@ function getCookie(cname) {
 		  return c.substring(name.length, c.length);
 		}
 	}
-	return "";
+	return null;
 }
 
 
@@ -204,33 +204,36 @@ function resize_panel(panelId) {
 /*
  * Active l'onglet du smartphone à droite de la carte
  *
- * @param {str} tabId L'id HTML de l'onglet du smartphone à afficher (gps, health...)
+ * @param {str} tabId L'id HTML de l'onglet du smartphone à afficher (minimap, health...)
+ *                    La valeur par défaut indique quel onglet sera chargé tant que
+ *                    le joueur n'a cliqué sur aucun onglet.
  */
 function activatePhoneTab(tabId=null) {
     
-    // Si clic sur un onglet, on mémorise son nom
-    // (ignoré si on exécute la fonction au 1er chargement de la page)
+    // Définir ici l'onglet affiché par défaut dans le smartphone du jeu
+    var defaultTab = "minimap";
+    
+    // Si clic sur un onglet du smartphone
     if (tabId !== null) {
-        
+        // Mémorise l'onglet actif pour le réafficher après actualisation de la page
         setCookie('phonetab', tabId);
     }
-    
-    if (getCookie('phonetab') === "health") {
-
-        display('health');
-        hide('minimap');
-        hide('zone');
-    }
-    else if (getCookie('phonetab') === "zone") {
-
-        display('zone');
-        hide('minimap');
-        hide('health');
-    }
+    // Si c'est le chargement de la page
     else {
-        display('minimap');
-        hide('health');
+        // Récupère l'onglet actif
+        tabId = getCookie('phonetab');
+        
+        // Si le cookie n'xiste pas encore, on fixe un onglet par défaut
+        if (tabId === null) {
+            
+            tabId = defaultTab;
+        }
     }
+    
+    // Par défaut, on cache tous les onglet du smartphone
+    hideClasses(["screen"]);
+    // Puis on affiche le contenu de l'onglet actif
+    display(tabId);
 }
 
 
@@ -254,4 +257,6 @@ else {
 	display('my_zone');
 }
 
+
+// Affiche l'onglet actif du smartphone au chargement de la page
 activatePhoneTab();
