@@ -7,7 +7,7 @@ safely_require('view/HtmlMyZone.php');
 safely_require('view/HtmlCityEnclosure.php');
 safely_require('view/movement_paddle.php');
 safely_require('view/smartphone.php');
-safely_require('controller/is_development_server.php');
+safely_require('controller/official_server_root.php');
 safely_require('controller/sort_citizens_by_coord.php');
 safely_require('controller/filter_citizens_by_city.php');
 safely_require('ZombLib.php');
@@ -27,8 +27,7 @@ $target_id       = filter_input(INPUT_POST, 'target_id',        FILTER_VALIDATE_
 $action_get     = filter_input(INPUT_GET,  'action',  FILTER_SANITIZE_STRING);
 $type           = filter_input(INPUT_GET,  'type',    FILTER_SANITIZE_STRING);
 
-$api_local_url      = is_development_server() ? 'http://invazion.localhost/api' : '';
-$api                = new ZombLib($api_local_url);
+$api                = new ZombLib(official_server_root().'/api');
 $html               = new BuildHtml();
 $map                = new HtmlMap();
 $my_zone            = new HtmlMyzone();

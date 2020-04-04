@@ -1,11 +1,11 @@
 <?php
 require_once 'controller/autoload.php';
-safely_require('controller/is_development_server.php');
+safely_require('controller/official_server_root.php');
 safely_require('view/BuildHtml.php');
 safely_require('ZombLib.php');
 
 $html       = new BuildHtml();
-$api        = new ZombLib(is_development_server() ? 'http://invazion.localhost/api' : '');
+$api        = new ZombLib(official_server_root().'/api');
 $html_error = '';
 $user_id    = NULL;
 

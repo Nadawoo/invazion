@@ -1,5 +1,6 @@
 <?php
 require_once 'controller/autoload.php';
+safely_require('controller/official_server_root.php');
 safely_require('view/BuildHtml.php');
 
 $http_host   = filter_var($_SERVER['HTTP_HOST'],   FILTER_SANITIZE_URL);
@@ -15,7 +16,7 @@ echo $html->page_header()
 <p>Pour des raisons de sécurité, vous devez créer votre compte sur le serveur central d'InvaZion :</p>
 
 <p class="center" style="font-size:1.3em">
-    <strong><a href="<?php echo 'https://invazion.nadazone.fr/register?redirect='.urlencode('http://'.$http_host.'/connect') ?>">► Créer mon compte ◄</a></strong>
+    <strong><a href="<?php echo official_server_root().'/register?redirect='.urlencode('http://'.$http_host.'/connect') ?>">► Créer mon compte ◄</a></strong>
 </p>
 
 <p>Vous pourrez ensuite revenir ici pour jouer.</p>

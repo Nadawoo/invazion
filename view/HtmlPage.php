@@ -1,4 +1,6 @@
 <?php
+require_once 'controller/official_server_root.php';
+
 /**
  * Classe générique pour générer la structure HTML d'une page du site.
  * Les éléments spécifiques au jeu ne figurent pas ici mais dans des classes dédiées.
@@ -42,10 +44,10 @@ class HtmlPage
                 <hr id="sloganline">
                 <nav id="sitemenu">
                     <a href="index">Jouer</a>&nbsp;<span class="circle">&cir;</span>
-                    <a href="https://invazion.nadazone.fr/discuss">Discuter</a>&nbsp;<span class="circle">&cir;</span>
-                    <a href="https://invazion.nadazone.fr/project">Le projet</a>&nbsp;<span class="circle">&cir;</span>
-                    <a href="https://invazion.nadazone.fr/customise-the-game">Créez votre version du jeu</a>&nbsp;<span class="circle">&cir;</span>
-                    <a href="https://invazion.nadazone.fr/apis-list">API</a><span class="circle">&cir;</span>
+                    <a href="'.official_server_root().'/discuss">Discuter</a>&nbsp;<span class="circle">&cir;</span>
+                    <a href="'.official_server_root().'/project">Le projet</a>&nbsp;<span class="circle">&cir;</span>
+                    <a href="'.official_server_root().'/customise-the-game">Créez votre version du jeu</a>&nbsp;<span class="circle">&cir;</span>
+                    <a href="'.official_server_root().'/apis-list">API</a><span class="circle">&cir;</span>
                     <a href="http://invazion.wikidot.com" target="_blank">Wiki</a>
                     <br>
                     <br>
