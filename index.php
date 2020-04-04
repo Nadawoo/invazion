@@ -154,9 +154,10 @@ if ($action_get === 'specialize') {
 // Si le joueur est authentifié *et* que son jeton n'est pas expiré
 if ($api->user_seems_connected() === true) {
     
-    $user_id        = $api->get_token_data('user_id');
-    $citizen_id     = $api->get_token_data('citizen_id');
-    $citizen_pseudo = $api->get_token_data('citizen_pseudo');
+    $token          = $api->get_token_data()['data'];
+    $user_id        = $token['user_id'];
+    $citizen_id     = $token['citizen_id'];
+    $citizen_pseudo = $token['citizen_pseudo'];
 }
 // Récupère les données de jeu en appelant les API
 $citizens           = $api->get_citizens($map_id)['datas'];
