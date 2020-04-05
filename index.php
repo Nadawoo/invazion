@@ -160,13 +160,13 @@ if ($api->user_seems_connected() === true) {
     $citizen_pseudo = $token['citizen_pseudo'];
     
     // Récupère les données du joueur
-    $me = $api->get_me();
+    $api_me = $api->get_me();
     
     // Si erreur dans les données, on considère le joueur n'a pas de citoyen
-    if ($me['metas']['error_code'] !== 'success') {
+    if ($api_me['metas']['error_code'] !== 'success') {
         
         $citizen_id = NULL;        
-        $msg_build  = '<p class="'.$me['metas']['error_class'].'">'.$me['metas']['error_message'].'</p>';
+        $msg_build  = '<p class="'.$api_me['metas']['error_class'].'">'.$api_me['metas']['error_message'].'</p>';
     }
 }
 // Récupère les données de jeu en appelant les API
@@ -184,7 +184,7 @@ unset($get_map);
 // Si le joueur est connecté et a déjà créé son citoyen
 if ($citizen_id !== NULL) {
     
-    $citizen            = $me['datas'];
+    $citizen            = $api_me['datas'];
     $zone_citizens      = $citizens_by_coord[$citizen['coord_x'].'_'.$citizen['coord_y']];
     $zone               = $cells[$citizen['coord_x'].'_'.$citizen['coord_y']];
     
@@ -399,7 +399,7 @@ echo $html->popup('popsuccess', nl2br($msg_popup));
         
         // Si le joueur est connecté mais n'a pas encore créé son citoyen, 
         // affiche le panneau de création de citoyen
-        echo $html->block_citizen_creation($invalid_pseudo_message);
+        echo $html->block_create_citizen($invalid_pseudo_message);
     }
     else {
         // Si le joueur est connecté et a déjà créé son citoyen,

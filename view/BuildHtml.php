@@ -70,7 +70,7 @@ class BuildHtml extends HtmlPage
      * @param  string $invalid_pseudo_message L'éventuel message d'erreur 
      * @return string
      */
-    function block_citizen_creation($invalid_pseudo_message)
+    function block_create_citizen($invalid_pseudo_message)
     {
         
         return '
@@ -81,7 +81,7 @@ class BuildHtml extends HtmlPage
                     <input type="hidden" name="action" value="create_citizen"><br>
                     <input type="text" name="pseudo"><br>
                     <input type="submit" value="Valider">
-                    <p class="red">'.$invalid_pseudo_message.'</p>
+                    <p><span class="warning">'.$invalid_pseudo_message.'</span></p>
                 </form>
             </div>';
     }

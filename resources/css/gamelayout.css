@@ -317,8 +317,12 @@ button {
 /* Message d'erreur, ex : "Vous n'avez plus assez de PA"
    Important : utiliser les alias retournés par les API 
    (info, warning, critical) */
-.warning, .critical {
+.critical {
     background:red;
+    color:white;
+}
+.warning {
+    background: #7d3c98 ;
     color:white;
 }
 .info {
