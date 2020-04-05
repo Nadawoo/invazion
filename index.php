@@ -158,6 +158,16 @@ if ($api->user_seems_connected() === true) {
     $user_id        = $token['user_id'];
     $citizen_id     = $token['citizen_id'];
     $citizen_pseudo = $token['citizen_pseudo'];
+    
+    // Récupère les données du joueur
+    $me = $api->get_me();
+    
+    // Si erreur dans les données, on considère le joueur n'a pas de citoyen
+    if ($me['metas']['error_code'] !== 'success') {
+        
+        $citizen_id = NULL;        
+        $msg_build  = '<p class="'.$me['metas']['error_class'].'">'.$me['metas']['error_message'].'</p>';
+    }
 }
 // Récupère les données de jeu en appelant les API
 $citizens           = $api->get_citizens($map_id)['datas'];
@@ -171,10 +181,10 @@ $next_attack_hour   = $get_map['datas']['next_attack_hour'];
 $cells              = $get_map['datas']['zones'];
 unset($get_map);
 
-// Données du citoyen en train de jouer
+// Si le joueur est connecté et a déjà créé son citoyen
 if ($citizen_id !== NULL) {
     
-    $citizen            = $api->get_me()['datas'];
+    $citizen            = $me['datas'];
     $zone_citizens      = $citizens_by_coord[$citizen['coord_x'].'_'.$citizen['coord_y']];
     $zone               = $cells[$citizen['coord_x'].'_'.$citizen['coord_y']];
     
