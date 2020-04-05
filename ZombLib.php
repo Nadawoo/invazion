@@ -4,7 +4,7 @@
  * pour récupérer ou/et écrire des données sur le serveur
  * http://invazion.nadazone.fr
  * 
- * Version 3.9
+ * Version 3.10
  */
 class ZombLib
 {
@@ -313,6 +313,20 @@ class ZombLib
     {
         
         $json = $this->get_api_output($this->url.'/maps?action=get&map_id='.$map_id);
+        
+        return $this->json_to_array($json);
+    }
+    
+    
+    /**
+     * Récupère les données du joueur connecté (à partir de son jeton d'identification)
+     * 
+     * @return array
+     */
+    public function get_me()
+    {
+        
+        $json = $this->get_api_output($this->url.'/me?action=get&token='.$this->get_token());
         
         return $this->json_to_array($json);
     }

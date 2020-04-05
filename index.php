@@ -176,7 +176,7 @@ unset($get_map);
 // Données du citoyen en train de jouer
 if ($citizen_id !== NULL) {
     
-    $citizen            = $citizens[$citizen_id];
+    $citizen            = $api->get_me()['datas'];
     $zone_citizens      = $citizens_by_coord[$citizen['coord_x'].'_'.$citizen['coord_y']];
     $zone               = $cells[$citizen['coord_x'].'_'.$citizen['coord_y']];
     
