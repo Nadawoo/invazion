@@ -270,13 +270,13 @@ class BuildHtml extends HtmlPage
     /**
      * Liste des objets sur une case de la carte
      * 
-     * @param array $zone  Données de la zone où se trouve le joueur (telles que retournées par l'API)
-     * @param array $items Caractéristiques des objets disponibles en jeu (issu de l'API "config")
+     * @param array $items_caracs Caractéristiques des objets disponibles en jeu (issu de l'API "config")
+     * @param array $zone       Données de la zone où se trouve le joueur (telles que retournées par l'API)
      * @param int   $citizen_id L'id du citoyen connecté
      * 
      * @return string
      */
-    function block_zone_items($zone, $items, $citizen_id)
+    function block_zone_items($items_caracs, $zone, $citizen_id)
     {
         
         $html_items = '';
@@ -287,7 +287,7 @@ class BuildHtml extends HtmlPage
                 
                 $html_items .= '<li>'
                     . '<button type="submit" name="item_id" value="'.$item_id.'" class="drop_button" title="Ramasser cet objet">&wedgeq;</button> '
-                    . '<var>' . $items[$item_id]['name'] . '</var> <span style="font-size:0.95em">×&nbsp;'.$item_amount .'<span>' 
+                    . '<var>' . $items_caracs[$item_id]['name'] . '</var> <span style="font-size:0.95em">×&nbsp;'.$item_amount .'<span>' 
                     . '</li>';
             }
 
@@ -336,14 +336,14 @@ class BuildHtml extends HtmlPage
     /**
      * Liste des objets dans le sac du citoyen
      * 
+     * @param array $items_caracs   Les caractéristiques de tous les items existants dans le jeu
      * @param array $bag_items      Les objets dans le sac du citoyen, sous forme
      *                              de paires "id de l'objet => quantité"
-     * @param array $items          Les caractéristiques de tous les items exitants dans le jeu
      * @param int   $max_bag_slots  Nombre total d'emplacements dans le sac
      * 
      * @return string   La liste des objets sous forme de liste HTML
      */
-    function block_bag_items($citizen_id, $bag_items, $items, $max_bag_slots)
+    function block_bag_items($items_caracs, $citizen_id, $bag_items, $max_bag_slots)
     {
         
         $nbr_free_slots = $max_bag_slots - array_sum(array_values($bag_items));
@@ -353,7 +353,7 @@ class BuildHtml extends HtmlPage
                 <input type="hidden" name="action" value="drop">
                 <input type="hidden" name="citizen_id" value="'.$citizen_id.'">
                 <ul class="items_list">
-                    ' . $this->bag_filled_slots($bag_items, $items) . '
+                    ' . $this->bag_filled_slots($bag_items, $items_caracs) . '
                     ' . $this->bag_free_slots($nbr_free_slots) . '
                 </ul>
             </form>';

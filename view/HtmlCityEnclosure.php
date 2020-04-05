@@ -281,17 +281,17 @@ class HtmlCityEnclosure
      * Bloc à l'intérieur de la ville :
      * liste des chantiers construits ou constructibles en ville
      * 
-     * @param array $constructions_caracs Les caraéristiques statiques des chantiers (nom...)
+     * @param array $constructions_caracs Les caractéristiques statiques des chantiers (nom...)
+     * @param array $items_caracs         Les caractéristiques statiques des objets
      * @param array $city_constructions   L'état des chantiers de la ville (avancement...)
      * @param int   $total_defenses       Total des points de défense de la ville
      *                                    (somme des points de tous les chantiers achevés)
-     * @param array $items_caracs         Les caractéristiques statiques des objets
      * @param array $zone_items           Les objets disponibles dans la banque de la ville
      *                                    (qui sont, à ce jour, les objets au sol)
      * @return string
      */
-    function block_constructions($constructions_caracs, $city_constructions, $total_defenses,
-                                 $items_caracs, $zone_items)
+    function block_constructions($constructions_caracs, $items_caracs, $city_constructions, $total_defenses,
+                                 $zone_items)
     {
         
         $buttons = new HtmlButtons;

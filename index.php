@@ -178,8 +178,8 @@ if ($citizen_id !== NULL) {
     $zone_citizens      = $citizens_by_coord[$citizen['coord_x'].'_'.$citizen['coord_y']];
     $zone               = $cells[$citizen['coord_x'].'_'.$citizen['coord_y']];
     
-    $html_zone_items    = $html->block_zone_items($zone, $configs['items'], $citizen['citizen_id']);
-    $html_bag_items     = $html->block_bag_items($citizen_id, $citizen['bag_items'], $configs['items'], $citizen['bag_size']);
+    $html_zone_items    = $html->block_zone_items($configs['items'], $zone, $citizen['citizen_id']);
+    $html_bag_items     = $html->block_bag_items($configs['items'], $citizen_id, $citizen['bag_items'], $citizen['bag_size']);
     $html_zone_citizens = $html->block_zone_citizens($zone_citizens, $citizen_id);
     
     // Si une ville se trouve sur la case du citoyen, on récupère les caractéristiques 
@@ -345,7 +345,7 @@ echo $html->popup('popsuccess', nl2br($msg_popup));
                     '. $enclosure->block_workshop($zone['items'], $configs['items']) .'
                 </div>
                 <div class="city_row city_build">
-                    '. $enclosure->block_constructions($configs['constructions'], $city_data['constructions'], $city_data['total_defenses'], $configs['items'], $zone['items']) .'
+                    '. $enclosure->block_constructions($configs['constructions'], $configs['items'], $city_data['constructions'], $city_data['total_defenses'], $zone['items']) .'
                 </div>
                 <div class="city_row city_door">
                     '. $enclosure->block_door($city_data['is_door_closed']) .'
