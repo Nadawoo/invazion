@@ -270,19 +270,20 @@ class BuildHtml extends HtmlPage
     /**
      * Liste des objets sur une case de la carte
      * 
-     * @param array $cells Toutes les cellules de la carte (issu de la BDD)
+     * @param array $zone  Données de la zone où se trouve le joueur (telles que retournées par l'API)
+     * @param array $items Caractéristiques des objets disponibles en jeu (issu de l'API "config")
+     * @param int   $citizen_id L'id du citoyen connecté
      * 
      * @return string
      */
-    function block_zone_items($cells, $items, $citizen)
+    function block_zone_items($zone, $items, $citizen_id)
     {
         
         $html_items = '';
-        $coord = $citizen['coord_x'].'_'.$citizen['coord_y'];
         
-        if (isset($cells[$coord]['items'])) {
+        if (isset($zone['items'])) {
             
-            foreach ($cells[$coord]['items'] as $item_id=>$item_amount) {
+            foreach ($zone['items'] as $item_id=>$item_amount) {
                 
                 $html_items .= '<li>'
                     . '<button type="submit" name="item_id" value="'.$item_id.'" class="drop_button" title="Ramasser cet objet">&wedgeq;</button> '
@@ -292,7 +293,7 @@ class BuildHtml extends HtmlPage
 
             return '<form method="post" action="#Outside">'
                 . '<input type="hidden" name="action" value="pickup">'
-                . '<input type="hidden" name="citizen_id" value="'.$citizen['citizen_id'].'">'
+                . '<input type="hidden" name="citizen_id" value="'.$citizen_id.'">'
                 . '<ul class="items_list">'.$html_items.'</ul>'
                 . '</form>';
         }

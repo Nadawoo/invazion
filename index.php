@@ -180,7 +180,7 @@ if ($citizen_id !== NULL) {
     $zone_citizens      = $citizens_by_coord[$citizen['coord_x'].'_'.$citizen['coord_y']];
     $zone               = $cells[$citizen['coord_x'].'_'.$citizen['coord_y']];
     
-    $html_zone_items    = $html->block_zone_items($cells, $items, $citizen);
+    $html_zone_items    = $html->block_zone_items($zone, $items, $citizen['citizen_id']);
     $html_bag_items     = $html->block_bag_items($citizen_id, $citizen['bag_items'], $items, $citizen['bag_size']);
     $html_zone_citizens = $html->block_zone_citizens($zone_citizens, $citizen_id);
     
