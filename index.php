@@ -5,6 +5,7 @@ safely_require('view/HtmlButtons.php');
 safely_require('view/HtmlMap.php');
 safely_require('view/HtmlMyZone.php');
 safely_require('view/HtmlCityEnclosure.php');
+safely_require('view/HtmlPopup.php');
 safely_require('view/movement_paddle.php');
 safely_require('view/smartphone.php');
 safely_require('controller/official_server_root.php');
@@ -33,6 +34,7 @@ $map                = new HtmlMap();
 $my_zone            = new HtmlMyzone();
 $enclosure          = new HtmlCityEnclosure();
 $buttons            = new HtmlButtons();
+$popup              = new Popup();
 $user_id            = NULL;
 $citizen_id         = NULL;
 $citizen_pseudo     = NULL;
@@ -215,62 +217,14 @@ $html_map = $map->hexagonal_map($map_cols, $map_rows, $cells, $citizens_by_coord
 echo $html->page_header();
 
 
-// Pop-up en entrant dans une crypte
-echo $html->popup('popvault', 
-                    '<p class="rp">Vous pénétrez dans la crypte obscure dont les murs irréguliers  
-                    suintent d\'un&nbsp;liquide indéterminé. L\'odeur des moisissures vous enveloppe 
-                    tandis que vous descendez les marches étroites...
-                    </p>
-                    Cette découverte vous accorde une action à&nbsp;usage unique. Voulez-vous l\'utiliser 
-                    pour aider vos congénères humains...<br>
-                    <ul>
-                        <li>+ <span style="color:grey;text-decoration:line-through">Exterminer les&nbsp;zombies sur les 7&nbsp;zones alentour</span></li>
-                        <li>+ <span style="color:grey;text-decoration:line-through">Exterminer les&nbsp;zombies sur 7&nbsp;zones aléatoires</span></li>
-                        <li>+ '.$buttons->api_link('reveal_zones', 'Dévoiler 10&nbsp;zones de la carte').'</li>
-                    </ul>
-                    <br>
-                    ...  ou bien pour propager davantage le chaos&nbsp;?
-                    <ul>
-                        <li>– '.$buttons->api_link('add_map_zombies', 'Ajouter des&nbsp;zombies sur toute la&nbsp;carte', '#popsuccess').'</li>
-                        <li>– <span style="color:grey;text-decoration:line-through">Obscurcir 10&nbsp;zones de la&nbsp;carte</span></li>
-                        <li>– <span style="color:grey;text-decoration:line-through">Détruire une&nbsp;ville aléatoire</span></li>
-                    </ul>
-                    ');
+// Textes des pop-up
+// TODO : ne pas charger toutes les textes dans le code, seulement celui utile
+echo $popup->predefined('popvault',   '');
+echo $popup->predefined('popwounded', '', ['citizen_id'=>$citizen_id]);
+echo $popup->predefined('popcontrol', 'Contrôle de zone');
 
-echo $html->popup('popwounded',
-        '<p class="rp">Une vilaine plaie ouverte parcourt votre cuisse droite, 
-        ce n\'est pas beau à voir. La septicémie vous guette...</p>
-        <p>Vous êtes blessé ! Vous risquez de mourir 
-        si vous ne vous soignez pas...</p>
-        <ul>
-            <li>' . $buttons->heal_citizen($citizen_id, null, true, 'Me soigner avec un bandage'). '</li>
-        </ul>
-        ');
-
-echo $html->popup('popcontrol',
-        "<p>Plus les citoyens sont nombreux dans votre zone, plus vous disposez 
-            de <strong>points de contrôle</strong> pour contenir les zombies.
-            <strong>Sortez groupés</strong> pour éviter les mésaventures...
-        </p>
-            
-        <p>Si la somme des points des zombies devient supérieure à celle des humains, 
-        <strong>vous ne pouvez plus quitter la zone !</strong><p>
-        <ul>
-            <li>• Chaque humain vaut 10 points</li>
-            <li>• Chaque zombie vaut 1 points.</li>
-        </ul>
-        <hr style=\"margin-top:1em;border:none;border-bottom:1px solid grey\">
-        <p><strong>Si vous êtes bloqué</strong>, reprenez votre liberté en inversant le rapport de forces :</p>
-        <ul>
-            <li>• soit en demandant à <strong>d'autres joueurs</strong> de vous rejoindre dans la zone 
-            (augmentera le contrôle des humains) ;</li>
-            <li>• soit en <strong>tuant des zombies</strong>
-            (réduira le contrôle des zombies).</li>
-        </ul>
-        ");
-
-// Pop-up indiquant le résultat d'une action
-echo $html->popup('popsuccess', nl2br($msg_popup));
+// Pop-up générique indiquant le résultat d'une action
+echo $popup->customised('popsuccess', '', nl2br($msg_popup));
 ?>
     
     <!--
@@ -428,8 +382,8 @@ echo $html->popup('popsuccess', nl2br($msg_popup));
             if ($zone['building'] === 'vault') {
                 
                 echo '<p class="center">'
-                    . '<span class="red">Vous avez découvert une crypte&nbsp;!</span>'
-                    . $html->popup_link('popvault', 'Pouvoir cryptique')
+                    . '<span class="warning">Vous avez découvert une crypte&nbsp;!</span><br>'
+                    . $popup->link('popvault', 'Pouvoir cryptique')
                     . '</p>';
             } ?>
             
