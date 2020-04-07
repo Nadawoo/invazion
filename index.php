@@ -401,7 +401,7 @@ echo $popup->customised('popsuccess', '', nl2br($msg_popup));
             </fieldset>
             
             <fieldset id="ground_panel">
-                <legend onclick="switch_tab('ground_panel', 'state_panel')">Objets au sol &#9935;&#65039;</legend>
+                <legend>Objets au sol &#9935;&#65039;</legend>
                 <?php 
                 echo $html_zone_items 
                 ?>
