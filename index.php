@@ -410,17 +410,32 @@ echo $popup->customised('popsuccess', '', nl2br($msg_popup));
             <fieldset>
                 <legend>Actions</legend>
                 
-                <?php
-                // S'il n'y a pas de tente ni ville sur la case,
-                // affiche les boutons pour en construire
-                if ($zone['city_size'] === 0) {
-                    
-                    echo $buttons->build_tent();
-                    echo $buttons->build_city();
-                } 
-                // Bouton pour générer une crypte
-                echo $buttons->add_vault();
-                ?>
+                <table>
+                    <?php
+                    echo '<tr>
+                        <td>&#x26CF;&#xFE0F;</td>
+                        <td>'.$buttons->dig('no_icon').'<td>
+                    </tr>
+                    <tr>
+                        <td>&#9961;&#65039;</td>
+                        <td>'.$buttons->add_vault('no_icon').'<td>
+                    </tr>';
+
+                    // S'il n'y a pas de tente ni ville sur la case,
+                    // affiche les boutons pour en construire
+                    if ($zone['city_size'] === 0) {
+
+                        echo '<tr>
+                            <td>&#9978;</td>
+                            <td>'.$buttons->build_tent('no_icon').'<td>
+                        </tr>
+                        <tr>
+                            <td><img src="resources/img/city.png" alt="&#10224;"></td>
+                            <td>'.$buttons->build_city('no_icon').'<td>
+                        </tr>';
+                    }                
+                    ?>
+                </table>
                 
             </fieldset>
         </div>

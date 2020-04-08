@@ -12,17 +12,18 @@ class HtmlButtons
      * 
      * @return string
      */
-    function build_tent()
+    function build_tent($show_icon=true)
     {
+        
+        $icon = ($show_icon === 'no_icon') ? '' : '<span style="font-size:1.35em">&#9978;</span>';
+        
         return 
         '<form   method="post" action="#Outside">
             
             <input type="hidden" name="action" value="build_city">
             <input type="hidden" name="city_size" value="1">
-
-            <span style="font-size:1.35em">&#9978;</span>
-            <input type="submit" value="Planter ma tente" 
-                   title="Une tente vous protègerait de la rigueur du désert.">
+            '.$icon.'<input type="submit" value="Planter ma tente" 
+                        title="Une tente vous protègerait de la rigueur du désert.">
                    
         </form>';
     }
@@ -33,17 +34,18 @@ class HtmlButtons
      * 
      * @return string
      */
-    function build_city()
+    function build_city($show_icon=true)
     {
+        
+        $icon = ($show_icon === 'no_icon') ? '' : '<span style="font-size:1.35em"><img src="resources/img/city.png" alt="&#10224;">&nbsp;</span>';
         
         return
         '<form method="post" action="#Outside">
             
             <input type="hidden" name="action" value="build_city">
 
-            <span style="font-size:1.4em"><img src="resources/img/city.png" alt="&#10224;">&nbsp;</span>
-            <input type="submit" value="Fonder une ville"
-                   title="En vous rassemblant avec d\'autres citoyens dans une ville, vous serez plus forts.">
+            '.$icon.'<input type="submit" value="Fonder une ville"
+                      title="En vous rassemblant avec d\'autres citoyens dans une ville, vous serez plus forts.">
             de
             <select name="city_size">
                 <option value="2">2</option>
@@ -120,7 +122,7 @@ class HtmlButtons
     function dig($show_icon=true)
     {
         
-        $icon = ($show_icon === 'no_icon') ? '' : '<span style="font-size:1.5em">&apid;</span>&nbsp;';
+        $icon = ($show_icon === 'no_icon') ? '' : '&#x26CF;&#xFE0F;&nbsp;';
         
         return
         '<form method="post" action="#popsuccess">
@@ -135,15 +137,16 @@ class HtmlButtons
      * 
      * @return string
      */
-    function add_vault()
+    function add_vault($show_icon=true)
     {
+        
+        $icon = ($show_icon === 'no_icon') ? '' : '&#9961;&#65039;&nbsp;';
         
         return
         '<form method="post" action="#Outside">
             <input type="hidden" name="action" value="vault">
-            &#9961;&#65039;&nbsp; '
-            .'<input type="submit" value="Chercher une crypte" title="Trouver une crypte '
-                . 'peut servir vos intérêts mais aussi causer votre perte... ou celle de vos amis.">'
+            '.$icon.' <input type="submit" value="Chercher une crypte" title="Trouver une crypte '
+                    . 'peut servir vos intérêts mais aussi causer votre perte... ou celle de vos amis.">'
         .'</form>';
     }
     
