@@ -306,6 +306,41 @@ class BuildHtml extends HtmlPage
     
     
     /**
+     * Actions block next to the map
+     * 
+     * @param int $city_size Size of the city in the zone where the player is.
+     * @return string HTML
+     */
+    function block_actions($city_size)
+    {
+        
+        $buttons = new HtmlButtons;
+        
+        $table = '<tr>
+                <td>&#x26CF;&#xFE0F;</td> <td>'.$buttons->dig('no_icon').'<td>
+            </tr>
+            <tr>
+                <td>&#9961;&#65039;</td> <td>'.$buttons->add_vault('no_icon').'<td>
+            </tr>';
+
+            // S'il n'y a pas de tente ni ville sur la case,
+            // affiche les boutons pour en construire
+            if ($city_size === 0) {
+
+                $table .= '<tr>
+                    <td>&#9978;</td> <td>'.$buttons->build_tent('no_icon').'<td>
+                </tr>
+                <tr>
+                    <td><img src="resources/img/city.png" alt="&#10224;"></td>
+                    <td>'.$buttons->build_city('no_icon').'<td>
+                </tr>';
+            }                
+                    
+        return '<table>'.$table.'</table>';
+    }
+    
+    
+    /**
      * Bloc rouge affiché quand le joueur est bloqué par les zombies
      * 
      * @param  int $zombies Le nombre de zombies sur la case

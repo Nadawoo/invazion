@@ -44,6 +44,7 @@ $city_fellows       = NULL;
 $msg_zombies_killed = NULL;
 $msg_popup          = NULL;
 $zone_citizens      = [];
+$html_actions       = '';
 $html_zone_items    = '';
 $html_versus        = '';
 $html_bag_items     = '';
@@ -193,6 +194,7 @@ if ($citizen_id !== NULL) {
     $html_zone_items    = $html->block_zone_items($configs['items'], $zone, $citizen['citizen_id']);
     $html_bag_items     = $html->block_bag_items($configs['items'], $citizen_id, $citizen['bag_items'], $citizen['bag_size']);
     $html_zone_citizens = $html->block_zone_citizens($zone_citizens, $citizen_id);
+    $html_actions       = $html->block_actions($zone['city_size']);
     
     // Si une ville se trouve sur la case du citoyen, on récupère les caractéristiques 
     // de cette ville (puits, chantiers...)
@@ -390,7 +392,6 @@ echo $popup->customised('popsuccess', '', nl2br($msg_popup));
                     
             <fieldset>
                 <legend>Citoyens dans ma zone</legend>
-                
                 <?php echo $html_zone_citizens ?>
             </fieldset>
             
@@ -402,41 +403,12 @@ echo $popup->customised('popsuccess', '', nl2br($msg_popup));
             
             <fieldset id="ground_panel">
                 <legend>Objets au sol &#9935;&#65039;</legend>
-                <?php 
-                echo $html_zone_items 
-                ?>
+                <?php echo $html_zone_items ?>
             </fieldset>
             
             <fieldset>
                 <legend>Actions</legend>
-                
-                <table>
-                    <?php
-                    echo '<tr>
-                        <td>&#x26CF;&#xFE0F;</td>
-                        <td>'.$buttons->dig('no_icon').'<td>
-                    </tr>
-                    <tr>
-                        <td>&#9961;&#65039;</td>
-                        <td>'.$buttons->add_vault('no_icon').'<td>
-                    </tr>';
-
-                    // S'il n'y a pas de tente ni ville sur la case,
-                    // affiche les boutons pour en construire
-                    if ($zone['city_size'] === 0) {
-
-                        echo '<tr>
-                            <td>&#9978;</td>
-                            <td>'.$buttons->build_tent('no_icon').'<td>
-                        </tr>
-                        <tr>
-                            <td><img src="resources/img/city.png" alt="&#10224;"></td>
-                            <td>'.$buttons->build_city('no_icon').'<td>
-                        </tr>';
-                    }                
-                    ?>
-                </table>
-                
+                <?php echo $html_actions ?>                
             </fieldset>
         </div>
         <?php
