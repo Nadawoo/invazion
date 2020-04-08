@@ -391,10 +391,14 @@ echo $popup->customised('popsuccess', '', nl2br($msg_popup));
             
                     
             <fieldset>
+                <legend>Actions</legend>
+                <?php echo $html_actions ?>                
+            </fieldset>
+            
+            <fieldset>
                 <legend>Citoyens dans ma zone</legend>
                 <?php echo $html_zone_citizens ?>
             </fieldset>
-            
             
             <fieldset id="bag_panel">
                 <legend>&#128188; Dans mon sac</legend>
@@ -404,11 +408,6 @@ echo $popup->customised('popsuccess', '', nl2br($msg_popup));
             <fieldset id="ground_panel">
                 <legend>Objets au sol &#9935;&#65039;</legend>
                 <?php echo $html_zone_items ?>
-            </fieldset>
-            
-            <fieldset>
-                <legend>Actions</legend>
-                <?php echo $html_actions ?>                
             </fieldset>
         </div>
         <?php
