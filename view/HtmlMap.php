@@ -77,8 +77,8 @@ class HtmlMap
     {
         
         $coords         = $col.'_'.$row;
-        $items_mark     = '';
         $horde          = '';
+        $has_items      = '';
         // Important : la cellule doit toujours avoir un contenu, même 
         // un simple espace, sinon décalages si la cellule contient ou non 
         // des citoyens/zombies/objets
@@ -156,8 +156,7 @@ class HtmlMap
             }
 
             if (!empty($cell['items'])) {
-
-                $items_mark   = ' <span class="items">&#9864;</span>';
+                
                 $bubble_items = '<br>Il y a des objets dans cette zone... Mais lesquels&nbsp;?';
             }
         }
@@ -170,18 +169,23 @@ class HtmlMap
         $opacity = $this->opacity_coeff($cell['date_last_visit']);
 
 
+        if (!empty($cell['items'])) {
+            
+            $has_items = ' hasItems';
+        }
+        
+        
         // - La classe "hexagon" sert à tracer le fond hexgonal
         // - La classe "square_container" est un conteneur carré pour assurer la symétrie du contenu
         // (un hexagone ne peut pas, par définition, être inscrit dans un carré)
-        return '<div class="hexagon" style="opacity:'.$opacity.'" '
+        return '<div class="hexagon'.$has_items.'" style="opacity:'.$opacity.'" '
                     . 'onmouseover="display(\'bubble_'.$coords.'\')" '
                     . 'onmouseout="hide(\'bubble_'.$coords.'\')" '
                     // Le onclick est nécessaire sur mobile (pas de notion de survol)
                     . 'onclick="toggle(\'bubble_'.$coords.'\')">
                     <div class="square_container">'
                         . $horde 
-                        . $cell_content
-                        . $items_mark . '
+                        . $cell_content . '
                         <div id="bubble_'.$coords.'" class="bubble">
                             [Zone '.$col.':'.$row.']'
                             . $bubble 
@@ -190,6 +194,7 @@ class HtmlMap
                             <div class="triangle_down"></div>
                         </div>
                     </div>
+                    
                 </div>';
     }
     

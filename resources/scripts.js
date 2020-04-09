@@ -109,6 +109,18 @@ function update_url_param(name, value) {
 
 
 /**
+ *  Displays the location icon on every zone which contains items
+ */
+function displayMapItems() {
+
+    var classes = document.getElementsByClassName("hasItems");
+    for(var i=0; i < classes.length; i++) {
+        classes[i].innerHTML += '<img src="resources/img/map-location.svg" class="location">';
+    }
+}
+
+
+/**
  * Affiche le panneau de la ville correspondant à l'onglet actif
  * (chantiers, maison, porte de la ville...)
  * 

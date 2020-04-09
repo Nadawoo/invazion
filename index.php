@@ -324,7 +324,12 @@ echo $popup->customised('popsuccess', '', nl2br($msg_popup));
     
     
     <!-- La carte -->
+    
     <div id="map">
+        
+        <div id="map_bar">
+            <span onclick="displayMapItems()">Objets sur la carte</span>
+        </div>
         
         <?php 
         // Affiche la zone sur laquelle le joueur connecté se trouve
