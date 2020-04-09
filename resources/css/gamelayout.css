@@ -84,21 +84,26 @@ legend {
 
 /* Boutons de déplacement du joueur */
 #movement_paddle {
-    width:8em;
-    margin:2em auto 0 auto;
+    margin:2em auto 0em auto;
+    border-collapse: collapse;
     text-align:center;
+    background-image:url("../img/hexagon.png");
+    background-repeat:no-repeat;
+    background-size:3em;
+    background-position: center;
 }
 #movement_paddle td {
     padding:0;
     border:none;
     /* Assure un écartement symétrique des flèches */
     width:2em;
-    height:2em;
+    height:2.5em;
+    box-sizing:border-box;
 }
 #movement_paddle input {
     min-width:0;
     padding:0;
-    font-size:1.5em;
+    font-size:1.8em;
     color:darkred;
     background:none;
     border:none;
@@ -106,17 +111,8 @@ legend {
 #movement_paddle input:hover {
     color:red;
 }
-/* Le rond central entre les flèches */
+/* L'hexagone central entre les flèches */
 #movement_paddle #central {
-    height:3em;
-    width: 3em;
-    margin:auto;
-    padding-top:0.8em;
-    color:black;
-    background:ivory;
-    border:2px solid black;
-    border-radius:50%;
-    box-sizing:border-box;
     cursor:default;
 }
 
