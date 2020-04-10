@@ -1,10 +1,11 @@
 <?php
 require_once 'controller/autoload.php';
 safely_require('controller/official_server_root.php');
-safely_require('view/BuildHtml.php');
+safely_require('view/HtmlPage.php');
+safely_require('view/connect.php');
 safely_require('ZombLib.php');
 
-$html       = new BuildHtml();
+$html       = new HtmlPage();
 $api        = new ZombLib(official_server_root().'/api');
 $html_error = '';
 $user_id    = NULL;
@@ -42,24 +43,14 @@ elseif ($action === 'disconnect') {
     
     $json = $api->disconnect_user();
     
-    if ($json['metas']['error_code'] === 'success') {
-        
-        $html_error = 'Vous avez été déconnecté avec succès.';
-    }
-    else {
-        
-        $html_error = 'La déconnexion a échoué pour une raison inconnue. Veuillez réessayer...';
-    }
+    $html_error = ($json['metas']['error_code'] === 'success')
+                    ? 'Vous avez été déconnecté avec succès.'
+                    : 'La déconnexion a échoué pour une raison inconnue. Veuillez réessayer...';
 } 
 
 
-if ($api->user_seems_connected() === TRUE) {
-    
-    $user_id = $api->get_token_data('user_id');
-} ?>
-
-
-<?php echo $html->page_header() ?>
+echo $html->page_header();
+?>
 
 <h1>Me connecter</h1>
 
@@ -67,6 +58,8 @@ if ($api->user_seems_connected() === TRUE) {
 
 <?php
 if ($api->user_seems_connected() === TRUE) {
+    
+    $user_id = $api->get_token_data('user_id');
     ?>
     
     <form method="post">
@@ -76,28 +69,12 @@ if ($api->user_seems_connected() === TRUE) {
         <p class="center"><input type="submit" value="Me déconnecter" /></p>
     </form>
     
-<?php
+    <?php
 }
 else { 
-    ?>
     
-    <form method="post">
-        <input type="hidden" name="action" value="connect">
-        <p><strong>Mon email&nbsp;:</strong>
-            <input type="email" name="email" value="<?php echo $email ?>" autofocus />
-            <span class="aside">L'adresse mail que vous avez indiquée lorsque vous avez créé votre compte</span>
-        </p>
-        
-        <p><strong>Mot de passe&nbsp;:</strong>
-            <input type="password" name="password" />
-            <span class="aside">Si vous n'avez pas défini de mot passe, laissez ce champ vide </span>
-        </p>
-        
-        <p><input type="submit" value="Me connecter" /></p>
-        <p><a href="index" class="bold">&gt;&gt;&nbsp;Retourner au jeu</a></p>
-    </form>
+    echo connect($email);
     
-    <?php
-} ?>
+}
 
-<?php echo $html->page_footer();
+echo $html->page_footer();
