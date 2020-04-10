@@ -111,11 +111,27 @@ function update_url_param(name, value) {
 /**
  *  Displays the location icon on every zone which contains items
  */
-function displayMapItems() {
+function toggleMapItems() {
 
-    var classes = document.getElementsByClassName("hasItems");
-    for(var i=0; i < classes.length; i++) {
-        classes[i].innerHTML += '<img src="resources/img/map-location.svg" class="location">';
+    if (window.areItemsDisplayed !== true) {
+        
+        // Adds the HTML for the icons in the zones
+        let classes = document.getElementsByClassName("hasItems");
+        
+        for(var i=0; i < classes.length; i++) {
+            classes[i].innerHTML += '<img src="resources/img/map-location.svg" class="location">';
+        }
+        window.areItemsDisplayed = true;
+    }
+    else {
+    
+        // Hides the icons added by the previous call to the function
+        let classes = document.getElementsByClassName("location");
+        
+        for(var i=0; i < classes.length; i++) {
+            classes[i].style.display = 'none';
+        }
+        window.areItemsDisplayed = false;
     }
 }
 

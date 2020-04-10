@@ -328,7 +328,7 @@ echo $popup->customised('popsuccess', '', nl2br($msg_popup));
     <div id="map">
         
         <div id="map_bar">
-            <span onclick="displayMapItems()">Objets sur la carte</span>
+            <span onclick="toggleMapItems()">Objets sur la carte</span>
         </div>
         
         <?php 

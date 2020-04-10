@@ -170,7 +170,7 @@ class HtmlMap
 
 
         if (!empty($cell['items'])) {
-            
+            // Permettra d'ajouter un marqueur en javascript sur la case
             $has_items = ' hasItems';
         }
         
@@ -193,8 +193,7 @@ class HtmlMap
                             . $bubble_items . '
                             <div class="triangle_down"></div>
                         </div>
-                    </div>
-                    
+                    </div>                    
                 </div>';
     }
     
