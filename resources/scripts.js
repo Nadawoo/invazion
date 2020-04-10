@@ -265,6 +265,33 @@ function activatePhoneTab(tabId=null) {
 }
 
 
+/**
+ * Loads the content of a remote page. Use like this :  
+ * 
+ *      loadPage(url, function(responseText) {
+ *      // Put here the code which uses responseText
+ *      });
+ * 
+ * @param {string} url The url of the remote page to get
+ */
+function loadPage(url, callback) {
+    
+    // Fallback Microsoft.XMLHTTP for IE6 and IE5
+    var xhr = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject("Microsoft.XMLHTTP");
+    
+    xhr.onreadystatechange = function()
+    {
+        if (xhr.readyState == 4 && xhr.status == 200)
+        {
+            if (typeof callback === 'function') callback(xhr.responseText);
+        }
+    }
+    
+   xhr.open("GET", url, true);
+   xhr.send();
+}
+
+
 /*
  * Exécuté dès le chargement de la page, sans action du visiteur
  */
