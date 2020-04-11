@@ -322,8 +322,7 @@ async function connectUser() {
     // NB : btoa() encodes the mail and password in Base64 as requested by the Invazion's API
     let emailField = document.getElementById("email"),
         email64 = btoa(emailField.value),
-        pass64  = btoa(document.getElementById("password").value),
-        json = await callApi(`user?action=connect&email64=${email64}&pass64=${pass64}`);
+        pass64  = btoa(document.getElementById("password").value);
     
     if (emailField.value === '') {
         
@@ -335,15 +334,20 @@ async function connectUser() {
         
         document.getElementById("error").innerHTML = "L'email que vous avez saisi est invalide. Vérifiez qu'il ne contient pas une faute de frappe...";
     }
-    else if (json.metas.error_code !== "success") {
-        
-        document.getElementById("error").innerHTML = '<span>'+json.metas.error_message+'</span>';
-    }
     else {
-        // Stores the identification token in a cookie
-        document.cookie = "token="+json.datas.token;
-        // Redirects to the main game page after the connction
-        window.location.replace("index.php");
+        // Calls the connection API
+        let json = await callApi(`user?action=connect&email64=${email64}&pass64=${pass64}`);
+
+        if (json.metas.error_code !== "success") {
+
+            document.getElementById("error").innerHTML = json.metas.error_message;
+        }
+        else {
+            // Stores the identification token in a cookie
+            document.cookie = "token="+json.datas.token;
+            // Redirects to the main game page after the connction
+            window.location.replace("index.php");
+        }
     }
 }
 
