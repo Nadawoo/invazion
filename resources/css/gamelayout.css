@@ -234,7 +234,7 @@ var {
 /*
  * Boutons
  */
-input[type="submit"], .button {
+input[type="submit"], input[type="button"], .button {
     font-size:0.9em;
     font-variant:small-caps;
     min-width:10em;

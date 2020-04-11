@@ -27,7 +27,7 @@ class HtmlPage
                 <meta charset="utf-8">
                 <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
                 <link rel="stylesheet" type="text/css" href="resources/css/sitelayout.css?v3.3">
-                <link rel="stylesheet" type="text/css" href="resources/css/gamelayout.css?v3.3">
+                <link rel="stylesheet" type="text/css" href="resources/css/gamelayout.css?v3.4">
                 <link rel="stylesheet" type="text/css" href="resources/css/map.css?v1.9">
                 <link rel="stylesheet" type="text/css" href="resources/css/smartphone.css?v1.2">
                 <link rel="stylesheet" type="text/css" href="resources/css/myzone.css?v1.2">
@@ -70,7 +70,7 @@ class HtmlPage
     {
         
         return '        </div>
-                    <script type="text/javascript" src="resources/scripts.js?v1.8"></script>
+                    <script type="text/javascript" src="resources/scripts.js?v1.9"></script>
                 </body>
             </html>';
     }

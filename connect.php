@@ -11,33 +11,14 @@ $html_error = '';
 $user_id    = NULL;
 
 $action     = filter_input(INPUT_POST, 'action',     FILTER_SANITIZE_STRING);
-$password   = filter_input(INPUT_POST, 'password',   FILTER_SANITIZE_STRING);
 $email      = trim(filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL));
 
 
 // Actions possibles
 if ($action === 'connect') {
     
-    if (empty($email)) {
-        
-        $html_error = 'Veuillez indiquer l\'adresse mail que vous aviez utilisée pour créer votre compte.<br/>'
-                . 'Si vous n\'avez pas encore de compte, commencez par <a href="/register">en créer un</a>';
-    }
-    else {
-        
-        $json = $api->connect_user($email, $password);
-        
-        if ($json['metas']['error_code'] === 'success') {
-            
-            $html_error = 'Vous êtes maintenant connecté.';
-            // Redirige automatiquement vers la page du jeu au bout d'1 seconde
-            header('Refresh: 1; url=index.php'); 
-        }
-        else {
-            
-            $html_error = 'Vos identifiants n\'ont pas été reconnus. Vérifiez-les et réessayez...';
-        }
-    }
+    // The connection form is now handled by javascript
+    
 }
 elseif ($action === 'disconnect') {
     
@@ -55,6 +36,7 @@ echo $html->page_header();
 <h1>Me connecter</h1>
 
 <p class="center" style="color:red;font-weight:bold"><?php echo $html_error ?></p>
+<p id="error" class="center" style="color:orangered;font-weight:bold"></p>
 
 <?php
 if ($api->user_seems_connected() === TRUE) {

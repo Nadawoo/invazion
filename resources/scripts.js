@@ -292,6 +292,62 @@ function loadPage(url, callback) {
 }
 
 
+/**
+ * Sends a form with the GET method
+ * 
+ * @param {string} apiName The name of the Invazion's API to call (map, citizen, city...) 
+ *                         E.g. : for the API "https://invazion.nadazone.fr/api/map", apiName is "map"
+ */
+ async function callApi(apiName) {
+    
+    let apiRoot = "http://invazion.localhost/api/",
+        result = await fetch(apiRoot+apiName, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                }
+            }
+        //.text() pour retourner un texte brut, ou .json() pour parser du JSON
+        ).then(a=>a.json());
+    
+    return result;
+}
+
+
+/**
+ * Connects the user to his account (sends logins and gets the API result)
+ */
+async function connectUser() {
+    
+    // NB : btoa() encodes the mail and password in Base64 as requested by the Invazion's API
+    let emailField = document.getElementById("email"),
+        email64 = btoa(emailField.value),
+        pass64  = btoa(document.getElementById("password").value),
+        json = await callApi(`user?action=connect&email64=${email64}&pass64=${pass64}`);
+    
+    if (emailField.value === '') {
+        
+        document.getElementById("error").innerHTML = "Veuillez indiquer l'adresse mail que vous aviez utilisée "
+                        +"lors de votre inscription.<br>"
+                        +"<em>Pas encore inscrit ? <a href=\"register.php\">Créez votre compte maintenant !</a></em>";
+    }
+    else if (emailField.checkValidity() !== true) {
+        
+        document.getElementById("error").innerHTML = "L'email que vous avez saisi est invalide. Vérifiez qu'il ne contient pas une faute de frappe...";
+    }
+    else if (json.metas.error_code !== "success") {
+        
+        document.getElementById("error").innerHTML = '<span>'+json.metas.error_message+'</span>';
+    }
+    else {
+        // Stores the identification token in a cookie
+        document.cookie = "token="+json.datas.token;
+        // Redirects to the main game page after the connction
+        window.location.replace("index.php");
+    }
+}
+
+
 /*
  * Exécuté dès le chargement de la page, sans action du visiteur
  */
