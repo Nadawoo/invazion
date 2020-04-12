@@ -300,7 +300,7 @@ function loadPage(url, callback) {
  */
  async function callApi(apiName) {
     
-    let apiRoot = "http://invazion.localhost/api/",
+    let apiRoot = "https://invazion.nadazone.fr/api/",
         result = await fetch(apiRoot+apiName, {
                 method: 'GET',
                 headers: {
