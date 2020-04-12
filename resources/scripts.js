@@ -293,24 +293,27 @@ function loadPage(url, callback) {
 
 
 /**
- * Sends a form with the GET method
+ * Sends a form with the GET or POST method
  * 
  * @param {string} apiName The name of the Invazion's API to call (map, citizen, city...) 
  *                         E.g. : for the API "https://invazion.nadazone.fr/api/map", apiName is "map"
  */
- async function callApi(apiName) {
+ async function callApi(method, apiName, params) {
     
-    let apiRoot = "https://invazion.nadazone.fr/api/",
-        result = await fetch(apiRoot+apiName, {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                }
+    let apiUrl = `https://invazion.nadazone.fr/api/${apiName}`,
+        option = {
+            method: method,
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
             }
-        //.text() pour retourner un texte brut, ou .json() pour parser du JSON
-        ).then(a=>a.json());
-    
-    return result;
+        };
+    if(method==="GET") {
+        apiUrl += "?"+params;
+    } else {
+        option.body= params;
+    }
+    //.text() pour retourner un texte brut, ou .json() pour parser du JSON
+    return await fetch(apiUrl, option).then(a=>a.json());
 }
 
 
@@ -336,7 +339,7 @@ async function connectUser() {
     }
     else {
         // Calls the connection API
-        let json = await callApi(`user?action=connect&email64=${email64}&pass64=${pass64}`);
+        let json = await callApi("GET", "user", `action=connect&email64=${email64}&pass64=${pass64}`);
 
         if (json.metas.error_code !== "success") {
 
