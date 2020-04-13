@@ -362,7 +362,7 @@ async function connectUser() {
             // Stores the identification token in a cookie
             document.cookie = "token="+json.datas.token;
             // Redirects to the main game page after the connction
-            window.location.replace("index.php");
+            window.location.replace("index.php#Outside");
         }
     }
 }
