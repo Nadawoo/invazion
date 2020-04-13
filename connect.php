@@ -11,14 +11,17 @@ $html_error = '';
 $user_id    = NULL;
 
 $action     = filter_input(INPUT_POST, 'action',     FILTER_SANITIZE_STRING);
+$password   = filter_input(INPUT_POST, 'password',   FILTER_UNSAFE_RAW);
 $email      = trim(filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL));
 
 
 // Actions possibles
 if ($action === 'connect') {
     
-    // The connection form is now handled by javascript
-    
+    // The connection form is normally handled by javascript. This PHP code will
+    // send the form only in case the user disabled javascript on his browser. 
+    $json = $api->connect_user($email, $password);
+    $html_error = $json['metas']['error_message'];
 }
 elseif ($action === 'disconnect') {
     
