@@ -118,8 +118,7 @@ legend {
 
 /* Affiche les objets dans le sac et au sol en bas de la carte */
 #bag_panel,
-#ground_panel,
-#state_panel {
+#ground_panel {
     position:fixed;
     bottom:0;
     background:#566573;
@@ -132,8 +131,7 @@ legend {
     z-index:2;
 }
 #bag_panel legend,
-#ground_panel legend,
-#state_panel legend {
+#ground_panel legend {
     margin-top:-1.3em;
     float:left; /* Hack CSS pour que l'onglet soit bien remonté dans Chrome */
     padding:0 0.5em;
@@ -173,13 +171,6 @@ legend {
     margin-left:2em;
 }
 
-/* Panneau de santé du joueur en bas de la carte */
-#state_panel {
-    margin-left:-16.3em;
-    border-top-right-radius:0.5em;
-    z-index:1;
-}
-
 /* Panneau listant les objets au sol en bas de la carte */
 #ground_panel {
     margin-left:-15em;
@@ -189,7 +180,6 @@ legend {
     margin-left:4em;
 }
 #ground_panel legend:hover,
-#state_panel legend:hover,
 .inactive_tab:hover {
     background:darkred;
     cursor:pointer;
