@@ -1,4 +1,16 @@
 /**
+ * Returns the URL of the central server of InvaZion (which contains the APIs).
+ * No need to change this unless you are the main developer of InvaZion.
+ */
+function getOfficialServerRoot() {
+    
+    return (window.location.hostname === "invaziongame.localhost"
+        ? "http://invazion.localhost" 
+        : "https://invazion.nadazone.fr");
+}
+
+
+/**
  * Afficher/masquer l'élement indiqué en cliquant sur un lien
  * 
  * @param {string} element_name     L'id HTML de l'élément à afficher/masquer
@@ -300,7 +312,8 @@ function loadPage(url, callback) {
  */
  async function callApi(method, apiName, params) {
     
-    let apiUrl = `https://invazion.nadazone.fr/api/${apiName}`,
+    let root   = getOfficialServerRoot(),
+        apiUrl = `${root}/api/${apiName}`,
         option = {
             method: method,
             headers: {
