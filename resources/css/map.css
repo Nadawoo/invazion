@@ -216,28 +216,3 @@
     margin-left:-1em;
     margin-top:-3.2em;
 }
-
-@media (max-width:700px) {
-    .box{
-        width: 80%;
-    }
-    .popup{
-        width: 80%;
-    }
-    #map {
-        width:50%;
-        margin-right:0.2em;
-    }
-    /* Actions à droite de la carte */
-    fieldset {
-        padding:0 0.5em 0.5em 0.5em;
-    }
-}
-
-@media (max-width:575px) {
-    /* Met en colonne les blocs à l'intérieur de la ville */
-    .city_row {
-        flex-direction:column;
-        align-items:center;
-    }
-}
