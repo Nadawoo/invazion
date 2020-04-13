@@ -23,7 +23,7 @@
     opacity: 1;
 }
 .popup {
-    width: 28em;
+    max-width: 28em;
     margin: 70px auto;
     padding: 20px;
     background: #fff;
