@@ -138,10 +138,10 @@ class HtmlMyzone
         
         return '
             <div id="button_pickup">
-                <input type="submit" value="Ramasser..." onclick="switch_tab(\'ground_panel\', \'state_panel\');resize_panel(\'ground_panel\')">
+                <input type="submit" value="Ramasser..." onclick="toggleItemsPanel()">
             </div>
             <div id="button_dig">'.$buttons->dig('no_icon').'</div>
-            <div id="items" onclick="resize_panel(\'ground_panel\')">
+            <div id="items" onclick="toggleItemsPanel()">
                 '.$this->items().'
             </div>';
     }

@@ -226,17 +226,6 @@ legend {
   background: grey;
 }
 
-.big_panel { /* Pour agrandir la hauteur du panneau en javascript */
-    height:20em !important;
-    overflow:auto !important; /* Nécessaire pour fonctionner sous Firefox */
-}
-.big_panel .legend {
-    background:darkred !important;
-    /* Hack temporaire car l'onglet est masqué du fait du overflow:auto, mais
-       ce dernier est nécessaire pour que le volet s'agrandisse sous Firefox */
-    margin-top:0 !important; 
-}
-
 /* Listes d'objets */
 .items_list {
     text-align:left;

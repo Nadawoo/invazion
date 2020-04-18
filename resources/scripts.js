@@ -237,26 +237,6 @@ function getCookie(cname) {
 
 
 /*
- * Augmente ou diminue la hauteur du panneau flottant en bas de la carte
- * (liste des objets de la case...)
- * 
- * @param {str} panelId L'id HTML du panneau à agrandir
- * @returns {undefined}
- */
-function resize_panel(panelId) {
-    
-    if (document.getElementById(panelId).className !== "big_panel") {
-        
-        document.getElementById(panelId).className = "big_panel";
-    }
-    else {
-        
-        document.getElementById(panelId).className = "";
-    }
-}
-
-
-/*
  * Active l'onglet du smartphone à droite de la carte
  *
  * @param {str} tabId L'id HTML de l'onglet du smartphone à afficher (minimap, health...)
