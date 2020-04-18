@@ -327,7 +327,7 @@ echo $popup->customised('popsuccess', '', nl2br($msg_popup));
     
     <div id="map">
         
-        <div id="map_bar">
+        <div id="map_header">
             <span onclick="toggleMapItems()">Objets sur la carte</span>
         </div>
         
@@ -347,6 +347,18 @@ echo $popup->customised('popsuccess', '', nl2br($msg_popup));
         // Affiche la carte complète
         echo $html_map;
         ?>
+        
+        <div id="map_footer">
+            <fieldset id="bag_panel">
+                <legend>&#128188; Dans mon sac</legend>
+                <?php echo $html_bag_items ?>
+            </fieldset>
+            
+            <fieldset id="ground_panel">
+                <legend>Objets au sol &#9935;&#65039;</legend>
+                <?php echo $html_zone_items ?>
+            </fieldset>
+        </div>
     </div>
     
     
@@ -405,15 +417,6 @@ echo $popup->customised('popsuccess', '', nl2br($msg_popup));
                 <?php echo $html_zone_citizens ?>
             </fieldset>
             
-            <fieldset id="bag_panel">
-                <legend>&#128188; Dans mon sac</legend>
-                <?php echo $html_bag_items ?>
-            </fieldset>
-            
-            <fieldset id="ground_panel">
-                <legend>Objets au sol &#9935;&#65039;</legend>
-                <?php echo $html_zone_items ?>
-            </fieldset>
         </div>
         <?php
     } ?>

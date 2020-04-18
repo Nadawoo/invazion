@@ -157,7 +157,7 @@ legend {
 
 /* Sac à dos du joueur */
 #bag_panel {
-    margin-left:-28.7em;
+    margin-left:-1em;
     border-top-left-radius:0.5em;
 }
 #bag_panel legend {
@@ -173,7 +173,7 @@ legend {
 
 /* Panneau listant les objets au sol en bas de la carte */
 #ground_panel {
-    margin-left:-15em;
+    margin-left:12.3em;
     border-top-right-radius:0.5em;
 }
 #ground_panel legend {

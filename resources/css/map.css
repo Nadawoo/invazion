@@ -14,12 +14,12 @@
     position:relative;
 }
 
-#map_bar {
+#map_header {
     margin-bottom:1.5em;
     text-align:center;
     font-size:0.9em;
 }
-#map_bar span {
+#map_header span {
     padding:0 0.5em 0.2em 0.5em;
     background:darkred;
     border-radius:0 0 0.8em 0.8em;
@@ -27,7 +27,7 @@
     font-weight:bold;
     opacity:0.7;
 }
-#map_bar span:hover {
+#map_header span:hover {
     cursor:pointer;
     opacity:1;
 }
