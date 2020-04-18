@@ -45,11 +45,12 @@ class HtmlMap
                 $col    = get_coordx($i, $row);
                 $coords = $col.'_'.$row;
                 $cell   = (isset($cells[$coords])) ? $cells[$coords] : null;
-                
+                // Définit si le joueur connecté se trouve dans cette zone
+                $is_player_in_zone = ($citizen['coord_x'] === $col and $citizen['coord_y'] === $row) ? true : false;
                 // Pseudo d'un des citoyens présents sur la case
                 $fellow_pseudo = (isset($citizens_by_coord[$coords])) ? $citizens_by_coord[$coords][0]['citizen_pseudo'] : null;
                 
-                $result .=  $this->hexagonal_zone($col, $row, $cell, $citizen, $fellow_pseudo, $next_attack_hour);
+                $result .=  $this->hexagonal_zone($col, $row, $cell, $is_player_in_zone, $citizen['citizen_pseudo'], $fellow_pseudo, $next_attack_hour);
             }
             
             $result .=  "</div>\n";
@@ -66,14 +67,15 @@ class HtmlMap
      * @param int $row  La coordonnée Y de la zone (le n° de la ligne)
      *                  Ex : 3 si c'est la 3e ligne de la carte
      * @param array $cell   Le contenu de la zone, tel que retourné par l'API maps
-     * @param array $citizen        Les données du joueur
+     * @param bool  $is_player_in_zone Définit si le joueur connecté se trouve dans cette zone
+     * @param array $player_pseudo  Le pseudo du joueur connecté
      * @param array $fellow_pseudo  Pseudo d'un des citoyens présents sur la case 
      *                              (autre celui du joueur actuel)
      * @param int $next_attack_hour L'heure de la prochaine attaque
      * 
      * @return string   Le HTML de la case
      */
-    private function hexagonal_zone($col, $row, $cell, $citizen, $fellow_pseudo, $next_attack_hour)
+    private function hexagonal_zone($col, $row, $cell, $is_player_in_zone, $player_pseudo, $fellow_pseudo, $next_attack_hour)
     {
         
         $coords         = $col.'_'.$row;
@@ -96,14 +98,12 @@ class HtmlMap
                 . "</span>\n";
         }
 
-        if ($citizen['coord_x'] === $col and $citizen['coord_y'] === $row) {
+        if ($is_player_in_zone === true) {
 
             // Mise en valeur du joueur actuel sur la carte
-            $cell_content = '<div class="map_citizen" id="me">'
-                          . substr($citizen['citizen_pseudo'], 0, 2) 
-                          . '</div>'
-                          . '<div class="halo">&nbsp;</div>';
-            $bubble     = '<br>Vous êtes ici, '.$citizen['citizen_pseudo'].'&nbsp;! Utilisez le volet à droite de la carte '
+            $cell_content = '<div class="map_citizen" id="me">'.substr($player_pseudo, 0, 2).'</div>
+                             <div class="halo">&nbsp;</div>';
+            $bubble     = '<br>Vous êtes ici, '.$player_pseudo.'&nbsp;! Utilisez le volet à droite de la carte '
                         . 'pour vous déplacer, fouiller le sol, attaquer des zombies, ramasser des objets...';
         }
         elseif ($cell === null) {
