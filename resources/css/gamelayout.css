@@ -122,7 +122,7 @@ legend {
     position:fixed;
     bottom:0;
     background:#566573;
-    padding:0 0.5em;
+    padding:0 0 0 0.5em;
     height:9.5em;
     width:14em;
     border:1px solid white;
@@ -133,7 +133,6 @@ legend {
 #bag_panel legend,
 #ground_panel legend {
     margin-top:-1.3em;
-    float:left; /* Hack CSS pour que l'onglet soit bien remonté dans Chrome */
     padding:0 0.5em;
     padding-bottom: 0.2em;
     background:#566573;
@@ -173,8 +172,10 @@ legend {
 
 /* Panneau listant les objets au sol en bas de la carte */
 #ground_panel {
-    margin-left:12.3em;
+    margin-left:11.8em;
     border-top-right-radius:0.5em;
+    /* Check in _Chrome_ that the vertical scrollbar fits in the block ! */
+    width:15em;
 }
 #ground_panel legend {
     margin-left:4em;
@@ -184,6 +185,26 @@ legend {
     background:darkred;
     cursor:pointer;
     opacity:1;
+}
+#ground_panel form {
+    /* The height must be defined for the vertical overflow to work */
+    height:100%;
+    overflow-y:auto;
+    /* Works only in Firefox. For Chrome, see below */
+    scrollbar-width:thin;
+}
+/* Thin scrollbar for Chrome only */
+#ground_panel form::-webkit-scrollbar {
+  width: 0.5em;
+}
+#ground_panel form::-webkit-scrollbar-thumb {
+    background: #8c9298; /* Color of the scrollbar background */
+}
+#ground_panel form::-webkit-scrollbar-track {
+    background: #424d57; /* Color of the scrollbar button */
+}
+#ground_panel form::-webkit-scrollbar-thumb:hover {
+  background: grey;
 }
 
 .big_panel { /* Pour agrandir la hauteur du panneau en javascript */
