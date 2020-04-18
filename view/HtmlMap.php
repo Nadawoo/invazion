@@ -166,9 +166,9 @@ class HtmlMap
         if($cell === null) {
             $cell['date_last_visit'] = date('1900-01-01');
         }            
-        $opacity = $this->opacity_coeff($cell['date_last_visit']);
+        $opacity = $this->opacity_coeff($cell['date_last_visit'], $is_player_in_zone);
 
-
+        
         if (!empty($cell['items'])) {
             // Permettra d'ajouter un marqueur en javascript sur la case
             $has_items = ' hasItems';
@@ -204,26 +204,33 @@ class HtmlMap
      * 
      * @param string $date_last_visit Date à laquelle la case a été visitée pour 
      *                                la dernière fois, au format '2019-06-28'
+     * @param bool   $is_player_in_zone Définit si le joueur connecté se trouve dans cette zone
      * @return int Le coefficient d'opacité, entre 0 et 1
      */
-    private function opacity_coeff($date_last_visit)
+    private function opacity_coeff($date_last_visit, $is_player_in_zone)
     {
         
-        // On limite à X jours d'écart. Plus X est élevé, moins 
-        // la différence d'opacité entre deux jours sera perceptible.
-        $max_days_diff = 5;
+        if ($is_player_in_zone === true) {
+            // Si le joueur connecté est dans la zone, on n'estompe pas la zone
+            $opacity = 1;
+        }
+        else {
+            // On limite à X jours d'écart. Plus X est élevé, moins 
+            // la différence d'opacité entre deux jours sera perceptible.
+            $max_days_diff = 5;
 
-        // On calcule le nombre de jours depuis la dernière visite
-        $seconds_diff = time() - strtotime($date_last_visit);
-        // NB : 86400 = nombre de secondes dans une journée (60 * 60 * 24)
-        $days_diff = floor($seconds_diff / 86400);
-        $days_diff = min($days_diff, $max_days_diff);
-        // On soustrait afin que PLUS il y a de jours d'écart, plus 
-        // le coefficient d'opacité soit PETIT. Puis on divise car
-        // en CSS le coefficent d'opacité est en dixièmes (0.1, 0.2, etc.)
-        $opacity = ($max_days_diff - $days_diff) / $max_days_diff;
-        // Toute case doit rester un peu visible (pas d'opacité à 0)
-        $opacity = max($opacity, 0.2);  
+            // On calcule le nombre de jours depuis la dernière visite
+            $seconds_diff = time() - strtotime($date_last_visit);
+            // NB : 86400 = nombre de secondes dans une journée (60 * 60 * 24)
+            $days_diff = floor($seconds_diff / 86400);
+            $days_diff = min($days_diff, $max_days_diff);
+            // On soustrait afin que PLUS il y a de jours d'écart, plus 
+            // le coefficient d'opacité soit PETIT. Puis on divise car
+            // en CSS le coefficent d'opacité est en dixièmes (0.1, 0.2, etc.)
+            $opacity = ($max_days_diff - $days_diff) / $max_days_diff;
+            // Toute case doit rester un peu visible (pas d'opacité à 0)
+            $opacity = max($opacity, 0.2);  
+        }
         
         return $opacity;
     }
