@@ -133,11 +133,11 @@ legend {
 /* NB : don't use the native <legend> tag here. It's very difficult to position correctly */
 #bag_panel .legend,
 #ground_panel .legend {
-    opacity:0.8;
+    opacity:1;
     max-width:9em;
     height:2em;
     margin-top:-2.05em;
-    padding:0 0.5em;
+    padding:0;
     background:darkred;
     border:1px solid white;
     border-bottom:none;
@@ -150,6 +150,14 @@ legend {
 #bag_panel .legend:hover,
 #ground_panel .legend:hover {
     opacity:1;
+}
+#bag_panel .icon,
+#ground_panel .icon {
+    display:inline-block;
+    height:100%;
+    width:1.5em;
+    text-align:center;
+    background:ivory;
 }
 #bag_panel var,
 #ground_panel var {
@@ -172,6 +180,9 @@ legend {
 #bag_panel .legend {
     margin-left:0.5em;
 }
+#bag_panel .icon {
+    border-top-left-radius:0.4em;
+}
 .empty_slot {
     background:none;
     border:1px solid grey;
@@ -184,11 +195,15 @@ legend {
 #ground_panel {
     margin-left:11.8em;
     border-top-right-radius:0.5em;
+    text-align:right;
     /* Check in _Chrome_ that the vertical scrollbar fits in the block ! */
     width:15em;
 }
 #ground_panel .legend {
-    margin-left:3.8em;
+    margin-left:4.8em;
+}
+#groundpanel .icon {
+    border-top-right-radius:0.4em;
 }
 #ground_panel form {
     /* The height must be defined for the vertical overflow to work */
