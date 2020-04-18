@@ -123,23 +123,33 @@ legend {
     bottom:0;
     background:#566573;
     padding:0 0 0 0.5em;
-    height:9.5em;
+    height:10em;
     width:14em;
     border:1px solid white;
     color:white;
     font-size:95%;
     z-index:2;
 }
-#bag_panel legend,
-#ground_panel legend {
-    margin-top:-1.3em;
+/* NB : don't use the native <legend> tag here. It's very difficult to position correctly */
+#bag_panel .legend,
+#ground_panel .legend {
+    opacity:0.8;
+    max-width:9em;
+    height:2em;
+    margin-top:-2.05em;
     padding:0 0.5em;
-    padding-bottom: 0.2em;
-    background:#566573;
-    border-top:1px solid white;
-    border-radius:0.4em;
+    background:darkred;
+    border:1px solid white;
+    border-bottom:none;
+    border-radius:0.4em 0.4em 0 0;
     color:white;
+    font-weight:bold;
     font-variant:small-caps;
+    cursor:pointer;
+}
+#bag_panel .legend:hover,
+#ground_panel .legend:hover {
+    opacity:1;
 }
 #bag_panel var,
 #ground_panel var {
@@ -159,7 +169,7 @@ legend {
     margin-left:-1em;
     border-top-left-radius:0.5em;
 }
-#bag_panel legend {
+#bag_panel .legend {
     margin-left:0.5em;
 }
 .empty_slot {
@@ -177,14 +187,8 @@ legend {
     /* Check in _Chrome_ that the vertical scrollbar fits in the block ! */
     width:15em;
 }
-#ground_panel legend {
-    margin-left:4em;
-}
-#ground_panel legend:hover,
-.inactive_tab:hover {
-    background:darkred;
-    cursor:pointer;
-    opacity:1;
+#ground_panel .legend {
+    margin-left:3.8em;
 }
 #ground_panel form {
     /* The height must be defined for the vertical overflow to work */
@@ -211,7 +215,7 @@ legend {
     height:20em !important;
     overflow:auto !important; /* Nécessaire pour fonctionner sous Firefox */
 }
-.big_panel legend {
+.big_panel .legend {
     background:darkred !important;
     /* Hack temporaire car l'onglet est masqué du fait du overflow:auto, mais
        ce dernier est nécessaire pour que le volet s'agrandisse sous Firefox */

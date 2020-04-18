@@ -350,12 +350,12 @@ echo $popup->customised('popsuccess', '', nl2br($msg_popup));
         
         <div id="map_footer">
             <fieldset id="bag_panel">
-                <legend>&#128188; Dans mon sac</legend>
+                <div class="legend" onclick="toggleItemsPanel()">&#128188; Dans mon sac</div>
                 <?php echo $html_bag_items ?>
             </fieldset>
             
             <fieldset id="ground_panel">
-                <legend>Objets au sol &#9935;&#65039;</legend>
+                <div class="legend" onclick="toggleItemsPanel()">Objets au sol &#9935;&#65039;</div>
                 <?php echo $html_zone_items ?>
             </fieldset>
         </div>

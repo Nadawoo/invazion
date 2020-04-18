@@ -186,6 +186,21 @@ function toggleHouse(idName) {
     toggle(idName);
 }
 
+/**
+ * Displays/hides the items panels (bag and ground) at the bottom of the map 
+ */
+function toggleItemsPanel() {
+    
+    if (document.getElementById("bag_panel").style.height === "0px") {
+        document.getElementById("bag_panel").style.height    = "10em";
+        document.getElementById("ground_panel").style.height = "10em";
+    }
+    else {
+        document.getElementById("bag_panel").style.height    = 0;
+        document.getElementById("ground_panel").style.height = 0;
+    }
+}
+
 
 /*
  * Crée ou modifie un cookie
@@ -388,6 +403,9 @@ else {
 	display('my_zone');
 }
 
+
+// Par défaut, la liste des objets du sac et au sol sont réduites
+toggleItemsPanel();
 
 // Affiche l'onglet actif du smartphone au chargement de la page
 activatePhoneTab();
