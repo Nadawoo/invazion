@@ -248,6 +248,13 @@ class BuildHtml extends HtmlPage
         $buttons = new HtmlButtons;
         $html = '';
         
+        if (count($citizens_caracs) === 1) {
+            
+            return '<p style="width:80%;margin-left:auto;margin-right:auto;font-size:0.9em;font-style:italic;color:grey">
+                Personne à proximité. Vous êtes seul au milieu de cette zone désertique...
+            </p>';
+        }
+        
         foreach ($citizens_caracs as $caracs) {
             
             $attack_button = '<span style="color:grey;font-size:0.8em"> [c\'est vous !]</span>';
