@@ -9,7 +9,7 @@ Le jeu vise à être hautement customisable et le plus ouvert possible (interfac
 
 # Principes directeurs du projet
 ## Principes de jeu
-* Bases similiraies à hordes :
+* Bases similaires à hordes :
    * Objectif : survivre aux Hordes zombies
    * Les actions faites en jeu débloquent des récompenses (pictos), y compris si l'action n'est pas cruciale. Plus les récompenses sont nombreuses et plus les possibilités d'objectifs individuels seront variés.
 * Le jeu est collaboratif façon Hordes :
@@ -52,11 +52,23 @@ Les bots auront des caractéristiques aléatoires pour animer la partie, inspir�
 	* degré de désobéissance
 	* malveillance
 	* étourderie (ex : partir dans la mauvaise direction en expédition)
-	* autres...
+	* plages de présence (comme un humain n'est pas disponible 24h/24)
+	* autres...     	
+	
 Ainsi, même avec des bots, le joueur devra :
    - réfléchir à la composition d'une équipe pour partir en expédition
-   - faire face à des construction de chantier imprévues
+   - faire face à des constructions de chantier imprévues (un bot aura mis des PA dans le mauvais chantier...)
    - etc.
+   
+Pour contrôler un bot, le joueur devra lui donner régulièrement une drogue spéciale fournie par un chantier, qui devra être construit et entretenu.
+   - Intérêt : incite à jouer avec des humains (pas de coût de chantier) plutôt qu'avec les bots
+   - Donner plusieurs cachets à un bot augmentera sa fiabilité, mais les cachets seront précieux => le joueur devra faire des choix stratégiques (donner plusieurs cachets a un bot pour qu'il soit plus fiable, ou un seul à plusieurs bots pour partir plus nombreux en expédition)
+   - Roleplay : le type de drogue est à définir (doit justifier qu'il rend les bots plus fiables). Il pourrait même s'agir d'autre chose que d'une drogue, cela donne l'impression que les bots sont des escalves serviles. Ce pourrait être le "nounours" de Hordes : rassurant, il calme les sentiments négatifs des bots (désespoir, angoisse, égoïsme...)
+   
+Pour mettre des PA dans les chantiers avec les bots, le joueur ne contrôlera pas chaque bot pour les faire travailler un par un. Il aura un réservoir global de PA (somme des PA de tous les bots) et chaque PA utilisé sera déduit aléatoirement d'un bot.
+   - Intérêt gameplay : pouvoir gérer précisément les PA des bots serait trop facile (par exemple en gardant des bots avec tous leurs PA pour les expéditions). 
+   - Intérêt UX : pas répétitif à exécuter pour le joueur (pas besoin de prendre le contrôle de chaque bot 1 par 1)
+   
 
 * **2 types de parties en parallèle :**
 	* Des cartes éphémères, détruites après la défaite finale. Même principe que Hordes, mais avec un rythme de jeu plus dynamique. 
