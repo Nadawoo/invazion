@@ -328,6 +328,26 @@ button {
     100% { opacity: 1;   }
 }
 
+/*
+ * Etiquette pour nom d'utilisateur (icône + pseudo sur fond coloré)
+ */
+.userlabel {
+    display:inline-block;
+    height:1.5em;
+    padding-right:0.8em;
+    border:1px solid green;
+    border-radius:1em;
+    background:green;
+    color:white;
+}
+.userlabel .avatar {
+    display:inline-block;
+    height:1.5em;
+    width:1.5em;
+    border-radius:1em;
+    text-align:center;
+    background:lightgreen;
+} 
 
 /* Message d'erreur, ex : "Vous n'avez plus assez de PA"
    Important : utiliser les alias retournés par les API 

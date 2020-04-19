@@ -183,10 +183,10 @@ class HtmlButtons
         $icon = ($show_icon === 'no_icon') ? '' : '&#128074;&#127995; ';
         
         return
-        '<form method="post" action="#popsuccess">
+        '<form method="post" action="#popsuccess" style="display:inline">
             <input type="hidden" name="action" value="attack_citizen">
             <input type="hidden" name="target_id" value="'.$target_id.'">
-            <input type="submit" value="'.$icon.'Agresser '.$target_pseudo.' !">
+            <input type="submit" value="'.$icon.'Agresser !" style="min-width:auto">
         </form>';
     }
     
@@ -202,13 +202,13 @@ class HtmlButtons
     {
         
         $icon = ($show_icon === 'no_icon') ? '' : '&#129657; ';
-        $text = ($text !== 'default') ? $text : 'Soigner '.$target_pseudo.' !'; 
+        $text = ($text !== 'default') ? $text : 'Soigner !'; 
         
         return
-        '<form method="post" action="#popsuccess">
+        '<form method="post" action="#popsuccess" style="display:inline">
             <input type="hidden" name="action" value="heal_citizen">
             <input type="hidden" name="target_id" value="'.$target_id.'">
-            <input type="submit" value="'.$icon.$text.'">
+            <input type="submit" value="'.$icon.$text.'" style="min-width:auto">
         </form>';
     }
     

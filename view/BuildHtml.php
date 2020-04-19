@@ -258,12 +258,12 @@ class BuildHtml extends HtmlPage
                               ? $buttons->attack_citizen($caracs['citizen_id'], $caracs['citizen_pseudo'])
                               : $buttons->heal_citizen($caracs['citizen_id'], $caracs['citizen_pseudo']);
 
-            $html.= '<li>Le citoyen <strong style="color:green">'.$caracs['citizen_pseudo'].'</strong> est votre&nbsp;allié<br>'
+            $html.= '<li><span class="userlabel"><span class="avatar">&#x1F464;</span> '.$caracs['citizen_pseudo'].'</span>'
                   . $attack_button
                   . '</li>';
         }
         
-        return '<ul style="padding-left:0.9em">'.$html.'</ul>';
+        return '<ol style="padding-left:0.9em">'.$html.'</ol>';
     }
     
     
