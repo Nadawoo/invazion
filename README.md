@@ -9,7 +9,7 @@ Le jeu vise à être hautement customisable et le plus ouvert possible (interfac
 
 # Principes directeurs du projet
 ## Principes de jeu
-* Bases similiraies à hordes :
+* Bases similaires à hordes :
    * Objectif : survivre aux Hordes zombies
    * Les actions faites en jeu débloquent des récompenses (pictos), y compris si l'action n'est pas cruciale. Plus les récompenses sont nombreuses et plus les possibilités d'objectifs individuels seront variés.
 * Le jeu est collaboratif façon Hordes :
@@ -43,27 +43,41 @@ Le rythme d'apparition des zombies dépendra du rythme de la partie.
 
 ## A moyen terme : cartes multiples & mécanismes de dynamisation du jeu
 
-* **Cartes multiples.** La grande carte commune actuelle est un bac à sable pour les tests.   
+### ► Cartes multiples
+La grande carte commune actuelle est un bac à sable pour les tests.   
 Le joueur pourra lancer sa partie seul ou avec d'autres joueurs. Pas de quota de nombre de joueurs pour que la ville démarre (trop incertain). Le jeu sera jouable seul (voir plus bas), mais jouer à plusieurs apportera de nombreux avantages (Invazion est un jeu collaboratif).
 
-* **Présence de citoyens bots** afin que le jeu soit jouable quel que soit le nombre d'actifs. Mais jouer avec des humains sera toujours plus avantageux (meilleures caractéristiques...).   
+### ► Citoyens-bots si manque d'humains dans une partie
+* Présence de citoyens bots afin que le jeu soit jouable quel que soit le nombre d'actifs. Mais jouer avec des humains sera toujours plus avantageux (meilleures caractéristiques...).   
 Chaque joueur humain qui rejoint une partie prend la place d'un bot, le but est d'avoir un maximum d'humains dans la partie.  
 Les bots auront des caractéristiques aléatoires pour animer la partie, inspirées des comportements humains :
 	* degré de désobéissance
 	* malveillance
 	* étourderie (ex : partir dans la mauvaise direction en expédition)
-	* autres...
+	* plages de présence (comme un humain n'est pas disponible 24h/24)
+	* autres...     	
+	
 Ainsi, même avec des bots, le joueur devra :
    - réfléchir à la composition d'une équipe pour partir en expédition
-   - faire face à des construction de chantier imprévues
+   - faire face à des constructions de chantier imprévues (un bot aura mis des PA dans le mauvais chantier...)
    - etc.
+   
+Pour contrôler un bot, le joueur devra lui donner régulièrement une drogue spéciale fournie par un chantier, qui devra être construit et entretenu.
+   - Intérêt : incite à jouer avec des humains (pas de coût de chantier) plutôt qu'avec les bots
+   - Donner plusieurs cachets à un bot augmentera sa fiabilité, mais les cachets seront précieux => le joueur devra faire des choix stratégiques (donner plusieurs cachets a un bot pour qu'il soit plus fiable, ou un seul à plusieurs bots pour partir plus nombreux en expédition)
+   - Roleplay : le type de drogue est à définir (doit justifier qu'il rend les bots plus fiables). Il pourrait même s'agir d'autre chose que d'une drogue, cela donne l'impression que les bots sont des escalves serviles. Ce pourrait être le "nounours" de Hordes : rassurant, il calme les sentiments négatifs des bots (désespoir, angoisse, égoïsme...)
+   
+Pour mettre des PA dans les chantiers avec les bots, le joueur ne contrôlera pas chaque bot pour les faire travailler un par un. Il aura un réservoir global de PA (somme des PA de tous les bots) et chaque PA utilisé sera déduit aléatoirement d'un bot.
+   - Intérêt gameplay : pouvoir gérer précisément les PA des bots serait trop facile (par exemple en gardant des bots avec tous leurs PA pour les expéditions). 
+   - Intérêt UX : pas répétitif à exécuter pour le joueur (pas besoin de prendre le contrôle de chaque bot 1 par 1)
+   
 
-* **2 types de parties en parallèle :**
-	* Des cartes éphémères, détruites après la défaite finale. Même principe que Hordes, mais avec un rythme de jeu plus dynamique. 
-	* Des cartes persistantes, à rythme de jeu plus lent. Le succès dans les parties éphémères apporte des bonus de construction de la carte persistante.
-	Intérêt : les villes éphémères apportent une vraie pression et un sentiment de victoire/défaite ; le monde persistant assure un sentiment de progression.
-	
-* **Rythme du jeu :**
+### ► 2 types de parties en parallèle
+* Des cartes éphémères, détruites après la défaite finale. Même principe que Hordes, mais avec un rythme de jeu plus dynamique. 
+* Des cartes persistantes, à rythme de jeu plus lent. Le succès dans les parties éphémères apporte des bonus de construction de la carte persistante.
+Intérêt : les villes éphémères apportent une vraie pression et un sentiment de victoire/défaite ; le monde persistant assure un sentiment de progression.
+
+### ► Rythme du jeu
    * Permettre des rythmes plus rapides que des cycles de 24 heures. Ce rythme permet des stratégies  approfondies mais est trop lent pour beaucoup de gens.
    * La mise en place de plusieurs rythmes au choix sera nécessaire car aucun ne conviendra à tout le monde. Il s'agira d'une liste prédéfinie (ex : 24h, 12h, 6h, 1h), une saisie totalement libre n'a pas d'intérêt et ne ferait que perdre le joueur inexpérimenté.
 
