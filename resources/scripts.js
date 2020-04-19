@@ -194,10 +194,12 @@ function toggleItemsPanel() {
     if (document.getElementById("bag_panel").style.height === "0px") {
         document.getElementById("bag_panel").style.height    = "10em";
         document.getElementById("ground_panel").style.height = "10em";
+        setCookie('showitemspanel', 1);
     }
     else {
         document.getElementById("bag_panel").style.height    = 0;
         document.getElementById("ground_panel").style.height = 0;
+        setCookie('showitemspanel', 0);
     }
 }
 
@@ -385,7 +387,9 @@ else {
 
 
 // Par défaut, la liste des objets du sac et au sol sont réduites
-toggleItemsPanel();
+if (getCookie('showitemspanel') === null || getCookie('showitemspanel') === '0') {
+    toggleItemsPanel();
+}
 
 // Affiche l'onglet actif du smartphone au chargement de la page
 activatePhoneTab();
