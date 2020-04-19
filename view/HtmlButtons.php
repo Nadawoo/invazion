@@ -222,12 +222,13 @@ class HtmlButtons
     {
         
         return
-        '<form style="text-align:center" method="post" action="#Outside">
+        '<form method="post" action="#Outside">
            <input type="hidden" name="action" value="go_inout_city">
 
            <!-- <span style="font-size:1.2em">&gt;</span>&nbsp; -->
-           <input type="submit" value="Entrer !" 
-                  title="Dans les villes, vous êtes protégé des zombies... provisoirement.">
+           <input type="submit" value="Entrer en ville !" 
+                  title="Vous êtes aux portes d\'une ville ! Si vous y entrez
+vous serez protégé des zombies... provisoirement.">
        </form>';
     }
     

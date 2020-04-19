@@ -315,27 +315,32 @@ class BuildHtml extends HtmlPage
     {
         
         $buttons = new HtmlButtons;
+        $table = '';
         
-        $table = '<tr>
+        // S'il y a une tente ou une ville sur la case, on affiche le bouton pour y entrer
+        if ($city_size > 0) {
+            
+            $table .= '<tr>
+                <td>&#x1F5DD;&#xFE0F;</td> <td>'.$buttons->enter_city().'<td>
+            </tr>';
+        }
+        else {
+            
+            $table .= '<tr>
                 <td>&#x26CF;&#xFE0F;</td> <td>'.$buttons->dig('no_icon').'<td>
             </tr>
             <tr>
                 <td>&#9961;&#65039;</td> <td>'.$buttons->add_vault('no_icon').'<td>
-            </tr>';
-
-            // S'il n'y a pas de tente ni ville sur la case,
-            // affiche les boutons pour en construire
-            if ($city_size === 0) {
-
-                $table .= '<tr>
-                    <td>&#9978;</td> <td>'.$buttons->build_tent('no_icon').'<td>
-                </tr>
-                <tr>
-                    <td><img src="resources/img/city.png" alt="&#10224;"></td>
-                    <td>'.$buttons->build_city('no_icon').'<td>
-                </tr>';
-            }                
-                    
+            </tr>            
+            <tr>
+                <td>&#9978;</td> <td>'.$buttons->build_tent('no_icon').'<td>
+            </tr>
+            <tr>
+                <td><img src="resources/img/city.png" alt="&#10224;"></td>
+                <td>'.$buttons->build_city('no_icon').'<td>
+            </tr>';               
+        }
+        
         return '<table>'.$table.'</table>';
     }
     
