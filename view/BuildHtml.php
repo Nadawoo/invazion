@@ -248,15 +248,16 @@ class BuildHtml extends HtmlPage
         $buttons = new HtmlButtons;
         $html = '';
         
-        // On n'affichera pas le joueur lui-même dans la liste de ses alliés
-        unset($citizens_caracs[$citizen_id]);
-        
         foreach ($citizens_caracs as $caracs) {
-              
-            // Bouton pour agresser/soigner le citoyen
-            $attack_button = ($caracs['is_wounded'] === 0)
+            
+            $attack_button = '<span style="color:grey;font-size:0.8em"> [c\'est vous !]</span>';
+            
+            if ($caracs['citizen_id'] !== $citizen_id) {
+                // Bouton pour agresser/soigner le citoyen
+                $attack_button = ($caracs['is_wounded'] === 0)
                               ? $buttons->attack_citizen($caracs['citizen_id'], $caracs['citizen_pseudo'])
                               : $buttons->heal_citizen($caracs['citizen_id'], $caracs['citizen_pseudo']);
+            }
 
             $html.= '<li><span class="userlabel"><span class="avatar">&#x1F464;</span> '.$caracs['citizen_pseudo'].'</span>'
                   . $attack_button

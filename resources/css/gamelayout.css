@@ -333,8 +333,11 @@ button {
  */
 .userlabel {
     display:inline-block;
-    height:1.5em;
+    height:1.4em;
+    margin:0.1em 0;
     padding-right:0.8em;
+    width:8em;
+    white-space:nowrap;
     border:1px solid green;
     border-radius:1em;
     background:green;
@@ -342,8 +345,8 @@ button {
 }
 .userlabel .avatar {
     display:inline-block;
-    height:1.5em;
-    width:1.5em;
+    height:1.4em; /* Height and width must be equal to the height of .userlabel */
+    width: 1.4em;
     border-radius:1em;
     text-align:center;
     background:lightgreen;
