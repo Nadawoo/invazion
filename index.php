@@ -158,15 +158,13 @@ $specialities       = $configs['specialities'];
 $map_cols           = $get_map['datas']['map_width'];
 $map_rows           = $get_map['datas']['map_height'];
 $next_attack_hour   = $get_map['datas']['next_attack_hour'];
-$cells              = $get_map['datas']['zones'];
-unset($get_map);
 
 // Si le joueur est connecté et a déjà créé son citoyen
 if ($citizen_id !== NULL) {
     
     $citizen            = $api_me['datas'];
     $zone_citizens      = $citizens_by_coord[$citizen['coord_x'].'_'.$citizen['coord_y']];
-    $zone               = $cells[$citizen['coord_x'].'_'.$citizen['coord_y']];
+    $zone               = $get_map['datas']['zones'][$citizen['coord_x'].'_'.$citizen['coord_y']];
     
     $html_zone_items    = $html->block_zone_items($configs['items'], $zone, $citizen['citizen_id']);
     $html_bag_items     = $html->block_bag_items($configs['items'], $citizen_id, $citizen['bag_items'], $citizen['bag_size']);
@@ -184,7 +182,10 @@ if ($citizen_id !== NULL) {
 
 // Construction de la carte
 $html_map_citizens = $html->map_citizens($citizens);
-$html_map = $map->hexagonal_map($map_cols, $map_rows, $cells, $citizens_by_coord, $citizen, $next_attack_hour);
+$html_map = $map->hexagonal_map($map_cols, $map_rows, $get_map['datas']['zones'], $citizens_by_coord, $citizen, $next_attack_hour);
+unset($get_map);
+unset($citizens);
+unset($citizens_by_coord);
 ?>
 
 
