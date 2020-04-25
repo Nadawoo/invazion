@@ -109,16 +109,10 @@ elseif ($action_post === 'construct') {
     $api_result = $api->construct($construction_id);
     $msg_popup  = '<p>'.nl2br($api_result['metas']['error_message']).'</p>';
 }
-// Attaquer un zombie à mains nues
-elseif ($action_post === 'fight') {
+// Attaquer un ou plusieurs zombies à mains nues
+elseif (in_array($action_post, ['fight', 'bigfight'])) {
     
-    $api_result         = $api->fight();
-    $msg_zombies_killed = '<span class="'.$api_result['metas']['error_class'].'">'.$api_result['metas']['error_message'].'</span>';
-}
-// Attaquer un zombie à mains nues
-elseif ($action_post === 'bigfight') {
-    
-    $api_result         = $api->fight('bigfight');
+    $api_result         = $api->fight($action_post);
     $msg_zombies_killed = '<span class="'.$api_result['metas']['error_class'].'">'.$api_result['metas']['error_message'].'</span>';
 }
 // Créer un citoyen
