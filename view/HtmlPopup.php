@@ -100,7 +100,7 @@ class Popup
             <ul>
                 <li>+ <span style="color:grey;text-decoration:line-through">Exterminer les&nbsp;zombies sur les 7&nbsp;zones alentour</span></li>
                 <li>+ <span style="color:grey;text-decoration:line-through">Exterminer les&nbsp;zombies sur 7&nbsp;zones aléatoires</span></li>
-                <li>+ '.$buttons->api_link('reveal_zones', 'Dévoiler 10&nbsp;zones de la carte').'</li>
+                <li>+ '.$buttons->api_link('reveal_zones', 'Dévoiler 10&nbsp;zones de la carte', '#popsuccess').'</li>
             </ul>
             <br>
             ...  ou bien pour propager davantage le chaos&nbsp;?

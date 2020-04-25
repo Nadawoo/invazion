@@ -143,7 +143,7 @@ class HtmlButtons
         $icon = ($show_icon === 'no_icon') ? '' : '&#9961;&#65039;&nbsp;';
         
         return
-        '<form method="post" action="#Outside">
+        '<form method="post" action="#popsuccess">
             <input type="hidden" name="action" value="vault">
             '.$icon.' <input type="submit" value="Chercher une crypte" title="Trouver une crypte '
                     . 'peut servir vos intérêts mais aussi causer votre perte... ou celle de vos amis.">'

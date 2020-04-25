@@ -83,7 +83,7 @@ elseif ($action_post === 'heal_citizen') {
 elseif ($action_post === 'vault') {
     
     $api_result = $api->add_stuff_on_map('vault');
-    $msg_build  = '<p class="'.$api_result['metas']['error_class'].'">'.$api_result['metas']['error_message'].'</p>';
+    $msg_popup  = '<p>'.$api_result['metas']['error_message'].'</p>';
 }
 // Repeuple la carte avec des zombies
 elseif ($action_post === 'add_map_zombies') {
@@ -95,7 +95,7 @@ elseif ($action_post === 'add_map_zombies') {
 elseif ($action_post === 'reveal_zones') {
     
     $api_result = $api->reveal_zones('random7');
-    $msg_build  = '<p class="'.$api_result['metas']['error_class'].'">'.$api_result['metas']['error_message'].'</p>';
+    $msg_popup  = '<p>'.$api_result['metas']['error_message'].'</p>';
 }
 // Bâtir une ville sur la case
 elseif ($action_post === 'build_city') {
