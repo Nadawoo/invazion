@@ -40,7 +40,7 @@ class HtmlButtons
         $icon = ($show_icon === 'no_icon') ? '' : '<span style="font-size:1.35em"><img src="resources/img/city.png" alt="&#10224;">&nbsp;</span>';
         
         return
-        '<form method="post" action="#Outside">
+        '<form method="post" action="#popsuccess">
             
             <input type="hidden" name="action" value="build_city">
 

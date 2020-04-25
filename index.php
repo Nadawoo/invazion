@@ -101,7 +101,7 @@ elseif ($action_post === 'reveal_zones') {
 elseif ($action_post === 'build_city') {
     
     $api_result = $api->build_city($city_size);
-    $msg_build  = '<p class="'.$api_result['metas']['error_class'].'">'.$api_result['metas']['error_message'].'</p>';
+    $msg_popup  = '<p>'.$api_result['metas']['error_message'].'</p>';
 }
 // Investir des points d'action dans un chantier
 elseif ($action_post === 'construct') {
