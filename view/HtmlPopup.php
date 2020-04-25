@@ -2,7 +2,7 @@
 require_once 'HtmlButtons.php';
 
 
-class Popup
+class HtmlPopup
 {
     
     
