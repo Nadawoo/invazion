@@ -61,22 +61,30 @@ $invalid_pseudo_message = '';
 // Définit l'id de l'objet pour certaines actions (ramasser...)
 $api->set_item_id($item_id);
 
-// Se déplacer
-if ($action_post === 'move') {
+// Paramètres à transmettre aux API pour exécuter chaque action
+$apiparams = [
+    'build_city'     => $city_size,
+    'construct'      => $construction_id,
+    'attack_citizen' => $target_id,
+    'heal_citizen'   => $target_id,
+    'move'           => $direction,
+    'reveal_zones'   => 'random7',
+    'craft_item'     => null,
+    'dig'            => null,
+    ];
+
+// Actions standardisées dont le résultat sera affiché sous les flèches de déplacement
+if (in_array($action_post, ['move'])) {
     
-    $api_result = $api->move($direction);
+    $api_result = $api->$action_post($apiparams[$action_post]);
     $msg_move   = '<span class="'.$api_result['metas']['error_class'].'">'.$api_result['metas']['error_message'].'</span>';
 }
-// Agresser un citoyen
-elseif ($action_post === 'attack_citizen') {
+// Actions standardisées dont le résultat sera affiché dans la pop-up
+elseif (in_array($action_post, ['attack_citizen', 'heal_citizen', 'reveal_zones', 
+                                'build_city', 'construct', 'dig', 'craft_item'
+                                ])) {
     
-    $api_result = $api->attack_citizen($target_id);
-    $msg_popup  = '<p>'.nl2br($api_result['metas']['error_message']).'</p>';
-}
-// Soigner un citoyen
-elseif ($action_post === 'heal_citizen') {
-    
-    $api_result = $api->heal_citizen($target_id);
+    $api_result = $api->$action_post($apiparams[$action_post]);
     $msg_popup  = '<p>'.nl2br($api_result['metas']['error_message']).'</p>';
 }
 // Chercher une cypte
@@ -91,24 +99,6 @@ elseif ($action_post === 'add_map_zombies') {
     $api_result = $api->add_stuff_on_map('zombies', 'noconditions');
     $msg_popup  = '<p>'.nl2br($api_result['metas']['error_message']).'</p>';
 }
-// Dévoile des zones aléatoirement sur la carte
-elseif ($action_post === 'reveal_zones') {
-    
-    $api_result = $api->reveal_zones('random7');
-    $msg_popup  = '<p>'.$api_result['metas']['error_message'].'</p>';
-}
-// Bâtir une ville sur la case
-elseif ($action_post === 'build_city') {
-    
-    $api_result = $api->build_city($city_size);
-    $msg_popup  = '<p>'.$api_result['metas']['error_message'].'</p>';
-}
-// Investir des points d'action dans un chantier
-elseif ($action_post === 'construct') {
-    
-    $api_result = $api->construct($construction_id);
-    $msg_popup  = '<p>'.nl2br($api_result['metas']['error_message']).'</p>';
-}
 // Attaquer un ou plusieurs zombies à mains nues
 elseif (in_array($action_post, ['fight', 'bigfight'])) {
     
@@ -121,19 +111,11 @@ elseif ($action_post === 'create_citizen') {
     $api_result             = $api->create_citizen($pseudo);
     $invalid_pseudo_message = $api_result['metas']['error_message'];
 }
-// Actions normalisées, c'est-à-dire :
-// - L'action n'a pas besoin de paramètre pour appeler l'API
-// - Le message de retour s'affichera à l'emplacement $msg_build (pas en pop-up ou autre)
+// Actions standardisées dont le résultat sera affiché en haut de la carte
 elseif (in_array($action_post, ['drop', 'pickup', 'attack_city', 'go_inout_city', 'open_city_door', 'close_city_door'])) {
     
     $api_result = $api->$action_post();
     $msg_build  = '<p class="'.$api_result['metas']['error_class'].'">'.$api_result['metas']['error_message'].'</p>';
-}
-// Actions normalisées mais dont le message de résultat doit s'afficher dans la pop-up
-elseif (in_array($action_post, ['dig', 'craft_item'])) {
-    
-    $api_result = $api->$action_post();
-    $msg_popup  = '<p>'.nl2br($api_result['metas']['error_message']).'</p>';
 }
 
 // Choisir sa spécialité quotidienne (bâtisseur....)
