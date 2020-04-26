@@ -50,7 +50,6 @@ $html_bag_items     = '';
 $html_zone_citizens = '';
 $msg_move           = '';
 $msg_build          = '';
-$invalid_pseudo_message = '';
 
 
 /**
@@ -68,6 +67,7 @@ if ($action_post !== null) {
         'attack_citizen' => $target_id,
         'heal_citizen'   => $target_id,
         'move'           => $direction,
+        'create_citizen' => $pseudo,
         'reveal_zones'   => 'random7',
         'craft_item'     => null,
         'dig'            => null,
@@ -80,7 +80,7 @@ if ($action_post !== null) {
         $msg_move   = '<span class="'.$api_result['metas']['error_class'].'">'.$api_result['metas']['error_message'].'</span>';
     }
     // Actions standardisées dont le résultat sera affiché dans la pop-up
-    elseif (in_array($action_post, ['attack_citizen', 'heal_citizen', 'reveal_zones', 
+    elseif (in_array($action_post, ['create_citizen', 'attack_citizen', 'heal_citizen', 'reveal_zones', 
                                     'build_city', 'construct', 'dig', 'craft_item'])) {
 
         $api_result = $api->$action_post($apiparams[$action_post]);
@@ -110,12 +110,6 @@ if ($action_post !== null) {
 
         $api_result         = $api->fight($action_post);
         $msg_zombies_killed = '<span class="'.$api_result['metas']['error_class'].'">'.$api_result['metas']['error_message'].'</span>';
-    }
-    // Créer un citoyen
-    elseif ($action_post === 'create_citizen') {
-
-        $api_result             = $api->create_citizen($pseudo);
-        $invalid_pseudo_message = $api_result['metas']['error_message'];
     }
 }
 
@@ -350,7 +344,7 @@ echo $popup->customised('popsuccess', '', nl2br($msg_popup));
         
         // Si le joueur est connecté mais n'a pas encore créé son citoyen, 
         // affiche le panneau de création de citoyen
-        echo $html->block_create_citizen($invalid_pseudo_message);
+        echo $html->block_create_citizen();
     }
     else {
         // Si le joueur est connecté et a déjà créé son citoyen,

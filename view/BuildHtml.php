@@ -67,21 +67,19 @@ class BuildHtml extends HtmlPage
     /**
      * Affiche le bloc pour créer son premier citoyen (à droite de la carte)
      * 
-     * @param  string $invalid_pseudo_message L'éventuel message d'erreur 
      * @return string
      */
-    function block_create_citizen($invalid_pseudo_message)
+    function block_create_citizen()
     {
         
         return '
             <div id="identification_near_map">
                 <h3>Créer mon premier citoyen</h3>
-                <form method="post" action="">
+                <form method="post" action="#popsuccess">
                     Nom de mon citoyen&nbsp;:
                     <input type="hidden" name="action" value="create_citizen"><br>
                     <input type="text" name="pseudo"><br>
                     <input type="submit" value="Valider">
-                    <p><span class="warning">'.$invalid_pseudo_message.'</span></p>
                 </form>
             </div>';
     }
