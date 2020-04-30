@@ -202,20 +202,6 @@ echo $popup->predefined('popcontrol', 'Contrôle de zone');
 echo $popup->customised('popsuccess', '', nl2br($msg_popup));
 ?>
     
-    <!--
-    Images en réserve (unicode, à ouvrir dans Firefox) :
-        Tente :    &#9978;
-        Cercueil : &#9904;
-        Montagne : &#9968;
-        Pioche :   &#9935;
-        Eclair :   &#9889;
-        Epées :    &#9876;
-        Bonhomme symbolisé : &boxhD;
-        Triple signe >>> :   &#8921;
-        Circonflexe :        &Hat;
-        Croix avec points : &#8251;
-    -->
-    
     <div id="connectionbar">
         
         <?php echo $html->connection_bar($user_id, $citizen_id, $citizen_pseudo); ?>
