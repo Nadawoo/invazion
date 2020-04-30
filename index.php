@@ -14,7 +14,7 @@ safely_require('controller/filter_citizens_by_city.php');
 safely_require('ZombLib.php');
 
 
-// TEMPORAIRE - Pour l'instant il n'y a qu'une seule carte
+// TEMPORAIRE - Par défaut si le joueur n'est pas connecté, on affiche la carte n°1
 $map_id = 1;
 
 $action_post     = filter_input(INPUT_POST, 'action',           FILTER_SANITIZE_STRING);
@@ -129,6 +129,7 @@ if ($action_get === 'specialize') {
 if ($api->user_seems_connected() === true) {
     
     $token          = $api->get_token_data()['data'];
+    $map_id         = $token['map_id'];
     $user_id        = $token['user_id'];
     $citizen_id     = $token['citizen_id'];
     $citizen_pseudo = $token['citizen_pseudo'];
@@ -232,7 +233,7 @@ echo $popup->customised('popsuccess', '', nl2br($msg_popup));
     </p>
         
     <h3 id="Outside" style="margin-top:2em">
-        <a href="#Outside">&Hat;</a>&nbsp;Outre-monde
+        <a href="#Outside">&Hat;</a>&nbsp;Carte n° <?php echo $map_id ?>
     </h3>
     
     <?php
