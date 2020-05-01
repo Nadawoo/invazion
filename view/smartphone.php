@@ -68,9 +68,14 @@ function smartphone($map_cols, $map_rows, $citizen, $speciality, $zone)
     }
     
     // Affiche le contrôle de zone
-    $control = ($cp_diff >= 0)
-                ? '<div style="background-color:green;border-radius:1em">Zone sûre</div>'
-                : '<div style="background-color:red;border-radius:1em">Submergé !</div>';
+    if ($cp_diff >= 0) {
+        $control    = '<div style="background-color:lightgreen;color:black">Zone sûre</div>';
+        $background = 'background:#145a32';
+    }
+    else {
+        $control    = '<div style="background-color:#f5b7b1;color:black">Submergé !</div>';
+        $background = 'background:#7b241c';
+    }
     
     
     echo '<div id="phone">
@@ -118,7 +123,7 @@ function smartphone($map_cols, $map_rows, $citizen, $speciality, $zone)
                     '.$speciality['digging_duration'].'&nbsp;mn
                 </div>
                 
-                <div id="zone" class="screen blocktext">
+                <div id="zone" class="screen blocktext" style="'.$background.'">
                 <a href="#popcontrol" style="color:inherit">
                     <h4 style="margin-top:0">Contrôle zone</h4>
                     <div style="color:lightgreen;margin:0.2em 0">
@@ -129,7 +134,7 @@ function smartphone($map_cols, $map_rows, $citizen, $speciality, $zone)
                         <div style="font-variant:small-caps">Zombies</div>
                         - <span style="font-size:1.5em">'.$cp_zombies.'</span> pts
                     </div>
-                    <span style="font-size:1.5em;line-height:80%;color:lightsteelblue">=</span>
+                    <span style="font-size:1.5em;line-height:80%;color:#d6eaf8">=</span>
                     '.$control.'
                     ('.signed_int($cp_diff).' pts)
                      
