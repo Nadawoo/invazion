@@ -144,7 +144,9 @@ class HtmlButtons
         
         return
         '<form method="post" action="#popsuccess">
-            <input type="hidden" name="action" value="vault">
+            <input type="hidden" name="api_name" value="zone">
+            <input type="hidden" name="action" value="add">
+            <input type="hidden" name="params[stuff]" value="vault">
             '.$icon.' <input type="submit" value="Chercher une crypte" title="Trouver une crypte '
                     . 'peut servir vos intérêts mais aussi causer votre perte... ou celle de vos amis.">'
         .'</form>';
@@ -334,7 +336,7 @@ vous serez protégé des zombies... provisoirement.">
         '<form method="post" action="#popsuccess">
             <input type="hidden" name="api_name" value="me">
             <input type="hidden" name="action" value="eat">
-            <input type="hidden" name="item_id" value="'.$item_id.'">
+            <input type="hidden" name="params[item_id]" value="'.$item_id.'">
             <input type="submit" class="formlink" value="Consommer '.$item_name.'" />
         </form>';
     }

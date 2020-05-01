@@ -19,6 +19,7 @@ $map_id = 1;
 
 $api_name        = filter_input(INPUT_POST, 'api_name',         FILTER_SANITIZE_STRING);
 $action_post     = filter_input(INPUT_POST, 'action',           FILTER_SANITIZE_STRING);
+$params_post     = filter_input(INPUT_POST, 'params',           FILTER_SANITIZE_STRING, FILTER_REQUIRE_ARRAY);
 $direction       = filter_input(INPUT_POST, 'to',               FILTER_SANITIZE_STRING);
 $pseudo          = filter_input(INPUT_POST, 'pseudo',           FILTER_SANITIZE_STRING);
 $item_id         = filter_input(INPUT_POST, 'item_id',          FILTER_VALIDATE_INT);
@@ -73,8 +74,6 @@ if ($action_post !== null) {
         'reveal_zones'   => 'random7',
         'craft_item'     => null,
         'dig'            => null,
-        // Actions utilisant la nouvelle méthode "call_api()" (futur standard)
-        'eat'           => ['item_id'=>$item_id],
         ];
 
     // Actions standardisées dont le résultat sera affiché sous les flèches de déplacement
@@ -97,18 +96,6 @@ if ($action_post !== null) {
         $api_result = $api->$action_post();
         $msg_build  = '<p class="'.$api_result['metas']['error_class'].'">'.$api_result['metas']['error_message'].'</p>';
     }
-    // Chercher une cypte
-    elseif ($action_post === 'vault') {
-
-        $api_result = $api->add_stuff_on_map('vault');
-        $msg_popup  = '<p>'.$api_result['metas']['error_message'].'</p>';
-    }
-    // Repeuple la carte avec des zombies
-    elseif ($action_post === 'add_map_zombies') {
-
-        $api_result = $api->add_stuff_on_map('zombies', 'noconditions');
-        $msg_popup  = '<p>'.nl2br($api_result['metas']['error_message']).'</p>';
-    }
     // Attaquer un ou plusieurs zombies à mains nues
     elseif (in_array($action_post, ['fight', 'bigfight'])) {
 
@@ -116,9 +103,9 @@ if ($action_post !== null) {
         $msg_zombies_killed = '<span class="'.$api_result['metas']['error_class'].'">'.$api_result['metas']['error_message'].'</span>';
     }
     // Actions exécutées par la méthode générique "call_api()"
-    elseif (in_array($action_post, ['eat'])) {
+    elseif (in_array($api_name, ['me', 'zone'])) {
         
-        $api_result = $api->call_api($api_name, $action_post, $apiparams[$action_post]);
+        $api_result = $api->call_api($api_name, $action_post, $params_post);
         $msg_popup  = '<p>'.nl2br($api_result['metas']['error_message']).'</p>';
     }
 }
@@ -397,7 +384,10 @@ echo $popup->customised('popsuccess', '', nl2br($msg_popup));
 </div>
     
     <form method="post" action="#popsuccess">
-        <input type="hidden" name="action" value="add_map_zombies" />
+        <input type="hidden" name="api_name" value="zone">
+        <input type="hidden" name="action" value="add">
+        <input type="hidden" name="params[stuff]" value="zombies">
+        <input type="hidden" name="params[conditions]" value="noconditions">
         <input type="submit" value="Ajouter des zombies sur toute la carte" />
     </form>
     
