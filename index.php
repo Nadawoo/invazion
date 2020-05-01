@@ -98,12 +98,12 @@ if ($action_post !== null) {
     }
     // Attaquer un ou plusieurs zombies à mains nues
     elseif (in_array($action_post, ['fight', 'bigfight'])) {
-
-        $api_result         = $api->fight($action_post);
+        
+        $api_result = $api->call_api($api_name, $action_post, $params_post);
         $msg_zombies_killed = '<span class="'.$api_result['metas']['error_class'].'">'.$api_result['metas']['error_message'].'</span>';
     }
     // Actions exécutées par la méthode générique "call_api()"
-    elseif (in_array($api_name, ['me', 'zone'])) {
+    else {
         
         $api_result = $api->call_api($api_name, $action_post, $params_post);
         $msg_popup  = '<p>'.nl2br($api_result['metas']['error_message']).'</p>';

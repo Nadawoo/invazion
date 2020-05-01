@@ -81,6 +81,7 @@ class HtmlButtons
                 
         return
         '<form method="post" action="#Outside">
+            <input type="hidden" name="api_name" value="zone">
             <input type="hidden" name="action" value="fight">
             <input type="submit" value="Attaquer à mains nues !" class="'.$class.'"  title="'.$title.'">
         </form>';
@@ -108,6 +109,7 @@ class HtmlButtons
                 
         return
         '<form method="post" action="#Outside">
+            <input type="hidden" name="api_name" value="zone">
             <input type="hidden" name="action" value="bigfight">
             <input type="submit" value="Nettoyer la zone au lance-flammes" class="'.$class.'"  title="'.$title.'">
         </form>';
