@@ -18,10 +18,10 @@ class HtmlButtons
         $icon = ($show_icon === 'no_icon') ? '' : '<span style="font-size:1.35em">&#9978;</span>';
         
         return 
-        '<form   method="post" action="#Outside">
-            
-            <input type="hidden" name="action" value="build_city">
-            <input type="hidden" name="city_size" value="1">
+        '<form   method="post" action="#popsuccess">
+            <input type="hidden" name="api_name" value="city">
+            <input type="hidden" name="action" value="build">
+            <input type="hidden" name="params[city_size]" value="1">
             '.$icon.'<input type="submit" value="Planter ma tente" 
                         title="Une tente vous protègerait de la rigueur du désert.">
                    
@@ -41,13 +41,12 @@ class HtmlButtons
         
         return
         '<form method="post" action="#popsuccess">
-            
-            <input type="hidden" name="action" value="build_city">
-
+            <input type="hidden" name="api_name" value="city">
+            <input type="hidden" name="action" value="build">
             '.$icon.'<input type="submit" value="Fonder une ville"
                       title="En vous rassemblant avec d\'autres citoyens dans une ville, vous serez plus forts.">
             de
-            <select name="city_size">
+            <select name="params[city_size]">
                 <option value="2">2</option>
                 <option value="3">3</option>
                 <option value="4">4</option>
@@ -128,6 +127,7 @@ class HtmlButtons
         
         return
         '<form method="post" action="#popsuccess">
+            <input type="hidden" name="api_name" value="zone">
             <input type="hidden" name="action" value="dig">
             '.$icon.' <input type="submit" value="Fouiller la zone">
         </form>';
@@ -188,8 +188,9 @@ class HtmlButtons
         
         return
         '<form method="post" action="#popsuccess" style="display:inline">
-            <input type="hidden" name="action" value="attack_citizen">
-            <input type="hidden" name="target_id" value="'.$target_id.'">
+            <input type="hidden" name="api_name" value="me">
+            <input type="hidden" name="action" value="attack">
+            <input type="hidden" name="params[target_id]" value="'.$target_id.'">
             <input type="submit" value="'.$icon.'Agresser !" style="min-width:auto">
         </form>';
     }
@@ -210,8 +211,9 @@ class HtmlButtons
         
         return
         '<form method="post" action="#popsuccess" style="display:inline">
-            <input type="hidden" name="action" value="heal_citizen">
-            <input type="hidden" name="target_id" value="'.$target_id.'">
+            <input type="hidden" name="api_name" value="me">
+            <input type="hidden" name="action" value="heal">
+            <input type="hidden" name="params[target_id]" value="'.$target_id.'">
             <input type="submit" value="'.$icon.$text.'" style="min-width:auto">
         </form>';
     }

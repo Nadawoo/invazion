@@ -65,15 +65,11 @@ if ($action_post !== null) {
 
     // Paramètres à transmettre aux API pour exécuter chaque action
     $apiparams = [
-        'build_city'     => $city_size,
         'construct'      => $construction_id,
-        'attack_citizen' => $target_id,
-        'heal_citizen'   => $target_id,
         'move'           => $direction,
         'create_citizen' => $pseudo,
         'reveal_zones'   => 'random7',
         'craft_item'     => null,
-        'dig'            => null,
         ];
 
     // Actions standardisées dont le résultat sera affiché sous les flèches de déplacement
@@ -83,8 +79,7 @@ if ($action_post !== null) {
         $msg_move   = '<span class="'.$api_result['metas']['error_class'].'">'.$api_result['metas']['error_message'].'</span>';
     }
     // Actions standardisées dont le résultat sera affiché dans la pop-up
-    elseif (in_array($action_post, ['create_citizen', 'attack_citizen', 'heal_citizen', 'reveal_zones', 
-                                    'build_city', 'construct', 'dig', 'craft_item'])) {
+    elseif (in_array($action_post, ['create_citizen', 'reveal_zones', 'construct', 'craft_item'])) {
 
         $api_result = $api->$action_post($apiparams[$action_post]);
         $msg_popup  = '<p>'.nl2br($api_result['metas']['error_message']).'</p>';
