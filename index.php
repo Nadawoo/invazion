@@ -85,8 +85,7 @@ if ($action_post !== null) {
         $msg_popup  = '<p>'.nl2br($api_result['metas']['error_message']).'</p>';
     }
     // Actions standardisées dont le résultat sera affiché en haut de la carte
-    elseif (in_array($action_post, ['drop', 'pickup', 'attack_city', 'go_inout_city', 
-                                    'open_city_door', 'close_city_door'])) {
+    elseif (in_array($action_post, ['drop', 'pickup', 'attack_city'])) {
 
         $api_result = $api->$action_post();
         $msg_build  = '<p class="'.$api_result['metas']['error_class'].'">'.$api_result['metas']['error_message'].'</p>';

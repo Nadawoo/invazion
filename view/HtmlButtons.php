@@ -310,12 +310,11 @@ class HtmlButtons
         $button = $this->buttons['enter_city'];
         
         return
-        '<form method="post" action="#Outside">
-           <input type="hidden" name="action" value="go_inout_city">
-
-           <!-- <span style="font-size:1.2em">&gt;</span>&nbsp; -->
+        '<form method="post" action="#popsuccess">
+            <input type="hidden" name="api_name" value="city">
+            <input type="hidden" name="action" value="go_inout">
            <input type="submit" value="'.$button['name'].'" title="'.$button['title'].'">
-       </form>';
+        </form>';
     }
     
     
@@ -330,10 +329,9 @@ class HtmlButtons
         $button = $this->buttons['get_out_city'];
         
         return
-        '<form style="text-align:center" method="post" action="#Outside">
-            <input type="hidden" name="action" value="go_inout_city">
-
-            <!-- <span style="font-size:1.2em">&gt;</span>&nbsp; -->
+        '<form style="text-align:center" method="post" action="#popsuccess">
+            <input type="hidden" name="api_name" value="city">
+            <input type="hidden" name="action" value="go_inout">
             <input type="submit" value="'.$button['name'].'" title="'.$button['title'].'">
         </form>';
     }
@@ -347,11 +345,12 @@ class HtmlButtons
     function open_city_door()
     {
         
-        $button = $this->buttons['get_out_city'];
+        $button = $this->buttons['open_city_door'];
         
         return
-        '<form style="text-align:center" method="post" action="#Outside">
-            <input type="hidden" name="action" value="open_city_door">
+        '<form style="text-align:center" method="post" action="#popsuccess">
+            <input type="hidden" name="api_name" value="city">
+            <input type="hidden" name="action" value="open_door">
             <input type="submit" value="'.$button['name'].'" title="'.$button['title'].'">
         </form>';
     }
@@ -368,8 +367,9 @@ class HtmlButtons
         $button = $this->buttons['close_city_door'];
         
         return
-        '<form style="text-align:center" method="post" action="#Outside">
-            <input type="hidden" name="action" value="close_city_door">
+        '<form style="text-align:center" method="post" action="#popsuccess">
+            <input type="hidden" name="api_name" value="city">
+            <input type="hidden" name="action" value="close_door">
             <input type="submit" value="'.$button['name'].'" title="'.$button['title'].'">
         </form>';
     }
