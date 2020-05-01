@@ -17,6 +17,7 @@ safely_require('ZombLib.php');
 // TEMPORAIRE - Par défaut si le joueur n'est pas connecté, on affiche la carte n°1
 $map_id = 1;
 
+$api_name        = filter_input(INPUT_POST, 'api_name',         FILTER_SANITIZE_STRING);
 $action_post     = filter_input(INPUT_POST, 'action',           FILTER_SANITIZE_STRING);
 $direction       = filter_input(INPUT_POST, 'to',               FILTER_SANITIZE_STRING);
 $pseudo          = filter_input(INPUT_POST, 'pseudo',           FILTER_SANITIZE_STRING);
@@ -45,6 +46,7 @@ $msg_zombies_killed = NULL;
 $msg_popup          = NULL;
 $zone_citizens      = [];
 $html_actions       = '';
+$html_actions_bag   = '';
 $html_zone_items    = '';
 $html_bag_items     = '';
 $html_zone_citizens = '';
@@ -71,6 +73,8 @@ if ($action_post !== null) {
         'reveal_zones'   => 'random7',
         'craft_item'     => null,
         'dig'            => null,
+        // Actions utilisant la nouvelle méthode "call_api()" (futur standard)
+        'eat'           => ['item_id'=>$item_id],
         ];
 
     // Actions standardisées dont le résultat sera affiché sous les flèches de déplacement
@@ -110,6 +114,12 @@ if ($action_post !== null) {
 
         $api_result         = $api->fight($action_post);
         $msg_zombies_killed = '<span class="'.$api_result['metas']['error_class'].'">'.$api_result['metas']['error_message'].'</span>';
+    }
+    // Actions exécutées par la méthode générique "call_api()"
+    elseif (in_array($action_post, ['eat'])) {
+        
+        $api_result = $api->call_api($api_name, $action_post, $apiparams[$action_post]);
+        $msg_popup  = '<p>'.nl2br($api_result['metas']['error_message']).'</p>';
     }
 }
 
@@ -165,6 +175,7 @@ if ($citizen_id !== NULL) {
     $html_bag_items     = $html->block_bag_items($configs['items'], $citizen_id, $citizen['bag_items'], $citizen['bag_size']);
     $html_zone_citizens = $html->block_zone_citizens($zone_citizens, $citizen_id);
     $html_actions       = $html->block_actions($zone['city_size']);
+    $html_actions_bag   = $html->block_actions_bag($configs['items'], $citizen['bag_items']);
     
     // Si une ville se trouve sur la case du citoyen, on récupère les caractéristiques 
     // de cette ville (puits, chantiers...)
@@ -368,7 +379,10 @@ echo $popup->customised('popsuccess', '', nl2br($msg_popup));
                     
             <fieldset>
                 <legend>Actions</legend>
-                <?php echo $html_actions ?>                
+                <?php 
+                echo $html_actions;
+                echo $html_actions_bag;
+                ?>                
             </fieldset>
             
             <fieldset>

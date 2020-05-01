@@ -321,6 +321,26 @@ vous serez protégé des zombies... provisoirement.">
     
     
     /**
+     * Bouton pour consommer un objet (eau, nourriture...)
+     * 
+     * @param int    $item_id   L'id de l'objet
+     * @param string $item_name Le nom de l'objet à afficher
+     * @return string HTML
+     */
+    function item_eat($item_id, $item_name)
+    {
+        
+        return
+        '<form method="post" action="#popsuccess">
+            <input type="hidden" name="api_name" value="me">
+            <input type="hidden" name="action" value="eat">
+            <input type="hidden" name="item_id" value="'.$item_id.'">
+            <input type="submit" class="formlink" value="Consommer '.$item_name.'" />
+        </form>';
+    }
+    
+    
+    /**
      * Retourne le bouton pour créer un compte
      * 
      * @return string

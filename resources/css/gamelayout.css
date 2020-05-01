@@ -251,6 +251,20 @@ var {
 }
 
 /*
+ * Bloc "Utiliser un objet de mon sac"
+ */
+#actions_bag {
+    margin-top:0.5em;
+    padding:0.2em 0.1em;
+    background:lightsteelblue;
+    border-radius:0.5em;
+}
+#actions_bag ul {
+    margin:0.2em 0;
+    list-style-type:none;
+}
+
+/*
  * Boutons
  */
 input[type="submit"], input[type="button"], .button {

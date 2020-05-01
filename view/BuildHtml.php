@@ -323,7 +323,7 @@ class BuildHtml extends HtmlPage
         $buttons = new HtmlButtons;
         $table = '';
         
-        // S'il y a une tente ou une ville sur la case, on affiche le bouton pour y entrer
+        // If there is a tent or a city in the zone, display the button to enter.
         if ($city_size > 0) {
             
             $table .= '<tr>
@@ -346,8 +346,40 @@ class BuildHtml extends HtmlPage
                 <td>'.$buttons->build_city('no_icon').'<td>
             </tr>';               
         }
-        
+                
         return '<table>'.$table.'</table>';
+    }
+    
+    
+    /**
+     * Specific block to use the items in the bag
+     * 
+     * @param array $items_caracs   Les caractéristiques des objets du jeu, telles que 
+     *                              retournées par l'API "configs"
+     * @param array $bag_items      Liste des objets dans le sac du joueur
+     * @return string HTML
+     */
+    function block_actions_bag($items_caracs, $bag_items)
+    {
+        
+        $buttons    = new HtmlButtons();
+        $html_items = '';
+        
+        foreach ($bag_items as $id=>$amount) {
+            
+            if ($items_caracs[$id]['ap_gain'] > 0) {
+                $html_items .= '<li>'.$buttons->item_eat($id, $items_caracs[$id]['name']).'</li>';
+            }
+        }
+        
+        return '<div id="actions_bag">
+                &#128188; <strong>Utiliser un objet de mon sac :</strong>
+                <ul>
+                    '.$html_items.'
+                    <li><span style="font-variant:small-caps">Me soigner avec</span> Bandage</li>
+                    <li><span style="font-variant:small-caps">Attaquer avec</span> Cutter</li>
+                </ul>
+            </div>';
     }
     
     
