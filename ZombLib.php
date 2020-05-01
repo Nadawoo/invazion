@@ -230,28 +230,14 @@ class ZombLib
      * @throws Exception
      */
     public function call_api($api_name, $action, $params=[])
-    {
+    {        
         
-        // Available APIs of InvaZion
-        $apis = ['buildings', 'cities', 'citizen', 'citizens', 'city', 'configs', 'maps', 'me', 'pictos', 'user', 'zone'];
-        
-        if (in_array($api_name, $apis)) {
-            
-            // Builds the url to call the API
-            $url_params = !empty($params) ? '&'.http_build_query($params) : '';
-            // Calls the API
-            $json = $this->get_api_output($this->url.'/'.$api_name.'?action='.$action.$url_params.'&token='.$this->get_token());
-            
-            return $this->json_to_array($json);
-        }
-        else {
-            
-            // If you tried to call an unknown API name, raise an error.
-            // See the online documentation to know the available APIs :
-            // https://invazion.nadazone.fr/apis-list
-            throw new Exception('ZombLib error : the API "'.$api_name.'" does not exist');
-        }
-        
+        // Builds the url to call the API
+        $url_params = !empty($params) ? '&'.http_build_query($params) : '';
+        // Calls the API
+        $json = $this->get_api_output($this->url.'/'.$api_name.'?action='.$action.$url_params.'&token='.$this->get_token());
+
+        return $this->json_to_array($json);
     }
     
     
@@ -660,6 +646,9 @@ class ZombLib
                             // is sent, the server of InvaZion will return a "403/forbidden" error
                             // so you wouldn't be able to access the API.
                             ."User-Agent: Mozilla/4.0 (compatible; MSIE 6.0)\r\n",
+                // Important : allows file_get_contents() to follow the 404 errors,
+                // so it will be able load the distant default JSON if you call a non-existing API
+                'ignore_errors' => true,
                 ]
             ];
         
