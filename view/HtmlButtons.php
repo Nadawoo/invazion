@@ -7,6 +7,83 @@
 class HtmlButtons
 {
     
+    
+    function __construct()
+    {
+        
+        $this->buttons = [
+            'dig' => [
+                'icon'  => '&#x26CF;&#xFE0F;',
+                'name'  => 'Fouiller la zone',
+                'title' => ''
+                ],
+            'vault' => [
+                'icon'  => '&#9961;&#65039;',
+                'name'  => 'Chercher une crypte',
+                'title' => "Trouver une crypte peut servir vos intérêts mais aussi causer votre perte... ou celle de vos amis.",
+                ],
+            'enter_city' => [
+                'icon'  => '',
+                'name'  => 'Entrer en ville !',
+                'title' => "Vous êtes aux portes d'une ville ! Si vous y entrez vous serez protégé des zombies... provisoirement.",
+                ],
+            'attack_tent' => [
+                'icon'  => '',
+                'name'  => 'Détruire cette tente !',
+                'title' => "Un citoyen a planté sa tente ici. Vous avez l'opportunité de la détruire...",
+                ],
+            'attack_citizen' => [
+                'icon'  => '&#128074;&#127995;',
+                'name'  => 'Agresser !',
+                'title' => "",
+                ],
+            'heal_citizen' => [
+                'icon'  => '&#129657;',
+                'name'  => 'Soigner !',
+                'title' => "",
+                ],
+            'kill_zombie' => [
+                'icon'  => '',
+                'name'  => 'Attaquer à mains nues !',
+                'title' => "Attaquer un zombie à mains nues. Vous gagnerez un picto en cas de succès.",
+                ],
+            
+            'kill_mass_zombies' => [
+                'icon'  => '',
+                'name'  => 'Nettoyer la zone au lance-flammes',
+                'title' => "Comme les zombies sont particulièrement nombreux ici, vous pouvez "
+                         . "les attaquer par groupe. C'est très efficace, mais en contrepartie "
+                         . "vous ne gagnerez aucun picto.",
+                ],
+            'build_tent' => [
+                'icon'  => '&#9978;',
+                'name'  => 'Planter ma tente',
+                'title' => "Une tente vous protègerait de la rigueur du désert.",
+                ],
+            'build_city' => [
+                'icon'  => '&#x1F307;',
+                'name'  => 'Fonder une ville',
+                'title' => "En vous rassemblant avec d'autres citoyens dans une ville, vous serez plus forts.",
+                ],
+            'get_out_city' => [
+                'icon'  => '',
+                'name'  => 'Sortir de la ville',
+                'title' => "Dans les villes, vous êtes protégé des zombies... provisoirement.",
+                ],
+            'open_city_door' => [
+                'icon'  => '',
+                'name'  => 'Ouvrir les portes !',
+                'title' => "",
+                ],
+            'close_city_door' => [
+                'icon'  => '',
+                'name'  => 'Fermer les portes !',
+                'title' => "",
+                ],
+        ];
+    }
+    
+    
     /**
      * Retourne le bouton pour contruire une tente (ville d'un seul citoyen)
      * 
@@ -15,15 +92,15 @@ class HtmlButtons
     function build_tent($show_icon=true)
     {
         
-        $icon = ($show_icon === 'no_icon') ? '' : '<span style="font-size:1.35em">&#9978;</span>';
+        $button = $this->buttons['build_tent'];
+        $icon = ($show_icon === 'no_icon') ? '' : $button['icon'];
         
         return 
         '<form   method="post" action="#popsuccess">
             <input type="hidden" name="api_name" value="city">
             <input type="hidden" name="action" value="build">
             <input type="hidden" name="params[city_size]" value="1">
-            '.$icon.'<input type="submit" value="Planter ma tente" 
-                        title="Une tente vous protègerait de la rigueur du désert.">
+            '.$icon.'<input type="submit" value="'.$button['name'].'" title="'.$button['title'].'">
                    
         </form>';
     }
@@ -37,14 +114,14 @@ class HtmlButtons
     function build_city($show_icon=true)
     {
         
-        $icon = ($show_icon === 'no_icon') ? '' : '<span style="font-size:1.35em"><img src="resources/img/city.png" alt="&#10224;">&nbsp;</span>';
+        $button = $this->buttons['build_city'];
+        $icon = ($show_icon === 'no_icon') ? '' : $button['icon'];
         
         return
         '<form method="post" action="#popsuccess">
             <input type="hidden" name="api_name" value="city">
             <input type="hidden" name="action" value="build">
-            '.$icon.'<input type="submit" value="Fonder une ville"
-                      title="En vous rassemblant avec d\'autres citoyens dans une ville, vous serez plus forts.">
+            '.$icon.'<input type="submit" value="'.$button['name'].'" title="'.$button['title'].'">
             de
             <select name="params[city_size]">
                 <option value="2">2</option>
@@ -70,8 +147,9 @@ class HtmlButtons
     function kill_zombie($nbr_zombies)
     {
         
+        $button = $this->buttons['kill_zombie'];
         $class = '';
-        $title = 'Attaquer un zombies à mains nues. Vous gagnerez un picto en cas de succès.';
+        $title = $button['title'];
         
         if ($nbr_zombies === 0) {
             $class = 'inactive';
@@ -82,7 +160,7 @@ class HtmlButtons
         '<form method="post" action="#Outside">
             <input type="hidden" name="api_name" value="zone">
             <input type="hidden" name="action" value="fight">
-            <input type="submit" value="Attaquer à mains nues !" class="'.$class.'"  title="'.$title.'">
+            <input type="submit" value="'.$button['name'].'" class="'.$class.'"  title="'.$title.'">
         </form>';
     }
     
@@ -96,10 +174,9 @@ class HtmlButtons
     function kill_mass_zombies($nbr_zombies)
     {
         
+        $button = $this->buttons['kill_mass_zombies'];
         $class = '';
-        $title = "Comme les zombies sont particulièrement nombreux ici, vous pouvez "
-               . "les attaquer par groupe. C'est très efficace, mais en contrepartie "
-               . "vous ne gagnerez aucun picto.";
+        $title = $button['title'];
         
         if ($nbr_zombies === 0) {
             $class = 'inactive';
@@ -110,7 +187,7 @@ class HtmlButtons
         '<form method="post" action="#Outside">
             <input type="hidden" name="api_name" value="zone">
             <input type="hidden" name="action" value="bigfight">
-            <input type="submit" value="Nettoyer la zone au lance-flammes" class="'.$class.'"  title="'.$title.'">
+            <input type="submit" value="'.$button['name'].'" class="'.$class.'"  title="'.$title.'">
         </form>';
     }
     
@@ -123,13 +200,14 @@ class HtmlButtons
     function dig($show_icon=true)
     {
         
-        $icon = ($show_icon === 'no_icon') ? '' : '&#x26CF;&#xFE0F;&nbsp;';
+        $button = $this->buttons['dig'];
+        $icon = ($show_icon === 'no_icon') ? '' : $button['icon'].'&nbsp;';
         
         return
         '<form method="post" action="#popsuccess">
             <input type="hidden" name="api_name" value="zone">
             <input type="hidden" name="action" value="dig">
-            '.$icon.' <input type="submit" value="Fouiller la zone">
+            '.$icon.' <input type="submit" value="'.$button['name'].'" title="'.$button['title'].'">
         </form>';
     }
     
@@ -142,15 +220,15 @@ class HtmlButtons
     function add_vault($show_icon=true)
     {
         
-        $icon = ($show_icon === 'no_icon') ? '' : '&#9961;&#65039;&nbsp;';
+        $button = $this->buttons['vault'];
+        $icon = ($show_icon === 'no_icon') ? '' : $button['icon'].'&nbsp;';
         
         return
         '<form method="post" action="#popsuccess">
             <input type="hidden" name="api_name" value="zone">
             <input type="hidden" name="action" value="add">
             <input type="hidden" name="params[stuff]" value="vault">
-            '.$icon.' <input type="submit" value="Chercher une crypte" title="Trouver une crypte '
-                    . 'peut servir vos intérêts mais aussi causer votre perte... ou celle de vos amis.">'
+            '.$icon.' <input type="submit" value="'.$button['name'].'" title="'.$button['title'].'">'
         .'</form>';
     }
     
@@ -163,13 +241,13 @@ class HtmlButtons
     function attack_tent($show_icon=true)
     {
         
+        $button = $this->buttons['attack_tent'];
         $icon = ($show_icon === 'no_icon') ? '' : '&nbsp;<span style="font-size:1.2em">X</span>&nbsp;&nbsp;';
         
         return
         '<form method="post" action="#Outside">
             <input type="hidden" name="action" value="attack_city">
-            '.$icon.' <input type="submit" value="Détruire cette tente !" 
-                title="Un citoyen a planté sa tente ici. Vous avez l\'opportunité de la détruire...">
+            '.$icon.' <input type="submit" value="'.$button['name'].'" title="'.$button['title'].'">
         </form>';
     }
     
@@ -184,14 +262,15 @@ class HtmlButtons
     function attack_citizen($target_id, $target_pseudo, $show_icon=true)
     {
         
-        $icon = ($show_icon === 'no_icon') ? '' : '&#128074;&#127995; ';
+        $button = $this->buttons['attack_citizen'];
+        $icon = ($show_icon === 'no_icon') ? '' : $button['icon'].' ';
         
         return
         '<form method="post" action="#popsuccess" style="display:inline">
             <input type="hidden" name="api_name" value="me">
             <input type="hidden" name="action" value="attack">
             <input type="hidden" name="params[target_id]" value="'.$target_id.'">
-            <input type="submit" value="'.$icon.'Agresser !" style="min-width:auto">
+            <input type="submit" value="'.$icon.$button['name'].'" title="'.$button['title'].'" style="min-width:auto">
         </form>';
     }
     
@@ -206,15 +285,16 @@ class HtmlButtons
     function heal_citizen($target_id, $target_pseudo, $show_icon=true, $text='default')
     {
         
-        $icon = ($show_icon === 'no_icon') ? '' : '&#129657; ';
-        $text = ($text !== 'default') ? $text : 'Soigner !'; 
+        $button = $this->buttons['heal_citizen'];
+        $icon = ($show_icon === 'no_icon') ? '' : $button['icon'].' ';
+        $text = ($text !== 'default') ? $text : $button['name']; 
         
         return
         '<form method="post" action="#popsuccess" style="display:inline">
             <input type="hidden" name="api_name" value="me">
             <input type="hidden" name="action" value="heal">
             <input type="hidden" name="params[target_id]" value="'.$target_id.'">
-            <input type="submit" value="'.$icon.$text.'" style="min-width:auto">
+            <input type="submit" value="'.$icon.$text.'" title="'.$button['title'].'" style="min-width:auto">
         </form>';
     }
     
@@ -227,14 +307,14 @@ class HtmlButtons
     function enter_city()
     {
         
+        $button = $this->buttons['enter_city'];
+        
         return
         '<form method="post" action="#Outside">
            <input type="hidden" name="action" value="go_inout_city">
 
            <!-- <span style="font-size:1.2em">&gt;</span>&nbsp; -->
-           <input type="submit" value="Entrer en ville !" 
-                  title="Vous êtes aux portes d\'une ville ! Si vous y entrez
-vous serez protégé des zombies... provisoirement.">
+           <input type="submit" value="'.$button['name'].'" title="'.$button['title'].'">
        </form>';
     }
     
@@ -247,13 +327,14 @@ vous serez protégé des zombies... provisoirement.">
     function get_out_city()
     {
         
+        $button = $this->buttons['get_out_city'];
+        
         return
         '<form style="text-align:center" method="post" action="#Outside">
             <input type="hidden" name="action" value="go_inout_city">
 
             <!-- <span style="font-size:1.2em">&gt;</span>&nbsp; -->
-            <input type="submit" value="Sortir de la ville" 
-                   title="Dans les villes, vous êtes protégé des zombies... provisoirement.">
+            <input type="submit" value="'.$button['name'].'" title="'.$button['title'].'">
         </form>';
     }
     
@@ -266,10 +347,12 @@ vous serez protégé des zombies... provisoirement.">
     function open_city_door()
     {
         
+        $button = $this->buttons['get_out_city'];
+        
         return
         '<form style="text-align:center" method="post" action="#Outside">
             <input type="hidden" name="action" value="open_city_door">
-            <input type="submit" value="Ouvrir les portes !" >
+            <input type="submit" value="'.$button['name'].'" title="'.$button['title'].'">
         </form>';
     }
     
@@ -282,10 +365,12 @@ vous serez protégé des zombies... provisoirement.">
     function close_city_door()
     {
         
+        $button = $this->buttons['close_city_door'];
+        
         return
         '<form style="text-align:center" method="post" action="#Outside">
             <input type="hidden" name="action" value="close_city_door">
-            <input type="submit" value="Fermer les portes !" >
+            <input type="submit" value="'.$button['name'].'" title="'.$button['title'].'">
         </form>';
     }
     
