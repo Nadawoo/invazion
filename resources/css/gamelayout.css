@@ -306,11 +306,18 @@ button {
 }
 /* Boutons de formulaire caché simulant un lien (notamment pour appeler l'API) */
 .formlink {
+    display:inline;
+}
+.formlink input {
     background:none;
     border:none;
     padding:0;
-    font-size:1em !important;
-    font-variant:normal !important;
+    color:darkred;
+    font-size:1em;
+    font-variant:normal;
+}
+.formlink input:hover {
+    color:red;
 }
 
 

@@ -149,9 +149,11 @@ class HtmlButtons
      *                              Must exist in $this->fields and $this->buttons
      * @param bool   $show_icon Set at 'no_icon' to display the button without its icon.
      *                          Any other value will display the icon.
-     * @return type
+     * @param string $class Set at 'formlink' to display the button like an simple link
+     * 
+     * @return string HTML
      */
-    function button($button_alias, $show_icon=true)
+    function button($button_alias, $show_icon=true, $class='')
     {
         
         $button = $this->buttons[$button_alias];
@@ -166,9 +168,9 @@ class HtmlButtons
         
         // Returns the complete HTML form
         return
-        '<form method="post" action="#popsuccess">
+        '<form method="post" action="#popsuccess" class="'.$class.'">
             '.$hidden_fields.'
-            '.$icon.' <input type="submit" value="'.$button['name'].'" title="'.$button['title'].'">'
+            '.$icon.'<input type="submit" value="'.$button['name'].'" title="'.$button['title'].'">'
         .'</form>';
     }
     
@@ -376,11 +378,11 @@ class HtmlButtons
     {
         
         return
-        '<form method="post" action="#popsuccess">
+        '<form method="post" action="#popsuccess" class="formlink">
             <input type="hidden" name="api_name" value="me">
             <input type="hidden" name="action" value="eat">
             <input type="hidden" name="params[item_id]" value="'.$item_id.'">
-            <input type="submit" class="formlink" value="Consommer '.$item_name.'" />
+            <input type="submit" value="Consommer '.$item_name.'" />
         </form>';
     }
     
@@ -422,33 +424,6 @@ class HtmlButtons
             <input type="hidden" name="action" value="disconnect">
             <input type="submit" value="Me déconnecter" />
         </form>';
-    }
-    
-    
-    /**
-     * Bouton imitant l'apparence d'un lien pour appeler une API
-     * 
-     * @param string $button_alias  The alias of the action button.
-     *                              Must exist in $this->fields and $this->buttons
-     * @return string
-     */
-    function api_link($button_alias)
-    {
-        
-        $button = $this->buttons[$button_alias];
-        
-        // Generates the hidden fields for the HTML form
-        $hidden_fields = '';
-        foreach ($this->fields[$button_alias] as $fieldname=>$fieldval) {
-            
-            $hidden_fields.= '<input type="hidden" name="'.$fieldname.'" value="'.$fieldval.'">';
-        }
-        
-        return '
-            <form method="post" action="#popsuccess" style="display:inline">
-                '.$hidden_fields.'
-                <input type="submit" value="'.$button['name'].'" class="formlink" />
-            </form>';
     }
     
     
