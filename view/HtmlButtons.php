@@ -316,10 +316,11 @@ class HtmlButtons
     {
         
         return
-        '<form method="post" action="#popsuccess">
-            <input type="hidden" name="action" value="craft_item">
-            <input type="hidden" name="item_id" value="'.$item_id.'">
-            <button class="as_link"><span style="font-weight:normal;font-size:1.1em;">&#9004;</span> Assembler l\'objet</button>
+        '<form method="post" action="#popsuccess" style="text-align:center;margin-top:0.25em">
+            <input type="hidden" name="api_name" value="buildings">
+            <input type="hidden" name="action" value="build">
+            <input type="hidden" name="params[item_id]" value="'.$item_id.'">
+            &#128295;<input type="submit" class="as_link" value="Assembler l\'objet">	
         </form>';
     }
     
@@ -334,10 +335,11 @@ class HtmlButtons
     {
         
         return
-            '<form method="post" action="#popsuccess" style="text-align:center;margin-top:0.25em">
-            <input type="hidden" name="action" value="construct">
-            <input type="hidden" name="construction_id" value="'.$construction_id.'">
-            <button class="as_link"><span style="font-weight:normal;font-size:1.1em;">&#9750;</span> Participer au chantier [1pa]</button>
+        '<form method="post" action="#popsuccess" style="text-align:center;margin-top:0.25em">
+            <input type="hidden" name="api_name" value="buildings">
+            <input type="hidden" name="action" value="build">
+            <input type="hidden" name="params[construction_id]" value="'.$construction_id.'">
+            &#x1F6E0;&#xFE0F; <input type="submit" class="as_link" value="Participer au chantier [1pa]">
         </form>';
     }
     
