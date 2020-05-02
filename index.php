@@ -73,7 +73,7 @@ if ($action_post !== null) {
     // Actions standardisées dont le résultat sera affiché sous les flèches de déplacement
     if (in_array($action_post, ['move'])) {
 
-        $api_result = $api->$action_post($apiparams[$action_post]);
+        $api_result = $api->call_api($api_name, $action_post, $params_post);
         $msg_move   = '<span class="'.$api_result['metas']['error_class'].'">'.$api_result['metas']['error_message'].'</span>';
     }
     // Actions standardisées dont le résultat sera affiché dans la pop-up
