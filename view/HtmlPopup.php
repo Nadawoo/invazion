@@ -100,12 +100,12 @@ class HtmlPopup
             <ul>
                 <li>+ <span style="color:grey;text-decoration:line-through">Exterminer les&nbsp;zombies sur les 7&nbsp;zones alentour</span></li>
                 <li>+ <span style="color:grey;text-decoration:line-through">Exterminer les&nbsp;zombies sur 7&nbsp;zones aléatoires</span></li>
-                <li>+ '.$buttons->api_link('reveal_zones', 'Dévoiler 10&nbsp;zones de la carte', '#popsuccess').'</li>
+                <li>+ '.$buttons->api_link('reveal_zones').'</li>
             </ul>
             <br>
             ...  ou bien pour propager davantage le chaos&nbsp;?
             <ul>
-                <li>– '.$buttons->api_link('add_map_zombies', 'Ajouter des&nbsp;zombies sur toute la&nbsp;carte', '#popsuccess').'</li>
+                <li>– '.$buttons->api_link('add_map_zombies').'</li>
                 <li>– <span style="color:grey;text-decoration:line-through">Obscurcir 10&nbsp;zones de la&nbsp;carte</span></li>
                 <li>– <span style="color:grey;text-decoration:line-through">Détruire une&nbsp;ville aléatoire</span></li>
             </ul>';

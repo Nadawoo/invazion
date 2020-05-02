@@ -23,6 +23,16 @@ class HtmlButtons
                 'name'  => 'Chercher une crypte',
                 'title' => "Trouver une crypte peut servir vos intérêts mais aussi causer votre perte... ou celle de vos amis.",
                 ],
+            'add_map_zombies' => [
+                'icon'  => '',
+                'name'  => 'Ajouter des zombies sur toute la carte',
+                'title' => "",
+                ],
+            'reveal_zones' => [
+                'icon'  => '',
+                'name'  => 'Dévoiler 10 zones de la carte',
+                'title' => "",
+                ],
             'enter_city' => [
                 'icon'  => '',
                 'name'  => 'Entrer en ville !',
@@ -89,11 +99,21 @@ class HtmlButtons
                 'api_name'      => 'zone',
                 'action'        => 'add',
                 'params[stuff]' => 'vault'
-            ],
+                ],
+            'add_map_zombies' => [
+                'api_name'          => 'zone',
+                'action'            => 'add',
+                'params[stuff]'     => 'zombies',
+                ],
+            'reveal_zones' => [
+                'api_name'          => 'zone',
+                'action'            => 'reveal',
+                'params[stuff]'     => 'random7',
+                ],
             'dig' => [
                 'api_name'      => 'zone',
                 'action'        => 'dig'
-            ],
+                ],
             'enter_city' => [
                 'api_name'      => 'city',
                 'action'        => 'go_inout'
@@ -114,7 +134,7 @@ class HtmlButtons
                 'api_name'          => 'city',
                 'action'            => 'build',
                 'params[city_size]' => 1,
-            ],
+                ],
         ];
     }
     
@@ -408,18 +428,26 @@ class HtmlButtons
     /**
      * Bouton imitant l'apparence d'un lien pour appeler une API
      * 
-     * @param  string $action L'action à déclencher (ex : "move" pour créer un $_POST['move'])
-     * @param  string $text   Le texte du lien
-     * @param  string $anchor Ancre HTML pour indiquer quel endroit de la page
-     *                        afficher après le clic sur le lien
+     * @param string $button_alias  The alias of the action button.
+     *                              Must exist in $this->fields and $this->buttons
      * @return string
      */
-    function api_link($action, $text, $anchor='#Outside')
+    function api_link($button_alias)
     {
+        
+        $button = $this->buttons[$button_alias];
+        
+        // Generates the hidden fields for the HTML form
+        $hidden_fields = '';
+        foreach ($this->fields[$button_alias] as $fieldname=>$fieldval) {
+            
+            $hidden_fields.= '<input type="hidden" name="'.$fieldname.'" value="'.$fieldval.'">';
+        }
+        
         return '
-            <form method="post" action="'.$anchor.'" style="display:inline">
-                <input type="hidden" name="action" value="'.$action.'" />
-                <input type="submit" value="'.$text.'" class="formlink" />
+            <form method="post" action="#popsuccess" style="display:inline">
+                '.$hidden_fields.'
+                <input type="submit" value="'.$button['name'].'" class="formlink" />
             </form>';
     }
     

@@ -66,7 +66,6 @@ if ($action_post !== null) {
     // Paramètres à transmettre aux API pour exécuter chaque action
     $apiparams = [
         'create_citizen' => $pseudo,
-        'reveal_zones'   => 'random7',
         ];
 
     // Actions standardisées dont le résultat sera affiché sous les flèches de déplacement
@@ -76,7 +75,7 @@ if ($action_post !== null) {
         $msg_move   = '<span class="'.$api_result['metas']['error_class'].'">'.$api_result['metas']['error_message'].'</span>';
     }
     // Actions standardisées dont le résultat sera affiché dans la pop-up
-    elseif (in_array($action_post, ['create_citizen', 'reveal_zones'])) {
+    elseif (in_array($action_post, ['create_citizen'])) {
 
         $api_result = $api->$action_post($apiparams[$action_post]);
         $msg_popup  = '<p>'.nl2br($api_result['metas']['error_message']).'</p>';
