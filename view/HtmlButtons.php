@@ -253,7 +253,8 @@ class HtmlButtons
         
         return
         '<form method="post" action="#Outside">
-            <input type="hidden" name="action" value="attack_city">
+            <input type="hidden" name="api_name" value="city">
+            <input type="hidden" name="action" value="attack">
             '.$icon.' <input type="submit" value="'.$button['name'].'" title="'.$button['title'].'">
         </form>';
     }

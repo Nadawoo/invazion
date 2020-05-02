@@ -65,7 +65,6 @@ if ($action_post !== null) {
 
     // Paramètres à transmettre aux API pour exécuter chaque action
     $apiparams = [
-        'move'           => $direction,
         'create_citizen' => $pseudo,
         'reveal_zones'   => 'random7',
         ];
@@ -83,9 +82,10 @@ if ($action_post !== null) {
         $msg_popup  = '<p>'.nl2br($api_result['metas']['error_message']).'</p>';
     }
     // Actions standardisées dont le résultat sera affiché en haut de la carte
-    elseif (in_array($action_post, ['drop', 'pickup', 'attack_city'])) {
+    elseif (in_array($action_post, ['drop', 'pickup'])
+        or ($api_name === 'city' and $action_post === 'attack')) {
 
-        $api_result = $api->$action_post();
+        $api_result = $api->call_api($api_name, $action_post, $params_post);
         $msg_build  = '<p class="'.$api_result['metas']['error_class'].'">'.$api_result['metas']['error_message'].'</p>';
     }
     // Attaquer un ou plusieurs zombies à mains nues

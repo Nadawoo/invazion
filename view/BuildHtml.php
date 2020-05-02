@@ -292,14 +292,15 @@ class BuildHtml extends HtmlPage
             foreach ($zone['items'] as $item_id=>$item_amount) {
                 
                 $html_items .= '<li>'
-                    . '<button type="submit" name="item_id" value="'.$item_id.'" class="drop_button" title="Ramasser cet objet">&wedgeq;</button> '
+                    . '<button type="submit" name="params[item_id]" value="'.$item_id.'" class="drop_button" title="Ramasser cet objet">&wedgeq;</button> '
                     . '<var>' . $items_caracs[$item_id]['name'] . '</var> <span style="font-size:0.95em">×&nbsp;'.$item_amount .'<span>' 
                     . '</li>';
             }
 
             return '<form method="post" action="#Outside">'
+                . '<input type="hidden" name="api_name" value="zone">'
                 . '<input type="hidden" name="action" value="pickup">'
-                . '<input type="hidden" name="citizen_id" value="'.$citizen_id.'">'
+                . '<input type="hidden" name="params[citizen_id]" value="'.$citizen_id.'">'
                 . '<ul class="items_list">'.$html_items.'</ul>'
                 . '</form>';
         }
@@ -428,8 +429,9 @@ class BuildHtml extends HtmlPage
         
         return '
             <form method="post" action="#Outside">
+                <input type="hidden" name="api_name" value="zone">
                 <input type="hidden" name="action" value="drop">
-                <input type="hidden" name="citizen_id" value="'.$citizen_id.'">
+                <input type="hidden" name="params[citizen_id]" value="'.$citizen_id.'">
                 <ul class="items_list">
                     ' . $this->bag_filled_slots($bag_items, $items_caracs) . '
                     ' . $this->bag_free_slots($nbr_free_slots) . '
@@ -478,7 +480,7 @@ class BuildHtml extends HtmlPage
                 
                 $result .= '
                     <li>
-                        <button type="submit" name="item_id" value="'.$item_id.'" class="drop_button" title="Déposer cet objet">&veeeq;</button>
+                        <button type="submit" name="params[item_id]" value="'.$item_id.'" class="drop_button" title="Déposer cet objet">&veeeq;</button>
                         <var>' . $items[$item_id]['name'] . '</var>
                     </li>';
                 
