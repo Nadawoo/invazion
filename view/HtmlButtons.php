@@ -1,8 +1,8 @@
 <?php
 
 /**
- * Crée les boutons d'actions pour l'interface HTML du jeu
- * (fouiller la zone, attaquer un zombie...)
+ * Create action buttons for the HTML interface of the game
+ * (dig in the area, attack a zombie ...)
  */
 class HtmlButtons
 {
@@ -11,13 +11,14 @@ class HtmlButtons
     function __construct()
     {
         
+        // Visible labels and icons for the buttons 
         $this->buttons = [
             'dig' => [
                 'icon'  => '&#x26CF;&#xFE0F;',
                 'name'  => 'Fouiller la zone',
                 'title' => ''
                 ],
-            'vault' => [
+            'add_vault' => [
                 'icon'  => '&#9961;&#65039;',
                 'name'  => 'Chercher une crypte',
                 'title' => "Trouver une crypte peut servir vos intérêts mais aussi causer votre perte... ou celle de vos amis.",
@@ -70,40 +71,87 @@ class HtmlButtons
                 'name'  => 'Sortir de la ville',
                 'title' => "Dans les villes, vous êtes protégé des zombies... provisoirement.",
                 ],
-            'open_city_door' => [
+            'open_door' => [
                 'icon'  => '',
                 'name'  => 'Ouvrir les portes !',
                 'title' => "",
                 ],
-            'close_city_door' => [
+            'close_door' => [
                 'icon'  => '',
                 'name'  => 'Fermer les portes !',
                 'title' => "",
                 ],
         ];
+        
+        // Hidden fields linked to the buttons (parameters to call the APIs)
+        $this->fields = [
+            'add_vault' => [
+                'api_name'      => 'zone',
+                'action'        => 'add',
+                'params[stuff]' => 'vault'
+            ],
+            'dig' => [
+                'api_name'      => 'zone',
+                'action'        => 'dig'
+            ],
+            'enter_city' => [
+                'api_name'      => 'city',
+                'action'        => 'go_inout'
+                ],
+            'get_out_city' => [
+                'api_name'      => 'city',
+                'action'        => 'go_inout'
+                ],
+            'open_door' => [
+                'api_name'      => 'city',
+                'action'        => 'open_door'
+                ],
+            'close_door' => [
+                'api_name'      => 'city',
+                'action'        => 'close_door'
+                ],
+            'build_tent' => [
+                'api_name'          => 'city',
+                'action'            => 'build',
+                'params[city_size]' => 1,
+            ],
+        ];
     }
     
     
     /**
-     * Retourne le bouton pour contruire une tente (ville d'un seul citoyen)
+     * Generates a genric action button, ie :
+     * - destinated to send data to a game API
+     * - no variable parameter
+     * - result displayed in pop-up (#popsucess)
      * 
-     * @return string
+     * @param string $button_alias  The alias of the action button.
+     *                              Must exist in $this->fields and $this->buttons
+     * @param bool   $show_icon Set at 'no_icon' to display the button without its icon.
+     *                          Any other value will display the icon.
+     * @return type
      */
-    function build_tent($show_icon=true)
+    function button($button_alias, $show_icon=true)
     {
         
-        $button = $this->buttons['build_tent'];
-        $icon = ($show_icon === 'no_icon') ? '' : $button['icon'];
+        $button = $this->buttons[$button_alias];
+        $icon   = ($show_icon === 'no_icon') ? '' : $button['icon'].'&nbsp;';
         
-        return 
-        '<form   method="post" action="#popsuccess">
-            <input type="hidden" name="api_name" value="city">
-            <input type="hidden" name="action" value="build">
-            <input type="hidden" name="params[city_size]" value="1">
-            '.$icon.'<input type="submit" value="'.$button['name'].'" title="'.$button['title'].'">
-                   
-        </form>';
+        // Generates the hidden fields for the HTML form
+        $hidden_fields = '';
+        foreach ($this->fields[$button_alias] as $fieldname=>$fieldval) {
+            
+            $hidden_fields.= '<input type="hidden" name="'.$fieldname.'" value="'.$fieldval.'">';
+        }
+        
+        // Returns the complete HTML form
+        return
+        '<form method="post" action="#popsuccess">
+            '.$hidden_fields.'
+            '.$icon.' <input type="submit" value="'.$button['name'].'" title="'.$button['title'].'">'
+        .'</form>';
     }
+    
     
     
     /**
@@ -193,47 +241,6 @@ class HtmlButtons
     
     
     /**
-     * Retourne le bouton pour fouiller la zone
-     * 
-     * @return string
-     */
-    function dig($show_icon=true)
-    {
-        
-        $button = $this->buttons['dig'];
-        $icon = ($show_icon === 'no_icon') ? '' : $button['icon'].'&nbsp;';
-        
-        return
-        '<form method="post" action="#popsuccess">
-            <input type="hidden" name="api_name" value="zone">
-            <input type="hidden" name="action" value="dig">
-            '.$icon.' <input type="submit" value="'.$button['name'].'" title="'.$button['title'].'">
-        </form>';
-    }
-    
-    
-    /**
-     * Retourne le bouton pour générer une crypte sur la carte
-     * 
-     * @return string
-     */
-    function add_vault($show_icon=true)
-    {
-        
-        $button = $this->buttons['vault'];
-        $icon = ($show_icon === 'no_icon') ? '' : $button['icon'].'&nbsp;';
-        
-        return
-        '<form method="post" action="#popsuccess">
-            <input type="hidden" name="api_name" value="zone">
-            <input type="hidden" name="action" value="add">
-            <input type="hidden" name="params[stuff]" value="vault">
-            '.$icon.' <input type="submit" value="'.$button['name'].'" title="'.$button['title'].'">'
-        .'</form>';
-    }
-    
-    
-    /**
      * Retourne le bouton pour détruire une tente
      * 
      * @return string
@@ -295,82 +302,6 @@ class HtmlButtons
             <input type="hidden" name="action" value="heal">
             <input type="hidden" name="params[target_id]" value="'.$target_id.'">
             <input type="submit" value="'.$icon.$text.'" title="'.$button['title'].'" style="min-width:auto">
-        </form>';
-    }
-    
-    
-    /**
-     * Retourne le bouton pour entrer en ville
-     * 
-     * @return string
-     */
-    function enter_city()
-    {
-        
-        $button = $this->buttons['enter_city'];
-        
-        return
-        '<form method="post" action="#popsuccess">
-            <input type="hidden" name="api_name" value="city">
-            <input type="hidden" name="action" value="go_inout">
-           <input type="submit" value="'.$button['name'].'" title="'.$button['title'].'">
-        </form>';
-    }
-    
-    
-    /**
-     * Retourne le bouton pour sortir de la ville
-     * 
-     * @return string
-     */
-    function get_out_city()
-    {
-        
-        $button = $this->buttons['get_out_city'];
-        
-        return
-        '<form style="text-align:center" method="post" action="#popsuccess">
-            <input type="hidden" name="api_name" value="city">
-            <input type="hidden" name="action" value="go_inout">
-            <input type="submit" value="'.$button['name'].'" title="'.$button['title'].'">
-        </form>';
-    }
-    
-    
-    /**
-     * Retourne le bouton pour ouvrir la porte de la ville
-     * 
-     * @return string
-     */
-    function open_city_door()
-    {
-        
-        $button = $this->buttons['open_city_door'];
-        
-        return
-        '<form style="text-align:center" method="post" action="#popsuccess">
-            <input type="hidden" name="api_name" value="city">
-            <input type="hidden" name="action" value="open_door">
-            <input type="submit" value="'.$button['name'].'" title="'.$button['title'].'">
-        </form>';
-    }
-    
-    
-    /**
-     * Retourne le bouton pour fermer la porte de la ville
-     * 
-     * @return string
-     */
-    function close_city_door()
-    {
-        
-        $button = $this->buttons['close_city_door'];
-        
-        return
-        '<form style="text-align:center" method="post" action="#popsuccess">
-            <input type="hidden" name="api_name" value="city">
-            <input type="hidden" name="action" value="close_door">
-            <input type="submit" value="'.$button['name'].'" title="'.$button['title'].'">
         </form>';
     }
     

@@ -75,7 +75,7 @@ class HtmlMyzone
                     </div>
                     <div class="city_gates">&#128679;&#128679;</div>
                 </div>
-                '.$buttons->enter_city().'
+                '.$buttons->button('enter_city').'
                 <div style="margin-top:1em">&#128100;<br>'.$this->_citizen_pseudo.'</div>️';
         }
         else {
@@ -121,7 +121,7 @@ class HtmlMyzone
         return '
             <div style="font-size:2.5em">&#9978;</div>
             <div style="font-size:0.8em;font-style:italic">Une tente abri de fortune a été plantée ici.</div>
-            '. $buttons->enter_city()
+            '. $buttons->button('enter_city')
              . $buttons->attack_tent('no_icon');
     }
     
@@ -140,7 +140,7 @@ class HtmlMyzone
             <div id="button_pickup">
                 <input type="submit" value="Ramasser..." onclick="toggleItemsPanel()">
             </div>
-            <div id="button_dig">'.$buttons->dig('no_icon').'</div>
+            <div id="button_dig">'.$buttons->button('dig', 'no_icon').'</div>
             <div id="items" onclick="toggleItemsPanel()">
                 '.$this->items().'
             </div>';

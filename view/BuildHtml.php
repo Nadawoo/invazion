@@ -327,19 +327,19 @@ class BuildHtml extends HtmlPage
         if ($city_size > 0) {
             
             $table .= '<tr>
-                <td>&#x1F5DD;&#xFE0F;</td> <td>'.$buttons->enter_city().'<td>
+                <td>&#x1F5DD;&#xFE0F;</td> <td>'.$buttons->button('enter_city').'<td>
             </tr>';
         }
         else {
             
             $table .= '<tr>
-                <td>&#x26CF;&#xFE0F;</td> <td>'.$buttons->dig('no_icon').'<td>
+                <td>&#x26CF;&#xFE0F;</td> <td>'.$buttons->button('dig', 'no_icon').'<td>
             </tr>
             <tr>
-                <td>&#9961;&#65039;</td> <td>'.$buttons->add_vault('no_icon').'<td>
+                <td>&#9961;&#65039;</td> <td>'.$buttons->button('add_vault', 'no_icon').'<td>
             </tr>            
             <tr>
-                <td>&#9978;</td> <td>'.$buttons->build_tent('no_icon').'<td>
+                <td>&#9978;</td> <td>'.$buttons->button('build_tent', 'no_icon').'<td>
             </tr>
             <tr>
                 <td><img src="resources/img/city.png" alt="&#10224;"></td>

@@ -399,19 +399,19 @@ class HtmlCityEnclosure
         if ((bool)$is_door_closed === TRUE) {
             
             $door_status = 'Les portes de la ville sont <strong style="color:red">fermées</strong>';
-            $door_button = $buttons->open_city_door();
+            $door_button = $buttons->button('open_door');
         }
         else {
             
             $door_status = 'Les portes de la ville sont <strong style="color:green">ouvertes</strong>';
-            $door_button = $buttons->close_city_door();
+            $door_button = $buttons->button('close_door');
         }
         
         return '
             <div class="city_block">
                 <h2>Porte de la ville</h2>
                 <p>Partez en expédition dans le désert pour récuperer de précieuses ressources...</p>
-                <p>' . $buttons->get_out_city() . '</p>
+                <p>' . $buttons->button('get_out_city') . '</p>
                 <hr>
                 <p>' . $door_status . '</p>
                 <p>' . $door_button . '</p>
