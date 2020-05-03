@@ -197,8 +197,7 @@ class ZombLib
         // Le pseudo est encodé en base64 pour pouvoir transiter intact dans l'URL
         $pseudo64 = base64_encode($pseudo);
         
-        $json   = $this->get_api_output($this->url.'/user?action=create_citizen&token='.$this->get_token().'&pseudo64='.$pseudo64);
-        $result = $this->json_to_array($json);
+        $result = $this->call_api('user', 'create_citizen', ['pseudo64'=>$pseudo64]);
         
         if ($result['metas']['error_code'] === 'success') {
             

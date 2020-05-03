@@ -63,21 +63,16 @@ if ($action_post !== null) {
     // Définit l'id de l'objet pour certaines actions (ramasser...)
     $api->set_item_id($item_id);
 
-    // Paramètres à transmettre aux API pour exécuter chaque action
-    $apiparams = [
-        'create_citizen' => $pseudo,
-        ];
-
     // Actions standardisées dont le résultat sera affiché sous les flèches de déplacement
     if (in_array($action_post, ['move'])) {
 
         $api_result = $api->call_api($api_name, $action_post, $params_post);
         $msg_move   = '<span class="'.$api_result['metas']['error_class'].'">'.$api_result['metas']['error_message'].'</span>';
     }
-    // Actions standardisées dont le résultat sera affiché dans la pop-up
-    elseif (in_array($action_post, ['create_citizen'])) {
+    // Action non-standardisée (encodage en base64 dans la ZombLib)
+    elseif ($action_post === 'create_citizen') {
 
-        $api_result = $api->$action_post($apiparams[$action_post]);
+        $api_result = $api->create_citizen($pseudo);
         $msg_popup  = '<p>'.nl2br($api_result['metas']['error_message']).'</p>';
     }
     // Actions standardisées dont le résultat sera affiché en haut de la carte
