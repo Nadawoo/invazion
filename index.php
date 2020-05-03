@@ -43,7 +43,6 @@ $citizen_pseudo     = NULL;
 $citizen            = NULL;
 $city_data          = NULL;
 $city_fellows       = NULL;
-$msg_zombies_killed = NULL;
 $msg_popup          = NULL;
 $zone_citizens      = [];
 $html_actions       = '';
@@ -60,39 +59,26 @@ $msg_build          = '';
  */
 if ($action_post !== null) {
     
-    // Définit l'id de l'objet pour certaines actions (ramasser...)
-    $api->set_item_id($item_id);
-
-    // Actions standardisées dont le résultat sera affiché sous les flèches de déplacement
-    if (in_array($action_post, ['move'])) {
-
-        $api_result = $api->call_api($api_name, $action_post, $params_post);
-        $msg_move   = '<span class="'.$api_result['metas']['error_class'].'">'.$api_result['metas']['error_message'].'</span>';
-    }
-    // Action non-standardisée (encodage en base64 dans la ZombLib)
-    elseif ($action_post === 'create_citizen') {
+    // Non-standard action of the ZombLib (base64 encoding made by the lib)
+    if ($action_post === 'create_citizen') {
 
         $api_result = $api->create_citizen($pseudo);
         $msg_popup  = '<p>'.nl2br($api_result['metas']['error_message']).'</p>';
     }
-    // Actions standardisées dont le résultat sera affiché en haut de la carte
-    elseif (in_array($action_post, ['drop', 'pickup'])
-        or ($api_name === 'city' and $action_post === 'attack')) {
-
-        $api_result = $api->call_api($api_name, $action_post, $params_post);
-        $msg_build  = '<p class="'.$api_result['metas']['error_class'].'">'.$api_result['metas']['error_message'].'</p>';
-    }
-    // Attaquer un ou plusieurs zombies à mains nues
-    elseif (in_array($action_post, ['fight', 'bigfight'])) {
-        
-        $api_result = $api->call_api($api_name, $action_post, $params_post);
-        $msg_zombies_killed = '<span class="'.$api_result['metas']['error_class'].'">'.$api_result['metas']['error_message'].'</span>';
-    }
-    // Actions exécutées par la méthode générique "call_api()"
+    // Actions standardized with the call_api() method of the ZombLib
     else {
         
+        // Calls the API ont the central server of InvaZion
         $api_result = $api->call_api($api_name, $action_post, $params_post);
-        $msg_popup  = '<p>'.nl2br($api_result['metas']['error_message']).'</p>';
+        
+        if (in_array($action_post, ['move', 'drop', 'pickup', 'fight', 'bigfight'])) {
+            // The result of these actions is displayed under the movement paddle
+            $msg_move  = '<span class="'.$api_result['metas']['error_class'].'">'.$api_result['metas']['error_message'].'</span>';
+        }
+        else {
+            // The result of all the other actions is displayed in a pop-up
+            $msg_popup = '<p>'.nl2br($api_result['metas']['error_message']).'</p>';
+        }
     }
 }
 
@@ -330,7 +316,7 @@ echo $popup->customised('popsuccess', '', nl2br($msg_popup));
             
             if ($zone['controlpoints_citizens'] < $zone['controlpoints_zombies']) {
             
-                echo $html->block_alert_control($zone['zombies'], $msg_zombies_killed);
+                echo $html->block_alert_control($zone['zombies'], $msg_move);
             }
             else {
                 

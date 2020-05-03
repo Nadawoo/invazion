@@ -274,7 +274,7 @@ class HtmlButtons
         $icon = ($show_icon === 'no_icon') ? '' : '&nbsp;<span style="font-size:1.2em">X</span>&nbsp;&nbsp;';
         
         return
-        '<form method="post" action="#Outside">
+        '<form method="post" action="#popsuccess">
             <input type="hidden" name="api_name" value="city">
             <input type="hidden" name="action" value="attack">
             '.$icon.' <input type="submit" value="'.$button['name'].'" title="'.$button['title'].'">
