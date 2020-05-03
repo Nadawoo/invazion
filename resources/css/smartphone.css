@@ -18,8 +18,8 @@
 }
 #phone .container {
     display:flex;
-    height:12em; /* Le ratio hauteur/largeur fait ressembler à un smartphone */
-    width: 8em; 
+    height:13em; /* Le ratio hauteur/largeur fait ressembler à un smartphone */
+    width: 8.5em; 
     border-top:1px solid black;
     overflow:hidden;
 }

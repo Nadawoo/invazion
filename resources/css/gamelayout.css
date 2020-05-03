@@ -327,7 +327,6 @@ button {
  */
 #alert_control {
     width:62%;
-    min-height:14.3em; /* Même hauteur que le smartphone du jeu */
     border:2px outset black;
     text-align:center;
     background:#a93226;

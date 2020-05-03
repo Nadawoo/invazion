@@ -294,23 +294,18 @@ echo $popup->customised('popsuccess', '', nl2br($msg_popup));
         // on affiche l'interface de jeu
         ?>
     
-        <div style="margin-bottom:3em;overflow:auto">
-            
+        <div style="min-height:16em;margin-bottom:1em;overflow:auto">
+        
             <?php
             // Affiche le smartphone à droite de la carte (GPS...)
             echo smartphone($map_cols, $map_rows, $citizen, $specialities[$citizen['speciality']], $zone);
             
-            if ($zone['controlpoints_citizens'] < $zone['controlpoints_zombies']) {
+            // Affiche les flèches de déplacement 
+            echo ($zone['controlpoints_citizens'] >= $zone['controlpoints_zombies']) 
+                 ? movement_paddle($citizen['coord_x'], $citizen['coord_y'])
+                 : $html->block_alert_control($zone['zombies']);
             
-                echo $html->block_alert_control($zone['zombies'], $msg_move);
-            }
-            else {
-                
-                // Affiche les flèches de déplacement            
-                echo movement_paddle($citizen['coord_x'], $citizen['coord_y']);
-                
-                echo '<div class="center" style="min-height:5em">' . $msg_move . '</div>';
-            }
+            echo '<div class="center">' . $msg_move . '</div>';
             
             // Affiche le bouton pour entrer dans la crypte s'il y en a une
             if ($zone['building'] === 'vault') {
@@ -320,8 +315,9 @@ echo $popup->customised('popsuccess', '', nl2br($msg_popup));
                     . $popup->link('popvault', 'Pouvoir cryptique')
                     . '</p>';
             } ?>
-            
-                    
+        </div>
+        
+        <div>
             <fieldset>
                 <legend>Actions</legend>
                 <?php 
@@ -334,8 +330,8 @@ echo $popup->customised('popsuccess', '', nl2br($msg_popup));
                 <legend>Citoyens dans ma zone</legend>
                 <?php echo $html_zone_citizens ?>
             </fieldset>
-            
         </div>
+        
         <?php
     } ?>
     

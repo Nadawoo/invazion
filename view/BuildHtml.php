@@ -393,7 +393,7 @@ class BuildHtml extends HtmlPage
      * @param  int $zombies Le nombre de zombies sur la case
      * @return string HTML
      */
-    function block_alert_control($zombies, $msg_zombies_killed)
+    function block_alert_control($zombies)
     {
         
         $buttons = new HtmlButtons;
@@ -409,7 +409,6 @@ class BuildHtml extends HtmlPage
                         '.$buttons->kill_zombie($zombies).'<br>
                         '.$buttons->kill_mass_zombies($zombies).'
                     </p>
-                    '.$msg_zombies_killed.'
                 </div>
             </div>';
     }
