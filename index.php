@@ -22,9 +22,6 @@ $action_post     = filter_input(INPUT_POST, 'action',   FILTER_SANITIZE_STRING);
 $params_post     = filter_input(INPUT_POST, 'params',   FILTER_SANITIZE_STRING, FILTER_REQUIRE_ARRAY);
 $pseudo          = filter_input(INPUT_POST, 'pseudo',   FILTER_SANITIZE_STRING);
 
-$action_get     = filter_input(INPUT_GET,  'action',  FILTER_SANITIZE_STRING);
-$type           = filter_input(INPUT_GET,  'type',    FILTER_SANITIZE_STRING);
-
 $api                = new ZombLib(official_server_root().'/api');
 $html               = new BuildHtml();
 $map                = new HtmlMap();
@@ -75,12 +72,6 @@ if ($action_post !== null) {
             $msg_popup = '<p>'.nl2br($api_result['metas']['error_message']).'</p>';
         }
     }
-}
-
-// Choisir sa spécialité quotidienne (bâtisseur....)
-if ($action_get === 'specialize') {
-    
-    $api->specialize($type);
 }
 
 

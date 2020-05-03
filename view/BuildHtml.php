@@ -153,23 +153,26 @@ class BuildHtml extends HtmlPage
      */
     function block_speciality_choice($specialities)
     {
+        
+        $buttons = new HtmlButtons();
+        
         return '
                 <p class="center">
                     <button onclick="toggle(\'specialities\');return false" class="button red bold">Choisir ma spécialité du jour</button>
                 </p>
 
                 <ul id="specialities">
-                    <li><a href="?action=specialize&amp;type=digger#Outside">Fouineur</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <li>'.$buttons->button('specialize_digger', '', 'formlink').'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         (Points d\'action&nbsp;:     '. $specialities['digger']['action_points']    .' |
                         Temps de&nbsp;fouille&nbsp;: '. $specialities['digger']['digging_duration'] .'&nbsp;mn)
                     </li>
-                    <li><a href="?action=specialize&amp;type=explorer#Outside">Explorateur</a>&nbsp;
-                        (Points d\'action&nbsp;:     '. $specialities['explorer']['action_points']       .' |
-                        Temps de&nbsp;fouille&nbsp;: '. $specialities['explorer']['digging_duration']/60 .'&nbsp;h)
+                    <li>'.$buttons->button('specialize_explorer', '', 'formlink').'&nbsp;
+                        (Points d\'action&nbsp;:     '. $specialities['explorer']['action_points']    .' |
+                        Temps de&nbsp;fouille&nbsp;: '. $specialities['explorer']['digging_duration']/60 .'&nbsp;mn)
                     </li>
-                    <li><a href="?action=specialize&amp;type=builder#Outside">Bâtisseur</a>&nbsp;&nbsp;&nbsp;&nbsp;
-                        (Points d\'action&nbsp;:     '. $specialities['builder']['action_points']       .' |
-                        Temps de&nbsp;fouille&nbsp;: '. $specialities['builder']['digging_duration']/60 .'&nbsp;h)
+                    <li>'.$buttons->button('specialize_builder', '', 'formlink').'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        (Points d\'action&nbsp;:     '. $specialities['builder']['action_points']    .' |
+                        Temps de&nbsp;fouille&nbsp;: '. $specialities['builder']['digging_duration']/60 .'&nbsp;mn)
                     </li>
                 </ul>';
     }

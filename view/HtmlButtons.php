@@ -91,6 +91,21 @@ class HtmlButtons
                 'name'  => 'Fermer les portes !',
                 'title' => "",
                 ],
+            'specialize_digger' => [
+                'icon'  => '',
+                'name'  => 'Fouineur',
+                'title' => "",
+                ],
+            'specialize_explorer' => [
+                'icon'  => '',
+                'name'  => 'Explorateur',
+                'title' => "",
+                ],
+            'specialize_builder' => [
+                'icon'  => '',
+                'name'  => 'Bâtisseur',
+                'title' => "",
+                ],
         ];
         
         // Hidden fields linked to the buttons (parameters to call the APIs)
@@ -134,6 +149,21 @@ class HtmlButtons
                 'api_name'          => 'city',
                 'action'            => 'build',
                 'params[city_size]' => 1,
+                ],
+            'specialize_digger' => [
+                'api_name'          => 'me',
+                'action'            => 'specialize',
+                'params[type]'      => 'digger',
+                ],
+            'specialize_explorer' => [
+                'api_name'          => 'me',
+                'action'            => 'specialize',
+                'params[type]'      => 'explorer',
+                ],
+            'specialize_builder' => [
+                'api_name'          => 'me',
+                'action'            => 'specialize',
+                'params[type]'      => 'builder',
                 ],
         ];
     }
