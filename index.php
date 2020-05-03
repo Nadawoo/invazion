@@ -341,13 +341,8 @@ echo $popup->customised('popsuccess', '', nl2br($msg_popup));
     
 </div>
     
-    <form method="post" action="#popsuccess">
-        <input type="hidden" name="api_name" value="zone">
-        <input type="hidden" name="action" value="add">
-        <input type="hidden" name="params[stuff]" value="zombies">
-        <input type="hidden" name="params[conditions]" value="noconditions">
-        <input type="submit" value="Ajouter des zombies sur toute la carte" />
-    </form>
+    
+    <?php echo $buttons->button('add_mass_zombies') ?>
     
     <br>
     <br>

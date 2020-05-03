@@ -28,6 +28,11 @@ class HtmlButtons
                 'name'  => 'Ajouter des zombies sur toute la carte',
                 'title' => "",
                 ],
+            'add_mass_zombies' => [
+                'icon'  => '',
+                'name'  => 'Ajouter des zombies sur toute la carte',
+                'title' => "Bouton spécial béta-test",
+                ],
             'reveal_zones' => [
                 'icon'  => '',
                 'name'  => 'Dévoiler 10 zones de la carte',
@@ -119,6 +124,12 @@ class HtmlButtons
                 'api_name'          => 'zone',
                 'action'            => 'add',
                 'params[stuff]'     => 'zombies',
+                ],
+            'add_mass_zombies' => [
+                'api_name'          => 'zone',
+                'action'            => 'add',
+                'params[stuff]'     => 'zombies',
+                'params[conditions]'=> 'noconditions'
                 ],
             'reveal_zones' => [
                 'api_name'          => 'zone',
