@@ -17,15 +17,10 @@ safely_require('ZombLib.php');
 // TEMPORAIRE - Par défaut si le joueur n'est pas connecté, on affiche la carte n°1
 $map_id = 1;
 
-$api_name        = filter_input(INPUT_POST, 'api_name',         FILTER_SANITIZE_STRING);
-$action_post     = filter_input(INPUT_POST, 'action',           FILTER_SANITIZE_STRING);
-$params_post     = filter_input(INPUT_POST, 'params',           FILTER_SANITIZE_STRING, FILTER_REQUIRE_ARRAY);
-$direction       = filter_input(INPUT_POST, 'to',               FILTER_SANITIZE_STRING);
-$pseudo          = filter_input(INPUT_POST, 'pseudo',           FILTER_SANITIZE_STRING);
-$item_id         = filter_input(INPUT_POST, 'item_id',          FILTER_VALIDATE_INT);
-$construction_id = filter_input(INPUT_POST, 'construction_id',  FILTER_VALIDATE_INT);
-$city_size       = filter_input(INPUT_POST, 'city_size',        FILTER_VALIDATE_INT);
-$target_id       = filter_input(INPUT_POST, 'target_id',        FILTER_VALIDATE_INT);
+$api_name        = filter_input(INPUT_POST, 'api_name', FILTER_SANITIZE_STRING);
+$action_post     = filter_input(INPUT_POST, 'action',   FILTER_SANITIZE_STRING);
+$params_post     = filter_input(INPUT_POST, 'params',   FILTER_SANITIZE_STRING, FILTER_REQUIRE_ARRAY);
+$pseudo          = filter_input(INPUT_POST, 'pseudo',   FILTER_SANITIZE_STRING);
 
 $action_get     = filter_input(INPUT_GET,  'action',  FILTER_SANITIZE_STRING);
 $type           = filter_input(INPUT_GET,  'type',    FILTER_SANITIZE_STRING);
