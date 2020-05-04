@@ -127,7 +127,7 @@ if ($citizen_id !== NULL) {
     if ($zone['city_id'] !== NULL) {
         
         $city_data = $api->get_city($zone['city_id'])['datas'];
-        $city_fellows = filter_citizens_by_city($citizens, $zone['city_id']);
+        $city_fellows = filter_citizens_by_city($zone_citizens, $zone['city_id']);
     }
 }
 
