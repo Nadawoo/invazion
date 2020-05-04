@@ -163,24 +163,29 @@
     }
 }
 /* Ligne de zombies (zombies de l'attaque') */
-.horde {
+.hurd {
     display:block;
     position:absolute;
-    margin-top:-0.8em;
-    z-index:10;
+    margin-top:-1em;
+    z-index:2;
+}
+.hurd .icon {
+    position:absolute;
+    margin-left:0.35em;
+    font-size:1.5em;
+    z-index:2;
+}
+.hurd .triangle {
+    position:relative;
+    top:2.4em;
     /* Crée un triangle en CSS */
     width:0;
     height:0;
-    border-left:1.25em solid transparent;
+    border-left: 1.25em solid transparent;
     border-right:1.25em solid transparent;
     border-top:2em solid red;
 }
-.horde span {
-    position:absolute;
-    margin-top:-1.6em;
-    margin-left:-0.5em;
-    font-size:1.5em;
-}
+
 .halo {
     border: 3px solid green;
     border-radius: 50%;

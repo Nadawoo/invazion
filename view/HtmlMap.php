@@ -36,6 +36,9 @@ class HtmlMap
             
             $result .= '<div class="row" '.$left.'>';
             
+            // Ligne de la horde zombie sur la carte (triangles rouges)
+            $result .= $this->html_hurd($nbr_cols, $row, $next_attack_hour);
+            
             // Crée les cases de la ligne en cours
             for($i=0; $i<$nbr_cols; $i++) {
                 
@@ -50,7 +53,7 @@ class HtmlMap
                 // Pseudo d'un des citoyens présents sur la case
                 $fellow_pseudo = (isset($citizens_by_coord[$coords])) ? $citizens_by_coord[$coords][0]['citizen_pseudo'] : null;
                 
-                $result .=  $this->hexagonal_zone($col, $row, $cell, $is_player_in_zone, $citizen['citizen_pseudo'], $fellow_pseudo, $next_attack_hour);
+                $result .=  $this->hexagonal_zone($col, $row, $cell, $is_player_in_zone, $citizen['citizen_pseudo'], $fellow_pseudo);
             }
             
             $result .=  "</div>\n";
@@ -71,15 +74,13 @@ class HtmlMap
      * @param array $player_pseudo  Le pseudo du joueur connecté
      * @param array $fellow_pseudo  Pseudo d'un des citoyens présents sur la case 
      *                              (autre celui du joueur actuel)
-     * @param int $next_attack_hour L'heure de la prochaine attaque
      * 
      * @return string   Le HTML de la case
      */
-    private function hexagonal_zone($col, $row, $cell, $is_player_in_zone, $player_pseudo, $fellow_pseudo, $next_attack_hour)
+    private function hexagonal_zone($col, $row, $cell, $is_player_in_zone, $player_pseudo, $fellow_pseudo)
     {
         
         $coords         = $col.'_'.$row;
-        $horde          = '';
         $has_items      = '';
         // Important : la cellule doit toujours avoir un contenu, même 
         // un simple espace, sinon décalages si la cellule contient ou non 
@@ -88,16 +89,8 @@ class HtmlMap
         $bubble         = '';
         $bubble_zombies = '';
         $bubble_items   = '';
-
-
-        if ($row === $next_attack_hour) {
-
-            $horde = '    <span class="horde" title="Une horde ravageuse est en train de progresser vers le sud ! '
-                . 'Restez à distance ou vous mourrez...">'
-                . '<span>&#9760;</span>'
-                . "</span>\n";
-        }
-
+        
+        
         if ($is_player_in_zone === true) {
 
             // Mise en valeur du joueur actuel sur la carte
@@ -184,7 +177,6 @@ class HtmlMap
                     // Le onclick est nécessaire sur mobile (pas de notion de survol)
                     . 'onclick="toggle(\'bubble_'.$coords.'\')">
                     <div class="square_container">'
-                        . $horde 
                         . $cell_content . '
                         <div id="bubble_'.$coords.'" class="bubble">
                             [Zone '.$col.':'.$row.']'
@@ -197,6 +189,33 @@ class HtmlMap
                 </div>';
     }
     
+    
+    /**
+     * Draws the hurd line on the map (red triangles)
+     * 
+     * @param int $row The number of the current line of the map
+     * @param int $next_attack_hour 
+     * @return string HTML
+     */
+    private function html_hurd($nbr_cols, $row, $next_attack_hour)
+    {
+        
+        $result = '';
+        if ($row === $next_attack_hour) {
+            
+            $triangles = '';
+            for ($i=0; $i<$nbr_cols; $i++) {
+                $triangles .= '<span class="icon">&#9760;</span>'
+                            . '<span class="triangle"></span>';
+            }
+            
+            $result .= '<div class="hurd" title="Une horde ravageuse est en train de progresser vers le sud ! '
+                                              . 'Restez à distance ou vous mourrez...">'
+                    . $triangles . "</div>\n";
+        }
+        
+        return $result;
+    }
     
     /**
      * Calcule le coefficient d'opacité CSS (opacity) d'une case.
