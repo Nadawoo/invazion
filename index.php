@@ -90,7 +90,7 @@ if ($api->user_seems_connected() === true) {
     $citizen_pseudo = $token['citizen_pseudo'];
     
     // Récupère les données du joueur
-    $api_me = $api->get_me();
+    $api_me = $api->call_api('me', 'get');
     
     // Si erreur dans les données, on considère le joueur n'a pas de citoyen
     if ($api_me['metas']['error_code'] !== 'success') {
@@ -100,10 +100,10 @@ if ($api->user_seems_connected() === true) {
     }
 }
 // Récupère les données de jeu en appelant les API
-$citizens           = $api->get_citizens($map_id)['datas'];
+$citizens           = $api->call_api('citizens', 'get', ['map_id'=>$map_id])['datas'];
 $citizens_by_coord  = sort_citizens_by_coord($citizens);
-$get_map            = $api->get_map($map_id);
-$configs            = $api->get_config()['datas'];
+$get_map            = $api->call_api('maps', 'get', ['map_id'=>$map_id]);
+$configs            = $api->call_api('configs', 'get')['datas'];
 $specialities       = $configs['specialities'];
 $map_cols           = $get_map['datas']['map_width'];
 $map_rows           = $get_map['datas']['map_height'];
@@ -126,7 +126,7 @@ if ($citizen_id !== NULL) {
     // de cette ville (puits, chantiers...)
     if ($zone['city_id'] !== NULL) {
         
-        $city_data = $api->get_city($zone['city_id'])['datas'];
+        $city_data    = $api->call_api('cities', 'get', ['city_id'=>$zone['city_id']])['datas'];
         $city_fellows = filter_citizens_by_city($zone_citizens, $zone['city_id']);
     }
 }
