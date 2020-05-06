@@ -83,10 +83,12 @@ if ($action_post !== null) {
 if ($api->user_seems_connected() === true) {
     
     $token          = $api->get_token_data()['data'];
-    $map_id         = $token['map_id'];
     $user_id        = $token['user_id'];
     $citizen_id     = $token['citizen_id'];
     $citizen_pseudo = $token['citizen_pseudo'];
+    // Récupère l'id de la carte où se trouve le citoyen. Si citoyen pas encore créé,
+    // on garde la carte par défaut
+    $map_id         = ($token['map_id'] === NULL) ? $map_id : $token['map_id'];
     
     // Récupère les données du joueur
     $api_me = $api->call_api('me', 'get');
