@@ -23,11 +23,11 @@
     opacity: 1;
 }
 .popup {
-    max-width: 28em;
-    max-height:70%;
+    max-width: 30em;
+    max-height:75%;
     overflow: auto;
     margin: 5% auto;
-    padding: 20px;
+    padding: 1em 0.5em;
     background: #fff;
     border-radius: 5px;
     position: relative;
@@ -46,8 +46,8 @@
 }
 .popup .close {
     position: absolute;
-    top: 20px;
-    right: 30px;
+    top: 0.5em;
+    right: 1em;
     transition: all 200ms;
     font-size: 30px;
     font-weight: bold;
@@ -73,4 +73,33 @@
     font-size:0.95em;
     font-style: italic;
     margin-top:0;
+}
+
+/*
+ * Texte présenté avec des icônes d'étapes (icônes reliées par une ligne verticale)
+ */
+.popup .stageblock {
+    display:flex;
+    margin-left:1em;
+/*    border-left:3px solid lightgrey;*/
+}
+.popup .stageicon {
+    height:1.4em;
+    min-width:1.3em;
+    padding:0.2em;
+    padding-top:0;
+    font-size:1em;
+    text-align:center;
+    background:white;
+/*    border:2px solid lightgrey;*/
+    border-radius:1em;
+    z-index:20;
+}
+.popup .stagetext {
+    padding:0.1em 0 1em 0.2em;
+}
+.popup .stagetext, .popup .stageicon {
+    /*Force l'icône à se placer devant le trait vertical du bloc texte*/
+    position:relative;
+    left:-1em;
 }

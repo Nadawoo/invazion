@@ -136,25 +136,40 @@ class HtmlPopup
     private function popcontrol()
     {
         
-        return "<p>&#x1F465; Plus les citoyens sont nombreux dans votre zone, plus vous disposez 
-                de <strong>points de contrôle</strong> pour contenir les zombies.
-                <strong>Sortez groupés</strong> pour éviter les mésaventures...
-            </p>
-            <hr/>
-            <p>&#x26A0;&#xFE0F; Si la somme des points de contrôle des zombies devient supérieure 
-                à celle des humains, <strong>vous ne pouvez plus quitter la zone !</strong>
-            <p>
-            <ul>
-                <li>• Chaque humain vaut 10 points</li>
-                <li>• Chaque zombie vaut 1 point.</li>
-            </ul>
-            <hr/>
-            <p>&#x270A;&#x1F3FC; <strong>Si vous êtes bloqué</strong>, reprenez votre liberté en inversant le rapport de forces :</p>
-            <ul>
-                <li>• soit en demandant à <strong>d'autres joueurs</strong> de vous rejoindre dans la zone 
-                (augmentera le contrôle des humains) ;</li>
-                <li>• soit en <strong>tuant des zombies</strong>
-                (réduira le contrôle des zombies).</li>
-            </ul>";
+        return "
+            <div class=\"stageblock\">
+                <div class=\"stageicon\">&#x1F465;</div>
+                <div class=\"stagetext\">
+                    Plus les citoyens sont nombreux dans votre zone, plus vous disposez 
+                    de <strong>points de contrôle</strong> pour contenir les zombies.
+                    <strong>Sortez groupés</strong> pour éviter les mésaventures...
+                    <hr>
+                </div>
+            </div>
+            <div class=\"stageblock\">
+                <div class=\"stageicon\">&#x26A0;&#xFE0F;</div>
+                <div class=\"stagetext\">
+                    Si la somme des points de contrôle des zombies devient supérieure 
+                    à celle des humains, <strong>vous ne pouvez plus quitter la zone !</strong>
+                    <ul>
+                        <li>• Chaque humain vaut 10 points</li>
+                        <li>• Chaque zombie vaut 1 point.</li>
+                    </ul>
+                    <hr>
+                </div>
+            </div>
+            
+            <div class=\"stageblock\">
+                <div class=\"stageicon\">&#x270A;&#x1F3FC;</div>
+                <div class=\"stagetext\">
+                    <strong>Si vous êtes bloqué</strong>, reprenez votre liberté en inversant le rapport de forces :
+                    <ul>
+                        <li>• soit en demandant à <strong>d'autres joueurs</strong> de vous rejoindre dans la zone 
+                        (augmentera le contrôle des humains) ;</li>
+                        <li>• soit en <strong>tuant des zombies</strong>
+                        (réduira le contrôle des zombies).</li>
+                    </ul>
+                </div>
+            </div>";
     }
 }
