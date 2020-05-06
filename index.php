@@ -20,7 +20,6 @@ $map_id = 1;
 $api_name        = filter_input(INPUT_POST, 'api_name', FILTER_SANITIZE_STRING);
 $action_post     = filter_input(INPUT_POST, 'action',   FILTER_SANITIZE_STRING);
 $params_post     = filter_input(INPUT_POST, 'params',   FILTER_SANITIZE_STRING, FILTER_REQUIRE_ARRAY);
-$pseudo          = filter_input(INPUT_POST, 'pseudo',   FILTER_SANITIZE_STRING);
 
 $api                = new ZombLib(official_server_root().'/api');
 $html               = new BuildHtml();
@@ -54,7 +53,7 @@ if ($action_post !== null) {
     // Non-standard action of the ZombLib (base64 encoding made by the lib)
     if ($action_post === 'create_citizen') {
 
-        $api_result = $api->create_citizen($pseudo);
+        $api_result = $api->create_citizen($params_post['pseudo']);
         $msg_popup  = '<p>'.nl2br($api_result['metas']['error_message']).'</p>';
     }
     // Actions standardized with the call_api() method of the ZombLib

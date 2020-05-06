@@ -78,7 +78,7 @@ class BuildHtml extends HtmlPage
                 <form method="post" action="#popsuccess">
                     Nom de mon citoyen&nbsp;:
                     <input type="hidden" name="action" value="create_citizen"><br>
-                    <input type="text" name="pseudo"><br>
+                    <input type="text" name="params[pseudo]"><br>
                     <input type="submit" value="Valider">
                 </form>
             </div>';
