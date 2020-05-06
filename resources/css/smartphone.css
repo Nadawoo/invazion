@@ -5,9 +5,13 @@
 #phone {
     position:relative;
     float:right;
+    cursor:default;
     border:3px solid black;
     border-bottom:1.3em solid black;
     border-radius:0.7em;
+}
+#phone ::selection {
+    background-color:transparent;
 }
 #phone .title {
     background:black;
