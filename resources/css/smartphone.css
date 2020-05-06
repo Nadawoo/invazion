@@ -98,16 +98,17 @@
 /* Notification à l'écran du smartphone */
 #phone .notif {
     position:absolute;
-    bottom:1em;
+    bottom:1.5em;
     width:100%;
     height:2.5em;
     background:white;
-    border-radius:0.3em;
     text-align:center;
     color:darkred;
     font-size:0.7em;
+    /* Empêche le texte de déborder lorsque l'animation réduit la hauteur de la notif */
+    overflow:hidden;
     
-    animation: fadeout 3s; /* La notif disparaît progressivement */
+    animation: fadeout 1s; /* La notif disparaît progressivement */
     animation-delay: 2s;
     animation-fill-mode: forwards; /* Empêche de réapparaître après disparition */
 }
@@ -119,6 +120,5 @@
 }
 /* Effet de disparition progressif pour les notifications */
 @keyframes fadeout {
-   0% {opacity: 1;}
-   100% {opacity: 0;} 
+   100% {opacity:0;height:0;} 
 } 

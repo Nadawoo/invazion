@@ -124,7 +124,7 @@ function smartphone($map_cols, $map_rows, $citizen, $speciality, $zone)
                 </div>
                 
                 <div id="zone" class="screen blocktext" style="'.$background.'">
-                <a href="#popcontrol" style="color:inherit">
+                <a href="#popcontrol" style="display:block;color:inherit;">
                     <h4 style="margin-top:0">Contrôle zone</h4>
                     <div style="color:lightgreen;margin:0.2em 0">
                         <div style="font-variant:small-caps">Humains</div>
@@ -138,7 +138,7 @@ function smartphone($map_cols, $map_rows, $citizen, $speciality, $zone)
                     '.$control.'
                     ('.signed_int($cp_diff).' pts)
                      
-                    <div style="margin-top:1em;color:#90a4ae">
+                    <div style="margin-top:2em;color:#90a4ae">
                         Aide
                     </div>
                 </a>
