@@ -152,7 +152,7 @@ echo $html->page_header();
 // Textes des pop-up
 // TODO : ne pas charger toutes les textes dans le code, seulement celui utile
 echo $popup->predefined('popvault',   '');
-echo $popup->predefined('popwounded', '', ['citizen_id'=>$citizen_id]);
+echo $popup->predefined('popwounded', '', ['citizen_id'=>$citizen_id, 'item_id'=>501, 'item_name'=>'Bandage']);
 echo $popup->predefined('popcontrol', 'Contrôle de zone');
 
 // Pop-up générique indiquant le résultat d'une action

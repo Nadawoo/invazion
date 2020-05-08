@@ -350,10 +350,10 @@ class HtmlButtons
      * Retourne le bouton pour soigner un citoyen
      * 
      * @param int    $target_id     L'id du citoyen à soigner
-     * @param string $target_pseudo Le nom du citoyen à soigner
+     * @param int    $item_id       L'id de l'objet à utiliser pour se soigner (bandage...)
      * @return string
      */
-    function heal_citizen($target_id, $target_pseudo, $show_icon=true, $text='default')
+    function heal_citizen($target_id, $item_id, $show_icon=true, $text='default')
     {
         
         $button = $this->buttons['heal_citizen'];
@@ -364,6 +364,7 @@ class HtmlButtons
         '<form method="post" action="#popsuccess" style="display:inline">
             <input type="hidden" name="api_name" value="me">
             <input type="hidden" name="action" value="heal">
+            <input type="hidden" name="params[item_id]" value="'.$item_id.'">
             <input type="hidden" name="params[target_id]" value="'.$target_id.'">
             <input type="submit" value="'.$icon.$text.'" title="'.$button['title'].'" style="min-width:auto">
         </form>';

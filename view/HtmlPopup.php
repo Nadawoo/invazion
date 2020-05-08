@@ -125,7 +125,7 @@ class HtmlPopup
             <p>Vous êtes blessé ! Vous risquez de mourir 
             si vous ne vous soignez pas...</p>
             <ul>
-                <li>' . $buttons->heal_citizen($params['citizen_id'], null, true, 'Me soigner avec un bandage'). '</li>
+                <li>' . $buttons->heal_citizen($params['citizen_id'], $params['item_id'], true, 'Me soigner avec '.$params['item_name']). '</li>
             </ul>';
     }
     
