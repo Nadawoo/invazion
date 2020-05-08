@@ -120,12 +120,24 @@ class HtmlPopup
         
         $buttons = new HtmlButtons();
         
+        if (empty($params['healing_items'])) {
+            $html_healing = '<li><em>Votre sac ne contient aucun objet permettant de vous soigner pour le moment. 
+                             Vous pourriez en trouver en explorant le désert...</em></li>';
+        }
+        else {
+            $html_healing = '';
+            foreach ($params['healing_items'] as $item_id=>$caracs) {
+                 $html_healing .= '<li>'.$buttons->heal_citizen($params['citizen_id'], $item_id, true, 
+                                                                'Me soigner avec '.$caracs['name']). '</li>';
+            }
+        }
+        
         return '<p class="rp">Une vilaine plaie ouverte parcourt votre cuisse droite, 
             ce n\'est pas beau à voir. La septicémie vous guette...</p>
             <p>Vous êtes blessé ! Vous risquez de mourir 
             si vous ne vous soignez pas...</p>
             <ul>
-                <li>' . $buttons->heal_citizen($params['citizen_id'], $params['item_id'], true, 'Me soigner avec '.$params['item_name']). '</li>
+                ' . $html_healing. '
             </ul>';
     }
     

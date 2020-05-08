@@ -11,6 +11,7 @@ safely_require('view/smartphone.php');
 safely_require('controller/official_server_root.php');
 safely_require('controller/sort_citizens_by_coord.php');
 safely_require('controller/filter_citizens_by_city.php');
+safely_require('controller/filter_bag_items.php');
 safely_require('ZombLib.php');
 
 
@@ -36,6 +37,7 @@ $city_data          = NULL;
 $city_fellows       = NULL;
 $msg_popup          = NULL;
 $zone_citizens      = [];
+$healing_items      = [];
 $html_actions       = '';
 $html_actions_bag   = '';
 $html_zone_items    = '';
@@ -116,6 +118,7 @@ if ($citizen_id !== NULL) {
     $citizen            = $api_me['datas'];
     $zone_citizens      = $citizens_by_coord[$citizen['coord_x'].'_'.$citizen['coord_y']];
     $zone               = $get_map['datas']['zones'][$citizen['coord_x'].'_'.$citizen['coord_y']];
+    $healing_items      = filter_bag_items('healing_wound', $configs['items'], $citizen['bag_items']);
     
     $html_zone_items    = $html->block_zone_items($configs['items'], $zone, $citizen['citizen_id']);
     $html_bag_items     = $html->block_bag_items($configs['items'], $citizen_id, $citizen['bag_items'], $citizen['bag_size']);
@@ -152,7 +155,7 @@ echo $html->page_header();
 // Textes des pop-up
 // TODO : ne pas charger toutes les textes dans le code, seulement celui utile
 echo $popup->predefined('popvault',   '');
-echo $popup->predefined('popwounded', '', ['citizen_id'=>$citizen_id, 'item_id'=>501, 'item_name'=>'Bandage']);
+echo $popup->predefined('popwounded', '', ['citizen_id'=>$citizen_id, 'healing_items'=>$healing_items]);
 echo $popup->predefined('popcontrol', 'Contrôle de zone');
 
 // Pop-up générique indiquant le résultat d'une action
