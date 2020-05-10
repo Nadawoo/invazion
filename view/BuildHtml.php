@@ -372,7 +372,10 @@ class BuildHtml extends HtmlPage
         foreach ($bag_items as $id=>$amount) {
             
             if ($items_caracs[$id]['ap_gain'] > 0) {
-                $html_items .= '<li>'.$buttons->item_eat($id, $items_caracs[$id]['name']).'</li>';
+                $html_items .= '<li>'.$buttons->use_item('eat', $id, $items_caracs[$id]['name']).'</li>';
+            }
+            elseif ($items_caracs[$id]['healing_wound'] > 0) {
+                $html_items .= '<li>'.$buttons->use_item('heal', $id, $items_caracs[$id]['name']).'</li>';
             }
         }
         
@@ -380,7 +383,6 @@ class BuildHtml extends HtmlPage
                 &#128188; <strong>Utiliser un objet de mon sac :</strong>
                 <ul>
                     '.$html_items.'
-                    <li><span style="font-variant:small-caps">Me soigner avec</span> Bandage</li>
                     <li><span style="font-variant:small-caps">Attaquer avec</span> Cutter</li>
                 </ul>
             </div>';

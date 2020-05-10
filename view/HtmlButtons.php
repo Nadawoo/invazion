@@ -18,6 +18,16 @@ class HtmlButtons
                 'name'  => 'Fouiller la zone',
                 'title' => ''
                 ],
+            'eat' => [
+                'icon'  => '',
+                'name'  => 'Consommer',
+                'title' => "",
+                ],
+            'heal' => [
+                'icon'  => '',
+                'name'  => 'Me soigner avec',
+                'title' => "",
+                ],
             'add_vault' => [
                 'icon'  => '&#9961;&#65039;',
                 'name'  => 'Chercher une crypte',
@@ -115,6 +125,14 @@ class HtmlButtons
         
         // Hidden fields linked to the buttons (parameters to call the APIs)
         $this->fields = [
+            'eat' => [
+                'api_name'      => 'me',
+                'action'        => 'eat'
+                ],
+            'heal' => [
+                'api_name'      => 'me',
+                'action'        => 'heal'
+                ],
             'add_vault' => [
                 'api_name'      => 'zone',
                 'action'        => 'add',
@@ -215,6 +233,34 @@ class HtmlButtons
         .'</form>';
     }
     
+    
+    /**
+     * Generates a button to use an item (drink water, heal with bandage...)
+     * Distinct from the standard method $this->button because :
+     * - the content of the field item_id is variable
+     * - the name of the button contains a variable element (the name of the item)
+     * 
+     * @param string $button_alias  The alias of the action button.
+     *                              Must exist in $this->fields and $this->buttons
+     * @param int    $item_id   The ID of the iem to use (ex : 501)
+     * @param string $item_name The name of the item to display (ex : Bandage")
+     * 
+     * @return string HTML
+     */
+    function use_item($button_alias, $item_id, $item_name)
+    {
+        
+        $button = $this->buttons[$button_alias];
+        $fields = $this->fields[$button_alias];
+        
+        return
+        '<form method="post" action="#popsuccess" class="formlink">
+            <input type="hidden" name="api_name" value="'.$fields['api_name'].'">
+            <input type="hidden" name="action" value="'.$fields['action'].'">
+            <input type="hidden" name="params[item_id]" value="'.$item_id.'">
+            <input type="submit" value="'.$button['name'].' '.$item_name.'" />
+        </form>';
+    }
     
     
     /**
@@ -407,27 +453,7 @@ class HtmlButtons
             &#x1F6E0;&#xFE0F; <input type="submit" class="as_link" value="Participer au chantier [1pa]">
         </form>';
     }
-    
-    
-    /**
-     * Bouton pour consommer un objet (eau, nourriture...)
-     * 
-     * @param int    $item_id   L'id de l'objet
-     * @param string $item_name Le nom de l'objet à afficher
-     * @return string HTML
-     */
-    function item_eat($item_id, $item_name)
-    {
         
-        return
-        '<form method="post" action="#popsuccess" class="formlink">
-            <input type="hidden" name="api_name" value="me">
-            <input type="hidden" name="action" value="eat">
-            <input type="hidden" name="params[item_id]" value="'.$item_id.'">
-            <input type="submit" value="Consommer '.$item_name.'" />
-        </form>';
-    }
-    
     
     /**
      * Retourne le bouton pour créer un compte
