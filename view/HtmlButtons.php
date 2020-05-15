@@ -11,52 +11,94 @@ class HtmlButtons
     function __construct()
     {
         
-        // Visible labels and icons for the buttons 
+        // Visible labels and icons for the buttons.
+        // The "fields" key contains the parameters to call the API (in hidden fields)
         $this->buttons = [
             'dig' => [
                 'icon'  => '&#x26CF;&#xFE0F;',
                 'name'  => 'Fouiller la zone',
-                'title' => ''
+                'title' => '',
+                'fields' => [
+                    'api_name'      => 'zone',
+                    'action'        => 'dig'
+                    ],
                 ],
             'eat' => [
                 'icon'  => '',
                 'name'  => 'Consommer',
                 'title' => "",
+                'fields' => [
+                    'api_name'      => 'me',
+                    'action'        => 'eat'
+                    ]
                 ],
             'fight' => [
                 'icon'  => '',
                 'name'  => 'Attaquer avec',
                 'title' => "",
+                'fields' => [
+                    'api_name'      => 'zone',
+                    'action'        => 'fight'
+                    ],
                 ],
             'heal' => [
                 'icon'  => '',
                 'name'  => 'Me soigner avec',
                 'title' => "",
+                'fields' => [
+                    'api_name'      => 'me',
+                    'action'        => 'heal'
+                    ],
                 ],
             'add_vault' => [
                 'icon'  => '&#9961;&#65039;',
                 'name'  => 'Chercher une crypte',
                 'title' => "Trouver une crypte peut servir vos intérêts mais aussi causer votre perte... ou celle de vos amis.",
+                'fields' => [
+                    'api_name'      => 'zone',
+                    'action'        => 'add',
+                    'params[stuff]' => 'vault'
+                    ],
                 ],
             'add_map_zombies' => [
                 'icon'  => '',
                 'name'  => 'Ajouter des zombies sur toute la carte',
                 'title' => "",
+                'fields' => [
+                    'api_name'      => 'zone',
+                    'action'        => 'add',
+                    'params[stuff]' => 'zombies',
+                    ],
                 ],
             'add_mass_zombies' => [
                 'icon'  => '',
                 'name'  => 'Ajouter des zombies sur toute la carte',
                 'title' => "Bouton spécial béta-test",
+                'fields' => [
+                    'api_name'           => 'zone',
+                    'action'             => 'add',
+                    'params[stuff]'      => 'zombies',
+                    'params[conditions]' => 'noconditions'
+                    ],
                 ],
             'reveal_zones' => [
                 'icon'  => '',
                 'name'  => 'Dévoiler 10 zones de la carte',
                 'title' => "",
+                'fields' => [
+                    'api_name'          => 'zone',
+                    'action'            => 'reveal',
+                    'params[stuff]'     => 'random7',
+                    ],
                 ],
             'enter_city' => [
                 'icon'  => '',
                 'name'  => 'Entrer en ville !',
                 'title' => "Vous êtes aux portes d'une ville ! Si vous y entrez vous serez protégé des zombies... provisoirement.",
+                'fields' => [
+                    'api_name'          => 'city',
+                    'action'            => 'go_inout'
+                    ],
                 ],
             'attack_tent' => [
                 'icon'  => '',
@@ -90,6 +132,11 @@ class HtmlButtons
                 'icon'  => '&#9978;',
                 'name'  => 'Planter ma tente',
                 'title' => "Une tente vous protègerait de la rigueur du désert.",
+                'fields' => [
+                    'api_name'          => 'city',
+                    'action'            => 'build',
+                    'params[city_size]' => 1,
+                    ],
                 ],
             'build_city' => [
                 'icon'  => '&#x1F307;',
@@ -100,108 +147,58 @@ class HtmlButtons
                 'icon'  => '',
                 'name'  => 'Sortir de la ville',
                 'title' => "Dans les villes, vous êtes protégé des zombies... provisoirement.",
+                'fields' => [
+                    'api_name'      => 'city',
+                    'action'        => 'go_inout'
+                    ],
                 ],
             'open_door' => [
                 'icon'  => '',
                 'name'  => 'Ouvrir les portes !',
                 'title' => "",
+                'fields' => [
+                    'api_name'      => 'city',
+                    'action'        => 'open_door'
+                    ],
                 ],
             'close_door' => [
                 'icon'  => '',
                 'name'  => 'Fermer les portes !',
                 'title' => "",
+                'fields' => [
+                    'api_name'      => 'city',
+                    'action'        => 'close_door'
+                    ],
                 ],
             'specialize_digger' => [
                 'icon'  => '',
                 'name'  => 'Fouineur',
                 'title' => "",
+                'fields' => [
+                    'api_name'      => 'me',
+                    'action'        => 'specialize',
+                    'params[type]'  => 'digger',
+                    ],
                 ],
             'specialize_explorer' => [
                 'icon'  => '',
                 'name'  => 'Explorateur',
                 'title' => "",
+                'fields' => [
+                    'api_name'      => 'me',
+                    'action'        => 'specialize',
+                    'params[type]'  => 'explorer',
+                    ],
                 ],
             'specialize_builder' => [
                 'icon'  => '',
                 'name'  => 'Bâtisseur',
                 'title' => "",
-                ],
-        ];
-        
-        // Hidden fields linked to the buttons (parameters to call the APIs)
-        $this->fields = [
-            'eat' => [
-                'api_name'      => 'me',
-                'action'        => 'eat'
-                ],
-            'heal' => [
-                'api_name'      => 'me',
-                'action'        => 'heal'
-                ],
-            'fight' => [
-                'api_name'      => 'zone',
-                'action'        => 'fight'
-                ],
-            'add_vault' => [
-                'api_name'      => 'zone',
-                'action'        => 'add',
-                'params[stuff]' => 'vault'
-                ],
-            'add_map_zombies' => [
-                'api_name'          => 'zone',
-                'action'            => 'add',
-                'params[stuff]'     => 'zombies',
-                ],
-            'add_mass_zombies' => [
-                'api_name'          => 'zone',
-                'action'            => 'add',
-                'params[stuff]'     => 'zombies',
-                'params[conditions]'=> 'noconditions'
-                ],
-            'reveal_zones' => [
-                'api_name'          => 'zone',
-                'action'            => 'reveal',
-                'params[stuff]'     => 'random7',
-                ],
-            'dig' => [
-                'api_name'      => 'zone',
-                'action'        => 'dig'
-                ],
-            'enter_city' => [
-                'api_name'      => 'city',
-                'action'        => 'go_inout'
-                ],
-            'get_out_city' => [
-                'api_name'      => 'city',
-                'action'        => 'go_inout'
-                ],
-            'open_door' => [
-                'api_name'      => 'city',
-                'action'        => 'open_door'
-                ],
-            'close_door' => [
-                'api_name'      => 'city',
-                'action'        => 'close_door'
-                ],
-            'build_tent' => [
-                'api_name'          => 'city',
-                'action'            => 'build',
-                'params[city_size]' => 1,
-                ],
-            'specialize_digger' => [
-                'api_name'          => 'me',
-                'action'            => 'specialize',
-                'params[type]'      => 'digger',
-                ],
-            'specialize_explorer' => [
-                'api_name'          => 'me',
-                'action'            => 'specialize',
-                'params[type]'      => 'explorer',
-                ],
-            'specialize_builder' => [
-                'api_name'          => 'me',
-                'action'            => 'specialize',
-                'params[type]'      => 'builder',
+                'fields' => [
+                    'api_name'      => 'me',
+                    'action'        => 'specialize',
+                    'params[type]'  => 'builder',
+                    ],
                 ],
         ];
     }
@@ -213,8 +210,7 @@ class HtmlButtons
      * - no variable parameter
      * - result displayed in pop-up (#popsucess)
      * 
-     * @param string $button_alias  The alias of the action button.
-     *                              Must exist in $this->fields and $this->buttons
+     * @param string $button_alias  The alias of the action button. Must exist in $this->buttons
      * @param bool   $show_icon Set at 'no_icon' to display the button without its icon.
      *                          Any other value will display the icon.
      * @param string $class Set at 'formlink' to display the button like an simple link
@@ -229,7 +225,7 @@ class HtmlButtons
         
         // Generates the hidden fields for the HTML form
         $hidden_fields = '';
-        foreach ($this->fields[$button_alias] as $fieldname=>$fieldval) {
+        foreach ($button['fields'] as $fieldname=>$fieldval) {
             
             $hidden_fields.= '<input type="hidden" name="'.$fieldname.'" value="'.$fieldval.'">';
         }
@@ -249,8 +245,7 @@ class HtmlButtons
      * - the content of the field item_id is variable
      * - the name of the button contains a variable element (the name of the item)
      * 
-     * @param string $button_alias  The alias of the action button.
-     *                              Must exist in $this->fields and $this->buttons
+     * @param string $button_alias  The alias of the action button. Must exist in $this->buttons
      * @param int    $item_id   The ID of the iem to use (ex : 501)
      * @param string $item_name The name of the item to display (ex : Bandage")
      * 
@@ -260,7 +255,7 @@ class HtmlButtons
     {
         
         $button = $this->buttons[$button_alias];
-        $fields = $this->fields[$button_alias];
+        $fields = $button['fields'];
         
         return
         '<form method="post" action="#popsuccess" class="formlink">
