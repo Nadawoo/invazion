@@ -23,6 +23,11 @@ class HtmlButtons
                 'name'  => 'Consommer',
                 'title' => "",
                 ],
+            'fight' => [
+                'icon'  => '',
+                'name'  => 'Attaquer avec',
+                'title' => "",
+                ],
             'heal' => [
                 'icon'  => '',
                 'name'  => 'Me soigner avec',
@@ -132,6 +137,10 @@ class HtmlButtons
             'heal' => [
                 'api_name'      => 'me',
                 'action'        => 'heal'
+                ],
+            'fight' => [
+                'api_name'      => 'zone',
+                'action'        => 'fight'
                 ],
             'add_vault' => [
                 'api_name'      => 'zone',
