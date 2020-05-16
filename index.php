@@ -34,8 +34,7 @@ $citizen_id         = NULL;
 $citizen_pseudo     = NULL;
 $citizen            = NULL;
 $city_data          = NULL;
-$city_fellows       = NULL;
-$msg_popup          = NULL;
+$city_fellows       = [];
 $zone_citizens      = [];
 $healing_items      = [];
 $html_actions       = '';
@@ -43,6 +42,7 @@ $html_actions_bag   = '';
 $html_zone_items    = '';
 $html_bag_items     = '';
 $html_zone_citizens = '';
+$msg_popup          = NULL;
 $msg_move           = '';
 $msg_build          = '';
 
@@ -128,9 +128,8 @@ if ($citizen_id !== NULL) {
     $html_actions       = $html->block_actions($zone['city_size']);
     $html_actions_bag   = $html->block_actions_bag($configs['items'], $citizen['bag_items']);
     
-    // Si une ville se trouve sur la case du citoyen, on récupère les caractéristiques 
-    // de cette ville (puits, chantiers...)
-    if ($zone['city_id'] !== NULL) {
+    // If the citizen is inside a city, we get its characteristics (bank, well...)
+    if ($citizen['is_inside_city'] === 1) {
         
         $city_data    = $api->call_api('cities', 'get', ['city_id'=>$zone['city_id']])['datas'];
         $city_fellows = filter_citizens_by_city($zone_citizens, $zone['city_id']);
@@ -205,7 +204,7 @@ echo $popup->customised('popsuccess', '', nl2br($msg_popup));
     <?php
     // Si le citoyen est dans une ville, affiche l'enceinte de la ville
     // (puits, banque, chantiers...) par-dessus la carte 
-    if ($citizen['city_id'] !== NULL AND $citizen['city_id'] !== 0) {
+    if ($citizen['is_inside_city'] === 1) {
         
         echo '
             <div id="city_container">
