@@ -65,7 +65,7 @@ if ($action_post !== null) {
         $api_result = $api->call_api($api_name, $action_post, $params_post);
         
         if (in_array($action_post, ['move', 'drop', 'pickup', 'bigfight'])
-            or ($action_post === 'fight' and isset($param['item_id']))
+            or ($action_post === 'fight' and !isset($params_post['item_id']))
             ) {
             // The result of these actions is displayed under the movement paddle
             $msg_move  = '<span class="'.$api_result['metas']['error_class'].'">'.$api_result['metas']['error_message'].'</span>';
