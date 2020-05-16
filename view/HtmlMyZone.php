@@ -122,7 +122,7 @@ class HtmlMyzone
             <div style="font-size:2.5em">&#9978;</div>
             <div style="font-size:0.8em;font-style:italic">Une tente abri de fortune a été plantée ici.</div>
             '. $buttons->button('enter_city')
-             . $buttons->attack_tent('no_icon');
+             . $buttons->button('attack_tent', 'no_icon');
     }
     
     

@@ -101,9 +101,13 @@ class HtmlButtons
                     ],
                 ],
             'attack_tent' => [
-                'icon'  => '',
+                'icon'  => '&#10060;',
                 'name'  => 'Détruire cette tente !',
                 'title' => "Un citoyen a planté sa tente ici. Vous avez l'opportunité de la détruire...",
+                'fields' => [
+                    'api_name'      => 'city',
+                    'action'        => 'attack'
+                    ],
                 ],
             'attack_citizen' => [
                 'icon'  => '&#128074;&#127995;',
@@ -205,7 +209,7 @@ class HtmlButtons
     
     
     /**
-     * Generates a genric action button, ie :
+     * Generates a generic action button, ie :
      * - destinated to send data to a game API
      * - no variable parameter
      * - result displayed in pop-up (#popsucess)
@@ -349,26 +353,6 @@ class HtmlButtons
             <input type="hidden" name="api_name" value="zone">
             <input type="hidden" name="action" value="bigfight">
             <input type="submit" value="'.$button['name'].'" class="'.$class.'"  title="'.$title.'">
-        </form>';
-    }
-    
-    
-    /**
-     * Retourne le bouton pour détruire une tente
-     * 
-     * @return string
-     */
-    function attack_tent($show_icon=true)
-    {
-        
-        $button = $this->buttons['attack_tent'];
-        $icon = ($show_icon === 'no_icon') ? '' : '&nbsp;<span style="font-size:1.2em">X</span>&nbsp;&nbsp;';
-        
-        return
-        '<form method="post" action="#popsuccess">
-            <input type="hidden" name="api_name" value="city">
-            <input type="hidden" name="action" value="attack">
-            '.$icon.' <input type="submit" value="'.$button['name'].'" title="'.$button['title'].'">
         </form>';
     }
     
