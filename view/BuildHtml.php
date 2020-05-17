@@ -327,27 +327,37 @@ class BuildHtml extends HtmlPage
         $buttons = new HtmlButtons;
         $table = '';
         
-        // If there is a tent or a city in the zone, display the button to enter.
-        if ($city_size > 0) {
+        // If there is a TENT in the zone, display the button to enter.
+        if ($city_size === 1) {
             
             $table .= '<tr>
-                <td>&#x1F5DD;&#xFE0F;</td> <td>'.$buttons->button('enter_city').'<td>
+                <td>&#9978;</td> <td>'.$buttons->button('enter_tent', 'no_icon').'</td>
+            </tr>
+            <tr>
+                <td>&#10060;</td> <td>'.$buttons->button('attack_tent', 'no_icon').'</td>
+            </tr>';
+        }
+        // If there is a CITY in the zone, display the button to enter.
+        elseif ($city_size > 0) {
+            
+            $table .= '<tr>
+                <td>&#x1F5DD;&#xFE0F;</td> <td>'.$buttons->button('enter_city', 'no_icon').'</td>
             </tr>';
         }
         else {
             
             $table .= '<tr>
-                <td>&#x26CF;&#xFE0F;</td> <td>'.$buttons->button('dig', 'no_icon').'<td>
+                <td>&#x26CF;&#xFE0F;</td> <td>'.$buttons->button('dig', 'no_icon').'</td>
             </tr>
             <tr>
-                <td>&#9961;&#65039;</td> <td>'.$buttons->button('add_vault', 'no_icon').'<td>
+                <td>&#9961;&#65039;</td> <td>'.$buttons->button('add_vault', 'no_icon').'</td>
             </tr>            
             <tr>
-                <td>&#9978;</td> <td>'.$buttons->button('build_tent', 'no_icon').'<td>
+                <td>&#9978;</td> <td>'.$buttons->button('build_tent', 'no_icon').'</td>
             </tr>
             <tr>
                 <td><img src="resources/img/city.png" alt="&#10224;"></td>
-                <td>'.$buttons->build_city('no_icon').'<td>
+                <td>'.$buttons->build_city('no_icon').'</td>
             </tr>';               
         }
                 

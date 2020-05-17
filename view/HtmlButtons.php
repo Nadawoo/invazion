@@ -100,6 +100,15 @@ class HtmlButtons
                     'action'            => 'go_inout'
                     ],
                 ],
+            'enter_tent' => [
+                'icon'  => '&#9978;',
+                'name'  => 'Entrer dans la tente',
+                'title' => "Une tente a été montée ici. Cet abri ne semble pas très solide mais vous protègera de la rigueur du désert.",
+                'fields' => [
+                    'api_name'          => 'city',
+                    'action'            => 'go_inout'
+                    ],
+                ],
             'attack_tent' => [
                 'icon'  => '&#10060;',
                 'name'  => 'Détruire cette tente !',
