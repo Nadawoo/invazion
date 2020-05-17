@@ -92,7 +92,7 @@ class HtmlButtons
                     ],
                 ],
             'enter_city' => [
-                'icon'  => '',
+                'icon'  => '&#x1F5DD;&#xFE0F;',
                 'name'  => 'Entrer en ville !',
                 'title' => "Vous êtes aux portes d'une ville ! Si vous y entrez vous serez protégé des zombies... provisoirement.",
                 'fields' => [
@@ -249,6 +249,21 @@ class HtmlButtons
             '.$hidden_fields.'
             '.$icon.'<input type="submit" value="'.$button['name'].'" title="'.$button['title'].'">'
         .'</form>';
+    }
+    
+    
+    /**
+     * Gets the icon for a button. Useful when icon and button are separated by HTML
+     * (e.g. to display the icon in a table cell and the button in another)
+     * 
+     * @param string $button_alias  The alias of the action button. Must exist in $this->buttons
+     * 
+     * @return string The unicode for the icon
+     */
+    function icon($button_alias)
+    {
+        
+        return $this->buttons[$button_alias]['icon'];
     }
     
     
