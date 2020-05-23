@@ -169,3 +169,96 @@
        La largeur réelle de la barre pour chaque ressource est calculée en PHP */
     max-width:100%;
 }
+
+
+
+/*
+ * Visual interface for the city (with big icons)
+ */
+#city_visual {
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-wrap:wrap;
+    width: 26em; /* Same width as the map */
+    background:black;
+    
+    border:1px solid black;
+}
+#city_visual>div {
+    display:flex;
+    align-items:center;
+    justify-content: center;
+    width: 7em;
+    height:7em;
+    text-align:center;
+    border-radius:50%;
+    background:#d7ccc8;
+    opacity:0.5;
+    box-sizing:border-box;
+}
+#city_visual>div:hover, #city_visual>div.selected {
+    opacity:1;
+    border:0.15em solid red;
+    cursor:pointer;
+}
+/* Name of the block (home, bank...) when the mous hovers the block */
+#city_visual>div .label {
+    display:none;
+    position:absolute;
+    padding:0 0.5em;
+    opacity:0.8;
+    width:10%;
+    border:1px solid black;
+    border-radius:2em;
+    background:lightgrey;
+    font-variant:small-caps;
+}
+#city_visual>div:hover .label {
+    display:block;
+}
+
+#city_visual .big_icon {
+    font-size:3em;
+}
+
+#city_visual .road {
+    height:2.2em;
+    width: 2.2em;
+    color:white;
+    background:none;
+}
+#city_visual .road_vertic {
+    height: 2.2em;
+    color:white;
+    background:none;
+}
+#city_visual .road_vertic img {
+    height:100%;
+}
+#city_visual .road:hover, #city_visual .road_vertic:hover {
+    border:none;
+}
+
+#city_visual .hidden {
+    visibility:hidden;
+}
+
+/* With one unique image of arrow (to down), we build 4 directions arrows by rotation */
+.arrow_left {
+    transform:rotate(90deg);
+}
+.arrow_right {
+    transform:rotate(-90deg);
+}
+
+/* Draws the well */
+#city_visual .well {
+    width:3em;
+    padding:0.4em 0.2em;
+    font-size:0.55em;
+    border:0.6em solid #455a64;
+    border-top:1px solid lightsteelblue;
+    border-radius:0 0 0.4em 0.4em;
+    background:lightblue;
+}

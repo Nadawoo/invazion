@@ -31,7 +31,7 @@ class HtmlPage
                 <link rel="stylesheet" type="text/css" href="resources/css/map.css?v2.1">
                 <link rel="stylesheet" type="text/css" href="resources/css/smartphone.css?v1.3">
                 <link rel="stylesheet" type="text/css" href="resources/css/myzone.css?v1.2">
-                <link rel="stylesheet" type="text/css" href="resources/css/city.css?v1.61">
+                <link rel="stylesheet" type="text/css" href="resources/css/city.css?v2">
                 <link rel="stylesheet" type="text/css" href="resources/css/popup.css?v1.5">
                 ' . $css_link . '
                 <title>InvaZion, le jeu de zombies</title>
