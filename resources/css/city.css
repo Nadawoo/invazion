@@ -181,8 +181,7 @@
     justify-content:center;
     flex-wrap:wrap;
     width: 26em; /* Same width as the map */
-    background:black;
-    
+    background:black;  
     border:1px solid black;
 }
 #city_visual>div {
@@ -202,7 +201,7 @@
     border:0.15em solid red;
     cursor:pointer;
 }
-/* Name of the block (home, bank...) when the mous hovers the block */
+/* Name of the block (home, bank...) when the mouse hovers the block */
 #city_visual>div .label {
     display:none;
     position:absolute;
@@ -262,3 +261,104 @@
     border-radius:0 0 0.4em 0.4em;
     background:lightblue;
 }
+
+
+
+/*
+ * Chat (instant messagerie) integrated in the different parts of the city 
+ * (constructions, bank...)
+ */
+#chat h2 {
+    text-align:center; /* Main title of the block */
+}
+#chat .contents {
+    text-align:left;
+}
+#chat nav {
+    font-size:0.8em;
+}
+
+/* To send a message */
+#chat textarea, #chat input[type="text"] {
+    width:98%;
+    border-radius:0.3em;
+    border:1px solid grey;
+}
+#chat textarea {
+    height:4em;
+}
+#chat input[type="submit"] {
+    width:100%;
+    padding:0.1em;
+    border:none;
+    background:#8b0000;
+    color:white;
+    border-radius:0.4em;
+    font-weight:bold;
+    font-variant: normal;
+    letter-spacing:0.03em;
+}
+#chat input[type="submit"]:hover {
+    background:#b03a2e;
+}
+
+/* Common presentation for discussions and events */
+#chat .topic {
+    margin:0.7em 0;
+    border-radius:0.3em;
+}
+#chat h3 { /* Topic title */
+    margin:0;
+    padding:0.1em 0;
+    color: white ;
+    border-radius:0.3em 0.3em 0 0;
+}
+#chat .message {
+    margin-top:0.2em;
+    padding:0.3em 0.2em;
+    background: #f6ddcc ;
+    border-radius:0.3em;
+}
+#chat .time {
+    font-size:0.7em;
+    color:grey;
+    cursor:help;
+}
+#chat .text {
+    font-size:0.9em;
+}
+
+/* Specific presentation for the discussions */
+#chat .discuss  {
+    background:#273746; /* #7b241c #34495e */
+    padding:0.1em;
+}
+#chat .discuss .time {
+    margin-left:2.1em;
+}
+#chat #send {
+    padding:0.1em;
+}
+#chat #send .message {
+    margin:0;
+}
+
+/* Specific presentation for the events */
+#chat .event  {
+    margin:0.7em 0;
+    padding:0.7em 0;
+    border-radius:0;
+    border-top: 1px solid grey;
+}
+#chat .event .message {
+    padding:0;
+    background:none;
+}
+#chat .comment .text {
+    margin-left:1.5em;
+    padding:0.2em;
+    background:#f6ddcc;
+    border-radius:0.3em;
+    font-size:0.8em;
+}
+

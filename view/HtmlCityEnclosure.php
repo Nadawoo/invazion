@@ -379,6 +379,99 @@ class HtmlCityEnclosure
                 <table style="margin:0">
                     '.$html_constructions.'
                 </table>
+            </div>
+            
+            <div id="chat" class="city_block">
+                <h2>Communications</h2>
+                <div class="contents">
+                    
+                    <nav style="margin-bottom:0.9em">
+                        <a href="#" style="border-bottom:0.3em solid #8b0000">Tout</a> 
+                        <a href="#">Discussions</a> 
+                        <a href="#">Evénéments</a>
+                    </nav>
+
+                    <div id="send" class="topic discuss">
+                        <div class="message">
+                            <a href="#" style="font-weight:bold;font-size:0.9em;" onclick="display(\'sendform\');this.hidden=true;return false">
+                                &#x270F;&#xFE0F; Ajouter un message...
+                            </a>
+                            <form id="sendform" style="display:none">
+                                &#x1F464; <strong>Nadawoo</strong><br>
+                                <textarea placeholder="Donnez votre avis sur les chantiers à construire..."></textarea>
+                                <input type="submit" value="Envoyer">
+                            </form>
+                        </div>
+                    </div>
+                    
+                    <div class="topic event">
+                        <div class="message">
+                            <div class="text">
+                                &#x2714;&#xFE0F; Le chantier <strong>Mur de renfort</strong> a été construit !
+                            </div>
+                            <div class="time" title="Fuseau horaire de Paris">
+                                <a href="#">Commenter</a> ·
+                                Mardi 3 juin (2020) à 13h02
+                            </div>
+                        </div>
+                        <div class="message comment">
+                            <div class="text">
+                                <strong>Nadawoo</strong> Mais pourquoi vous avez construit ce chantier ? On avait dit qu\'on faisait la pompe !
+                            </div>
+                        </div>
+                        <div class="message comment">
+                            <div class="text">
+                                <strong>Schmurtz</strong> Il le fallait, on a une grosse attaque ce soir.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="topic event">
+                        <div class="message">
+                            <div class="text">
+                                &#x1F528; Nadawoo a investi 3 <abbr title="points d\'action" style="font-variant:small-caps">pa</abbr> dans <strong>Mur de renfort</strong>
+                            </div>
+                            <div class="time" title="Fuseau horaire de Paris">
+                                <a href="#">Commenter</a> ·
+                                Mardi 3 juin (2020) à 13h02
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="topic discuss">            
+                        <h3><span style="font-weight:normal">&#x1F4AC;</span> Objectif Tour de guet !</h3>
+                        <div class="message">
+                            <div class="pseudo">
+                                &#x1F464; <strong>Patat</strong>
+                            </div>
+                            <div class="time" title="Fuseau horaire de Paris">
+                                Mardi 3 juin (2020) à 13h02
+                            </div>
+                            <div class="text">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin rutrum quam in lacus hendrerit tempus. Sed rhoncus blandit lobortis. Integer sed egestas felis, ac volutpat enim.
+                            </div>
+                        </div>
+                        <div class="message">
+                            <div class="pseudo">
+                                &#x1F464; <strong>Muza</strong>
+                            </div>
+                            <div class="time" title="Fuseau horaire de Paris">
+                                Mardi 3 juin (2020) à 13h15
+                            </div>
+                            <div class="text">
+                                Vivamus ac viverra urna. Nunc eget malesuada ante, quis auctor mi. Nullam faucibus eleifend est, et iaculis risus semper vitae. In sagittis neque a ex ornare malesuada.
+                            </div>
+                        </div>
+                        <div class="message">
+                            <div class="pseudo">
+                                &#x1F464; <strong>Nadawoo</strong>
+                            </div>
+                            <textarea placeholder="D\'accord ? Pas d\'accord ? Votre réponse ici..."></textarea>
+                            <input type="submit" value="Envoyer">
+                        </div>
+                    </div>
+                    
+                </div>
             </div>';
     }
     
