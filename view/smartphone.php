@@ -23,12 +23,14 @@ function smartphone($map_cols, $map_rows, $citizen, $speciality, $zone)
     $cp_zombies  = 0;
     $cp_citizens = 0;
     $cp_diff     = 0;
+    $notif       = '';
     
     // N'existe que si le joueur est connecté
     if (!empty($zone)) {
+        $notif = smartphone_notification($zone, $AP);
         $cp_zombies  = $zone['controlpoints_zombies'];
         $cp_citizens = $zone['controlpoints_citizens'];
-        // Nombre de points de contrôle d'écart enhumains et zombies
+        // Nombre de points de contrôle d'écart entre humains et zombies
         $cp_diff     = $cp_citizens-$cp_zombies;
     }
     
@@ -38,34 +40,6 @@ function smartphone($map_cols, $map_rows, $citizen, $speciality, $zone)
     $x_percent = round(($coord_x/2) / ($map_cols+1)*100);
     // La coordonnée Y n'est pas divisée car pas de saut dans sa numérotation
     $y_percent = round($coord_y / ($map_rows+1)*100);
-    
-    // Affiche une notification si le déplacement coûte des PA
-    $notif = '';
-    
-    if (!empty($zone)) {
-        
-        if ($AP > 0 and $zone['controlpoints_citizens'] < $zone['controlpoints_zombies']) {
-
-            $notif = '<div class="notif">Vous êtes bloqué par les zombies !</div>';
-        }
-        elseif ($AP === 0) {
-
-            $notif = '<div class="notif">Vous n\'avez plus de PA pour bouger !</div>';
-        }
-        elseif ($zone['zombies'] > 0) {
-
-            $notif = '<div class="notif">Partir vous coûtera 1 PA ('.$AP.' restants)</div>';
-        }
-        elseif (is_int($zone['city_id']) and $zone['city_size'] === 1) {
-
-            $notif = '<div class="notif">Une tente ! L\'occasion de s\'abriter...</div>';
-        }
-        elseif (is_int($zone['city_id']) and $zone['city_size'] >= 2) {
-
-            $notif = '<div class="notif">Une ville ! L\'occasion de s\'abriter...</div>';
-        }
-    }
-    
     
     // Affiche si le citoyen est blessé
     $wound = 'Parfaite';
@@ -157,4 +131,41 @@ function smartphone($map_cols, $map_rows, $citizen, $speciality, $zone)
             </div>
             '.$notif.'
         </div>';
+}
+
+
+/**
+ * Displays a notification on the in-game smartphone (if movement costs AP, etc.)
+ * 
+ * @param array $zone The data of the zone, as returned by the API of Invazion
+ * @param int   $AP   Amount of action points the citizen owns
+ * @return string HTML
+ */
+function smartphone_notification($zone, $AP)
+{
+    
+    $notif = '';
+    
+    if ($AP > 0 and $zone['controlpoints_citizens'] < $zone['controlpoints_zombies']) {
+
+        $notif = '<div class="notif">Vous êtes bloqué par les zombies !</div>';
+    }
+    elseif ($AP === 0) {
+
+        $notif = '<div class="notif">Vous n\'avez plus de PA pour bouger !</div>';
+    }
+    elseif ($zone['zombies'] > 0) {
+
+        $notif = '<div class="notif">Partir vous coûtera 1 PA ('.$AP.' restants)</div>';
+    }
+    elseif (is_int($zone['city_id']) and $zone['city_size'] === 1) {
+
+        $notif = '<div class="notif">Une tente ! L\'occasion de s\'abriter...</div>';
+    }
+    elseif (is_int($zone['city_id']) and $zone['city_size'] >= 2) {
+
+        $notif = '<div class="notif">Une ville ! L\'occasion de s\'abriter...</div>';
+    }
+
+    return $notif;
 }
