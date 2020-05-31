@@ -95,13 +95,7 @@ class HtmlMyzone
         }
         
         return '
-            <div id="back_to_map" onclick="toggle(\'my_zone\');setCookie(\'show_zone\', 1)">
-                Afficher ma&nbsp;zone
-            </div>
             <div id="my_zone">
-                <span id="back_to_map" onclick="toggle(\'my_zone\');setCookie(\'show_zone\', 0)">
-                    Afficher la&nbsp;carte
-                </span>
                 <div id="hexagon">&#x2B22;</div>
                 <div id="zone_container">'.$hexagon_content.'</div>
             </div>';

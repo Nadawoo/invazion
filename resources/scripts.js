@@ -422,12 +422,13 @@ if (document.getElementById('city_container') !== null) {
 }
 
 // Mémorise si le joueur veut voir la carte entière ou juste la zone où il se trouve
-if (getCookie('show_zone') === "0") {
-	
-	hide('my_zone');
+if (getCookie('show_zone') === "1") {
+    display('my_zone');
+    hide('displayMyZone');
 }
 else {
-	display('my_zone');
+    hide('my_zone');
+    hide('hideMyZone');
 }
 
 
@@ -454,4 +455,18 @@ document.getElementById("notifsButton").addEventListener("click", function(){
 });
 document.getElementById("notifsClose").addEventListener("click", function(){
     document.getElementById("notifsBlock").style.display = 'none';
+});
+
+
+// Switches the action "Display my zone"/"Display the map"
+document.getElementById("backToMap").addEventListener("click", function(){
+    
+    if (getCookie('show_zone') === '1') {
+        setCookie('show_zone', 0);
+    } else {
+        setCookie('show_zone', 1);
+    }
+    toggle('my_zone');
+    toggle('displayMyZone');
+    toggle('hideMyZone');
 });

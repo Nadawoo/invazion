@@ -265,6 +265,11 @@ echo $popup->customised('popsuccess', '', nl2br($msg_popup));
             <span onclick="toggleMapItems()">Objets sur la carte</span>
         </div>
         
+        <div id="backToMap">
+            <span id="displayMyZone">Afficher ma zone</span>
+            <span id="hideMyZone">Afficher la carte</span>
+        </div>
+        
         <?php 
         // Affiche la zone sur laquelle le joueur connecté se trouve
         if ($citizen_id !== NULL) {
