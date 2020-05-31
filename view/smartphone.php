@@ -20,10 +20,17 @@ function smartphone($map_cols, $map_rows, $citizen, $speciality, $zone)
     $coord_y    = $citizen['coord_y'];
     $AP         = $citizen['action_points'];
     $is_wounded = $citizen['is_wounded'];
-    $cp_zombies  = $zone['controlpoints_zombies'];
-    $cp_citizens = $zone['controlpoints_citizens'];
-    // Nombre de points de contrôle d'écrat enhumains et zombies
-    $cp_diff     = $cp_citizens-$cp_zombies;
+    $cp_zombies  = 0;
+    $cp_citizens = 0;
+    $cp_diff     = 0;
+    
+    // N'existe que si le joueur est connecté
+    if (!empty($zone)) {
+        $cp_zombies  = $zone['controlpoints_zombies'];
+        $cp_citizens = $zone['controlpoints_citizens'];
+        // Nombre de points de contrôle d'écart enhumains et zombies
+        $cp_diff     = $cp_citizens-$cp_zombies;
+    }
     
     // L'emplacement du joueur sur l'axe horizontal de la mini carte sera 
     // en % de la largeur de la carte réelle. NB : on divise la coordonnée 
@@ -35,25 +42,28 @@ function smartphone($map_cols, $map_rows, $citizen, $speciality, $zone)
     // Affiche une notification si le déplacement coûte des PA
     $notif = '';
     
-    if ($AP > 0 and $zone['controlpoints_citizens'] < $zone['controlpoints_zombies']) {
+    if (!empty($zone)) {
         
-        $notif = '<div class="notif">Vous êtes bloqué par les zombies !</div>';
-    }
-    elseif ($AP === 0) {
-        
-        $notif = '<div class="notif">Vous n\'avez plus de PA pour bouger !</div>';
-    }
-    elseif ($zone['zombies'] > 0) {
-        
-        $notif = '<div class="notif">Partir vous coûtera 1 PA ('.$AP.' restants)</div>';
-    }
-    elseif (is_int($zone['city_id']) and $zone['city_size'] === 1) {
-        
-        $notif = '<div class="notif">Une tente ! L\'occasion de s\'abriter...</div>';
-    }
-    elseif (is_int($zone['city_id']) and $zone['city_size'] >= 2) {
-        
-        $notif = '<div class="notif">Une ville ! L\'occasion de s\'abriter...</div>';
+        if ($AP > 0 and $zone['controlpoints_citizens'] < $zone['controlpoints_zombies']) {
+
+            $notif = '<div class="notif">Vous êtes bloqué par les zombies !</div>';
+        }
+        elseif ($AP === 0) {
+
+            $notif = '<div class="notif">Vous n\'avez plus de PA pour bouger !</div>';
+        }
+        elseif ($zone['zombies'] > 0) {
+
+            $notif = '<div class="notif">Partir vous coûtera 1 PA ('.$AP.' restants)</div>';
+        }
+        elseif (is_int($zone['city_id']) and $zone['city_size'] === 1) {
+
+            $notif = '<div class="notif">Une tente ! L\'occasion de s\'abriter...</div>';
+        }
+        elseif (is_int($zone['city_id']) and $zone['city_size'] >= 2) {
+
+            $notif = '<div class="notif">Une ville ! L\'occasion de s\'abriter...</div>';
+        }
     }
     
     
