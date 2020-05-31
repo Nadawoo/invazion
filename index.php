@@ -270,6 +270,10 @@ echo $popup->customised('popsuccess', '', nl2br($msg_popup));
             $my_zone->set_citizen_pseudo($citizen['citizen_pseudo']);
             echo $my_zone->main();
         }
+        else {
+            // On affiche le div de la zone pour ne pas avoir une erreur javascript si bloc inexistant
+            echo '<div id="my_zone"></div>';
+        }
         
         // Affiche la carte complète
         echo $html_map;
