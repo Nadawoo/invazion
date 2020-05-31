@@ -314,43 +314,43 @@ echo $popup->customised('popsuccess', '', nl2br($msg_popup));
     }
     ?>
     
-        <div style="min-height:16em;margin-bottom:1em;overflow:auto">
-        
-            <?php
-            // Affiche le smartphone à droite de la carte (GPS...)
-            echo smartphone($map_cols, $map_rows, $citizen, $specialities[$speciality], $zone);
-            
-            // Affiche les flèches de déplacement 
-            echo ($controlpoints_citizens >= $controlpoints_zombies) 
-                 ? movement_paddle($citizen['coord_x'], $citizen['coord_y'])
-                 : $html->block_alert_control($zone['zombies']);
-            
-            echo '<div class="center">' . $msg_move . '</div>';
-            
-            // Affiche le bouton pour entrer dans la crypte s'il y en a une
-            if (!empty($zone) and $zone['building'] === 'vault') {
-                
-                echo '<p class="center">'
-                    . '<span class="warning">Vous avez découvert une crypte&nbsp;!</span><br>'
-                    . $popup->link('popvault', 'Pouvoir cryptique')
-                    . '</p>';
-            } ?>
-        </div>
-        
-        <div>
-            <fieldset>
-                <legend>Actions</legend>
-                <?php 
-                echo $html_actions;
-                echo $html_actions_bag;
-                ?>                
-            </fieldset>
-            
-            <fieldset>
-                <legend>Citoyens dans ma zone</legend>
-                <?php echo $html_zone_citizens ?>
-            </fieldset>
-        </div>
+    <div style="min-height:16em;margin-bottom:1em;overflow:auto">
+
+        <?php
+        // Affiche le smartphone à droite de la carte (GPS...)
+        echo smartphone($map_cols, $map_rows, $citizen, $specialities[$speciality], $zone);
+
+        // Affiche les flèches de déplacement 
+        echo ($controlpoints_citizens >= $controlpoints_zombies) 
+             ? movement_paddle($citizen['coord_x'], $citizen['coord_y'])
+             : $html->block_alert_control($zone['zombies']);
+
+        echo '<div class="center">' . $msg_move . '</div>';
+
+        // Affiche le bouton pour entrer dans la crypte s'il y en a une
+        if (!empty($zone) and $zone['building'] === 'vault') {
+
+            echo '<p class="center">'
+                . '<span class="warning">Vous avez découvert une crypte&nbsp;!</span><br>'
+                . $popup->link('popvault', 'Pouvoir cryptique')
+                . '</p>';
+        } ?>
+    </div>
+
+    <div>
+        <fieldset>
+            <legend>Actions</legend>
+            <?php 
+            echo $html_actions;
+            echo $html_actions_bag;
+            ?>                
+        </fieldset>
+
+        <fieldset>
+            <legend>Citoyens dans ma zone</legend>
+            <?php echo $html_zone_citizens ?>
+        </fieldset>
+    </div>
     
 </div>
     
