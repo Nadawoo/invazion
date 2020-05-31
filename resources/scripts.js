@@ -365,9 +365,54 @@ async function connectUser() {
 }
 
 
+/**
+ * Gets the list of the discussion threads (to display it in the notifications panel, for example) 
+ * WARNING : don't call this function more than needed, because it makes a distant request 
+ * to the InvaZion's API.
+ */
+async function callDiscussTopics() {
+    
+    // Gets the titles of the discussions, by calling the InvaZion's API
+    var json = await callApi("GET", "discuss/threads", "action=get");
+    
+    // Sets the presentation of the date of the discussion
+    var dateFormat  = { weekday:'long', year:'numeric', month:'short', day:'numeric', hour:'numeric', minute:'numeric', }
+
+    var topicIds = Object.keys(json.datas);
+    var length   = topicIds.length;
+    var titles   = "";
+    
+    for (i=0; i<length; i++) {        
+        let topic        = json.datas[topicIds[i]];
+        let topicUrl     = getOfficialServerRoot()+'/discuss/topic?topic='+topicIds[i]+'#post'+topic.last_message.message_id;
+        let authorPseudo = topic.last_message.author_pseudo
+        let dateObject   = new Date(topic.last_message.datetime_utc); 
+        let localDate    = new Intl.DateTimeFormat('fr-FR', dateFormat).format(dateObject);
+
+        titles += htmlDiscussTopics(topic.title, localDate, topicUrl, authorPseudo);
+    }
+
+    document.getElementById("notifsList").innerHTML = titles;
+}
+
+
+/**
+ * Builds the HTML to notify a new discussion in the notification block
+ */
+function htmlDiscussTopics(topicTitle, date, url, authorPseudo) {
+    
+    return '<a href="'+ url +'" target="_blank" class="notif">\
+                &#x1F5E8;&#xFE0F; <strong>'+ authorPseudo +'</strong> a répondu à <span style="color:darkred">'+ topicTitle +'</span>\
+                <div class="date">'+ date +'</div>\
+            </a>';
+}
+
+
+
 /*
  * Exécuté dès le chargement de la page, sans action du visiteur
  */
+
 // Si on est à l'intérieur d'une ville
 if (document.getElementById('city_container') !== null) {
     
@@ -391,5 +436,22 @@ if (getCookie('showitemspanel') === null || getCookie('showitemspanel') === '0')
     toggleItemsPanel();
 }
 
+
 // Affiche l'onglet actif du smartphone au chargement de la page
 activatePhoneTab();
+
+
+// Displays/hides the notifications panel
+document.getElementById("notifsButton").addEventListener("click", function(){
+    
+    if (window.getComputedStyle(document.getElementById("notifsBlock")).display === 'none') {
+        callDiscussTopics();
+        document.getElementById("notifsBlock").style.display = 'block';
+    }
+    else {
+        document.getElementById("notifsBlock").style.display = 'none';
+    }
+});
+document.getElementById("notifsClose").addEventListener("click", function(){
+    document.getElementById("notifsBlock").style.display = 'none';
+});

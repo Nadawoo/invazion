@@ -175,13 +175,20 @@ echo $popup->customised('popsuccess', '', nl2br($msg_popup));
         sa propre interface graphique. <a href="#Project">[En savoir plus]</a>
     </p>
     
-    <p style="float:right;margin-top:1.9em">
-        <?php echo $buttons->refresh() ?>
-    </p>
-        
-    <h3 id="Outside" style="margin-top:2em">
-        <a href="#Outside">&Hat;</a>&nbsp;Carte n° <?php echo $map_id ?>
-    </h3>
+    <div id="gamebar">
+        <div id="Outside">
+            <a href="#Outside">#</a>&nbsp;Carte n° <?php echo $map_id ?>
+        </div>
+        <a id="notifsButton">&#x1F514; <strong>Notifications</strong></a>
+        <div id="notifsBlock">
+            <a id="notifsClose">X</a>
+            <div id="notifsList"></div>
+        </div>
+        <div>
+            <?php echo $buttons->refresh() ?>
+        </div>
+    </div>
+    
     
     <?php
     // Demande de choisir une spécialité (bâtisseur...) (bâtisseur, fouineur...)
