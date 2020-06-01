@@ -332,12 +332,11 @@ function loadPage(url, callback) {
  */
 async function connectUser() {
     
-    // NB : btoa() encodes the mail and password in Base64 as requested by the Invazion's API
-    let emailField = document.getElementById("email"),
-        email64 = btoa(emailField.value),
-        pass64  = btoa(document.getElementById("password").value);
+    let emailField  = document.getElementById("email"),
+        email       = emailField.value,
+        password    = document.getElementById("password").value;
     
-    if (emailField.value === '') {
+    if (email === '') {
         
         document.getElementById("error").innerHTML = "Veuillez indiquer l'adresse mail que vous aviez utilisée "
                         +"lors de votre inscription.<br>"
@@ -349,7 +348,7 @@ async function connectUser() {
     }
     else {
         // Calls the connection API
-        let json = await callApi("GET", "user", `action=connect&email64=${email64}&pass64=${pass64}`);
+        let json = await callApi("POST", "user", `action=connect&email=${email}&password=${password}`);
 
         if (json.metas.error_code !== "success") {
 

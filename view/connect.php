@@ -7,8 +7,8 @@
  */
 function connect($email)
 {
-    // onsubmit="connectUser(); return false;">
-    return '<form method="post" id="connectionForm">
+    
+    return '<form method="post" id="connectionForm" onsubmit="connectUser(); return false;">
         
         <input type="hidden" name="action" value="connect">
         
