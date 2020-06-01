@@ -74,17 +74,18 @@ class ZombLib
     public function disconnect_user()
     {
         
-        // Récupère le jeton d'identification du joueur
-        $token = $this->get_token();
         // Déconnecte le joueur sur le serveur du jeu
-        $json = $this->get_api_output($this->url.'/user?action=disconnect&token='.$token);
-        // Détruit le cookie d'identification dans le navigateur du joueur
-        setcookie('token', NULL);
-        // On détruit aussi la variable, sinon le cookie survivrait jusqu'à
-        // la fin de l'exécution du script
-        unset($_COOKIE['token']);
+        $api_results = $this->call_api('user', 'disconnect', ['token'=>$this->get_token()], 'POST');
         
-        return $this->json_to_array($json);
+        if ($api_results['metas']['error_code'] === 'success') {
+            // Détruit le cookie d'identification dans le navigateur du joueur
+            setcookie('token', NULL);
+            // On détruit aussi la variable, sinon le cookie survivrait jusqu'à
+            // la fin de l'exécution du script
+            unset($_COOKIE['token']);
+        }
+        
+        return $api_results;
     }
     
     
