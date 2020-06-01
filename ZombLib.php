@@ -4,7 +4,7 @@
  * pour récupérer ou/et écrire des données sur le serveur
  * http://invazion.nadazone.fr
  * 
- * Version 3.2
+ * Version 3.3
  */
 class ZombLib
 {
@@ -229,12 +229,12 @@ class ZombLib
      * @throws Exception
      */
     public function call_api($api_name, $action, $params=[])
-    {        
+    {   
         
         // Builds the url to call the API
-        $url_params = !empty($params) ? '&'.http_build_query($params) : '';
+        $url_params = http_build_query(['action'=>$action, 'token'=>$this->get_token()] + (array)$params);
         // Calls the API
-        $json = $this->get_api_output($this->url.'/'.$api_name.'?action='.$action.$url_params.'&token='.$this->get_token());
+        $json = $this->get_api_output($this->url.'/'.$api_name.'?'.$url_params);
 
         return $this->json_to_array($json);
     }
