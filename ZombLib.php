@@ -224,10 +224,12 @@ class ZombLib
     public function call_api($api_name, $action, $params=[], $method='GET')
     {   
         
-        // Builds the url to call the API
-        $url_params = http_build_query(['action'=>$action, 'token'=>$this->get_token()] + (array)$params);
+        // The url of the API, without any parameter (e.g.: "https://invazion.nadazone.fr/api/maps")
+        $api_url = $this->url.'/'.$api_name;
+        // Builds the parameters to send to the API (e.g.: "action=get&map_id=1")        
+        $api_params = http_build_query(['action'=>$action, 'token'=>$this->get_token()] + (array)$params);
         // Calls the API
-        $json = $this->get_api_output($method, $this->url.'/'.$api_name, $url_params);
+        $json = $this->get_api_output($method, $api_url, $api_params);
 
         return $this->json_to_array($json);
     }
@@ -577,28 +579,28 @@ class ZombLib
      * Sends the text to convert and the defined options to the online API, 
      * then gets the JSON result returned by the server
      * 
-     * @param  string $method           The HTTP method to use to send the data (GET or POST).     * 
-     * @param  string $api_url_noparam  The url of the API you want to call, without any parameter
-     *                                  (e.g.: "https://invazion.nadazone.fr/api/maps")
-     * @param  string $url_params   The data to send to the API, encoded like url parameters
+     * @param  string $method       The HTTP method to use to send the data (GET or POST).     * 
+     * @param  string $api_url      The url of the API you want to call, without any parameter
+     *                              (e.g.: "https://invazion.nadazone.fr/api/maps")
+     * @param  string $api_params   The data to send to the API, encoded like url parameters
      *                              (e.g.: "action=get&map_id=1")
      * @return string               The JSON return by Invazion's server
      */
-    private function get_api_output($method, $api_url_noparam, $url_params='')
+    private function get_api_output($method, $api_url, $api_params='')
     {
         
         $request = [
             // To call an API with the GET method, we put the parameters directly in the API url
             // (e.g.: https://invazion.nadazone.fr/api/maps?action=get&map_id=1)
-            'GET'  => [ 'api_url'      => $api_url_noparam.'?'.$url_params,
+            'GET'  => [ 'api_url'      => $api_url.'?'.$api_params,
                         'http_content' => ''
                         ],
             // To call with the POST method, we call the API url without any parameter
             // (e.g.: https://invazion.nadazone.fr/api/maps)
             // and send the parameters through the HTTP header "content"
             // (e.g.: "content: action=get&map_id=1")
-            'POST' => [ 'api_url'      => $api_url_noparam,
-                        'http_content' => $url_params
+            'POST' => [ 'api_url'      => $api_url,
+                        'http_content' => $api_params
                         ]
             ];
         
