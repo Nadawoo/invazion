@@ -227,7 +227,7 @@ class ZombLib
         // Builds the url to call the API
         $url_params = http_build_query(['action'=>$action, 'token'=>$this->get_token()] + (array)$params);
         // Calls the API
-        $json = $this->get_api_output($this->url.'/'.$api_name, $url_params, $method);
+        $json = $this->get_api_output($method, $this->url.'/'.$api_name, $url_params);
 
         return $this->json_to_array($json);
     }
@@ -577,14 +577,14 @@ class ZombLib
      * Sends the text to convert and the defined options to the online API, 
      * then gets the JSON result returned by the server
      * 
+     * @param  string $method           The HTTP method to use to send the data (GET or POST).     * 
      * @param  string $api_url_noparam  The url of the API you want to call, without any parameter
      *                                  (e.g.: "https://invazion.nadazone.fr/api/maps")
      * @param  string $url_params   The data to send to the API, encoded like url parameters
      *                              (e.g.: "action=get&map_id=1")
-     * @param  string $method       The HTTP method to use to send the data (GET or POST).
-     * @return string               Le JSON retourné par le serveur
+     * @return string               The JSON return by Invazion's server
      */
-    private function get_api_output($api_url_noparam, $url_params='', $method='GET')
+    private function get_api_output($method, $api_url_noparam, $url_params='')
     {
         
         $request = [
