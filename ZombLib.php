@@ -247,9 +247,7 @@ class ZombLib
     public function add_stuff_on_map($stuff, $conditions='')
     {
         
-        $json = $this->get_api_output($this->url.'/zone?action=add&stuff='.$stuff.'&conditions='.$conditions.'&token='.$this->get_token());
-        
-        return $this->json_to_array($json);
+        return $this->call_api('zone', 'add', ['stuff'=>$stuff, 'conditions'=>$conditions, 'token'=>$this->get_token()]);
     }
     
     
@@ -262,9 +260,7 @@ class ZombLib
     public function get_config()
     {
         
-        $json = $this->get_api_output($this->url.'/configs?action=get');
-        
-        return $this->json_to_array($json);
+        return $this->call_api('configs', 'get');
     }
     
     
@@ -277,9 +273,7 @@ class ZombLib
     public function get_citizens($map_id)
     {
         
-        $json = $this->get_api_output($this->url.'/citizens?action=get&map_id='.$map_id);
-        
-        return $this->json_to_array($json);
+        return $this->call_api('citizens', 'get', ['map_id'=>$map_id]);
     }
     
     
@@ -301,9 +295,7 @@ class ZombLib
     public function get_cities($map_id)
     {
         
-        $json = $this->get_api_output($this->url.'/cities?action=get&map_id='.$map_id);
-        
-        return $this->json_to_array($json);
+        return $this->call_api('cities', 'get', ['map_id'=>$map_id]);
     }
     
     
@@ -317,9 +309,7 @@ class ZombLib
     public function get_city($city_id)
     {
         
-        $json = $this->get_api_output($this->url.'/cities?action=get&city_id='.$city_id);
-        
-        return $this->json_to_array($json);
+        return $this->call_api('cities', 'get', ['city_id'=>$city_id]);
     }
     
     
@@ -332,9 +322,7 @@ class ZombLib
     public function get_map($map_id)
     {
         
-        $json = $this->get_api_output($this->url.'/maps?action=get&map_id='.$map_id);
-        
-        return $this->json_to_array($json);
+        return $this->call_api('maps', 'get', ['map_id'=>$map_id]);
     }
     
     
@@ -346,9 +334,7 @@ class ZombLib
     public function get_me()
     {
         
-        $json = $this->get_api_output($this->url.'/me?action=get&token='.$this->get_token());
-        
-        return $this->json_to_array($json);
+        return $this->call_api('me', 'get', ['token'=>$this->get_token()]);
     }
     
     
@@ -361,9 +347,7 @@ class ZombLib
     public function specialize($job)
     {
         
-        $json = $this->get_api_output($this->url.'/me?action=specialize&type='.$job.'&token='.$this->get_token());
-        
-        return $this->json_to_array($json);
+        return $this->call_api('me', 'specialize', ['type'=>$job, 'token'=>$this->get_token()]);
     }
     
     
@@ -376,9 +360,7 @@ class ZombLib
     public function attack_citizen($target_id)
     {
         
-        $json = $this->get_api_output($this->url.'/me?action=attack&target_id='.$target_id.'&token='.$this->get_token());
-        
-        return $this->json_to_array($json);
+        return $this->call_api('me', 'attack', ['target_id'=>$target_id, 'token'=>$this->get_token()]);
     }
     
     
@@ -391,9 +373,7 @@ class ZombLib
     public function heal_citizen($target_id)
     {
         
-        $json = $this->get_api_output($this->url.'/me?action=heal&target_id='.$target_id.'&token='.$this->get_token());
-        
-        return $this->json_to_array($json);
+        return $this->call_api('me', 'heal', ['target_id'=>$target_id, 'token'=>$this->get_token()]);
     }
     
     
@@ -407,9 +387,7 @@ class ZombLib
     public function move($direction)
     {
         
-        $json = $this->get_api_output($this->url.'/zone?action=move&token='.$this->get_token().'&to='.$direction);
-        
-        return $this->json_to_array($json);
+        return $this->call_api('zone', 'move', ['to'=>$direction, 'token'=>$this->get_token()]);
     }
     
     
@@ -421,9 +399,7 @@ class ZombLib
     public function dig()
     {
         
-        $json = $this->get_api_output($this->url.'/zone?action=dig&token='.$this->get_token());
-        
-        return $this->json_to_array($json);
+        return $this->call_api('zone', 'dig', ['token'=>$this->get_token()]);
     }
     
     
@@ -436,9 +412,7 @@ class ZombLib
     public function drop()
     {
         
-        $json = $this->get_api_output($this->url.'/zone?action=drop&token='.$this->get_token().'&item_id='.$this->_item_id);
-        
-        return $this->json_to_array($json);
+        return $this->call_api('zone', 'drop', ['item_id'=>$this->_item_id, 'token'=>$this->get_token()]);
     }
     
     
@@ -451,9 +425,7 @@ class ZombLib
     public function pickup()
     {
         
-        $json = $this->get_api_output($this->url.'/zone?action=pickup&token='.$this->get_token().'&item_id='.$this->_item_id);
-        
-        return $this->json_to_array($json);
+        return $this->call_api('zone', 'pickup', ['item_id'=>$this->_item_id, 'token'=>$this->get_token()]);
     }
     
     
@@ -467,9 +439,7 @@ class ZombLib
     public function fight($action='fight')
     {
         
-        $json = $this->get_api_output($this->url.'/zone?action='.$action.'&token='.$this->get_token());
-        
-        return $this->json_to_array($json);
+        return $this->call_api('zone', $action, ['token'=>$this->get_token()]);
     }
     
     
@@ -482,9 +452,7 @@ class ZombLib
     public function build_city($city_size)
     {
         
-        $json = $this->get_api_output($this->url.'/city?action=build&city_size='.$city_size.'&token='.$this->get_token());
-        
-        return $this->json_to_array($json);
+        return $this->call_api('city', 'build', ['city_size'=>$city_size, 'token'=>$this->get_token()]);
     }
     
     
@@ -496,9 +464,7 @@ class ZombLib
     public function attack_city()
     {
         
-        $json = $this->get_api_output($this->url.'/city?action=attack&token='.$this->get_token());
-        
-        return $this->json_to_array($json);
+        return $this->call_api('city', 'attack', ['token'=>$this->get_token()]);
     }
     
     
@@ -510,9 +476,7 @@ class ZombLib
     public function go_inout_city()
     {
         
-        $json = $this->get_api_output($this->url.'/city?action=go_inout&token='.$this->get_token());
-        
-        return $this->json_to_array($json);
+        return $this->call_api('city', 'go_inout', ['token'=>$this->get_token()]);
     }
     
     
@@ -524,9 +488,7 @@ class ZombLib
     public function open_city_door()
     {
         
-        $json = $this->get_api_output($this->url.'/city?action=open_door&token='.$this->get_token());
-        
-        return $this->json_to_array($json);
+        return $this->call_api('city', 'open_door', ['token'=>$this->get_token()]);
     }
     
     
@@ -538,9 +500,7 @@ class ZombLib
     public function close_city_door()
     {
         
-        $json = $this->get_api_output($this->url.'/city?action=close_door&token='.$this->get_token());
-        
-        return $this->json_to_array($json);
+        return $this->call_api('city', 'close_door', ['token'=>$this->get_token()]);
     }
     
     
@@ -553,9 +513,7 @@ class ZombLib
     public function craft_item()
     {
         
-        $json = $this->get_api_output($this->url.'/buildings?action=build&item_id='.$this->_item_id.'&token='.$this->get_token());
-        
-        return $this->json_to_array($json);
+        return $this->call_api('buildings', 'build', ['item_id'=>$this->_item_id, 'token'=>$this->get_token()]);
     }
     
     
@@ -568,9 +526,7 @@ class ZombLib
     public function construct($construction_id)
     {
         
-        $json = $this->get_api_output($this->url.'/buildings?action=build&construction_id='.$construction_id.'&token='.$this->get_token());
-        
-        return $this->json_to_array($json);
+        return $this->call_api('buildings', 'build', ['construction_id'=>$construction_id, 'token'=>$this->get_token()]);
     }
     
     
@@ -586,9 +542,7 @@ class ZombLib
     public function reveal_zones($stuff)
     {
         
-        $json = $this->get_api_output($this->url.'/zone?action=reveal&stuff='.$stuff.'&token='.$this->get_token());
-        
-        return $this->json_to_array($json);
+        return $this->call_api('zone', 'reveal', ['stuff'=>$stuff, 'token'=>$this->get_token()]);
     }
     
     
@@ -600,9 +554,7 @@ class ZombLib
     public function get_discuss_threads()
     {
         
-        $json = $this->get_api_output($this->url.'/discuss/threads?action=get');
-        
-        return $this->json_to_array($json);
+        return $this->call_api('discuss/threads', 'get');
     }
     
     
