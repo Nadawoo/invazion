@@ -29,6 +29,8 @@ $my_zone            = new HtmlMyzone();
 $enclosure          = new HtmlCityEnclosure();
 $buttons            = new HtmlButtons();
 $popup              = new HtmlPopup();
+$controlpoints_citizens = 0;
+$controlpoints_zombies  = 0; 
 $user_id            = NULL;
 $citizen_id         = NULL;
 $citizen_pseudo     = NULL;
@@ -37,6 +39,7 @@ $city_data          = NULL;
 $city_fellows       = [];
 $zone_citizens      = [];
 $healing_items      = [];
+$zone               = [];
 $html_actions       = '';
 $html_actions_bag   = '';
 $html_zone_items    = '';
@@ -110,6 +113,7 @@ $citizens_by_coord  = sort_citizens_by_coord($citizens);
 $get_map            = $api->call_api('maps', 'get', ['map_id'=>$map_id]);
 $configs            = $api->call_api('configs', 'get')['datas'];
 $specialities       = $configs['specialities'];
+$speciality         = key($specialities);
 $map_cols           = $get_map['datas']['map_width'];
 $map_rows           = $get_map['datas']['map_height'];
 $next_attack_hour   = $get_map['datas']['next_attack_hour'];
@@ -121,6 +125,9 @@ if ($citizen_id !== NULL) {
     $zone_citizens      = $citizens_by_coord[$citizen['coord_x'].'_'.$citizen['coord_y']];
     $zone               = $get_map['datas']['zones'][$citizen['coord_x'].'_'.$citizen['coord_y']];
     $healing_items      = filter_bag_items('healing_wound', $configs['items'], $citizen['bag_items']);
+    $speciality         = $citizen['speciality'];
+    $controlpoints_citizens = $zone['controlpoints_citizens'];
+    $controlpoints_zombies  = $zone['controlpoints_zombies'];
     
     $html_zone_items    = $html->block_zone_items($configs['items'], $zone, $citizen['citizen_id']);
     $html_bag_items     = $html->block_bag_items($configs['items'], $citizen_id, $citizen['bag_items'], $citizen['bag_size']);
@@ -175,13 +182,20 @@ echo $popup->customised('popsuccess', '', nl2br($msg_popup));
         sa propre interface graphique. <a href="#Project">[En savoir plus]</a>
     </p>
     
-    <p style="float:right;margin-top:1.9em">
-        <?php echo $buttons->refresh() ?>
-    </p>
-        
-    <h3 id="Outside" style="margin-top:2em">
-        <a href="#Outside">&Hat;</a>&nbsp;Carte n° <?php echo $map_id ?>
-    </h3>
+    <div id="gamebar">
+        <div id="Outside">
+            <a href="#Outside">#</a>&nbsp;Carte n° <?php echo $map_id ?>
+        </div>
+        <a id="notifsButton">&#x1F514; <strong>Notifications</strong></a>
+        <div id="notifsBlock">
+            <a id="notifsClose">X</a>
+            <div id="notifsList"></div>
+        </div>
+        <div>
+            <?php echo $buttons->refresh() ?>
+        </div>
+    </div>
+    
     
     <?php
     // Demande de choisir une spécialité (bâtisseur...) (bâtisseur, fouineur...)
@@ -251,6 +265,11 @@ echo $popup->customised('popsuccess', '', nl2br($msg_popup));
             <span onclick="toggleMapItems()">Objets sur la carte</span>
         </div>
         
+        <div id="backToMap">
+            <span id="displayMyZone">Afficher ma zone</span>
+            <span id="hideMyZone">Afficher la carte</span>
+        </div>
+        
         <?php 
         // Affiche la zone sur laquelle le joueur connecté se trouve
         if ($citizen_id !== NULL) {
@@ -262,6 +281,10 @@ echo $popup->customised('popsuccess', '', nl2br($msg_popup));
             $my_zone->set_city_size($zone['city_size']);
             $my_zone->set_citizen_pseudo($citizen['citizen_pseudo']);
             echo $my_zone->main();
+        }
+        else {
+            // On affiche le div de la zone pour ne pas avoir une erreur javascript si bloc inexistant
+            echo '<div id="my_zone"></div>';
         }
         
         // Affiche la carte complète
@@ -294,51 +317,45 @@ echo $popup->customised('popsuccess', '', nl2br($msg_popup));
         // affiche le panneau de création de citoyen
         echo $html->block_create_citizen();
     }
-    else {
-        // Si le joueur est connecté et a déjà créé son citoyen,
-        // on affiche l'interface de jeu
-        ?>
+    ?>
     
-        <div style="min-height:16em;margin-bottom:1em;overflow:auto">
-        
-            <?php
-            // Affiche le smartphone à droite de la carte (GPS...)
-            echo smartphone($map_cols, $map_rows, $citizen, $specialities[$citizen['speciality']], $zone);
-            
-            // Affiche les flèches de déplacement 
-            echo ($zone['controlpoints_citizens'] >= $zone['controlpoints_zombies']) 
-                 ? movement_paddle($citizen['coord_x'], $citizen['coord_y'])
-                 : $html->block_alert_control($zone['zombies']);
-            
-            echo '<div class="center">' . $msg_move . '</div>';
-            
-            // Affiche le bouton pour entrer dans la crypte s'il y en a une
-            if ($zone['building'] === 'vault') {
-                
-                echo '<p class="center">'
-                    . '<span class="warning">Vous avez découvert une crypte&nbsp;!</span><br>'
-                    . $popup->link('popvault', 'Pouvoir cryptique')
-                    . '</p>';
-            } ?>
-        </div>
-        
-        <div>
-            <fieldset>
-                <legend>Actions</legend>
-                <?php 
-                echo $html_actions;
-                echo $html_actions_bag;
-                ?>                
-            </fieldset>
-            
-            <fieldset>
-                <legend>Citoyens dans ma zone</legend>
-                <?php echo $html_zone_citizens ?>
-            </fieldset>
-        </div>
-        
+    <div style="min-height:16em;margin-bottom:1em;overflow:auto">
+
         <?php
-    } ?>
+        // Affiche le smartphone à droite de la carte (GPS...)
+        echo smartphone($map_cols, $map_rows, $citizen, $specialities[$speciality], $zone);
+
+        // Affiche les flèches de déplacement 
+        echo ($controlpoints_citizens >= $controlpoints_zombies) 
+             ? movement_paddle($citizen['coord_x'], $citizen['coord_y'])
+             : $html->block_alert_control($zone['zombies']);
+
+        echo '<div class="center">' . $msg_move . '</div>';
+
+        // Affiche le bouton pour entrer dans la crypte s'il y en a une
+        if (!empty($zone) and $zone['building'] === 'vault') {
+
+            echo '<p class="center">'
+                . '<span class="warning">Vous avez découvert une crypte&nbsp;!</span><br>'
+                . $popup->link('popvault', 'Pouvoir cryptique')
+                . '</p>';
+        } ?>
+    </div>
+
+    <div>
+        <fieldset>
+            <legend>Actions</legend>
+            <?php 
+            echo $html_actions;
+            echo $html_actions_bag;
+            ?>                
+        </fieldset>
+
+        <fieldset>
+            <legend>Citoyens dans ma zone</legend>
+            <?php echo $html_zone_citizens ?>
+        </fieldset>
+    </div>
     
 </div>
     
