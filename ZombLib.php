@@ -4,7 +4,7 @@
  * pour récupérer ou/et écrire des données sur le serveur
  * http://invazion.nadazone.fr
  * 
- * Version 4
+ * Version 4.1
  */
 class ZombLib
 {
@@ -105,10 +105,7 @@ class ZombLib
         // Si la connexion a réussi
         if ($api_results['metas']['error_code'] === 'success') {            
             // On stocke le jeton d'identification dans un cookie
-            setcookie('token', $api_results['datas']['token']);
-            // On crée aussi la variable, sinon le cookie n'existerait pas 
-            // tant que le script en cours ne s'est pas terminé
-            $_COOKIE['token'] = $api_results['datas']['token'];
+            $this->update_cookie('token', $api_results['datas']['token']);
         }
         
         return $api_results;
@@ -128,10 +125,7 @@ class ZombLib
         
         if ($api_results['metas']['error_code'] === 'success') {
             // Détruit le cookie d'identification dans le navigateur du joueur
-            setcookie('token', NULL);
-            // On détruit aussi la variable, sinon le cookie survivrait jusqu'à
-            // la fin de l'exécution du script
-            unset($_COOKIE['token']);
+            $this->update_cookie('token', NULL);
         }
         
         return $api_results;
@@ -151,10 +145,7 @@ class ZombLib
         
         if ($result['metas']['error_code'] === 'success') {            
             // On met à jour le jeton dans le cookie
-            setcookie('token', $result['datas']['new_token']);
-            // On modifie aussi la variable, sinon le cookie n'existerait pas 
-            // tant que le script en cours ne s'est pas terminé
-            $_COOKIE['token'] = $result['datas']['new_token'];
+            $this->update_cookie('token', $result['datas']['new_token']);
         }
         
         return $result;
@@ -589,6 +580,23 @@ class ZombLib
         // car chez certains hébergeurs (notamment OVH), cette fonction 
         // ne fonctionne pas avec la variable $_SERVER
         return filter_var($_SERVER['REMOTE_ADDR'], FILTER_VALIDATE_IP);
+    }
+    
+    
+    /**
+     * Creates or updates a cookie
+     * 
+     * @param string $name  The name of the cookie
+     * @param string $value The content of the cookie
+     */
+    private function update_cookie($name, $value)
+    {
+        
+        // Sets or updates the value of the cookie in the browser
+        setcookie($name, $value);
+        // Updates the PHP variable too, otherwise the new value of the cookie
+        // would be ignored until the script has finished running.
+        $_COOKIE[$name] = $value;
     }
     
     
