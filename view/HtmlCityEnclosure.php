@@ -462,13 +462,15 @@ class HtmlCityEnclosure
                                 Vivamus ac viverra urna. Nunc eget malesuada ante, quis auctor mi. Nullam faucibus eleifend est, et iaculis risus semper vitae. In sagittis neque a ex ornare malesuada.
                             </div>
                         </div>
-                        <div class="message">
+                        <form class="message" method="post" action="" onsubmit="replyDiscussion(); return false;">
+                            <div id="replyError"></div>
                             <div class="pseudo">
                                 &#x1F464; <strong>Nadawoo</strong>
                             </div>
-                            <textarea placeholder="D\'accord ? Pas d\'accord ? Votre réponse ici..."></textarea>
+                            <textarea id="message" placeholder="D\'accord ? Pas d\'accord ? Votre réponse ici..."></textarea>
+                            <input type="hidden" id="topic_id" value="10">
                             <input type="submit" value="Envoyer">
-                        </div>
+                        </form>
                     </div>
                     
                 </div>

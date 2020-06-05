@@ -365,6 +365,25 @@ async function connectUser() {
 
 
 /**
+ * To send a reply in an existing discussion
+ */
+async function replyDiscussion() {
+    
+    let topic_id = document.getElementById("topic_id").getAttribute("value"),
+        message  = document.getElementById("message").value,
+        token    = getCookie('token');
+        
+    let json = await callApi("POST", "discuss/threads", `action=reply&topic_id=${topic_id}&message=${message}&token=${token}`);
+    
+    document.getElementById("replyError").innerHTML = '<span class="red">'+json.metas.error_message+'</span>';
+    
+    if (json.metas.error_code === "success") {
+        document.getElementById("message").value = "";        
+    }
+}
+
+
+/**
  * Gets the list of the discussion threads (to display it in the notifications panel, for example) 
  * WARNING : don't call this function more than needed, because it makes a distant request 
  * to the InvaZion's API.
