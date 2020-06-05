@@ -70,7 +70,7 @@ class HtmlPage
     {
         
         return '        </div>
-                    <script type="text/javascript" src="resources/scripts.js?v2.3"></script>
+                    <script type="text/javascript" src="resources/scripts.js?v2.4"></script>
                 </body>
             </html>';
     }

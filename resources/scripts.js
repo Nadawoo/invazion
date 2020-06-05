@@ -375,10 +375,12 @@ async function replyDiscussion() {
         
     let json = await callApi("POST", "discuss/threads", `action=reply&topic_id=${topic_id}&message=${message}&token=${token}`);
     
-    document.getElementById("replyError").innerHTML = '<span class="red">'+json.metas.error_message+'</span>';
-    
     if (json.metas.error_code === "success") {
-        document.getElementById("message").value = "";        
+        document.getElementById("message").value = "";
+        document.getElementById("replies").innerHTML += htmlDiscussionMessage(message, "John Doe");
+    }
+    else {
+        document.getElementById("replyError").innerHTML = '<span class="red">'+json.metas.error_message+'</span>';
     }
 }
 
@@ -424,6 +426,15 @@ function htmlDiscussTopics(topicTitle, date, url, authorPseudo) {
             </a>';
 }
 
+
+function htmlDiscussionMessage(message, pseudo) {
+    
+    return '<div class="message">\
+            <div class="pseudo">&#x1F464; <strong>'+pseudo+'</strong></div>\
+            <div class="time" title="Fuseau horaire de Paris">Mardi 3 juin (2020) à 13h15</div>\
+            <div class="text">'+message+'</div>\
+        </div>';
+}
 
 
 /*

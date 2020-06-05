@@ -439,29 +439,8 @@ class HtmlCityEnclosure
                     </div>
                     
                     <div class="topic discuss">            
-                        <h3><span style="font-weight:normal">&#x1F4AC;</span> Objectif Tour de guet !</h3>
-                        <div class="message">
-                            <div class="pseudo">
-                                &#x1F464; <strong>Patat</strong>
-                            </div>
-                            <div class="time" title="Fuseau horaire de Paris">
-                                Mardi 3 juin (2020) à 13h02
-                            </div>
-                            <div class="text">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin rutrum quam in lacus hendrerit tempus. Sed rhoncus blandit lobortis. Integer sed egestas felis, ac volutpat enim.
-                            </div>
-                        </div>
-                        <div class="message">
-                            <div class="pseudo">
-                                &#x1F464; <strong>Muza</strong>
-                            </div>
-                            <div class="time" title="Fuseau horaire de Paris">
-                                Mardi 3 juin (2020) à 13h15
-                            </div>
-                            <div class="text">
-                                Vivamus ac viverra urna. Nunc eget malesuada ante, quis auctor mi. Nullam faucibus eleifend est, et iaculis risus semper vitae. In sagittis neque a ex ornare malesuada.
-                            </div>
-                        </div>
+                        <h3><span style="font-weight:normal">&#x1F4AC;</span> Exemple de discussion</h3>
+                        <div id="replies"></div>
                         <form class="message" method="post" action="" onsubmit="replyDiscussion(); return false;">
                             <div id="replyError"></div>
                             <div class="pseudo">
