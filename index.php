@@ -245,7 +245,8 @@ echo $popup->customised('popsuccess', '', nl2br($msg_popup));
                     '. $enclosure->block_workshop($zone['items'], $configs['items']) .'
                 </div>
                 <div class="city_row city_build">
-                    '. $enclosure->block_constructions($configs['constructions'], $configs['items'], $city_data['constructions'], $city_data['total_defenses'], $zone['items']) .'
+                    '. $enclosure->block_constructions($configs['constructions'], $configs['items'], $city_data['constructions'], 
+                                                       $city_data['total_defenses'], $zone['items'], $citizen['citizen_pseudo']) .'
                 </div>
                 <div class="city_row city_door">
                     '. $enclosure->block_door($city_data['is_door_closed']) .'

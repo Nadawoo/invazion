@@ -291,7 +291,7 @@ class HtmlCityEnclosure
      * @return string
      */
     function block_constructions($constructions_caracs, $items_caracs, $city_constructions, $total_defenses,
-                                 $zone_items)
+                                 $zone_items, $citizen_pseudo)
     {
         
         $buttons = new HtmlButtons;
@@ -397,7 +397,7 @@ class HtmlCityEnclosure
                                 &#x270F;&#xFE0F; Ajouter un message...
                             </a>
                             <form id="sendform" style="display:none">
-                                &#x1F464; <strong>Nadawoo</strong><br>
+                                &#x1F464; <strong>'.$citizen_pseudo.'</strong><br>
                                 <textarea placeholder="Donnez votre avis sur les chantiers à construire..."></textarea>
                                 <input type="submit" value="Envoyer">
                             </form>
@@ -465,7 +465,7 @@ class HtmlCityEnclosure
                         <form class="message" method="post" action="" onsubmit="replyDiscussion(); return false;">
                             <div id="replyError"></div>
                             <div class="pseudo">
-                                &#x1F464; <strong>Nadawoo</strong>
+                                &#x1F464; <strong>'.$citizen_pseudo.'</strong>
                             </div>
                             <textarea id="message" placeholder="D\'accord ? Pas d\'accord ? Votre réponse ici..."></textarea>
                             <input type="hidden" id="topic_id" value="10">
