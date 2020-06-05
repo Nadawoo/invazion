@@ -372,18 +372,17 @@ async function connectUser() {
 async function callDiscussTopics() {
     
     // Gets the titles of the discussions, by calling the InvaZion's API
-    var json = await callApi("GET", "discuss/threads", "action=get");
+    var jsonTopics = await callApi("GET", "discuss/threads", "action=get&sort=last_message_date");
     
     // Sets the presentation of the date of the discussion
     var dateFormat  = { weekday:'long', year:'numeric', month:'short', day:'numeric', hour:'numeric', minute:'numeric', }
-
-    var topicIds = Object.keys(json.datas);
-    var length   = topicIds.length;
-    var titles   = "";
+    
+    var length = jsonTopics.datas.length;
+    var titles = "";
     
     for (i=0; i<length; i++) {        
-        let topic        = json.datas[topicIds[i]];
-        let topicUrl     = getOfficialServerRoot()+'/discuss/topic?topic='+topicIds[i]+'#post'+topic.last_message.message_id;
+        let topic        = jsonTopics.datas[i];
+        let topicUrl     = getOfficialServerRoot()+'/discuss/topic?topic='+topic["topic_id"]+'#msg'+topic.last_message.message_id;
         let authorPseudo = topic.last_message.author_pseudo
         let dateObject   = new Date(topic.last_message.datetime_utc); 
         let localDate    = new Intl.DateTimeFormat('fr-FR', dateFormat).format(dateObject);
