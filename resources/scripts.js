@@ -416,6 +416,19 @@ async function callDiscussTopics() {
 
 
 /**
+ * Converts newlines into <br> in a text to preserves them in HTML
+ * Source : https://gist.github.com/yidas/41cc9272d3dff50f3c9560fb05e7255e
+ *
+ * @param {string}  text Input text
+ * @return {string} Filtered text
+ */
+function nl2br (text) {
+    
+    return (text + '').replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1'+'<br>');
+}
+
+
+/**
  * Builds the HTML to notify a new discussion in the notification block
  */
 function htmlDiscussTopics(topicTitle, date, url, authorPseudo) {
@@ -432,7 +445,7 @@ function htmlDiscussionMessage(message, pseudo) {
     return '<div class="message">\
             <div class="pseudo">&#x1F464; <strong>'+pseudo+'</strong></div>\
             <div class="time" title="Fuseau horaire de Paris">Mardi 3 juin (2020) à 13h15</div>\
-            <div class="text">'+message+'</div>\
+            <div class="text">'+nl2br(message)+'</div>\
         </div>';
 }
 
