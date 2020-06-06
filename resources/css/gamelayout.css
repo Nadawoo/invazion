@@ -58,6 +58,7 @@ legend {
     display:flex;
     flex-direction:row;
     justify-content:space-between;
+    align-items:center;
     margin-bottom:0.3em;
     /* To be sure that the width of the child block will be relative 
        to the width of #notif and not the width of the browser window */
@@ -69,21 +70,22 @@ legend {
     font-weight:bold;
 }
 #gamebar #notifsButton {
-    padding:0.1em 0.5em;
+    margin-top:0.2em;
+    padding:0.1em 0.4em;
     border:1px solid darkred;
     border-radius:2em;
 }
 #gamebar #notifsButton ::selection {
     background:none;
 }
-#gamebar #notifsBlock {
+#notifsBlock {
     display:none;
     position:absolute;
     left:25%;
     right:25%;
     width:50%;
     z-index:10;
-    margin-top:1.6em;
+    margin-top:-0.3em;
     padding:0 0.5em;
     background:#fbeee6;
     border:4px solid darkred;
@@ -103,14 +105,14 @@ legend {
     border-radius:2em;
     color:white;
 }
-#gamebar .notif {
+#notifsBlock .notif {
     display:block;
     padding:0.8em 0;
     border-bottom:1px solid #212f3d;
-    color:#566573;
+    color:black; /*#566573*/
     font-size:0.9em;
 }
-#gamebar .notif:hover {
+#notifsBlock .notif:hover {
     background:ivory;
 }
 .notif .extract {
@@ -488,7 +490,7 @@ button {
         align-items:center;
     }
     /* Elargit la liste de notifications */
-    #gamebar #notifsBlock {
+    #notifsBlock {
         width:80%;
         left:1.5em;
     }

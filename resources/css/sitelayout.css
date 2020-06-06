@@ -16,6 +16,9 @@ body {
     background: linear-gradient(to bottom right,  black,  #1a5276, black);
     background-attachment: fixed; /* Keep this *after* background definition to work */
     font-family: Arial, Helvetica, "Liberation Sans", FreeSans, sans-serif;
+    /* Garantit que les width en % des enfants seront calculées par rapport à la largeur
+       de la page (limitée) et non celle de la fenêtre du navigateur */
+    position:relative;
 }
 #page_container {
     padding:0 0.2em;
