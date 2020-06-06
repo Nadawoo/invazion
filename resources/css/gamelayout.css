@@ -95,19 +95,20 @@ legend {
 #notifsBlock #notifsClose {
     display:block;
     position:absolute;
-    right:-1em;
-    top:-1em;
+    right:-1.4rem;
+    top:  -1.4rem;
     text-align:center;
-    line-height:2.2em;
-    height:     2.2em;
-    width:      2.2em;
+    font-size:1.3em;
+    line-height:2.2rem;
+    height:     2.2rem;
+    width:      2.2rem;
     background:darkred;
     border-radius:2em;
     color:white;
 }
 #notifsBlock .notif {
     display:block;
-    padding:0.8em 0;
+    padding:0.7em 0 0.9em 0;
     border-bottom:1px solid #212f3d;
     color:black; /*#566573*/
     font-size:0.9em;
@@ -116,10 +117,11 @@ legend {
     background:ivory;
 }
 .notif .extract {
-    margin:0.5em 0 0.5em 1.5em;
+    margin:0.5em 0 0 1.5em;
     color:grey 
 }
 .notif .date {
+    margin-bottom:0.3em;
     text-align:right;
     color:grey;
     font-size:0.7em;
