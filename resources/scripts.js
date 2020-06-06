@@ -1,3 +1,7 @@
+// Will store the result of the API whichs gives the discussions list 
+var jsonDiscussionApi;
+
+
 /**
  * Returns the URL of the central server of InvaZion (which contains the APIs).
  * No need to change this unless you are the main developer of InvaZion.
@@ -322,8 +326,31 @@ function loadPage(url, callback) {
     } else {
         option.body= params;
     }
+    
+    // For debugging : uncomment this line to watch in the browser console 
+    // how many times you call the distant APIs, and eventually optimize the redundant calls
+//    console.log("API call: "+apiName);
+    
     //.text() pour retourner un texte brut, ou .json() pour parser du JSON
     return await fetch(apiUrl, option).then(a=>a.json());
+}
+
+
+/**
+ * Calls the API to get the list of the discussions, in the most performant way:
+ * > By default, calls the API only once, then stores the result in memory (faster)
+ * > If you need to update the results, you can force recalling the API (up-to-date but slower)
+ * 
+ * @param {string} refresh Set this value to "true" to force the function to call the API
+ *                         even if the result of a previous call is already stored in memory.
+ * @return jsonDiscussionApi JSON list of the discussions returned by the API
+ */
+async function callDiscussionApiOnce(refresh=false) {
+    
+    if (jsonDiscussionApi === undefined || refresh === true) {        
+        jsonDiscussionApi = await callApi("GET", "discuss/threads", "action=get&sort=last_message_date");
+    }
+    return jsonDiscussionApi;
 }
 
 
@@ -390,10 +417,10 @@ async function replyDiscussion() {
  * WARNING : don't call this function more than needed, because it makes a distant request 
  * to the InvaZion's API.
  */
-async function callDiscussTopics() {
+async function updateDiscussionsNotifs() {
     
     // Gets the titles of the discussions, by calling the InvaZion's API
-    var jsonTopics = await callApi("GET", "discuss/threads", "action=get&sort=last_message_date");
+    var jsonTopics = await callDiscussionApiOnce(refresh=true);
     
     // Sets the presentation of the date of the discussion
     var dateFormat  = { weekday:'long', year:'numeric', month:'short', day:'numeric', hour:'numeric', minute:'numeric', }
@@ -491,7 +518,7 @@ activatePhoneTab();
 document.getElementById("notifsButton").addEventListener("click", function(){
     
     if (window.getComputedStyle(document.getElementById("notifsBlock")).display === 'none') {
-        callDiscussTopics();
+        updateDiscussionsNotifs();
         document.getElementById("notifsBlock").style.display = 'block';
     }
     else {
