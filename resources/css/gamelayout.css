@@ -96,9 +96,9 @@ legend {
     right:-1em;
     top:-1em;
     text-align:center;
-    line-height:2em;
-    height:2em;
-    width:2em;
+    line-height:2.2em;
+    height:     2.2em;
+    width:      2.2em;
     background:darkred;
     border-radius:2em;
     color:white;
@@ -113,9 +113,12 @@ legend {
 #gamebar .notif:hover {
     background:ivory;
 }
+.notif .extract {
+    margin:0.5em 0 0.5em 1.5em;
+    color:grey 
+}
 .notif .date {
     text-align:right;
-    margin-top:0.5em;
     color:grey;
     font-size:0.7em;
 }

@@ -406,10 +406,11 @@ async function callDiscussTopics() {
         let topicUrl     = getOfficialServerRoot()+'/discuss/topic?topic='+topic["topic_id"]+'#msg'+topic.last_message.message_id;
         let authorPseudo = topic.last_message.author_pseudo;
         let authorId     = topic.last_message.author_id;
+        let lastMessageExtract = topic.last_message.extract;
         let dateObject   = new Date(topic.last_message.datetime_utc); 
         let localDate    = new Intl.DateTimeFormat('fr-FR', dateFormat).format(dateObject);
 
-        titles += htmlDiscussionTopics(topic.title, localDate, topicUrl, authorId, authorPseudo);
+        titles += htmlDiscussionTopics(topic.title, localDate, topicUrl, authorId, authorPseudo, lastMessageExtract);
     }
 
     document.getElementById("notifsList").innerHTML = titles;
@@ -432,11 +433,12 @@ function nl2br (text) {
 /**
  * Builds the HTML to notify a new discussion in the notification block
  */
-function htmlDiscussionTopics(topicTitle, date, url, authorId, authorPseudo) {
+function htmlDiscussionTopics(topicTitle, date, url, authorId, authorPseudo, lastMessageExtract) {
     
     authorPseudo = (authorPseudo==="") ? "Membre#"+authorId : authorPseudo;
     return '<a href="'+ url +'" target="_blank" class="notif">\
                 &#x1F5E8;&#xFE0F; <strong>'+ authorPseudo +'</strong> a répondu à <span style="color:darkred">'+ topicTitle +'</span>\
+                <div class="extract">« '+lastMessageExtract+'<span style="color:darkred">...</span> »</div>\
                 <div class="date">'+ date +'</div>\
             </a>';
 }

@@ -186,7 +186,7 @@ echo $popup->customised('popsuccess', '', nl2br($msg_popup));
         <div id="Outside">
             <a href="#Outside">#</a>&nbsp;Carte n° <?php echo $map_id ?>
         </div>
-        <a id="notifsButton">&#x1F514; <strong>Notifications</strong></a>
+        <a id="notifsButton">&#x1F514; <strong>Notifications</strong></a>
         <div id="notifsBlock">
             <a id="notifsClose">X</a>
             <div id="notifsList"></div>
