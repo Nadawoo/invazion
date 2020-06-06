@@ -330,7 +330,7 @@
 }
 #chat .link_other_messages { /* Link "show other message" in truncated discussions */
     display:block;
-    margin-top:0.1em;
+    margin-top:0.2em;
     text-align:center;
     font-size:0.8em;
     color:lightgrey;
@@ -340,6 +340,7 @@
 #chat .discuss  {
     background:#273746; /* #7b241c #34495e */
     padding:0.1em;
+    margin:2em 0;
 }
 #chat .discuss .time {
     margin-left:2.1em;

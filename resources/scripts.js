@@ -496,7 +496,8 @@ function htmlDiscussionNotif(topicTitle, date, url, authorId, authorPseudo, last
 
 function htmlDiscussion(topicId, topicTitle, firstMessage, lastMessage, nbrOtherMessages, playerPseudo) {
     
-    return '<div class="topic discuss">\
+    return '<hr>\
+            <div class="topic discuss">\
                 <h3><span style="font-weight:normal">&#x1F4AC;</span> '+topicTitle+'</h3>\
                 '+htmlDiscussionMessage(firstMessage.extract+' <a style="font-size:0.8em">[suite...]</a>', firstMessage.author_pseudo)+'\
                 <a class="link_other_messages">··· Voir '+nbrOtherMessages+' réponses ···</a>\
