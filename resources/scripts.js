@@ -394,26 +394,26 @@ async function connectUser() {
 /**
  * To send a reply in an existing discussion
  */
-async function replyDiscussion() {
+async function replyDiscussion(topicId) {
     
-    let topic_id = document.getElementById("topic_id").getAttribute("value"),
-        message  = document.getElementById("message").value,
+    let citizenPseudo = document.getElementById("citizenPseudo").innerHTML,
+        message  = document.getElementById("message"+topicId).value,
         token    = getCookie('token');
         
-    let json = await callApi("POST", "discuss/threads", `action=reply&topic_id=${topic_id}&message=${message}&token=${token}`);
+    let json = await callApi("POST", "discuss/threads", `action=reply&topic_id=${topicId}&message=${message}&token=${token}`);
     
     if (json.metas.error_code === "success") {
-        document.getElementById("message").value = "";
-        document.getElementById("replies").innerHTML += htmlDiscussionMessage(message, "John Doe");
+        document.getElementById("message"+topicId).value = "";
+        document.getElementById("replies"+topicId).innerHTML += htmlDiscussionMessage(message, citizenPseudo);
     }
     else {
-        document.getElementById("replyError").innerHTML = '<span class="red">'+json.metas.error_message+'</span>';
+        document.getElementById("replyError"+topicId).innerHTML = '<span class="red">'+json.metas.error_message+'</span>';
     }
 }
 
 
 /**
- * Gets the list of the discussion threads (to display it in the notifications panel, for example) 
+ * Displays the discussions list in the notifications panel.
  * WARNING : don't call this function more than needed, because it makes a distant request 
  * to the InvaZion's API.
  */
@@ -437,10 +437,32 @@ async function updateDiscussionsNotifs() {
         let dateObject   = new Date(topic.last_message.datetime_utc); 
         let localDate    = new Intl.DateTimeFormat('fr-FR', dateFormat).format(dateObject);
 
-        titles += htmlDiscussionTopics(topic.title, localDate, topicUrl, authorId, authorPseudo, lastMessageExtract);
+        titles += htmlDiscussionNotif(topic.title, localDate, topicUrl, authorId, authorPseudo, lastMessageExtract);
     }
 
     document.getElementById("notifsList").innerHTML = titles;
+}
+
+
+/**
+ * Displays the discussions on the constructions page in the city.
+ */
+async function updateDiscussionsList() {
+    
+    // Gets the titles of the discussions, by calling the InvaZion's API
+    var jsonTopics = await callDiscussionApiOnce();
+    
+    var citizenPseudo = document.getElementById("citizenPseudo").innerHTML;
+    var length = jsonTopics.datas.length;
+    var titles = "";
+    
+    for (i=0; i<length; i++) {        
+        let topic        = jsonTopics.datas[i];
+
+        titles += htmlDiscussion(topic.topic_id, topic.title, citizenPseudo);
+    }
+    
+    document.getElementById("discussions").innerHTML = titles;
 }
 
 
@@ -460,7 +482,7 @@ function nl2br (text) {
 /**
  * Builds the HTML to notify a new discussion in the notification block
  */
-function htmlDiscussionTopics(topicTitle, date, url, authorId, authorPseudo, lastMessageExtract) {
+function htmlDiscussionNotif(topicTitle, date, url, authorId, authorPseudo, lastMessageExtract) {
     
     authorPseudo = (authorPseudo==="") ? "Membre#"+authorId : authorPseudo;
     return '<a href="'+ url +'" target="_blank" class="notif">\
@@ -468,6 +490,23 @@ function htmlDiscussionTopics(topicTitle, date, url, authorId, authorPseudo, las
                 &#x1F5E8;&#xFE0F; <strong>'+ authorPseudo +'</strong> a répondu à <span style="color:darkred">'+ topicTitle +'</span>\
                 <div class="extract">« '+lastMessageExtract+'<span style="color:darkred">...</span> »</div>\
             </a>';
+}
+
+
+function htmlDiscussion(topicId, topicTitle, citizenPseudo) {
+    
+    return '<div class="topic discuss">\
+                <h3><span style="font-weight:normal">&#x1F4AC;</span> '+topicTitle+'</h3>\
+                <div id="replies'+topicId+'"></div>\
+                <form class="message" method="post" action="" onsubmit="replyDiscussion('+topicId+'); return false;">\
+                    <div id="replyError'+topicId+'"></div>\
+                    <div class="pseudo">\
+                        &#x1F464; <strong>'+citizenPseudo+'</strong>\
+                    </div>\
+                    <textarea id="message'+topicId+'" placeholder="D\'accord ? Pas d\'accord ? Votre réponse ici..."></textarea>\
+                    <input type="submit" value="Envoyer">\
+                </form>\
+            </div>';
 }
 
 

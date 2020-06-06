@@ -22,7 +22,7 @@ class HtmlCityEnclosure
         
         return '<div class="row">
                     <div class="item" onclick="switchCityTab(\'city_perso\')">Chez moi</div>
-                    <div class="item" onclick="switchCityTab(\'city_build\')">Bâtir la&nbsp;ville</div>
+                    <div class="item" onclick="switchCityTab(\'city_build\');updateDiscussionsList();">Bâtir la&nbsp;ville</div>
                     <div class="vertical">
                         <div class="item" onclick="switchCityTab(\'city_fellows\')">Concitoyens</div>
                         <div class="item" onclick="switchCityTab(\'city_common\') ">Réserves</div>
@@ -438,19 +438,8 @@ class HtmlCityEnclosure
                         </div>
                     </div>
                     
-                    <div class="topic discuss">            
-                        <h3><span style="font-weight:normal">&#x1F4AC;</span> Exemple de discussion</h3>
-                        <div id="replies"></div>
-                        <form class="message" method="post" action="" onsubmit="replyDiscussion(); return false;">
-                            <div id="replyError"></div>
-                            <div class="pseudo">
-                                &#x1F464; <strong>'.$citizen_pseudo.'</strong>
-                            </div>
-                            <textarea id="message" placeholder="D\'accord ? Pas d\'accord ? Votre réponse ici..."></textarea>
-                            <input type="hidden" id="topic_id" value="10">
-                            <input type="submit" value="Envoyer">
-                        </form>
-                    </div>
+                    <div id="citizenPseudo" style="display:none">'.$citizen_pseudo.'</div>
+                    <div id="discussions"></div>
                     
                 </div>
             </div>';
