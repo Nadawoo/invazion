@@ -487,4 +487,9 @@ button {
         flex-direction:column;
         align-items:center;
     }
+    /* Elargit la liste de notifications */
+    #gamebar #notifsBlock {
+        width:80%;
+        left:1.5em;
+    }
 }
