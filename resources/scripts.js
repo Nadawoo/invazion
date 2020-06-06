@@ -457,9 +457,10 @@ async function updateDiscussionsList() {
     var titles = "";
     
     for (i=0; i<length; i++) {        
-        let topic        = jsonTopics.datas[i];
+        let topic            = jsonTopics.datas[i],
+            nbrOtherMessages = topic.nbr_messages-2;
 
-        titles += htmlDiscussion(topic.topic_id, topic.title, topic.first_message, topic.last_message, playerPseudo);
+        titles += htmlDiscussion(topic.topic_id, topic.title, topic.first_message, topic.last_message, nbrOtherMessages, playerPseudo);
     }
     
     document.getElementById("discussions").innerHTML = titles;
@@ -493,12 +494,12 @@ function htmlDiscussionNotif(topicTitle, date, url, authorId, authorPseudo, last
 }
 
 
-function htmlDiscussion(topicId, topicTitle, firstMessage, lastMessage, playerPseudo) {
+function htmlDiscussion(topicId, topicTitle, firstMessage, lastMessage, nbrOtherMessages, playerPseudo) {
     
     return '<div class="topic discuss">\
                 <h3><span style="font-weight:normal">&#x1F4AC;</span> '+topicTitle+'</h3>\
                 '+htmlDiscussionMessage(firstMessage.extract+' <a style="font-size:0.8em">[suite...]</a>', firstMessage.author_pseudo)+'\
-                <a class="link_other_messages">[autres messages]</a>\
+                <a class="link_other_messages">··· Voir '+nbrOtherMessages+' réponses ···</a>\
                 '+htmlDiscussionMessage(lastMessage.extract+' <a style="font-size:0.8em">[suite...]</a>', lastMessage.author_pseudo)+'\
                 <div id="replies'+topicId+'"></div>\
                 <form class="message" method="post" action="" onsubmit="replyDiscussion('+topicId+'); return false;">\

@@ -329,9 +329,10 @@
 }
 #chat .link_other_messages { /* Link "show other message" in truncated discussions */
     display:block;
+    margin-top:0.1em;
     text-align:center;
     font-size:0.8em;
-    color:lightgrey
+    color:lightgrey;
 }
 
 /* Specific presentation for the discussions */
