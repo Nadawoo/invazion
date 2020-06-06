@@ -452,14 +452,14 @@ async function updateDiscussionsList() {
     // Gets the titles of the discussions, by calling the InvaZion's API
     var jsonTopics = await callDiscussionApiOnce();
     
-    var citizenPseudo = document.getElementById("citizenPseudo").innerHTML;
+    var playerPseudo = document.getElementById("citizenPseudo").innerHTML;
     var length = jsonTopics.datas.length;
     var titles = "";
     
     for (i=0; i<length; i++) {        
         let topic        = jsonTopics.datas[i];
 
-        titles += htmlDiscussion(topic.topic_id, topic.title, citizenPseudo);
+        titles += htmlDiscussion(topic.topic_id, topic.title, topic.first_message, topic.last_message, playerPseudo);
     }
     
     document.getElementById("discussions").innerHTML = titles;
@@ -493,15 +493,18 @@ function htmlDiscussionNotif(topicTitle, date, url, authorId, authorPseudo, last
 }
 
 
-function htmlDiscussion(topicId, topicTitle, citizenPseudo) {
+function htmlDiscussion(topicId, topicTitle, firstMessage, lastMessage, playerPseudo) {
     
     return '<div class="topic discuss">\
                 <h3><span style="font-weight:normal">&#x1F4AC;</span> '+topicTitle+'</h3>\
+                '+htmlDiscussionMessage(firstMessage.extract+' <a style="font-size:0.8em">[suite...]</a>', firstMessage.author_pseudo)+'\
+                <a class="link_other_messages">[autres messages]</a>\
+                '+htmlDiscussionMessage(lastMessage.extract+' <a style="font-size:0.8em">[suite...]</a>', lastMessage.author_pseudo)+'\
                 <div id="replies'+topicId+'"></div>\
                 <form class="message" method="post" action="" onsubmit="replyDiscussion('+topicId+'); return false;">\
                     <div id="replyError'+topicId+'"></div>\
                     <div class="pseudo">\
-                        &#x1F464; <strong>'+citizenPseudo+'</strong>\
+                        &#x1F464; <strong>'+playerPseudo+'</strong>\
                     </div>\
                     <textarea id="message'+topicId+'" placeholder="D\'accord ? Pas d\'accord ? Votre réponse ici..."></textarea>\
                     <input type="submit" value="Envoyer">\

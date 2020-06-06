@@ -327,6 +327,12 @@
 #chat .text {
     font-size:0.9em;
 }
+#chat .link_other_messages { /* Link "show other message" in truncated discussions */
+    display:block;
+    text-align:center;
+    font-size:0.8em;
+    color:lightgrey
+}
 
 /* Specific presentation for the discussions */
 #chat .discuss  {
