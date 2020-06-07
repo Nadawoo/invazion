@@ -268,6 +268,9 @@
  * Chat (instant messagerie) integrated in the different parts of the city 
  * (constructions, bank...)
  */
+#chat {
+    width:18rem;
+}
 #chat h2 {
     text-align:center; /* Main title of the block */
 }
@@ -306,6 +309,7 @@
 #chat .topic {
     margin:0.7em 0;
     border-radius:0.3em;
+    padding: 0.2rem 0.4rem;
 }
 #chat h3 { /* Topic title */
     margin:0;
@@ -314,7 +318,7 @@
     border-radius:0.3em 0.3em 0 0;
 }
 #chat .message {
-    margin-top:0.2em;
+    margin-top:0.2em;    
     padding:0.3em 0.2em;
     background: #f6ddcc ;
     border-radius:0.3em;
@@ -339,7 +343,6 @@
 /* Specific presentation for the discussions */
 #chat .discuss  {
     background:#273746; /* #7b241c #34495e */
-    padding:0.1em;
     margin:2em 0;
 }
 #chat .discuss .time {
