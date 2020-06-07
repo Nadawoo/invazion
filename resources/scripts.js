@@ -500,9 +500,9 @@ function htmlDiscussionNotif(topicTitle, date, url, authorId, authorPseudo, last
     
     authorPseudo = (authorPseudo==="") ? "Membre#"+authorId : authorPseudo;
     return '<a href="'+ url +'" target="_blank" class="notif">\
-                <div class="date">'+ date +'</div>\
                 &#x1F5E8;&#xFE0F; <strong>'+ authorPseudo +'</strong> a répondu à <span style="color:darkred">'+ topicTitle +'</span>\
                 <div class="extract">« '+lastMessage+'<span style="color:darkred">...</span> »</div>\
+                <div class="date">'+ date +'</div>\
             </a>';
 }
 
