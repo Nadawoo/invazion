@@ -525,8 +525,7 @@ function htmlDiscussion(topicId, topicTitle, lastMessage, nbrOtherMessages) {
                     <a href="#" onclick="display(\'sendform'+topicId+'\');this.style.display=\'none\';return false">\
                         Répondre...\
                     </a>\
-                    <form id="sendform'+topicId+'" style="display:none" method="post" action="" \
-                          onsubmit="replyDiscussion('+topicId+'); return false;">\
+                    <form id="sendform'+topicId+'" method="post" action="" onsubmit="replyDiscussion('+topicId+'); return false;">\
                         <div id="replyError'+topicId+'"></div>\
                         <textarea id="message'+topicId+'" placeholder="D\'accord ? Pas d\'accord ? Votre réponse ici..."></textarea>\
                         <input type="submit" value="Envoyer">\

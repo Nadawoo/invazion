@@ -363,6 +363,10 @@
 #chat .discuss .time {
     margin-left:2.1em;
 }
+#chat .discuss form {
+    display:none;
+    padding:0 0.4rem;
+}
 #chat #send {
     padding:0.1em;
 }
