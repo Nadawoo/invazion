@@ -403,7 +403,12 @@ async function replyDiscussion(topicId) {
     let json = await callApi("POST", "discuss/threads", `action=reply&topic_id=${topicId}&message=${message}&token=${token}`);
     
     if (json.metas.error_code === "success") {
+        // Clears and hides the form after posting
         document.getElementById("message"+topicId).value = "";
+        document.getElementById("sendform"+topicId).style.display = "none";
+        // Unhides the "Reply" button
+        document.getElementById("replyButton"+topicId).style.display = "block";
+        // Appends the text of the posted reply at the bottom of the discussion
         document.getElementById("replies"+topicId).innerHTML += htmlDiscussionMessage(message, citizenPseudo);
     }
     else {
@@ -522,7 +527,7 @@ function htmlDiscussion(topicId, topicTitle, lastMessage, nbrOtherMessages) {
                 '+htmlDiscussionMessage(lastMessage.message+readMoreLink, lastMessage.author_pseudo)+'\
                 <div id="replies'+topicId+'"></div>\
                 <div class="reply_button">\
-                    <a href="#" onclick="display(\'sendform'+topicId+'\');this.style.display=\'none\';return false">\
+                    <a id="replyButton'+topicId+'" href="#" onclick="display(\'sendform'+topicId+'\');this.style.display=\'none\';return false">\
                         Répondre...\
                     </a>\
                     <form id="sendform'+topicId+'" method="post" action="" onsubmit="replyDiscussion('+topicId+'); return false;">\
