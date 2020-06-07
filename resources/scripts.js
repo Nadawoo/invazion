@@ -411,6 +411,19 @@ async function replyDiscussion(topicId) {
     }
 }
 
+/**
+ * Builds the url to a discussion, eventually with an anchor to a reply
+ * Example : https://invazion.nadazone.fr/discuss/topic?topic=7&p=#msg37
+ * @param {int} discussionId The ID of the discussion
+ * @param {int} messageId    The ID of a message inside the discussion, if you want to
+ *                            direct the user directly on it.
+ * @return {String}
+ */
+function urlDiscussion(discussionId, messageId="") {
+    
+    return getOfficialServerRoot()+'/discuss/topic?topic='+discussionId+'#msg'+messageId;
+}
+
 
 /**
  * Displays the discussions list in the notifications panel.
@@ -430,7 +443,7 @@ async function updateDiscussionsNotifs() {
     
     for (i=0; i<length; i++) {        
         let topic        = jsonTopics.datas[i];
-        let topicUrl     = getOfficialServerRoot()+'/discuss/topic?topic='+topic["topic_id"]+'#msg'+topic.last_message.message_id;
+        let topicUrl     = urlDiscussion(topic["topic_id"], topic.last_message.message_id);
         let authorPseudo = topic.last_message.author_pseudo;
         let authorId     = topic.last_message.author_id;
         let lastMessage  = topic.last_message.message;
@@ -496,11 +509,15 @@ function htmlDiscussionNotif(topicTitle, date, url, authorId, authorPseudo, last
 
 function htmlDiscussion(topicId, topicTitle, firstMessage, lastMessage, nbrOtherMessages, playerPseudo) {
     
+    var url = urlDiscussion(topicId, lastMessage.message_id),
+        otherMessagesLink = '<a href="'+url+'" target="_blank" class="link_other_messages">[ voir '+nbrOtherMessages+' réponses ]</a>',
+        readMoreLink     = ' <a href="'+url+'" target="_blank" style="font-size:0.8em">[suite...]</a>';
+    
     return '<hr>\
             <div class="topic discuss">\
                 <h3><span style="font-weight:normal">&#x1F4AC;</span> '+topicTitle+'</h3>\
-                <a class="link_other_messages">[ voir '+nbrOtherMessages+' réponses ]</a>\
-                '+htmlDiscussionMessage(lastMessage.message+' <a style="font-size:0.8em">[suite...]</a>', lastMessage.author_pseudo)+'\
+                '+otherMessagesLink+'\
+                '+htmlDiscussionMessage(lastMessage.message+readMoreLink, lastMessage.author_pseudo)+'\
                 <div id="replies'+topicId+'"></div>\
                 <div class="reply_button">\
                     <a href="#" onclick="display(\'sendform'+topicId+'\');this.style.display=\'none\';return false">\
