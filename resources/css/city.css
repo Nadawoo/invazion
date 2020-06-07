@@ -316,6 +316,7 @@
     padding:0.1em 0;
     color: white ;
     border-radius:0.3em 0.3em 0 0;
+    font-weight:normal;
 }
 #chat .message {
     margin-top:0.2em;    
@@ -338,6 +339,9 @@
     text-align:center;
     font-size:0.8em;
     color:lightgrey;
+}
+#chat .link_other_messages:hover {
+    color:#e74c3c;
 }
 
 /* Specific presentation for the discussions */

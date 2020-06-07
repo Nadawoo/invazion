@@ -433,11 +433,11 @@ async function updateDiscussionsNotifs() {
         let topicUrl     = getOfficialServerRoot()+'/discuss/topic?topic='+topic["topic_id"]+'#msg'+topic.last_message.message_id;
         let authorPseudo = topic.last_message.author_pseudo;
         let authorId     = topic.last_message.author_id;
-        let lastMessageExtract = topic.last_message.extract;
+        let lastMessage  = topic.last_message.message;
         let dateObject   = new Date(topic.last_message.datetime_utc); 
         let localDate    = new Intl.DateTimeFormat('fr-FR', dateFormat).format(dateObject);
 
-        titles += htmlDiscussionNotif(topic.title, localDate, topicUrl, authorId, authorPseudo, lastMessageExtract);
+        titles += htmlDiscussionNotif(topic.title, localDate, topicUrl, authorId, authorPseudo, lastMessage);
     }
 
     document.getElementById("notifsList").innerHTML = titles;
@@ -458,7 +458,7 @@ async function updateDiscussionsList() {
     
     for (i=0; i<length; i++) {        
         let topic            = jsonTopics.datas[i],
-            nbrOtherMessages = topic.nbr_messages-2;
+            nbrOtherMessages = topic.nbr_messages-1;
 
         titles += htmlDiscussion(topic.topic_id, topic.title, topic.first_message, topic.last_message, nbrOtherMessages, playerPseudo);
     }
@@ -483,13 +483,13 @@ function nl2br (text) {
 /**
  * Builds the HTML to notify a new discussion in the notification block
  */
-function htmlDiscussionNotif(topicTitle, date, url, authorId, authorPseudo, lastMessageExtract) {
+function htmlDiscussionNotif(topicTitle, date, url, authorId, authorPseudo, lastMessage) {
     
     authorPseudo = (authorPseudo==="") ? "Membre#"+authorId : authorPseudo;
     return '<a href="'+ url +'" target="_blank" class="notif">\
                 <div class="date">'+ date +'</div>\
                 &#x1F5E8;&#xFE0F; <strong>'+ authorPseudo +'</strong> a répondu à <span style="color:darkred">'+ topicTitle +'</span>\
-                <div class="extract">« '+lastMessageExtract+'<span style="color:darkred">...</span> »</div>\
+                <div class="extract">« '+lastMessage+'<span style="color:darkred">...</span> »</div>\
             </a>';
 }
 
@@ -499,9 +499,8 @@ function htmlDiscussion(topicId, topicTitle, firstMessage, lastMessage, nbrOther
     return '<hr>\
             <div class="topic discuss">\
                 <h3><span style="font-weight:normal">&#x1F4AC;</span> '+topicTitle+'</h3>\
-                '+htmlDiscussionMessage(firstMessage.extract+' <a style="font-size:0.8em">[suite...]</a>', firstMessage.author_pseudo)+'\
-                <a class="link_other_messages">··· Voir '+nbrOtherMessages+' réponses ···</a>\
-                '+htmlDiscussionMessage(lastMessage.extract+' <a style="font-size:0.8em">[suite...]</a>', lastMessage.author_pseudo)+'\
+                <a class="link_other_messages">[ voir '+nbrOtherMessages+' réponses ]</a>\
+                '+htmlDiscussionMessage(lastMessage.message+' <a style="font-size:0.8em">[suite...]</a>', lastMessage.author_pseudo)+'\
                 <div id="replies'+topicId+'"></div>\
                 <div class="reply_button">\
                     <a href="#" onclick="display(\'sendform'+topicId+'\');this.style.display=\'none\';return false">\
