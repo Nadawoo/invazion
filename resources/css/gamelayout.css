@@ -112,6 +112,7 @@ legend {
     border-bottom:1px solid #212f3d;
     color:black; /*#566573*/
     font-size:0.9em;
+    word-wrap:break-word;
 }
 #notifsBlock .notif:hover {
     background:ivory;
