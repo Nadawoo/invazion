@@ -307,22 +307,23 @@
 
 /* Common presentation for discussions and events */
 #chat .topic {
+    padding-bottom:0.2rem;
     border-radius:0.3em;
-    padding: 0.2rem 0.4rem;
 }
 #chat h3 { /* Topic title */
     margin:0;
-    padding:0.1em 0 0.4em 0;
     border-radius:0.3em 0.3em 0 0;
     border-bottom:1px solid #515a5a;
     font-weight:normal;
+    background:#273746;
 }
 #chat h3 a {
     display:block;
+    padding:0.3em;
     color:white;
 }
-#chat h3 :hover {
-    color:#e74c3c;
+#chat h3:hover {
+    background:#566573;
 }
 #chat .message {
     margin-top:0.2em;    
@@ -342,7 +343,7 @@
 }
 #chat .link_other_messages { /* Link "show other message" in truncated discussions */
     display:block;
-    margin-top:0.2em;
+    margin:0.2rem;
     text-align:center;
     font-size:0.8em;
     color:lightgrey;
@@ -353,8 +354,11 @@
 
 /* Specific presentation for the discussions */
 #chat .discuss  {
-    background:#273746; /* #7b241c #34495e */
+    background:#34495e; /* #7b241c #34495e */
     margin:1.5em 0;
+}
+#chat .discuss .message {
+    margin:0 0.4rem;
 }
 #chat .discuss .time {
     margin-left:2.1em;
@@ -372,6 +376,7 @@
 #chat .reply_button a {
     display:block;
     margin-left:65%;
+    margin-right: 0.4rem;
     margin-top:-0.2rem;
     padding:0.1em;
     text-align:center;    
