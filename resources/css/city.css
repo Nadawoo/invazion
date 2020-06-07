@@ -330,7 +330,7 @@
     padding:0.3em 0.2em;
     background: #f6ddcc ;
     border-radius:0.3em;
-    border-bottom-right-radius:0;
+    border-bottom-right-radius:0; /* For an esthetic join withe the "Reply" button */
     word-wrap:break-word;
 }
 #chat .time {
@@ -358,7 +358,7 @@
     margin:1.5em 0;
 }
 #chat .discuss .message {
-    margin:0 0.4rem;
+    margin:0.2rem 0.4rem 0 0.4rem;
 }
 #chat .discuss .time {
     margin-left:2.1em;
