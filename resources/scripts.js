@@ -473,7 +473,7 @@ async function updateDiscussionsList() {
         let topic            = jsonTopics.datas[i],
             nbrOtherMessages = topic.nbr_messages-1;
 
-        titles += htmlDiscussion(topic.topic_id, topic.title, topic.first_message, topic.last_message, nbrOtherMessages, playerPseudo);
+        titles += htmlDiscussion(topic.topic_id, topic.title, topic.last_message, nbrOtherMessages);
     }
     
     document.getElementById("discussions").innerHTML = titles;
@@ -507,7 +507,7 @@ function htmlDiscussionNotif(topicTitle, date, url, authorId, authorPseudo, last
 }
 
 
-function htmlDiscussion(topicId, topicTitle, firstMessage, lastMessage, nbrOtherMessages, playerPseudo) {
+function htmlDiscussion(topicId, topicTitle, lastMessage, nbrOtherMessages) {
     
     var url = urlDiscussion(topicId, lastMessage.message_id),
         otherMessagesLink = '<a href="'+url+'" target="_blank" class="link_other_messages">[ voir '+nbrOtherMessages+' réponses ]</a>',
