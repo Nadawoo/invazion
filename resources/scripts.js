@@ -503,14 +503,17 @@ function htmlDiscussion(topicId, topicTitle, firstMessage, lastMessage, nbrOther
                 <a class="link_other_messages">··· Voir '+nbrOtherMessages+' réponses ···</a>\
                 '+htmlDiscussionMessage(lastMessage.extract+' <a style="font-size:0.8em">[suite...]</a>', lastMessage.author_pseudo)+'\
                 <div id="replies'+topicId+'"></div>\
-                <form class="message" method="post" action="" onsubmit="replyDiscussion('+topicId+'); return false;">\
-                    <div id="replyError'+topicId+'"></div>\
-                    <div class="pseudo">\
-                        &#x1F464; <strong>'+playerPseudo+'</strong>\
-                    </div>\
-                    <textarea id="message'+topicId+'" placeholder="D\'accord ? Pas d\'accord ? Votre réponse ici..."></textarea>\
-                    <input type="submit" value="Envoyer">\
-                </form>\
+                <div class="reply_button">\
+                    <a href="#" onclick="display(\'sendform'+topicId+'\');this.style.display=\'none\';return false">\
+                        &#x270F;&#xFE0F; Répondre...\
+                    </a>\
+                    <form id="sendform'+topicId+'" style="display:none" method="post" action="" \
+                          onsubmit="replyDiscussion('+topicId+'); return false;">\
+                        <div id="replyError'+topicId+'"></div>\
+                        <textarea id="message'+topicId+'" placeholder="D\'accord ? Pas d\'accord ? Votre réponse ici..."></textarea>\
+                        <input type="submit" value="Envoyer">\
+                    </form>\
+                </div>\
             </div>';
 }
 

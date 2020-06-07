@@ -285,7 +285,7 @@
     border:1px solid grey;
 }
 #chat textarea {
-    height:4em;
+    height:8em;
 }
 #chat input[type="submit"] {
     width:100%;
@@ -350,6 +350,20 @@
 }
 #chat #send .message {
     margin:0;
+}
+#chat .reply_button { /* Button to display the form under a discussion */
+    padding-top:0.2rem;
+    padding-bottom:0.1rem;
+}
+#chat .reply_button a {
+    display:block;
+    padding:0.2em;
+    text-align:center;
+    font-size:0.8em;
+    font-weight:bold;
+    border:1px solid grey;
+    border-radius:0.3rem;    
+    background:white;    
 }
 
 /* Specific presentation for the events */
