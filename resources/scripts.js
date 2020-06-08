@@ -409,12 +409,13 @@ async function replyDiscussion(topicId) {
         // Unhides the "Reply" button
         document.getElementById("replyButton"+topicId).style.display = "block";
         // Appends the text of the posted reply at the bottom of the discussion
-        document.getElementById("replies"+topicId).innerHTML += htmlDiscussionMessage(message, citizenPseudo);
+        document.getElementById("replies"+topicId).innerHTML += htmlDiscussionMessage(message, citizenPseudo, new Date().toISOString());
     }
     else {
         document.getElementById("replyError"+topicId).innerHTML = '<span class="red">'+json.metas.error_message+'</span>';
     }
 }
+
 
 /**
  * Builds the url to a discussion, eventually with an anchor to a reply
@@ -440,9 +441,6 @@ async function updateDiscussionsNotifs() {
     // Gets the titles of the discussions, by calling the InvaZion's API
     var jsonTopics = await callDiscussionApiOnce(refresh=true);
     
-    // Sets the presentation of the date of the discussion
-    var dateFormat  = { weekday:'long', year:'numeric', month:'short', day:'numeric', hour:'numeric', minute:'numeric', }
-    
     var length = jsonTopics.datas.length;
     var titles = "";
     
@@ -452,13 +450,28 @@ async function updateDiscussionsNotifs() {
         let authorPseudo = topic.last_message.author_pseudo;
         let authorId     = topic.last_message.author_id;
         let lastMessage  = topic.last_message.message;
-        let dateObject   = new Date(topic.last_message.datetime_utc); 
-        let localDate    = new Intl.DateTimeFormat('fr-FR', dateFormat).format(dateObject);
+        let localDate    = htmlDate(topic.last_message.datetime_utc);
 
         titles += htmlDiscussionNotif(topic.title, localDate, topicUrl, authorId, authorPseudo, lastMessage);
     }
 
     document.getElementById("notifsList").innerHTML = titles;
+}
+
+
+/**
+ * Converts a raw UTC date to a string text date
+ * 
+ * @param {string} utcDate  The date as returned by the Invazion's API (UTC time + ISO 8601 format)
+ *                          Example : "2020-02-18T14:51:41+01:00"
+ * @return {string} The human-readable date (e.g.: "lundi 6 juin 2020 à 13h40")
+ */
+function htmlDate(utcDate) {
+    // Set here the presentation you want for the date
+    // Available options : https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/Intl/DateTimeFormat#Syntaxe
+    var dateFormat  = { weekday:'long', year:'numeric', month:'short', day:'numeric', hour:'numeric', minute:'numeric' };
+    
+    return Intl.DateTimeFormat('fr-FR', dateFormat).format(new Date(utcDate));
 }
 
 
@@ -524,7 +537,7 @@ function htmlDiscussion(topicId, topicTitle, lastMessage, nbrOtherMessages) {
                     <span style="font-weight:normal">&#x1F4AC;</span> '+topicTitle+'\
                 </a></h3>\
                 '+otherMessagesLink+'\
-                '+htmlDiscussionMessage(lastMessage.message+readMoreLink, lastMessage.author_pseudo)+'\
+                '+htmlDiscussionMessage(lastMessage.message+readMoreLink, lastMessage.author_pseudo, lastMessage.datetime_utc)+'\
                 <div id="replies'+topicId+'"></div>\
                 <div class="reply_button">\
                     <a id="replyButton'+topicId+'" href="#" onclick="display(\'sendform'+topicId+'\');this.style.display=\'none\';return false">\
@@ -540,11 +553,11 @@ function htmlDiscussion(topicId, topicTitle, lastMessage, nbrOtherMessages) {
 }
 
 
-function htmlDiscussionMessage(message, pseudo) {
+function htmlDiscussionMessage(message, pseudo, utcDate) {
     
     return '<div class="message">\
             <div class="pseudo">&#x1F464; <strong>'+pseudo+'</strong></div>\
-            <div class="time" title="Fuseau horaire de Paris">Mardi 3 juin (2020) à 13h15</div>\
+            <div class="time" title="Fuseau horaire de Paris">'+htmlDate(utcDate)+'</div>\
             <div class="text">'+nl2br(message)+'</div>\
         </div>';
 }
