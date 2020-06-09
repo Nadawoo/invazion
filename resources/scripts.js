@@ -564,63 +564,64 @@ function htmlDiscussionMessage(message, pseudo, utcDate) {
 
 
 /*
- * Exécuté dès le chargement de la page, sans action du visiteur
+ * Executed as soon as the page loads, without user action
  */
 
-// Si on est à l'intérieur d'une ville
-if (document.getElementById('city_container') !== null) {
+// If we are on the main game page (those elements doesn't exist on the connection page)
+if (document.getElementById('map') !== null) {
     
-    // Charge le premier onglet de la ville par défaut
-    var search_params = new URLSearchParams(window.location.search);
-    switchCityTab(search_params.get('tab'));
-}
-
-// Mémorise si le joueur veut voir la carte entière ou juste la zone où il se trouve
-if (getCookie('show_zone') === "1") {
-    display('my_zone');
-    hide('displayMyZone');
-}
-else {
-    hide('my_zone');
-    hide('hideMyZone');
-}
-
-
-// Par défaut, la liste des objets du sac et au sol sont réduites
-if (getCookie('showitemspanel') === null || getCookie('showitemspanel') === '0') {
-    toggleItemsPanel();
-}
-
-
-// Affiche l'onglet actif du smartphone au chargement de la page
-activatePhoneTab();
-
-
-// Displays/hides the notifications panel
-document.getElementById("notifsButton").addEventListener("click", function(){
-    
-    if (window.getComputedStyle(document.getElementById("notifsBlock")).display === 'none') {
-        updateDiscussionsNotifs();
-        document.getElementById("notifsBlock").style.display = 'block';
+    // Memorizes if the player wants to see the whole map or just the area where he is
+    if (getCookie('show_zone') === "1") {
+        display('my_zone');
+        hide('displayMyZone');
     }
     else {
-        document.getElementById("notifsBlock").style.display = 'none';
+        hide('my_zone');
+        hide('hideMyZone');
     }
-});
-document.getElementById("notifsClose").addEventListener("click", function(){
-    document.getElementById("notifsBlock").style.display = 'none';
-});
-
-
-// Switches the action "Display my zone"/"Display the map"
-document.getElementById("backToMap").addEventListener("click", function(){
     
-    if (getCookie('show_zone') === '1') {
-        setCookie('show_zone', 0);
-    } else {
-        setCookie('show_zone', 1);
+    // By default, the list of objects in the bag and on the ground are reduced
+    if (getCookie('showitemspanel') === null || getCookie('showitemspanel') === '0') {
+        toggleItemsPanel();
     }
-    toggle('my_zone');
-    toggle('displayMyZone');
-    toggle('hideMyZone');
-});
+     
+    // Displays the active tab of the in-game du smartphone
+    activatePhoneTab();
+    
+    // If we are inside a city
+    if (document.getElementById('city_container') !== null) {    
+        // By default, loads the first tab of the city
+        var search_params = new URLSearchParams(window.location.search);
+        switchCityTab(search_params.get('tab'));
+    }
+    
+    
+    // Displays/hides the notifications panel
+    document.getElementById("notifsButton").addEventListener("click", function(){
+
+        if (window.getComputedStyle(document.getElementById("notifsBlock")).display === 'none') {
+            updateDiscussionsNotifs();
+            document.getElementById("notifsBlock").style.display = 'block';
+        }
+        else {
+            document.getElementById("notifsBlock").style.display = 'none';
+        }
+    });
+    document.getElementById("notifsClose").addEventListener("click", function(){
+        document.getElementById("notifsBlock").style.display = 'none';
+    });
+
+
+    // Switches the action "Display my zone"/"Display the map"
+    document.getElementById("backToMap").addEventListener("click", function(){
+
+        if (getCookie('show_zone') === '1') {
+            setCookie('show_zone', 0);
+        } else {
+            setCookie('show_zone', 1);
+        }
+        toggle('my_zone');
+        toggle('displayMyZone');
+        toggle('hideMyZone');
+    });
+}
