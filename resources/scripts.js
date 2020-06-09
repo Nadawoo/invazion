@@ -216,7 +216,7 @@ function toggleItemsPanel() {
  */
 function setCookie(name, value) {
 	
-	document.cookie = name+"="+value; 
+	document.cookie = name+"="+value+"; SameSite=Lax"; 
 }
 
 
@@ -383,7 +383,7 @@ async function connectUser() {
         }
         else {
             // Stores the identification token in a cookie
-            document.cookie = "token="+json.datas.token;
+            setCookie("token", json.datas.token);
             // Redirects to the main game page after the connction
             window.location.replace("index.php#Outside");
         }

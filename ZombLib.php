@@ -4,7 +4,7 @@
  * pour récupérer ou/et écrire des données sur le serveur
  * http://invazion.nadazone.fr
  * 
- * Version 4.1
+ * Version 4.2
  */
 class ZombLib
 {
@@ -591,9 +591,10 @@ class ZombLib
      */
     private function update_cookie($name, $value)
     {
-        
         // Sets or updates the value of the cookie in the browser
-        setcookie($name, $value);
+        // NB : doesn't use setcookie() to ensure compatibility with all PHP versions,
+        // as setcookie doesn't support SameSite attribute before PHP < 7.3
+        header('Set-Cookie: '.$name.'='.$value.'; path=/; SameSite=Lax');
         // Updates the PHP variable too, otherwise the new value of the cookie
         // would be ignored until the script has finished running.
         $_COOKIE[$name] = $value;
