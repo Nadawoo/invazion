@@ -13,8 +13,8 @@ class HtmlPage
      */
     function http_headers()
     {
-        # Disallows third-party sites to display the site in an <iframe>
-        # Doc : https://infosec.mozilla.org/guidelines/web_security#x-frame-options
+        // Disallows third-party sites to display the site in an <iframe>
+        // Doc : https://infosec.mozilla.org/guidelines/web_security#x-frame-options
         header("Content-Security-Policy: frame-ancestors 'none'");
         header("X-Frame-Options: DENY");
     }

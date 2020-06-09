@@ -1,4 +1,10 @@
 
+# Security : disallows browsers to guess the file type (could cause malicious injection)
+<IfModule mod_headers.c>
+    Header set X-Content-Type-Options nosniff 
+</IfModule>
+
+
 # Performance : compression gzip des fichiers texte, html, css, javascript, json
 # NB : le "deflate_module" d'Apache doit être activé
 <IfModule mod_deflate.c>
