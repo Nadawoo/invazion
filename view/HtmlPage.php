@@ -9,6 +9,18 @@ class HtmlPage
 {
     
     /**
+     * Sets HTTP headers to secure the website
+     */
+    function http_headers()
+    {
+        # Disallows third-party sites to display the site in an <iframe>
+        # Doc : https://infosec.mozilla.org/guidelines/web_security#x-frame-options
+        header("Content-Security-Policy: frame-ancestors 'none'");
+        header("X-Frame-Options: DENY");
+    }
+    
+    
+    /**
      * En-tête HTML des pages
      * 
      * @param  string $css_path Le chemin vers la feuille CSS voulue.
@@ -16,6 +28,8 @@ class HtmlPage
      */
     function page_header($css_path=NULL)
     {
+        
+        $this->http_headers();
         
         $css_link = ($css_path !== NULL) 
                     ? '<link rel="stylesheet" type="text/css" href="'.$css_path.'?v1.6">'
