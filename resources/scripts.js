@@ -14,21 +14,20 @@ function getOfficialServerRoot() {
 }
 
 
+
 /**
  * Afficher/masquer l'élement indiqué en cliquant sur un lien
  * 
  * @param {string} element_name     L'id HTML de l'élément à afficher/masquer
  */
 function toggle(element_name) {
-    
+
     // getComputedStyle(...) récupère la propriété en tenant compte de la CSS.
     // Un simple getElementById(...).style ne tiendrait compte que des
     // styles en ligne dans le HTML.
     var current_display = window.getComputedStyle(document.getElementById(element_name)).display;
-    
-    document.getElementById(element_name).style.display = (
-        current_display === "none" ? "block" : "none"
-        );
+        
+    document.getElementById(element_name).style.display = (current_display === "none") ? "block" : "none";
 }
 
 
@@ -623,5 +622,25 @@ if (document.getElementById('map') !== null) {
         toggle('my_zone');
         toggle('displayMyZone');
         toggle('hideMyZone');
+    });
+    
+    
+    // Displays/hides the tooltip of the zone when the mouse hovers the zone
+    document.getElementById("map").addEventListener("mouseover", function(){
+        if (event.target.closest(".hexagon") !== null) {
+            event.target.closest(".hexagon").getElementsByClassName("bubble")[0].style.display = "block";
+        }
+    });
+    document.getElementById("map").addEventListener("mouseout", function(){
+        if (event.target.closest(".hexagon") !== null) {
+            event.target.closest(".hexagon").getElementsByClassName("bubble")[0].style.display = "none";
+        }
+    });
+    // The onclick event is require for the mobile devices (no notion of "hover" there)
+    document.getElementById("map").addEventListener("click", function(){
+        if (event.target.closest(".hexagon") !== null) {
+            var current_display = window.getComputedStyle(event.target.closest(".hexagon").getElementsByClassName("bubble")[0]).display;
+            event.target.closest(".hexagon").getElementsByClassName("bubble")[0].style.display = (current_display === "none") ? "block" : "none";
+        }
     });
 }

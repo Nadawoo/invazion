@@ -171,14 +171,10 @@ class HtmlMap
         // - La classe "hexagon" sert à tracer le fond hexgonal
         // - La classe "square_container" est un conteneur carré pour assurer la symétrie du contenu
         // (un hexagone ne peut pas, par définition, être inscrit dans un carré)
-        return '<div class="hexagon'.$has_items.'" style="opacity:'.$opacity.'" '
-                    . 'onmouseover="display(\'bubble_'.$coords.'\')" '
-                    . 'onmouseout="hide(\'bubble_'.$coords.'\')" '
-                    // Le onclick est nécessaire sur mobile (pas de notion de survol)
-                    . 'onclick="toggle(\'bubble_'.$coords.'\')">
+        return '<div class="hexagon'.$has_items.'" style="opacity:'.$opacity.'">
                     <div class="square_container">'
                         . $cell_content . '
-                        <div id="bubble_'.$coords.'" class="bubble">
+                        <div class="bubble">
                             [Zone '.$col.':'.$row.']'
                             . $bubble 
                             . $bubble_zombies 
