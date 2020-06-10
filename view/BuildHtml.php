@@ -55,11 +55,11 @@ class BuildHtml extends HtmlPage
         
         return '
             <div id="identification_near_map">
-                <br><br><br>
+                <br><br><br><br>
                 Identifiez-vous pour commencer à&nbsp;jouer...
-                <p><a href="register" class="bold">Créer un&nbsp;compte</a></p>
-                <p>ou</p>
-                <p><a href="connect" class="bold">Me connecter</a></p>
+                <a href="register" id="register">Créer un&nbsp;compte</a>
+                ou
+                <a href="connect" id="connect">Connectez-vous</a> si vous êtes déjà inscrit
             </div>';
     }
     

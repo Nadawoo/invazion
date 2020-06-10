@@ -131,11 +131,38 @@ legend {
 
 /* Bloc invitant à se connecter ou à créer son 1er citoyen à droite de la carte */
 #identification_near_map {
-    height:19em;
-    padding-top:3em;
+    height:18em;
+    margin-bottom:2rem;;
+    box-shadow: 0px 15px 20px black;
+    color:white;
     text-align:center;
     overflow:hidden;
-    border:2px solid red;
+    border-radius:0.5rem;
+    background: linear-gradient(to bottom right, #3f51b5 30%, #17202a );
+    position:relative;
+    z-index:4;
+}
+#identification_near_map #register {
+    display:block;
+    width:9em;
+    margin:2rem auto 2rem auto;
+    padding:0.2em 0.5em;
+    border-radius:1rem;
+    border:1px solid white;
+    background:ivory;
+    font-size:1.3em;
+    font-weight:bold;
+}
+#identification_near_map #connect {
+    color:#cd6155;
+    font-size:1.2em;
+}
+#identification_near_map #register:hover {
+    background:darkred;
+    color:ivory;
+}
+#identification_near_map #connect:hover {
+    color:red;
 }
 /* Choix du métier du citoyen */
 #specialities {
