@@ -9,6 +9,8 @@
     border:3px solid black;
     border-bottom:1.3em solid black;
     border-radius:0.7em;
+    margin:0 0.5rem 1rem 0;
+    box-shadow: 5px 5px 8px black;
 }
 #phone ::selection {
     background-color:transparent;

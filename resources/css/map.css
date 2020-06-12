@@ -9,6 +9,7 @@
     /*border:1px dotted #161616;*/
     border-radius:0.5em;
     background:#a4a4a4;
+    box-shadow: 5px 5px 10px black;
     /* Pour que la largeur de la ville en surimpression soit calculée 
        par rapport celle la carte et pas à celle de la page */
     position:relative;
