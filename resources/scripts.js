@@ -330,8 +330,26 @@ function loadPage(url, callback) {
     // how many times you call the distant APIs, and eventually optimize the redundant calls
 //    console.log("API call: "+apiName);
     
-    //.text() pour retourner un texte brut, ou .json() pour parser du JSON
-    return await fetch(apiUrl, option).then(a=>a.json());
+    return await fetch(apiUrl, option).then(apiResult=>toJson(apiResult));
+}
+
+
+/**
+ * Converts a string to JSON and prints the malformed JSON in the console
+ */
+async function toJson(response) {
+    
+    try {
+        //.text() pour retourner un texte brut, ou .json() pour parser du JSON
+        return await response.clone().json();
+    } catch (e) {
+        await response.clone().text().then(apiResult=>{
+            console.error(e);
+            console.groupCollapsed("See the result returned by the API:");
+            console.log(apiResult);
+            console.groupEnd();
+        });
+    }
 }
 
 
