@@ -245,7 +245,7 @@ class HtmlButtons
         
         // Returns the complete HTML form
         return
-        '<form method="post" action="#popsuccess" class="'.$class.'">
+        '<form method="post" action="#popsuccess" class="redbutton '.$class.'">
             '.$hidden_fields.'
             '.$icon.'<input type="submit" value="'.$button['name'].'" title="'.$button['title'].'">'
         .'</form>';
@@ -307,7 +307,7 @@ class HtmlButtons
         $icon = ($show_icon === 'no_icon') ? '' : $button['icon'];
         
         return
-        '<form method="post" action="#popsuccess">
+        '<form method="post" action="#popsuccess" class="redbutton">
             <input type="hidden" name="api_name" value="city">
             <input type="hidden" name="action" value="build">
             '.$icon.'<input type="submit" value="'.$button['name'].'" title="'.$button['title'].'">

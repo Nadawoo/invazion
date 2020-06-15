@@ -361,6 +361,8 @@ var {
     padding:0.2em 0.1em;
     background:lightsteelblue;
     border-radius:0.5em;
+    border:1px solid grey;
+    box-shadow:5px 5px 10px black;
 }
 #actions_bag ul {
     margin:0.2em 0;
@@ -378,6 +380,19 @@ input[type="submit"], input[type="button"], .button {
 }
 button {
     cursor:pointer;
+}
+.redbutton input[type="submit"] {
+    height:2em;
+    min-width:11em;
+    border-radius:2em;
+    background:darkred;
+    color:white;
+    border:1px solid grey;
+    box-shadow:3px 3px 5px black;
+}
+.redbutton input[type="submit"]:hover {
+    border-style:inset;
+    background:#CC0000;
 }
 /* Pour afficher les boutons de formulaire comme des liens */
 .as_link {
