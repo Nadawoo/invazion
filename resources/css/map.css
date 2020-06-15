@@ -109,21 +109,23 @@
     text-align:left;
     white-space: normal;
     hyphens: auto;
-    background:black;
+    background:darkred;
     color:white;
+    border:1px solid red;
     border-radius:0.4em;
     font-family:Calibri;
-    font-size:0.8em;
+    font-size:0.8em;    
+    box-shadow: 12px 12px 12px black;
 }
 .triangle_down {
     width:0;
     height:0;
-    border-left: 0.4em solid transparent;
-    border-right:0.4em solid transparent;
-    border-top:  0.75em solid black;
+    border-left: 0.6em solid transparent;
+    border-right:0.6em solid transparent;
+    border-top:  1em solid red;
     position:absolute;
     left:5em;
-    bottom:-0.7em;
+    bottom:-1em;
     z-index:2;
 }
 
