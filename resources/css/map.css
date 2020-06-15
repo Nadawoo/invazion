@@ -5,10 +5,8 @@
     float:left;
     margin:0 0.2em 3em 0;
     padding:0 0.7em 1em 0.7em;
-    color:black;
-    /*border:1px dotted #161616;*/
     border-radius:0.5em;
-    background:#a4a4a4;
+    background:repeating-linear-gradient(0.38turn, black, black 2px, #17202a 2px, #17202a 4px);
     box-shadow: 5px 5px 10px black;
     /* Pour que la largeur de la ville en surimpression soit calculée 
        par rapport celle la carte et pas à celle de la page */

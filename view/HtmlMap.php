@@ -244,7 +244,7 @@ class HtmlMap
             // en CSS le coefficent d'opacité est en dixièmes (0.1, 0.2, etc.)
             $opacity = ($max_days_diff - $days_diff) / $max_days_diff;
             // Toute case doit rester un peu visible (pas d'opacité à 0)
-            $opacity = max($opacity, 0.2);  
+//            $opacity = max($opacity, 0.2);  
         }
         
         return $opacity;
