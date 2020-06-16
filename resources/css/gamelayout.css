@@ -231,7 +231,7 @@ legend {
     border:1px solid white;
     color:white;
     font-size:95%;
-    z-index:2;
+    z-index:3;
 }
 /* NB : don't use the native <legend> tag here. It's very difficult to position correctly */
 #bag_panel .legend,
