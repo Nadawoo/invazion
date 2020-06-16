@@ -372,13 +372,7 @@ var {
 /*
  * Boutons
  */
-input[type="submit"], input[type="button"], .button {
-    font-size:0.9em;
-    font-variant:small-caps;
-    min-width:10em;
-    cursor:pointer;
-}
-button {
+input[type="submit"] {
     cursor:pointer;
 }
 .redbutton input[type="submit"] {
@@ -389,10 +383,34 @@ button {
     color:white;
     border:1px solid grey;
     box-shadow:3px 3px 5px black;
+    font-size:0.9em;
+    font-variant:small-caps;
+    min-width:11em;
+    cursor:pointer;
 }
 .redbutton input[type="submit"]:hover {
     border-style:inset;
     background:#CC0000;
+}
+.round_action {
+    display:inline-block;
+}
+.round_action input {
+    height:3.5rem;
+    width: 3.5rem;
+    margin:0.4rem 0.4rem;
+    padding:0;
+    font-size:1.7em;
+    background: #d6dbdf;
+    border:3px outset #808b96;
+    border-radius:3em;
+    box-shadow:5px 5px 5px black;
+}
+.round_action input:hover {
+    position:relative;
+    left:2px;
+    top: 1px;
+    box-shadow:2px 2px 4px black;
 }
 /* Pour afficher les boutons de formulaire comme des liens */
 .as_link {

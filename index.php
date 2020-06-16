@@ -341,6 +341,14 @@ echo $popup->customised('popsuccess', '', nl2br($msg_popup));
                 . $popup->link('popvault', 'Pouvoir cryptique')
                 . '</p>';
         } ?>
+        
+        <div style="text-align:center;margin-top:2rem">
+            <?php
+            echo  $buttons->button_round('dig') .' '
+                . $buttons->button_round('build_tent') .' '
+                . $buttons->button_round('add_vault');
+            ?>
+        </div>
     </div>
 
     <div>

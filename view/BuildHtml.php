@@ -349,18 +349,7 @@ class BuildHtml extends HtmlPage
         }
         else {
             
-            $table .= '<tr>
-                <td>'.$buttons->icon('dig').'</td>
-                <td>'.$buttons->button('dig', 'no_icon').'</td>
-            </tr>
-            <tr>
-                <td>'.$buttons->icon('add_vault').'</td>
-                <td>'.$buttons->button('add_vault', 'no_icon').'</td>
-            </tr>            
-            <tr>
-                <td>'.$buttons->icon('build_tent').'</td>
-                <td>'.$buttons->button('build_tent', 'no_icon').'</td>
-            </tr>
+            $table .= '
             <tr>
                 <td><img src="resources/img/city.png" alt="&#127751;"></td>
                 <td>'.$buttons->build_city('no_icon').'</td>

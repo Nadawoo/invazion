@@ -253,6 +253,33 @@ class HtmlButtons
     
     
     /**
+     * Generates a big round button with icon for the main actions (digging...)
+     * 
+     * @param  string $button_alias  The alias of the action button. Must exist in $this->buttons
+     * @return string HTML
+     */
+    function button_round($button_alias)
+    {
+        
+        $button = $this->buttons[$button_alias];
+        
+        // Generates the hidden fields for the HTML form
+        $hidden_fields = '';
+        foreach ($button['fields'] as $fieldname=>$fieldval) {
+            
+            $hidden_fields.= '<input type="hidden" name="'.$fieldname.'" value="'.$fieldval.'">';
+        }
+        
+        // Returns the complete HTML form
+        return
+        '<form method="post" action="#popsuccess" class="round_action">
+            '.$hidden_fields.'
+            <input type="submit" value="'.$button['icon'].'" title="'.$button['title'].'">'
+        .'</form>';
+    }
+    
+    
+    /**
      * Gets the icon for a button. Useful when icon and button are separated by HTML
      * (e.g. to display the icon in a table cell and the button in another)
      * 
