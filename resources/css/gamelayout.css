@@ -20,6 +20,7 @@ legend {
     font-weight:bold;
     font-variant:small-caps;
     color:#34495e;
+    margin:auto;
 }
 
 /* Bloc contenant la carte et les blocs d'action (nombre de zombies, sac...) */
