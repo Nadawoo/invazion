@@ -155,20 +155,24 @@ function toggleMapItems() {
  * Displays/hides the blocks of actions at the right of the map
  * (digging, zombies, citizens in zone, build tent...)
  */
-function toggleActionBlock(id) {
+function toggleActionBlock(event, id) {
     
     if (document.getElementById(id).style.display === "block") {
         // If the block is already displayed, the button hides it
         document.getElementById(id).style.display = "none";
+        event.target.classList.remove("round_button_active");
     }
     else {
         // Hides all the action blocks...
         let actionBlocks = document.getElementById("actions").getElementsByTagName("fieldset");
         for (i=0; i<actionBlocks.length; i++) {
             document.getElementById("actions").getElementsByTagName("fieldset")[i].style.display = "none";
+            document.getElementById("round_actions").getElementsByTagName("input")[i].classList.remove("round_button_active");
         }
         // ... Then displays the only action block we want
         document.getElementById(id).style.display = "block";
+        // ... and hightlights the active button
+        event.target.classList.add("round_button_active");
     }
 }
 

@@ -346,7 +346,7 @@ echo $popup->customised('popsuccess', '', nl2br($msg_popup));
         
         <?php echo $html_actions_context ?>
         
-        <div style="margin-top:8rem;text-align:center">
+        <div id="round_actions">
             <?php
             echo  $buttons->button_round('dig') .' '
                 . $buttons->button_round('zombies') .' '

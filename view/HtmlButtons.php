@@ -284,9 +284,8 @@ class HtmlButtons
         
         // Returns the complete HTML form
         return
-        '<div class="round_action">
-            <input type="submit" onclick="toggleActionBlock(\'block_'.$button_alias.'\')" value="'.$button['icon'].'" title="'.$button['title'].'">'
-        .'</div>';
+        '<input type="submit" class="round_action" value="'.$button['icon'].'" title="'.$button['title'].'" '
+              . 'onclick="toggleActionBlock(event, \'block_'.$button_alias.'\')">';
     }
     
     
