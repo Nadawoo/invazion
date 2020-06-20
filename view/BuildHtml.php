@@ -438,8 +438,8 @@ class BuildHtml extends HtmlPage
                     sont trop nombreux et vous encerclent ! Vous pouvez tenter 
                     d\'attaquer ces putrides afin de dégager le passage...
                     <p>
-                        '.$buttons->kill_zombie($zombies).'<br>
-                        '.$buttons->kill_mass_zombies($zombies).'
+                        '.$buttons->kill_zombies($zombies).'<br>
+                        '.$buttons->kill_zombies($zombies, 'kill_mass_zombies').'
                     </p>
                 </div>
             </div>';
