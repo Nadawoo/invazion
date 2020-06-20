@@ -326,6 +326,52 @@ echo $popup->customised('popsuccess', '', nl2br($msg_popup));
     
     <div style="min-height:16em;margin-bottom:1em;overflow:auto;">
 
+        <div id="round_actions">
+            <?php
+            echo  $buttons->button_round('dig') .' '
+                . $buttons->button_round('zombies') .' '
+                . $buttons->button_round('citizens') .' '
+                . $buttons->button_round('build') .' ';
+            ?>
+        </div>
+        
+        <div id="actions">
+            <fieldset id="block_dig">
+                <legend>Fouiller</legend>
+                <?php 
+                echo $buttons->button('dig').'<br>';
+                ?>
+                &#x1F4BC; <strong>Déposer un objet de mon sac :</strong>
+                    <div style="margin-left:1.5rem;"><?php echo $html_bag_items ?></div>
+                &#x270B;&#x1F3FC; <strong>Ramasser un objet au sol :</strong>
+                    <div style="margin-left:1.5rem;"><?php echo $html_zone_items ?></div>
+            </fieldset>
+
+            <fieldset id="block_zombies">
+                <legend>Actions de zone</legend>
+                <?php
+                echo '&#x1F9DF; <strong>'.$zone['zombies'].' zombies</strong>'
+                    . '<div style="margin-left:2rem;">'
+                        . $buttons->kill_zombies($zone['zombies'], 'kill_zombie')
+                        . $buttons->kill_zombies($zone['zombies'], 'kill_mass_zombies')
+                    . '</div>';
+                echo '<br>'.$html_actions_bag;
+                ?>                
+            </fieldset>
+
+            <fieldset id="block_build">
+                <legend>Construire</legend>
+                <?php 
+                echo $html_actions_build;
+                ?>                
+            </fieldset>
+
+            <fieldset  id="block_citizens">
+                <legend>Citoyens dans ma zone</legend>
+                <?php echo $html_zone_citizens ?>
+            </fieldset>
+        </div>
+        
         <?php
         // Affiche le smartphone à droite de la carte (GPS...)
         echo smartphone($map_cols, $map_rows, $citizen, $specialities[$speciality], $zone);
@@ -348,53 +394,8 @@ echo $popup->customised('popsuccess', '', nl2br($msg_popup));
         
         <?php echo $html_actions_context ?>
         
-        <div id="round_actions">
-            <?php
-            echo  $buttons->button_round('dig') .' '
-                . $buttons->button_round('zombies') .' '
-                . $buttons->button_round('citizens') .' '
-                . $buttons->button_round('build') .' ';
-            ?>
-        </div>
     </div>
-
-    <div id="actions">
-        <fieldset id="block_dig">
-            <legend>Fouiller</legend>
-            <?php 
-            echo $buttons->button('dig').'<br>';
-            ?>
-            &#x1F4BC; <strong>Déposer un objet de mon sac :</strong>
-                <div style="margin-left:1.5rem;"><?php echo $html_bag_items ?></div>
-            &#x270B;&#x1F3FC; <strong>Ramasser un objet au sol :</strong>
-                <div style="margin-left:1.5rem;"><?php echo $html_zone_items ?></div>
-        </fieldset>
-        
-        <fieldset id="block_zombies">
-            <legend>Actions de zone</legend>
-            <?php
-            echo '&#x1F9DF; <strong>'.$zone['zombies'].' zombies</strong>'
-                . '<div style="margin-left:2rem;">'
-                    . $buttons->kill_zombies($zone['zombies'], 'kill_zombie')
-                    . $buttons->kill_zombies($zone['zombies'], 'kill_mass_zombies')
-                . '</div>';
-            echo '<br>'.$html_actions_bag;
-            ?>                
-        </fieldset>
-        
-        <fieldset id="block_build">
-            <legend>Construire</legend>
-            <?php 
-            echo $html_actions_build;
-            ?>                
-        </fieldset>
-
-        <fieldset  id="block_citizens">
-            <legend>Citoyens dans ma zone</legend>
-            <?php echo $html_zone_citizens ?>
-        </fieldset>
-    </div>
-    
+ 
 </div>
     
     <br>

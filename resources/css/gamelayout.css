@@ -8,7 +8,7 @@
 #actions fieldset {
     display:none;
     position:relative;
-    margin-top:2rem;
+    margin-bottom:3rem;
     padding-top:1rem;
     padding-bottom:2rem;
     border:1px solid #34495e;
@@ -309,7 +309,8 @@ input[type="submit"] {
 
 /* Big round action buttons at the right of the map */
 #round_actions {
-    margin-top:0.5rem;
+    padding:1rem 0 2rem 0;
+    border-top:1px solid grey;
     text-align:center;
 }
 .round_action {
