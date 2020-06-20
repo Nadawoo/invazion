@@ -233,114 +233,13 @@ legend {
     text-align:center;
 }
 
-/* Affiche les objets dans le sac et au sol en bas de la carte */
-#bag_panel,
-#ground_panel {
-    position:fixed;
-    bottom:0;
-    background:#566573;
-    padding:0 0 0 0.5em;
-    height:10em;
-    width:14em;
-    border:1px solid white;
-    color:white;
-    font-size:95%;
-    z-index:3;
-}
-/* NB : don't use the native <legend> tag here. It's very difficult to position correctly */
-#bag_panel .legend,
-#ground_panel .legend {
-    opacity:1;
-    max-width:9em;
-    height:2em;
-    margin-top:-2.05em;
-    padding:0;
-    background:darkred;
-    border:1px solid white;
-    border-bottom:none;
-    border-radius:0.4em 0.4em 0 0;
-    color:white;
-    font-weight:bold;
-    font-variant:small-caps;
-    cursor:pointer;
-}
-#bag_panel .legend:hover,
-#ground_panel .legend:hover {
-    opacity:1;
-}
-#bag_panel .icon,
-#ground_panel .icon {
-    display:inline-block;
-    height:100%;
-    width:1.5em;
-    text-align:center;
-    background:ivory;
-}
-#bag_panel var,
-#ground_panel var {
-    color:black;
-}
-.inactive_tab { /* Onglet en arrière-plan */
-    z-index:1 !important;
-    opacity:0.6;
-}
-.active_tab { /* Onglet actif au premier plan */
-    z-index:3 !important;
-    opacity:1 !important;
-}
-
-/* Sac à dos du joueur */
-#bag_panel {
-    margin-left:-1em;
-    border-top-left-radius:0.5em;
-}
-#bag_panel .legend {
-    margin-left:0.5em;
-}
-#bag_panel .icon {
-    border-top-left-radius:0.4em;
-}
+/* Empty slot for an item in the bag */
 .empty_slot {
     background:none;
     border:1px solid grey;
     text-align:center;
     color:grey;
     margin-left:2em;
-}
-
-/* Panneau listant les objets au sol en bas de la carte */
-#ground_panel {
-    margin-left:11.8em;
-    border-top-right-radius:0.5em;
-    text-align:right;
-    /* Check in _Chrome_ that the vertical scrollbar fits in the block ! */
-    width:15em;
-}
-#ground_panel .legend {
-    margin-left:4.8em;
-}
-#groundpanel .icon {
-    border-top-right-radius:0.4em;
-}
-#ground_panel form {
-    /* The height must be defined for the vertical overflow to work */
-    height:100%;
-    overflow-y:auto;
-    /* Works only in Firefox. For Chrome, see below */
-    scrollbar-width:thin;
-}
-/* Thin scrollbar for Chrome only */
-#ground_panel form::-webkit-scrollbar {
-  width: 0.5em;
-}
-#ground_panel form::-webkit-scrollbar-thumb {
-    background: #8c9298; /* Color of the scrollbar background */
-}
-#ground_panel form::-webkit-scrollbar-track {
-    background: #424d57; /* Color of the scrollbar button */
-}
-#ground_panel form::-webkit-scrollbar-thumb:hover {
-  background: grey;
 }
 
 /* Listes d'objets */

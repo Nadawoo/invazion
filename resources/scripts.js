@@ -624,9 +624,10 @@ if (document.getElementById('map') !== null) {
     }
     
     // By default, the list of objects in the bag and on the ground are reduced
-    if (getCookie('showitemspanel') === null || getCookie('showitemspanel') === '0') {
-        toggleItemsPanel();
-    }
+    // UNUSED : the panel is now replaced by the big action button at the right of the map
+//    if (getCookie('showitemspanel') === null || getCookie('showitemspanel') === '0') {
+//        toggleItemsPanel();
+//    }
      
     // Displays the active tab of the in-game du smartphone
     activatePhoneTab();
