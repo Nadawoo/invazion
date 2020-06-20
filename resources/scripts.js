@@ -152,6 +152,28 @@ function toggleMapItems() {
 
 
 /**
+ * Displays/hides the blocks of actions at the right of the map
+ * (digging, zombies, citizens in zone, build tent...)
+ */
+function toggleActionBlock(id) {
+    
+    if (document.getElementById(id).style.display === "block") {
+        // If the block is already displayed, the button hides it
+        document.getElementById(id).style.display = "none";
+    }
+    else {
+        // Hides all the action blocks...
+        let actionBlocks = document.getElementById("actions").getElementsByTagName("fieldset");
+        for (i=0; i<actionBlocks.length; i++) {
+            document.getElementById("actions").getElementsByTagName("fieldset")[i].style.display = "none";
+        }
+        // ... Then displays the only action block we want
+        document.getElementById(id).style.display = "block";
+    }
+}
+
+
+/**
  * Affiche le panneau de la ville correspondant à l'onglet actif
  * (chantiers, maison, porte de la ville...)
  * 

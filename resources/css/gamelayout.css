@@ -219,6 +219,11 @@ legend {
     cursor:default;
 }
 
+/* Actions at the right of the map */
+#actions fieldset {
+    display:none;
+}
+
 /* Affiche les objets dans le sac et au sol en bas de la carte */
 #bag_panel,
 #ground_panel {

@@ -261,21 +261,32 @@ class HtmlButtons
     function button_round($button_alias)
     {
         
-        $button = $this->buttons[$button_alias];
-        
-        // Generates the hidden fields for the HTML form
-        $hidden_fields = '';
-        foreach ($button['fields'] as $fieldname=>$fieldval) {
-            
-            $hidden_fields.= '<input type="hidden" name="'.$fieldname.'" value="'.$fieldval.'">';
-        }
+        $icons = [
+            'dig' => [
+                'icon'  => '&#x26CF;&#xFE0F;',
+                'title' => '',
+                ],
+            'zombies' => [
+                'icon'  => '&#x1F9DF;',
+                'title' => '',
+                ],
+            'citizens' => [
+                'icon'  => '&#x1F465;',
+                'title' => '',
+                ],
+            'build' => [
+                'icon'  => '&#x1F6E0;&#xFE0F;',
+                'title' => '',
+                ],
+        ];
+                
+        $button = $icons[$button_alias];
         
         // Returns the complete HTML form
         return
-        '<form method="post" action="#popsuccess" class="round_action">
-            '.$hidden_fields.'
-            <input type="submit" value="'.$button['icon'].'" title="'.$button['title'].'">'
-        .'</form>';
+        '<div class="round_action">
+            <input type="submit" onclick="toggleActionBlock(\'block_'.$button_alias.'\')" value="'.$button['icon'].'" title="'.$button['title'].'">'
+        .'</div>';
     }
     
     

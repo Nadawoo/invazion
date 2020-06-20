@@ -346,17 +346,18 @@ echo $popup->customised('popsuccess', '', nl2br($msg_popup));
         
         <?php echo $html_actions_context ?>
         
-        <div style="text-align:center;margin-top:2rem">
+        <div style="margin-top:8rem;text-align:center">
             <?php
             echo  $buttons->button_round('dig') .' '
-                . $buttons->button_round('build_tent') .' '
-                . $buttons->button_round('add_vault');
+                . $buttons->button_round('zombies') .' '
+                . $buttons->button_round('citizens') .' '
+                . $buttons->button_round('build') .' ';
             ?>
         </div>
     </div>
 
-    <div>
-        <fieldset>
+    <div id="actions">
+        <fieldset id="block_dig">
             <legend>Fouiller</legend>
             <?php 
             echo '<br>'.$buttons->button('dig').'<br>';
@@ -367,7 +368,7 @@ echo $popup->customised('popsuccess', '', nl2br($msg_popup));
                 <div style="margin-left:1.5rem;"><?php echo $html_zone_items ?></div>
         </fieldset>
         
-        <fieldset>
+        <fieldset id="block_zombies">
             <legend>Actions de zone</legend>
             <?php
             echo '&#x1F9DF; <strong>'.$zone['zombies'].' zombies</strong>'
@@ -379,14 +380,14 @@ echo $popup->customised('popsuccess', '', nl2br($msg_popup));
             ?>                
         </fieldset>
         
-        <fieldset>
+        <fieldset id="block_build">
             <legend>Construire</legend>
             <?php 
             echo $html_actions_build;
             ?>                
         </fieldset>
 
-        <fieldset>
+        <fieldset  id="block_citizens">
             <legend>Citoyens dans ma zone</legend>
             <?php echo $html_zone_citizens ?>
         </fieldset>
@@ -394,6 +395,10 @@ echo $popup->customised('popsuccess', '', nl2br($msg_popup));
     
 </div>
     
+    <br>
+    <br>
+    <br>
+    <br>
     
     <?php echo $buttons->button('add_mass_zombies') ?>
     
