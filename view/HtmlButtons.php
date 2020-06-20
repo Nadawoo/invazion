@@ -287,7 +287,7 @@ class HtmlButtons
         '<div style="display:inline-block">'
             . '<input type="submit" class="round_action" value="'.$button['icon'].'" '
                     . 'onclick="toggleActionBlock(event, \'block_'.$button_alias.'\')">'
-            . '<div class="label">'.$button['label'].'</div>'
+            . '<label>'.$button['label'].'</label>'
         . '</div>';
     }
     

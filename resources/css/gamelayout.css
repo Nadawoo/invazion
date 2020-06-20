@@ -418,24 +418,28 @@ input[type="submit"] {
     border-radius:3em;
     box-shadow:5px 5px 5px black;
 }
-.round_action:hover, .round_button_active {
+.round_action:hover, .active .round_action {
     position:relative;
     left:2px;
     top: 1px;
     box-shadow:2px 2px 4px black;
 }
-.round_button_active, .round_button_active:hover {
+.active .round_action, .active .round_action:hover {
     background:#d6eaf8;
     border:3px inset #808b96;
     left:4px;
     top: 2px;
     box-shadow:1px 1px 3px black;
 }
-#round_actions .label {
+#round_actions label {
+    display:block;
     border-radius:0.3em;
     background:grey;
     font-size:0.9em;
     color:white;
+}
+#round_actions .active label {
+    background:#34495e;
 }
 
 /* Pour afficher les boutons de formulaire comme des liens */
