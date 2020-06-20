@@ -402,6 +402,7 @@ input[type="submit"] {
     background:#CC0000;
 }
 
+/* Big round action buttons at the right of the map */
 #round_actions {
     margin-top:1rem;
     text-align:center;
@@ -430,6 +431,13 @@ input[type="submit"] {
     top: 2px;
     box-shadow:1px 1px 3px black;
 }
+#round_actions .label {
+    border-radius:0.3em;
+    background:grey;
+    font-size:0.9em;
+    color:white;
+}
+
 /* Pour afficher les boutons de formulaire comme des liens */
 .as_link {
     text-align:left;

@@ -264,19 +264,19 @@ class HtmlButtons
         $icons = [
             'dig' => [
                 'icon'  => '&#x26CF;&#xFE0F;',
-                'title' => '',
+                'label' => 'fouiller',
                 ],
             'zombies' => [
                 'icon'  => '&#x1F9DF;',
-                'title' => '',
+                'label' => 'actions',
                 ],
             'citizens' => [
                 'icon'  => '&#x1F465;',
-                'title' => '',
+                'label' => 'humains',
                 ],
             'build' => [
                 'icon'  => '&#x1F6E0;&#xFE0F;',
-                'title' => '',
+                'label' => 'construire',
                 ],
         ];
                 
@@ -284,8 +284,11 @@ class HtmlButtons
         
         // Returns the complete HTML form
         return
-        '<input type="submit" class="round_action" value="'.$button['icon'].'" title="'.$button['title'].'" '
-              . 'onclick="toggleActionBlock(event, \'block_'.$button_alias.'\')">';
+        '<div style="display:inline-block">'
+            . '<input type="submit" class="round_action" value="'.$button['icon'].'" '
+                    . 'onclick="toggleActionBlock(event, \'block_'.$button_alias.'\')">'
+            . '<div class="label">'.$button['label'].'</div>'
+        . '</div>';
     }
     
     
