@@ -328,10 +328,10 @@ echo $popup->customised('popsuccess', '', nl2br($msg_popup));
 
         <div id="round_actions">
             <?php
-            echo  $buttons->button_round('dig') .' '
-                . $buttons->button_round('zombies') .' '
-                . $buttons->button_round('citizens') .' '
-                . $buttons->button_round('build') .' ';
+            echo  $buttons->button_round('dig')
+                . $buttons->button_round('zombies')
+                . $buttons->button_round('citizens')
+                . $buttons->button_round('build');
             ?>
         </div>
         

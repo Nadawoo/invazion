@@ -227,7 +227,9 @@
 .round_action {
     height:3.5rem;
     width: 3.5rem;
-    margin:0.4rem 0.4rem;
+     /* Bigger margin at the right and bottom to compensate for the feeling 
+        of asymetry caused by the shadow */
+    margin:0.4rem 0.5rem 0.6rem 0.4rem;
     padding:0;
     font-size:1.7em;
     background:#c0392b;
@@ -243,20 +245,18 @@
 }
 .active .round_action, .active .round_action:hover {
     background:#d6eaf8;
-    border:3px inset #808b96;
-    left:4px;
-    top: 2px;
+    border:3px inset white; /*#808b96*/
     box-shadow:1px 1px 3px black;
 }
 #round_actions label {
     display:block;
-    border-radius:0.3em;
+    padding:0.1em 0;
     background:grey;
     font-size:0.9em;
     color:white;
 }
 #round_actions .active label {
-    background:#34495e;
+    background:#283747;
 }
 /* The maskable frames which contain the actions buttons */
 #actions fieldset {

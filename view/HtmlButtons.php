@@ -291,7 +291,7 @@ class HtmlButtons
         
         // Returns the complete HTML form
         return
-        '<div style="display:inline-block">'
+        '<div style="display:inline-block;margin-right:0.1rem;background:#34495e;border-radius:0.2rem">'
             . '<input type="submit" class="round_action" value="'.$button['icon'].'" '
                     . 'onclick="toggleActionBlock(event, \'block_'.$button_alias.'\')">'
             . '<label>'.$button['label'].'</label>'
