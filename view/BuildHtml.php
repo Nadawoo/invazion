@@ -361,10 +361,6 @@ class BuildHtml extends HtmlPage
         if ($city_size === 0) {
             
             $table .= '<tr>
-                <td>'.$buttons->icon('add_vault').'</td>
-                <td>'.$buttons->button('add_vault', 'no_icon').'</td>
-            </tr>            
-            <tr>
                 <td>'.$buttons->icon('build_tent').'</td>
                 <td>'.$buttons->button('build_tent', 'no_icon').'</td>
             </tr>
@@ -373,6 +369,11 @@ class BuildHtml extends HtmlPage
                 <td>'.$buttons->build_city('no_icon').'</td>
             </tr>';               
         }
+        
+        $table .= '<tr>
+                <td>'.$buttons->icon('add_vault').'</td>
+                <td>'.$buttons->button('add_vault', 'no_icon').'</td>
+            </tr>';
                 
         return '<table>'.$table.'</table>';
     }
