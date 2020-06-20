@@ -360,7 +360,7 @@ echo $popup->customised('popsuccess', '', nl2br($msg_popup));
         <fieldset id="block_dig">
             <legend>Fouiller</legend>
             <?php 
-            echo '<br>'.$buttons->button('dig').'<br>';
+            echo $buttons->button('dig').'<br>';
             ?>
             &#x1F4BC; <strong>Déposer un objet de mon sac :</strong>
                 <div style="margin-left:1.5rem;"><?php echo $html_bag_items ?></div>

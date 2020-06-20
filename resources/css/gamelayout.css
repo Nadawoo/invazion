@@ -4,13 +4,22 @@
  */
 
 /* Encadrés à droite de la carte (conrôle de zone, actions...) */
-fieldset {
-    margin-top:0.5em;
-    padding-top:0;
+/* Actions at the right of the map */
+#actions fieldset {
+    display:none;
+    position:relative;
+    margin-top:2rem;
+    padding-top:1rem;
+    padding-bottom:2rem;
+    border:1px solid #34495e;
+    box-shadow:5px 5px 8px black;
+    background:#fbeee6;
+    z-index:10; /* To be over the shadow of the map */
 }
 legend {
     font-weight:bold;
     font-variant:small-caps;
+    color:#34495e;
 }
 
 /* Bloc contenant la carte et les blocs d'action (nombre de zombies, sac...) */
@@ -223,10 +232,6 @@ legend {
     height:7rem;
     text-align:center;
 }
-/* Actions at the right of the map */
-#actions fieldset {
-    display:none;
-}
 
 /* Affiche les objets dans le sac et au sol en bas de la carte */
 #bag_panel,
@@ -404,7 +409,7 @@ input[type="submit"] {
 
 /* Big round action buttons at the right of the map */
 #round_actions {
-    margin-top:1rem;
+    margin-top:0.5rem;
     text-align:center;
 }
 .round_action {
