@@ -3,26 +3,6 @@
  * (carte, pavé de déplacement, contôle de zone...)
  */
 
-/* Encadrés à droite de la carte (conrôle de zone, actions...) */
-/* Actions at the right of the map */
-#actions fieldset {
-    display:none;
-    position:relative;
-    margin-bottom:3rem;
-    padding-top:1rem;
-    padding-bottom:2rem;
-    border:1px solid #34495e;
-    box-shadow:5px 5px 8px black;
-    background:#fbeee6;
-    z-index:10; /* To be over the shadow of the map */
-}
-legend {
-    font-weight:bold;
-    font-variant:small-caps;
-    color:#34495e;
-    margin:auto;
-}
-
 /* Bloc contenant la carte et les blocs d'action (nombre de zombies, sac...) */
 #game_container {
     position:relative;
@@ -234,6 +214,71 @@ legend {
     text-align:center;
 }
 
+
+/* 
+ * Actions at the right of the map
+ */
+/* The big round action buttons with icon */
+#round_actions {
+    padding:1rem 0 2rem 0;
+    border-top:1px solid grey;
+    text-align:center;
+}
+.round_action {
+    height:3.5rem;
+    width: 3.5rem;
+    margin:0.4rem 0.4rem;
+    padding:0;
+    font-size:1.7em;
+    background:#c0392b;
+    border:3px outset #f5b7b1;    
+    border-radius:3em;
+    box-shadow:5px 5px 5px black;
+}
+.round_action:hover, .active .round_action {
+    position:relative;
+    left:2px;
+    top: 1px;
+    box-shadow:2px 2px 4px black;
+}
+.active .round_action, .active .round_action:hover {
+    background:#d6eaf8;
+    border:3px inset #808b96;
+    left:4px;
+    top: 2px;
+    box-shadow:1px 1px 3px black;
+}
+#round_actions label {
+    display:block;
+    border-radius:0.3em;
+    background:grey;
+    font-size:0.9em;
+    color:white;
+}
+#round_actions .active label {
+    background:#34495e;
+}
+/* The maskable frames which contain the actions buttons */
+#actions fieldset {
+    display:none;
+    position:relative;
+    margin-bottom:3rem;
+    padding-top:1rem;
+    padding-bottom:2rem;
+    border:1px solid #34495e;
+    box-shadow:5px 5px 8px black;
+    background:#fbeee6;
+    z-index:10; /* To be over the shadow of the map */
+}
+legend {
+    font-weight:bold;
+    font-variant:small-caps;
+    color:#34495e;
+    margin:auto;
+}
+
+
+
 /* Empty slot for an item in the bag */
 .empty_slot {
     background:none;
@@ -305,47 +350,6 @@ input[type="submit"] {
 .redbutton input[type="submit"]:hover {
     border-style:inset;
     background:#CC0000;
-}
-
-/* Big round action buttons at the right of the map */
-#round_actions {
-    padding:1rem 0 2rem 0;
-    border-top:1px solid grey;
-    text-align:center;
-}
-.round_action {
-    height:3.5rem;
-    width: 3.5rem;
-    margin:0.4rem 0.4rem;
-    padding:0;
-    font-size:1.7em;
-    background:#c0392b;
-    border:3px outset #f5b7b1;    
-    border-radius:3em;
-    box-shadow:5px 5px 5px black;
-}
-.round_action:hover, .active .round_action {
-    position:relative;
-    left:2px;
-    top: 1px;
-    box-shadow:2px 2px 4px black;
-}
-.active .round_action, .active .round_action:hover {
-    background:#d6eaf8;
-    border:3px inset #808b96;
-    left:4px;
-    top: 2px;
-    box-shadow:1px 1px 3px black;
-}
-#round_actions label {
-    display:block;
-    border-radius:0.3em;
-    background:grey;
-    font-size:0.9em;
-    color:white;
-}
-#round_actions .active label {
-    background:#34495e;
 }
 
 /* Pour afficher les boutons de formulaire comme des liens */
