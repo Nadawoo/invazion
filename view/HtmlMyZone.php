@@ -91,7 +91,7 @@ class HtmlMyzone
                 <div id="container_zombies">
                     '.$this->zombies().'
                 </div>
-                <div id="button_kill">'.$buttons->kill_zombie($this->_nbr_zombies).'</div>';
+                <div id="button_kill">'.$buttons->kill_zombies($this->_nbr_zombies).'</div>';
         }
         
         return '

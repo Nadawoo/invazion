@@ -132,14 +132,21 @@ class HtmlButtons
                 'icon'  => '',
                 'name'  => 'Attaquer à mains nues !',
                 'title' => "Attaquer un zombie à mains nues. Vous gagnerez un picto en cas de succès.",
-                ],
-            
+                'fields' => [
+                    'api_name' => 'zone',
+                    'action'   => 'fight',
+                    ],
+                ],            
             'kill_mass_zombies' => [
                 'icon'  => '',
                 'name'  => 'Nettoyer la zone au lance-flammes',
                 'title' => "Comme les zombies sont particulièrement nombreux ici, vous pouvez "
                          . "les attaquer par groupe. C'est très efficace, mais en contrepartie "
                          . "vous ne gagnerez aucun picto.",
+                'fields' => [
+                    'api_name' => 'zone',
+                    'action'   => 'bigfight',
+                    ],
                 ],
             'build_tent' => [
                 'icon'  => '&#9978;',
@@ -373,10 +380,10 @@ class HtmlButtons
      * @param int $nbr_zombies  Le nombre de zombies dans la zone
      * @return string
      */
-    function kill_zombie($nbr_zombies)
+    function kill_zombies($nbr_zombies, $button_alias='kill_zombie')
     {
         
-        $button = $this->buttons['kill_zombie'];
+        $button = $this->buttons[$button_alias];
         $class = '';
         $title = $button['title'];
         
@@ -386,36 +393,9 @@ class HtmlButtons
         }
                 
         return
-        '<form method="post" action="#Outside">
+        '<form method="post" action="#Outside" class="redbutton">
             <input type="hidden" name="api_name" value="zone">
-            <input type="hidden" name="action" value="fight">
-            <input type="submit" value="'.$button['name'].'" class="'.$class.'"  title="'.$title.'">
-        </form>';
-    }
-    
-    
-    /**
-     * Retourne le bouton pour attaquer des zombies en masse
-     * 
-     * @param int $nbr_zombies  Le nombre de zombies dans la zone
-     * @return string
-     */
-    function kill_mass_zombies($nbr_zombies)
-    {
-        
-        $button = $this->buttons['kill_mass_zombies'];
-        $class = '';
-        $title = $button['title'];
-        
-        if ($nbr_zombies === 0) {
-            $class = 'inactive';
-            $title = "Il n'y a aucun zombie dans la zone";
-        }
-                
-        return
-        '<form method="post" action="#Outside">
-            <input type="hidden" name="api_name" value="zone">
-            <input type="hidden" name="action" value="bigfight">
+            <input type="hidden" name="action" value="'.$button['fields']['action'].'">
             <input type="submit" value="'.$button['name'].'" class="'.$class.'"  title="'.$title.'">
         </form>';
     }

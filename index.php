@@ -373,10 +373,10 @@ echo $popup->customised('popsuccess', '', nl2br($msg_popup));
             <?php
             echo '&#x1F9DF; <strong>'.$zone['zombies'].' zombies</strong>'
                 . '<div style="margin-left:2rem;">'
-                    . $buttons->kill_zombie($zone['zombies'])
-                    . $buttons->kill_mass_zombies($zone['zombies'])
+                    . $buttons->kill_zombies($zone['zombies'], 'kill_zombie')
+                    . $buttons->kill_zombies($zone['zombies'], 'kill_mass_zombies')
                 . '</div>';
-            echo $html_actions_bag;
+            echo '<br>'.$html_actions_bag;
             ?>                
         </fieldset>
         
