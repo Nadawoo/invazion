@@ -322,7 +322,7 @@ echo $popup->customised('popsuccess', '', nl2br($msg_popup));
     }
     ?>
     
-    <div style="min-height:16em;margin-bottom:1em;overflow:auto">
+    <div style="min-height:16em;margin-bottom:1em;overflow:auto;">
 
         <?php
         // Affiche le smartphone à droite de la carte (GPS...)
@@ -333,7 +333,7 @@ echo $popup->customised('popsuccess', '', nl2br($msg_popup));
              ? movement_paddle($citizen['coord_x'], $citizen['coord_y'])
              : $html->block_alert_control($zone['zombies']);
 
-        echo '<div class="center">' . $msg_move . '</div>';
+        echo '<div id="message_move">' . $msg_move . '</div>';
 
         // Affiche le bouton pour entrer dans la crypte s'il y en a une
         if (!empty($zone) and $zone['building'] === 'vault') {

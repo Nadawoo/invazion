@@ -218,7 +218,11 @@ legend {
 #movement_paddle #central {
     cursor:default;
 }
-
+/* Message under the movement paddle */
+#message_move {
+    height:7rem;
+    text-align:center;
+}
 /* Actions at the right of the map */
 #actions fieldset {
     display:none;
@@ -399,7 +403,7 @@ input[type="submit"] {
 }
 
 #round_actions {
-    margin-top:8rem;
+    margin-top:1rem;
     text-align:center;
 }
 .round_action {
