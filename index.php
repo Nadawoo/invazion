@@ -40,7 +40,8 @@ $city_fellows       = [];
 $zone_citizens      = [];
 $healing_items      = [];
 $zone               = [];
-$html_actions       = '';
+$html_actions_context = '';
+$html_actions_build = '';
 $html_actions_bag   = '';
 $html_zone_items    = '';
 $html_bag_items     = '';
@@ -132,7 +133,8 @@ if ($citizen_id !== NULL) {
     $html_zone_items    = $html->block_zone_items($configs['items'], $zone, $citizen['citizen_id']);
     $html_bag_items     = $html->block_bag_items($configs['items'], $citizen_id, $citizen['bag_items'], $citizen['bag_size']);
     $html_zone_citizens = $html->block_zone_citizens($zone_citizens, $citizen_id);
-    $html_actions       = $html->block_actions($zone['city_size']);
+    $html_actions_context = $html->block_actions_context($zone['city_size']);
+    $html_actions_build = $html->block_actions_build($zone['city_size']);
     $html_actions_bag   = $html->block_actions_bag($configs['items'], $citizen['bag_items']);
     
     // If the citizen is inside a city, we get its characteristics (bank, well...)
@@ -342,6 +344,8 @@ echo $popup->customised('popsuccess', '', nl2br($msg_popup));
                 . '</p>';
         } ?>
         
+        <?php echo $html_actions_context ?>
+        
         <div style="text-align:center;margin-top:2rem">
             <?php
             echo  $buttons->button_round('dig') .' '
@@ -353,10 +357,32 @@ echo $popup->customised('popsuccess', '', nl2br($msg_popup));
 
     <div>
         <fieldset>
-            <legend>Actions</legend>
+            <legend>Fouiller</legend>
             <?php 
-            echo $html_actions;
+            echo '<br>'.$buttons->button('dig').'<br>';
+            ?>
+            &#x1F4BC; <strong>Déposer un objet de mon sac :</strong>
+                <div style="margin-left:1.5rem;"><?php echo $html_bag_items ?></div>
+            &#x270B;&#x1F3FC; <strong>Ramasser un objet au sol :</strong>
+                <div style="margin-left:1.5rem;"><?php echo $html_zone_items ?></div>
+        </fieldset>
+        
+        <fieldset>
+            <legend>Actions de zone</legend>
+            <?php
+            echo '&#x1F9DF; <strong>'.$zone['zombies'].' zombies</strong>'
+                . '<div style="margin-left:2rem;">'
+                    . $buttons->kill_zombie($zone['zombies'])
+                    . $buttons->kill_mass_zombies($zone['zombies'])
+                . '</div>';
             echo $html_actions_bag;
+            ?>                
+        </fieldset>
+        
+        <fieldset>
+            <legend>Construire</legend>
+            <?php 
+            echo $html_actions_build;
             ?>                
         </fieldset>
 

@@ -321,7 +321,7 @@ class BuildHtml extends HtmlPage
      * @param int $city_size Size of the city in the zone where the player is.
      * @return string HTML
      */
-    function block_actions($city_size)
+    function block_actions_context($city_size)
     {
         
         $buttons = new HtmlButtons;
@@ -347,9 +347,27 @@ class BuildHtml extends HtmlPage
                 <td>'.$buttons->button('enter_city', 'no_icon').'</td>
             </tr>';
         }
-        else {
+                
+        return '<table style="margin:auto">'.$table.'</table>';
+    }
+    
+    
+    function block_actions_build($city_size)
+    {
+        
+        $buttons = new HtmlButtons;
+        $table = '';
+        
+        if ($city_size === 0) {
             
-            $table .= '
+            $table .= '<tr>
+                <td>'.$buttons->icon('add_vault').'</td>
+                <td>'.$buttons->button('add_vault', 'no_icon').'</td>
+            </tr>            
+            <tr>
+                <td>'.$buttons->icon('build_tent').'</td>
+                <td>'.$buttons->button('build_tent', 'no_icon').'</td>
+            </tr>
             <tr>
                 <td><img src="resources/img/city.png" alt="&#127751;"></td>
                 <td>'.$buttons->build_city('no_icon').'</td>
