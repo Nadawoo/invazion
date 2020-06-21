@@ -321,14 +321,25 @@ class BuildHtml extends HtmlPage
      * @param int $city_size Size of the city in the zone where the player is.
      * @return string HTML
      */
-    function block_actions_context($city_size)
+    function block_actions_context($city_size, $zone_building)
     {
         
-        $buttons = new HtmlButtons;
-        $table = '';
+        $buttons = new HtmlButtons();
+        $popup   = new HtmlPopup();
+        $table   = '';
         
+        // If there is a CRYPT in the zone, display the button to enter.
+        if ($zone_building === 'vault') {
+
+            $table .= '<tr>'
+                    . '<td class="center">'
+                    . '<span class="warning">Vous avez découvert une crypte&nbsp;!</span><br>'
+                    . $popup->link('popvault', 'Pouvoir cryptique')
+                    . '</td>'
+                . '</tr>';
+        }
         // If there is a TENT in the zone, display the button to enter.
-        if ($city_size === 1) {
+        elseif ($city_size === 1) {
             
             $table .= '<tr>
                 <td>'.$buttons->icon('enter_tent').'</td>

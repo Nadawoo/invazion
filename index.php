@@ -133,7 +133,7 @@ if ($citizen_id !== NULL) {
     $html_zone_items    = $html->block_zone_items($configs['items'], $zone, $citizen['citizen_id']);
     $html_bag_items     = $html->block_bag_items($configs['items'], $citizen_id, $citizen['bag_items'], $citizen['bag_size']);
     $html_zone_citizens = $html->block_zone_citizens($zone_citizens, $citizen_id);
-    $html_actions_context = $html->block_actions_context($zone['city_size']);
+    $html_actions_context = $html->block_actions_context($zone['city_size'], $zone['building']);
     $html_actions_build = $html->block_actions_build($zone['city_size']);
     $html_actions_bag   = $html->block_actions_bag($configs['items'], $citizen['bag_items']);
     
@@ -373,26 +373,19 @@ echo $popup->customised('popsuccess', '', nl2br($msg_popup));
         </div>
         
         <?php
-        // Affiche le smartphone à droite de la carte (GPS...)
+        // Displays the smartphone at the right of the map (GPS, health...)
         echo smartphone($map_cols, $map_rows, $citizen, $specialities[$speciality], $zone);
 
-        // Affiche les flèches de déplacement 
+        // Displays the movement paddle 
         echo ($controlpoints_citizens >= $controlpoints_zombies) 
              ? movement_paddle($citizen['coord_x'], $citizen['coord_y'])
              : $html->block_alert_control($zone['zombies']);
 
         echo '<div id="message_move">' . $msg_move . '</div>';
-
-        // Affiche le bouton pour entrer dans la crypte s'il y en a une
-        if (!empty($zone) and $zone['building'] === 'vault') {
-
-            echo '<p class="center">'
-                . '<span class="warning">Vous avez découvert une crypte&nbsp;!</span><br>'
-                . $popup->link('popvault', 'Pouvoir cryptique')
-                . '</p>';
-        } ?>
         
-        <?php echo $html_actions_context ?>
+        // Special actions depending of the zone (go into a crypt, a city...)
+        echo $html_actions_context
+        ?>
         
     </div>
  
