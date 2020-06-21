@@ -230,12 +230,19 @@
     padding:1rem 0 2rem 0;
     text-align:center;
 }
+.round_action_block {
+    position:relative;
+    display:inline-block;
+    margin-right:0.1rem;
+    background:#34495e;
+    border-radius:0.2rem;
+}
 .round_action {
     height:3.5rem;
     width: 3.5rem;
      /* Bigger margin at the right and bottom to compensate for the feeling 
         of asymetry caused by the shadow */
-    margin:0.4rem 0.5rem 0.6rem 0.4rem;
+    margin:0.4rem 0.5rem 0.7rem 0.4rem;
     padding:0;
     font-size:1.7em;
     background:#c0392b;
@@ -263,6 +270,19 @@
 }
 #round_actions .active label {
     background:#283747;
+}
+#round_actions .dot_number {
+    position:absolute;
+    right:0;
+    bottom:1rem;
+    width: 1rem;
+    height:1rem;
+    padding:0.1em;
+    font-size:0.9em;
+    border-radius:1rem;
+    background:#fae5d3;
+    color:black;
+    z-index:0;
 }
 /* The maskable frames which contain the actions buttons */
 #actions fieldset {

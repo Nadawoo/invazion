@@ -328,9 +328,9 @@ echo $popup->customised('popsuccess', '', nl2br($msg_popup));
 
         <div id="round_actions">
             <?php
-            echo  $buttons->button_round('dig')
-                . $buttons->button_round('zombies')
-                . $buttons->button_round('citizens')
+            echo  $buttons->button_round('dig', array_sum((array)$zone['items']))
+                . $buttons->button_round('zombies', $zone['zombies'])
+                . $buttons->button_round('citizens', count($zone_citizens)-1)
                 . $buttons->button_round('build');
             ?>
         </div>

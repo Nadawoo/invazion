@@ -263,9 +263,10 @@ class HtmlButtons
      * Generates a big round button with icon for the main actions (digging...)
      * 
      * @param  string $button_alias  The alias of the action button. Must exist in $this->buttons
+     * @param  int    $amount A number to display in a small pastille beside the button
      * @return string HTML
      */
-    function button_round($button_alias)
+    function button_round($button_alias, $amount=0)
     {
         
         $icons = [
@@ -275,7 +276,7 @@ class HtmlButtons
                 ],
             'zombies' => [
                 'icon'  => '&#x1F9DF;',
-                'label' => 'actions',
+                'label' => 'zombies',
                 ],
             'citizens' => [
                 'icon'  => '&#x1F465;',
@@ -288,12 +289,13 @@ class HtmlButtons
         ];
                 
         $button = $icons[$button_alias];
+        $dot_number = ($amount === 0) ? '' : '<div class="dot_number">'.$amount.'</div>';
         
-        // Returns the complete HTML form
         return
-        '<div style="display:inline-block;margin-right:0.1rem;background:#34495e;border-radius:0.2rem">'
+        '<div class="round_action_block">'
             . '<input type="submit" class="round_action" value="'.$button['icon'].'" '
                     . 'onclick="toggleActionBlock(event, \'block_'.$button_alias.'\')">'
+            . $dot_number
             . '<label>'.$button['label'].'</label>'
         . '</div>';
     }
