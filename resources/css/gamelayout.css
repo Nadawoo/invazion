@@ -275,8 +275,8 @@
     position:absolute;
     right:0;
     bottom:1rem;
-    width: 1rem;
-    height:1rem;
+    min-width:1rem; /* Not simply "width" to avoid overflow with 3-digits numbers */
+    height:   1rem;
     padding:0.1em;
     font-size:0.9em;
     border-radius:1rem;
