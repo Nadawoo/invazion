@@ -184,7 +184,7 @@
 
 /* Boutons de déplacement du joueur */
 #movement_paddle {
-    margin:2em auto 0em auto;
+    margin:0 auto 0 auto;
     border-collapse: collapse;
     text-align:center;
     background-image:url("../img/hexagon.png");

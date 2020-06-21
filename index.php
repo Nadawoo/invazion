@@ -375,16 +375,16 @@ echo $popup->customised('popsuccess', '', nl2br($msg_popup));
         <?php
         // Displays the smartphone at the right of the map (GPS, health...)
         echo smartphone($map_cols, $map_rows, $citizen, $specialities[$speciality], $zone);
-
+        
+        // Special actions depending of the zone (go into a crypt, a city...)
+        echo $html_actions_context;
+        
         // Displays the movement paddle 
         echo ($controlpoints_citizens >= $controlpoints_zombies) 
              ? movement_paddle($citizen['coord_x'], $citizen['coord_y'])
              : $html->block_alert_control($zone['zombies']);
 
         echo '<div id="message_move">' . $msg_move . '</div>';
-        
-        // Special actions depending of the zone (go into a crypt, a city...)
-        echo $html_actions_context
         ?>
         
     </div>
