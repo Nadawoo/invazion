@@ -7,9 +7,14 @@
 #game_container {
     position:relative;
     width:100%;
+    background:url('../img/metal.jpg');
+    border:1px solid grey;
+    border-left:none;
+    border-right:none;
     /* Garantit que les éléments sous la carte (liste des inscrits...) ne remontent
        pas dans la colonne à droite de la carte */
-    height:60rem;
+    height:55.5rem;
+    margin-bottom:3rem;
     /* Au cas où l'enceinte de la ville descendrait trop bas
       (notamment si liste des chantiers trop longue)
        Désactivé pour le moment car cache les infobulles en haut de la carte */
@@ -223,7 +228,6 @@
 /* The big round action buttons with icon */
 #round_actions {
     padding:1rem 0 2rem 0;
-    border-top:1px solid grey;
     text-align:center;
 }
 .round_action {
@@ -268,15 +272,19 @@
     padding-top:1rem;
     padding-bottom:2rem;
     border:1px solid #34495e;
+    border-radius:0.3rem;
     box-shadow:5px 5px 8px black;
     background:#fbeee6;
     z-index:10; /* To be over the shadow of the map */
 }
 legend {
+    margin:auto;
+    padding:0.05em 0.4em 0.1em 0.4em;
     font-weight:bold;
     font-variant:small-caps;
-    color:#34495e;
-    margin:auto;
+    border-radius:0.3rem;
+    background:#34495e;
+    color:white;
 }
 
 
