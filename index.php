@@ -134,7 +134,7 @@ if ($citizen_id !== NULL) {
     $html_bag_items     = $html->block_bag_items($configs['items'], $citizen_id, $citizen['bag_items'], $citizen['bag_size']);
     $html_zone_citizens = $html->block_zone_citizens($zone_citizens, $citizen_id);
     $html_actions_context = $html->block_actions_context($zone['city_size'], $zone['building']);
-    $html_actions_build = $html->block_actions_build($zone['city_size']);
+    $html_actions_build = $html->block_actions_build($zone['city_size'], $zone['building']);
     $html_actions_bag   = $html->block_actions_bag($configs['items'], $citizen['bag_items']);
     
     // If the citizen is inside a city, we get its characteristics (bank, well...)

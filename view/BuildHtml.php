@@ -363,13 +363,34 @@ class BuildHtml extends HtmlPage
     }
     
     
-    function block_actions_build($city_size)
+    function block_actions_build($city_size, $zone_building)
     {
         
         $buttons = new HtmlButtons;
+        $popup   = new HtmlPopup;
         $table = '';
         
-        if ($city_size === 0) {
+        // If there is a TENT in the zone, display the button to enter.
+        if ($city_size === 1) {
+            
+            $table .= '<tr>
+                <td>'.$buttons->icon('enter_tent').'</td>
+                <td>'.$buttons->button('enter_tent', 'no_icon').'</td>
+            </tr>
+            <tr>
+                <td>'.$buttons->icon('attack_tent').'</td>
+                <td>'.$buttons->button('attack_tent', 'no_icon').'</td>
+            </tr>';
+        }
+        // If there is a CITY in the zone, display the button to enter.
+        elseif ($city_size > 0) {
+            
+            $table .= '<tr>
+                <td>'.$buttons->icon('enter_city').'</td>
+                <td>'.$buttons->button('enter_city', 'no_icon').'</td>
+            </tr>';
+        }
+        else {
             
             $table .= '<tr>
                 <td>'.$buttons->icon('build_tent').'</td>
@@ -381,11 +402,23 @@ class BuildHtml extends HtmlPage
             </tr>';               
         }
         
-        $table .= '<tr>
+        
+        // If there is a CRYPT in the zone, display the button to enter.
+        if ($zone_building === 'vault') {
+
+            $table .= '<tr>'
+                    . '<td>'.$buttons->icon('add_vault').'</td>'
+                    . '<td>'. $popup->link('popvault', 'Pouvoir cryptique').'</td>'
+                . '</tr>';
+        }
+        else {
+            $table .= '<tr>
                 <td>'.$buttons->icon('add_vault').'</td>
                 <td>'.$buttons->button('add_vault', 'no_icon').'</td>
             </tr>';
-                
+        }
+        
+        
         return '<table>'.$table.'</table>';
     }
     
