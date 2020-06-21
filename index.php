@@ -391,14 +391,10 @@ echo $popup->customised('popsuccess', '', nl2br($msg_popup));
  
 </div>
     
-    <br>
-    <br>
-    <br>
-    <br>
+
     
     <?php echo $buttons->button('add_mass_zombies') ?>
     
-    <br>
     <br>
     
     <form method="post" action="<?php echo official_server_root().'/apis-list' ?>">
@@ -408,7 +404,7 @@ echo $popup->customised('popsuccess', '', nl2br($msg_popup));
     </form>
     
     
-    <h3 id="Citizens" style="margin-top:20em"><a href="#Citizens">&Hat;</a>&nbsp;Liste des citoyens</h3>
+    <h3 id="Citizens"><a href="#Citizens">&Hat;</a>&nbsp;Liste des citoyens</h3>
     
     <?php echo $html_map_citizens ?>
     

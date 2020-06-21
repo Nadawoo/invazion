@@ -7,7 +7,9 @@
 #game_container {
     position:relative;
     width:100%;
-    
+    /* Garantit que les éléments sous la carte (liste des inscrits...) ne remontent
+       pas dans la colonne à droite de la carte */
+    height:60rem;
     /* Au cas où l'enceinte de la ville descendrait trop bas
       (notamment si liste des chantiers trop longue)
        Désactivé pour le moment car cache les infobulles en haut de la carte */
