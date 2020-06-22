@@ -141,3 +141,7 @@ li {
 .discreet {
     color:grey;
 }
+
+.inline {
+    display:inline;
+}
