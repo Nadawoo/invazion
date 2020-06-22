@@ -289,7 +289,7 @@ class HtmlButtons
         ];
                 
         $button = $icons[$button_alias];
-        $dot_number = ($amount === 0) ? '' : '<div class="dot_number">'.$amount.'</div>';
+        $dot_number = ($amount <= 0) ? '' : '<div class="dot_number">'.$amount.'</div>';
         
         return
         '<div class="round_action_block">'
