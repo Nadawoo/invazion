@@ -155,12 +155,15 @@ function toggleMapItems() {
  * Displays/hides the blocks of actions at the right of the map
  * (digging, zombies, citizens in zone, build tent...)
  */
-function toggleActionBlock(event, id) {
+function toggleActionBlock(buttonAlias) {
     
-    if (document.getElementById(id).style.display === "block") {
+    let blockId = "block_"+buttonAlias;
+    let roundId = "round_"+buttonAlias;
+            
+    if (document.getElementById(blockId).style.display === "block") {
         // If the block is already displayed, the button hides it
-        document.getElementById(id).style.display = "none";
-        event.target.parentNode.classList.remove("active");
+        document.getElementById(blockId).style.display = "none";
+        document.getElementById(roundId).classList.remove("active");
     }
     else {
         // Hides all the action blocks...
@@ -170,10 +173,13 @@ function toggleActionBlock(event, id) {
             document.getElementById("round_actions").getElementsByTagName("input")[i].parentNode.classList.remove("active");
         }
         // ... Then displays the only action block we want
-        document.getElementById(id).style.display = "block";
+        document.getElementById(blockId).style.display = "block";
         // ... and hightlights the active button
-        event.target.parentNode.classList.add("active");
+        document.getElementById(roundId).classList.add("active");
     }
+    
+    let jsonArray = {round_button:buttonAlias};
+    setCookie("config", JSON.stringify(jsonArray));
 }
 
 
@@ -622,6 +628,9 @@ if (document.getElementById('map') !== null) {
         hide('my_zone');
         hide('hideMyZone');
     }
+    
+    let configs = JSON.parse(getCookie("config"));
+    toggleActionBlock(configs.round_button);
     
     // By default, the list of objects in the bag and on the ground are reduced
     // UNUSED : the panel is now replaced by the big action button at the right of the map

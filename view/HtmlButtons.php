@@ -292,9 +292,9 @@ class HtmlButtons
         $dot_number = ($amount <= 0) ? '' : '<div class="dot_number">'.$amount.'</div>';
         
         return
-        '<div class="round_action_block">'
+        '<div class="round_action_block" id="round_'.$button_alias.'">'
             . '<input type="submit" class="round_action" value="'.$button['icon'].'" '
-                    . 'onclick="toggleActionBlock(event, \'block_'.$button_alias.'\')">'
+                    . 'onclick="toggleActionBlock(\''.$button_alias.'\')">'
             . $dot_number
             . '<label>'.$button['label'].'</label>'
         . '</div>';
