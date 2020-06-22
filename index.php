@@ -38,8 +38,10 @@ $citizen            = NULL;
 $city_data          = NULL;
 $city_fellows       = [];
 $zone_citizens      = [];
+$zone_items         = [];
 $healing_items      = [];
 $zone               = [];
+$zone_zombies       = 0;
 $html_actions_context = '';
 $html_actions_build = '';
 $html_actions_bag   = '';
@@ -129,6 +131,8 @@ if ($citizen_id !== NULL) {
     $speciality         = $citizen['speciality'];
     $controlpoints_citizens = $zone['controlpoints_citizens'];
     $controlpoints_zombies  = $zone['controlpoints_zombies'];
+    $zone_items             = $zone['items'];
+    $zone_zombies           = $zone['zombies'];
     
     $html_zone_items    = $html->block_zone_items($configs['items'], $zone, $citizen['citizen_id']);
     $html_bag_items     = $html->block_bag_items($configs['items'], $citizen_id, $citizen['bag_items'], $citizen['bag_size']);
@@ -328,8 +332,8 @@ echo $popup->customised('popsuccess', '', nl2br($msg_popup));
 
         <div id="round_actions">
             <?php
-            echo  $buttons->button_round('dig', array_sum((array)$zone['items']))
-                . $buttons->button_round('zombies', $zone['zombies'])
+            echo  $buttons->button_round('dig', array_sum((array)$zone_items))
+                . $buttons->button_round('zombies', $zone_zombies)
                 . $buttons->button_round('citizens', count($zone_citizens)-1)
                 . $buttons->button_round('build');
             ?>
