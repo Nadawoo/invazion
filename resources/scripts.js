@@ -680,9 +680,21 @@ if (document.getElementById('map') !== null) {
     
     
     // Displays/hides the tooltip of the zone when the mouse hovers the zone
-    document.getElementById("map").addEventListener("mouseover", function(){
+    document.getElementById("map").addEventListener("mouseover", function(){   
         if (event.target.closest(".hexagon") !== null) {
+            // Displays the tooltip
             event.target.closest(".hexagon").getElementsByClassName("bubble")[0].style.display = "block";
+            // Shifts the zone tooltip to the left if it overflows the map on the right
+            let bubbleBounding = event.target.closest(".hexagon").getElementsByClassName("bubble")[0].getBoundingClientRect();
+            let mapBounding    = document.getElementById("map").getBoundingClientRect();
+            if (bubbleBounding.right > mapBounding.right) {
+                event.target.closest(".hexagon").getElementsByClassName("bubble")[0].style.left        = "-15em";
+                event.target.closest(".hexagon").getElementsByClassName("triangle_down")[0].style.left = "16em";
+            }
+            else if (bubbleBounding.left < mapBounding.left) {
+                event.target.closest(".hexagon").getElementsByClassName("bubble")[0].style.left        = "0.5em";
+                event.target.closest(".hexagon").getElementsByClassName("triangle_down")[0].style.left = "0.5em";
+            }
         }
     });
     document.getElementById("map").addEventListener("mouseout", function(){
@@ -690,7 +702,7 @@ if (document.getElementById('map') !== null) {
             event.target.closest(".hexagon").getElementsByClassName("bubble")[0].style.display = "none";
         }
     });
-    // The onclick event is require for the mobile devices (no notion of "hover" there)
+    // The onclick event is required for the mobile devices (no notion of "hover" there)
     document.getElementById("map").addEventListener("click", function(){
         if (event.target.closest(".hexagon") !== null) {
             var current_display = window.getComputedStyle(event.target.closest(".hexagon").getElementsByClassName("bubble")[0]).display;

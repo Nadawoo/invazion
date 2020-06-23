@@ -8,6 +8,7 @@
     border-radius:0.5em;
     background:repeating-linear-gradient(0.38turn, black, black 2px, #17202a 2px, #17202a 4px);
     box-shadow: 5px 5px 10px black;
+    overflow:auto;
     /* Pour que la largeur de la ville en surimpression soit calculée 
        par rapport celle la carte et pas à celle de la page */
     position:relative;
@@ -102,7 +103,7 @@
     display:none;
     position:absolute;
     bottom:3.2em;
-    left:-4em;
+    left:-7em;
     line-height:1em;
     width:17em;
     padding:0.3em;
@@ -124,7 +125,7 @@
     border-right:0.6em solid transparent;
     border-top:  1em solid red;
     position:absolute;
-    left:5em;
+    left:7.8em;
     bottom:-1em;
     z-index:2;
 }
