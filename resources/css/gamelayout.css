@@ -6,11 +6,11 @@
 /* Bloc contenant la carte et les blocs d'action (nombre de zombies, sac...) */
 #game_container {
     position:relative;
-    width:100%;
     background:url('../img/metal.jpg');
     border:1px solid grey;
     border-left:none;
     border-right:none;
+    padding:0 0.2em;
     /* Garantit que les éléments sous la carte (liste des inscrits...) ne remontent
        pas dans la colonne à droite de la carte */
     height:55.5rem;
@@ -19,6 +19,11 @@
       (notamment si liste des chantiers trop longue)
        Désactivé pour le moment car cache les infobulles en haut de la carte */
     /*overflow:auto; */
+}
+
+/* Règles du jeu sous la carte */
+#rules {
+    padding:0 1rem;
 }
 
 /* La barre de connexion en haut de la page */
@@ -57,6 +62,7 @@
     justify-content:space-between;
     align-items:center;
     margin-bottom:0.3em;
+    padding:0 0.2em;
     /* To be sure that the width of the child block will be relative 
        to the width of #notif and not the width of the browser window */
     position:relative;

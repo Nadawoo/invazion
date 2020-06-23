@@ -395,7 +395,7 @@ echo $popup->customised('popsuccess', '', nl2br($msg_popup));
  
 </div>
     
-
+<div id="rules">
     
     <?php echo $buttons->button('add_mass_zombies') ?>
     
@@ -443,6 +443,7 @@ echo $popup->customised('popsuccess', '', nl2br($msg_popup));
         <li>Les tentes sont à usage unique&nbsp;: elles protègent les citoyens
             qui sont à l'intérieur, mais elles sont détruites par l'attaque.</li>
     </ul>
-    
+
+</div>
     
 <?php echo $html->page_footer(); ?>

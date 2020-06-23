@@ -21,7 +21,6 @@ body {
     position:relative;
 }
 #page_container {
-    padding:0 0.2em;
     background:#fafafa;
     /* Le fond du contenu de la page doit toujours remplir au minimum toute la hauteur de l'écran.
        Pour fonctionner, nécessite : html,body{ height:100% } */
