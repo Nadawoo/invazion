@@ -288,6 +288,8 @@
 #actions fieldset {
     display:none;
     position:relative;
+    width:90%;
+    margin:auto;
     margin-bottom:3rem;
     padding-top:1rem;
     padding-bottom:2rem;
@@ -295,7 +297,6 @@
     border-radius:0.3rem;
     box-shadow:5px 5px 8px black;
     background:#fbeee6;
-    z-index:10; /* To be over the shadow of the map */
 }
 legend {
     margin:auto;
