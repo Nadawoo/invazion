@@ -309,8 +309,8 @@ class BuildHtml extends HtmlPage
         }
         else {
             
-            return '<div style="color:lightgrey;text-align:center;margin-top:3em;">'
-                 . 'Aucun objet au sol pour l\'instant. Il va falloir fouiller...</div>';
+            return '<div style="margin-top:0.5rem;text-align:center;color:grey;font-size:0.95em">'
+                 . '<em>Aucun objet au sol pour l\'instant. Vous allez devoir fouiller...<em></div>';
         }
     }
     
