@@ -178,8 +178,7 @@ function toggleActionBlock(buttonAlias) {
         document.getElementById(roundId).classList.add("active");
     }
     
-    let jsonArray = {round_button:buttonAlias};
-    setCookie("config", JSON.stringify(jsonArray));
+    setCookieConfig("round_button", buttonAlias);
 }
 
 
@@ -248,6 +247,34 @@ function toggleItemsPanel() {
 function setCookie(name, value) {
 	
 	document.cookie = name+"="+value+"; SameSite=Lax"; 
+}
+
+
+/**
+ * Creates or updates the parameters of the "config" . It gathers all 
+ * the parameters in one cookie, in JSON, to avoid creating multiple cookies.
+ * Example :
+ * {"round_button":"dig", "show_panel":1}
+ * 
+ * @param {string} paramName
+ * @param {string} paramValue
+ */
+function setCookieConfig(paramName, paramValue) {
+    
+    let paramForJson = {[paramName]:paramValue};
+    setCookie("config", JSON.stringify(paramForJson));
+}
+
+
+/**
+ * Gets the value of a parameter in the "config" cookie.
+ * 
+ * @param {string} paramName the name of the parameter to get (e.g. : "show_panel")
+ * @return {string} The value of the parameter
+ */
+function getCookieConfig(paramName) {
+    
+    return JSON.parse(getCookie("config"))[paramName];
 }
 
 
@@ -629,8 +656,7 @@ if (document.getElementById('map') !== null) {
         hide('hideMyZone');
     }
     
-    let configs = JSON.parse(getCookie("config"));
-    toggleActionBlock(configs.round_button);
+    toggleActionBlock(getCookieConfig("round_button"));
     
     // By default, the list of objects in the bag and on the ground are reduced
     // UNUSED : the panel is now replaced by the big action button at the right of the map
