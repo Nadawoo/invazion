@@ -157,6 +157,11 @@ function toggleMapItems() {
  */
 function toggleActionBlock(buttonAlias) {
     
+    // In case the parameter is not present in the cookie yet
+    if (buttonAlias === undefined) {
+        return false;
+    }
+    
     let blockId = "block_"+buttonAlias;
     let roundId = "round_"+buttonAlias;
             
