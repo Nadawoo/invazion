@@ -223,7 +223,8 @@
 }
 /* Message under the movement paddle */
 #message_move {
-    height:7rem;
+    min-height:2rem;
+    margin-bottom:1rem;
     text-align:center;
 }
 
@@ -233,7 +234,7 @@
  */
 /* The big round action buttons with icon */
 #round_actions {
-    padding:1rem 0 2rem 0;
+    padding:1rem 0 1rem 0;
     text-align:center;
 }
 .round_action_block {
@@ -295,8 +296,7 @@
     display:none;
     position:relative;
     width:90%;
-    margin:auto;
-    margin-bottom:3rem;
+    margin:0 auto 3rem auto;
     padding-top:1rem;
     padding-bottom:2rem;
     border:1px solid #34495e;
@@ -441,6 +441,7 @@ input[type="submit"] {
  */
 #alert_control {
     width:62%;
+    margin:auto;
     border:2px outset black;
     text-align:center;
     background:#a93226;

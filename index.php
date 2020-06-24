@@ -332,14 +332,30 @@ echo $popup->customised('popsuccess', '', nl2br($msg_popup));
 
         <div id="round_actions">
             <?php
-            echo  $buttons->button_round('dig', array_sum((array)$zone_items))
+            echo  $buttons->button_round('move')
+                . $buttons->button_round('dig', array_sum((array)$zone_items))
                 . $buttons->button_round('zombies', $zone_zombies)
                 . $buttons->button_round('citizens', count($zone_citizens)-1)
                 . $buttons->button_round('build');
             ?>
         </div>
         
+        <div id="message_move"><?php echo $msg_move ?></div>
+        
         <div id="actions">
+            <fieldset id="block_move">
+                <legend>Me déplacer</legend>
+                <?php
+                // Displays the movement paddle 
+                echo ($controlpoints_citizens >= $controlpoints_zombies) 
+                     ? movement_paddle($citizen['coord_x'], $citizen['coord_y'])
+                     : $html->block_alert_control($zone['zombies']);
+                
+                // Special actions depending of the zone (go into a crypt, a city...)
+                echo $html_actions_context;
+                ?>
+            </fieldset>
+            
             <fieldset id="block_dig">
                 <legend>Fouiller</legend>
                 <?php 
@@ -379,16 +395,6 @@ echo $popup->customised('popsuccess', '', nl2br($msg_popup));
         <?php
         // Displays the smartphone at the right of the map (GPS, health...)
         echo smartphone($map_cols, $map_rows, $citizen, $specialities[$speciality], $zone);
-        
-        // Special actions depending of the zone (go into a crypt, a city...)
-        echo $html_actions_context;
-        
-        // Displays the movement paddle 
-        echo ($controlpoints_citizens >= $controlpoints_zombies) 
-             ? movement_paddle($citizen['coord_x'], $citizen['coord_y'])
-             : $html->block_alert_control($zone['zombies']);
-
-        echo '<div id="message_move">' . $msg_move . '</div>';
         ?>
         
     </div>

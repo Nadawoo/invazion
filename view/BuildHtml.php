@@ -359,7 +359,7 @@ class BuildHtml extends HtmlPage
             </tr>';
         }
                 
-        return '<table style="height:4.5rem;margin:0 auto 1rem auto">'.$table.'</table>';
+        return '<table style="margin:1rem auto 0 auto">'.$table.'</table>';
     }
     
     

@@ -270,6 +270,10 @@ class HtmlButtons
     {
         
         $icons = [
+            'move' => [
+                'icon'  => '&#x1F4A0;',
+                'label' => 'bouger',
+                ],
             'dig' => [
                 'icon'  => '&#x26CF;&#xFE0F;',
                 'label' => 'fouiller',
