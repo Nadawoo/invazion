@@ -275,10 +275,14 @@ function setCookieConfig(paramName, paramValue) {
  */
 function getCookieConfig(paramName=null) {
     
-    if (paramName === null) {
-        return JSON.parse(getCookie("config"));
+    cookieContent = getCookie("config");
+    
+    if (cookieContent === null) {
+        return {};
+    } else if (paramName === null) {
+        return JSON.parse(cookieContent);
     } else {
-        return JSON.parse(getCookie("config"))[paramName];
+        return JSON.parse(cookieContent)[paramName];
     }
 }
 
@@ -320,15 +324,15 @@ function activatePhoneTab(tabId=null) {
     // Si clic sur un onglet du smartphone
     if (tabId !== null) {
         // Mémorise l'onglet actif pour le réafficher après actualisation de la page
-        setCookie('phonetab', tabId);
+        setCookieConfig('phonetab', tabId);
     }
     // Si c'est le chargement de la page
     else {
         // Récupère l'onglet actif
-        tabId = getCookie('phonetab');
+        tabId = getCookieConfig('phonetab');
         
-        // Si le cookie n'xiste pas encore, on fixe un onglet par défaut
-        if (tabId === null) {
+        // Si le cookie n'existe pas encore, on fixe un onglet par défaut
+        if (tabId === undefined) {
             
             tabId = defaultTab;
         }
