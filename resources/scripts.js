@@ -169,6 +169,8 @@ function toggleActionBlock(buttonAlias) {
         // If the block is already displayed, the button hides it
         document.getElementById(blockId).style.display = "none";
         document.getElementById(roundId).classList.remove("active");
+        // Will memorize in the cookie to hide the block
+        buttonAlias = undefined;
     }
     else {
         // Hides all the action blocks...
