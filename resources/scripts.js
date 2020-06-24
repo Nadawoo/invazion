@@ -261,8 +261,9 @@ function setCookie(name, value) {
  */
 function setCookieConfig(paramName, paramValue) {
     
-    let paramForJson = {[paramName]:paramValue};
-    setCookie("config", JSON.stringify(paramForJson));
+    let cookieContent = getCookieConfig();
+    cookieContent[paramName] = paramValue;
+    setCookie("config", JSON.stringify(cookieContent));
 }
 
 
@@ -272,9 +273,13 @@ function setCookieConfig(paramName, paramValue) {
  * @param {string} paramName the name of the parameter to get (e.g. : "show_panel")
  * @return {string} The value of the parameter
  */
-function getCookieConfig(paramName) {
+function getCookieConfig(paramName=null) {
     
-    return JSON.parse(getCookie("config"))[paramName];
+    if (paramName === null) {
+        return JSON.parse(getCookie("config"));
+    } else {
+        return JSON.parse(getCookie("config"))[paramName];
+    }
 }
 
 
@@ -647,7 +652,7 @@ function htmlDiscussionMessage(message, pseudo, utcDate) {
 if (document.getElementById('map') !== null) {
     
     // Memorizes if the player wants to see the whole map or just the area where he is
-    if (getCookie('show_zone') === "1") {
+    if (getCookieConfig('show_zone') === 1) {
         display('my_zone');
         hide('displayMyZone');
     }
@@ -693,11 +698,11 @@ if (document.getElementById('map') !== null) {
 
     // Switches the action "Display my zone"/"Display the map"
     document.getElementById("backToMap").addEventListener("click", function(){
-
-        if (getCookie('show_zone') === '1') {
-            setCookie('show_zone', 0);
+        
+        if (getCookieConfig('show_zone') === 1) {
+            setCookieConfig('show_zone', 0);
         } else {
-            setCookie('show_zone', 1);
+            setCookieConfig('show_zone', 1);
         }
         toggle('my_zone');
         toggle('displayMyZone');
