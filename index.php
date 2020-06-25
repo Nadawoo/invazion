@@ -345,6 +345,26 @@ echo $popup->customised('popsuccess', '', nl2br($msg_popup));
         <div id="actions">
             <fieldset id="block_move">
                 <legend>Me déplacer</legend>
+                
+                <div style="float:right;text-align:center">
+                    <?php
+                    $AP_cost        = ($zone_zombies>0) ? '<strong class="red">1</strong>' : 0;
+                    $AP_cost_reason = ($zone_zombies>0) ? 'zombies dans la zone' : 'aucun zombie dans la zone';
+                    
+                    echo '<div style="margin-bottom:0.5em;padding-bottom:0.5em;border-bottom:1px solid lightgrey">
+                            <span style="color:grey">Vous déplacer coûtera</span>
+                            <div style="margin:0.2rem 0">'.$AP_cost.' point d\'action</div>
+                            <em style="font-size:0.85em;color:grey">('.$AP_cost_reason.')</em>
+                        </div>
+                        <div>
+                            <span style="color:grey">Il vous reste</span>
+                            <div style="margin:0.2rem 0">
+                                <strong class="green">'.$citizen['action_points'].' /'.$specialities[$speciality]['action_points'].'</strong> points d\'action
+                            </div>
+                        </div>';
+                    ?>
+                </div>
+                
                 <?php
                 // Displays the movement paddle 
                 echo ($controlpoints_citizens >= $controlpoints_zombies) 

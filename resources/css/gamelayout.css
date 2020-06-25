@@ -441,7 +441,7 @@ input[type="submit"] {
  */
 #alert_control {
     width:62%;
-    margin:auto;
+    margin-left:0;
     border:2px outset black;
     text-align:center;
     background:#a93226;
