@@ -348,7 +348,7 @@ echo $popup->customised('popsuccess', '', nl2br($msg_popup));
             <fieldset id="block_move">
                 <legend>Me déplacer</legend>
                 
-                <div style="float:right;text-align:center">
+                <div style="float:right;text-align:right">
                     <?php
                     $AP_cost        = ($zone_zombies>0) ? '<strong class="red">1</strong>' : 0;
                     $AP_cost_reason = ($zone_zombies>0) ? 'zombies dans la zone' : 'aucun zombie dans la zone';

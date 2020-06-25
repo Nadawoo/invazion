@@ -190,8 +190,10 @@
 
 /* Boutons de déplacement du joueur */
 #movement_paddle {
-    margin:0 auto 0 auto;
-    border-collapse: collapse;
+    margin-left:5%; /* No margin:auto because Chrome centers the paddle over the floating text */
+    width: 7.8rem; /* Fixed width to avoid crushing the paddle when downsizing the window */
+    height:7.8rem;
+    border-collapse:collapse;
     text-align:center;
     background-image:url("../img/hexagon.png");
     background-repeat:no-repeat;
