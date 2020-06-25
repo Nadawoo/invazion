@@ -43,6 +43,7 @@ $healing_items      = [];
 $zone               = [];
 $zone_zombies       = 0;
 $html_actions_context = '';
+$html_actions_zombies = '';
 $html_actions_build = '';
 $html_actions_bag   = '';
 $html_zone_items    = '';
@@ -138,6 +139,7 @@ if ($citizen_id !== NULL) {
     $html_bag_items     = $html->block_bag_items($configs['items'], $citizen_id, $citizen['bag_items'], $citizen['bag_size']);
     $html_zone_citizens = $html->block_zone_citizens($zone_citizens, $citizen_id);
     $html_actions_context = $html->block_actions_context($zone['city_size'], $zone['building']);
+    $html_actions_zombies = $html->block_actions_zombies($zone_zombies);
     $html_actions_build = $html->block_actions_build($zone['city_size'], $zone['building']);
     $html_actions_bag   = $html->block_actions_bag($configs['items'], $citizen['bag_items']);
     
@@ -390,12 +392,7 @@ echo $popup->customised('popsuccess', '', nl2br($msg_popup));
             <fieldset id="block_zombies">
                 <legend>Actions de zone</legend>
                 <?php
-                echo '<div>
-                        <strong style="font-size:1.3em;color:red">'.plural($zone_zombies, 'zombie').'</strong> autour de vous !
-                        <div id="zombies_visual">'. str_repeat('<span class="zombie">&#x1F9DF;</span>', $zone_zombies) .'</div>'
-                        . $buttons->kill_zombies($zone_zombies, 'kill_zombie')
-                        . $buttons->kill_zombies($zone_zombies, 'kill_mass_zombies') .
-                    '</div>';
+                echo $html_actions_zombies;
                 echo '<br>'.$html_actions_bag;
                 ?>                
             </fieldset>

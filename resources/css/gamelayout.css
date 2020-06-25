@@ -523,6 +523,13 @@ input[type="submit"] {
     color:white;
 }
 
+/* Discreet text to say that the zone has no zombies or no citizens, etc */
+.greytext {
+    text-align:center;
+    font-style:italic;
+    color:grey;
+}
+
 
 /*
  * Responsive design for all CSS

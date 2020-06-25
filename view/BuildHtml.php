@@ -251,9 +251,7 @@ class BuildHtml extends HtmlPage
         
         if (count($citizens_caracs) === 1) {
             
-            return '<p style="width:80%;margin-left:auto;margin-right:auto;font-size:0.9em;font-style:italic;color:grey">
-                Personne à proximité. Vous êtes seul au milieu de cette zone désertique...
-            </p>';
+            return '<p class="greytext">Personne à proximité. Vous êtes seul au milieu de cette zone désertique...</p>';
         }
         
         foreach ($citizens_caracs as $caracs) {
@@ -309,8 +307,26 @@ class BuildHtml extends HtmlPage
         }
         else {
             
-            return '<div style="margin-top:0.5rem;text-align:center;color:grey;font-size:0.95em">'
-                 . '<em>Aucun objet au sol pour l\'instant. Vous allez devoir fouiller...</em></div>';
+            return '<div class="greytext" style="margin-top:0.5rem">
+                    Aucun objet au sol pour l\'instant. Vous allez devoir fouiller...
+                    </div>';
+        }
+    }
+    
+    
+    function block_actions_zombies($zone_zombies) {
+        
+        $buttons = new HtmlButtons;
+        
+        if ($zone_zombies === 0) {
+            
+            return '<p class="greytext">Aucun zombie dans la zone. Vous êtes libre de vos mouvements...</p>';
+        }
+        else {
+            return '<strong style="font-size:1.3em;color:red">'.plural($zone_zombies, 'zombie').'</strong> autour de vous !
+                    <div id="zombies_visual">'. str_repeat('<span class="zombie">&#x1F9DF;</span>', $zone_zombies) .'</div>'
+                    . $buttons->kill_zombies($zone_zombies, 'kill_zombie')
+                    . $buttons->kill_zombies($zone_zombies, 'kill_mass_zombies');
         }
     }
     

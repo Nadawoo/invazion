@@ -124,6 +124,9 @@ li {
 .green {
     color:green;
 }
+.grey {
+    color:grey;
+}
 .aside {
     /* Texte en aparté */
     display:block;
