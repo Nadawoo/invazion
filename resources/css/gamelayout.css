@@ -257,6 +257,9 @@
     border-radius:3em;
     box-shadow:5px 5px 5px black;
 }
+.round_action:focus {
+    outline:none; /* Chrome adds an ugly outline when button is clicked */
+}
 .round_action:hover, .active .round_action {
     position:relative;
     left:2px;
