@@ -129,7 +129,7 @@ class HtmlButtons
                 'title' => "",
                 ],
             'kill_zombie' => [
-                'icon'  => '',
+                'icon'  => '&#x1F91C;&#x1F3FC;',
                 'name'  => 'Attaquer à mains nues !',
                 'title' => "Attaquer un zombie à mains nues. Vous gagnerez un picto en cas de succès.",
                 'fields' => [
@@ -138,8 +138,8 @@ class HtmlButtons
                     ],
                 ],            
             'kill_mass_zombies' => [
-                'icon'  => '',
-                'name'  => 'Nettoyer la zone au lance-flammes',
+                'icon'  => '&#x1F525;',
+                'name'  => 'Nettoyer au lance-flammes',
                 'title' => "Comme les zombies sont particulièrement nombreux ici, vous pouvez "
                          . "les attaquer par groupe. C'est très efficace, mais en contrepartie "
                          . "vous ne gagnerez aucun picto.",
@@ -402,7 +402,7 @@ class HtmlButtons
         '<form method="post" action="#Outside" class="redbutton">
             <input type="hidden" name="api_name" value="zone">
             <input type="hidden" name="action" value="'.$button['fields']['action'].'">
-            <input type="submit" value="'.$button['name'].'" class="'.$class.'"  title="'.$title.'">
+            <input type="submit" value="'.$button['icon'].' '.$button['name'].'" class="'.$class.'"  title="'.$title.'">
         </form>';
     }
     
