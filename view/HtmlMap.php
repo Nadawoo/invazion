@@ -144,7 +144,7 @@ class HtmlMap
 
             if ($zombies_nbr > 0) {
 
-                $cell_content   = '    <span style="color:grey">'.$zombies_nbr.'</span>';
+                $cell_content   = '    <span class="grey">'.$zombies_nbr.'</span>';
                 $bubble_zombies = '<br>Il y a '.plural($zombies_nbr, 'zombie').' dans cette zone&nbsp;!';
             }
 

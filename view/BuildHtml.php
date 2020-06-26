@@ -467,7 +467,7 @@ class BuildHtml extends HtmlPage
         }
         
         if ($html_items === null) {
-            $html_items = "<li><em style=\"font-size:0.9em\">Le sac ne contient pas d'objet utilisable ici...</em></li>";
+            $html_items = "<li class=\"greytext\" style=\"font-size:0.9em\">Le sac ne contient pas d'objet utilisable ici...</li>";
         }            
         
         return '<div id="actions_bag">

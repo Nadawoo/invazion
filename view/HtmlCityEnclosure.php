@@ -66,7 +66,7 @@ class HtmlCityEnclosure
         
         if ($html_zone_items === '') {
             
-            $html_bank_items = '<div style="color:grey;">
+            $html_bank_items = '<div class="grey">
                     <br>Aucun objet dans la banque&nbsp;!
                     Vous devriez y déposer quelques objets personnels pour la remplir...
                 </div>';
