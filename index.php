@@ -347,14 +347,15 @@ echo $popup->customised('popsuccess', '', nl2br($msg_popup));
         <div id="actions">
             <fieldset id="block_move">
                 <legend>Me déplacer</legend>
-                
                 <?php
-                echo $html->block_movement_AP($citizen['action_points'], $specialities[$speciality]['action_points'], $zone_zombies);
-                
                 // Displays the movement paddle 
-                echo ($controlpoints_citizens >= $controlpoints_zombies) 
-                     ? movement_paddle($citizen['coord_x'], $citizen['coord_y'])
-                     : $html->block_alert_control($zone['zombies']);
+                if ($controlpoints_citizens >= $controlpoints_zombies) {
+                    echo $html->block_movement_AP($citizen['action_points'], $specialities[$speciality]['action_points'], $zone_zombies);
+                    echo movement_paddle($citizen['coord_x'], $citizen['coord_y']);
+                }
+                else {
+                    echo $html->block_alert_control($zone['zombies']);
+                }
                 
                 // Special actions depending of the zone (go into a crypt, a city...)
                 echo $html_actions_context;
