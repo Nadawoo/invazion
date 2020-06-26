@@ -273,6 +273,7 @@ class HtmlButtons
             'move' => [
                 'icon'  => '&#x1F4A0;',
                 'label' => 'bouger',
+                'alert' => '&#x26A0;&#xFE0F;',
                 ],
             'dig' => [
                 'icon'  => '&#x26CF;&#xFE0F;',
@@ -293,7 +294,14 @@ class HtmlButtons
         ];
                 
         $button = $icons[$button_alias];
-        $dot_number = ($amount <= 0) ? '' : '<div class="dot_number">'.$amount.'</div>';
+        $dot_number = '';
+        
+        if ($amount > 0 and isset($button['alert'])) {
+             $dot_number = '<div class="alert_icon">'.$button['alert'].'</div>';
+        } 
+        elseif ($amount > 0) {
+            $dot_number = '<div class="dot_number">'.$amount.'</div>';
+        }
         
         return
         '<div class="round_action_block" id="round_'.$button_alias.'">'
