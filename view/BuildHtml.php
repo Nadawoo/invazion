@@ -314,7 +314,8 @@ class BuildHtml extends HtmlPage
     }
     
     
-    function block_actions_zombies($zone_zombies) {
+    function block_actions_zombies($zone_zombies)
+    {
         
         $buttons = new HtmlButtons;
         
@@ -328,6 +329,36 @@ class BuildHtml extends HtmlPage
                     . $buttons->kill_zombies($zone_zombies, 'kill_zombie')
                     . $buttons->kill_zombies($zone_zombies, 'kill_mass_zombies');
         }
+    }
+    
+    
+    /**
+     * Displays informations about the action points to the player
+     * 
+     * @param int $citizen_AP The amount of action points the player currently has
+     * @param int $total_AP   The maximumum amount of action points of his speciality
+     * @param int $zone_zombies The amount of zombies in the zone
+     * @return string HTML
+     */
+    function block_movement_AP($citizen_AP, $total_AP, $zone_zombies)
+    {
+        
+            $AP_cost        = ($zone_zombies>0) ? '<strong class="red">1</strong>' : 0;
+            $AP_cost_reason = ($zone_zombies>0) ? 'zombies dans la zone' : 'aucun zombie dans la zone';
+
+            return '<div class="grey" style="float:right;text-align:right">
+                    <div style="margin-bottom:0.5em;padding-bottom:0.5em;border-bottom:1px solid lightgrey">
+                        Vous déplacer coûtera
+                        <div style="margin:0.2rem 0;color:black">'.$AP_cost.' point d\'action</div>
+                        <em style="font-size:0.85em">('.$AP_cost_reason.')</em>
+                    </div>
+                    <div>
+                        Il vous reste
+                        <div style="margin:0.2rem 0;color:black">
+                            <strong class="green">'.$citizen_AP.' /'.$total_AP.'</strong> points d\'action
+                        </div>
+                    </div>
+                </div>';
     }
     
     
