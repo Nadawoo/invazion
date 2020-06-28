@@ -190,6 +190,7 @@
 
 /* Boutons de déplacement du joueur */
 #movement_paddle {
+    float:left;
     margin-left:5%; /* No margin:auto because Chrome centers the paddle over the floating text */
     width: 7.8rem; /* Fixed width to avoid crushing the paddle when downsizing the window */
     height:7.8rem;

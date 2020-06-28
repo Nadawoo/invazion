@@ -350,8 +350,8 @@ echo $popup->customised('popsuccess', '', nl2br($msg_popup));
                 <?php
                 // Displays the movement paddle 
                 if ($controlpoints_citizens >= $controlpoints_zombies) {
-                    echo $html->block_movement_AP($citizen['action_points'], $specialities[$speciality]['action_points'], $zone_zombies);
                     echo movement_paddle($citizen['coord_x'], $citizen['coord_y']);
+                    echo $html->block_movement_AP($citizen['action_points'], $specialities[$speciality]['action_points'], $zone_zombies);
                 }
                 else {
                     echo $html->block_alert_control($zone['zombies']);

@@ -344,11 +344,11 @@ class BuildHtml extends HtmlPage
     {
         
             $AP_cost        = ($zone_zombies>0) ? '<strong class="red">1</strong>' : 0;
-            $AP_cost_reason = ($zone_zombies>0) ? 'zombies dans la zone' : 'aucun zombie dans la zone';
+            $AP_cost_reason = ($zone_zombies>0) ? 'zombies dans la zone' : 'aucun zombie dans la zone';
 
-            return '<div class="grey" style="float:right;text-align:right">
+            return '<div class="grey" style="margin-left:auto;width:12rem;text-align:right">
                     <div style="margin-bottom:0.5em;padding-bottom:0.5em;border-bottom:1px solid lightgrey">
-                        Vous déplacer coûtera
+                        Vous déplacer coûtera
                         <div style="margin:0.2rem 0;color:black">'.$AP_cost.' point d\'action</div>
                         <em style="font-size:0.85em">('.$AP_cost_reason.')</em>
                     </div>
