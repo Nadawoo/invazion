@@ -29,8 +29,7 @@ $my_zone            = new HtmlMyzone();
 $enclosure          = new HtmlCityEnclosure();
 $buttons            = new HtmlButtons();
 $popup              = new HtmlPopup();
-$controlpoints_citizens = 0;
-$controlpoints_zombies  = 0; 
+$zone               = ['items'=>[], 'zombies'=>0, 'controlpoints_citizens'=>0, 'controlpoints_zombies'=>0];
 $user_id            = NULL;
 $citizen_id         = NULL;
 $citizen_pseudo     = NULL;
@@ -38,10 +37,7 @@ $citizen            = NULL;
 $city_data          = NULL;
 $city_fellows       = [];
 $zone_citizens      = [];
-$zone_items         = [];
 $healing_items      = [];
-$zone               = [];
-$zone_zombies       = 0;
 $html_actions_context = '';
 $html_actions_zombies = '';
 $html_actions_build = '';
@@ -130,16 +126,12 @@ if ($citizen_id !== NULL) {
     $zone               = $get_map['datas']['zones'][$citizen['coord_x'].'_'.$citizen['coord_y']];
     $healing_items      = filter_bag_items('healing_wound', $configs['items'], $citizen['bag_items']);
     $speciality         = $citizen['speciality'];
-    $controlpoints_citizens = $zone['controlpoints_citizens'];
-    $controlpoints_zombies  = $zone['controlpoints_zombies'];
-    $zone_items             = $zone['items'];
-    $zone_zombies           = $zone['zombies'];
     
     $html_zone_items    = $html->block_zone_items($configs['items'], $zone, $citizen['citizen_id']);
     $html_bag_items     = $html->block_bag_items($configs['items'], $citizen_id, $citizen['bag_items'], $citizen['bag_size']);
     $html_zone_citizens = $html->block_zone_citizens($zone_citizens, $citizen_id);
     $html_actions_context = $html->block_actions_context($zone['city_size'], $zone['building']);
-    $html_actions_zombies = $html->block_actions_zombies($zone_zombies);
+    $html_actions_zombies = $html->block_actions_zombies($zone['zombies']);
     $html_actions_build = $html->block_actions_build($zone['city_size'], $zone['building']);
     $html_actions_bag   = $html->block_actions_bag($configs['items'], $citizen['bag_items']);
     
@@ -334,9 +326,9 @@ echo $popup->customised('popsuccess', '', nl2br($msg_popup));
 
         <div id="round_actions">
             <?php
-            echo  $buttons->button_round('move', ($controlpoints_zombies-$controlpoints_citizens))
-                . $buttons->button_round('dig', array_sum((array)$zone_items))
-                . $buttons->button_round('zombies', $zone_zombies)
+            echo  $buttons->button_round('move', ($zone['controlpoints_zombies']-$zone['controlpoints_citizens']))
+                . $buttons->button_round('dig', array_sum((array)$zone['items']))
+                . $buttons->button_round('zombies', $zone['zombies'])
                 . $buttons->button_round('citizens', count($zone_citizens)-1)
                 . $buttons->button_round('build');
             ?>
@@ -349,9 +341,9 @@ echo $popup->customised('popsuccess', '', nl2br($msg_popup));
                 <legend>Me déplacer</legend>
                 <?php
                 // Displays the movement paddle 
-                if ($controlpoints_citizens >= $controlpoints_zombies) {
+                if ($zone['controlpoints_citizens'] >= $zone['controlpoints_zombies']) {
                     echo movement_paddle($citizen['coord_x'], $citizen['coord_y']);
-                    echo $html->block_movement_AP($citizen['action_points'], $specialities[$speciality]['action_points'], $zone_zombies);
+                    echo $html->block_movement_AP($citizen['action_points'], $specialities[$speciality]['action_points'], $zone['zombies']);
                 }
                 else {
                     echo $html->block_alert_control($zone['zombies']);

@@ -26,7 +26,7 @@ function smartphone($map_cols, $map_rows, $citizen, $speciality, $zone)
     $notif       = '';
     
     // N'existe que si le joueur est connecté
-    if (!empty($zone)) {
+    if ($citizen !== null) {
         $notif = smartphone_notification($zone, $AP);
         $cp_zombies  = $zone['controlpoints_zombies'];
         $cp_citizens = $zone['controlpoints_citizens'];
