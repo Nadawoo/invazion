@@ -62,7 +62,7 @@ function smartphone($map_cols, $map_rows, $citizen, $speciality, $zone)
     }
     
     
-    echo '<div id="phone">
+    return '<div id="phone">
             <div class="title">––</div>
             <div class="container">
                 <div class="sideicons">

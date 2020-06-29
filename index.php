@@ -110,20 +110,17 @@ if ($api->user_seems_connected() === true) {
 // Récupère les données de jeu en appelant les API
 $citizens           = $api->call_api('citizens', 'get', ['map_id'=>$map_id])['datas'];
 $citizens_by_coord  = sort_citizens_by_coord($citizens);
-$get_map            = $api->call_api('maps', 'get', ['map_id'=>$map_id]);
+$maps               = $api->call_api('maps', 'get', ['map_id'=>$map_id])['datas'];
 $configs            = $api->call_api('configs', 'get')['datas'];
 $specialities       = $configs['specialities'];
 $speciality         = key($specialities);
-$map_cols           = $get_map['datas']['map_width'];
-$map_rows           = $get_map['datas']['map_height'];
-$next_attack_hour   = $get_map['datas']['next_attack_hour'];
 
 // Si le joueur est connecté et a déjà créé son citoyen
 if ($citizen_id !== NULL) {
     
     $citizen            = $api_me['datas'];
     $zone_citizens      = $citizens_by_coord[$citizen['coord_x'].'_'.$citizen['coord_y']];
-    $zone               = $get_map['datas']['zones'][$citizen['coord_x'].'_'.$citizen['coord_y']];
+    $zone               = $maps['zones'][$citizen['coord_x'].'_'.$citizen['coord_y']];
     $healing_items      = filter_bag_items('healing_wound', $configs['items'], $citizen['bag_items']);
     $speciality         = $citizen['speciality'];
     
@@ -145,8 +142,11 @@ if ($citizen_id !== NULL) {
 
 // Construction de la carte
 $html_map_citizens = $html->map_citizens($citizens);
-$html_map = $map->hexagonal_map($map_cols, $map_rows, $get_map['datas']['zones'], $citizens_by_coord, $citizen, $next_attack_hour);
-unset($get_map);
+$html_map = $map->hexagonal_map($maps['map_width'], $maps['map_height'], $maps['zones'], $citizens_by_coord, $citizen, $maps['next_attack_hour']);
+// Smartphone à droite de la carte
+$html_smartphone = smartphone($maps['map_width'], $maps['map_height'], $citizen, $specialities[$speciality], $zone);
+
+unset($maps);
 unset($citizens);
 unset($citizens_by_coord);
 ?>
@@ -388,7 +388,7 @@ echo $popup->customised('popsuccess', '', nl2br($msg_popup));
         
         <?php
         // Displays the smartphone at the right of the map (GPS, health...)
-        echo smartphone($map_cols, $map_rows, $citizen, $specialities[$speciality], $zone);
+        echo $html_smartphone;
         ?>
         
     </div>
