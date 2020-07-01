@@ -330,7 +330,7 @@ echo $popup->customised('popsuccess', '', nl2br($msg_popup));
                 . $buttons->button_round('dig', array_sum((array)$zone['items']))
                 . $buttons->button_round('zombies', $zone['zombies'])
                 . $buttons->button_round('citizens', count($zone_citizens)-1)
-                . $buttons->button_round('build');
+                . $buttons->button_round('build', min($zone['city_size'], 1));
             ?>
         </div>
         
