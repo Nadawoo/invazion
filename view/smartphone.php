@@ -71,7 +71,7 @@ function smartphone($map_cols, $map_rows, $citizen, $speciality, $zone)
                         <span>gps</span>
                     </div>
                     <div onclick="activatePhoneTab(\'health\')">
-                        &#x1FA78;<br>
+                        &#x1F489;<br>
                         <span>santé</span>
                     </div>
                     <div onclick="activatePhoneTab(\'zone\')">
