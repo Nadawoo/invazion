@@ -74,6 +74,7 @@
 }
 #gamebar #notifsButton {
     margin-top:0.2em;
+    margin-left:-5rem; /* Quick fix to keep centered despite that the refresh button is less wide */
     padding:0.1em 0.4em;
     border:1px solid darkred;
     border-radius:2em;

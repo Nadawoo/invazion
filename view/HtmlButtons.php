@@ -552,6 +552,6 @@ class HtmlButtons
         // Le nombre aléatoire assure que la page sera réellement actualisée 
         // au lieu d'être simplement ramenée au niveau de l'ancre #Outside
         // (le navigateur considérera que c'est une url différente)
-        return '[&nbsp;<a href="index?'.rand(100, 999).'#Outside">Actualiser&nbsp;la&nbsp;page</a>&nbsp;]';
+        return '<a href="index?'.rand(100, 999).'#Outside" style="font-size:1.3em" title="Actualiser l\'affichage">&#x1F504;</a>';
     }
 }
