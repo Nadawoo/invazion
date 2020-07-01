@@ -341,12 +341,15 @@ echo $popup->customised('popsuccess', '', nl2br($msg_popup));
                 <legend>Me déplacer</legend>
                 <?php
                 // Displays the movement paddle 
-                if ($zone['controlpoints_citizens'] >= $zone['controlpoints_zombies']) {
-                    echo movement_paddle($citizen['coord_x'], $citizen['coord_y']);
-                    echo $html->block_movement_AP($citizen['action_points'], $specialities[$speciality]['action_points'], $zone['zombies']);
+                if ($zone['controlpoints_citizens'] < $zone['controlpoints_zombies']) {
+                    echo $html->block_alert_control($zone['zombies']);
+                }
+                elseif ($citizen['action_points'] === 0 and $zone['zombies'] > 0) {                    
+                    echo $html->block_alert_tired();
                 }
                 else {
-                    echo $html->block_alert_control($zone['zombies']);
+                    echo movement_paddle($citizen['coord_x'], $citizen['coord_y']);
+                    echo $html->block_movement_AP($citizen['action_points'], $specialities[$speciality]['action_points'], $zone['zombies']);
                 }
                 
                 // Special actions depending of the zone (go into a crypt, a city...)

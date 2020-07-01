@@ -538,6 +538,32 @@ class BuildHtml extends HtmlPage
     
     
     /**
+     * Block displayed if the player has not enough action points to move
+     * 
+     * @return string HTML
+     */
+    function block_alert_tired()
+    {
+        
+        return '
+            <div id="alert_control">
+                <div class="title">Vous êtes épuisé !</div>
+                <div class="text">
+                    Vous n\'avez plus assez de points d\'action pour quitter la zone !
+                    Elle sera votre tombe si vous ne vous abritez pas avant la nuit...
+                    <div style="margin-top:0.7rem;padding:0.7rem;color:lightsteelblue;border-top:1px solid grey">
+                        Quelques suggestions pour vous sortir de ce mauvais pas...<br>
+                        ► Tuez tous les zombies pour vous déplacer sans effort<br>
+                        ► Explorez la zone pour chercher de la nourriture<br>
+                        ► Construisez une tente pour vous abriter<br>
+                        ► Demandez l\'aide d\'un autre citoyen
+                    </div>
+                </div>
+            </div>';
+    }
+    
+    
+    /**
      * Liste des objets dans le sac du citoyen
      * 
      * @param array $items_caracs   Les caractéristiques de tous les items existants dans le jeu
