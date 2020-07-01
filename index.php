@@ -377,14 +377,14 @@ echo $popup->customised('popsuccess', '', nl2br($msg_popup));
             </fieldset>
 
             <fieldset id="block_build">
-                <legend>Construire</legend>
+                <legend>Bâtiments</legend>
                 <?php 
                 echo $html_actions_build;
                 ?>                
             </fieldset>
 
             <fieldset  id="block_citizens">
-                <legend>Citoyens dans ma zone</legend>
+                <legend>Humains dans ma zone</legend>
                 <?php echo $html_zone_citizens ?>
             </fieldset>
         </div>

@@ -288,8 +288,8 @@ class HtmlButtons
                 'label' => 'humains',
                 ],
             'build' => [
-                'icon'  => '&#x1F6E0;&#xFE0F;',
-                'label' => 'construire',
+                'icon'  => '&#x1F3DA;&#xFE0F;',
+                'label' => 'bâtiments',
                 ],
         ];
                 
