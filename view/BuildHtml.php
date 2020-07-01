@@ -540,9 +540,10 @@ class BuildHtml extends HtmlPage
     /**
      * Block displayed if the player has not enough action points to move
      * 
+     * @param int $zombies The amount of zombies in the zone
      * @return string HTML
      */
-    function block_alert_tired()
+    function block_alert_tired($zombies)
     {
         
         return '
@@ -553,7 +554,7 @@ class BuildHtml extends HtmlPage
                     Elle sera votre tombe si vous ne vous abritez pas avant la nuit...
                     <div style="margin-top:0.7rem;padding:0.7rem;color:lightsteelblue;border-top:1px solid grey">
                         Quelques suggestions pour vous sortir de ce mauvais pas...<br>
-                        ► Tuez tous les zombies pour vous déplacer sans effort<br>
+                        ► Tuez '.plural($zombies, 'zombie').' pour vous déplacer sans effort<br>
                         ► Explorez la zone pour chercher de la nourriture<br>
                         ► Construisez une tente pour vous abriter<br>
                         ► Demandez l\'aide d\'un autre citoyen

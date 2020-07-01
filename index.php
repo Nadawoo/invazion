@@ -345,7 +345,7 @@ echo $popup->customised('popsuccess', '', nl2br($msg_popup));
                     echo $html->block_alert_control($zone['zombies']);
                 }
                 elseif ($citizen['action_points'] === 0 and $zone['zombies'] > 0) {                    
-                    echo $html->block_alert_tired();
+                    echo $html->block_alert_tired($zone['zombies']);
                 }
                 else {
                     echo movement_paddle($citizen['coord_x'], $citizen['coord_y']);
