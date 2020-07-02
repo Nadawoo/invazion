@@ -80,7 +80,6 @@ class HtmlMap
     private function hexagonal_zone($col, $row, $cell, $is_player_in_zone, $player_pseudo, $fellow_pseudo)
     {
         
-        $coords         = $col.'_'.$row;
         $has_items      = '';
         // Important : la cellule doit toujours avoir un contenu, même 
         // un simple espace, sinon décalages si la cellule contient ou non 
