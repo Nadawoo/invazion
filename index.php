@@ -29,7 +29,7 @@ $my_zone            = new HtmlMyzone();
 $enclosure          = new HtmlCityEnclosure();
 $buttons            = new HtmlButtons();
 $popup              = new HtmlPopup();
-$zone               = ['items'=>[], 'zombies'=>0, 'controlpoints_citizens'=>0, 'controlpoints_zombies'=>0];
+$zone               = ['items'=>[], 'zombies'=>0, 'city_size'=> 0, 'controlpoints_citizens'=>0, 'controlpoints_zombies'=>0];
 $user_id            = NULL;
 $citizen_id         = NULL;
 $citizen_pseudo     = NULL;
