@@ -48,7 +48,7 @@ if ($action_post !== null) {
     if ($action_post === 'create_citizen') {
 
         $api_result = $api->create_citizen($params_post['pseudo']);
-        $msg_popup  = '<p>'.nl2br($api_result['metas']['error_message']).'</p>';
+        $msg_popup  = '<p>'.$api_result['metas']['error_message'].'</p>';
     }
     // Actions standardized with the call_api() method of the ZombLib
     else {
@@ -64,7 +64,7 @@ if ($action_post !== null) {
         }
         else {
             // The result of all the other actions is displayed in a pop-up
-            $msg_popup = '<p>'.nl2br($api_result['metas']['error_message']).'</p>';
+            $msg_popup = '<p>'.$api_result['metas']['error_message'].'</p>';
         }
     }
 }
