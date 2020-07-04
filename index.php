@@ -36,7 +36,7 @@ $citizen_id         = NULL;
 $city_data          = NULL;
 $user_id            = NULL;
 $city_fellows       = [];
-$zone_citizens      = [];
+$zone_fellows       = [];
 $healing_items      = [];
 $msg_popup          = NULL;
 $msg_move           = '';
@@ -111,7 +111,7 @@ $speciality         = key($specialities);
 if ($citizen_id !== NULL) {
     
     $citizen            = $api_me['datas'];
-    $zone_citizens      = $citizens_by_coord[$citizen['coord_x'].'_'.$citizen['coord_y']];
+    $zone_fellows       = $citizens_by_coord[$citizen['coord_x'].'_'.$citizen['coord_y']];
     $zone               = $maps['zones'][$citizen['coord_x'].'_'.$citizen['coord_y']];
     $healing_items      = filter_bag_items('healing_wound', $configs['items'], $citizen['bag_items']);
     $speciality         = $citizen['speciality'];
@@ -120,7 +120,7 @@ if ($citizen_id !== NULL) {
     if ($citizen['is_inside_city'] === 1) {
         
         $city_data    = $api->call_api('cities', 'get', ['city_id'=>$zone['city_id']])['datas'];
-        $city_fellows = filter_citizens_by_city($zone_citizens, $zone['city_id']);
+        $city_fellows = filter_citizens_by_city($zone_fellows, $zone['city_id']);
     }
 }
 
@@ -135,7 +135,7 @@ $html_actions_context   = $html->block_actions_context($zone['city_size'], $zone
 $html_actions_zombies   = $html->block_actions_zombies($zone['zombies']);
 $html_zone_items        = $html->block_zone_items($configs['items'], $zone, $citizen['citizen_id']);
 $html_bag_items         = $html->block_bag_items($configs['items'], $citizen_id, $citizen['bag_items'], $citizen['bag_size']);
-$html_zone_citizens     = $html->block_zone_citizens($zone_citizens, $citizen_id);
+$html_zone_fellows      = $html->block_zone_fellows($zone_fellows, $citizen_id);
 
 // Smartphone at the right of the map
 $html_smartphone = smartphone($maps['map_width'], $maps['map_height'], $citizen, $specialities[$speciality], $zone);
@@ -269,7 +269,7 @@ echo $popup->customised('popsuccess', '', nl2br($msg_popup));
             
             $my_zone->set_nbr_zombies($zone['zombies']);
             $my_zone->set_nbr_items($zone['items']);
-            $my_zone->set_citizens_in_zone($zone_citizens);
+            $my_zone->set_citizens_in_zone($zone_fellows);
             $my_zone->set_citizens_in_city($city_fellows);
             $my_zone->set_city_size($zone['city_size']);
             $my_zone->set_citizen_pseudo($citizen['citizen_pseudo']);
@@ -321,7 +321,7 @@ echo $popup->customised('popsuccess', '', nl2br($msg_popup));
             echo  $buttons->button_round('move', ($zone['controlpoints_zombies']-$zone['controlpoints_citizens']))
                 . $buttons->button_round('dig', array_sum((array)$zone['items']))
                 . $buttons->button_round('zombies', $zone['zombies'])
-                . $buttons->button_round('citizens', count($zone_citizens)-1)
+                . $buttons->button_round('citizens', count($zone_fellows)-1)
                 . $buttons->button_round('build', min($zone['city_size'], 1));
             ?>
         </div>
@@ -377,7 +377,7 @@ echo $popup->customised('popsuccess', '', nl2br($msg_popup));
 
             <fieldset  id="block_citizens">
                 <legend>Humains dans ma zone</legend>
-                <?php echo $html_zone_citizens ?>
+                <?php echo $html_zone_fellows ?>
             </fieldset>
         </div>
         

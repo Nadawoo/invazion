@@ -243,7 +243,7 @@ class BuildHtml extends HtmlPage
      * 
      * @return string
      */
-    function block_zone_citizens($citizens_caracs, $citizen_id)
+    function block_zone_fellows($citizens_caracs, $citizen_id)
     {
         
         $buttons = new HtmlButtons;
