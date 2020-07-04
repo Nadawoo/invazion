@@ -179,7 +179,7 @@ echo $popup->customised('popsuccess', '', nl2br($msg_popup));
     
     <?php
     // Demande de choisir une spécialité (bâtisseur...) (bâtisseur, fouineur...)
-    if ($citizen_id !== NULL and $citizen['can_change_speciality'] === 1) {
+    if ($citizen['can_change_speciality'] === 1) {
         ?>
         
         <fieldset id="citizen_caracs">

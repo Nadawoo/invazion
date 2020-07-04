@@ -17,8 +17,9 @@ function set_default_variables($variable) {
         'coord_x'           => null,
         'coord_y'           => null,
         'citizen_pseudo'    => null,
-        'is_inside_city'    => false,
-        'is_wounded'        => false,
+        'can_change_speciality' => false,
+        'is_inside_city'        => false,
+        'is_wounded'            => false,
         // If player not connected, by default display the map #1
         'map_id'            => 1,
         ];
