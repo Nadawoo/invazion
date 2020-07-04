@@ -15,10 +15,6 @@ safely_require('controller/filter_citizens_by_city.php');
 safely_require('controller/filter_bag_items.php');
 safely_require('ZombLib.php');
 
-
-// TEMPORAIRE - Par défaut si le joueur n'est pas connecté, on affiche la carte n°1
-$map_id = 1;
-
 $api_name        = filter_input(INPUT_POST, 'api_name', FILTER_SANITIZE_STRING);
 $action_post     = filter_input(INPUT_POST, 'action',   FILTER_SANITIZE_STRING);
 $params_post     = filter_input(INPUT_POST, 'params',   FILTER_SANITIZE_STRING, FILTER_REQUIRE_ARRAY);
@@ -84,25 +80,22 @@ if ($api->user_seems_connected() === true) {
     
     $token          = $api->get_token_data()['data'];
     $user_id        = $token['user_id'];
-    $citizen_id     = $token['citizen_id'];
-    // Récupère l'id de la carte où se trouve le citoyen. Si citoyen pas encore créé,
-    // on garde la carte par défaut
-    $map_id         = ($token['map_id'] === NULL) ? $map_id : $token['map_id'];
     
     // Récupère les données du joueur
     $api_me = $api->call_api('me', 'get');
     
-    // Si erreur dans les données, on considère le joueur n'a pas de citoyen
-    if ($api_me['metas']['error_code'] !== 'success') {
-        
-        $citizen_id = NULL;        
+    if ($api_me['metas']['error_code'] === 'success') {
+        $citizen    = $api_me['datas'];
+        $citizen_id = $citizen['citizen_id'];
+    }
+    else {
         $msg_build  = '<p class="'.$api_me['metas']['error_class'].'">'.$api_me['metas']['error_message'].'</p>';
     }
 }
 // Récupère les données de jeu en appelant les API
-$citizens           = $api->call_api('citizens', 'get', ['map_id'=>$map_id])['datas'];
+$citizens           = $api->call_api('citizens', 'get', ['map_id'=>$citizen['map_id']])['datas'];
 $citizens_by_coord  = sort_citizens_by_coord($citizens);
-$maps               = $api->call_api('maps', 'get', ['map_id'=>$map_id])['datas'];
+$maps               = $api->call_api('maps', 'get', ['map_id'=>$citizen['map_id']])['datas'];
 $configs            = $api->call_api('configs', 'get')['datas'];
 $specialities       = $configs['specialities'];
 $speciality         = key($specialities);
@@ -110,7 +103,6 @@ $speciality         = key($specialities);
 // Si le joueur est connecté et a déjà créé son citoyen
 if ($citizen_id !== NULL) {
     
-    $citizen            = $api_me['datas'];
     $zone_fellows       = $citizens_by_coord[$citizen['coord_x'].'_'.$citizen['coord_y']];
     $zone               = $maps['zones'][$citizen['coord_x'].'_'.$citizen['coord_y']];
     $healing_items      = filter_bag_items('healing_wound', $configs['items'], $citizen['bag_items']);
@@ -178,7 +170,7 @@ echo $popup->customised('popsuccess', '', nl2br($msg_popup));
     
     <div id="gamebar">
         <div id="Outside">
-            <a href="#Outside">#</a>&nbsp;Carte n° <?php echo $map_id ?>
+            <a href="#Outside">#</a>&nbsp;Carte n° <?php echo $citizen['map_id'] ?>
         </div>
         <a id="notifsButton">&#x1F514; <strong>Notifications</strong></a>
         <?php echo $buttons->refresh() ?>
