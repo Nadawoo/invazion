@@ -11,6 +11,9 @@ function set_default_variables($variable) {
     
     $default['citizen'] = [
         'action_points'     => 0,
+        'bag_items'         => [],
+        'bag_size'          => 4,
+        'citizen_id'        => 0,
         'coord_x'           => null,
         'coord_y'           => null,
         'citizen_pseudo'    => null,
@@ -19,6 +22,7 @@ function set_default_variables($variable) {
         ];
     
     $default['zone'] = [
+        'building'                  => null,
         'city_size'                 => 0,
         'controlpoints_citizens'    => 0,
         'controlpoints_zombies'     => 0,

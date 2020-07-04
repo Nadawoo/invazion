@@ -39,13 +39,6 @@ $user_id            = NULL;
 $city_fellows       = [];
 $zone_citizens      = [];
 $healing_items      = [];
-$html_actions_context = '';
-$html_actions_zombies = '';
-$html_actions_build = '';
-$html_actions_bag   = '';
-$html_zone_items    = '';
-$html_bag_items     = '';
-$html_zone_citizens = '';
 $msg_popup          = NULL;
 $msg_move           = '';
 $msg_build          = '';
@@ -125,14 +118,6 @@ if ($citizen_id !== NULL) {
     $healing_items      = filter_bag_items('healing_wound', $configs['items'], $citizen['bag_items']);
     $speciality         = $citizen['speciality'];
     
-    $html_zone_items    = $html->block_zone_items($configs['items'], $zone, $citizen['citizen_id']);
-    $html_bag_items     = $html->block_bag_items($configs['items'], $citizen_id, $citizen['bag_items'], $citizen['bag_size']);
-    $html_zone_citizens = $html->block_zone_citizens($zone_citizens, $citizen_id);
-    $html_actions_context = $html->block_actions_context($zone['city_size'], $zone['building']);
-    $html_actions_zombies = $html->block_actions_zombies($zone['zombies']);
-    $html_actions_build = $html->block_actions_build($zone['city_size'], $zone['building']);
-    $html_actions_bag   = $html->block_actions_bag($configs['items'], $citizen['bag_items']);
-    
     // If the citizen is inside a city, we get its characteristics (bank, well...)
     if ($citizen['is_inside_city'] === 1) {
         
@@ -141,10 +126,20 @@ if ($citizen_id !== NULL) {
     }
 }
 
-// Construction de la carte
+// Assembling the HTML for the map
 $html_map_citizens = $html->map_citizens($citizens);
 $html_map = $map->hexagonal_map($maps['map_width'], $maps['map_height'], $maps['zones'], $citizens_by_coord, $citizen, $maps['next_attack_hour']);
-// Smartphone à droite de la carte
+
+// Contents of the round action buttons at the right of the map
+$html_actions_build     = $html->block_actions_build($zone['city_size'], $zone['building']);
+$html_actions_bag       = $html->block_actions_bag($configs['items'], $citizen['bag_items']);
+$html_actions_context   = $html->block_actions_context($zone['city_size'], $zone['building']);
+$html_actions_zombies   = $html->block_actions_zombies($zone['zombies']);
+$html_zone_items        = $html->block_zone_items($configs['items'], $zone, $citizen['citizen_id']);
+$html_bag_items         = $html->block_bag_items($configs['items'], $citizen_id, $citizen['bag_items'], $citizen['bag_size']);
+$html_zone_citizens     = $html->block_zone_citizens($zone_citizens, $citizen_id);
+
+// Smartphone at the right of the map
 $html_smartphone = smartphone($maps['map_width'], $maps['map_height'], $citizen, $specialities[$speciality], $zone);
 
 unset($maps);
