@@ -15,10 +15,6 @@ safely_require('controller/filter_citizens_by_city.php');
 safely_require('controller/filter_bag_items.php');
 safely_require('ZombLib.php');
 
-$api_name        = filter_input(INPUT_POST, 'api_name', FILTER_SANITIZE_STRING);
-$action_post     = filter_input(INPUT_POST, 'action',   FILTER_SANITIZE_STRING);
-$params_post     = filter_input(INPUT_POST, 'params',   FILTER_SANITIZE_STRING, FILTER_REQUIRE_ARRAY);
-
 $api                = new ZombLib(official_server_root().'/api');
 $layout             = new HtmlLayout();
 $map                = new HtmlMap();
@@ -40,9 +36,13 @@ $msg_build          = '';
 
 
 /**
- * Exécution des actions demandées par le joueur (se déplacer, creuser...)
+ * Executes the actions asked by the player (moving, digging...)
  */
-if ($action_post !== null) {
+if (!empty($_POST)) {
+    
+    $api_name       = filter_input(INPUT_POST, 'api_name', FILTER_SANITIZE_STRING);
+    $action_post    = filter_input(INPUT_POST, 'action',   FILTER_SANITIZE_STRING);
+    $params_post    = filter_input(INPUT_POST, 'params',   FILTER_SANITIZE_STRING, FILTER_REQUIRE_ARRAY);
     
     // Non-standard action of the ZombLib (base64 encoding made by the lib)
     if ($action_post === 'create_citizen') {
@@ -116,7 +116,10 @@ if ($citizen_id !== NULL) {
     }
 }
 
-// HTML elements to build the interface
+
+/**
+ * HTML elements to build the interface
+ */
 $html = [
     // Assembling the HTML for the map
     'map' => $map->hexagonal_map($maps['map_width'], $maps['map_height'], $maps['zones'], $citizens_by_coord, $citizen, $maps['next_attack_hour']),
