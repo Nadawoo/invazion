@@ -1,5 +1,6 @@
 <?php
 require_once 'controller/autoload.php';
+safely_require('model/set_default_variables.php');
 safely_require('view/BuildHtml.php');
 safely_require('view/HtmlButtons.php');
 safely_require('view/HtmlMap.php');
@@ -29,12 +30,12 @@ $my_zone            = new HtmlMyzone();
 $enclosure          = new HtmlCityEnclosure();
 $buttons            = new HtmlButtons();
 $popup              = new HtmlPopup();
-$zone               = ['items'=>[], 'zombies'=>0, 'city_size'=> 0, 'controlpoints_citizens'=>0, 'controlpoints_zombies'=>0];
-$user_id            = NULL;
+$zone               = set_default_variables('zone');
+$citizen            = set_default_variables('citizen');
 $citizen_id         = NULL;
 $citizen_pseudo     = NULL;
-$citizen            = NULL;
 $city_data          = NULL;
+$user_id            = NULL;
 $city_fellows       = [];
 $zone_citizens      = [];
 $healing_items      = [];
