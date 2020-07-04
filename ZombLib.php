@@ -4,7 +4,7 @@
  * pour récupérer ou/et écrire des données sur le serveur
  * http://invazion.nadazone.fr
  * 
- * Version 4.2
+ * Version 4.3
  */
 class ZombLib
 {
@@ -56,6 +56,8 @@ class ZombLib
     public function call_api($api_name, $action, $params=[], $method='GET')
     {   
         
+        $method = (in_array($method, ['GET','POST'])) ? $method : 'GET'; 
+        
         // Builds the url of the API, without any parameter (e.g.: "https://invazion.nadazone.fr/api/maps")
         $api_url = $this->url.'/'.$api_name;
         
@@ -81,9 +83,15 @@ class ZombLib
         $stream_context = $this->set_http_stream($method, $request[$method]['http_content']);
         
         // Sends the data to the API then reads the JSON returned by the API      
-        $json = file_get_contents( $request[$method]['api_url'], FALSE, $stream_context );
+        $json   = file_get_contents( $request[$method]['api_url'], FALSE, $stream_context );
+        $result = $this->json_to_array($json);
         
-        return $this->json_to_array($json);
+        // For some actions, updates the cookie storing the token
+        if (in_array($action, ['create_citizen'])) {
+            $this->update_cookie('token', $result['datas']['new_token']);
+        }
+        
+        return $result;
     }
     
     
@@ -142,11 +150,6 @@ class ZombLib
     {
         
         $result = $this->call_api('user', 'create_citizen', ['pseudo'=>$pseudo], 'POST');
-        
-        if ($result['metas']['error_code'] === 'success') {            
-            // On met à jour le jeton dans le cookie
-            $this->update_cookie('token', $result['datas']['new_token']);
-        }
         
         return $result;
     }

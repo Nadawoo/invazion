@@ -43,29 +43,20 @@ if (!empty($_POST)) {
     $api_name       = filter_input(INPUT_POST, 'api_name', FILTER_SANITIZE_STRING);
     $action_post    = filter_input(INPUT_POST, 'action',   FILTER_SANITIZE_STRING);
     $params_post    = filter_input(INPUT_POST, 'params',   FILTER_SANITIZE_STRING, FILTER_REQUIRE_ARRAY);
+    $method         = filter_input(INPUT_POST, 'method',   FILTER_SANITIZE_STRING);
+   
+    // Calls the API ont the central server of InvaZion
+    $api_result = $api->call_api($api_name, $action_post, $params_post, $method);
     
-    // Non-standard action of the ZombLib (base64 encoding made by the lib)
-    if ($action_post === 'create_citizen') {
-
-        $api_result = $api->create_citizen($params_post['pseudo']);
-        $msg_popup  = '<p>'.$api_result['metas']['error_message'].'</p>';
+    if (in_array($action_post, ['move', 'drop', 'pickup', 'bigfight'])
+        or ($action_post === 'fight' and !isset($params_post['item_id']))
+        ) {
+        // The result of these actions is displayed under the movement paddle
+        $msg_move  = '<span class="'.$api_result['metas']['error_class'].'">'.$api_result['metas']['error_message'].'</span>';
     }
-    // Actions standardized with the call_api() method of the ZombLib
     else {
-        
-        // Calls the API ont the central server of InvaZion
-        $api_result = $api->call_api($api_name, $action_post, $params_post);
-        
-        if (in_array($action_post, ['move', 'drop', 'pickup', 'bigfight'])
-            or ($action_post === 'fight' and !isset($params_post['item_id']))
-            ) {
-            // The result of these actions is displayed under the movement paddle
-            $msg_move  = '<span class="'.$api_result['metas']['error_class'].'">'.$api_result['metas']['error_message'].'</span>';
-        }
-        else {
-            // The result of all the other actions is displayed in a pop-up
-            $msg_popup = '<p>'.$api_result['metas']['error_message'].'</p>';
-        }
+        // The result of all the other actions is displayed in a pop-up
+        $msg_popup = '<p>'.$api_result['metas']['error_message'].'</p>';
     }
 }
 
