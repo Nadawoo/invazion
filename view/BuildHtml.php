@@ -288,7 +288,7 @@ class BuildHtml extends HtmlPage
         
         $html_items = '';
         
-        if (isset($zone['items'])) {
+        if (!empty($zone['items'])) {
             
             foreach ($zone['items'] as $item_id=>$item_amount) {
                 
