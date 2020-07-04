@@ -116,21 +116,23 @@ if ($citizen_id !== NULL) {
     }
 }
 
-// Assembling the HTML for the map
-$html_map_citizens = $layout->map_citizens($citizens);
-$html_map = $map->hexagonal_map($maps['map_width'], $maps['map_height'], $maps['zones'], $citizens_by_coord, $citizen, $maps['next_attack_hour']);
+// HTML elements to build the interface
+$html = [
+    // Assembling the HTML for the map
+    'map' => $map->hexagonal_map($maps['map_width'], $maps['map_height'], $maps['zones'], $citizens_by_coord, $citizen, $maps['next_attack_hour']),
+    'map_citizens'      => $layout->map_citizens($citizens),
+    // Contents of the round action buttons at the right of the map
+    'actions_build'     => $layout->block_actions_build($zone['city_size'], $zone['building']),
+    'actions_bag'       => $layout->block_actions_bag($configs['items'], $citizen['bag_items']),
+    'actions_context'   => $layout->block_actions_context($zone['city_size'], $zone['building']),
+    'actions_zombies'   => $layout->block_actions_zombies($zone['zombies']),
+    'zone_items'        => $layout->block_zone_items($configs['items'], $zone, $citizen['citizen_id']),
+    'bag_items'         => $layout->block_bag_items($configs['items'], $citizen_id, $citizen['bag_items'], $citizen['bag_size']),
+    'zone_fellows'      => $layout->block_zone_fellows($zone_fellows, $citizen_id),
+    // Smartphone at the right of the map
+    'smartphone'        => smartphone($maps['map_width'], $maps['map_height'], $citizen, $specialities[$speciality], $zone),
+    ];
 
-// Contents of the round action buttons at the right of the map
-$html_actions_build     = $layout->block_actions_build($zone['city_size'], $zone['building']);
-$html_actions_bag       = $layout->block_actions_bag($configs['items'], $citizen['bag_items']);
-$html_actions_context   = $layout->block_actions_context($zone['city_size'], $zone['building']);
-$html_actions_zombies   = $layout->block_actions_zombies($zone['zombies']);
-$html_zone_items        = $layout->block_zone_items($configs['items'], $zone, $citizen['citizen_id']);
-$html_bag_items         = $layout->block_bag_items($configs['items'], $citizen_id, $citizen['bag_items'], $citizen['bag_size']);
-$html_zone_fellows      = $layout->block_zone_fellows($zone_fellows, $citizen_id);
-
-// Smartphone at the right of the map
-$html_smartphone = smartphone($maps['map_width'], $maps['map_height'], $citizen, $specialities[$speciality], $zone);
 
 unset($maps);
 unset($citizens);
@@ -211,15 +213,15 @@ echo $popup->customised('popsuccess', '', nl2br($msg_popup));
                 </div>
                 <div class="city_row city_perso">
                     '. $enclosure->block_home() .'
-                    '. $enclosure->block_bag($html_bag_items) .'
+                    '. $enclosure->block_bag($html['bag_items']) .'
                 </div>
                 <div class="city_row city_fellows">
                     '. $enclosure->block_fellows_list($city_fellows, $specialities) .'
                     '. $enclosure->block_fellows_homes($city_fellows, $specialities, $city_data['coord_x'], $city_data['coord_y']) .'
                 </div>
                 <div class="city_row city_common">
-                    '. $enclosure->block_bank($html_zone_items) .'
-                    '. $enclosure->block_bag($html_bag_items) .'
+                    '. $enclosure->block_bank($html['zone_items']) .'
+                    '. $enclosure->block_bag($html['bag_items']) .'
                 </div>
                 <div class="city_row city_common">
                     '. $enclosure->block_well($city_data['well_current_water']) .'
@@ -273,19 +275,19 @@ echo $popup->customised('popsuccess', '', nl2br($msg_popup));
         }
         
         // Affiche la carte complète
-        echo $html_map;
+        echo $html['map'];
         ?>
         
         <div id="map_footer">
             <!--
             <fieldset id="bag_panel">
                 <div class="legend" onclick="toggleItemsPanel()"><span class="icon">&#128188;</span> Dans mon sac</div>
-                <?php echo $html_bag_items ?>
+                <?php echo $html['bag_items'] ?>
             </fieldset>
             
             <fieldset id="ground_panel">
                 <div class="legend" onclick="toggleItemsPanel()">Objets au sol <span class="icon">&#9935;&#65039;</span></div>
-                <?php echo $html_zone_items ?>
+                <?php echo $html['zone_items'] ?>
             </fieldset>
             -->
         </div>
@@ -337,7 +339,7 @@ echo $popup->customised('popsuccess', '', nl2br($msg_popup));
                 }
                 
                 // Special actions depending of the zone (go into a crypt, a city...)
-                echo $html_actions_context;
+                echo $html['actions_context'];
                 ?>
             </fieldset>
             
@@ -347,35 +349,35 @@ echo $popup->customised('popsuccess', '', nl2br($msg_popup));
                 echo $buttons->button('dig').'<br>';
                 ?>
                 &#x1F4BC; <strong>Déposer un objet de mon sac :</strong>
-                    <div style="margin-left:1.5rem;"><?php echo $html_bag_items ?></div>
+                    <div style="margin-left:1.5rem;"><?php echo $html['bag_items'] ?></div>
                 &#x270B;&#x1F3FC; <strong>Ramasser un objet au sol :</strong>
-                    <div style="margin-left:1.5rem;"><?php echo $html_zone_items ?></div>
+                    <div style="margin-left:1.5rem;"><?php echo $html['zone_items'] ?></div>
             </fieldset>
 
             <fieldset id="block_zombies">
                 <legend>Actions de zone</legend>
                 <?php
-                echo $html_actions_zombies;
-                echo '<br>'.$html_actions_bag;
+                echo $html['actions_zombies'];
+                echo '<br>'.$html['actions_bag'];
                 ?>                
             </fieldset>
 
             <fieldset id="block_build">
                 <legend>Bâtiments</legend>
                 <?php 
-                echo $html_actions_build;
+                echo $html['actions_build'];
                 ?>                
             </fieldset>
 
             <fieldset  id="block_citizens">
                 <legend>Humains dans ma zone</legend>
-                <?php echo $html_zone_fellows ?>
+                <?php echo $html['zone_fellows'] ?>
             </fieldset>
         </div>
         
         <?php
         // Displays the smartphone at the right of the map (GPS, health...)
-        echo $html_smartphone;
+        echo $html['smartphone'];
         ?>
         
     </div>
@@ -397,7 +399,7 @@ echo $popup->customised('popsuccess', '', nl2br($msg_popup));
     
     <h3 id="Citizens"><a href="#Citizens">&Hat;</a>&nbsp;Liste des citoyens</h3>
     
-    <?php echo $html_map_citizens ?>
+    <?php echo $html['map_citizens'] ?>
     
     <hr>
     
