@@ -33,7 +33,6 @@ $popup              = new HtmlPopup();
 $zone               = set_default_variables('zone');
 $citizen            = set_default_variables('citizen');
 $citizen_id         = NULL;
-$citizen_pseudo     = NULL;
 $city_data          = NULL;
 $user_id            = NULL;
 $city_fellows       = [];
@@ -86,7 +85,6 @@ if ($api->user_seems_connected() === true) {
     $token          = $api->get_token_data()['data'];
     $user_id        = $token['user_id'];
     $citizen_id     = $token['citizen_id'];
-    $citizen_pseudo = $token['citizen_pseudo'];
     // Récupère l'id de la carte où se trouve le citoyen. Si citoyen pas encore créé,
     // on garde la carte par défaut
     $map_id         = ($token['map_id'] === NULL) ? $map_id : $token['map_id'];
@@ -168,7 +166,7 @@ echo $popup->customised('popsuccess', '', nl2br($msg_popup));
     
     <div id="connectionbar">
         
-        <?php echo $html->connection_bar($user_id, $citizen_id, $citizen_pseudo); ?>
+        <?php echo $html->connection_bar($user_id, $citizen_id, $citizen['citizen_pseudo']); ?>
     
     </div>
     
