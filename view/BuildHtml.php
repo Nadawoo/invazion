@@ -249,7 +249,7 @@ class BuildHtml extends HtmlPage
         $buttons = new HtmlButtons;
         $html = '';
         
-        if (count($citizens_caracs) === 1) {
+        if (count($citizens_caracs) <= 1) {
             
             return '<p class="greytext">Personne à proximité. Vous êtes seul au milieu de cette zone désertique...</p>';
         }
