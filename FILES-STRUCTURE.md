@@ -12,8 +12,8 @@ Ils sont listés par ordre d'importance.*
 * /resources : fichiers appelables par le client : images, CSS, javascript
 
 ### Dossier /view
-* BuilHtml.php : classe principale générant les éléments HTML du jeu, hors ceux placés dans une classe dédiée.
 * HtmlPage.php : structure de base de la page (header et footer HTML)
+* HtmlLayout.php : classe principale générant les blocs HTML du jeu, hors ceux placés dans une classe dédiée.
 * HtmlMap.php : génère le HTML de la carte
 * HtmlCityEnclosure.php : génère le HTML de l'intérieur de la ville (chantiers, banque, puits...)
 * HtmlMyzone.php : génère le HTML de la zone où se trouve le joueur
