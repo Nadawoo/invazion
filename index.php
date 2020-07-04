@@ -1,7 +1,7 @@
 <?php
 require_once 'controller/autoload.php';
 safely_require('model/set_default_variables.php');
-safely_require('view/BuildHtml.php');
+safely_require('view/HtmlLayout.php');
 safely_require('view/HtmlButtons.php');
 safely_require('view/HtmlMap.php');
 safely_require('view/HtmlMyZone.php');
@@ -20,7 +20,7 @@ $action_post     = filter_input(INPUT_POST, 'action',   FILTER_SANITIZE_STRING);
 $params_post     = filter_input(INPUT_POST, 'params',   FILTER_SANITIZE_STRING, FILTER_REQUIRE_ARRAY);
 
 $api                = new ZombLib(official_server_root().'/api');
-$html               = new BuildHtml();
+$layout             = new HtmlLayout();
 $map                = new HtmlMap();
 $my_zone            = new HtmlMyzone();
 $enclosure          = new HtmlCityEnclosure();
@@ -117,17 +117,17 @@ if ($citizen_id !== NULL) {
 }
 
 // Assembling the HTML for the map
-$html_map_citizens = $html->map_citizens($citizens);
+$html_map_citizens = $layout->map_citizens($citizens);
 $html_map = $map->hexagonal_map($maps['map_width'], $maps['map_height'], $maps['zones'], $citizens_by_coord, $citizen, $maps['next_attack_hour']);
 
 // Contents of the round action buttons at the right of the map
-$html_actions_build     = $html->block_actions_build($zone['city_size'], $zone['building']);
-$html_actions_bag       = $html->block_actions_bag($configs['items'], $citizen['bag_items']);
-$html_actions_context   = $html->block_actions_context($zone['city_size'], $zone['building']);
-$html_actions_zombies   = $html->block_actions_zombies($zone['zombies']);
-$html_zone_items        = $html->block_zone_items($configs['items'], $zone, $citizen['citizen_id']);
-$html_bag_items         = $html->block_bag_items($configs['items'], $citizen_id, $citizen['bag_items'], $citizen['bag_size']);
-$html_zone_fellows      = $html->block_zone_fellows($zone_fellows, $citizen_id);
+$html_actions_build     = $layout->block_actions_build($zone['city_size'], $zone['building']);
+$html_actions_bag       = $layout->block_actions_bag($configs['items'], $citizen['bag_items']);
+$html_actions_context   = $layout->block_actions_context($zone['city_size'], $zone['building']);
+$html_actions_zombies   = $layout->block_actions_zombies($zone['zombies']);
+$html_zone_items        = $layout->block_zone_items($configs['items'], $zone, $citizen['citizen_id']);
+$html_bag_items         = $layout->block_bag_items($configs['items'], $citizen_id, $citizen['bag_items'], $citizen['bag_size']);
+$html_zone_fellows      = $layout->block_zone_fellows($zone_fellows, $citizen_id);
 
 // Smartphone at the right of the map
 $html_smartphone = smartphone($maps['map_width'], $maps['map_height'], $citizen, $specialities[$speciality], $zone);
@@ -143,7 +143,7 @@ unset($citizens_by_coord);
 /**
  * Début de la page HTML
  */
-echo $html->page_header();
+echo $layout->page_header();
 
 
 // Textes des pop-up
@@ -158,7 +158,7 @@ echo $popup->customised('popsuccess', '', nl2br($msg_popup));
     
     <div id="connectionbar">
         
-        <?php echo $html->connection_bar($user_id, $citizen_id, $citizen['citizen_pseudo']); ?>
+        <?php echo $layout->connection_bar($user_id, $citizen_id, $citizen['citizen_pseudo']); ?>
     
     </div>
     
@@ -188,7 +188,7 @@ echo $popup->customised('popsuccess', '', nl2br($msg_popup));
         
         <fieldset id="citizen_caracs">
             <legend>Mes caractéristiques</legend>
-            <?php echo $html->block_speciality_choice($specialities) ?>
+            <?php echo $layout->block_speciality_choice($specialities) ?>
         </fieldset>
         
         <?php
@@ -296,13 +296,13 @@ echo $popup->customised('popsuccess', '', nl2br($msg_popup));
     if ($user_id === NULL AND $citizen_id === NULL) {
         
         // Si le joueur n'est pas connecté, affiche le panneau de connexion
-        echo $html->block_login();
+        echo $layout->block_login();
     }
     elseif ($citizen_id === NULL) { 
         
         // Si le joueur est connecté mais n'a pas encore créé son citoyen, 
         // affiche le panneau de création de citoyen
-        echo $html->block_create_citizen();
+        echo $layout->block_create_citizen();
     }
     ?>
     
@@ -326,14 +326,14 @@ echo $popup->customised('popsuccess', '', nl2br($msg_popup));
                 <?php
                 // Displays the movement paddle 
                 if ($zone['controlpoints_citizens'] < $zone['controlpoints_zombies']) {
-                    echo $html->block_alert_control($zone['zombies']);
+                    echo $layout->block_alert_control($zone['zombies']);
                 }
                 elseif ($citizen['action_points'] === 0 and $zone['zombies'] > 0) {                    
-                    echo $html->block_alert_tired($zone['zombies']);
+                    echo $layout->block_alert_tired($zone['zombies']);
                 }
                 else {
                     echo movement_paddle($citizen['coord_x'], $citizen['coord_y']);
-                    echo $html->block_movement_AP($citizen['action_points'], $specialities[$speciality]['action_points'], $zone['zombies']);
+                    echo $layout->block_movement_AP($citizen['action_points'], $specialities[$speciality]['action_points'], $zone['zombies']);
                 }
                 
                 // Special actions depending of the zone (go into a crypt, a city...)
@@ -433,4 +433,4 @@ echo $popup->customised('popsuccess', '', nl2br($msg_popup));
 
 </div>
     
-<?php echo $html->page_footer(); ?>
+<?php echo $layout->page_footer();

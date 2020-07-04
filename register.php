@@ -1,11 +1,11 @@
 <?php
 require_once 'controller/autoload.php';
 safely_require('controller/official_server_root.php');
-safely_require('view/BuildHtml.php');
+safely_require('view/HtmlLayout.php');
 
 $http_host   = filter_var($_SERVER['HTTP_HOST'],   FILTER_SANITIZE_URL);
 
-$html = new BuildHtml();
+$html = new HtmlLayout();
 
 echo $html->page_header() 
 ?>

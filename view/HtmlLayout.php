@@ -7,7 +7,7 @@ require 'plural.php';
  * Certains éléments spécifiques (la carte, les boutons...) ne figurent pas ici 
  * car ils font l'objet d'une classe dédiée.
  */
-class BuildHtml extends HtmlPage
+class HtmlLayout extends HtmlPage
 {
     
     /**

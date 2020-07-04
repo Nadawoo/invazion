@@ -1,6 +1,6 @@
 <?php
 require_once 'controller/autoload.php';
-safely_require('view/BuildHtml.php');
+safely_require('view/HtmlLayout.php');
 safely_require('view/HtmlButtons.php');
 
 
@@ -58,7 +58,7 @@ class HtmlCityEnclosure
      * liste des objets dans la banque de la ville
      * 
      * @param  string $html_zone_items La liste HTML des objets de la zone, générée
-     *                                 par la classe BuildHtml->zone_items()
+     *                                 par la classe HtmlLayout->zone_items()
      * @return string
      */
     function block_bank($html_zone_items)
@@ -261,7 +261,7 @@ class HtmlCityEnclosure
      * liste des objets dans le sac du joueur
      * 
      * @param  string $html_bag_items La liste HTML des objets du sac, générée
-     *                                par la classe BuildHtml->bag_items()
+     *                                par la classe HtmlLayout->bag_items()
      * @return string
      */
     function block_bag($html_bag_items)
