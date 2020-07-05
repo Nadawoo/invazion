@@ -314,6 +314,9 @@ echo $popup->customised('popsuccess', '', nl2br($msg_popup));
                     echo $layout->block_movement_AP($citizen['action_points'], $speciality_caracs['action_points'], $zone['zombies']);
                 }
                 
+                // Warn if wounded
+                echo $layout->block_alert_wounded((bool)$citizen['is_wounded']);
+                
                 // Special actions depending of the zone (go into a crypt, a city...)
                 echo $html['actions_context'];
                 ?>

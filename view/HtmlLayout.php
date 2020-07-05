@@ -568,6 +568,25 @@ class HtmlLayout extends HtmlPage
     
     
     /**
+     * Displayed under the movement paddle if the player is wounded
+     * 
+     * @param bool $is_wounded True if the player is wounded
+     * @return string HTML
+     */
+    function block_alert_wounded($is_wounded)
+    {
+        
+        if ($is_wounded === true) {
+            return '<a href="#popwounded" id="alert_wounded">
+                    <span class="alert_sign">&#x26A0;&#xFE0F;</span>
+                    Vous êtes blessé !<br>
+                    <span class="link">Me soigner...</span>
+                </a>';
+        }
+    }
+    
+    
+    /**
      * Liste des objets dans le sac du citoyen
      * 
      * @param array $items_caracs   Les caractéristiques de tous les items existants dans le jeu

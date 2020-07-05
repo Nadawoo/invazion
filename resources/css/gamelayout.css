@@ -504,6 +504,27 @@ input[type="submit"] {
     100% { opacity: 1;   }
 }
 
+/* Affiche l'état "blessé" sous les flèches de déplacement */
+#alert_wounded {
+    display:block;
+    margin-top:2rem;
+    padding:0.1rem;
+    border:2px outset grey;
+    text-align:center;
+    background:darkred;
+    color:white;
+    box-shadow:2px 2px 4px black;
+}
+#alert_wounded .alert_sign {
+    display:block;
+    float:left;
+    font-size:1.3em;
+}
+#alert_wounded .link {
+    font-size:0.9em;
+    color:orange;
+}
+
 /*
  * Etiquette pour nom d'utilisateur (icône + pseudo sur fond coloré)
  */
