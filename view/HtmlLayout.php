@@ -408,7 +408,7 @@ class HtmlLayout extends HtmlPage
             </tr>';
         }
                 
-        return '<table style="margin:1rem auto 0 auto">'.$table.'</table>';
+        return '<table style="margin:1.5rem auto 0 auto">'.$table.'</table>';
     }
     
     
@@ -579,8 +579,8 @@ class HtmlLayout extends HtmlPage
         if ($is_wounded === true) {
             return '<a href="#popwounded" id="alert_wounded">
                     <span class="alert_sign">&#x26A0;&#xFE0F;</span>
-                    Vous êtes blessé !<br>
-                    <span class="link">Me soigner...</span>
+                    Vous êtes blessé !
+                    <span class="link">[Me soigner...]</span>
                 </a>';
         }
     }

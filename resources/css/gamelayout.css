@@ -508,20 +508,16 @@ input[type="submit"] {
 #alert_wounded {
     display:block;
     margin-top:2rem;
-    padding:0.1rem;
-    border:2px outset grey;
-    text-align:center;
-    background:darkred;
+    padding:0 0 0.3rem 0.2rem;
+    background:#7b1fa2;
     color:white;
-    box-shadow:3px 3px 5px black;
+    box-shadow:3px 3px 4px black;
 }
 #alert_wounded .alert_sign {
-    display:block;
-    float:left;
-    font-size:1.4em;
+    font-size:1.1em;
 }
 #alert_wounded .link {
-    font-size:0.9em;
+    font-size:0.8em;
     color:orange;
 }
 
