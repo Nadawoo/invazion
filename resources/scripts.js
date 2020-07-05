@@ -574,12 +574,11 @@ function handleTooltipOverflow(hexagon) {
 
 /**
  * Displays the tooltip over a zone of the map
- * @param {type} event
+ * @param {object} hexagon
  * @returns {undefined}
  */
-function displayTooltip(event) { 
+function displayTooltip(hexagon) { 
     
-    var hexagon = event.target.closest(".hexagon");
     if (hexagon !== null) {
         // Displays the tooltip
         hexagon.getElementsByClassName("bubble")[0].style.display = "block";
@@ -591,12 +590,11 @@ function displayTooltip(event) {
 
 /**
  * Hides the tooltip of a zone of the map
- * @param {type} event
+ * @param {object} hexagon
  * @returns {undefined}
  */
-function hideTooltip(event) {
+function hideTooltip(hexagon) {
     
-    var hexagon = event.target.closest(".hexagon");
     if (hexagon !== null) {
         hexagon.getElementsByClassName("bubble")[0].style.display = "none";
     }
@@ -605,15 +603,14 @@ function hideTooltip(event) {
 
 /**
  * Switches the display/hide of the tooltip on the map
- * @param {type} event
+ * @param {object} hexagon
  * @returns {undefined}
  */
-function toggleTooltip(event) {
+function toggleTooltip(hexagon) {
     
-    var hexagon = event.target.closest(".hexagon");
     if (hexagon !== null) {
         var current_display = window.getComputedStyle(hexagon.getElementsByClassName("bubble")[0]).display;
-        (current_display === "none") ? displayTooltip(event) : hideTooltip(event);
+        (current_display === "none") ? displayTooltip(hexagon) : hideTooltip(hexagon);
     }
 }
 
@@ -789,8 +786,25 @@ if (document.getElementById('map') !== null) {
     
     
     // Displays/hides the tooltip of the zone when the mouse hovers the zone
-    document.getElementById("map").addEventListener("mouseover", displayTooltip);
-    document.getElementById("map").addEventListener("mouseout",  hideTooltip);
+    document.getElementById("map").addEventListener("mouseover", function(){
+        displayTooltip(event.target.closest(".hexagon"));
+    });
+    document.getElementById("map").addEventListener("mouseout",  function(){
+        hideTooltip(event.target.closest(".hexagon"));
+    });
     // The onclick event is required for the mobile devices (no notion of "hover" there)
-    document.getElementById("map").addEventListener("click", toggleTooltip);
+    document.getElementById("map").addEventListener("click", function(){
+        toggleTooltip(event.target.closest(".hexagon"));
+    });
+    
+    // Same thing chen hovering the center of the movement paddle
+    document.getElementById("central").addEventListener("mouseover", function() {
+        displayTooltip(document.getElementById("my_hexagon"));
+    });
+    document.getElementById("central").addEventListener("mouseout", function() {
+        hideTooltip(document.getElementById("my_hexagon"));
+    });
+    document.getElementById("central").addEventListener("click", function() {
+        toggleTooltip(document.getElementById("my_hexagon"));
+    });
 }

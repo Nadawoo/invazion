@@ -93,7 +93,7 @@ class HtmlMap
         if ($is_player_in_zone === true) {
 
             // Mise en valeur du joueur actuel sur la carte
-            $id           = 'id="my_bubble"';
+            $id           = 'id="my_hexagon"';
             $cell_content = '<div class="map_citizen" id="me">'.substr($player_pseudo, 0, 2).'</div>
                              <div class="halo">&nbsp;</div>';
             $bubble     = '<br>Vous êtes ici, '.$player_pseudo.'&nbsp;! Utilisez le volet à droite de la carte '
@@ -174,10 +174,10 @@ class HtmlMap
         // - La classe "hexagon" sert à tracer le fond hexgonal
         // - La classe "square_container" est un conteneur carré pour assurer la symétrie du contenu
         // (un hexagone ne peut pas, par définition, être inscrit dans un carré)
-        return '<div class="hexagon'.$has_items.'" style="opacity:'.$opacity.'">
+        return '<div class="hexagon'.$has_items.'" '.$id.' style="opacity:'.$opacity.'">
                     <div class="square_container">'
                         . $cell_content . '
-                        <div class="bubble" '.$id.'>
+                        <div class="bubble">
                             [Zone '.$col.':'.$row.']'
                             . $bubble 
                             . $bubble_zombies 
