@@ -513,12 +513,12 @@ input[type="submit"] {
     text-align:center;
     background:darkred;
     color:white;
-    box-shadow:2px 2px 4px black;
+    box-shadow:3px 3px 5px black;
 }
 #alert_wounded .alert_sign {
     display:block;
     float:left;
-    font-size:1.3em;
+    font-size:1.4em;
 }
 #alert_wounded .link {
     font-size:0.9em;
