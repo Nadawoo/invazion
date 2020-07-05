@@ -24,7 +24,6 @@ $buttons            = new HtmlButtons();
 $popup              = new HtmlPopup();
 $zone               = set_default_variables('zone');
 $citizen            = set_default_variables('citizen');
-$citizen_id         = NULL;
 $city_data          = NULL;
 $user_id            = NULL;
 $city_fellows       = [];
@@ -69,18 +68,17 @@ if (!empty($_POST)) {
 // Si le joueur est authentifié *et* que son jeton n'est pas expiré
 if ($api->user_seems_connected() === true) {
     
-    $token          = $api->get_token_data()['data'];
-    $user_id        = $token['user_id'];
+    $token   = $api->get_token_data()['data'];
+    $user_id = $token['user_id'];
     
     // Récupère les données du joueur
     $api_me = $api->call_api('me', 'get');
     
     if ($api_me['metas']['error_code'] === 'success') {
-        $citizen    = $api_me['datas'];
-        $citizen_id = $citizen['citizen_id'];
+        $citizen = $api_me['datas'];
     }
     else {
-        $msg_build  = '<p class="'.$api_me['metas']['error_class'].'">'.$api_me['metas']['error_message'].'</p>';
+        $msg_build = '<p class="'.$api_me['metas']['error_class'].'">'.$api_me['metas']['error_message'].'</p>';
     }
 }
 // Récupère les données de jeu en appelant les API
@@ -92,7 +90,7 @@ $specialities       = $configs['specialities'];
 $speciality         = key($specialities);
 
 // Si le joueur est connecté et a déjà créé son citoyen
-if ($citizen_id !== NULL) {
+if ($citizen['citizen_id'] !== NULL) {
     
     $zone_fellows       = $citizens_by_coord[$citizen['coord_x'].'_'.$citizen['coord_y']];
     $zone               = $maps['zones'][$citizen['coord_x'].'_'.$citizen['coord_y']];
@@ -121,8 +119,8 @@ $html = [
     'actions_context'   => $layout->block_actions_context($zone['city_size'], $zone['building']),
     'actions_zombies'   => $layout->block_actions_zombies($zone['zombies']),
     'zone_items'        => $layout->block_zone_items($configs['items'], $zone, $citizen['citizen_id']),
-    'bag_items'         => $layout->block_bag_items($configs['items'], $citizen_id, $citizen['bag_items'], $citizen['bag_size']),
-    'zone_fellows'      => $layout->block_zone_fellows($zone_fellows, $citizen_id),
+    'bag_items'         => $layout->block_bag_items($configs['items'], $citizen['citizen_id'], $citizen['bag_items'], $citizen['bag_size']),
+    'zone_fellows'      => $layout->block_zone_fellows($zone_fellows, $citizen['citizen_id']),
     // Smartphone at the right of the map
     'smartphone'        => smartphone($maps['map_width'], $maps['map_height'], $citizen, $specialities[$speciality], $zone),
     ];
@@ -145,7 +143,7 @@ echo $layout->page_header();
 // Textes des pop-up
 // TODO : ne pas charger toutes les textes dans le code, seulement celui utile
 echo $popup->predefined('popvault',   '');
-echo $popup->predefined('popwounded', '', ['citizen_id'=>$citizen_id, 'healing_items'=>$healing_items]);
+echo $popup->predefined('popwounded', '', ['citizen_id'=>$citizen['citizen_id'], 'healing_items'=>$healing_items]);
 echo $popup->predefined('popcontrol', 'Contrôle de zone');
 
 // Pop-up générique indiquant le résultat d'une action
@@ -154,7 +152,7 @@ echo $popup->customised('popsuccess', '', nl2br($msg_popup));
     
     <div id="connectionbar">
         
-        <?php echo $layout->connection_bar($user_id, $citizen_id, $citizen['citizen_pseudo']); ?>
+        <?php echo $layout->connection_bar($user_id, $citizen['citizen_id'], $citizen['citizen_pseudo']); ?>
     
     </div>
     
@@ -253,7 +251,7 @@ echo $popup->customised('popsuccess', '', nl2br($msg_popup));
         
         <?php 
         // Affiche la zone sur laquelle le joueur connecté se trouve
-        if ($citizen_id !== NULL) {
+        if ($citizen['citizen_id'] !== NULL) {
             
             $my_zone->set_nbr_zombies($zone['zombies']);
             $my_zone->set_nbr_items($zone['items']);
@@ -293,7 +291,7 @@ echo $popup->customised('popsuccess', '', nl2br($msg_popup));
         // Si le joueur n'est pas connecté, affiche le panneau de connexion
         echo $layout->block_login();
     }
-    elseif ($citizen_id === NULL) {         
+    elseif ($citizen['citizen_id'] === NULL) {         
         // Si le joueur est connecté mais n'a pas encore créé son citoyen, 
         // affiche le panneau de création de citoyen
         echo $layout->block_create_citizen();
