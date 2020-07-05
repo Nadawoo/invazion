@@ -243,21 +243,14 @@ echo $popup->customised('popsuccess', '', nl2br($msg_popup));
         </div>
         
         <?php 
-        // Affiche la zone sur laquelle le joueur connecté se trouve
-        if ($citizen['citizen_id'] !== NULL) {
-            
-            $my_zone->set_nbr_zombies($zone['zombies']);
-            $my_zone->set_nbr_items($zone['items']);
-            $my_zone->set_citizens_in_zone($zone_fellows);
-            $my_zone->set_citizens_in_city($city_fellows);
-            $my_zone->set_city_size($zone['city_size']);
-            $my_zone->set_citizen_pseudo($citizen['citizen_pseudo']);
-            echo $my_zone->main();
-        }
-        else {
-            // On affiche le div de la zone pour ne pas avoir une erreur javascript si bloc inexistant
-            echo '<div id="my_zone"></div>';
-        }
+        // Affiche la zone sur laquelle le joueur se trouve       
+        $my_zone->set_nbr_zombies($zone['zombies']);
+        $my_zone->set_nbr_items($zone['items']);
+        $my_zone->set_citizens_in_zone($zone_fellows);
+        $my_zone->set_citizens_in_city($city_fellows);
+        $my_zone->set_city_size($zone['city_size']);
+        $my_zone->set_citizen_pseudo($citizen['citizen_pseudo']);
+        echo $my_zone->main();
         
         // Affiche la carte complète
         echo $html['map'];

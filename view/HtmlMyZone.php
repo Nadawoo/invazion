@@ -218,7 +218,9 @@ class HtmlMyzone
         
         // On part du principe que tous les citoyens ont 
         // le même nombre de points de contrôle pour l'instant
-        $individual_controlpoints = $citizens[array_keys($citizens)[0]]['control_points'];
+        $individual_controlpoints = (!empty($citizens))
+                                    ? $citizens[array_keys($citizens)[0]]['control_points']
+                                    : 1;
         
         // On n'affiche pas plus de X citoyens pour ne pas déborder
         $max_lines              = 5;
