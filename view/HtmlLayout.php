@@ -1,6 +1,7 @@
 <?php
 require 'HtmlPage.php';
 require 'plural.php';
+require 'controller/get_item_action.php';
 
 /**
  * Génère les blocs HTML du jeu.
@@ -488,14 +489,10 @@ class HtmlLayout extends HtmlPage
         
         foreach ($bag_items as $id=>$amount) {
             
-            if ($items_caracs[$id]['ap_gain'] > 0) {
-                $html_items .= '<li>'.$buttons->use_item('eat', $id, $items_caracs[$id]['name']).'</li>';
-            }
-            elseif ($items_caracs[$id]['killing_rate'] > 0) {
-                $html_items .= '<li>'.$buttons->use_item('fight', $id, $items_caracs[$id]['name']).'</li>';
-            }
-            elseif ($items_caracs[$id]['healing_wound'] > 0) {
-                $html_items .= '<li>'.$buttons->use_item('heal', $id, $items_caracs[$id]['name']).'</li>';
+            $button_alias = get_item_action($items_caracs[$id]);
+            
+            if ($button_alias !== null) {
+                $html_items .= '<li>'.$buttons->use_item($button_alias, $id, $items_caracs[$id]['name']).'</li>';
             }
         }
         
