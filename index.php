@@ -86,7 +86,7 @@ $citizens_by_coord  = sort_citizens_by_coord($citizens);
 $maps               = $api->call_api('maps', 'get', ['map_id'=>$citizen['map_id']])['datas'];
 $configs            = $api->call_api('configs', 'get')['datas'];
 $specialities       = $configs['specialities'];
-$speciality         = key($specialities);
+$speciality_caracs  = $specialities[$citizen['speciality']];
 
 // Si le joueur est connecté et a déjà créé son citoyen
 if ($citizen['citizen_id'] !== NULL) {
@@ -94,7 +94,6 @@ if ($citizen['citizen_id'] !== NULL) {
     $zone_fellows       = $citizens_by_coord[$citizen['coord_x'].'_'.$citizen['coord_y']];
     $zone               = $maps['zones'][$citizen['coord_x'].'_'.$citizen['coord_y']];
     $healing_items      = filter_bag_items('healing_wound', $configs['items'], $citizen['bag_items']);
-    $speciality         = $citizen['speciality'];
     
     // If the citizen is inside a city, we get its characteristics (bank, well...)
     if ($citizen['is_inside_city'] === 1) {
@@ -121,7 +120,7 @@ $html = [
     'bag_items'         => $layout->block_bag_items($configs['items'], $citizen['citizen_id'], $citizen['bag_items'], $citizen['bag_size']),
     'zone_fellows'      => $layout->block_zone_fellows($zone_fellows, $citizen['citizen_id']),
     // Smartphone at the right of the map
-    'smartphone'        => smartphone($maps['map_width'], $maps['map_height'], $citizen, $specialities[$speciality], $zone),
+    'smartphone'        => smartphone($maps['map_width'], $maps['map_height'], $citizen, $speciality_caracs, $zone),
     ];
 
 
@@ -324,7 +323,7 @@ echo $popup->customised('popsuccess', '', nl2br($msg_popup));
                 }
                 else {
                     echo movement_paddle($citizen['coord_x'], $citizen['coord_y']);
-                    echo $layout->block_movement_AP($citizen['action_points'], $specialities[$speciality]['action_points'], $zone['zombies']);
+                    echo $layout->block_movement_AP($citizen['action_points'], $speciality_caracs['action_points'], $zone['zombies']);
                 }
                 
                 // Special actions depending of the zone (go into a crypt, a city...)
