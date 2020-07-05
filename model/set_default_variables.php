@@ -14,6 +14,7 @@ function set_default_variables($variable) {
         'action_points'     => 0,
         'bag_items'         => [],
         'bag_size'          => 4,
+        'user_id'           => null,
         'citizen_id'        => null,
         'coord_x'           => null,
         'coord_y'           => null,

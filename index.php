@@ -24,7 +24,6 @@ $buttons            = new HtmlButtons();
 $popup              = new HtmlPopup();
 $zone               = set_default_variables('zone');
 $citizen            = set_default_variables('citizen');
-$user_id            = NULL;
 $city_fellows       = [];
 $zone_fellows       = [];
 $healing_items      = [];
@@ -67,11 +66,9 @@ if (!empty($_POST)) {
 // Si le joueur est authentifié *et* que son jeton n'est pas expiré
 if ($api->user_seems_connected() === true) {
     
-    $token   = $api->get_token_data()['data'];
-    $user_id = $token['user_id'];
-    
     // Récupère les données du joueur
     $api_me = $api->call_api('me', 'get');
+    $citizen['user_id'] = $api_me['datas']['user_id'];
     
     if ($api_me['metas']['error_code'] === 'success') {
         $citizen = $api_me['datas'];
@@ -149,9 +146,7 @@ echo $popup->customised('popsuccess', '', nl2br($msg_popup));
 ?>
     
     <div id="connectionbar">
-        
-        <?php echo $layout->connection_bar($user_id, $citizen['citizen_id'], $citizen['citizen_pseudo']); ?>
-    
+        <?php echo $layout->connection_bar($citizen['user_id'], $citizen['citizen_id'], $citizen['citizen_pseudo']); ?>
     </div>
     
     <p id="GameDemo" class="aside">L'interface est volontairement minimaliste pour le moment. 
@@ -285,7 +280,7 @@ echo $popup->customised('popsuccess', '', nl2br($msg_popup));
     
     
     <?php
-    if ($user_id === NULL) {        
+    if ($citizen['user_id'] === NULL) {        
         // Si le joueur n'est pas connecté, affiche le panneau de connexion
         echo $layout->block_login();
     }
