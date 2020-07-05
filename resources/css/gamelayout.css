@@ -482,6 +482,12 @@ input[type="submit"] {
     background:#a93226;
     animation: fadein 2.8s;
     box-shadow:0px 2px 15px black;
+    /* Covers the movement paddle */
+    position:absolute;
+    top:-2rem;
+    width:93%;
+    height:15rem;
+    z-index:1;
 }
 #alert_control .title {
     padding:0.3em 0;
