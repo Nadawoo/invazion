@@ -24,7 +24,6 @@ $buttons            = new HtmlButtons();
 $popup              = new HtmlPopup();
 $zone               = set_default_variables('zone');
 $citizen            = set_default_variables('citizen');
-$city_data          = NULL;
 $user_id            = NULL;
 $city_fellows       = [];
 $zone_fellows       = [];
