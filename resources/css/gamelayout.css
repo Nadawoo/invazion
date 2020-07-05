@@ -509,12 +509,15 @@ input[type="submit"] {
     display:block;
     margin-top:2rem;
     padding:0 0 0.3rem 0.2rem;
-    background:#7b1fa2;
+    background:#6c3483;
     color:white;
     box-shadow:3px 3px 4px black;
 }
 #alert_wounded .alert_sign {
     font-size:1.1em;
+    opacity:0.1; /* To play the animation in the right way */
+    animation: alert_blinker 1.5s linear infinite;
+    animation-direction: alternate;
 }
 #alert_wounded .link {
     font-size:0.8em;
