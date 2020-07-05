@@ -146,7 +146,6 @@
 .vault {
     border-radius:50%;
     background:antiquewhite;
-    color:white;
 }
 /* Symbole d'un citoyen sur la carte hexagonale */
 .map_citizen {
