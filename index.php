@@ -152,7 +152,7 @@ echo $popup->customised('popsuccess', '', nl2br($msg_popup));
     <p id="GameDemo" class="aside">L'interface est volontairement minimaliste pour le moment. 
         La priorité du projet est de mettre à disposition les API (le moteur du jeu) 
         à partir desquelles toute personne  sachant coder peut développer 
-        sa propre interface graphique. <a href="#Project">[En savoir plus]</a>
+        sa propre interface graphique. <a href="https://invazion.nadazone.fr/project">[En savoir plus]</a>
     </p>
     
     <div id="gamebar">
