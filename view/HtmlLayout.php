@@ -46,11 +46,11 @@ class HtmlLayout extends HtmlPage
     
     
     /**
-     * Affiche le bloc pour se connecter (à droite de la carte)
+     * Displays the block to connect to the player account (at the right of the map)
      * 
-     * @return string
+     * @return string HTML
      */
-    function block_login()
+    function block_connect()
     {
         
         return '

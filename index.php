@@ -275,7 +275,7 @@ echo $popup->customised('popsuccess', '', nl2br($msg_popup));
     <?php
     if ($citizen['user_id'] === NULL) {        
         // Si le joueur n'est pas connecté, affiche le panneau de connexion
-        echo $layout->block_login();
+        echo $layout->block_connect();
     }
     elseif ($citizen['citizen_id'] === NULL) {         
         // Si le joueur est connecté mais n'a pas encore créé son citoyen, 
