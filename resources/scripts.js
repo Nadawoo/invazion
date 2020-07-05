@@ -573,6 +573,52 @@ function handleTooltipOverflow(hexagon) {
 
 
 /**
+ * Displays the tooltip over a zone of the map
+ * @param {type} event
+ * @returns {undefined}
+ */
+function displayTooltip(event) { 
+    
+    var hexagon = event.target.closest(".hexagon");
+    if (hexagon !== null) {
+        // Displays the tooltip
+        hexagon.getElementsByClassName("bubble")[0].style.display = "block";
+        // Shifts the zone tooltip to the left if it overflows the map on the right
+        handleTooltipOverflow(hexagon);
+    }
+}
+
+
+/**
+ * Hides the tooltip of a zone of the map
+ * @param {type} event
+ * @returns {undefined}
+ */
+function hideTooltip(event) {
+    
+    var hexagon = event.target.closest(".hexagon");
+    if (hexagon !== null) {
+        hexagon.getElementsByClassName("bubble")[0].style.display = "none";
+    }
+}
+
+
+/**
+ * Switches the display/hide of the tooltip on the map
+ * @param {type} event
+ * @returns {undefined}
+ */
+function toggleTooltip(event) {
+    
+    var hexagon = event.target.closest(".hexagon");
+    if (hexagon !== null) {
+        var current_display = window.getComputedStyle(hexagon.getElementsByClassName("bubble")[0]).display;
+        (current_display === "none") ? displayTooltip(event) : hideTooltip(event);
+    }
+}
+
+
+/**
  * Converts a raw UTC date to a string text date
  * 
  * @param {string} utcDate  The date as returned by the Invazion's API (UTC time + ISO 8601 format)
@@ -743,29 +789,8 @@ if (document.getElementById('map') !== null) {
     
     
     // Displays/hides the tooltip of the zone when the mouse hovers the zone
-    document.getElementById("map").addEventListener("mouseover", function(){ 
-        var hexagon = event.target.closest(".hexagon");
-        if (hexagon !== null) {
-            // Displays the tooltip
-            hexagon.getElementsByClassName("bubble")[0].style.display = "block";
-            // Shifts the zone tooltip to the left if it overflows the map on the right
-            handleTooltipOverflow(hexagon);
-        }
-    });
-    document.getElementById("map").addEventListener("mouseout", function(){
-        var hexagon = event.target.closest(".hexagon");
-        if (hexagon !== null) {
-            hexagon.getElementsByClassName("bubble")[0].style.display = "none";
-        }
-    });
+    document.getElementById("map").addEventListener("mouseover", displayTooltip);
+    document.getElementById("map").addEventListener("mouseout",  hideTooltip);
     // The onclick event is required for the mobile devices (no notion of "hover" there)
-    document.getElementById("map").addEventListener("click", function(){
-        var hexagon = event.target.closest(".hexagon");
-        if (hexagon !== null) {
-            var current_display = window.getComputedStyle(hexagon.getElementsByClassName("bubble")[0]).display;
-            hexagon.getElementsByClassName("bubble")[0].style.display = (current_display === "none") ? "block" : "none";
-            // Shifts the zone tooltip to the left if it overflows the map on the right
-            handleTooltipOverflow(hexagon);
-        }
-    });
+    document.getElementById("map").addEventListener("click", toggleTooltip);
 }
