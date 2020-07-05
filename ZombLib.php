@@ -87,7 +87,9 @@ class ZombLib
         $result = $this->json_to_array($json);
         
         // For some actions, updates the cookie storing the token
-        if (in_array($action, ['create_citizen'])) {
+        if ($result['metas']['error_code'] === 'success'
+            and in_array($action, ['create_citizen'])
+            ) {
             $this->update_cookie('token', $result['datas']['new_token']);
         }
         
