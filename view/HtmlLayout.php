@@ -529,7 +529,8 @@ class HtmlLayout extends HtmlPage
                 <div class="text">
                     Les <strong style="font-size:1.3em">'.$zombies.'</strong> zombies 
                     sont trop nombreux et vous encerclent ! Vous pouvez tenter 
-                    d\'attaquer ces putrides afin de dégager le passage...
+                    d\'attaquer ces putrides afin de dégager le passage...<br>
+                    <a href="#popcontrol">[En savoir plus...]</a>
                     <p>
                         '.$buttons->kill_zombies($zombies).'<br>
                         '.$buttons->kill_zombies($zombies, 'kill_mass_zombies').'

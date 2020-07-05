@@ -152,7 +152,7 @@ class HtmlPopup
             <div class=\"stageblock\">
                 <div class=\"stageicon\">&#x1F465;</div>
                 <div class=\"stagetext\">
-                    Plus les citoyens sont nombreux dans votre zone, plus vous disposez 
+                    Plus les humains sont nombreux dans votre zone, plus vous disposez 
                     de <strong>points de contrôle</strong> pour contenir les zombies.
                     <strong>Sortez groupés</strong> pour éviter les mésaventures...
                     <hr>

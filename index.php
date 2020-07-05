@@ -139,7 +139,7 @@ echo $layout->page_header();
 // TODO : ne pas charger toutes les textes dans le code, seulement celui utile
 echo $popup->predefined('popvault',   '');
 echo $popup->predefined('popwounded', '', ['citizen_id'=>$citizen['citizen_id'], 'healing_items'=>$healing_items]);
-echo $popup->predefined('popcontrol', 'Contrôle de zone');
+echo $popup->predefined('popcontrol', 'Aide : le contrôle de zone');
 
 // Pop-up générique indiquant le résultat d'une action
 echo $popup->customised('popsuccess', '', nl2br($msg_popup));

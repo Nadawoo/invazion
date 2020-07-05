@@ -494,6 +494,10 @@ input[type="submit"] {
     font-size:0.9em;
     color:#fbeee6;
 }
+#alert_control a {
+    font-size:0.8em;
+    color:orange;
+}
 
 @keyframes fadein {
     0%   { opacity: 0;   }
