@@ -36,10 +36,8 @@ function movement_paddle($coord_x, $coord_y)
                     <input type="submit" title="Aller à l\'ouest" value="&#9664;">
                 </form>
             </td>
-            <td colspan="2">
-                <div id="central" title="Cliquez sur une flèche pour vous déplacer...">
-                    ' . $coord_x . ':' . $coord_y . '
-                </div>
+            <td colspan="2" id="central" onclick="toggle(\'my_bubble\')" title="Cliquez sur une flèche pour vous déplacer...">
+                ' . $coord_x . ':' . $coord_y . '
             </td>
             <td>
                 <form method="post" action="#Outside">

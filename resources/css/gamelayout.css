@@ -204,7 +204,6 @@
 }
 #movement_paddle td {
     padding:0;
-    border:none;
     /* Assure un écartement symétrique des flèches */
     width:2em;
     height:2.5em;
@@ -223,7 +222,7 @@
 }
 /* L'hexagone central entre les flèches */
 #movement_paddle #central {
-    cursor:default;
+    cursor:pointer;
 }
 /* Message under the movement paddle */
 #message_move {

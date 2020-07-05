@@ -88,7 +88,7 @@ function smartphone($map_cols, $map_rows, $citizen, $speciality, $zone)
                 -->
                 </div>
                 
-                <div id="minimap" class="screen" onclick="toggle(\'my_zone\');setCookie(\'show_zone\', 1)">
+                <div id="minimap" class="screen" onclick="toggle(\'my_bubble\');setCookie(\'show_zone\', 1)">
                     <div style="position:relative;left:'.$x_percent.'%;top:'.$y_percent.'%">
                         <span class="dot">•</span>
                         <!-- Laisser ce texte APRES le point afin de ne pas décaler le point vers le bas -->
