@@ -80,7 +80,6 @@ class HtmlMap
     private function hexagonal_zone($col, $row, $cell, $is_player_in_zone, $player_pseudo, $fellow_pseudo)
     {
         
-        $has_items      = '';
         // Important : la cellule doit toujours avoir un contenu, même 
         // un simple espace, sinon décalages si la cellule contient ou non 
         // des citoyens/zombies/objets
@@ -166,10 +165,8 @@ class HtmlMap
         }
 
         
-        if (!empty($cell['items'])) {
-            // Permettra d'ajouter un marqueur en javascript sur la case
-            $has_items = ' hasItems';
-        }
+        // Permettra d'ajouter un marqueur en javascript sur la case
+        $has_items = (empty($cell['items'])) ? '' : ' hasItems';
         
         
         // - La classe "hexagon" sert à tracer le fond hexgonal
