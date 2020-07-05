@@ -797,7 +797,7 @@ if (document.getElementById('map') !== null) {
         toggleTooltip(event.target.closest(".hexagon"));
     });
     
-    // Same thing chen hovering the center of the movement paddle
+    // Same thing when hovering the center of the movement paddle
     document.getElementById("central").addEventListener("mouseover", function() {
         displayTooltip(document.getElementById("my_hexagon"));
     });
@@ -805,6 +805,17 @@ if (document.getElementById('map') !== null) {
         hideTooltip(document.getElementById("my_hexagon"));
     });
     document.getElementById("central").addEventListener("click", function() {
+        toggleTooltip(document.getElementById("my_hexagon"));
+    });
+    
+    // Same thing when hovering the GPS on the smartphone
+    document.getElementById("minimap").addEventListener("mouseover", function() {
+        displayTooltip(document.getElementById("my_hexagon"));
+    });
+    document.getElementById("minimap").addEventListener("mouseout", function() {
+        hideTooltip(document.getElementById("my_hexagon"));
+    });
+    document.getElementById("minimap").addEventListener("click", function() {
         toggleTooltip(document.getElementById("my_hexagon"));
     });
 }
