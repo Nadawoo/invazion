@@ -552,6 +552,27 @@ async function updateDiscussionsNotifs() {
 
 
 /**
+ * Shifts the zone tooltip to the left if it overflows the map on the right
+ * 
+ * @param {type} hexagon The zone where the tooltip is
+ * @returns {undefined}
+ */
+function handleTooltipOverflow(hexagon) {
+    
+    let tooltipBounding = hexagon.getElementsByClassName("bubble")[0].getBoundingClientRect();
+    let mapBounding    = document.getElementById("map").getBoundingClientRect();
+    if (tooltipBounding.right > mapBounding.right) {
+        hexagon.getElementsByClassName("bubble")[0].style.left        = "-15em";
+        hexagon.getElementsByClassName("triangle_down")[0].style.left = "16em";
+    }
+    else if (tooltipBounding.left < mapBounding.left) {
+        hexagon.getElementsByClassName("bubble")[0].style.left        = "0.5em";
+        hexagon.getElementsByClassName("triangle_down")[0].style.left = "0.5em";
+    }
+}
+
+
+/**
  * Converts a raw UTC date to a string text date
  * 
  * @param {string} utcDate  The date as returned by the Invazion's API (UTC time + ISO 8601 format)
@@ -722,33 +743,29 @@ if (document.getElementById('map') !== null) {
     
     
     // Displays/hides the tooltip of the zone when the mouse hovers the zone
-    document.getElementById("map").addEventListener("mouseover", function(){   
-        if (event.target.closest(".hexagon") !== null) {
+    document.getElementById("map").addEventListener("mouseover", function(){ 
+        var hexagon = event.target.closest(".hexagon");
+        if (hexagon !== null) {
             // Displays the tooltip
-            event.target.closest(".hexagon").getElementsByClassName("bubble")[0].style.display = "block";
+            hexagon.getElementsByClassName("bubble")[0].style.display = "block";
             // Shifts the zone tooltip to the left if it overflows the map on the right
-            let bubbleBounding = event.target.closest(".hexagon").getElementsByClassName("bubble")[0].getBoundingClientRect();
-            let mapBounding    = document.getElementById("map").getBoundingClientRect();
-            if (bubbleBounding.right > mapBounding.right) {
-                event.target.closest(".hexagon").getElementsByClassName("bubble")[0].style.left        = "-15em";
-                event.target.closest(".hexagon").getElementsByClassName("triangle_down")[0].style.left = "16em";
-            }
-            else if (bubbleBounding.left < mapBounding.left) {
-                event.target.closest(".hexagon").getElementsByClassName("bubble")[0].style.left        = "0.5em";
-                event.target.closest(".hexagon").getElementsByClassName("triangle_down")[0].style.left = "0.5em";
-            }
+            handleTooltipOverflow(hexagon);
         }
     });
     document.getElementById("map").addEventListener("mouseout", function(){
-        if (event.target.closest(".hexagon") !== null) {
-            event.target.closest(".hexagon").getElementsByClassName("bubble")[0].style.display = "none";
+        var hexagon = event.target.closest(".hexagon");
+        if (hexagon !== null) {
+            hexagon.getElementsByClassName("bubble")[0].style.display = "none";
         }
     });
     // The onclick event is required for the mobile devices (no notion of "hover" there)
     document.getElementById("map").addEventListener("click", function(){
-        if (event.target.closest(".hexagon") !== null) {
-            var current_display = window.getComputedStyle(event.target.closest(".hexagon").getElementsByClassName("bubble")[0]).display;
-            event.target.closest(".hexagon").getElementsByClassName("bubble")[0].style.display = (current_display === "none") ? "block" : "none";
+        var hexagon = event.target.closest(".hexagon");
+        if (hexagon !== null) {
+            var current_display = window.getComputedStyle(hexagon.getElementsByClassName("bubble")[0]).display;
+            hexagon.getElementsByClassName("bubble")[0].style.display = (current_display === "none") ? "block" : "none";
+            // Shifts the zone tooltip to the left if it overflows the map on the right
+            handleTooltipOverflow(hexagon);
         }
     });
 }
