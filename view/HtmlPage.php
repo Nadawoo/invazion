@@ -84,6 +84,7 @@ class HtmlPage
     {
         
         return '        </div>
+                    <script type="text/javascript" src="resources/js/ZombLib.js?v1.0"></script>
                     <script type="text/javascript" src="resources/js/scripts.js?v3.4"></script>
                     <script type="text/javascript" src="resources/js/events.js?v3.4"></script>
                 </body>
