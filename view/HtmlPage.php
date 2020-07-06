@@ -84,8 +84,8 @@ class HtmlPage
     {
         
         return '        </div>
-                    <script type="text/javascript" src="resources/scripts.js?v3.4"></script>
-                    <script type="text/javascript" src="resources/events.js?v3.4"></script>
+                    <script type="text/javascript" src="resources/js/scripts.js?v3.4"></script>
+                    <script type="text/javascript" src="resources/js/events.js?v3.4"></script>
                 </body>
             </html>';
     }
