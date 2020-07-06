@@ -486,7 +486,6 @@ input[type="submit"] {
     position:absolute;
     top:-2rem;
     width:93%;
-    min-height:15rem;
     z-index:1;
 }
 #alert_control .title {
@@ -499,6 +498,8 @@ input[type="submit"] {
     padding:0.8em 0.5em;
     font-size:0.9em;
     color:#fbeee6;
+    max-height:8rem; /* Must not conver the contextual actions (enter in city...) */
+    overflow:auto;
 }
 #alert_control a {
     font-size:0.8em;
