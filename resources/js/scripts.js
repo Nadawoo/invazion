@@ -340,33 +340,6 @@ function activatePhoneTab(tabId=null) {
 
 
 /**
- * Loads the content of a remote page. Use like this :  
- * 
- *      loadPage(url, function(responseText) {
- *      // Put here the code which uses responseText
- *      });
- * 
- * @param {string} url The url of the remote page to get
- */
-function loadPage(url, callback) {
-    
-    // Fallback Microsoft.XMLHTTP for IE6 and IE5
-    var xhr = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject("Microsoft.XMLHTTP");
-    
-    xhr.onreadystatechange = function()
-    {
-        if (xhr.readyState == 4 && xhr.status == 200)
-        {
-            if (typeof callback === 'function') callback(xhr.responseText);
-        }
-    }
-    
-   xhr.open("GET", url, true);
-   xhr.send();
-}
-
-
-/**
  * Calls the API to get the list of the discussions, in the most performant way:
  * > By default, calls the API only once, then stores the result in memory (faster)
  * > If you need to update the results, you can force recalling the API (up-to-date but slower)
