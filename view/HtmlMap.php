@@ -247,15 +247,13 @@ class HtmlMap
         $result = '';
         if ($row === $next_attack_hour) {
             
-            $triangles = '';
-            for ($i=0; $i<$nbr_cols; $i++) {
-                $triangles .= '<span class="icon">&#9760;</span>'
-                            . '<span class="triangle"></span>';
-            }
+            $triangle = '<span class="icon">&#9760;</span>'
+                      . '<span class="triangle"></span>';
             
             $result .= '<div class="hurd" title="Une horde ravageuse est en train de progresser vers le sud ! '
                                               . 'Restez à distance ou vous mourrez...">'
-                    . $triangles . "</div>\n";
+                    . str_repeat($triangle, $nbr_cols) 
+                    . "</div>\n";
         }
         
         return $result;
