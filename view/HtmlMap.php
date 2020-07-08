@@ -10,6 +10,34 @@ safely_require('controller/get_coordx.php');
 class HtmlMap
 {
     
+    
+    /**
+     * Templates for the tooltip contents, according to what is in the zone
+     * 
+     * @param string $bubble_alias A name picked in the list of tooltips in this method
+     * @param string $string1      A free string to display a variable text (a pseudo...)
+     * @return string HTML
+     */
+    private function html_bubble($bubble_alias, $string1='')
+    {
+        
+        $templates = [
+            'citizens_group' => '<br>Plusieurs citoyens se sont rassemblés ici... Complotent-ils quelque chose&nbsp;?',
+            'citizen_alone' => '<br>Le citoyen '.$string1.' est ici.',
+            'citizen_me'    => '<br>Vous êtes ici, '.$string1.'&nbsp;! Utilisez le volet à droite de la carte '
+                                . 'pour vous déplacer, fouiller le sol, attaquer des zombies, ramasser des objets...',
+            'city'          => '<br>Cette ville offre '.$string1.' points de défense... '
+                               . 'Peut-être pourrez-vous vous y réfugier&nbsp;?',
+            'tent'          => '<br>Un citoyen a planté sa tente ici.',
+            'vault'         => '<br>Une crypte se trouve dans la zone... Qui sait quels secrets elle renferme&nbsp;?',
+            'items'         => '<br>Il y a des objets dans cette zone... Mais lesquels&nbsp;?',
+            'zombies'       => '<br>Il y a '.plural($string1, 'zombie').' dans cette zone&nbsp;!',
+        ];
+        
+        return $templates[$bubble_alias];
+    }
+    
+    
     /**
      * Génère une carte HTML à cases hexagonales
      * 
@@ -96,8 +124,7 @@ class HtmlMap
             $id           = 'id="my_hexagon"';
             $cell_content = '<div class="map_citizen" id="me">'.substr($player_pseudo, 0, 2).'</div>
                              <div class="halo">&nbsp;</div>';
-            $bubble     = '<br>Vous êtes ici, '.$player_pseudo.'&nbsp;! Utilisez le volet à droite de la carte '
-                        . 'pour vous déplacer, fouiller le sol, attaquer des zombies, ramasser des objets...';
+            $bubble     = $this->html_bubble('citizen_me', $player_pseudo);
         }
         elseif ($cell === null) {
 
@@ -110,12 +137,12 @@ class HtmlMap
 
             // Si la case contient une crypte, on l'affiche même si la case est inexplorée
             $cell_content = '<div class="vault">&#9961;&#65039;</div>';
-            $bubble       = '<br>Une crypte se trouve dans la zone... Qui sait quels secrets elle renferme&nbsp;?';
+            $bubble       = $this->html_bubble('vault');
         }
         elseif ($cell['city_size'] === 1) {
 
             $cell_content = '    <span class="tent">&#9978;</span>'."\n";
-            $bubble       = '<br>Un citoyen a planté sa tente ici.';
+            $bubble       = $this->html_bubble('tent');
         }
         elseif ($cell['city_size'] > 0) {
 
@@ -125,18 +152,17 @@ class HtmlMap
             $cell_content = '    <span><img src="resources/img/city.png" alt="&#10224;"></span>'
                           . '    <span class="city_nbr_def">'.$cell['city_defenses'].'</span>'
                           . $city_bg . "\n";
-            $bubble       = '<br>Cette ville offre '.$cell['city_defenses'].' points de défense... '
-                          . 'Peut-être pourrez-vous vous y réfugier&nbsp;?';
+            $bubble       = $this->html_bubble('city', $cell['city_defenses']);
         }
         elseif ($cell['citizens'] > 1) {
 
             $cell_content = '    <div class="map_citizen">&#10010;</div>'."\n";
-            $bubble       = '<br>Plusieurs citoyens se sont rassemblés ici... Complotent-ils quelque chose&nbsp;?';
+            $bubble       = $this->html_bubble('citizens_group');
         }
         elseif ($cell['citizens'] === 1) {
 
             $cell_content = '<div class="map_citizen">' . substr($fellow_pseudo, 0, 2) . '</div>';
-            $bubble       = '<br>Le citoyen '.$fellow_pseudo.' est ici.';
+            $bubble       = $this->html_bubble('citizen_alone', $fellow_pseudo);
         }
         else {
 
@@ -145,12 +171,12 @@ class HtmlMap
             if ($zombies_nbr > 0) {
 
                 $cell_content   = '    <span class="grey">'.$zombies_nbr.'</span>';
-                $bubble_zombies = '<br>Il y a '.plural($zombies_nbr, 'zombie').' dans cette zone&nbsp;!';
+                $bubble_zombies = $this->html_bubble('zombies', $zombies_nbr);
             }
 
             if (!empty($cell['items'])) {
                 
-                $bubble_items = '<br>Il y a des objets dans cette zone... Mais lesquels&nbsp;?';
+                $bubble_items = $this->html_bubble('items');
             }
         }
 
