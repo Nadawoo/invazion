@@ -30,7 +30,7 @@ class HtmlMap
                                . '<div class="city_nbr_def">'.$string1.'</div>',
             'tent'          => '<div class="tent">&#9978;</div>',
             'vault'         => '<div class="vault">&#9961;&#65039;</div>',
-            'items'         => '',
+            'items'         => '&nbsp;',
             'zombies'       => '<div class="grey">'.$string1.'</div>',
         ];
         
@@ -141,14 +141,10 @@ class HtmlMap
         $cell_content   = '&nbsp;';
         $bubble         = '';
         $bubble_zombies = '';
-        $bubble_items   = '';
-        $id             = '';
-        
+        $bubble_items   = '';        
         
         if ($is_player_in_zone === true) {
-
-            // Mise en valeur du joueur actuel sur la carte
-            $id           = 'id="my_hexagon"';
+            
             $cell_content = $this->html_cell_content('citizen_me', $player_pseudo);
             $bubble       = $this->html_bubble('citizen_me', $player_pseudo);
         }
@@ -196,6 +192,7 @@ class HtmlMap
 
             if (!empty($cell['items'])) {
                 
+                $cell_content = $this->html_cell_content('items');
                 $bubble_items = $this->html_bubble('items');
             }
         }
@@ -213,6 +210,8 @@ class HtmlMap
         }
 
         
+        // Mise en valeur du joueur actuel sur la carte
+        $id = ($is_player_in_zone === true) ? 'id="my_hexagon"' : '';
         // Permettra d'ajouter un marqueur en javascript sur la case
         $has_items = (empty($cell['items'])) ? '' : ' hasItems';
         
