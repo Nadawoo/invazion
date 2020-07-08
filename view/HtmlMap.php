@@ -184,7 +184,7 @@ class HtmlMap
         }
         else {
 
-            if ($cell['zombies'] > 0) {
+            if ($cell['zombies'] >= 0) {
 
                 $cell_content   = $this->html_cell_content('zombies', $cell['zombies']);
                 $bubble_zombies = $this->html_bubble('zombies', $cell['zombies']);
@@ -192,7 +192,6 @@ class HtmlMap
 
             if (!empty($cell['items'])) {
                 
-                $cell_content = $this->html_cell_content('items');
                 $bubble_items = $this->html_bubble('items');
             }
         }
