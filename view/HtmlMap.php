@@ -141,7 +141,7 @@ class HtmlMap
         }
         elseif ($cell['city_size'] === 1) {
 
-            $cell_content = '    <span class="tent">&#9978;</span>'."\n";
+            $cell_content = '    <div class="tent">&#9978;</div>'."\n";
             $bubble       = $this->html_bubble('tent');
         }
         elseif ($cell['city_size'] > 0) {
@@ -149,8 +149,8 @@ class HtmlMap
             // Si la ville a des défenses, on affiche un fond triangulaire vert
             $city_bg = ($cell['city_defenses'] > 0) ? '    <span class="city_bg"></span>' : '';
 
-            $cell_content = '    <span><img src="resources/img/city.png" alt="&#10224;"></span>'
-                          . '    <span class="city_nbr_def">'.$cell['city_defenses'].'</span>'
+            $cell_content = '    <div><img src="resources/img/city.png" alt="&#10224;"></div>'
+                          . '    <div class="city_nbr_def">'.$cell['city_defenses'].'</div>'
                           . $city_bg . "\n";
             $bubble       = $this->html_bubble('city', $cell['city_defenses']);
         }
@@ -170,7 +170,7 @@ class HtmlMap
 
             if ($zombies_nbr > 0) {
 
-                $cell_content   = '    <span class="grey">'.$zombies_nbr.'</span>';
+                $cell_content   = '    <div class="grey">'.$zombies_nbr.'</div>';
                 $bubble_zombies = $this->html_bubble('zombies', $zombies_nbr);
             }
 
