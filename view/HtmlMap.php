@@ -12,6 +12,33 @@ class HtmlMap
     
     
     /**
+     * Templates for the zone contents
+     * 
+     * @param string $cell_alias   A name picked in the list of cells in this method
+     * @param string $string1      A free string to display a variable text (a pseudo...)
+     * @return string HTML
+     */
+    private function html_cell_content($cell_alias, $string1='')
+    {
+        
+        $templates = [
+            'citizens_group' => '<div class="map_citizen">&#10010;</div>'."\n",
+            'citizen_alone' => '<div class="map_citizen">'.substr($string1, 0, 2).'</div>',
+            'citizen_me'    => '<div class="map_citizen" id="me">'.substr($string1, 0, 2).'</div>
+                                <div class="halo">&nbsp;</div>',
+            'city'          => '<div><img src="resources/img/city.png" alt="&#10224;"></div>'
+                               . '<div class="city_nbr_def">'.$string1.'</div>',
+            'tent'          => '<div class="tent">&#9978;</div>',
+            'vault'         => '<div class="vault">&#9961;&#65039;</div>',
+            'items'         => '',
+            'zombies'       => '<div class="grey">'.$string1.'</div>',
+        ];
+        
+        return "    ".$templates[$cell_alias]."\n";
+    }
+    
+    
+    /**
      * Templates for the tooltip contents, according to what is in the zone
      * 
      * @param string $bubble_alias A name picked in the list of tooltips in this method
@@ -37,7 +64,7 @@ class HtmlMap
         return $templates[$bubble_alias];
     }
     
-    
+     
     /**
      * Génère une carte HTML à cases hexagonales
      * 
@@ -122,12 +149,10 @@ class HtmlMap
 
             // Mise en valeur du joueur actuel sur la carte
             $id           = 'id="my_hexagon"';
-            $cell_content = '<div class="map_citizen" id="me">'.substr($player_pseudo, 0, 2).'</div>
-                             <div class="halo">&nbsp;</div>';
-            $bubble     = $this->html_bubble('citizen_me', $player_pseudo);
+            $cell_content = $this->html_cell_content('citizen_me', $player_pseudo);
+            $bubble       = $this->html_bubble('citizen_me', $player_pseudo);
         }
         elseif ($cell === null) {
-
             // Quand la zone est vide.
             // Cette condition ne sert qu'à éviter de répéter "if(isset($cells[$coords])..."
             // à chacune des condition suivantes.
@@ -136,42 +161,37 @@ class HtmlMap
         elseif ($cell['building'] === 'vault') {
 
             // Si la case contient une crypte, on l'affiche même si la case est inexplorée
-            $cell_content = '<div class="vault">&#9961;&#65039;</div>';
+            $cell_content = $this->html_cell_content('vault');
             $bubble       = $this->html_bubble('vault');
         }
         elseif ($cell['city_size'] === 1) {
 
-            $cell_content = '    <div class="tent">&#9978;</div>'."\n";
+            $cell_content = $this->html_cell_content('tent');
             $bubble       = $this->html_bubble('tent');
         }
         elseif ($cell['city_size'] > 0) {
 
             // Si la ville a des défenses, on affiche un fond triangulaire vert
             $city_bg = ($cell['city_defenses'] > 0) ? '    <span class="city_bg"></span>' : '';
-
-            $cell_content = '    <div><img src="resources/img/city.png" alt="&#10224;"></div>'
-                          . '    <div class="city_nbr_def">'.$cell['city_defenses'].'</div>'
-                          . $city_bg . "\n";
+            $cell_content = $this->html_cell_content('city', $cell['city_defenses']) . $city_bg . "\n";
             $bubble       = $this->html_bubble('city', $cell['city_defenses']);
         }
         elseif ($cell['citizens'] > 1) {
 
-            $cell_content = '    <div class="map_citizen">&#10010;</div>'."\n";
+            $cell_content = $this->html_cell_content('citizens_group');
             $bubble       = $this->html_bubble('citizens_group');
         }
         elseif ($cell['citizens'] === 1) {
 
-            $cell_content = '<div class="map_citizen">' . substr($fellow_pseudo, 0, 2) . '</div>';
+            $cell_content = $this->html_cell_content('citizen_alone', $fellow_pseudo);
             $bubble       = $this->html_bubble('citizen_alone', $fellow_pseudo);
         }
         else {
 
-            $zombies_nbr = $cell['zombies'];
+            if ($cell['zombies'] > 0) {
 
-            if ($zombies_nbr > 0) {
-
-                $cell_content   = '    <div class="grey">'.$zombies_nbr.'</div>';
-                $bubble_zombies = $this->html_bubble('zombies', $zombies_nbr);
+                $cell_content   = $this->html_cell_content('zombies', $cell['zombies']);
+                $bubble_zombies = $this->html_bubble('zombies', $cell['zombies']);
             }
 
             if (!empty($cell['items'])) {
