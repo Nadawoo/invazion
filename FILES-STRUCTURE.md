@@ -10,6 +10,7 @@ Ils sont listés par ordre d'importance.*
 * /view : contient les classes et fonctions générant les éléments HTML spécifiques (carte...)
 * /controller : fonctions pour traiter certaines données avant affichage
 * /resources : fichiers appelables par le client : images, CSS, javascript
+* /archived : code non utilisé à ce jour mais éventuellement réutilisable
 
 ### Dossier /view
 * HtmlPage.php : structure de base de la page (header et footer HTML)
@@ -35,5 +36,10 @@ Ils sont listés par ordre d'importance.*
   * myzone.css : CSS de la zone où se rouve le joueur
   * gps.css : CSS du smartphone-gps à côté de la carte
   * popup.css : gère la pop-up 100% CSS
+* /js : fonctions javascript
+
+### Dossier /archived
+  * block_citizens_vs_zombies.php : encadré affichant les points de contrôle des humains et zombies dans la zone
   * night.css : essai de design sombre pour le site. Inutilisé à ce jour.
-* script.js : fonctions javascript
+  * items_panel.html/items_panel.css : panneaux d'objets amovibles sous la carte
+                      (désormais supprimés, les objets sont affichés à droite)

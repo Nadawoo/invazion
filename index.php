@@ -256,19 +256,6 @@ echo $popup->customised('popsuccess', '', nl2br($msg_popup));
         echo $html['map'];
         ?>
         
-        <div id="map_footer">
-            <!--
-            <fieldset id="bag_panel">
-                <div class="legend" onclick="toggleItemsPanel()"><span class="icon">&#128188;</span> Dans mon sac</div>
-                <?php echo $html['bag_items'] ?>
-            </fieldset>
-            
-            <fieldset id="ground_panel">
-                <div class="legend" onclick="toggleItemsPanel()">Objets au sol <span class="icon">&#9935;&#65039;</span></div>
-                <?php echo $html['zone_items'] ?>
-            </fieldset>
-            -->
-        </div>
     </div>
     
     
