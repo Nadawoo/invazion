@@ -36,7 +36,7 @@ if (document.getElementById('map') !== null) {
     });
 
 
-    // Displays/hides the tooltip of the zone when the mouse hovers the zone
+    // Displays/hides the tooltip of any zone when the mouse hovers one
     document.getElementById("map").addEventListener("mouseover", function(){
         displayTooltip(event.target.closest(".hexagon"));
     });
@@ -48,25 +48,25 @@ if (document.getElementById('map') !== null) {
         toggleTooltip(event.target.closest(".hexagon"));
     });
 
-    // Same thing when hovering the center of the movement paddle
+    // Displays the tooltip of the player's zone when hovering the movement paddle
     document.getElementById("central").addEventListener("mouseover", function() {
-        displayTooltip(document.getElementById("my_hexagon"));
+        displayTooltip(document.getElementById("me").closest(".hexagon"));
     });
     document.getElementById("central").addEventListener("mouseout", function() {
-        hideTooltip(document.getElementById("my_hexagon"));
+        hideTooltip(document.getElementById("me").closest(".hexagon"));
     });
     document.getElementById("central").addEventListener("click", function() {
-        toggleTooltip(document.getElementById("my_hexagon"));
+        toggleTooltip(document.getElementById("me").closest(".hexagon"));
     });
 
     // Same thing when hovering the GPS on the smartphone
     document.getElementById("minimap").addEventListener("mouseover", function() {
-        displayTooltip(document.getElementById("my_hexagon"));
+        displayTooltip(document.getElementById("me").closest(".hexagon"));
     });
     document.getElementById("minimap").addEventListener("mouseout", function() {
-        hideTooltip(document.getElementById("my_hexagon"));
+        hideTooltip(document.getElementById("me").closest(".hexagon"));
     });
     document.getElementById("minimap").addEventListener("click", function() {
-        toggleTooltip(document.getElementById("my_hexagon"));
+        toggleTooltip(document.getElementById("me").closest(".hexagon"));
     });
 }

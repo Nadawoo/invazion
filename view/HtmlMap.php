@@ -209,8 +209,6 @@ class HtmlMap
         }
 
         
-        // Mise en valeur du joueur actuel sur la carte
-        $id = ($is_player_in_zone === true) ? 'id="my_hexagon"' : '';
         // Permettra d'ajouter un marqueur en javascript sur la case
         $has_items = (empty($cell['items'])) ? '' : ' hasItems';
         
@@ -218,7 +216,7 @@ class HtmlMap
         // - La classe "hexagon" sert à tracer le fond hexgonal
         // - La classe "square_container" est un conteneur carré pour assurer la symétrie du contenu
         // (un hexagone ne peut pas, par définition, être inscrit dans un carré)
-        return '<div class="hexagon'.$has_items.'" '.$id.' style="opacity:'.$opacity.'">
+        return '<div class="hexagon'.$has_items.'" style="opacity:'.$opacity.'">
                     <div class="square_container">'
                         . $cell_content . '
                         <div class="bubble">
