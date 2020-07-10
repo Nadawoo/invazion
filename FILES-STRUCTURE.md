@@ -19,7 +19,7 @@ Ils sont listés par ordre d'importance.*
 * HtmlCityEnclosure.php : génère le HTML de l'intérieur de la ville (chantiers, banque, puits...)
 * HtmlMyzone.php : génère le HTML de la zone où se trouve le joueur
 * HtmlButtons.php : génère les boutons d'action (attaquer un zombie...)
-* movement_paddle.php : génère les flèches de déplacement à côté de la carte
+* HtmlMovementPaddle.php : génère les flèches de déplacement à côté de la carte
 * minimap.php : génère le smartphone-gps à côté de la carte
 * plural.php : petite fonction pour simplifier l'ajout des "s" aux mots au pluriel
 

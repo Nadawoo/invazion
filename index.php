@@ -7,7 +7,7 @@ safely_require('view/HtmlMap.php');
 safely_require('view/HtmlMyZone.php');
 safely_require('view/HtmlCityEnclosure.php');
 safely_require('view/HtmlPopup.php');
-safely_require('view/movement_paddle.php');
+safely_require('view/HtmlMovementPaddle.php');
 safely_require('view/smartphone.php');
 safely_require('controller/official_server_root.php');
 safely_require('controller/sort_citizens_by_coord.php');
@@ -21,6 +21,7 @@ $map                = new HtmlMap();
 $my_zone            = new HtmlMyzone();
 $enclosure          = new HtmlCityEnclosure();
 $buttons            = new HtmlButtons();
+$paddle             = new HtmlMovementPaddle();
 $popup              = new HtmlPopup();
 $zone               = set_default_variables('zone');
 $citizen            = set_default_variables('citizen');
@@ -296,7 +297,7 @@ echo $popup->customised('popsuccess', '', nl2br($msg_popup));
                     echo $layout->block_alert_tired($zone['zombies']);
                 }
                 
-                echo movement_paddle($citizen['coord_x'], $citizen['coord_y']);
+                echo $paddle->paddle($citizen['coord_x'], $citizen['coord_y']);
                 echo $layout->block_movement_AP($citizen['action_points'], $speciality_caracs['action_points'], $zone['zombies']);
                 
                 // Special actions depending of the zone (go into a crypt, a city...)
