@@ -8,7 +8,7 @@ safely_require('view/HtmlMyZone.php');
 safely_require('view/HtmlCityEnclosure.php');
 safely_require('view/HtmlPopup.php');
 safely_require('view/HtmlMovementPaddle.php');
-safely_require('view/smartphone.php');
+safely_require('view/HtmlSmartphone.php');
 safely_require('controller/official_server_root.php');
 safely_require('controller/sort_citizens_by_coord.php');
 safely_require('controller/filter_citizens_by_city.php');
@@ -22,6 +22,7 @@ $my_zone            = new HtmlMyzone();
 $enclosure          = new HtmlCityEnclosure();
 $buttons            = new HtmlButtons();
 $paddle             = new HtmlMovementPaddle();
+$phone              = new HtmlSmartphone();
 $popup              = new HtmlPopup();
 $zone               = set_default_variables('zone');
 $citizen            = set_default_variables('citizen');
@@ -118,7 +119,7 @@ $html = [
     'bag_items'         => $layout->block_bag_items($configs['items'], $citizen['citizen_id'], $citizen['bag_items'], $citizen['bag_size']),
     'zone_fellows'      => $layout->block_zone_fellows($zone_fellows, $citizen['citizen_id']),
     // Smartphone at the right of the map
-    'smartphone'        => smartphone($maps['map_width'], $maps['map_height'], $citizen, $speciality_caracs, $zone),
+    'smartphone'        => $phone->smartphone($maps['map_width'], $maps['map_height'], $citizen, $speciality_caracs, $zone),
     ];
 
 
