@@ -22,9 +22,7 @@ class HtmlSmartphone
      */
     public function smartphone($map_cols, $map_rows, $citizen, $speciality, $zone)
     {
-
-        $coord_x    = $citizen['coord_x'];
-        $coord_y    = $citizen['coord_y'];
+        
         $AP         = $citizen['action_points'];
         $is_wounded = $citizen['is_wounded'];
         $cp_zombies  = 0;
@@ -40,13 +38,6 @@ class HtmlSmartphone
             // Nombre de points de contrôle d'écart entre humains et zombies
             $cp_diff     = $cp_citizens-$cp_zombies;
         }
-
-        // L'emplacement du joueur sur l'axe horizontal de la mini carte sera 
-        // en % de la largeur de la carte réelle. NB : on divise la coordonnée 
-        // du joueur par 2 car on est dans un système de "coordonnées doublées".
-        $x_percent = round(($coord_x/2) / ($map_cols+1)*100);
-        // La coordonnée Y n'est pas divisée car pas de saut dans sa numérotation
-        $y_percent = round($coord_y / ($map_rows+1)*100);
 
         // Affiche si le citoyen est blessé
         $wound = 'Parfaite';
@@ -96,11 +87,7 @@ class HtmlSmartphone
                     </div>
 
                     <div id="minimap" class="screen">
-                        <div style="position:relative;left:'.$x_percent.'%;top:'.$y_percent.'%">
-                            <span class="dot">•</span>
-                            <!-- Laisser ce texte APRES le point afin de ne pas décaler le point vers le bas -->
-                            <span class="label">['.$coord_x.':'.$coord_y.']</span>
-                        </div>
+                        '.$this->screen_minimap($map_cols, $map_rows, $citizen['coord_x'], $citizen['coord_y']).'
                     </div>
 
                     <div id="health" class="screen blocktext">
@@ -140,7 +127,35 @@ class HtmlSmartphone
             </div>';
     }
 
-
+    
+    /**
+     * Generates the green GPS (mini map)
+     * 
+     * @param int $map_cols The number of columns of the real map
+     * @param int $map_rows The number of rows of the real map
+     * @param int $coord_x  The column where the player is located
+     * @param int $coord_y  The row where the player is located
+     * @return string HTML
+     */
+    private function screen_minimap($map_cols, $map_rows, $coord_x, $coord_y)
+    {
+        
+        // L'emplacement du joueur sur l'axe horizontal de la mini carte sera 
+        // en % de la largeur de la carte réelle. NB : on divise la coordonnée 
+        // du joueur par 2 car on est dans un système de "coordonnées doublées".
+        $x_percent = round(($coord_x/2) / ($map_cols+1)*100);
+        // La coordonnée Y n'est pas divisée car pas de saut dans sa numérotation
+        $y_percent = round($coord_y / ($map_rows+1)*100);
+        
+        return '
+            <div style="position:relative;left:'.$x_percent.'%;top:'.$y_percent.'%">
+                <span class="dot">•</span>
+                <!-- Laisser ce texte APRES le point afin de ne pas décaler le point vers le bas -->
+                <span class="label">['.$coord_x.':'.$coord_y.']</span>
+            </div>';
+    }
+    
+    
     /**
      * Displays a notification on the in-game smartphone (if movement costs AP, etc.)
      * 
