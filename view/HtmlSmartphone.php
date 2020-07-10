@@ -39,26 +39,7 @@ class HtmlSmartphone
                 <div class="title">––</div>
                 <div class="container">
                     <div class="sideicons">
-                        <div onclick="activatePhoneTab(\'minimap\')">
-                            &#128205;
-                            <span>gps</span>
-                        </div>
-                        <div onclick="activatePhoneTab(\'health\')">
-                            &#x1F489;
-                            <span>santé</span>
-                        </div>
-                        <div onclick="activatePhoneTab(\'zone\')">
-                            &#129503;
-                            <span>zone</span>
-                        </div>
-                    <!--                    
-                        <br>
-                        &#9888;&#65039;<br>
-                        <span>action</span><br>
-                        <br>
-                        &#128276;
-                        <span>notif</span><br>
-                    -->
+                        '.$this->side_icons().'
                     </div>
 
                     <div id="minimap" class="screen">
@@ -72,12 +53,35 @@ class HtmlSmartphone
                     <div id="zone" class="screen blocktext">
                         '.$this->screen_zone_control($cp_citizens, $cp_zombies).'
                     </div>
-
                 </div>
                 '.$notif.'
             </div>';
     }
 
+    
+    /**
+     * Generates the vertical menu at the left of the smartphone
+     * 
+     * @return string HTML
+     */
+    private function side_icons()
+    {
+        
+        return '
+            <div onclick="activatePhoneTab(\'minimap\')">
+                &#128205;
+                <span>gps</span>
+            </div>
+            <div onclick="activatePhoneTab(\'health\')">
+                &#x1F489;
+                <span>santé</span>
+            </div>
+            <div onclick="activatePhoneTab(\'zone\')">
+                &#129503;
+                <span>zone</span>
+            </div>';
+    }
+    
     
     /**
      * Generates the green GPS (mini map)
