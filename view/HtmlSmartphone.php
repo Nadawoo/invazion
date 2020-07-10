@@ -26,29 +26,15 @@ class HtmlSmartphone
         $AP         = $citizen['action_points'];
         $cp_zombies  = 0;
         $cp_citizens = 0;
-        $cp_diff     = 0;
         $notif       = '';
-
+        
         // N'existe que si le joueur est connecté
         if ($citizen !== null) {
             $notif       = $this->notification($zone, $AP);
             $cp_zombies  = $zone['controlpoints_zombies'];
             $cp_citizens = $zone['controlpoints_citizens'];
-            // Nombre de points de contrôle d'écart entre humains et zombies
-            $cp_diff     = $cp_citizens-$cp_zombies;
         }
         
-        // Affiche le contrôle de zone
-        if ($cp_diff >= 0) {
-            $control    = '<div style="background-color:lightgreen;color:black">Zone sûre</div>';
-            $background = 'background:#145a32';
-        }
-        else {
-            $control    = '<div style="background-color:#f5b7b1;color:black">Submergé !</div>';
-            $background = 'background:#7b241c';
-        }
-
-
         return '<div id="phone">
                 <div class="title">––</div>
                 <div class="container">
@@ -83,25 +69,8 @@ class HtmlSmartphone
                         '.$this->screen_health($speciality, $AP, (bool)$citizen['is_wounded']).'
                     </div>
 
-                    <div id="zone" class="screen blocktext" style="'.$background.'">
-                    <a href="#popcontrol" style="display:block;color:inherit;">
-                        <h4 style="margin-top:0">Contrôle zone</h4>
-                        <div style="color:lightgreen;margin:0.2em 0">
-                            <div style="font-variant:small-caps">Humains</div>
-                            + <span style="font-size:1.5em">'.$cp_citizens.'</span> pts
-                        </div>
-                        <div style="color:orange">
-                            <div style="font-variant:small-caps">Zombies</div>
-                            - <span style="font-size:1.5em">'.$cp_zombies.'</span> pts
-                        </div>
-                        <span style="font-size:1.5em;line-height:80%;color:#d6eaf8">=</span>
-                        '.$control.'
-                        ('.signed_int($cp_diff).' pts)
-
-                        <div style="margin-top:2em;color:#90a4ae">
-                            Aide
-                        </div>
-                    </a>
+                    <div id="zone" class="screen blocktext">
+                        '.$this->screen_zone_control($cp_citizens, $cp_zombies).'
                     </div>
 
                 </div>
@@ -168,6 +137,45 @@ class HtmlSmartphone
             '.$wound.'
             <h4>Durée fouille</h4>
             '.$speciality['digging_duration'].'&nbsp;mn';
+    }
+    
+    
+    /**
+     * Generates the screen which displays who controls the zone (humans or zombies)
+     * 
+     * @return string HTML
+     */
+    private function screen_zone_control($cp_citizens, $cp_zombies) 
+    {
+        // Difference of control point between humans and zombies in the zone
+        $cp_diff = $cp_citizens-$cp_zombies;
+        // Color of the screen (for zone control )red if controlled by zombies)
+        $background = ($cp_diff >= 0) ? '#145a32' : '#7b241c';
+        
+        // Tells whether the zone is safe or not
+        $control = ($cp_diff >= 0)
+                    ? '<div style="background-color:lightgreen;color:black">Zone sûre</div>'
+                    : '<div style="background-color:#f5b7b1;color:black">Submergé !</div>';
+        
+        return '
+            <a href="#popcontrol" style="display:block;color:inherit;background:'.$background.'">
+                <h4 style="margin-top:0">Contrôle zone</h4>
+                <div style="color:lightgreen;margin:0.2em 0">
+                    <div style="font-variant:small-caps">Humains</div>
+                    + <span style="font-size:1.5em">'.$cp_citizens.'</span> pts
+                </div>
+                <div style="color:orange">
+                    <div style="font-variant:small-caps">Zombies</div>
+                    - <span style="font-size:1.5em">'.$cp_zombies.'</span> pts
+                </div>
+                <span style="font-size:1.5em;line-height:80%;color:#d6eaf8">=</span>
+                '.$control.'
+                ('.signed_int($cp_diff).' pts)
+
+                <div style="margin-top:2em;color:#90a4ae">
+                    Aide
+                </div>
+            </a>';
     }
     
     
