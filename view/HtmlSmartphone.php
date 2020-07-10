@@ -24,7 +24,6 @@ class HtmlSmartphone
     {
         
         $AP         = $citizen['action_points'];
-        $is_wounded = $citizen['is_wounded'];
         $cp_zombies  = 0;
         $cp_citizens = 0;
         $cp_diff     = 0;
@@ -38,17 +37,7 @@ class HtmlSmartphone
             // Nombre de points de contrôle d'écart entre humains et zombies
             $cp_diff     = $cp_citizens-$cp_zombies;
         }
-
-        // Affiche si le citoyen est blessé
-        $wound = 'Parfaite';
-
-        if ($is_wounded === 1) {
-
-            $wound = '<a href="#popwounded">
-                <strong style="color:#f44336;border-bottom:2px dotted red;">Blessé !</strong>
-                </a>';
-        }
-
+        
         // Affiche le contrôle de zone
         if ($cp_diff >= 0) {
             $control    = '<div style="background-color:lightgreen;color:black">Zone sûre</div>';
@@ -91,14 +80,7 @@ class HtmlSmartphone
                     </div>
 
                     <div id="health" class="screen blocktext">
-                        <h4>Ma spécialité</h4>
-                        '.ucfirst($speciality['name']).'
-                        <h4>Points d\'action</h4>
-                        '.$AP.' / '.$speciality['action_points'].'
-                        <h4>Santé</h4>
-                        '.$wound.'
-                        <h4>Durée fouille</h4>
-                        '.$speciality['digging_duration'].'&nbsp;mn
+                        '.$this->screen_health($speciality, $AP, (bool)$citizen['is_wounded']).'
                     </div>
 
                     <div id="zone" class="screen blocktext" style="'.$background.'">
@@ -153,6 +135,39 @@ class HtmlSmartphone
                 <!-- Laisser ce texte APRES le point afin de ne pas décaler le point vers le bas -->
                 <span class="label">['.$coord_x.':'.$coord_y.']</span>
             </div>';
+    }
+    
+    
+    /**
+     * Generates the screen which shows health informations
+     * 
+     * @param array $speciality Characteristics of the speciality of the citizen
+     *                          (name of the job, maximum action points...)
+     * @param int $AP Amount of action points the citizen owns
+     * @param bool $is_wounded "True" if the citizen is wounded
+     * @return string HTML
+     */
+    private function screen_health($speciality, $AP, $is_wounded)
+    {
+        
+        // Displays if the citizen is wounded
+        $wound = 'Parfaite';
+
+        if ($is_wounded === true) {
+            $wound = '<a href="#popwounded">
+                <strong style="color:#f44336;border-bottom:2px dotted red;">Blessé !</strong>
+                </a>';
+        }
+        
+        return '
+            <h4>Ma spécialité</h4>
+            '.ucfirst($speciality['name']).'
+            <h4>Points d\'action</h4>
+            '.$AP.' / '.$speciality['action_points'].'
+            <h4>Santé</h4>
+            '.$wound.'
+            <h4>Durée fouille</h4>
+            '.$speciality['digging_duration'].'&nbsp;mn';
     }
     
     
