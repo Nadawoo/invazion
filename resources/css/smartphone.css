@@ -38,11 +38,12 @@
     text-align:center;
 }
 .sideicons div {
-    margin:0.2em 0 0.5em 0;
-    padding:0.5em 0 0.1em 0;
-    line-height:80%;
+    margin-bottom:0.3em;
+    padding:0.3em 0 0.3em 0;
 }
 .sideicons span {
+    display:block;
+    line-height:150%;
     color:white;
     font-variant:small-caps;
     font-size:0.55em;

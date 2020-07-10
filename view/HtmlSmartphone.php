@@ -40,15 +40,15 @@ class HtmlSmartphone
                 <div class="container">
                     <div class="sideicons">
                         <div onclick="activatePhoneTab(\'minimap\')">
-                            &#128205;<br>
+                            &#128205;
                             <span>gps</span>
                         </div>
                         <div onclick="activatePhoneTab(\'health\')">
-                            &#x1F489;<br>
+                            &#x1F489;
                             <span>santé</span>
                         </div>
                         <div onclick="activatePhoneTab(\'zone\')">
-                            &#129503;<br>
+                            &#129503;
                             <span>zone</span>
                         </div>
                     <!--                    
