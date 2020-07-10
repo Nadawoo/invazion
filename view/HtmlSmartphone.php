@@ -23,17 +23,7 @@ class HtmlSmartphone
     public function smartphone($map_cols, $map_rows, $citizen, $speciality, $zone)
     {
         
-        $AP         = $citizen['action_points'];
-        $cp_zombies  = 0;
-        $cp_citizens = 0;
-        $notif       = '';
-        
-        // N'existe que si le joueur est connecté
-        if ($citizen !== null) {
-            $notif       = $this->notification($zone, $AP);
-            $cp_zombies  = $zone['controlpoints_zombies'];
-            $cp_citizens = $zone['controlpoints_citizens'];
-        }
+        $notif = ($citizen === null) ? '' : $this->notification($zone, $citizen['action_points']);
         
         return '<div id="phone">
                 <div class="title">––</div>
@@ -45,13 +35,11 @@ class HtmlSmartphone
                     <div id="minimap" class="screen">
                         '.$this->screen_minimap($map_cols, $map_rows, $citizen['coord_x'], $citizen['coord_y']).'
                     </div>
-
                     <div id="health" class="screen blocktext">
-                        '.$this->screen_health($speciality, $AP, (bool)$citizen['is_wounded']).'
+                        '.$this->screen_health($speciality, $citizen['action_points'], (bool)$citizen['is_wounded']).'
                     </div>
-
                     <div id="zone" class="screen blocktext">
-                        '.$this->screen_zone_control($cp_citizens, $cp_zombies).'
+                        '.$this->screen_zone_control($zone['controlpoints_citizens'], $zone['controlpoints_zombies']).'
                     </div>
                 </div>
                 '.$notif.'
