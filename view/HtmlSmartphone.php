@@ -180,30 +180,31 @@ class HtmlSmartphone
      */
     private function notification($zone, $AP)
     {
-
-        $notif = '';
-
+        
+        $notifs = [
+            'blocked'   => 'Vous êtes bloqué par les zombies !',
+            'AP_zero'   => 'Vous n\'avez plus de PA pour bouger !',
+            'AP_cost'   => 'Partir vous coûtera 1 PA ('.$AP.' restants)',
+            'tent'      => 'Une tente ! L\'occasion de s\'abriter...',
+            'city'      => 'Une ville ! L\'occasion de s\'abriter...',
+            ];
+        
         if ($AP > 0 and $zone['controlpoints_citizens'] < $zone['controlpoints_zombies']) {
-
-            $notif = '<div class="notif">Vous êtes bloqué par les zombies !</div>';
+            $notif = 'blocked';
         }
         elseif ($AP === 0) {
-
-            $notif = '<div class="notif">Vous n\'avez plus de PA pour bouger !</div>';
+            $notif = 'AP_zero';
         }
         elseif ($zone['zombies'] > 0) {
-
-            $notif = '<div class="notif">Partir vous coûtera 1 PA ('.$AP.' restants)</div>';
+            $notif = 'AP_cost';
         }
         elseif (is_int($zone['city_id']) and $zone['city_size'] === 1) {
-
-            $notif = '<div class="notif">Une tente ! L\'occasion de s\'abriter...</div>';
+            $notif = 'tent';
         }
         elseif (is_int($zone['city_id']) and $zone['city_size'] >= 2) {
-
-            $notif = '<div class="notif">Une ville ! L\'occasion de s\'abriter...</div>';
+            $notif = 'city';
         }
 
-        return $notif;
+        return isset($notif) ? '<div class="notif">'.$notifs[$notif].'</div>' : '';
     }
 }
