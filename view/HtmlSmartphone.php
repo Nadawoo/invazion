@@ -23,8 +23,6 @@ class HtmlSmartphone
     public function smartphone($map_cols, $map_rows, $citizen, $speciality, $zone)
     {
         
-        $notif = ($citizen === null) ? '' : $this->notification($zone, $citizen['action_points']);
-        
         return '<div id="phone">
                 <div class="title">––</div>
                 <div class="container">
@@ -42,7 +40,7 @@ class HtmlSmartphone
                         '.$this->screen_zone_control($zone['controlpoints_citizens'], $zone['controlpoints_zombies']).'
                     </div>
                 </div>
-                '.$notif.'
+                '.$this->notification($zone, $citizen['action_points']).'
             </div>';
     }
 
