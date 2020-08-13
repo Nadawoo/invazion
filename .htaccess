@@ -11,6 +11,8 @@
     # NB : Apache blocks natively the access to the root folder (/.git), but 
     # doesn't block the deep links (e.g : /.git/config) 
     RewriteRule \.git/ - [F,NC]
+    # Forbids access to the .gitignore (could contain sensitive file names)
+    RewriteRule ^\.gitignore$ - [F,NC]
 </IfModule>
 
 # Performance : compression gzip des fichiers texte, html, css, javascript, json
