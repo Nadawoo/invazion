@@ -4,6 +4,14 @@
     Header set X-Content-Type-Options nosniff 
 </IfModule>
 
+<IfModule mod_rewrite.c>
+    RewriteEngine On	
+    RewriteBase /
+    # Important - security : forbids access to the .git folder through the url
+    # NB : Apache blocks natively the access to the root folder (/.git), but 
+    # doesn't block the deep links (e.g : /.git/config) 
+    RewriteRule \.git/ - [F,NC]
+</IfModule>
 
 # Performance : compression gzip des fichiers texte, html, css, javascript, json
 # NB : le "deflate_module" d'Apache doit être activé
