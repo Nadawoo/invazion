@@ -4,7 +4,7 @@
  * pour récupérer ou/et écrire des données sur le serveur
  * http://invazion.nadazone.fr
  * 
- * Version 4.3
+ * Version 5.0
  */
 class ZombLib
 {
@@ -213,9 +213,9 @@ class ZombLib
             }
             // Si on a demandé une donnée précise (ex : get_token_data('citizen_id')),
             // on ne retourne que celle-ci
-            elseif (array_key_exists($data_key, $json['data'])) {
+            elseif (array_key_exists($data_key, $json)) {
                 
-                $result = $json['data'][$data_key];
+                $result = $json[$data_key];
             }
         }
         
