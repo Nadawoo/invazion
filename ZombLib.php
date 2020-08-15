@@ -182,7 +182,7 @@ class ZombLib
     /**
      * Retourne les données contenues dans le jeton, sous forme d'un array.
      * Ne pas confondre avec la méthode get_token(), qui retourne le jeton brut
-     * (Ex : "eyJleHAiOplblH19.N2EDE5MDUyZDFjA1ZjIyZWQzZTF")
+     * (Ex : "eyJleHAiOplblH19.N2EDE5MDUyZDFjA1ZjIy.ZWQzZTF")
      * Une clé peut être précisée en paramètre pour retourner seulement un élément
      * précis :
      *      > get_token_data('user_id')
@@ -198,24 +198,29 @@ class ZombLib
     {
         
         $result = NULL;
-        $token = $this->get_token();
- 
-        // Tente de mettre les données du jeton dans un array
-        $json = json_decode(base64_decode(explode('.', $token)[0]), TRUE);
+        $token = $this->get_token();            
+        $token_parts = explode('.', $token);
         
-        if ($json !== NULL) {
-            
+        // Tries to convert the token data (the id of the citizen...) into an array
+        // NB: $token_parts[0] doesn't interest us here because it contains
+        // the header of the JWT (see the documentation at https://jwt.io/introduction)
+        if (!isset($token_parts[1])) {
+            return NULL;
+        }        
+        $decoded_data = json_decode(base64_decode($token_parts[1]), TRUE);
+        
+        if ($decoded_data !== NULL) {            
             // Si on n'a pas demandé une donnée précise du jeton (ex: l'id du joueur),
             // on retourne toutes les données sous forme d'un array
             if ($data_key === '') {
                 
-                $result = $json;
+                $result = $decoded_data;
             }
             // Si on a demandé une donnée précise (ex : get_token_data('citizen_id')),
             // on ne retourne que celle-ci
-            elseif (array_key_exists($data_key, $json)) {
+            elseif (array_key_exists($data_key, $decoded_data)) {
                 
-                $result = $json[$data_key];
+                $result = $decoded_data[$data_key];
             }
         }
         
