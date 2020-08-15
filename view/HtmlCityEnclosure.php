@@ -24,10 +24,11 @@ class HtmlCityEnclosure
                     <div class="item" onclick="switchCityTab(\'city_perso\')">Chez moi</div>
                     <div class="item" onclick="switchCityTab(\'city_build\');updateDiscussionsList();">Bâtir la&nbsp;ville</div>
                     <div class="vertical">
-                        <div class="item" onclick="switchCityTab(\'city_fellows\')">Concitoyens</div>
-                        <div class="item" onclick="switchCityTab(\'city_common\') ">Réserves</div>
+                        <div class="item" onclick="switchCityTab(\'city_storage\')">Dépôt</div>
                         <div class="item" onclick="switchCityTab(\'city_craft\')  ">Atelier</div>
+                        <div class="item" onclick="switchCityTab(\'city_well\')   ">Puits</div>
                     </div>
+                    <div class="item" onclick="switchCityTab(\'city_fellows\')">Habitants</div>
                     <div class="item" onclick="switchCityTab(\'city_door\') ">Sortir explorer</div>
                 </div>';
     }

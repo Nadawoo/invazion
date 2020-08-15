@@ -185,7 +185,7 @@ function toggleActionBlock(buttonAlias) {
  */
 function switchCityTab(className) {
     
-    var tabs_list = ['city_perso', 'city_fellows', 'city_common', 'city_craft', 'city_build', 'city_door'];
+    var tabs_list = ['city_perso', 'city_fellows', 'city_storage', 'city_well', 'city_craft', 'city_build', 'city_door'];
     
     if (className === null) {
         className = tabs_list[0];

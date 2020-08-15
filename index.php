@@ -206,11 +206,11 @@ echo $popup->customised('popsuccess', '', nl2br($msg_popup));
                     '. $enclosure->block_fellows_list($city_fellows, $specialities) .'
                     '. $enclosure->block_fellows_homes($city_fellows, $specialities, $city_data['coord_x'], $city_data['coord_y']) .'
                 </div>
-                <div class="city_row city_common">
+                <div class="city_row city_storage">
                     '. $enclosure->block_bank($html['zone_items']) .'
                     '. $enclosure->block_bag($html['bag_items']) .'
                 </div>
-                <div class="city_row city_common">
+                <div class="city_row city_well">
                     '. $enclosure->block_well($city_data['well_current_water']) .'
                     <div class="city_block" style="visibility:hidden"></div>
                 </div>
