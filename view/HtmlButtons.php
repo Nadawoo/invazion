@@ -286,6 +286,7 @@ class HtmlButtons
             'citizens' => [
                 'icon'  => '&#x1F465;',
                 'label' => 'humains',
+                'min_amount' => 2,
                 ],
             'build' => [
                 'icon'  => '&#x1F3DA;&#xFE0F;',
@@ -294,12 +295,16 @@ class HtmlButtons
         ];
                 
         $button = $icons[$button_alias];
+        // Minimal amount required to display the number over the button.
+        // Useful for the number of citizens in zone (must not notify "1" while 
+        // the player is the only human there)
+        $min_amount = (isset($button['min_amount'])) ? $button['min_amount'] : 1;
         $dot_number = '';
         
-        if ($amount > 0 and isset($button['alert'])) {
+        if ($amount >= $min_amount and isset($button['alert'])) {
              $dot_number = '<div class="alert_icon">'.$button['alert'].'</div>';
         } 
-        elseif ($amount > 0) {
+        elseif ($amount >= $min_amount) {
             $dot_number = '<div class="dot_number">'.$amount.'</div>';
         }
         

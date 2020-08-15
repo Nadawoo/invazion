@@ -280,7 +280,7 @@ echo $popup->customised('popsuccess', '', nl2br($msg_popup));
             echo  $buttons->button_round('move', ($zone['controlpoints_zombies']-$zone['controlpoints_citizens']))
                 . $buttons->button_round('dig', array_sum((array)$zone['items']))
                 . $buttons->button_round('zombies', $zone['zombies'])
-                . $buttons->button_round('citizens', count($zone_fellows)-1)
+                . $buttons->button_round('citizens', count($zone_fellows))
                 . $buttons->button_round('build', min($zone['city_size'], 1));
             ?>
         </div>
