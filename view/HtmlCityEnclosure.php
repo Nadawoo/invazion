@@ -13,7 +13,7 @@ class HtmlCityEnclosure
     
     /**
      * Le menu horizontal pour les différentes parties de la ville
-     * (banque, maison, porte...)
+     * (dépôt, maison, porte...)
      * 
      * @return string
      */
@@ -55,7 +55,7 @@ class HtmlCityEnclosure
     
     /**
      * Bloc à l'intérieur de la ville :
-     * liste des objets dans la banque de la ville
+     * liste des objets dans le dépôt de la ville
      * 
      * @param  string $html_zone_items La liste HTML des objets de la zone, générée
      *                                 par la classe HtmlLayout->zone_items()
@@ -67,8 +67,8 @@ class HtmlCityEnclosure
         if ($html_zone_items === '') {
             
             $html_bank_items = '<div class="grey">
-                    <br>Aucun objet dans la banque&nbsp;!
-                    Vous devriez y déposer quelques objets personnels pour la remplir...
+                    <br>Aucun objet dans le dépôt&nbsp;!
+                    Vous devriez y déposer quelques objets personnels pour le remplir...
                 </div>';
         }
         else {
@@ -78,7 +78,7 @@ class HtmlCityEnclosure
         
         return '
             <div class="city_block">
-                <h2>Banque</h2>
+                <h2>Dépôt</h2>
                 <div class="contents">
                 '. $html_bank_items .'
                 </div>
@@ -286,7 +286,7 @@ class HtmlCityEnclosure
      * @param array $city_constructions   L'état des chantiers de la ville (avancement...)
      * @param int   $total_defenses       Total des points de défense de la ville
      *                                    (somme des points de tous les chantiers achevés)
-     * @param array $zone_items           Les objets disponibles dans la banque de la ville
+     * @param array $zone_items           Les objets disponibles dans le dépôt de la ville
      *                                    (qui sont, à ce jour, les objets au sol)
      * @return string
      */
@@ -547,9 +547,9 @@ class HtmlCityEnclosure
     
     
    /**
-    * Quantité disponible en banque pour un objet donné
+    * Quantité disponible dans le dépôt de la ville pour un objet donné
     * 
-    * @param  array $zone_items Liste des objets de la case (de la banque)
+    * @param  array $zone_items Liste des objets de la case (du dépôt)
     * @param  int   $item_id    L'ID de l'objet dont on veut connaître la quantité
     * @return int La quantié de l'objet
     */
@@ -564,7 +564,7 @@ class HtmlCityEnclosure
      * pour fabriquer un objet ou construire un chantier
      * 
      * @param  string $item_name        Le nom de l'objet
-     * @param  int    $available_amount La quantité disponible en banque
+     * @param  int    $available_amount La quantité disponible dans le dépôt
      * @param  int    $required_amount  La quantité requise pour la fabrication
      * @param  string $comment_for      Code indiquant quels textes explicatifs devront 
      *                                  être affichés dans les infobulles
@@ -575,17 +575,17 @@ class HtmlCityEnclosure
         
         if ($comment_for === 'workshop') {
             
-            $enough     = "La banque de la ville contient suffisamment de ressources de ce type\n"
+            $enough     = "Le dépôt de la ville contient suffisamment de ressources de ce type\n"
                         . "pour fabriquer l'objet.";
             $not_enough = "Vous devez accumuler davantage de ressources de ce type\n"
-                        . "dans la banque de la ville avant de pouvoir fabriquer l'objet.";
+                        . "dans le dépôt de la ville avant de pouvoir fabriquer l'objet.";
         }
         elseif ($comment_for === 'constructions') {
             
-            $enough     = "La banque de la ville contient suffisamment de ressources de ce type\n"
+            $enough     = "Le dépôt de la ville contient suffisamment de ressources de ce type\n"
                         . "pour envisager de construire ce chantier.";
             $not_enough = "Il n'y a pas assez de ressources de ce type\n"
-                        . "dans la banque de la ville pour construire ce chantier.";
+                        . "dans le dépôt de la ville pour construire ce chantier.";
         }
         elseif ($comment_for === 'action_points') {
             

@@ -45,7 +45,7 @@
         </div>
         <div class="road"><img src="resources/img/icons8/arrow-down-48.png"  class="arrow_left" alt="&lt;"></div>
         <div id="bank">
-            <div class="label">La banque</div>
+            <div class="label">Le dépôt</div>
             <span class="big_icon">&#x1F3E6;</span>
         </div>
         <div class="road"><img src="resources/img/icons8/arrow-down-48.png"  class="arrow_right" alt="&gt;"></div>

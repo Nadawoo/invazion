@@ -1,5 +1,5 @@
 /*
- * CSS pour l'interface de l'intérieur de la ville (banque, chantiers...)
+ * CSS pour l'interface de l'intérieur de la ville (dépôt, chantiers...)
  */
 
 /* Fond translucide pour masquer la carte */
@@ -56,7 +56,7 @@
     margin-bottom:0.25em;
 }
 
-/* Permet de mettre les blocs de la ville (banque, maison...) sur plusieurs lignes */
+/* Permet de mettre les blocs de la ville (dépôt, maison...) sur plusieurs lignes */
 .city_row {
     /* C'est le javascript du menu de la ville qui les affichera en "flex" */
     display:none;
@@ -71,7 +71,7 @@
     background:white;
     border-radius:0.5em;
 }
-/* 1 pour la banque, 1 pour le puits, etc. */
+/* 1 pour le dépôt, 1 pour le puits, etc. */
 .city_block {
     background:white;
     border-radius:0.5em;    

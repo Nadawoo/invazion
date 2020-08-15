@@ -190,7 +190,7 @@ echo $popup->customised('popsuccess', '', nl2br($msg_popup));
     
     <?php
     // Si le citoyen est dans une ville, affiche l'enceinte de la ville
-    // (puits, banque, chantiers...) par-dessus la carte 
+    // (puits, dépôt, chantiers...) par-dessus la carte 
     if ($citizen['is_inside_city'] === 1) {
         
         echo '
