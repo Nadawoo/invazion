@@ -80,6 +80,11 @@ class HtmlCityEnclosure
         return '
             <div class="city_block">
                 <h2>Dépôt</h2>
+                <div class="descr">Les joueurs déposent ici les objets trouvés 
+                    lors de leurs <a onclick="switchCityTab(\'city_door\')">expéditions</a>. Utilisez-les pour 
+                    <a onclick="switchCityTab(\'city_build\')">construire la ville</a>... 
+                    ou <a onclick="switchCityTab(\'city_perso\')">votre propre habitation</a>.
+                </div>
                 <div class="contents">
                 '. $html_bank_items .'
                 </div>
@@ -271,6 +276,12 @@ class HtmlCityEnclosure
         return '
             <div class="city_block">
                 <h2>Mon sac</h2>
+                <div class="descr">Déposez les objets de votre sac 
+                    <a onclick="switchCityTab(\'city_storage\')">au dépôt de la ville</a>
+                    pour bâtir <a onclick="switchCityTab(\'city_build\')">des chantiers communs</a>... 
+                    ou gardez-les pour aménager
+                    <a onclick="switchCityTab(\'city_perso\')">votre habitation</a>.
+                </div>
                 <div class="contents">
                 '.$html_bag_items.'
                 </div>
@@ -526,9 +537,10 @@ class HtmlCityEnclosure
         return '
             <div class="city_block" style="width:21.5em">
                 <h2>Atelier</h2>
-                <div class="descr">En assemblant des objets à l\'atelier, vous pouvez 
-                    augmenter les défenses de la ville ou créer des ressources rares 
-                    pour les chantiers...</div>
+                <div class="descr">En assemblant des objets à l\'atelier, vous  
+                    augmentez les défenses de la ville ou créez des ressources utiles 
+                    pour <a onclick="switchCityTab(\'city_build\')">les chantiers communs</a>...
+                </div>
                 <div class="contents">
                 '.$html_craftable_items.'
                 </div>

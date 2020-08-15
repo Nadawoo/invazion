@@ -92,8 +92,10 @@
 }
 .city_block .descr {
     margin:0 0.2em 1em 0.2em;
-    font-size:0.9em;
+    padding-bottom:0.5em;
+    font-size:0.85em;
     font-style:italic;
+    border-bottom:1px solid grey;
 }
 /* Contenu du bloc, sous le titre du bloc */
 .city_block .contents {
