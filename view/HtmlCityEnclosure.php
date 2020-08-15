@@ -155,7 +155,7 @@ class HtmlCityEnclosure
             
             $html_houses .= '
                 <div id="citizen'.$citizen['citizen_id'].'" style="display:none">
-                    <div class="city_description">
+                    <div class="city_bandeau">
                         <div class="back_button" onclick="toggleHouse(\'citizen'.$citizen['citizen_id'].'\')"
                             title="Retourner à la liste des citoyens">
                             &#10096;&#10096;
@@ -509,18 +509,25 @@ class HtmlCityEnclosure
                                                             'workshop');
                 }
                 
-                $html_craftable_items  .= '<h3>» '.$caracs['name'].'</h3>'
-                    . '<ul class="items_list">'
-                    . $compo_list
-                    . '<li>'.$buttons->craft($item_id).'</li>'
-                    . '</ul>'
-                    . '<hr>';
+                $css_id = 'workshop'.$item_id;
+                $html_craftable_items  .= '
+                    <div onclick="toggle(\''.$css_id.'\')" class="foldable">
+                        <h3>'.$caracs['name'].'</h3>
+                        <div class="unfold_button">composants&nbsp;<div class="arrow">&#65088;</div></div>
+                    </div>
+                    <ul class="items_list folded" id="'.$css_id.'">
+                    ' . $compo_list . '
+                    <li>'.$buttons->craft($item_id).'</li>
+                    </ul>';
             }
         }
         
         return '
             <div class="city_block" style="width:21.5em">
                 <h2>Atelier</h2>
+                <div class="descr">En assemblant des objets à l\'atelier, vous pouvez 
+                    augmenter les défenses de la ville ou créer des ressources rares 
+                    pour les chantiers...</div>
                 <div class="contents">
                 '.$html_craftable_items.'
                 </div>

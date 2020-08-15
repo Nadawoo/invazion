@@ -62,8 +62,8 @@
     display:none;
     justify-content:center;
 }
-/* Bloc contenant un petit texte explicatif de la partie de la ville où on se trouve */
-.city_description {
+/* Block containing a title for the section of the city where we are */
+.city_bandeau {
     width:93%;
     margin:auto;
     margin-top:1em;
@@ -71,7 +71,7 @@
     background:white;
     border-radius:0.5em;
 }
-/* 1 pour le dépôt, 1 pour le puits, etc. */
+/* 1 block for the storage, 1 for the well, etc. */
 .city_block {
     background:white;
     border-radius:0.5em;    
@@ -89,6 +89,11 @@
     color:grey;
     background:lightgrey;   
     font-variant:small-caps;
+}
+.city_block .descr {
+    margin:0 0.2em 1em 0.2em;
+    font-size:0.9em;
+    font-style:italic;
 }
 /* Contenu du bloc, sous le titre du bloc */
 .city_block .contents {
@@ -113,6 +118,39 @@
 }
 .city_block td {
     border:none;
+}
+/* Foldable sections for lighter interface (e.g to hide the components in the workshop)*/
+.city_block .foldable {
+    display:flex;
+    justify-content:space-between;
+    margin-top:0.6em;
+    padding-right:0.3em;
+    background:lightgrey;
+    cursor:pointer;
+    box-shadow:2px 2px 3px black;
+}
+.foldable:hover {
+    box-shadow:1px 1px 1px black;
+    position:relative;
+    top: 0.1em;
+    left:0.1em;
+}
+.foldable ::selection {
+    background:none;
+}
+.foldable .unfold_button {
+    display:flex;
+    align-items:center;
+    font-size:0.8em;
+    color:darkred;
+}
+.foldable .arrow {
+    transform:rotate(-90deg);
+    font-weight:bold;
+}
+.city_block .folded {
+    display:none;
+    margin:0.4em 0 1.5em 0;
 }
 
 /* Liste des citoyens */

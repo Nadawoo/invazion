@@ -478,11 +478,11 @@ class HtmlButtons
     {
         
         return
-        '<form method="post" action="#popsuccess" style="text-align:center;margin-top:0.25em">
+        '<form method="post" action="#popsuccess" class="redbutton" style="margin-top:0.25em">
             <input type="hidden" name="api_name" value="buildings">
             <input type="hidden" name="action" value="build">
             <input type="hidden" name="params[item_id]" value="'.$item_id.'">
-            &#128295;<input type="submit" class="as_link" value="Assembler l\'objet">	
+            &#128295;<input type="submit" value="Assembler l\'objet">	
         </form>';
     }
     
