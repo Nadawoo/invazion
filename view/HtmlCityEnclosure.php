@@ -343,7 +343,7 @@ class HtmlCityEnclosure
                     <tr>
                         <td onclick="toggle(\''.$css_id.'\')" class="foldable" style="background:darkgreen;margin:0">
                             <h3 style="color:lightgreen">» '.$constr['name'].'</h3>
-                            <div class="unfold_button" style="color:lightgreen">&check; Fini !</div>
+                            <div class="unfold_button" style="color:lightgreen">&check; Fini ! &nbsp;</div>
                         </td>
                         <td style="cursor:help" 
                             title="Ce chantier augmente de '.$constr['defenses'].' points les défenses de la ville !">
@@ -361,7 +361,7 @@ class HtmlCityEnclosure
                     <tr>
                         <td onclick="toggle(\''.$css_id.'\')" class="foldable" style="margin:0">
                             <h3 style="color:grey">» '.$constr['name'].'</h3>
-                            <div class="unfold_button">constr.&nbsp;<div class="arrow">&#65088;</div></div>
+                            <div class="unfold_button">bâtir&nbsp;<div class="arrow">&#65088;</div></div>
                         </td>
                         <td style="color:grey;cursor:help"
                             title="Si vous le construisez, ce chantier augmentera de '.$constr['defenses'].' points les défenses de la ville.">
