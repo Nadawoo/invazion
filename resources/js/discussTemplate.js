@@ -21,8 +21,8 @@ function htmlDiscussionNotif(topicTitle, date, url, authorId, authorPseudo, last
 function htmlDiscussion(topicId, topicTitle, lastMessage, nbrOtherMessages) {
     
     var url = urlDiscussion(topicId, lastMessage.message_id),
-        otherMessagesLink = '<a href="'+url+'" target="_blank" class="link_other_messages">··· voir '+nbrOtherMessages+' réponses ···</a>',
-        readMoreLink     = ' <a href="'+url+'" target="_blank" style="font-size:0.8em">[suite...]</a>';
+        readMoreLink      = ' <a href="'+url+'" target="_blank" style="font-size:0.8em">[suite...]</a>';
+    var otherMessagesLink = (nbrOtherMessages>0) ? '<a href="'+url+'" target="_blank" class="link_other_messages">··· voir '+nbrOtherMessages+' réponses ···</a>' : '';
     
     return '<hr>\
             <div class="topic discuss">\
