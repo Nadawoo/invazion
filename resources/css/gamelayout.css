@@ -237,6 +237,8 @@
  */
 /* The big round action buttons with icon */
 #round_actions {
+    float:right;
+    width:24rem;
     padding:1rem 0 1rem 0;
     text-align:center;
 }
@@ -589,6 +591,14 @@ input[type="submit"] {
 /*
  * Responsive design for all CSS
  */
+@media (max-width:835px) {
+    #round_actions {
+        float:left !important;
+        width:26rem;
+        padding:0.2rem;
+    }
+}
+
 @media (max-width:600px) {
     .box{
         width: 80%;
@@ -597,7 +607,6 @@ input[type="submit"] {
         width: 80%;
     }
     #map {
-        width:60%;
         margin-right:0.2em;
     }
     /* Actions à droite de la carte */
