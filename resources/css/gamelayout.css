@@ -609,6 +609,9 @@ input[type="submit"] {
     #map {
         margin-right:0.2em;
     }
+    #phone {
+        display:none;
+    }
     /* Actions à droite de la carte */
     fieldset {
         padding:0 0.5em 0.5em 0.5em;
