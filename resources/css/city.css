@@ -125,7 +125,7 @@
 .city_block .foldable {
     display:flex;
     justify-content:space-between;
-    margin-top:0.6em;
+    margin:0.8em 0;
     padding-right:0.3em;
     background:lightgrey;
     cursor:pointer;
@@ -152,7 +152,7 @@
 }
 .city_block .folded {
     display:none;
-    margin:0.4em 0 1.5em 0;
+    margin:0.8em 0 1.5em 0;
 }
 
 /* Liste des citoyens */

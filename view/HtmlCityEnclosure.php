@@ -312,6 +312,7 @@ class HtmlCityEnclosure
         foreach ($constructions_caracs as $id=>$constr) {
             
             $html_resources = '';
+            $css_id = 'building'.$id;
             
             // Valeurs par défaut si le chantier n'est pas du tout commencé
             if (!isset($city_constructions[$id])) {
@@ -339,35 +340,37 @@ class HtmlCityEnclosure
             if ($city_constructions[$id]['is_completed'] === 1) { 
                 
                 $html_constructions .= '
-                    <tr style="background:lightgreen">
-                        <td style="padding:0 0.2em">
-                            <h3>» '.$constr['name'].'</h3>
+                    <tr>
+                        <td onclick="toggle(\''.$css_id.'\')" class="foldable" style="background:darkgreen;margin:0">
+                            <h3 style="color:lightgreen">» '.$constr['name'].'</h3>
+                            <div class="unfold_button" style="color:lightgreen">&check; Fini !</div>
                         </td>
-                        <td rowspan="2" style="background:lightgreen;cursor:help" 
+                        <td style="cursor:help" 
                             title="Ce chantier augmente de '.$constr['defenses'].' points les défenses de la ville !">
-                            <strong>+&nbsp;'.$constr['defenses'].'</strong><br>défenses
+                            <strong style="color:darkgreen">+&nbsp;'.$constr['defenses'].'</strong>
                         </td>
                     </tr>
-                    <tr style="border-bottom:1px solid grey">
-                        <td style="font-size:0.85em">&#9727; Chantier terminé &#9722;</td>
+                    <tr id="'.$css_id.'" class="folded">
+                        <td style="font-size:0.85em;text-align:center">La construction de ce chantier est terminée !</td>
                     </tr>
                     ';
             }
             else {
                 
                 $html_constructions .= '
-                    <tr style="background:lightsteelblue;border-top:1px solid grey">
-                        <td style="padding:0 0.2em">
-                            <h3>» '.$constr['name'].'</h3>
+                    <tr>
+                        <td onclick="toggle(\''.$css_id.'\')" class="foldable" style="margin:0">
+                            <h3 style="color:grey">» '.$constr['name'].'</h3>
+                            <div class="unfold_button">constr.&nbsp;<div class="arrow">&#65088;</div></div>
                         </td>
-                        <td rowspan="2" style="background:lightsteelblue;color:grey;cursor:help"
-                            title="Ce chantier augmenterait de '.$constr['defenses'].' points les défenses de la ville s\'il était construit.">
-                            <strong>+&nbsp;'.$constr['defenses'].'</strong><br>défenses
+                        <td style="color:grey;cursor:help"
+                            title="Si vous le construisez, ce chantier augmentera de '.$constr['defenses'].' points les défenses de la ville.">
+                            <strong>+&nbsp;'.$constr['defenses'].'</strong>
                         </td>
                     </tr>
-                    <tr style="border-bottom:1px solid grey">
-                        <td style="width:95%">
-                            <ul class="items_list" style="padding-left:0">
+                    <tr>
+                        <td id="'.$css_id.'" class="folded">
+                            <ul class="items_list">
                                 ' . $html_resources . '
                                 ' . $html_AP_invested . '
                                 ' . $buttons->construct($id) . '
@@ -388,7 +391,11 @@ class HtmlCityEnclosure
                         <div style="display:inline-block;height:1.8em;width:1.8em;font-weight:normal;font-size:1.5em;color:white;background:green;border-radius:2em">'.$total_defenses.'</div> points
                     </div>
                 </div>
-                <table style="margin:0">
+                <table style="width:100%;margin:0">
+                    <tr style="font-size:0.9em">
+                        <td></td>
+                        <td>Défenses</td>
+                    </tr>
                     '.$html_constructions.'
                 </table>
             </div>
