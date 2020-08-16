@@ -594,8 +594,9 @@ input[type="submit"] {
 @media (max-width:835px) {
     #round_actions {
         float:left !important;
-        width:26rem;
-        padding:0.2rem;
+        width:100%;
+        max-width:26rem;
+        padding:0.2rem 0;
     }
 }
 

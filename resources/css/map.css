@@ -9,6 +9,7 @@
     background:repeating-linear-gradient(0.38turn, black, black 2px, #17202a 2px, #17202a 4px);
     box-shadow: 5px 5px 10px black;
     overflow:auto;
+    max-width:95%;
     /* Pour que la largeur de la ville en surimpression soit calculée 
        par rapport celle la carte et pas à celle de la page */
     position:relative;
