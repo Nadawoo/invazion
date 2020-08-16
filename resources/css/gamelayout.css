@@ -241,6 +241,7 @@
     width:24rem;
     padding:1rem 0 1rem 0;
     text-align:center;
+    white-space:nowrap;
 }
 .round_action_block {
     position:relative;
@@ -601,6 +602,9 @@ input[type="submit"] {
 }
 
 @media (max-width:600px) {
+    #game_container {
+        padding:0;
+    }
     .box{
         width: 80%;
     }
