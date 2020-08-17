@@ -270,18 +270,19 @@ echo $popup->customised('popsuccess', '', nl2br($msg_popup));
         
     </div>
     
-    
-    <?php
-    if ($citizen['user_id'] === NULL) {        
-        // Si le joueur n'est pas connecté, affiche le panneau de connexion
-        echo $layout->block_connect();
-    }
-    elseif ($citizen['citizen_id'] === NULL) {         
-        // Si le joueur est connecté mais n'a pas encore créé son citoyen, 
-        // affiche le panneau de création de citoyen
-        echo $layout->block_create_citizen();
-    }
-    ?>
+    <div style="margin-top:8rem">
+        <?php
+        if ($citizen['user_id'] === NULL) {        
+            // Si le joueur n'est pas connecté, affiche le panneau de connexion
+            echo $layout->block_connect();
+        }
+        elseif ($citizen['citizen_id'] === NULL) {         
+            // Si le joueur est connecté mais n'a pas encore créé son citoyen, 
+            // affiche le panneau de création de citoyen
+            echo $layout->block_create_citizen();
+        }
+        ?>
+    </div>
     
     <div style="min-height:16em;margin-bottom:1em;margin-left:27rem;">
         
