@@ -284,7 +284,7 @@ echo $popup->customised('popsuccess', '', nl2br($msg_popup));
         ?>
     </div>
     
-    <div style="min-height:16em;margin-bottom:1em;margin-left:27rem;">
+    <div id="column_right">
         
         <div id="message_move"><?php echo $msg_move ?></div>
         
@@ -314,9 +314,9 @@ echo $popup->customised('popsuccess', '', nl2br($msg_popup));
                 <?php 
                 echo $buttons->button('dig').'<br>';
                 ?>
-                &#x1F4BC; <strong>Déposer un objet de mon sac :</strong>
+                &#x1F4BC; <strong>Déposer un objet de mon sac :</strong>
                     <div style="margin-left:1.5rem;"><?php echo $html['bag_items'] ?></div>
-                &#x270B;&#x1F3FC; <strong>Ramasser un objet au sol :</strong>
+                &#x270B;&#x1F3FC; <strong>Ramasser un objet au sol :</strong>
                     <div style="margin-left:1.5rem;"><?php echo $html['zone_items'] ?></div>
             </fieldset>
 

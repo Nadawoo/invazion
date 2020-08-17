@@ -21,6 +21,12 @@
     /*overflow:auto; */
 }
 
+#column_right {
+    min-height:16em;
+    margin-bottom:1em;
+    margin-left:27rem;
+}
+
 /* Règles du jeu sous la carte */
 #rules {
     padding:0 1rem;
@@ -604,6 +610,13 @@ input[type="submit"] {
 @media (max-width:600px) {
     #game_container {
         padding:0;
+    }
+    #column_right {
+       position:absolute;
+       left:0;
+       width:100%;
+       max-width:26rem;
+       margin:0;
     }
     .box{
         width: 80%;
