@@ -44,7 +44,7 @@ function hide(element_name) {
  * Masque des éléments à partir de noms de classes (pas d'id).
  * Utilisé notamment pour le menu de la ville.
  * 
- * @param   {string} clasesNames Liste des noms des classes à masquer
+ * @param   {array} classesNames Liste des noms des classes à masquer
  * @returns {undefined}
  */
 function hideClasses(classesNames) {
@@ -53,10 +53,32 @@ function hideClasses(classesNames) {
     for (i=0; i < classesNames.length; i++) {
         
         var classes = document.getElementsByClassName(classesNames[i]);
-
+        
         var i2;
         for (i2=0; i2 < classes.length; i2++) {
             classes[i2].style.display = "none";
+        }
+    }
+}
+
+
+/**
+ * Affiche des éléments masqués à partir de noms de classes (pas d'id).
+ * Inverse de hideClasses()
+ * 
+ * @param   {array} classesNames Liste des noms des classes à afficher
+ * @returns {undefined}
+ */
+function displayClasses(classesNames) {
+    
+    var i;
+    for (i=0; i < classesNames.length; i++) {
+        
+        var classes = document.getElementsByClassName(classesNames[i]);
+        
+        var i2;
+        for (i2=0; i2 < classes.length; i2++) {
+            classes[i2].style.display = "block";
         }
     }
 }
@@ -86,10 +108,14 @@ function displayFlex(className) {
  * @param {type} inactivated_tab L'onglet à mettre en arrière-plan (masqué)
  * @return {undefined}
  */
-function switch_tab(activated_tab, inactivated_tab) {
+function switch_tab(activated_tab, inactivated_tabs) {
     
     document.getElementById(activated_tab).className = "active_tab";
-    document.getElementById(inactivated_tab).className = "inactive_tab";
+    
+    var i;
+    for (i = 0; i < inactivated_tabs.length; i++) {
+        document.getElementById(inactivated_tabs[i]).className = "inactive_tab";
+    }
 }
 
 

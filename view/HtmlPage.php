@@ -41,7 +41,7 @@ class HtmlPage
                 <meta charset="utf-8">
                 <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
                 <link rel="stylesheet" type="text/css" href="resources/css/sitelayout.css?v3.6">
-                <link rel="stylesheet" type="text/css" href="resources/css/gamelayout.css?v5.4">
+                <link rel="stylesheet" type="text/css" href="resources/css/gamelayout.css?v5.5">
                 <link rel="stylesheet" type="text/css" href="resources/css/map.css?v2.6">
                 <link rel="stylesheet" type="text/css" href="resources/css/smartphone.css?v1.5">
                 <link rel="stylesheet" type="text/css" href="resources/css/myzone.css?v1.3">
@@ -86,8 +86,8 @@ class HtmlPage
         return '        </div>
                     <script type="text/javascript" src="resources/js/ZombLib.js?v1.0"></script>
                     <script type="text/javascript" src="resources/js/discussTemplate.js?v3.4"></script>
-                    <script type="text/javascript" src="resources/js/scripts.js?v3.6"></script>
-                    <script type="text/javascript" src="resources/js/events.js?v3.4"></script>
+                    <script type="text/javascript" src="resources/js/scripts.js?v3.7"></script>
+                    <script type="text/javascript" src="resources/js/events.js?v3.5"></script>
                 </body>
             </html>';
     }

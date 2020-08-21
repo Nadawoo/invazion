@@ -405,9 +405,9 @@ class HtmlCityEnclosure
                 <div class="contents">
                     
                     <nav style="margin-bottom:0.9em">
-                        <a href="#" style="border-bottom:0.3em solid #8b0000">Tout</a> 
-                        <a href="#">Discussions</a> 
-                        <a href="#">Evénéments</a>
+                        <a id="tabWallAll" class="active_tab">Tout</a> 
+                        <a id="tabWallDiscuss">Discussions</a> 
+                        <a id="tabWallEvents">Evénéments</a>
                     </nav>
 
                     <div id="send" class="topic discuss">

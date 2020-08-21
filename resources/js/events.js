@@ -69,4 +69,20 @@ if (document.getElementById('map') !== null) {
     document.getElementById("minimap").addEventListener("click", function() {
         toggleTooltip(document.getElementById("me").closest(".hexagon"));
     });
+    
+    // Filter discussions/events in the city
+    document.getElementById("tabWallAll").addEventListener("click", function() {
+        displayClasses(["discuss", "event"]);
+        switch_tab("tabWallAll", ["tabWallDiscuss", "tabWallEvents"]);
+    });
+    document.getElementById("tabWallDiscuss").addEventListener("click", function() {
+        displayClasses(["discuss"]);
+        hideClasses(["event"]);
+        switch_tab("tabWallDiscuss", ["tabWallAll", "tabWallEvents"]);
+    });
+    document.getElementById("tabWallEvents").addEventListener("click", function() {
+        displayClasses(["event"]);
+        hideClasses(["discuss"]);
+        switch_tab("tabWallEvents", ["tabWallAll", "tabWallDiscuss"]);
+    });
 }
