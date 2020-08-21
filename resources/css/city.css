@@ -308,29 +308,29 @@
  * Chat (instant messagerie) integrated in the different parts of the city 
  * (constructions, bank...)
  */
-#chat {
+#wall {
     width:18rem;
 }
-#chat h2 {
+#wall h2 {
     text-align:center; /* Main title of the block */
 }
-#chat .contents {
+#wall .contents {
     text-align:left;
 }
-#chat nav {
+#wall nav {
     font-size:0.8em;
 }
 
 /* To send a message */
-#chat textarea, #chat input[type="text"] {
+#wall textarea, #wall input[type="text"] {
     width:98%;
     border-radius:0.3em;
     border:1px solid grey;
 }
-#chat textarea {
+#wall textarea {
     height:8em;
 }
-#chat input[type="submit"] {
+#wall input[type="submit"] {
     width:100%;
     padding:0.1em;
     border:none;
@@ -341,31 +341,31 @@
     font-variant: normal;
     letter-spacing:0.03em;
 }
-#chat input[type="submit"]:hover {
+#wall input[type="submit"]:hover {
     background:#b03a2e;
 }
 
 /* Common presentation for discussions and events */
-#chat .topic {
+#wall .topic {
     padding-bottom:0.2rem;
     border-radius:0.3em;
 }
-#chat h3 { /* Topic title */
+#wall h3 { /* Topic title */
     margin:0;
     border-radius:0.3em 0.3em 0 0;
     border-bottom:1px solid #515a5a;
     font-weight:normal;
     background:#273746;
 }
-#chat h3 a {
+#wall h3 a {
     display:block;
     padding:0.3em;
     color:white;
 }
-#chat h3:hover {
+#wall h3:hover {
     background:#566573;
 }
-#chat .message {
+#wall .message {
     margin-top:0.2em;    
     padding:0.3em 0.2em;
     background: #f6ddcc ;
@@ -373,52 +373,52 @@
     border-bottom-right-radius:0; /* For an esthetic join withe the "Reply" button */
     word-wrap:break-word;
 }
-#chat .time {
+#wall .time {
     font-size:0.7em;
     color:grey;
     cursor:help;
 }
-#chat .text {
+#wall .text {
     font-size:0.9em;
 }
-#chat .link_other_messages { /* Link "show other message" in truncated discussions */
+#wall .link_other_messages { /* Link "show other message" in truncated discussions */
     display:block;
     margin:0.2rem;
     text-align:center;
     font-size:0.8em;
     color:lightgrey;
 }
-#chat .link_other_messages:hover {
+#wall .link_other_messages:hover {
     color:#e74c3c;
 }
 
 /* Specific presentation for the discussions */
-#chat .discuss  {
+#wall .discuss  {
     background:#34495e; /* #7b241c #34495e */
     margin:1.5em 0;
     box-shadow:0px 8px 15px black;
 }
-#chat .discuss .message {
+#wall .discuss .message {
     margin:0.2rem 0.4rem 0 0.4rem;
 }
-#chat .discuss .time {
+#wall .discuss .time {
     margin-left:2.1em;
 }
-#chat .discuss form {
+#wall .discuss form {
     display:none;
     padding:0 0.4rem;
 }
-#chat #send {
+#wall #send {
     padding:0.1em;
 }
-#chat #send .message {
+#wall #send .message {
     margin:0;
 }
-#chat .reply_button { /* Button to display the form under a discussion */
+#wall .reply_button { /* Button to display the form under a discussion */
     padding-top:0.2rem;
     padding-bottom:0.1rem;
 }
-#chat .reply_button a {
+#wall .reply_button a {
     display:block;
     margin-left:65%;
     margin-right: 0.4rem;
@@ -434,17 +434,17 @@
 }
 
 /* Specific presentation for the events */
-#chat .event  {
+#wall .event  {
     margin:0.7em 0;
     padding:0.7em 0;
     border-radius:0;
     border-top: 1px solid grey;
 }
-#chat .event .message {
+#wall .event .message {
     padding:0;
     background:none;
 }
-#chat .comment .text {
+#wall .comment .text {
     margin-left:1.5em;
     padding:0.2em;
     background:#f6ddcc;

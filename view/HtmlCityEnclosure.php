@@ -400,7 +400,7 @@ class HtmlCityEnclosure
                 </table>
             </div>
             
-            <div id="chat" class="city_block">
+            <div id="wall" class="city_block">
                 <h2>Communications</h2>
                 <div class="contents">
                     

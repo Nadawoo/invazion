@@ -587,7 +587,7 @@ input[type="submit"] {
     color:grey;
 }
 
-#chat .active_tab {
+#wall .active_tab {
     border-bottom:0.3em solid #8b0000;
 }
 
