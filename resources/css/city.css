@@ -341,7 +341,8 @@
     font-variant: normal;
     letter-spacing:0.03em;
 }
-#wall input[type="submit"]:hover {
+#wall input[type="submit"]:hover,
+#wall .reply_button a:hover {
     background:#b03a2e;
 }
 
@@ -395,7 +396,7 @@
 /* Specific presentation for the discussions */
 #wall .discuss  {
     background:#34495e; /* #7b241c #34495e */
-    margin:1.5em 0;
+    margin:2.5rem 0;
     box-shadow:0px 8px 15px black;
 }
 #wall .discuss .message {
@@ -430,7 +431,8 @@
     border-radius:0.3rem;
     border-top-left-radius:0;
     border-top-right-radius:0;
-    background:white;    
+    background:darkred;
+    color:white;
 }
 
 /* Specific presentation for the events */

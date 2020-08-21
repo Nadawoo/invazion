@@ -24,8 +24,7 @@ function htmlDiscussion(topicId, topicTitle, lastMessage, nbrOtherMessages) {
         readMoreLink      = ' <a href="'+url+'" target="_blank" style="font-size:0.8em">[suite...]</a>';
     var otherMessagesLink = (nbrOtherMessages>0) ? '<a href="'+url+'" target="_blank" class="link_other_messages">··· voir '+nbrOtherMessages+' réponses ···</a>' : '';
     
-    return '<hr>\
-            <div class="topic discuss">\
+    return '<div class="topic discuss">\
                 <h3><a href="'+url+'" target="_blank">\
                     <span style="font-weight:normal">&#x1F4AC;</span> '+topicTitle+'\
                 </a></h3>\
