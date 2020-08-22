@@ -21,15 +21,16 @@ function htmlDiscussionNotif(topicTitle, date, url, authorId, authorPseudo, last
 function htmlDiscussion(topicId, topicTitle, lastMessage, nbrOtherMessages) {
     
     var url = urlDiscussion(topicId, lastMessage.message_id);
-    var otherMessagesLink = (nbrOtherMessages>0) ? '<a href="'+url+'" target="_blank" class="link_other_messages">··· voir '+nbrOtherMessages+' réponses ···</a>' : '';
+    var otherMessagesLink = (nbrOtherMessages>0) ? '<a id="loadDiscussion'+topicId+'" class="link_other_messages" onclick="loadDiscussion('+topicId+')">··· voir '+nbrOtherMessages+' réponses ···</a>' : '';
     
     return '<div class="topic discuss">\
                 <h3><a href="'+url+'" target="_blank">\
                     <span style="font-weight:normal">&#x1F4AC;</span> '+topicTitle+'\
                 </a></h3>\
-                '+otherMessagesLink+'\
-                '+htmlDiscussionMessage(lastMessage.message, lastMessage.author_pseudo, lastMessage.datetime_utc)+'\
-                <div id="replies'+topicId+'"></div>\
+                <div id="replies'+topicId+'">\
+                    '+otherMessagesLink+'\
+                    '+htmlDiscussionMessage(lastMessage.message, lastMessage.author_pseudo, lastMessage.datetime_utc)+'\
+                </div>\
                 <div class="reply_button">\
                     <a id="replyButton'+topicId+'" href="#" onclick="display(\'sendform'+topicId+'\');this.style.display=\'none\';return false">\
                         Répondre...\

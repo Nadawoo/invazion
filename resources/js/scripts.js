@@ -592,6 +592,25 @@ async function updateDiscussionsList() {
 
 
 /**
+ * Gets the all the messages of a discussion by calling the InvaZion's API to 
+ * 
+ * @param {int} topicId the ID of the discussion to load
+ * @returns {string} The JSON returned by the API
+ */
+async function loadDiscussion(topicId) {
+    
+    var json = await callApi("GET", "discuss/threads", `action=get&topic_id=${topicId}`),
+        messages = json["datas"]["messages"],
+        htmlMessages = "";
+    
+    for(var msg in messages) {
+        htmlMessages += htmlDiscussionMessage(messages[msg]["message"], messages[msg]["author_pseudo"], messages[msg]["datetime_utc"]);
+    }
+    document.getElementById("replies"+topicId).innerHTML = htmlMessages;
+}
+
+
+/**
  * Converts newlines into <br> in a text to preserves them in HTML
  * Source : https://gist.github.com/yidas/41cc9272d3dff50f3c9560fb05e7255e
  *
