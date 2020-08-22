@@ -423,7 +423,7 @@ async function connectUser() {
 /**
  * To send a reply in an existing discussion
  */
-async function replyDiscussion(topicId) {
+async function replyDiscussion(topicId, nbrMessages) {
     
     let citizenPseudo = document.getElementById("citizenPseudo").innerHTML,
         message  = document.getElementById("message"+topicId).value,
@@ -438,7 +438,7 @@ async function replyDiscussion(topicId) {
         // Unhides the "Reply" button
         document.getElementById("replyButton"+topicId).style.display = "block";
         // Appends the text of the posted reply at the bottom of the discussion
-        document.getElementById("replies"+topicId).innerHTML += htmlDiscussionMessage(message, citizenPseudo, new Date().toISOString());
+        document.getElementById("replies"+topicId).innerHTML += htmlDiscussionMessage(message, citizenPseudo, new Date().toISOString(), nbrMessages+1);
     }
     else {
         document.getElementById("replyError"+topicId).innerHTML = '<span class="red">'+json.metas.error_message+'</span>';
@@ -601,10 +601,12 @@ async function loadDiscussion(topicId) {
     
     var json = await callApi("GET", "discuss/threads", `action=get&topic_id=${topicId}`),
         messages = json["datas"]["messages"],
-        htmlMessages = "";
+        htmlMessages = "",
+        i = 0;
     
     for(var msg in messages) {
-        htmlMessages += htmlDiscussionMessage(messages[msg]["message"], messages[msg]["author_pseudo"], messages[msg]["datetime_utc"]);
+        i++;
+        htmlMessages += htmlDiscussionMessage(messages[msg]["message"], messages[msg]["author_pseudo"], messages[msg]["datetime_utc"], i);
     }
     document.getElementById("replies"+topicId).innerHTML = htmlMessages;
 }

@@ -379,6 +379,12 @@
 #wall .text {
     font-size:0.9em;
 }
+#wall .reply_num {
+    float:right;
+    margin-top:0.2em;
+    font-size:0.8em;
+    color:#566573;
+}
 #wall .link_other_messages { /* Link "show other message" in truncated discussions */
     display:block;
     margin:0.2rem;

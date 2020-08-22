@@ -29,13 +29,13 @@ function htmlDiscussion(topicId, topicTitle, lastMessage, nbrOtherMessages) {
                 </a></h3>\
                 <div id="replies'+topicId+'">\
                     '+otherMessagesLink+'\
-                    '+htmlDiscussionMessage(lastMessage.message, lastMessage.author_pseudo, lastMessage.datetime_utc)+'\
+                    '+htmlDiscussionMessage(lastMessage.message, lastMessage.author_pseudo, lastMessage.datetime_utc, nbrOtherMessages+1)+'\
                 </div>\
                 <div class="reply_button">\
                     <a id="replyButton'+topicId+'" href="#" onclick="display(\'sendform'+topicId+'\');this.style.display=\'none\';return false">\
                         Répondre...\
                     </a>\
-                    <form id="sendform'+topicId+'" method="post" action="" onsubmit="replyDiscussion('+topicId+'); return false;">\
+                    <form id="sendform'+topicId+'" method="post" action="" onsubmit="replyDiscussion('+topicId+', '+(nbrOtherMessages+1)+'); return false;">\
                         <div id="replyError'+topicId+'"></div>\
                         <textarea id="message'+topicId+'" placeholder="D\'accord ? Pas d\'accord ? Votre réponse ici..."></textarea>\
                         <input type="submit" value="Envoyer">\
@@ -45,9 +45,18 @@ function htmlDiscussion(topicId, topicTitle, lastMessage, nbrOtherMessages) {
 }
 
 
-function htmlDiscussionMessage(message, pseudo, utcDate) {
+/**
+ * 
+ * @param {string} message
+ * @param {string} pseudo
+ * @param {string} utcDate The date when the message was posted, in the ISO format
+ * @param {int} replyNum The number of order of the message in the discussion (1, 2, 3...)
+ * @returns {String}
+ */
+function htmlDiscussionMessage(message, pseudo, utcDate, replyNum) {
     
     return '<div class="message">\
+            <div class="reply_num">#'+replyNum+'</div>\
             <div class="pseudo">&#x1F464; <strong>'+pseudo+'</strong></div>\
             <div class="time" title="Fuseau horaire de Paris">'+htmlDate(utcDate)+'</div>\
             <div class="text">'+nl2br(message)+'</div>\
