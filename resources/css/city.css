@@ -352,15 +352,13 @@
 }
 #wall h3 { /* Topic title */
     margin:0;
+    padding:0.3em;
     border-radius:0.3em 0.3em 0 0;
     border-bottom:1px solid #515a5a;
     font-weight:normal;
     background:#273746;
-}
-#wall h3 a {
-    display:block;
-    padding:0.3em;
     color:white;
+    cursor:pointer;
 }
 #wall h3:hover {
     background:#566573;

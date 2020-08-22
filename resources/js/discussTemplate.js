@@ -24,9 +24,9 @@ function htmlDiscussion(topicId, topicTitle, lastMessage, nbrOtherMessages) {
     var otherMessagesLink = (nbrOtherMessages>0) ? '<a id="loadDiscussion'+topicId+'" class="link_other_messages" onclick="loadDiscussion('+topicId+')">··· voir '+nbrOtherMessages+' réponses ···</a>' : '';
     
     return '<div class="topic discuss">\
-                <h3><a href="'+url+'" target="_blank">\
+                <h3 onclick="toggle(\'replies'+topicId+'\')">\
                     <span style="font-weight:normal">&#x1F4AC;</span> '+topicTitle+'\
-                </a></h3>\
+                </h3>\
                 <div id="replies'+topicId+'">\
                     '+otherMessagesLink+'\
                     '+htmlDiscussionMessage(lastMessage.message, lastMessage.author_pseudo, lastMessage.datetime_utc, nbrOtherMessages+1)+'\
