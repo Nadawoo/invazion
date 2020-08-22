@@ -20,8 +20,7 @@ function htmlDiscussionNotif(topicTitle, date, url, authorId, authorPseudo, last
 
 function htmlDiscussion(topicId, topicTitle, lastMessage, nbrOtherMessages) {
     
-    var url = urlDiscussion(topicId, lastMessage.message_id),
-        readMoreLink      = ' <a href="'+url+'" target="_blank" style="font-size:0.8em">[suite...]</a>';
+    var url = urlDiscussion(topicId, lastMessage.message_id);
     var otherMessagesLink = (nbrOtherMessages>0) ? '<a href="'+url+'" target="_blank" class="link_other_messages">··· voir '+nbrOtherMessages+' réponses ···</a>' : '';
     
     return '<div class="topic discuss">\
@@ -29,7 +28,7 @@ function htmlDiscussion(topicId, topicTitle, lastMessage, nbrOtherMessages) {
                     <span style="font-weight:normal">&#x1F4AC;</span> '+topicTitle+'\
                 </a></h3>\
                 '+otherMessagesLink+'\
-                '+htmlDiscussionMessage(lastMessage.message+readMoreLink, lastMessage.author_pseudo, lastMessage.datetime_utc)+'\
+                '+htmlDiscussionMessage(lastMessage.message, lastMessage.author_pseudo, lastMessage.datetime_utc)+'\
                 <div id="replies'+topicId+'"></div>\
                 <div class="reply_button">\
                     <a id="replyButton'+topicId+'" href="#" onclick="display(\'sendform'+topicId+'\');this.style.display=\'none\';return false">\

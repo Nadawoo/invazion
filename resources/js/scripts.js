@@ -377,7 +377,7 @@ function activatePhoneTab(tabId=null) {
 async function callDiscussionApiOnce(refresh=false) {
     
     if (jsonDiscussionApi === undefined || refresh === true) {        
-        jsonDiscussionApi = await callApi("GET", "discuss/threads", "action=get&sort=last_message_date");
+        jsonDiscussionApi = await callApi("GET", "discuss/threads", "action=get&sort=last_message_date&fullmsg=1");
     }
     return jsonDiscussionApi;
 }
