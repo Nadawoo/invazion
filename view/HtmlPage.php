@@ -48,6 +48,7 @@ class HtmlPage
                 <link rel="stylesheet" type="text/css" href="resources/css/city.css?v2.7">
                 <link rel="stylesheet" type="text/css" href="resources/css/wall.css?v2.0">
                 <link rel="stylesheet" type="text/css" href="resources/css/popup.css?v1.5">
+                <link rel="stylesheet" type="text/css" href="resources/css/responsive.css?v2.0">
                 ' . $css_link . '
                 <title>InvaZion, le jeu de zombies</title>
             </head>

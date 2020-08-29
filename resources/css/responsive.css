@@ -1,0 +1,57 @@
+/*
+ * Responsive design for all CSS
+ */
+@media (max-width:835px) {
+    #round_actions {
+        float:left;
+        width:100%;
+        max-width:26rem;
+        padding:0.2rem 0;
+    }
+    /* Panneau de discussions */
+    #floating_wall {
+        margin-left:1rem;
+    }
+}
+
+@media (max-width:600px) {
+    #game_container {
+        padding:0;
+    }
+    #column_right {
+       position:absolute;
+       left:0;
+       width:100%;
+       max-width:26rem;
+       margin:0;
+    }
+    .box{
+        width: 80%;
+    }
+    .popup{
+        width: 80%;
+    }
+    #map {
+        margin-right:0.2em;
+    }
+    #phone {
+        display:none;
+    }
+    /* Actions à droite de la carte */
+    fieldset {
+        padding:0 0.5em 0.5em 0.5em;
+    }
+}
+
+@media (max-width:575px) {
+    /* Met en colonne les blocs à l'intérieur de la ville */
+    .city_row {
+        flex-direction:column;
+        align-items:center;
+    }
+    /* Elargit la liste de notifications */
+    #notifsBlock {
+        width:80%;
+        left:1.5em;
+    }
+}
