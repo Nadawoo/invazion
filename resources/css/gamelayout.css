@@ -587,10 +587,6 @@ input[type="submit"] {
     color:grey;
 }
 
-#wall .active_tab {
-    border-bottom:0.3em solid #8b0000;
-}
-
 
 /* Effet de clignotement */
 @keyframes alert_blinker {

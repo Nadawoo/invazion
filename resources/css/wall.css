@@ -1,0 +1,152 @@
+/*
+ * Wall displaying the discussions and events in game
+ */
+#wall {
+    width:18rem;
+}
+#wall h2 {
+    text-align:center; /* Main title of the block */
+}
+#wall .contents {
+    text-align:left;
+}
+#wall nav {
+    font-size:0.8em;
+}
+#wall .active_tab {
+    border-bottom:0.3em solid #8b0000;
+}
+
+/* To send a message */
+#wall textarea, #wall input[type="text"] {
+    width:98%;
+    border-radius:0.3em;
+    border:1px solid grey;
+}
+#wall textarea {
+    height:8em;
+}
+#wall input[type="submit"] {
+    width:100%;
+    padding:0.1em;
+    border:none;
+    background:#8b0000;
+    color:white;
+    border-radius:0.4em;
+    font-weight:bold;
+    font-variant: normal;
+    letter-spacing:0.03em;
+}
+#wall input[type="submit"]:hover,
+#wall .reply_button a:hover {
+    background:#b03a2e;
+}
+
+/* Common presentation for discussions and events */
+#wall .topic {
+    border-radius:0.3em;
+}
+#wall h3 { /* Topic title */
+    margin:0;
+    padding:0.3em;
+    border-radius:0.3em 0.3em 0 0;
+    border-bottom:1px solid #515a5a;
+    font-weight:normal;
+    background:#273746;
+    color:white;
+    cursor:pointer;
+}
+#wall h3:hover {
+    background:#566573;
+}
+#wall .message {
+    margin-top:0.2em;    
+    padding:0.3em 0.2em;
+    background: #f6ddcc ;
+    word-wrap:break-word;
+}
+#wall .time {
+    font-size:0.7em;
+    color:grey;
+    cursor:help;
+}
+#wall .text {
+    font-size:0.9em;
+}
+#wall .reply_num {
+    float:right;
+    margin-top:0.2em;
+    font-size:0.8em;
+    color:#566573;
+}
+#wall .link_other_messages { /* Link "show other message" in truncated discussions */
+    display:block;
+    margin:0.2rem;
+    text-align:center;
+    font-size:0.8em;
+    color:lightgrey;
+}
+#wall .link_other_messages:hover {
+    color:#e74c3c;
+}
+
+/* Specific presentation for the discussions */
+#wall .discuss  {
+    background:#34495e; /* #7b241c #34495e */
+    margin:2.5rem 0;
+    box-shadow:0px 8px 15px black;
+}
+#wall .discuss .message {
+    margin:0.2rem 0.1rem 0 0.1rem;
+}
+#wall .discuss .time {
+    margin-left:2.1em;
+}
+#wall .discuss form {
+    display:none;
+    padding:0 0.4rem;
+}
+#wall #send {
+    padding:0.1em;
+}
+#wall #send .message {
+    margin:0;
+}
+#wall .reply_button { /* Button to display the form under a discussion */
+    padding-top:0.2rem;
+    padding-bottom:0.1rem;
+}
+#wall .reply_button a {
+    display:block;
+    margin-left:65%;
+    margin-right: 0.1rem;
+    margin-top:-0.2rem;
+    padding:0.2rem 0em;
+    text-align:center;    
+    font-size:0.8em;
+    font-weight:bold;
+    border-radius:0.3rem;
+    border-top-left-radius:0;
+    border-top-right-radius:0;
+    background:darkred;
+    color:white;
+}
+
+/* Specific presentation for the events */
+#wall .event  {
+    margin:0.7em 0;
+    padding:0.7em 0;
+    border-radius:0;
+    border-top: 1px solid grey;
+}
+#wall .event .message {
+    padding:0;
+    background:none;
+}
+#wall .comment .text {
+    margin-left:1.5em;
+    padding:0.2em;
+    background:#f6ddcc;
+    border-radius:0.3em;
+    font-size:0.8em;
+}
