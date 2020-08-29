@@ -9,6 +9,7 @@ safely_require('view/HtmlCityEnclosure.php');
 safely_require('view/HtmlPopup.php');
 safely_require('view/HtmlMovementPaddle.php');
 safely_require('view/HtmlSmartphone.php');
+safely_require('view/HtmlWall.php');
 safely_require('controller/official_server_root.php');
 safely_require('controller/sort_citizens_by_coord.php');
 safely_require('controller/filter_citizens_by_city.php');
@@ -23,6 +24,7 @@ $enclosure          = new HtmlCityEnclosure();
 $buttons            = new HtmlButtons();
 $paddle             = new HtmlMovementPaddle();
 $phone              = new HtmlSmartphone();
+$wall               = new HtmlWall();
 $popup              = new HtmlPopup();
 $zone               = set_default_variables('zone');
 $citizen            = set_default_variables('citizen');
@@ -219,7 +221,8 @@ echo $popup->customised('popsuccess', '', nl2br($msg_popup));
                 </div>
                 <div class="city_row city_build">
                     '. $enclosure->block_constructions($configs['constructions'], $configs['items'], $city_data['constructions'], 
-                                                       $city_data['total_defenses'], $zone['items'], $citizen['citizen_pseudo']) .'
+                                                       $city_data['total_defenses'], $zone['items']) 
+                    . $wall->wall($citizen['citizen_pseudo']) . '
                 </div>
                 <div class="city_row city_door">
                     '. $enclosure->block_door($city_data['is_door_closed']) .'

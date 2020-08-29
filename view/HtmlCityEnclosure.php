@@ -302,8 +302,7 @@ class HtmlCityEnclosure
      *                                    (qui sont, à ce jour, les objets au sol)
      * @return string
      */
-    function block_constructions($constructions_caracs, $items_caracs, $city_constructions, $total_defenses,
-                                 $zone_items, $citizen_pseudo)
+    function block_constructions($constructions_caracs, $items_caracs, $city_constructions, $total_defenses, $zone_items)
     {
         
         $buttons = new HtmlButtons;
@@ -398,69 +397,6 @@ class HtmlCityEnclosure
                     </tr>
                     '.$html_constructions.'
                 </table>
-            </div>
-            
-            <div id="wall" class="city_block">
-                <h2>Communications</h2>
-                <div class="contents">
-                    
-                    <nav style="margin-bottom:0.9em">
-                        <a id="tabWallAll" class="active_tab">Tout</a> 
-                        <a id="tabWallDiscuss">Discussions</a> 
-                        <a id="tabWallEvents">Evénéments</a>
-                    </nav>
-
-                    <div id="send" class="topic discuss">
-                        <div class="message">
-                            <a href="#" style="font-weight:bold;font-size:0.9em;" onclick="display(\'sendform\');this.hidden=true;return false">
-                                &#x270F;&#xFE0F; Ajouter un message...
-                            </a>
-                            <form id="sendform" style="display:none">
-                                &#x1F464; <strong>'.$citizen_pseudo.'</strong><br>
-                                <textarea placeholder="Donnez votre avis sur les chantiers à construire..."></textarea>
-                                <input type="submit" value="Envoyer">
-                            </form>
-                        </div>
-                    </div>
-                    
-                    <div class="topic event">
-                        <div class="message">
-                            <div class="text">
-                                &#x2714;&#xFE0F; Le chantier <strong>Mur de renfort</strong> a été construit !
-                            </div>
-                            <div class="time" title="Fuseau horaire de Paris">
-                                <a href="#">Commenter</a> ·
-                                Mardi 3 juin (2020) à 13h02
-                            </div>
-                        </div>
-                        <div class="message comment">
-                            <div class="text">
-                                <strong>Nadawoo</strong> Mais pourquoi vous avez construit ce chantier ? On avait dit qu\'on faisait la pompe !
-                            </div>
-                        </div>
-                        <div class="message comment">
-                            <div class="text">
-                                <strong>Schmurtz</strong> Il le fallait, on a une grosse attaque ce soir.
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="topic event">
-                        <div class="message">
-                            <div class="text">
-                                &#x1F528; Nadawoo a investi 3 <abbr title="points d\'action" style="font-variant:small-caps">pa</abbr> dans <strong>Mur de renfort</strong>
-                            </div>
-                            <div class="time" title="Fuseau horaire de Paris">
-                                <a href="#">Commenter</a> ·
-                                Mardi 3 juin (2020) à 13h02
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div id="citizenPseudo" style="display:none">'.$citizen_pseudo.'</div>
-                    <div id="discussions"></div>
-                    
-                </div>
             </div>';
     }
     
