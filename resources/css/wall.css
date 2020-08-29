@@ -35,6 +35,7 @@
  */
 #wall h2 {
     height:2rem;
+    margin:0;
     text-align:center;
 }
 #wall h2 .arrow {
@@ -54,6 +55,7 @@
     text-align:left;
 }
 #wall nav {
+    margin-top:0.6em;
     font-size:0.8em;
 }
 #wall .active_tab {
