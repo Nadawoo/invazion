@@ -16,8 +16,9 @@
     z-index:20;
 }
 #lateral_wall #wall {
+    overflow:auto;
     height:100%;
-    width:100%;
+    width:95%;
     margin:0;
     border-radius:0;
 }
@@ -50,9 +51,6 @@
 /*
  * Common styles for the wall (lateral panel or inside city interface)
  */
-#wall {
-    width:18rem;
-}
 #wall h2 {
     text-align:center; /* Main title of the block */
 }
