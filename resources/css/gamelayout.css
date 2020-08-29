@@ -605,6 +605,10 @@ input[type="submit"] {
         max-width:26rem;
         padding:0.2rem 0;
     }
+    /* Panneau de discussions */
+    #floating_wall {
+        margin-left:1rem !important;
+    }
 }
 
 @media (max-width:600px) {

@@ -90,19 +90,19 @@ if (document.getElementById('map') !== null) {
     // Shows/hides the vertical panel for the discussions and events
     document.getElementById("enlarge_wall").addEventListener("click", function() {
         
-        let minBarWidth = "2rem",
-            maxBarWidth = "50%";
+        let minBarHeight = "2rem",
+            maxBarHeight = "100%";
             
-        if (document.getElementById("lateral_wall").style.width !== maxBarWidth) {
+        if (document.getElementById("floating_wall").style.height !== maxBarHeight) {
             // Enlarges the panel...
-            document.getElementById("lateral_wall").style.width = maxBarWidth;
+            document.getElementById("floating_wall").style.height = maxBarHeight;
             // ... and loads the discussions if not already loaded
             if (document.getElementById("discussions").innerHTML === "") {
                 updateDiscussionsList();
             }
         }
         else {
-            document.getElementById("lateral_wall").style.width = minBarWidth;
+            document.getElementById("floating_wall").style.height = minBarHeight;
         }
     });
 }

@@ -3,49 +3,31 @@
  */
 
 /*
- * If displayed on the side of the interface (not in the city interface)
+ * For the wall displayed on the global interface (not in the city interface)
  */
-#lateral_wall {
+#floating_wall {
     position:fixed;
-    right:0;
-    top:0;
-    height:100%;
-    width:2rem;
-    display:flex;
-    box-shadow:-4px 0px 4px grey;
+    bottom:0;
+    height:2rem;
+    width:23.8rem;
+    margin-left:28rem;
+    border-top-left-radius:1rem;
+    border-top-right-radius:1rem;
+    box-shadow:-4px -4px 10px black;
     z-index:20;
 }
-#lateral_wall #wall {
-    overflow:auto;
+#floating_wall #wall {
     height:100%;
-    width:95%;
+    width: 100%;
     margin:0;
-    border-radius:0;
 }
-#lateral_wall h2 {
-    border-radius:0;
-}
-#lateral_wall #enlarge_wall {
-    display:flex;
-    flex-direction:column;
-    width:2rem;
-    font-size:1.3em;
-    font-weight:bold;
+#floating_wall #enlarge_wall {
     background:darkred;
+    color:white;
     cursor:pointer;
 }
-#lateral_wall #enlarge_wall:hover {
+#floating_wall #enlarge_wall:hover {
     background:#b71c1c;
-}
-#lateral_wall .arrow {
-    margin:auto;
-    text-align:center;
-    background:white;
-    color:darkred;
-    width:      2rem;
-    height:     2rem;
-    line-height:2rem; 
-    border-radius:1em;
 }
 
 /*
@@ -54,7 +36,16 @@
 #wall h2 {
     text-align:center; /* Main title of the block */
 }
+#wall h2 .icon {
+    float:left;
+    margin-left:0.2rem;
+    line-height:1.4em; 
+    border-radius:1em;
+    font-size:0.9em;
+}
 #wall .contents {
+    height:100%;
+    overflow:auto;
     text-align:left;
 }
 #wall nav {

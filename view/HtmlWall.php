@@ -16,7 +16,10 @@ class HtmlWall
     {
         
         return '<div id="wall" class="city_block">
-                <h2>Communications</h2>
+                <h2 id="enlarge_wall">
+                    <div class="icon">&#128172;</div>
+                    Communications
+                </h2>
                 <div class="contents">
                     
                     '.$this->tabs().'                    
