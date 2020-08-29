@@ -188,6 +188,14 @@ echo $popup->customised('popsuccess', '', nl2br($msg_popup));
     
     <?php echo $msg_build ?>
     
+    
+    <div id="lateral_wall">
+        <div id="enlarge_wall">
+            <div class="arrow">&#128172;</div>
+        </div>
+        <?php echo $wall->wall($citizen['citizen_pseudo']) ?>
+    </div>
+    
 <div id="game_container">
     
     <?php

@@ -85,4 +85,15 @@ if (document.getElementById('map') !== null) {
         hideClasses(["discuss"]);
         switch_tab("tabWallEvents", ["tabWallAll", "tabWallDiscuss"]);
     });
+    
+    // Shows/hides the vertical panel for the discussions and events
+    document.getElementById("enlarge_wall").addEventListener("click", function() {
+        let minBarWidth = "2rem",
+            maxBarWidth = "50%";
+        if (document.getElementById("lateral_wall").style.width !== maxBarWidth) {
+            document.getElementById("lateral_wall").style.width = maxBarWidth;
+        } else {
+            document.getElementById("lateral_wall").style.width = minBarWidth;
+        }
+    });
 }

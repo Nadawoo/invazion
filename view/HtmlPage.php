@@ -88,7 +88,7 @@ class HtmlPage
                     <script type="text/javascript" src="resources/js/ZombLib.js?v1.0"></script>
                     <script type="text/javascript" src="resources/js/discussTemplate.js?v3.5"></script>
                     <script type="text/javascript" src="resources/js/scripts.js?v3.8"></script>
-                    <script type="text/javascript" src="resources/js/events.js?v3.5"></script>
+                    <script type="text/javascript" src="resources/js/events.js?v3.6"></script>
                 </body>
             </html>';
     }

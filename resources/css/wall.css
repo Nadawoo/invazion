@@ -1,6 +1,55 @@
 /*
  * Wall displaying the discussions and events in game
  */
+
+/*
+ * If displayed on the side of the interface (not in the city interface)
+ */
+#lateral_wall {
+    position:fixed;
+    right:0;
+    top:0;
+    height:100%;
+    width:2rem;
+    display:flex;
+    box-shadow:-4px 0px 4px grey;
+    z-index:20;
+}
+#lateral_wall #wall {
+    height:100%;
+    width:100%;
+    margin:0;
+    border-radius:0;
+}
+#lateral_wall h2 {
+    border-radius:0;
+}
+#lateral_wall #enlarge_wall {
+    display:flex;
+    flex-direction:column;
+    width:2rem;
+    font-size:1.3em;
+    font-weight:bold;
+    background:darkred;
+    cursor:pointer;
+}
+#lateral_wall #enlarge_wall:hover {
+    background:#b71c1c;
+}
+#lateral_wall .arrow {
+    margin:auto;
+    text-align:center;
+    background:white;
+    color:darkred;
+    width:      2rem;
+    height:     2rem;
+    line-height:2rem; 
+    border-radius:1em;
+}
+
+/*
+ * Common styles for the wall (lateral panel or inside city interface)
+ */
 #wall {
     width:18rem;
 }
