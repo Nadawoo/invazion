@@ -44,7 +44,8 @@
     /* Panneau de discussions */
     #floating_wall {
         margin-left:0;
-        width:26.5rem;
+        width:100%;
+        max-width:26.5rem;
     }
 }
 
