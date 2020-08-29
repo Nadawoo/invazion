@@ -46,7 +46,7 @@ class HtmlPage
                 <link rel="stylesheet" type="text/css" href="resources/css/smartphone.css?v1.5">
                 <link rel="stylesheet" type="text/css" href="resources/css/myzone.css?v1.3">
                 <link rel="stylesheet" type="text/css" href="resources/css/city.css?v2.7">
-                <link rel="stylesheet" type="text/css" href="resources/css/wall.css?v2.0">
+                <link rel="stylesheet" type="text/css" href="resources/css/wall.css?v2.1">
                 <link rel="stylesheet" type="text/css" href="resources/css/popup.css?v1.5">
                 <link rel="stylesheet" type="text/css" href="resources/css/responsive.css?v2.1">
                 ' . $css_link . '
@@ -89,7 +89,7 @@ class HtmlPage
                     <script type="text/javascript" src="resources/js/ZombLib.js?v1.0"></script>
                     <script type="text/javascript" src="resources/js/discussTemplate.js?v3.5"></script>
                     <script type="text/javascript" src="resources/js/scripts.js?v3.8"></script>
-                    <script type="text/javascript" src="resources/js/events.js?v3.6"></script>
+                    <script type="text/javascript" src="resources/js/events.js?v3.7"></script>
                 </body>
             </html>';
     }

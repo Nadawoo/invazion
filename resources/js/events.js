@@ -96,6 +96,7 @@ if (document.getElementById('map') !== null) {
         if (document.getElementById("floating_wall").style.height !== maxBarHeight) {
             // Enlarges the panel...
             document.getElementById("floating_wall").style.height = maxBarHeight;
+            document.getElementById("enlarge_wall").getElementsByClassName("arrow")[0].style.transform = "rotate(+180deg)";
             // ... and loads the discussions if not already loaded
             if (document.getElementById("discussions").innerHTML === "") {
                 updateDiscussionsList();
@@ -103,6 +104,7 @@ if (document.getElementById('map') !== null) {
         }
         else {
             document.getElementById("floating_wall").style.height = minBarHeight;
+            document.getElementById("enlarge_wall").getElementsByClassName("arrow")[0].style.transform = "rotate(0)";
         }
     });
 }

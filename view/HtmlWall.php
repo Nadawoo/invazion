@@ -17,7 +17,7 @@ class HtmlWall
         
         return '<div id="wall" class="city_block">
                 <h2 id="enlarge_wall">
-                    <div class="icon">&#128172;</div>
+                    <div class="arrow">&#8963;</div>
                     Communications
                 </h2>
                 <div class="contents">
