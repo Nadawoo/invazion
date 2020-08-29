@@ -22,7 +22,7 @@ class HtmlCityEnclosure
         
         return '<div class="row">
                     <div class="item" onclick="switchCityTab(\'city_perso\')">Chez moi</div>
-                    <div class="item" onclick="switchCityTab(\'city_build\');updateDiscussionsList();">Bâtir la&nbsp;ville</div>
+                    <div class="item" onclick="switchCityTab(\'city_build\')">Bâtir la&nbsp;ville</div>
                     <div class="vertical">
                         <div class="item" onclick="switchCityTab(\'city_storage\')">Dépôt</div>
                         <div class="item" onclick="switchCityTab(\'city_craft\')  ">Atelier</div>
