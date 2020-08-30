@@ -126,7 +126,7 @@ function switch_tab(activated_tab, inactivated_tabs) {
  * @param {string} value La nouvelle valeur voulue pour le paramètre
  * @returns {undefined}
  */
-function update_url_param(name, value) {
+function updateUrlParam(name, value) {
 
     var search_params = new URLSearchParams(window.location.search);
     search_params.delete(name);
@@ -222,7 +222,7 @@ function switchCityTab(className) {
     // ... puis on affiche celui qu'on veut voir
     displayFlex(className);
     // Modifie l'url pour mémoriser dans quel onglet de la ville on se trouve.    
-    update_url_param('tab', className);
+    updateUrlParam('tab', className);
 }
 
 
