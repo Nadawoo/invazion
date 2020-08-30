@@ -15,6 +15,7 @@
     border-top-right-radius:1rem;
     box-shadow:-4px -4px 10px black;
     z-index:20;
+    transition-duration: 0.3s;
 }
 #floating_wall #wall {
     height:100%;
@@ -22,12 +23,15 @@
     margin:0;
 }
 #floating_wall #enlarge_wall {
-    background:darkred;
+    background:#b71c1c;
     color:white;
     cursor:pointer;
 }
 #floating_wall #enlarge_wall:hover {
-    background:#b71c1c;
+    background:#ff0000;
+}
+#floating_wall #enlarge_wall::selection {
+    background:none;
 }
 
 /*
@@ -48,6 +52,7 @@
     font-size:0.9em;
     background:white;
     color:darkred;
+    transition-duration: 1s;
 }
 #wall .contents {
     height:100%;
