@@ -69,7 +69,9 @@
 
 /* To send a message */
 #wall textarea, #wall input[type="text"] {
-    width:98%;
+    width:98.5%;
+    height:1.7em;
+    margin:0.05em 0 0.3em 0;
     border-radius:0.3em;
     border:1px solid grey;
 }
@@ -78,14 +80,15 @@
 }
 #wall input[type="submit"] {
     width:100%;
-    padding:0.1em;
+    padding:0.2em;
     border:none;
     background:#8b0000;
     color:white;
     border-radius:0.4em;
+    font-size:1em;
     font-weight:bold;
     font-variant: normal;
-    letter-spacing:0.03em;
+    letter-spacing:0.04em;
 }
 #wall input[type="submit"]:hover,
 #wall .reply_button a:hover {

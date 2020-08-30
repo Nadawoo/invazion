@@ -61,9 +61,11 @@ class HtmlWall
                     <a href="#" style="font-weight:bold;font-size:0.9em;" onclick="display(\'sendform\');this.hidden=true;return false">
                         &#x270F;&#xFE0F; Ajouter un message...
                     </a>
-                    <form id="sendform" style="display:none">
+                    <form id="sendform" style="display:none" onsubmit="createDiscussion()">
                         &#x1F464; <strong>'.$citizen_pseudo.'</strong><br>
-                        <textarea placeholder="Donnez votre avis sur les chantiers à construire..."></textarea>
+                        <div id="errorNew" class="red"></div>
+                        <textarea id="messageNew" placeholder="Donnez votre avis sur les stratégies ou demandez de l\'aide..."></textarea>
+                        <input type="text" id="titleNew" placeholder="Titre de la discussion (facultatif)">
                         <input type="submit" value="Envoyer">
                     </form>
                 </div>

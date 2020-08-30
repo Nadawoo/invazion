@@ -421,6 +421,27 @@ async function connectUser() {
 
 
 /**
+ * To start a new discussion
+ * @returns {Boolean}
+ */
+async function createDiscussion() {
+    
+    let title    = document.getElementById("titleNew").value,
+        message  = document.getElementById("messageNew").value,
+        token    = getCookie('token');
+
+    let json = await callApi("POST", "discuss/threads", `action=create&title=${title}&message=${message}&token=${token}`);
+    
+    if (json.metas.error_code !== "success") {
+        document.getElementById("errorNew").innerHTML = json.metas.error_message;
+    }
+    
+    // Always return false to desactivate the normal submit buttons (would refresh the page)
+    return false;
+}
+
+
+/**
  * To send a reply in an existing discussion
  */
 async function replyDiscussion(topicId, nbrMessages) {
