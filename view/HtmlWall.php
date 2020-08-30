@@ -56,6 +56,7 @@ class HtmlWall
     {
         
         return '
+            <div id="newDiscussion"></div>
             <div id="send" class="topic discuss">
                 <div class="message">
                     <a href="#" style="font-weight:bold;font-size:0.9em;" onclick="display(\'sendform\');this.hidden=true;return false">

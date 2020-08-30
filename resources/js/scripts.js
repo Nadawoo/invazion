@@ -432,7 +432,12 @@ async function createDiscussion() {
 
     let json = await callApi("POST", "discuss/threads", `action=create&title=${title}&message=${message}&token=${token}`);
     
-    if (json.metas.error_code !== "success") {
+    if (json.metas.error_code === "success") {
+        json.datas.message = message;
+        document.getElementById("newDiscussion").innerHTML += htmlDiscussion(0, title, json.datas, 0);
+        document.getElementById("send").style.display = "none";
+    }
+    else {
         document.getElementById("errorNew").innerHTML = json.metas.error_message;
     }
     
