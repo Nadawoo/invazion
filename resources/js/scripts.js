@@ -434,7 +434,7 @@ async function createDiscussion() {
     
     if (json.metas.error_code === "success") {
         json.datas.message = message;
-        document.getElementById("newDiscussion").innerHTML += htmlDiscussion(0, title, json.datas, 0);
+        document.getElementById("newDiscussion").innerHTML += htmlDiscussion(json.datas.topic_id, title, json.datas, 0);
         document.getElementById("send").style.display = "none";
     }
     else {
