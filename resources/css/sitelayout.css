@@ -81,7 +81,7 @@ a, .formlink {
 a {
     cursor:pointer;
 }
-a:hover, .formlink:hover, .as_link:hover {
+a:hover, .formlink:hover {
     color:red;
 }
 

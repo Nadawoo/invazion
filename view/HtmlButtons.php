@@ -497,11 +497,11 @@ class HtmlButtons
     {
         
         return
-        '<form method="post" action="#popsuccess" style="text-align:center;margin-top:0.25em">
+        '<form method="post" action="#popsuccess" class="formlink" style="text-align:center;margin-top:0.25em">
             <input type="hidden" name="api_name" value="buildings">
             <input type="hidden" name="action" value="build">
             <input type="hidden" name="params[construction_id]" value="'.$construction_id.'">
-            &#x1F6E0;&#xFE0F; <input type="submit" class="as_link" value="Participer au chantier [1pa]">
+            &#x1F6E0;&#xFE0F; <input type="submit" value="Participer au chantier [1pa]" style="padding-top:0.8em">
         </form>';
     }
         

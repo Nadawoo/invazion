@@ -435,18 +435,6 @@ input[type="submit"] {
     background:#CC0000;
 }
 
-/* Pour afficher les boutons de formulaire comme des liens */
-.as_link {
-    text-align:left;
-    border:none;
-    background:none;
-    padding:0;
-    color:darkred;
-    font-family:sans-serif;
-    font-variant:small-caps;
-    font-weight:bold;
-    font-size:0.95em;
-}
 /* Bouton de dépôt d'objet avec un aspect moderne et non le défaut HTML en relief */
 .drop_button {
     background:lightsteelblue;
@@ -463,19 +451,23 @@ input[type="submit"] {
     background:darkred;
     color:white;
 }
-/* Boutons de formulaire caché simulant un lien (notamment pour appeler l'API) */
+
+/* To display the form buttons (<input>) as simple links (<a>) */
 .formlink {
     display:inline;
 }
 .formlink input {
     min-width:0;
+    text-align:left;
     background:none;
     border:none;
     box-shadow:none;
-    padding:0;
-    color:darkred;
-    font-size:1em;
+    padding:0;    
+    font-size:0.95em;
+    font-family:sans-serif;
     font-variant:normal;
+    font-weight:bold;
+    color:darkred;
 }
 .formlink input:hover {
     color:red;

@@ -422,7 +422,7 @@ class HtmlCityEnclosure
         else {
             
             $door_status = 'Les portes de la ville sont <strong style="color:green">ouvertes</strong>';
-            $door_button = $buttons->button('close_door');
+            $door_button = $buttons->button('close_door', true, 'formlink');
         }
         
         return '
