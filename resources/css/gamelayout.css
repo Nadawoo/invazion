@@ -417,7 +417,7 @@ var {
 input[type="submit"] {
     cursor:pointer;
 }
-.redbutton input[type="submit"], .redbutton button {
+.redbutton {
     height:2em;
     min-width:11em;
     border-radius:2em;
@@ -430,7 +430,7 @@ input[type="submit"] {
     min-width:11em;
     cursor:pointer;
 }
-.redbutton input[type="submit"]:hover, .redbutton button:hover {
+.redbutton:hover {
     border-style:inset;
     background:#CC0000;
 }
@@ -471,6 +471,7 @@ input[type="submit"] {
     min-width:0;
     background:none;
     border:none;
+    box-shadow:none;
     padding:0;
     color:darkred;
     font-size:1em;
@@ -478,6 +479,8 @@ input[type="submit"] {
 }
 .formlink input:hover {
     color:red;
+    background:none;
+    border:none;
 }
 
 

@@ -102,8 +102,8 @@ class HtmlLayout extends HtmlPage
         $buttons = new HtmlButtons();
         
         return '
-                <p class="redbutton center">
-                    <button onclick="toggle(\'specialities\');return false">Choisir ma spécialité du jour</button>
+                <p class="center">
+                    <button class="redbutton" onclick="toggle(\'specialities\');return false">Choisir ma spécialité du jour</button>
                 </p>
 
                 <ul id="specialities">

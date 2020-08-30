@@ -252,9 +252,9 @@ class HtmlButtons
         
         // Returns the complete HTML form
         return
-        '<form method="post" action="#popsuccess" class="redbutton '.$class.'">
+        '<form method="post" action="#popsuccess" class="'.$class.'">
             '.$hidden_fields.'
-            '.$icon.'<input type="submit" value="'.$button['name'].'" title="'.$button['title'].'">'
+            '.$icon.'<input type="submit" class="redbutton" value="'.$button['name'].'" title="'.$button['title'].'">'
         .'</form>';
     }
     
@@ -373,10 +373,10 @@ class HtmlButtons
         $icon = ($show_icon === 'no_icon') ? '' : $button['icon'];
         
         return
-        '<form method="post" action="#popsuccess" class="redbutton">
+        '<form method="post" action="#popsuccess">
             <input type="hidden" name="api_name" value="city">
             <input type="hidden" name="action" value="build">
-            '.$icon.'<input type="submit" value="'.$button['name'].'" title="'.$button['title'].'">
+            '.$icon.'<input type="submit" class="redbutton" value="'.$button['name'].'" title="'.$button['title'].'">
             de
             <select name="params[city_size]">
                 <option value="2">2</option>
@@ -412,10 +412,10 @@ class HtmlButtons
         }
                 
         return
-        '<form method="post" action="#Outside" class="redbutton">
+        '<form method="post" action="#Outside">
             <input type="hidden" name="api_name" value="zone">
             <input type="hidden" name="action" value="'.$button['fields']['action'].'">
-            <input type="submit" value="'.$button['icon'].' '.$button['name'].'" class="'.$class.'"  title="'.$title.'">
+            <input type="submit" value="'.$button['icon'].' '.$button['name'].'" class="redbutton '.$class.'"  title="'.$title.'">
         </form>';
     }
     
@@ -478,11 +478,11 @@ class HtmlButtons
     {
         
         return
-        '<form method="post" action="#popsuccess" class="redbutton" style="margin-top:0.25em">
+        '<form method="post" action="#popsuccess" style="margin-top:0.25em">
             <input type="hidden" name="api_name" value="buildings">
             <input type="hidden" name="action" value="build">
             <input type="hidden" name="params[item_id]" value="'.$item_id.'">
-            &#128295;<input type="submit" value="Assembler l\'objet">	
+            &#128295;<input type="submit" class="redbutton" value="Assembler l\'objet">	
         </form>';
     }
     

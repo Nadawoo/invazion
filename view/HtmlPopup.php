@@ -58,7 +58,7 @@ class HtmlPopup
     public function link($popup_alias, $text)
     {
         
-        return '<a href="#'.$popup_alias.'" class="redbutton"><input type="submit" value="'.$text.'"></a>';
+        return '<a href="#'.$popup_alias.'"><input type="submit" value="'.$text.'" class="redbutton"></a>';
     }
     
     
