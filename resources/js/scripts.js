@@ -436,6 +436,8 @@ async function createDiscussion() {
         json.datas.message = message;
         document.getElementById("newDiscussion").innerHTML += htmlDiscussion(json.datas.topic_id, title, json.datas, 0);
         document.getElementById("send").style.display = "none";
+        // Clear the form for the eventual next thread to send
+        document.getElementById("sendform").reset();
     }
     else {
         document.getElementById("errorNew").innerHTML = json.metas.error_message;
@@ -465,6 +467,8 @@ async function replyDiscussion(topicId, nbrMessages) {
         document.getElementById("replyButton"+topicId).style.display = "block";
         // Appends the text of the posted reply at the bottom of the discussion
         document.getElementById("replies"+topicId).innerHTML += htmlDiscussionMessage(message, citizenPseudo, new Date().toISOString(), nbrMessages+1);
+        // Clears the eventual error message (obsolete after sending)
+        document.getElementById("replyError"+topicId).innerHTML = "";
     }
     else {
         document.getElementById("replyError"+topicId).innerHTML = '<span class="red">'+json.metas.error_message+'</span>';
