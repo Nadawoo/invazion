@@ -426,14 +426,17 @@ async function connectUser() {
  */
 async function createDiscussion() {
     
-    let title    = document.getElementById("titleNew").value,
-        message  = document.getElementById("messageNew").value,
-        token    = getCookie('token');
+    let title         = document.getElementById("titleNew").value,
+        message       = document.getElementById("messageNew").value,
+        author_pseudo = document.getElementById("citizenPseudo").innerHTML,
+        token         = getCookie('token');
 
     let json = await callApi("POST", "discuss/threads", `action=create&title=${title}&message=${message}&token=${token}`);
     
     if (json.metas.error_code === "success") {
         json.datas.message = message;
+        json.datas.author_pseudo = author_pseudo;
+        // Display the new discussion thread
         document.getElementById("newDiscussion").innerHTML += htmlDiscussion(json.datas.topic_id, title, json.datas, 0);
         document.getElementById("send").style.display = "none";
         // Clear the form for the eventual next thread to send
