@@ -90,7 +90,7 @@ if (document.getElementById('map') !== null) {
     // Shows/hides the vertical panel for the discussions and events
     document.getElementById("enlarge_wall").addEventListener("click", function() {
         
-        let minBarHeight = "2rem",
+        let minBarHeight = "2.5rem",
             maxBarHeight = "100%";
             
         if (document.getElementById("floating_wall").style.height !== maxBarHeight) {

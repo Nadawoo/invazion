@@ -38,8 +38,8 @@
  * Common styles for the wall (lateral panel or inside city interface)
  */
 #wall h2 {
-    height:2rem;
     margin:0;
+    padding:0.4rem 0;
     text-align:center;
 }
 #wall h2 .arrow {
