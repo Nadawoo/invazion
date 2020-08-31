@@ -107,4 +107,15 @@ if (document.getElementById('map') !== null) {
             document.getElementById("enlarge_wall").getElementsByClassName("arrow")[0].style.transform = "rotate(0)";
         }
     });
+    
+    // Create a new discussion thread
+    document.getElementById("buttonNewTopic").addEventListener("click", function() {
+        toggleSendform();
+    });
+    document.getElementById("hideSendform").addEventListener("click", function() {
+        toggleSendform();
+    });
+    document.getElementById("sendform").addEventListener("submit", function() {
+        createDiscussion();
+    });
 }
