@@ -672,8 +672,8 @@ function toggleSendform() {
         display("buttonNewTopic");
         hide("sendform");
     }
-    // Return false to inactivate the normal link
-    return false;
+    // Desactivate the normal link
+    event.preventDefault();
 }
 
 

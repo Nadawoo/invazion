@@ -63,12 +63,12 @@ class HtmlWall
                         &#x270F;&#xFE0F; Ajouter un message...
                     </a>
                     <form id="sendform" style="display:none">
-                        &#x1F464; <strong>'.$citizen_pseudo.'</strong><br>
+                        <a href="#" id="hideSendform">[masquer]</a>
+                        <div>&#x1F464; <strong>'.$citizen_pseudo.'</strong></div>
                         <div id="errorNew" class="red"></div>
                         <textarea id="messageNew" placeholder="Donnez votre avis sur les stratégies ou demandez de l\'aide..."></textarea>
                         <input type="text" id="titleNew" placeholder="Titre de la discussion (facultatif)">
                         <input type="submit" value="Envoyer">
-                        <a href="#" id="hideSendform">Annuler</a>
                     </form>
                 </div>
             </div>';

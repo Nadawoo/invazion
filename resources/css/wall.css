@@ -75,7 +75,8 @@
 }
 #hideSendform {
     display:block;
-    margin:0.2em 0.2em 0 0;
+    float:right;
+    margin:0.2em 0.1em 0 0;
     text-align:right;
     font-size:0.8em;
 }
