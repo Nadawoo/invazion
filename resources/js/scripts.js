@@ -658,6 +658,24 @@ function nl2br (text) {
 }
 
 
+/**
+ * Show/hide the form to create a new discussion threaf
+ * @returns {Boolean}
+ */
+function toggleSendform() {
+    
+    if (document.getElementById("sendform").style.display === "none") {
+        display("sendform");
+        hide("buttonNewTopic");
+    }
+    else {
+        display("buttonNewTopic");
+        hide("sendform");
+    }
+    // Return false to inactivate the normal link
+    return false;
+}
+
 
 /*
  * Executed as soon as the page loads, without user action

@@ -67,16 +67,28 @@
     border-bottom:0.3em solid #8b0000;
 }
 
+/* New topic */
+#buttonNewTopic {
+    display:block;
+    font-weight:bold;
+    font-size:0.9em;
+}
+#hideSendform {
+    display:block;
+    margin:0.2em 0.2em 0 0;
+    text-align:right;
+    font-size:0.8em;
+}
 /* To send a message */
 #wall textarea, #wall input[type="text"] {
-    width:98.5%;
+    width:99%;
     height:1.7em;
-    margin:0.05em 0 0.3em 0;
+    margin-bottom:0.3em;
     border-radius:0.3em;
     border:1px solid grey;
 }
 #wall textarea {
-    height:8em;
+    height:10em;
 }
 #wall input[type="submit"] {
     width:100%;
@@ -157,7 +169,6 @@
 }
 #wall .discuss form {
     display:none;
-    padding:0 0.4rem;
 }
 #wall #send {
     padding:0.1em;

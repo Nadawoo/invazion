@@ -59,7 +59,7 @@ class HtmlWall
             <div id="newDiscussion"></div>
             <div id="send" class="topic discuss">
                 <div class="message">
-                    <a href="#" style="font-weight:bold;font-size:0.9em;" onclick="display(\'sendform\');this.hidden=true;return false">
+                    <a href="#" id="buttonNewTopic" onclick="toggleSendform()">
                         &#x270F;&#xFE0F; Ajouter un message...
                     </a>
                     <form id="sendform" style="display:none" onsubmit="createDiscussion()">
@@ -68,6 +68,7 @@ class HtmlWall
                         <textarea id="messageNew" placeholder="Donnez votre avis sur les stratégies ou demandez de l\'aide..."></textarea>
                         <input type="text" id="titleNew" placeholder="Titre de la discussion (facultatif)">
                         <input type="submit" value="Envoyer">
+                        <a href="#" id="hideSendform" onclick="toggleSendform()">Annuler</a>
                     </form>
                 </div>
             </div>';
