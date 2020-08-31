@@ -241,6 +241,8 @@ echo $popup->customised('popsuccess', '', nl2br($msg_popup));
             . $buttons->button_round('zombies', $zone['zombies'])
             . $buttons->button_round('citizens', count($zone_fellows))
             . $buttons->button_round('build', min($zone['city_size'], 1));
+        // Warn if wounded
+        echo $layout->block_alert_wounded((bool)$citizen['is_wounded']);
         ?>
     </div>
     
@@ -307,8 +309,6 @@ echo $popup->customised('popsuccess', '', nl2br($msg_popup));
                 
                 // Special actions depending of the zone (go into a crypt, a city...)
                 echo $html['actions_context'];
-                // Warn if wounded
-                echo $layout->block_alert_wounded((bool)$citizen['is_wounded']);
                 ?>
             </fieldset>
             

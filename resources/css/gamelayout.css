@@ -518,9 +518,11 @@ input[type="submit"] {
 /* Affiche l'état "blessé" sous les flèches de déplacement */
 #alert_wounded {
     display:block;
-    margin-top:2rem;
+    margin:auto;
+    margin-top:0.1rem;
     padding:0 0 0.3rem 0.2rem;
     background:#6c3483;
+    text-align:left;
     color:white;
     box-shadow:3px 3px 4px black;
 }
