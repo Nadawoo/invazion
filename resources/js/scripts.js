@@ -421,6 +421,30 @@ async function connectUser() {
 
 
 /**
+ * Show/hide the vertical panel for the discussions and events
+ */
+function enlargeWall() {
+    
+    let minBarHeight = "2.5rem",
+        maxBarHeight = "100%";
+
+    if (document.getElementById("floating_wall").style.height !== maxBarHeight) {
+        // Enlarges the panel...
+        document.getElementById("floating_wall").style.height = maxBarHeight;
+        document.getElementById("enlarge_wall").getElementsByClassName("arrow")[0].style.transform = "rotate(+180deg)";
+        // ... and loads the discussions if not already loaded
+        if (document.getElementById("discussions").innerHTML === "") {
+            updateDiscussionsList();
+        }
+    }
+    else {
+        document.getElementById("floating_wall").style.height = minBarHeight;
+        document.getElementById("enlarge_wall").getElementsByClassName("arrow")[0].style.transform = "rotate(0)";
+    }
+}
+
+
+/**
  * To start a new discussion
  * @returns {Boolean}
  */
