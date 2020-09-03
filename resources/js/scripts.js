@@ -428,10 +428,11 @@ async function createDiscussion() {
     
     let title         = document.getElementById("titleNew").value,
         message       = document.getElementById("messageNew").value,
+        guest_pseudo  = document.getElementById("guestPseudo").value,
         author_pseudo = document.getElementById("citizenPseudo").innerHTML,
         token         = getCookie('token');
 
-    let json = await callApi("POST", "discuss/threads", `action=create&title=${title}&message=${message}&token=${token}`);
+    let json = await callApi("POST", "discuss/threads", `action=create&title=${title}&message=${message}&guest_pseudo=${guest_pseudo}&token=${token}`);
     
     if (json.metas.error_code === "success") {
         json.datas.message = message;
@@ -442,12 +443,12 @@ async function createDiscussion() {
         // Clear the form for the eventual next thread to send
         document.getElementById("sendform").reset();
     }
-    else {
-        document.getElementById("errorNew").innerHTML = json.metas.error_message;
+    else if (json.metas.error_code === "undefined_pseudo") {
+        document.getElementById("errorNewTopicPseudo").innerHTML = json.metas.error_message;
     }
-    
-    // Always return false to desactivate the normal submit buttons (would refresh the page)
-    return false;
+    else {
+        document.getElementById("errorNewTopicMessage").innerHTML = json.metas.error_message;
+    }
 }
 
 

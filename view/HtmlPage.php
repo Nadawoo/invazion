@@ -88,8 +88,8 @@ class HtmlPage
         return '        </div>
                     <script type="text/javascript" src="resources/js/ZombLib.js?v1.0"></script>
                     <script type="text/javascript" src="resources/js/discussTemplate.js?v3.5"></script>
-                    <script type="text/javascript" src="resources/js/scripts.js?v4.1"></script>
-                    <script type="text/javascript" src="resources/js/events.js?v3.9"></script>
+                    <script type="text/javascript" src="resources/js/scripts.js?v4.2"></script>
+                    <script type="text/javascript" src="resources/js/events.js?v4.0"></script>
                 </body>
             </html>';
     }

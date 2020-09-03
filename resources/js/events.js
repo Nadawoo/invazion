@@ -116,6 +116,8 @@ if (document.getElementById('map') !== null) {
         toggleSendform();
     });
     document.getElementById("sendform").addEventListener("submit", function() {
+        // Desactivate the classic submission button (avoids reloading the page)
+        event.preventDefault();
         createDiscussion();
     });
 }

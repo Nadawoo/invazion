@@ -55,6 +55,8 @@ class HtmlWall
     private function new_discussion_form($citizen_pseudo)
     {
         
+        $field_pseudo_style = ($citizen_pseudo === null) ? '' : 'display:none';
+        
         return '
             <div id="newDiscussion"></div>
             <div id="send" class="topic discuss">
@@ -64,8 +66,11 @@ class HtmlWall
                     </a>
                     <form id="sendform" style="display:none">
                         <a href="#" id="hideSendform">[masquer]</a>
-                        <div>&#x1F464; <strong>'.$citizen_pseudo.'</strong></div>
-                        <div id="errorNew" class="red"></div>
+                        <div>&#x1F464; <strong>'.$citizen_pseudo.'</strong>
+                            <div id="errorNewTopicPseudo" class="red"></div>
+                            <input id="guestPseudo" type="text" name="guest_pseudo" placeholder="Votre pseudo" style="'.$field_pseudo_style.'">
+                        </div>
+                        <div id="errorNewTopicMessage" class="red"></div>
                         <textarea id="messageNew" placeholder="Donnez votre avis sur les stratégies ou demandez de l\'aide..."></textarea>
                         <input type="text" id="titleNew" placeholder="Titre de la discussion (facultatif)">
                         <input type="submit" value="Envoyer">
