@@ -72,10 +72,10 @@ if (document.getElementById('map') !== null) {
     
     // Create a new discussion thread
     document.getElementById("buttonNewTopic").addEventListener("click", function() {
-        toggleSendform();
+        toggleSendform(event);
     });
     document.getElementById("hideSendform").addEventListener("click", function() {
-        toggleSendform();
+        toggleSendform(event);
     });
     document.getElementById("sendform").addEventListener("submit", function() {
         // Desactivate the classic submission button (avoids reloading the page)

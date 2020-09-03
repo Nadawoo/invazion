@@ -684,20 +684,13 @@ function nl2br (text) {
 
 
 /**
- * Show/hide the form to create a new discussion threaf
- * @returns {Boolean}
+ * Show/hide the form to create a new discussion thread
  */
-function toggleSendform() {
+function toggleSendform(event) {
     
-    if (document.getElementById("sendform").style.display === "none") {
-        display("sendform");
-        hide("buttonNewTopic");
-    }
-    else {
-        display("buttonNewTopic");
-        hide("sendform");
-    }
-    // Desactivate the normal link
+    toggle("sendform");
+    toggle("buttonNewTopic");
+    // Desactivate the normal form
     event.preventDefault();
 }
 
