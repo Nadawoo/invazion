@@ -47,28 +47,6 @@ if (document.getElementById('map') !== null) {
     document.getElementById("map").addEventListener("click", function(){
         toggleTooltip(event.target.closest(".hexagon"));
     });
-
-    // Displays the tooltip of the player's zone when hovering the movement paddle
-    document.getElementById("central").addEventListener("mouseover", function() {
-        displayTooltip(document.getElementById("me").closest(".hexagon"));
-    });
-    document.getElementById("central").addEventListener("mouseout", function() {
-        hideTooltip(document.getElementById("me").closest(".hexagon"));
-    });
-    document.getElementById("central").addEventListener("click", function() {
-        toggleTooltip(document.getElementById("me").closest(".hexagon"));
-    });
-
-    // Same thing when hovering the GPS on the smartphone
-    document.getElementById("minimap").addEventListener("mouseover", function() {
-        displayTooltip(document.getElementById("me").closest(".hexagon"));
-    });
-    document.getElementById("minimap").addEventListener("mouseout", function() {
-        hideTooltip(document.getElementById("me").closest(".hexagon"));
-    });
-    document.getElementById("minimap").addEventListener("click", function() {
-        toggleTooltip(document.getElementById("me").closest(".hexagon"));
-    });
     
     // Filter discussions/events in the city
     document.getElementById("tabWallAll").addEventListener("click", function() {
@@ -119,5 +97,31 @@ if (document.getElementById('map') !== null) {
         // Desactivate the classic submission button (avoids reloading the page)
         event.preventDefault();
         createDiscussion();
+    });
+}
+
+// If the player is connected
+if (document.getElementById("me") !== null) {
+    
+    // Displays the tooltip of the player's zone when hovering the movement paddle
+    document.getElementById("central").addEventListener("mouseover", function() {
+        displayTooltip(document.getElementById("me").closest(".hexagon"));
+    });
+    document.getElementById("central").addEventListener("mouseout", function() {
+        hideTooltip(document.getElementById("me").closest(".hexagon"));
+    });
+    document.getElementById("central").addEventListener("click", function() {
+        toggleTooltip(document.getElementById("me").closest(".hexagon"));
+    });
+
+    // Same thing when hovering the GPS on the smartphone
+    document.getElementById("minimap").addEventListener("mouseover", function() {
+        displayTooltip(document.getElementById("me").closest(".hexagon"));
+    });
+    document.getElementById("minimap").addEventListener("mouseout", function() {
+        hideTooltip(document.getElementById("me").closest(".hexagon"));
+    });
+    document.getElementById("minimap").addEventListener("click", function() {
+        toggleTooltip(document.getElementById("me").closest(".hexagon"));
     });
 }
