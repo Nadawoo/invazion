@@ -168,7 +168,7 @@ echo $popup->customised('popsuccess', '', nl2br($msg_popup));
     </div>
     <div id="notifsBlock">
         <a id="notifsClose">X</a>
-        <div id="notifsList"></div>
+        <div id="notifsList"><div style="text-align:center;padding:0.8em;color:grey">Chargement en cours...</div></div>
     </div>
     
     
