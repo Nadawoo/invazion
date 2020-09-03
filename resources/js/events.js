@@ -98,6 +98,12 @@ if (document.getElementById('map') !== null) {
         event.preventDefault();
         createDiscussion();
     });
+    
+    // Clear the error messages if the user writes in the form
+    document.getElementById("sendform").addEventListener("input", function() {
+         document.getElementById("errorNewTopicPseudo").innerHTML  = "";
+         document.getElementById("errorNewTopicMessage").innerHTML = "";
+    });
 }
 
 // If the player is connected
