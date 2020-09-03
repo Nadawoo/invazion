@@ -180,7 +180,7 @@ function toggleActionBlock(buttonAlias) {
             
     if (document.getElementById(blockId).style.display === "block") {
         // If the block is already displayed, the button hides it
-        document.getElementById(blockId).style.display = "none";
+        hide(blockId);
         document.getElementById(roundId).classList.remove("active");
         // Will memorize in the cookie to hide the block
         buttonAlias = undefined;
@@ -463,7 +463,7 @@ async function createDiscussion() {
         json.datas.author_pseudo = author_pseudo;
         // Display the new discussion thread
         document.getElementById("newDiscussion").innerHTML += htmlDiscussion(json.datas.topic_id, title, json.datas, 0);
-        document.getElementById("send").style.display = "none";
+        hide("send");
         // Clear the form for the eventual next thread to send
         document.getElementById("sendform").reset();
     }
@@ -490,9 +490,9 @@ async function replyDiscussion(topicId, nbrMessages) {
     if (json.metas.error_code === "success") {
         // Clears and hides the form after posting
         document.getElementById("message"+topicId).value = "";
-        document.getElementById("sendform"+topicId).style.display = "none";
+        hide("sendform"+topicId);
         // Unhides the "Reply" button
-        document.getElementById("replyButton"+topicId).style.display = "block";
+        display("replyButton"+topicId);
         // Appends the text of the posted reply at the bottom of the discussion
         document.getElementById("replies"+topicId).innerHTML += htmlDiscussionMessage(message, citizenPseudo, new Date().toISOString(), nbrMessages+1);
         // Clears the eventual error message (obsolete after sending)

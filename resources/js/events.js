@@ -10,15 +10,15 @@ if (document.getElementById('map') !== null) {
     document.getElementById("notifsButton").addEventListener("click", function(){
 
         if (window.getComputedStyle(document.getElementById("notifsBlock")).display === 'none') {
+            display("notifsBlock");
             updateDiscussionsNotifs();
-            document.getElementById("notifsBlock").style.display = 'block';
         }
         else {
-            document.getElementById("notifsBlock").style.display = 'none';
+            hide("notifsBlock");
         }
     });
     document.getElementById("notifsClose").addEventListener("click", function(){
-        document.getElementById("notifsBlock").style.display = 'none';
+        hide("notifsBlock");
     });
 
 
