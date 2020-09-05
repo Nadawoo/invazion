@@ -91,11 +91,12 @@ class HtmlWall
      *                          Will be removed when real comments will be implemented.
      * @return string HTML
      */
-    private function event($message, $comments='')
+    private function event($title, $message, $comments='')
     {
         
         return '
             <div class="topic event">
+                <h3>'.$title.'</h3>
                 <div class="message">
                     <div class="text">
                         '.$message.'
@@ -124,7 +125,7 @@ class HtmlWall
                     '.$AP_invested.' <abbr title="points d\'action" style="font-variant:small-caps">pa</abbr> 
                     dans <strong>'.$construction_name.'</strong>';
         
-        return $this->event($message);
+        return $this->event($message, '');
     }
     
     
@@ -141,7 +142,7 @@ class HtmlWall
         $comments = $this->comment_event('Nadawoo', 'Mais pourquoi vous avez construit ce chantier ? On avait dit qu\'on faisait la pompe !')
                   . $this->comment_event('Schmurtz', 'Il le fallait, on a une grosse attaque ce soir.');
         
-        return $this->event($message, $comments);
+        return $this->event($message, '', $comments);
     }
     
     
