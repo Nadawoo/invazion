@@ -112,18 +112,9 @@
 #wall .topic {
     border-radius:0.3em;
 }
-#wall h3 { /* Topic title */
-    margin:0;
-    padding:0.3em;
-    border-radius:0.3em 0.3em 0 0;
-    border-bottom:1px solid #515a5a;
+#wall h3 {
     font-weight:normal;
-    background:#273746;
-    color:white;
-    cursor:pointer;
-}
-#wall h3:hover {
-    background:#566573;
+    letter-spacing: normal;
 }
 #wall .message {
     margin-top:0.2em;    
@@ -156,11 +147,25 @@
     color:#e74c3c;
 }
 
-/* Specific presentation for the discussions */
+/*
+ * Specific presentation for the discussions
+ */
 #wall .discuss  {
     background:#34495e; /* #7b241c #34495e */
     margin:2.5rem 0;
     box-shadow:0px 8px 15px black;
+}
+#wall .discuss h3 { /* Topic title */
+    margin:0;
+    padding:0.3em;
+    border-radius:0.3em 0.3em 0 0;
+    border-bottom:1px solid #515a5a;
+    background:#273746;
+    color:white;
+    cursor:pointer;
+}
+#wall .discuss h3:hover {
+    background:#566573;
 }
 #wall .discuss .message {
     margin:0.2rem 0.1rem 0 0.1rem;
@@ -197,14 +202,23 @@
     color:white;
 }
 
-/* Specific presentation for the events */
+/*
+ * Specific presentation for the events
+ */
 #wall .event  {
     margin:0.7em 0;
     padding:0.7em 0;
     border-radius:0;
     border-top: 1px solid grey;
 }
+#wall .event h3 {
+    font-size:1em;
+    color:black;
+    margin:0;
+}
 #wall .event .message {
+    margin-left:1.6em;
+    margin-top:0.2em;
     padding:0;
     background:none;
 }
@@ -214,4 +228,8 @@
     background:#f6ddcc;
     border-radius:0.3em;
     font-size:0.8em;
+}
+#wall .event ul {
+    margin:0 auto;
+    padding-left:2em;
 }

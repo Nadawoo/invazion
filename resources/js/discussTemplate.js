@@ -62,3 +62,51 @@ function htmlDiscussionMessage(message, pseudo, utcDate, replyNum) {
             <div class="text">'+nl2br(message)+'</div>\
         </div>';
 }
+
+
+function htmlEvent(title, message) {
+    
+    return '<div class="topic event">\
+            <h3>'+title+'</h3>\
+            <div class="message">\
+                <div class="text">\
+                   '+message+'\
+                </div>\
+                <div class="time" title="Fuseau horaire de Paris">\
+                    <a href="#">Commenter</a> · Mardi 3 juin (2020) à 13h02\
+                </div>\
+            </div>\
+        </div>';
+}
+
+
+function htmlAttackRepulsed(cityId, cycleNum, nbrZombies, nbrDefenses, nbrDeads, nbrSurvivors) {
+    
+    return {
+        "title"   : '&#x1F9DF; <strong>Attaque zombie n° '+cycleNum+'\
+                    <span style="padding:0 0.2em;background:green;color:white">repoussée !</span> &#x2714;&#xFE0F;</strong>',
+        "message" : 'La ville '+cityId+' a été attaquée par une horde de <strong>'+nbrZombies+' zombies</strong> !\
+            Heureusement, nos <strong>'+nbrDefenses+' défenses</strong> ont été suffisantes pour les repousser.\
+            <br>Bien joué ! Mais une <strong>nouvelle horde</strong> plus nombreuse attaquera cette nuit.\
+            Vous allez devoir renforcer les défenses de la ville...'
+    };
+}
+
+
+function htmlAttackNotRepulsed(cityId, cycleNum, nbrZombies, nbrDefenses, nbrDeads, nbrSurvivors) {
+    
+    return {
+        "title"   : '&#x1F9DF; <strong>Attaque zombie n° '+cycleNum+'\
+                    <span style="padding:0 0.2em;background:red;color:white">catastrophe !</span> &#x274C;</strong>',
+        "message" : '<strong class="red">'+(nbrZombies-nbrDefenses)+' zombies ont pénétré en ville !</strong>\
+            Les <strong>'+nbrDefenses+'</strong> défenses étaient insuffisantes pour contenir\
+            les <strong>'+nbrZombies+'</strong> morts-vivants...\
+            <br>Bilan :\
+                <ul>\
+                    <li>&#x26B0;&#xFE0F; <strong>'+nbrDeads+' morts</strong> (nom1, nom2)</li>\
+                    <li>&#x1F9CD;&nbsp; <strong>'+nbrSurvivors+' survivants</strong> (nom3, nom4, nom5)</li>\
+                </ul>\
+            <strong>Construisez des défenses</strong> avant la prochaine attaque\
+            si vous ne voulez pas tous y laisser votre peau !'
+    };
+}

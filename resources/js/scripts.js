@@ -695,6 +695,24 @@ function toggleSendform(event) {
 }
 
 
+/**
+ * Generates the HTML for the result of the daily zombies attack
+ */
+function htmlEventAttack(cityId, cycleNum, nbrZombies, nbrDefenses, nbrDeads, nbrSurvivors) {
+    
+    var zombiesOverflow = nbrZombies-nbrDefenses,
+        message = "";
+        
+    if (zombiesOverflow <= 0) {
+        message = htmlAttackRepulsed(cityId, cycleNum, nbrZombies, nbrDefenses, nbrDeads, nbrSurvivors);
+    } else {
+        message = htmlAttackNotRepulsed(cityId, cycleNum, nbrZombies, nbrDefenses, nbrDeads, nbrSurvivors);
+    }
+    
+    return htmlEvent(message.title, message.message);
+}
+
+
 /*
  * Executed as soon as the page loads, without user action
  */

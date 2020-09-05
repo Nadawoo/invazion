@@ -29,7 +29,7 @@ class HtmlWall
                     
                     <div id="citizenPseudo" style="display:none">'.$citizen_pseudo.'</div>
                     <div id="discussions"></div>
-                    
+                    <div id="events"></div>
                 </div>
             </div>';
     }
