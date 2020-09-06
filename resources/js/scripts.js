@@ -537,7 +537,7 @@ async function updateDiscussionsNotifs() {
         let authorPseudo = topic.last_message.author_pseudo;
         let authorId     = topic.last_message.author_id;
         let lastMessage  = topic.last_message.message;
-        let localDate    = htmlDate(topic.last_message.datetime_utc);
+        let localDate    = dateIsoToString(topic.last_message.datetime_utc);
 
         titles += htmlDiscussionNotif(topic.title, localDate, topicUrl, authorId, authorPseudo, lastMessage);
     }
@@ -617,7 +617,7 @@ function toggleTooltip(hexagon) {
  *                          Example : "2020-02-18T14:51:41+01:00"
  * @return {string} The human-readable date (e.g.: "lundi 6 juin 2020 à 13h40")
  */
-function htmlDate(utcDate) {
+function dateIsoToString(utcDate) {
     // Set here the presentation you want for the date
     // Available options : https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/Intl/DateTimeFormat#Syntaxe
     var dateFormat  = { weekday:'long', year:'numeric', month:'short', day:'numeric', hour:'numeric', minute:'numeric' };
@@ -698,7 +698,7 @@ function toggleSendform(event) {
 /**
  * Generates the HTML for the result of the daily zombies attack
  */
-function htmlEventAttack(cityId, cycleNum, nbrZombies, nbrDefenses, nbrDeads, nbrSurvivors) {
+function htmlEventAttack(datetimeUtc, cityId, cycleNum, nbrZombies, nbrDefenses, nbrDeads, nbrSurvivors) {
     
     var zombiesOverflow = nbrZombies-nbrDefenses,
         message = "";
@@ -709,7 +709,7 @@ function htmlEventAttack(cityId, cycleNum, nbrZombies, nbrDefenses, nbrDeads, nb
         message = htmlAttackNotRepulsed(cityId, cycleNum, nbrZombies, nbrDefenses, nbrDeads, nbrSurvivors);
     }
     
-    return htmlEvent(message.title, message.message);
+    return htmlEvent(message.title, message.message, dateIsoToString(datetimeUtc));
 }
 
 
@@ -727,7 +727,7 @@ async function getCyclicAttacks(nbrExecutions) {
 
     for (var i in json.datas) {
         var log = json.datas[i];
-        html += htmlEventAttack(log.city_id, log.cycle_num, log.zombies, log.defenses, log.citizens_killed, log.citizens_survivors);
+        html += htmlEventAttack(log.datetime_utc, log.city_id, log.cycle_num, log.zombies, log.defenses, log.citizens_killed, log.citizens_survivors);
     }
     
     document.getElementById("events").innerHTML += html;

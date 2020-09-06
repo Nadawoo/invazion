@@ -58,13 +58,13 @@ function htmlDiscussionMessage(message, pseudo, utcDate, replyNum) {
     return '<div class="message">\
             <div class="reply_num">#'+replyNum+'</div>\
             <div class="pseudo">&#x1F464; <strong>'+pseudo+'</strong></div>\
-            <div class="time" title="Fuseau horaire de Paris">'+htmlDate(utcDate)+'</div>\
+            <div class="time" title="Fuseau horaire de Paris">'+dateIsoToString(utcDate)+'</div>\
             <div class="text">'+nl2br(message)+'</div>\
         </div>';
 }
 
 
-function htmlEvent(title, message) {
+function htmlEvent(title, message, datetimeString) {
     
     return '<div class="topic event">\
             <h3>'+title+'</h3>\
@@ -73,7 +73,7 @@ function htmlEvent(title, message) {
                    '+message+'\
                 </div>\
                 <div class="time" title="Fuseau horaire de Paris">\
-                    <a href="#">Commenter</a> · Mardi 3 juin (2020) à 13h02\
+                    <a href="#">Commenter</a> · '+datetimeString+'\
                 </div>\
             </div>\
         </div>';
