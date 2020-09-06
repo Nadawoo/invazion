@@ -1,6 +1,6 @@
 /**
  * Javacript version of the ZombLib (library to easily use the API of InvaZion)
- * v 1.0
+ * v 1.1
  */
 
 
@@ -19,8 +19,13 @@ function getOfficialServerRoot() {
 /**
  * Sends a form with the GET or POST method
  * 
+ * @param {string} method  The HTTP method to send the data (GET or POST)
  * @param {string} apiName The name of the Invazion's API to call (map, citizen, city...) 
- *                         E.g. : for the API "https://invazion.nadazone.fr/api/map", apiName is "map"
+ *                         E.g.: for the API "https://invazion.nadazone.fr/api/map", apiName is "map"
+ * @param {string} params  The additional parameters to send to the API, as a unique string
+ *                         E.g.: "action=get&citizen_id=87"
+ *                         (to know the available parameters, see the online API doc:
+ *                         https://invazion.nadazone.fr/apis-list)
  */
  async function callApi(method, apiName, params) {
     
