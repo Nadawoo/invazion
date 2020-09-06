@@ -3,6 +3,8 @@
  * Put nothing else than events listeners.
  */
 
+var nbrExecutionsGetCyclicAttacks = 0;
+
 // If we are on the main game page (those elements don't exist on the connection page)
 if (document.getElementById('map') !== null) {
     
@@ -62,6 +64,9 @@ if (document.getElementById('map') !== null) {
         displayClasses(["event"]);
         hideClasses(["discuss"]);
         switch_tab("tabWallEvents", ["tabWallAll", "tabWallDiscuss"]);
+        // Updates the log of attacks
+        getCyclicAttacks(nbrExecutionsGetCyclicAttacks);
+        nbrExecutionsGetCyclicAttacks++;
     });
     
     

@@ -24,12 +24,14 @@ class HtmlWall
                     
                     '.$this->tabs().'                    
                     '.$this->new_discussion_form($citizen_pseudo).'                    
-                    '.$this->event_construction_completed().'                        
-                    '.$this->event_AP_invested('Nadawoo', 'Mur de renfort', 3).'
                     
                     <div id="citizenPseudo" style="display:none">'.$citizen_pseudo.'</div>
                     <div id="discussions"></div>
                     <div id="events"></div>
+                    
+                    '.$this->event_construction_completed().'                        
+                    '.$this->event_AP_invested('Nadawoo', 'Mur de renfort', 3).'
+                    
                 </div>
             </div>';
     }

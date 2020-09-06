@@ -713,6 +713,27 @@ function htmlEventAttack(cityId, cycleNum, nbrZombies, nbrDefenses, nbrDeads, nb
 }
 
 
+/**
+ * Gets the log of attacks with the API and write it in the communications panel
+ */
+async function getCyclicAttacks(nbrExecutions) {
+    // Don't run the function more than once (it calls the API)
+    if (nbrExecutions >= 1) {
+        return false;
+    }
+    
+    var json = await callApi("GET", "events", "action=get&type=cyclicattack"),
+        html = "";
+
+    for (var i in json.datas) {
+        var log = json.datas[i];
+        html += htmlEventAttack(log.city_id, log.cycle_num, log.zombies, log.defenses, log.citizens_killed, log.citizens_survivors);
+    }
+    
+    document.getElementById("events").innerHTML += html;
+}
+
+
 /*
  * Executed as soon as the page loads, without user action
  */
