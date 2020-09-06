@@ -723,7 +723,7 @@ async function getCyclicAttacks(nbrExecutions) {
         return false;
     }
     
-    var json = await callApi("GET", "events", "action=get&type=cyclicattack"),
+    var json = await callApi("GET", "events", "action=get&type=cyclicattack&sort=desc"),
         html = "";
 
     for (var i in json.datas) {
