@@ -697,19 +697,20 @@ function toggleSendform(event) {
 
 /**
  * Generates the HTML for the result of the daily zombies attack
+ * @param {array} apiData The data as returned by the API "events"
  */
-function htmlEventAttack(datetimeUtc, cityId, cycleNum, nbrZombies, nbrDefenses, nbrDeads, nbrSurvivors) {
+function htmlEventAttack(apiData) {
     
-    var zombiesOverflow = nbrZombies-nbrDefenses,
+    var zombiesOverflow = apiData.zombies-apiData.defenses,
         message = "";
         
     if (zombiesOverflow <= 0) {
-        message = htmlAttackRepulsed(cityId, cycleNum, nbrZombies, nbrDefenses, nbrDeads, nbrSurvivors);
+        message = htmlAttackRepulsed(apiData);
     } else {
-        message = htmlAttackNotRepulsed(cityId, cycleNum, nbrZombies, nbrDefenses, nbrDeads, nbrSurvivors);
+        message = htmlAttackNotRepulsed(apiData);
     }
     
-    return htmlEvent(message.title, message.message, dateIsoToString(datetimeUtc));
+    return htmlEvent(message.title, message.message, dateIsoToString(apiData.datetime_utc));
 }
 
 
@@ -726,8 +727,7 @@ async function getCyclicAttacks(nbrExecutions) {
         html = "";
 
     for (var i in json.datas) {
-        var log = json.datas[i];
-        html += htmlEventAttack(log.datetime_utc, log.city_id, log.cycle_num, log.zombies, log.defenses, log.citizens_killed, log.citizens_survivors);
+        html += htmlEventAttack(json.datas[i]);
     }
     
     document.getElementById("events").innerHTML += html;

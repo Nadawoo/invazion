@@ -80,31 +80,43 @@ function htmlEvent(title, message, datetimeString) {
 }
 
 
-function htmlAttackRepulsed(cityId, cycleNum, nbrZombies, nbrDefenses, nbrDeads, nbrSurvivors) {
+/**
+ * Message if the cyclic attack has been repulsed by the defenses
+ * 
+ * @param {array} apiData The data as returned by the API "events"
+ * @return {string} HTML
+ */
+function htmlAttackRepulsed(apiData) {
     
     return {
-        "title"   : '&#x1F9DF; <strong>Attaque zombie n° '+cycleNum+'\
+        "title"   : '&#x1F9DF; <strong>Attaque zombie n° '+apiData.cycle_num+'\
                     <span style="padding:0 0.2em;background:green;color:white">repoussée !</span> &#x2714;&#xFE0F;</strong>',
-        "message" : 'La ville '+cityId+' a été attaquée par une horde de <strong>'+nbrZombies+' zombies</strong> !\
-            Heureusement, nos <strong>'+nbrDefenses+' défenses</strong> ont été suffisantes pour les repousser.\
+        "message" : 'La ville '+apiData.city_id+' a été attaquée par une horde de <strong>'+apiData.zombies+' zombies</strong> !\
+            Heureusement, nos <strong>'+apiData.defenses+' défenses</strong> ont été suffisantes pour les repousser.\
             <br>Bien joué ! Mais une <strong>nouvelle horde</strong> plus nombreuse attaquera cette nuit.\
             Vous allez devoir renforcer les défenses de la ville...'
     };
 }
 
 
-function htmlAttackNotRepulsed(cityId, cycleNum, nbrZombies, nbrDefenses, nbrDeads, nbrSurvivors) {
+/**
+ * Message if the cyclic attack has NOT been repulsed by the defenses
+ * 
+ * @param {array} apiData The data as returned by the API "events"
+ * @return {string} HTML
+ */
+function htmlAttackNotRepulsed(apiData) {
     
     return {
-        "title"   : '&#x1F9DF; <strong>Attaque zombie n° '+cycleNum+'\
+        "title"   : '&#x1F9DF; <strong>Attaque zombie n° '+apiData.cycle_num+'\
                     <span style="padding:0 0.2em;background:red;color:white">catastrophe !</span> &#x274C;</strong>',
-        "message" : '<strong class="red">'+(nbrZombies-nbrDefenses)+' zombies ont pénétré en ville !</strong>\
-            Les <strong>'+nbrDefenses+'</strong> défenses étaient insuffisantes pour contenir\
-            les <strong>'+nbrZombies+'</strong> morts-vivants...\
+        "message" : '<strong class="red">'+(apiData.zombies-apiData.defenses)+' zombies ont pénétré en ville !</strong>\
+            Les <strong>'+apiData.defenses+'</strong> défenses étaient insuffisantes pour contenir\
+            les <strong>'+apiData.zombies+'</strong> morts-vivants...\
             <br>Bilan :\
                 <ul>\
-                    <li>&#x26B0;&#xFE0F; <strong>'+nbrDeads+' morts</strong> (nom1, nom2)</li>\
-                    <li>&#x1F9CD;&nbsp; <strong>'+nbrSurvivors+' survivants</strong> (nom3, nom4, nom5)</li>\
+                    <li>&#x26B0;&#xFE0F; <strong>'+apiData.citizens_killed+' morts</strong> (nom1, nom2)</li>\
+                    <li>&#x1F9CD;&nbsp; <strong>'+apiData.citizens_survivors+' survivants</strong> (nom3, nom4, nom5)</li>\
                 </ul>\
             <strong>Construisez des défenses</strong> avant la prochaine attaque\
             si vous ne voulez pas tous y laisser votre peau !'
