@@ -4,7 +4,7 @@
  * Génère le HTML de la case sur laquelle le citoyen se trouve
  * (en grand format par-dessus la carte)
  */
-class HtmlMyzone
+class HtmlMyZone
 {
     
     private $_citizens_in_zone  = [];

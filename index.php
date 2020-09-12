@@ -10,7 +10,7 @@ safely_require('ZombLib.php');
 $api                = new ZombLib(official_server_root().'/api');
 $layout             = new HtmlLayout();
 $map                = new HtmlMap();
-$my_zone            = new HtmlMyzone();
+$my_zone            = new HtmlMyZone();
 $enclosure          = new HtmlCityEnclosure();
 $buttons            = new HtmlButtons();
 $paddle             = new HtmlMovementPaddle();

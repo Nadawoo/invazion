@@ -17,7 +17,7 @@ Ils sont listés par ordre d'importance.*
 * HtmlLayout.php : classe principale générant les blocs HTML du jeu, hors ceux placés dans une classe dédiée.
 * HtmlMap.php : génère le HTML de la carte
 * HtmlCityEnclosure.php : génère le HTML de l'intérieur de la ville (chantiers, dépôt, puits...)
-* HtmlMyzone.php : génère le HTML de la zone où se trouve le joueur
+* HtmlMyZone.php : génère le HTML de la zone où se trouve le joueur
 * HtmlButtons.php : génère les boutons d'action (attaquer un zombie...)
 * HtmlMovementPaddle.php : génère les flèches de déplacement à côté de la carte
 * minimap.php : génère le smartphone-gps à côté de la carte
