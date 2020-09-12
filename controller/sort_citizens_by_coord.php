@@ -1,14 +1,13 @@
 <?php
 /**
- * Trie les citoyens par leur emplacement sur la carte au lieu de leur id
+ * Sorts citizens by their location on the map instead of their id
  * 
- * @param array $citizens   Les données des citoyens telles que retournées 
- *                          par l'API citizens
+ * @param array $citizens   The citizens data, as returned by the "citizens" API
  * 
- * @param array Les données des citoyens, indexées par coordonnées
+ * @return array The citizens data index by coordinates
  *              [0_2] => [
- *                  [0] => [données du citoyen],
- *                  [1] => [données du citoyen],
+ *                  [0] => [data of a citizen],
+ *                  [1] => [data of another citizen],
  *                  ...
  *                  ],
  *              [0_3] => ...

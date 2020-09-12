@@ -54,9 +54,9 @@ if (!empty($_POST)) {
 
 
 /**
- * Récupération des données
- * À laisser *après* l'exécution des actions, sinon l'affichage aura un retard 
- * d'actualisation (pseudo non modifié, citoyen non déplacé...)
+ * Get the data to build the interface
+ * Leave this *after* the execution of actions above, otherwise the last action
+ * wouldn't be taken in account without refreshing (citizen not moved...)
  */
 // If the player is connected *and* his token is not expired
 if ($api->user_seems_connected() === true) {
@@ -70,7 +70,7 @@ if ($api->user_seems_connected() === true) {
         $msg_build = '<p class="'.$api_me['metas']['error_class'].'">'.$api_me['metas']['error_message'].'</p>';
     }
 }
-// Récupère les données de jeu en appelant les API
+// Get the game data by calling the APIs
 $citizens           = $api->call_api('citizens', 'get', ['map_id'=>$citizen['map_id']])['datas'];
 $citizens_by_coord  = sort_citizens_by_coord($citizens);
 $maps               = $api->call_api('maps', 'get', ['map_id'=>$citizen['map_id']])['datas'];
@@ -78,7 +78,7 @@ $configs            = $api->call_api('configs', 'get')['datas'];
 $specialities       = $configs['specialities'];
 $speciality_caracs  = $specialities[$citizen['speciality']];
 
-// Si le joueur est connecté et a déjà créé son citoyen
+// If the player is connected and has already creatd his citizen
 if ($citizen['citizen_id'] !== NULL) {
     
     $zone_fellows       = $citizens_by_coord[$citizen['coord_x'].'_'.$citizen['coord_y']];
@@ -121,7 +121,7 @@ unset($maps, $citizens, $citizens_by_coord);
 
 <?php
 /**
- * Début de la page HTML
+ * Start of the HTML page
  */
 echo $layout->page_header();
 
@@ -132,7 +132,7 @@ echo $popup->predefined('popvault',   '');
 echo $popup->predefined('popwounded', '', ['citizen_id'=>$citizen['citizen_id'], 'healing_items'=>$healing_items]);
 echo $popup->predefined('popcontrol', 'Aide : le contrôle de zone');
 
-// Pop-up générique indiquant le résultat d'une action
+// Generic pop-up describing the result of an action
 echo $popup->customised('popsuccess', '', nl2br($msg_popup));
 ?>
     
@@ -160,7 +160,7 @@ echo $popup->customised('popsuccess', '', nl2br($msg_popup));
     
     
     <?php
-    // Demande de choisir une spécialité (bâtisseur...) (bâtisseur, fouineur...)
+    // Asks for chosing a citizen speciality (builder, digger...)
     if ($citizen['can_change_speciality'] === 1) {
         ?>
         
@@ -216,7 +216,7 @@ echo $popup->customised('popsuccess', '', nl2br($msg_popup));
                 </div>
             </div>';
 
-        // Fond sombre en surimpression par-dessus la carte
+        // Dark overlay to blur the map under the city interface
         echo '<div id="dark_background"></div>';
      } ?>
     
@@ -247,7 +247,7 @@ echo $popup->customised('popsuccess', '', nl2br($msg_popup));
         </div>
         
         <?php 
-        // Affiche la zone sur laquelle le joueur se trouve       
+        // Display the zone where the player is       
         $my_zone->set_nbr_zombies($zone['zombies']);
         $my_zone->set_nbr_items($zone['items']);
         $my_zone->set_citizens_in_zone($zone_fellows);
@@ -256,7 +256,7 @@ echo $popup->customised('popsuccess', '', nl2br($msg_popup));
         $my_zone->set_citizen_pseudo($citizen['citizen_pseudo']);
         echo $my_zone->main();
         
-        // Affiche la carte complète
+        // The map
         echo $html['map'];
         ?>
         
