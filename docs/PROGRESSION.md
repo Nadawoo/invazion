@@ -7,35 +7,38 @@ Le jeu est actuellement en **version alpha** : un certain nombre de fonctionnali
     - Générer la carte ✔️ Fait !
     - S’inscrire ✔️ Fait !
     
-* Espace de discussion intégré au jeu ✔️ Fait !
-
-* Notification & historique des événements majeurs de la partie :
-    - Constructions de chantiers ✔️ Fait !
-    - Bilans des attaques zombies ⌛ En cours
-    - Notification des actions des autres joueurs pour le dynamisme (@mentions, déplacements…) ⌛ En cours
-
-* Actions indispensables :
+* Déplacements et fouilles :
     - Se déplacer ✔️ Fait !
     - Fouiller ✔️ Fait !
     - Ne pas pouvoir fouiller plusieurs fois la même zone ⌛ En cours
     - Ramasser/déposer des objets ✔️ Fait !
-    - Gagner des points d’action en mangeant ✔️ Fait !
-    - Ne pas pouvoir manger plusieurs fois par jour ⌛ En cours
-
-* Points de contrôle :
     - Être bloqué si zombies en surnombre ✔️ Fait !
     - Délai pour quitter la zone quand contrôle perdu ⌛ En cours
 
-* Ville :
+* Points d'action (PA) :
+    - Coût en PA des déplacements ✔️ Fait !
+    - Coût en PA des chantiers ✔️ Fait !
+    - Gagner des PA en mangeant ✔️ Fait !
+    - Ne pas pouvoir manger plusieurs fois par jour ⌛ En cours
+
+* Espace de discussion intégré au jeu ✔️ Fait !
+
+* Notification & historique des événements majeurs de la partie :
+    - Construction de chantiers ✔️ Fait !
+    - Bilans des attaques zombies ✔️ Fait !
+    - Notification des actions des autres joueurs pour le dynamisme (@mentions, déplacements…) ⌛ En cours
+
+* En ville :
     - Créer une ville ✔️ Fait !
     - Entrer/sortir de la ville ✔️ Fait !
     - Interface à l’intérieur de la ville ✔️ Fait !
     - Construire des chantiers ✔️ Fait !
 
 * Attaque quotidienne :
-    - Pouvoir lancer l’attaque manuellement ⌛ En cours
-    - Effets de l’attaque sur la ville ⌛ En cours
-    - Ajout automatique de zombies sur la carte ⌛ En cours
+    - Pouvoir lancer l’attaque manuellement ✔️ Fait !
+    - Morts pendant l'attaque ⌛ En cours
+    - Régénération des points d'action ⌛ En cours
+    - Apparition automatique de zombies sur la carte ⌛ En cours
 
 * Mort du joueur et lancement d'une nouvelle partie ⌛ En cours
 
@@ -46,6 +49,7 @@ Note : le jeu dispose déjà de fonctionnalités supplémentaires. Ne figurent d
 
 Une fois la version bêta complète et lancée, sur cette « base jouable minimale » seront implémentées les fonctionnalités qui donneront au jeu sa richesse. A commencer par des fonctions issues de Hordes :
 
+* Choisir son métier (bâtisseur, fouineur...)  ✔️ Fait !
 * Le puits / la soif
 * La maison individuelle (défenses, décoration)
 * Les plaintes / bannissements / pendaisons
