@@ -31,7 +31,7 @@ Le jeu est actuellement en **version alpha** : un certain nombre de fonctionnali
     - Construire des chantiers ✔️ Fait !
 
 * Attaque quotidienne :
-    - Pouvoir lancer l’attaque manuellement ⌛ En cours
+    - Pouvoir lancer l’attaque manuellement ✔️ Fait !
     - Effets de l’attaque sur la ville ⌛ En cours
     - Ajout automatique de zombies sur la carte ⌛ En cours
 
