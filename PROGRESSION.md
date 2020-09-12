@@ -35,9 +35,7 @@ Le jeu est actuellement en **version alpha** : un certain nombre de fonctionnali
     - Effets de l’attaque sur la ville ⌛ En cours
     - Ajout automatique de zombies sur la carte ⌛ En cours
 
-* Fin de partie (mort) ⌛ En cours
-
-* Pouvoir lancer une nouvelle partie ⌛ En cours
+* Mort du joueur et lancement d'une nouvelle partie ⌛ En cours
 
 Note : le jeu dispose déjà de fonctionnalités supplémentaires. Ne figurent dans cette liste que les éléments indispensables à une version jouable.
 
@@ -47,43 +45,27 @@ Note : le jeu dispose déjà de fonctionnalités supplémentaires. Ne figurent d
 Une fois la version bêta complète et lancée, sur cette « base jouable minimale » seront implémentées les fonctionnalités qui donneront au jeu sa richesse. A commencer par des fonctions issues de Hordes :
 
 * Le puits / la soif
-
 * La maison individuelle (défenses, décoration)
-
 * Les plaintes / bannissements / pendaisons
-
 * Les objets de défense
-
 * Les chantiers non défensifs :
     - multiplicateurs d’objets de défense
     - production de nourriture
     - chantiers consommateurs d’eau
     - …
-
 * Les dépendances des chantiers
-
 * Les variétés d’objets (différents types de boost, animaux…)
-
 * Les blessures :
-
-- blessure par agression => FAIT
-
-- blessure par objet dangereux
-
-- blessure par attaque de zombie
-
-- la mort par infection
+    - blessure par agression ✔️ Fait !
+    - blessure par objet dangereux
+    - blessure par attaque de zombie
+    - la mort par infection
 
 * Les causes de mort hors attaque quotidienne
-
 * Le vol d’objets
-
 * La terreur (effets, objets de décoration)
-
 * Les bâtiments dans le désert (déblaiement, objets rares)
-
 * Historique pour chaque zone du désert (arrivées/départs, fouilles, tchat de case…)
-
 * …
 
  
