@@ -39,4 +39,4 @@ Une fois le jeu officiellement lancé, des fonctionnalités propres à InvaZion 
 Voir [docs/FUTURE_FEATURES.md](docs/FUTURE_FEATURES.md) 
 
 # Organisation des fichiers
-Voir [docs/FILES_STRUCTURE.md](docs/FILES-STRUCTURE.md) 
+Voir [docs/FILES_STRUCTURE.md](docs/FILES_STRUCTURE.md) 
