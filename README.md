@@ -36,7 +36,7 @@ L'avancement du codage avant le lancement d'une version bêta jouable complète 
 
 ## Fonctionnalités futures
 Une fois le jeu officiellement lancé, des fonctionnalités propres à InvaZion seront implémentées.
-Voir [FUTURE_FEATURES.md](FUTURE_FEATURES.md) 
+Voir [docs/FUTURE_FEATURES.md](FUTURE_FEATURES.md) 
 
 # Organisation des fichiers
-Voir [FILES-STRUCTURE.md](FILES-STRUCTURE.md) 
+Voir [docs/FILES_STRUCTURE.md](FILES-STRUCTURE.md) 
