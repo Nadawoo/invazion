@@ -58,12 +58,10 @@ if (!empty($_POST)) {
  * À laisser *après* l'exécution des actions, sinon l'affichage aura un retard 
  * d'actualisation (pseudo non modifié, citoyen non déplacé...)
  */
-// Si le joueur est authentifié *et* que son jeton n'est pas expiré
+// If the player is connected *and* his token is not expired
 if ($api->user_seems_connected() === true) {
-    
-    // Récupère les données du joueur
+    // Get the player data from the API
     $api_me = $api->call_api('me', 'get');
-    $citizen['user_id'] = $api_me['datas']['user_id'];
     
     if ($api_me['metas']['error_code'] === 'success') {
         $citizen = $api_me['datas'];
