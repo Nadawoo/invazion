@@ -31,6 +31,8 @@ Le jeu vise à être hautement customisable et le plus ouvert possible (interfac
 * Serveur commun afin de ne pas fragmenter la communauté (important pour un jeu multijoueurs)
 
 # Feuille de route (roadmap)
+## Lancement de la bêta
+L'avancement du codage avant le lancement d'une version bêta jouable complète est décrit dans [PROGRESSION.md](PROGRESSION.md).
 
 ## A court terme
 
