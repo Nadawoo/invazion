@@ -114,9 +114,7 @@ $html = [
     ];
 
 
-unset($maps);
-unset($citizens);
-unset($citizens_by_coord);
+unset($maps, $citizens, $citizens_by_coord);
 ?>
 
 
