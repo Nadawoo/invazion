@@ -254,7 +254,7 @@ class HtmlMyZone
             
             $reinforcement_needed = str_repeat(
                      '<div style="display:flex;flex-grow:1">'
-                   . '    <span class="reinforcement">&nbsp;&#8252;&nbsp;Renfort requis</span>'
+                   . '    <a href="#popcontrol" class="reinforcement">&#x26A0;&#xFE0F;Renfort requis</a>'
                    . '    <span style="opacity:0.3">&#128737;&#65039;️</span>'
                    . '</div>',
                    $nbr_repeat);
