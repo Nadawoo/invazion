@@ -2,9 +2,7 @@
 require_once 'controller/autoload.php';
 safely_require('model/set_default_variables.php');
 safely_require('controller/official_server_root.php');
-safely_require('controller/sort_citizens_by_coord.php');
-safely_require('controller/filter_citizens_by_city.php');
-safely_require('controller/filter_bag_items.php');
+safely_require('controller/SortGameData.php');
 safely_require('ZombLib.php');
 
 $api                = new ZombLib(official_server_root().'/api');
@@ -17,6 +15,7 @@ $paddle             = new HtmlMovementPaddle();
 $phone              = new HtmlSmartphone();
 $wall               = new HtmlWall();
 $popup              = new HtmlPopup();
+$sort               = new SortGameData();
 $zone               = set_default_variables('zone');
 $citizen            = set_default_variables('citizen');
 $city_fellows       = [];
@@ -72,7 +71,7 @@ if ($api->user_seems_connected() === true) {
 }
 // Get the game data by calling the APIs
 $citizens           = $api->call_api('citizens', 'get', ['map_id'=>$citizen['map_id']])['datas'];
-$citizens_by_coord  = sort_citizens_by_coord($citizens);
+$citizens_by_coord  = $sort->sort_citizens_by_coord($citizens);
 $maps               = $api->call_api('maps', 'get', ['map_id'=>$citizen['map_id']])['datas'];
 $configs            = $api->call_api('configs', 'get')['datas'];
 $specialities       = $configs['specialities'];
@@ -83,13 +82,13 @@ if ($citizen['citizen_id'] !== NULL) {
     
     $zone_fellows       = $citizens_by_coord[$citizen['coord_x'].'_'.$citizen['coord_y']];
     $zone               = $maps['zones'][$citizen['coord_x'].'_'.$citizen['coord_y']];
-    $healing_items      = filter_bag_items('healing_wound', $configs['items'], $citizen['bag_items']);
+    $healing_items      = $sort->filter_bag_items('healing_wound', $configs['items'], $citizen['bag_items']);
     
     // If the citizen is inside a city, we get its characteristics (bank, well...)
     if ($citizen['is_inside_city'] === 1) {
         
         $city_data    = $api->call_api('cities', 'get', ['city_id'=>$zone['city_id']])['datas'];
-        $city_fellows = filter_citizens_by_city($zone_fellows, $zone['city_id']);
+        $city_fellows = $sort->filter_citizens_by_city($zone_fellows, $zone['city_id']);
     }
 }
 
