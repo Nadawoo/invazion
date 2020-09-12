@@ -4,40 +4,40 @@
 Le jeu est actuellement en **version alpha** : un certain nombre de fonctionnalités ont été implémentées (se déplacer, tuer un zombie…), mais l’ensemble ne permet pas encore de jouer une « vraie » partie. Voici l’état d’avancement du codage de la **version bêta jouable**, c’est-à-dire : pourvoir jouer à une partie de bout en bout (lancer une partie, construire des défenses, subir des attaques, mourir). Lorsque toutes les étapes ci-dessous seront cochées, le jeu sera officiellement ouvert et jouable.
 
 * Base :
-    - Générer la carte
-    - S’inscrire
+    - Générer la carte ✔️ Fait !
+    - S’inscrire ✔️ Fait !
     
-* Espace de discussion intégré au jeu
+* Espace de discussion intégré au jeu ✔️ Fait !
 
 * Notification & historique des événements majeurs de la partie :
-    - Constructions de chantiers
-    - Bilans des attaques zombies
-    - Notification des actions des autres joueurs pour le dynamisme (@mentions, déplacements…)
+    - Constructions de chantiers ✔️ Fait !
+    - Bilans des attaques zombies ⌛ En cours
+    - Notification des actions des autres joueurs pour le dynamisme (@mentions, déplacements…) ⌛ En cours
 
 * Actions indispensables :
-    - Se déplacer
-    - Fouiller
-    - Ramasser/déposer des objets
-    - Gagner des points d’action en mangeant
+    - Se déplacer ✔️ Fait !
+    - Fouiller ✔️ Fait !
+    - Ramasser/déposer des objets ✔️ Fait !
+    - Gagner des points d’action en mangeant ✔️ Fait !
 
 * Points de contrôle :
-    - Être bloqué si zombies en surnombre
-    - Délai pour quitter la zone quand contrôle perdu => A FAIRE
+    - Être bloqué si zombies en surnombre ✔️ Fait !
+    - Délai pour quitter la zone quand contrôle perdu ⌛ En cours
 
 * Ville :
-    - Créer une ville
-    - Entrer/sortir de la ville
-    - Interface à l’intérieur de la ville
-    - Construire des chantiers
+    - Créer une ville ✔️ Fait !
+    - Entrer/sortir de la ville ✔️ Fait !
+    - Interface à l’intérieur de la ville ✔️ Fait !
+    - Construire des chantiers ✔️ Fait !
 
 * Attaque quotidienne :
-    - Pouvoir lancer l’attaque manuellement
-    - Effets de l’attaque sur la ville => A FAIRE
-    - Ajout automatique de zombies sur la carte => A FAIRE
+    - Pouvoir lancer l’attaque manuellement ⌛ En cours
+    - Effets de l’attaque sur la ville ⌛ En cours
+    - Ajout automatique de zombies sur la carte ⌛ En cours
 
-* Fin de partie (mort) => A FAIRE
+* Fin de partie (mort) ⌛ En cours
 
-* Pouvoir lancer une nouvelle partie
+* Pouvoir lancer une nouvelle partie ⌛ En cours
 
 Note : le jeu dispose déjà de fonctionnalités supplémentaires. Ne figurent dans cette liste que les éléments indispensables à une version jouable.
 
