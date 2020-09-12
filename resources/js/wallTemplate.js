@@ -89,7 +89,7 @@ function htmlEvent(title, message, datetimeString) {
 function htmlAttackRepulsed(apiData) {
     
     return {
-        "title"   : '&#x1F9DF; <strong>Attaque zombie n° '+apiData.cycle_num+'\
+        "title"   : '&#x1F9DF; <strong>'+apiData.cycle_ended+'<sup>e</sup> attaque zombie\
                     <span style="padding:0 0.2em;background:green;color:white">repoussée !</span> &#x2714;&#xFE0F;</strong>',
         "message" : 'La ville '+apiData.city_id+' a été attaquée par une horde de <strong>'+apiData.zombies+' zombies</strong> !\
             Heureusement, nos <strong>'+apiData.defenses+' défenses</strong> ont été suffisantes pour les repousser.\
@@ -108,7 +108,7 @@ function htmlAttackRepulsed(apiData) {
 function htmlAttackNotRepulsed(apiData) {
     
     return {
-        "title"   : '&#x1F9DF; <strong>Attaque zombie n° '+apiData.cycle_num+'\
+        "title"   : '&#x1F9DF; <strong>'+apiData.cycle_ended+'<sup>e</sup> attaque zombie\
                     <span style="padding:0 0.2em;background:red;color:white">catastrophe !</span> &#x274C;</strong>',
         "message" : '<strong class="red">'+(apiData.zombies-apiData.defenses)+' zombies ont pénétré en ville !</strong>\
             Les <strong>'+apiData.defenses+'</strong> défenses étaient insuffisantes pour contenir\
