@@ -17,8 +17,10 @@ Le jeu est actuellement en **version alpha** : un certain nombre de fonctionnali
 * Actions indispensables :
     - Se déplacer ✔️ Fait !
     - Fouiller ✔️ Fait !
+    - Ne pas pouvoir fouiller plusieurs fois la même zone ⌛ En cours
     - Ramasser/déposer des objets ✔️ Fait !
     - Gagner des points d’action en mangeant ✔️ Fait !
+    - Ne pas pouvoir manger plusieurs fois par jour ⌛ En cours
 
 * Points de contrôle :
     - Être bloqué si zombies en surnombre ✔️ Fait !
