@@ -1,15 +1,6 @@
 <?php
 require_once 'controller/autoload.php';
 safely_require('model/set_default_variables.php');
-safely_require('view/HtmlLayout.php');
-safely_require('view/HtmlButtons.php');
-safely_require('view/HtmlMap.php');
-safely_require('view/HtmlMyZone.php');
-safely_require('view/HtmlCityEnclosure.php');
-safely_require('view/HtmlPopup.php');
-safely_require('view/HtmlMovementPaddle.php');
-safely_require('view/HtmlSmartphone.php');
-safely_require('view/HtmlWall.php');
 safely_require('controller/official_server_root.php');
 safely_require('controller/sort_citizens_by_coord.php');
 safely_require('controller/filter_citizens_by_city.php');

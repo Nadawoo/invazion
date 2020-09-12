@@ -18,6 +18,13 @@ date_default_timezone_set('Europe/Paris');
 setlocale(LC_TIME, '');
 
 
+// Autoloader (to use a class without explicitly including the file)
+// @para sting $class The name of the class. Must be th same name as the file containing the class.
+spl_autoload_register(function ($class) {
+    require 'view/'.$class.'.php';
+});
+
+
 /**
  * Utiliser cette fonction à la place des "require/include" de PHP :
  * - Règle le problème de la portée des variables dans les inclusions
