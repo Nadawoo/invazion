@@ -20,6 +20,9 @@ body {
        de la page (limitée) et non celle de la fenêtre du navigateur */
     position:relative;
 }
+nav::selection, nav ::selection {
+    background:none;
+}
 #page_container {
     background:#fafafa;
     /* Le fond du contenu de la page doit toujours remplir au minimum toute la hauteur de l'écran.
