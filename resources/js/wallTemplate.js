@@ -111,8 +111,8 @@ function htmlAttackNotRepulsed(apiData) {
         "title"   : '&#x1F9DF; <strong>'+apiData.cycle_ended+'<sup>e</sup> attaque zombie\
                     <span style="padding:0 0.2em;background:red;color:white">catastrophe !</span> &#x274C;</strong>',
         "message" : '<strong class="red">'+(apiData.zombies-apiData.defenses)+' zombies ont pénétré en ville !</strong>\
-            Les <strong>'+apiData.defenses+'</strong> défenses étaient insuffisantes pour contenir\
-            les <strong>'+apiData.zombies+'</strong> morts-vivants...\
+            Les <strong>'+apiData.defenses+'</strong> défenses de la ville '+apiData.city_id+' étaient insuffisantes\
+            pour contenir les <strong>'+apiData.zombies+'</strong> morts-vivants...\
             <br>Bilan :\
                 <ul>\
                     <li>&#x26B0;&#xFE0F; <strong>'+apiData.citizens_killed+' morts</strong> (nom1, nom2)</li>\
