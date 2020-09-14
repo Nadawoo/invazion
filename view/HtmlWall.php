@@ -27,6 +27,7 @@ class HtmlWall
                     
                     <div id="citizenPseudo" style="display:none">'.$citizen_pseudo.'</div>
                     <div id="discussions"></div>
+                    <div id="attacks"></div>
                     <div id="events"></div>
                     
                     '.$this->event_construction_completed().'                        
@@ -43,7 +44,8 @@ class HtmlWall
         return '<nav style="margin-bottom:0.9em">
                     <a id="tabWallAll" class="active_tab">Tout</a> 
                     <a id="tabWallDiscuss">Discussions</a> 
-                    <a id="tabWallEvents">Evénéments</a>
+                    <a id="tabWallEvents">Événements</a> 
+                    <a id="tabWallAttacks">Attaques</a> 
                 </nav>';
     }
     

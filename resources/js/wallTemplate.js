@@ -122,3 +122,24 @@ function htmlAttackNotRepulsed(apiData) {
             si vous ne voulez pas tous y laisser votre peau !'
     };
 }
+
+
+function htmlLogEvents(apiData) {
+    
+    var coords = apiData.coord_x+":"+apiData.coord_y;
+    
+    if (apiData.event_type === "heal_citizen") {
+        return htmlEvent("&#x1FA79; <strong>"+apiData.author.citizen_pseudo+"</strong> a soigné la blessure \n\
+                         de <strong>"+apiData.target.citizen_pseudo+"</strong>", 
+                         "en zone "+coords, dateIsoToString(apiData.datetime_utc));
+    }
+    else if (apiData.event_type === "attack_citizen") {
+        return htmlEvent("&#x1F44A;&#x1F3FC; <strong>"+apiData.author.citizen_pseudo+"</strong> \n\
+                         a agressé <strong>"+apiData.target.citizen_pseudo+"</strong> !", 
+                         "en zone "+coords, dateIsoToString(apiData.datetime_utc));
+    }
+    else {
+        return htmlEvent("<strong class=\"red\">[BUG] Evénement non prévu - Signalez-le au développeur du jeu...</strong>", 
+                         "", dateIsoToString(apiData.datetime_utc));
+    }
+}

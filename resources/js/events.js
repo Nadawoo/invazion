@@ -53,20 +53,24 @@ if (document.getElementById('map') !== null) {
     // Filter discussions/events in the city
     document.getElementById("tabWallAll").addEventListener("click", function() {
         displayClasses(["discuss", "event"]);
-        switch_tab("tabWallAll", ["tabWallDiscuss", "tabWallEvents"]);
+        switch_tab("tabWallAll", ["tabWallDiscuss", "tabWallAttacks"]);
     });
     document.getElementById("tabWallDiscuss").addEventListener("click", function() {
         displayClasses(["discuss"]);
         hideClasses(["event"]);
-        switch_tab("tabWallDiscuss", ["tabWallAll", "tabWallEvents"]);
+        switch_tab("tabWallDiscuss", ["tabWallAll", "tabWallAttacks"]);
     });
-    document.getElementById("tabWallEvents").addEventListener("click", function() {
+    document.getElementById("tabWallAttacks").addEventListener("click", function() {
         displayClasses(["event"]);
         hideClasses(["discuss"]);
-        switch_tab("tabWallEvents", ["tabWallAll", "tabWallDiscuss"]);
+        switch_tab("tabWallAttacks", ["tabWallAll", "tabWallDiscuss"]);
         // Updates the log of attacks
         getCyclicAttacks(nbrExecutionsGetCyclicAttacks);
         nbrExecutionsGetCyclicAttacks++;
+    });
+    document.getElementById("tabWallEvents").addEventListener("click", function() {
+        hideClasses(["discuss"]);
+        getLogEvents();
     });
     
     

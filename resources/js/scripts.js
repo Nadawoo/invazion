@@ -730,7 +730,23 @@ async function getCyclicAttacks(nbrExecutions) {
         html += htmlEventAttack(json.datas[i]);
     }
     
-    document.getElementById("events").innerHTML += html;
+    document.getElementById("attacks").innerHTML += html;
+}
+
+
+/**
+ * Gets the log of the citizens actions (healing...)
+ */
+async function getLogEvents() {
+    
+    var json = await callApi("GET", "events", "action=get&type=map"),
+        html = "";
+
+    for (var i in json.datas) {
+        html += htmlLogEvents(json.datas[i]);
+    }
+    
+    document.getElementById("events").innerHTML = html;
 }
 
 
