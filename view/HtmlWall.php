@@ -22,8 +22,7 @@ class HtmlWall
                 </h2>
                 <div class="contents">
                     
-                    '.$this->tabs().'                    
-                    '.$this->new_discussion_form($citizen_pseudo).'                    
+                    '.$this->tabs().'               
                     
                     <div id="citizenPseudo" style="display:none">'.$citizen_pseudo.'</div>
                     <div id="discussions"></div>
@@ -49,40 +48,6 @@ class HtmlWall
                 </nav>';
     }
     
-    
-    /**
-     * Form to open a new discussion thread
-     * 
-     * @param string $citizen_pseudo
-     * @return string HTML
-     */
-    private function new_discussion_form($citizen_pseudo)
-    {
-        
-        $field_pseudo_style = ($citizen_pseudo === null) ? '' : 'display:none';
-        
-        return '
-            <div id="newDiscussion"></div>
-            <div id="send" class="topic discuss">
-                <div class="message">
-                    <a href="#" id="buttonNewTopic">
-                        &#x270F;&#xFE0F; Ajouter un message...
-                    </a>
-                    <form id="sendform" style="display:none">
-                        <a href="#" id="hideSendform">[masquer]</a>
-                        <div>&#x1F464; <strong>'.$citizen_pseudo.'</strong>
-                            <div id="errorNewTopicPseudo" class="red"></div>
-                            <input id="guestPseudo" type="text" name="guest_pseudo" placeholder="Votre pseudo" style="'.$field_pseudo_style.'">
-                        </div>
-                        <div id="errorNewTopicMessage" class="red"></div>
-                        <textarea id="messageNew" placeholder="Donnez votre avis sur les stratégies ou demandez de l\'aide..."></textarea>
-                        <input type="text" id="titleNew" placeholder="Titre de la discussion (facultatif)">
-                        <input type="submit" value="Envoyer">
-                    </form>
-                </div>
-            </div>';
-    }
-            
     
     /**
      * Automatic message describing an event (e.g. someone has built a construction)

@@ -431,7 +431,7 @@ async function connectUser() {
 /**
  * Show/hide the vertical panel for the discussions and events
  */
-function enlargeWall() {
+async function enlargeWall() {
     
     let minBarHeight = "2.5rem",
         maxBarHeight = "100%";
@@ -442,7 +442,8 @@ function enlargeWall() {
         document.getElementById("enlarge_wall").getElementsByClassName("arrow")[0].style.transform = "rotate(+180deg)";
         // ... and loads the discussions if not already loaded
         if (document.getElementById("discussions").innerHTML === "") {
-            updateDiscussionsList();
+            await updateDiscussionsList();
+            await listenToSendform();
         }
     }
     else {
@@ -642,18 +643,19 @@ async function updateDiscussionsList() {
     // Gets the titles of the discussions, by calling the InvaZion's API
     var jsonTopics = await callDiscussionApiOnce();
     
-    var playerPseudo = document.getElementById("citizenPseudo").innerHTML;
+    var citizenPseudo = document.getElementById("citizenPseudo").innerHTML;
     var length = jsonTopics.datas.length;
-    var titles = "";
+    var discussions = "";
     
     for (i=0; i<length; i++) {        
         let topic            = jsonTopics.datas[i],
             nbrOtherMessages = topic.nbr_messages-1;
 
-        titles += htmlDiscussion(topic.topic_id, topic.title, topic.last_message, nbrOtherMessages);
+        discussions += htmlDiscussion(topic.topic_id, topic.title, topic.last_message, nbrOtherMessages);
     }
     
-    document.getElementById("discussions").innerHTML = titles;
+    document.getElementById("discussions").innerHTML = htmlNewDiscussionForm(citizenPseudo)
+                                                       + discussions;
 }
 
 

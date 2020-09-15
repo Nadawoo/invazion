@@ -80,25 +80,6 @@ if (document.getElementById('map') !== null) {
     document.getElementById("enlarge_wall").addEventListener("click", function() {
         enlargeWall();
     });
-    
-    // Create a new discussion thread
-    document.getElementById("buttonNewTopic").addEventListener("click", function() {
-        toggleSendform(event);
-    });
-    document.getElementById("hideSendform").addEventListener("click", function() {
-        toggleSendform(event);
-    });
-    document.getElementById("sendform").addEventListener("submit", function() {
-        // Desactivate the classic submission button (avoids reloading the page)
-        event.preventDefault();
-        createDiscussion();
-    });
-    
-    // Clear the error messages if the user writes in the form
-    document.getElementById("sendform").addEventListener("input", function() {
-         document.getElementById("errorNewTopicPseudo").innerHTML  = "";
-         document.getElementById("errorNewTopicMessage").innerHTML = "";
-    });
 }
 
 // If the player is connected
@@ -124,5 +105,31 @@ if (document.getElementById("me") !== null) {
     });
     document.getElementById("minimap").addEventListener("click", function() {
         toggleTooltip(document.getElementById("me").closest(".hexagon"));
+    });
+}
+
+
+/**
+ * Events concerning the form to create a new discussion.
+ * Must be asynchronous because the form doesn't exist when the page loads.
+ */
+function listenToSendform() {
+    // Create a new discussion thread
+    document.getElementById("buttonNewTopic").addEventListener("click", function() {
+        toggleSendform(event);
+    });
+    document.getElementById("hideSendform").addEventListener("click", function() {
+        toggleSendform(event);
+    });
+    document.getElementById("sendform").addEventListener("submit", function() {
+        // Desactivate the classic submission button (avoids reloading the page)
+        event.preventDefault();
+        createDiscussion();
+    });
+
+    // Clear the error messages if the user writes in the form
+    document.getElementById("sendform").addEventListener("input", function() {
+         document.getElementById("errorNewTopicPseudo").innerHTML  = "";
+         document.getElementById("errorNewTopicMessage").innerHTML = "";
     });
 }
