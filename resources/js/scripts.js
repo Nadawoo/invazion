@@ -32,11 +32,19 @@ function display(element_name) {
 /**
  * Masquer un élément (par exemple au survol de la souris)
  * 
- * @param {string} element_name     L'id HTML de l'élément à afficher/masquer
+ * @param {string|list} htmlIds Les ID HTML des éléments à masquer. Peut être
+ *                              un ID seul (string) ou une liste d'IDs.
  */
-function hide(element_name) {
+function hide(htmlIds) {
     
-    document.getElementById(element_name).style.display = "none";
+    if (typeof(htmlIds) === "object") {
+        for (i=0; i<htmlIds.length; i++) {
+            document.getElementById(htmlIds[i]).style.display = "none";
+        }
+    }
+    else {
+        document.getElementById(htmlIds).style.display = "none";
+    }
 }
 
 

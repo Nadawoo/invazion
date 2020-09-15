@@ -52,24 +52,28 @@ if (document.getElementById('map') !== null) {
     
     // Filter discussions/events in the city
     document.getElementById("tabWallAll").addEventListener("click", function() {
-        displayClasses(["discuss", "event"]);
-        switch_tab("tabWallAll", ["tabWallDiscuss", "tabWallAttacks"]);
+        display("discussions");
+        display("events");
+        display("attacks");
+        switch_tab("tabWallAll", ["tabWallDiscuss", "tabWallEvents", "tabWallAttacks"]);
     });
     document.getElementById("tabWallDiscuss").addEventListener("click", function() {
-        displayClasses(["discuss"]);
-        hideClasses(["event"]);
-        switch_tab("tabWallDiscuss", ["tabWallAll", "tabWallAttacks"]);
+        display("discussions");
+        hide(["events", "attacks"]);
+        switch_tab("tabWallDiscuss", ["tabWallAll", "tabWallEvents", "tabWallAttacks"]);
     });
     document.getElementById("tabWallAttacks").addEventListener("click", function() {
-        displayClasses(["event"]);
-        hideClasses(["discuss"]);
-        switch_tab("tabWallAttacks", ["tabWallAll", "tabWallDiscuss"]);
+        display("attacks");
+        hide(["events", "discussions"]);
+        switch_tab("tabWallAttacks", ["tabWallAll", "tabWallDiscuss", "tabWallEvents"]);
         // Updates the log of attacks
         getCyclicAttacks(nbrExecutionsGetCyclicAttacks);
         nbrExecutionsGetCyclicAttacks++;
     });
     document.getElementById("tabWallEvents").addEventListener("click", function() {
-        hideClasses(["discuss"]);
+        display("events");
+        hide(["discussions", "attacks"]);
+        switch_tab("tabWallEvents", ["tabWallAttacks", "tabWallAll", "tabWallDiscuss"]);
         getLogEvents();
     });
     
