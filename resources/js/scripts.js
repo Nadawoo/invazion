@@ -19,32 +19,32 @@ function toggle(element_name) {
 
 
 /**
- * Afficher un élément (par exemple au survol de la souris)
- * 
- * @param {string} element_name     L'id HTML de l'élément à afficher/masquer
- */
-function display(element_name) {
-    
-    document.getElementById(element_name).style.display = "block";
-}
-
-
-/**
- * Masquer un élément (par exemple au survol de la souris)
+ * Afficher ou masquer un élément à partir de son ID HTML
  * 
  * @param {string|list} htmlIds Les ID HTML des éléments à masquer. Peut être
  *                              un ID seul (string) ou une liste d'IDs.
+ * @param {string} newDisplayValue Définir à "none" pour masquer l'élément, "block" pour l'afficher
  */
-function hide(htmlIds) {
+function changeDisplayValue(htmlIds, newDisplayValue) {
     
     if (typeof(htmlIds) === "object") {
         for (i=0; i<htmlIds.length; i++) {
-            document.getElementById(htmlIds[i]).style.display = "none";
+            document.getElementById(htmlIds[i]).style.display = newDisplayValue;
         }
     }
     else {
-        document.getElementById(htmlIds).style.display = "none";
+        document.getElementById(htmlIds).style.display = newDisplayValue;
     }
+}
+
+
+function display(htmlIds) {    
+    changeDisplayValue(htmlIds, "block");
+}
+
+
+function hide(htmlIds) {    
+    changeDisplayValue(htmlIds, "none");
 }
 
 

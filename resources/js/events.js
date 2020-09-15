@@ -52,9 +52,7 @@ if (document.getElementById('map') !== null) {
     
     // Filter discussions/events in the city
     document.getElementById("tabWallAll").addEventListener("click", function() {
-        display("discussions");
-        display("events");
-        display("attacks");
+        display(["discussions", "events", "attacks"]);
         switch_tab("tabWallAll", ["tabWallDiscuss", "tabWallEvents", "tabWallAttacks"]);
     });
     document.getElementById("tabWallDiscuss").addEventListener("click", function() {
