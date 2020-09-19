@@ -38,7 +38,7 @@ Le jeu est actuellement en **version alpha** : un certain nombre de fonctionnali
     - Pouvoir lancer l’attaque manuellement ✔️ Fait !
     - Morts pendant l'attaque ⌛ En cours
     - Régénération des points d'action ✔️ Fait !
-    - Apparition automatique de zombies sur la carte ⌛ En cours
+    - Apparition automatique de zombies sur la carte ✔️ Fait !
 
 * Mort du joueur et lancement d'une nouvelle partie ⌛ En cours
 
