@@ -50,6 +50,10 @@ Note : le jeu dispose déjà de fonctionnalités supplémentaires. Ne figurent d
 Une fois la version bêta complète et lancée, sur cette « base jouable minimale » seront implémentées les fonctionnalités qui donneront au jeu sa richesse. A commencer par des fonctions issues de Hordes :
 
 * Choisir son métier (bâtisseur, fouineur...)  ✔️ Fait !
+* Fabriquer des objets à l'atelier  ✔️ Fait !
+* Attaquer des zombies :
+   - à mains nues ✔️ Fait !
+   - avec des armes
 * Le puits / la soif
 * La maison individuelle (défenses, décoration)
 * Les plaintes / bannissements / pendaisons
