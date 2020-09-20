@@ -714,7 +714,9 @@ function htmlEventAttack(apiData) {
     var zombiesOverflow = apiData.zombies-apiData.defenses,
         message = "";
         
-    if (zombiesOverflow <= 0) {
+    if (apiData.is_door_closed === 0) {
+        message = htmlAttackDoorOpen(apiData);
+    } else if (zombiesOverflow <= 0) {
         message = htmlAttackRepulsed(apiData);
     } else {
         message = htmlAttackNotRepulsed(apiData);
