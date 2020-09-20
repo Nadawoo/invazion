@@ -154,7 +154,7 @@ function htmlLogEvents(apiData) {
     var coords = apiData.coord_x+":"+apiData.coord_y;
     
     if (apiData.event_type === "heal_citizen") {
-        return htmlEvent("&#x1FA79; <strong>"+apiData.author.citizen_pseudo+"</strong> a soigné la blessure \n\
+        return htmlEvent("&#x1F489; <strong>"+apiData.author.citizen_pseudo+"</strong> a soigné la blessure \n\
                          de <strong>"+apiData.target.citizen_pseudo+"</strong>", 
                          "en zone "+coords, dateIsoToString(apiData.datetime_utc));
     }

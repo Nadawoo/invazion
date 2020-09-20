@@ -124,7 +124,7 @@ class HtmlButtons
                 'title' => "",
                 ],
             'heal_citizen' => [
-                'icon'  => '&#129657;',
+                'icon'  => '&#x1F489;',
                 'name'  => 'Soigner !',
                 'title' => "",
                 ],
