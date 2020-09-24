@@ -131,6 +131,7 @@ echo $layout->page_header();
 echo $popup->predefined('popvault',   '');
 echo $popup->predefined('popwounded', '', ['citizen_id'=>$citizen['citizen_id'], 'healing_items'=>$healing_items]);
 echo $popup->predefined('popcontrol', 'Aide : le contrôle de zone');
+echo $popup->predefined('popmove', 'Aide : les déplacements');
 
 // Generic pop-up describing the result of an action
 echo $popup->customised('popsuccess', '', nl2br($msg_popup));
