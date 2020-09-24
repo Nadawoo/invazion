@@ -54,7 +54,7 @@ if (!empty($_POST)) {
 
 /**
  * Get the data to build the interface
- * Leave this *after* the execution of actions above, otherwise the last action
+ * Keep this *after* the execution of actions above, otherwise the last action
  * wouldn't be taken in account without refreshing (citizen not moved...)
  */
 // If the player is connected *and* his token is not expired
@@ -69,6 +69,7 @@ if ($api->user_seems_connected() === true) {
         $msg_build = '<p class="'.$api_me['metas']['error_class'].'">'.$api_me['metas']['error_message'].'</p>';
     }
 }
+
 // Get the game data by calling the APIs
 $citizens           = $api->call_api('citizens', 'get', ['map_id'=>$citizen['map_id']])['datas'];
 $citizens_by_coord  = $sort->sort_citizens_by_coord($citizens);
@@ -77,7 +78,7 @@ $configs            = $api->call_api('configs', 'get')['datas'];
 $specialities       = $configs['specialities'];
 $speciality_caracs  = $specialities[$citizen['speciality']];
 
-// If the player is connected and has already creatd his citizen
+// If the player is connected and has already created his citizen
 if ($citizen['citizen_id'] !== NULL) {
     
     $zone_fellows       = $citizens_by_coord[$citizen['coord_x'].'_'.$citizen['coord_y']];
@@ -178,8 +179,8 @@ echo $popup->customised('popsuccess', '', nl2br($msg_popup));
 <div id="game_container">
     
     <?php
-    // Si le citoyen est dans une ville, affiche l'enceinte de la ville
-    // (puits, dépôt, chantiers...) par-dessus la carte 
+    // If the citizen is inside a city, display the city enclosure over the map
+    // (well, storage, constructions...)
     if ($citizen['is_inside_city'] === 1) {
         
         echo '
@@ -232,7 +233,7 @@ echo $popup->customised('popsuccess', '', nl2br($msg_popup));
         ?>
     </div>
     
-    <!-- La carte -->
+    <!-- The map -->
     
     <div id="map">
         
@@ -264,12 +265,12 @@ echo $popup->customised('popsuccess', '', nl2br($msg_popup));
     <div style="margin-top:8rem">
         <?php
         if ($citizen['user_id'] === NULL) {        
-            // Si le joueur n'est pas connecté, affiche le panneau de connexion
+            // If the player is not connected, display the connection panel
             echo $layout->block_connect();
         }
         elseif ($citizen['citizen_id'] === NULL) {         
-            // Si le joueur est connecté mais n'a pas encore créé son citoyen, 
-            // affiche le panneau de création de citoyen
+            // If the player is connected but has not created his citizen yet,
+            // display the panel for creating a citizen
             echo $layout->block_create_citizen();
         }
         ?>
