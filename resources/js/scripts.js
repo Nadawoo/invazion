@@ -722,6 +722,11 @@ function htmlEventAttack(apiData) {
         message = htmlAttackNotRepulsed(apiData);
     }
     
+    message.message += "<p>Par ailleurs, plusieurs citoyens se sont laissé <strong>dévorer dans le désert</strong> cette nuit.\
+                        Héroïsme ? Distraction fatale ? Suicide ? Nous ne le saurons jamais...\
+                        Paix à leurs moignons :<br>\
+                        nom1, nom2</p>";
+    
     return htmlEvent(message.title, message.message, dateIsoToString(apiData.datetime_utc));
 }
 
