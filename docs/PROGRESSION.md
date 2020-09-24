@@ -40,7 +40,7 @@ Le jeu est actuellement en **version alpha** : un certain nombre de fonctionnali
     - Régénération des points d'action ✔️ Fait !
     - Apparition automatique de zombies sur la carte ✔️ Fait !
 
-* Mort du joueur et lancement d'une nouvelle partie ⌛ En cours
+* Page de fin de partie ⌛ En cours
 
 Note : le jeu dispose déjà de fonctionnalités supplémentaires. Ne figurent dans cette liste que les éléments indispensables à une version jouable.
 
