@@ -73,6 +73,9 @@ class HtmlPage
                     <a href="https://github.com/Nadawoo/invazion" target="_blank" title="Le code source du jeu est disponible sur Github">
                         <img src="/resources/img/thirdparty/GitHub-Mark-32px.png" alt="github_logo" style="height:1.4em;margin-bottom:-0.4em;"> Github
                     </a>
+                    <a href="'.official_server_root().'/share" target="_blank" title="Partager et soutenir le projet InvaZion">
+                        <img src="/resources/img/share.png" alt="github_logo" style="height:1.4em;margin-bottom:-0.4em;"> Partager
+                    </a>
                 </nav>';
     }
     
