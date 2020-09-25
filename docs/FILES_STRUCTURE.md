@@ -43,3 +43,25 @@ Ils sont listés par ordre d'importance.*
   * night.css : essai de design sombre pour le site. Inutilisé à ce jour.
   * items_panel.html/items_panel.css : panneaux d'objets amovibles sous la carte
                       (désormais supprimés, les objets sont affichés à droite)
+
+
+# Documentation CSS
+
+### Ordre des superpositions (z-index)
+
+Les "z-index" en CSS sont organisés précisément afin d'éviter les superpositions bloquantes 
+(ex : blocs d'action cachés sous la zone). On change le z-index de dizaine à chaque changement 
+de type d'élément, et on utilise les numéros intermédiaires pour les éventuels sous-éléments 
+de même type :
+
+* 0 : la carte
+     - 1 : la horde mobile (triangles rouges)
+     - 2 : les infobulles au survol des zones
+*  10 : zoom sur la zone (par clic sur le bouton « Afficher ma zone »)
+    - 10 : le fond hexagonal
+    - 11 : les blocs (citoyens, zombies, objets, ville...)
+    - 12 : les boutons "afficher les objets / afficher ma zone"
+*  20 : les blocs d’action (affichés/masqués par les boutons bouger/fouiller/zombies…)
+*  30 : le volet "Communications"
+*  40 : la liste des notifications (cloche en haut) et la future barre du haut qui affichera les actions de profil dans un menu déroulant (modifier mon profil, me déconnecter...)
+*  50 : la pop-up

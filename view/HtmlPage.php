@@ -41,12 +41,12 @@ class HtmlPage
                 <meta charset="utf-8">
                 <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
                 <link rel="stylesheet" type="text/css" href="resources/css/sitelayout.css?v3.8">
-                <link rel="stylesheet" type="text/css" href="resources/css/gamelayout.css?v5.8">
-                <link rel="stylesheet" type="text/css" href="resources/css/map.css?v2.6">
+                <link rel="stylesheet" type="text/css" href="resources/css/gamelayout.css?v5.9">
+                <link rel="stylesheet" type="text/css" href="resources/css/map.css?v2.7">
                 <link rel="stylesheet" type="text/css" href="resources/css/smartphone.css?v1.5">
-                <link rel="stylesheet" type="text/css" href="resources/css/myzone.css?v1.3">
+                <link rel="stylesheet" type="text/css" href="resources/css/myzone.css?v1.4">
                 <link rel="stylesheet" type="text/css" href="resources/css/city.css?v2.7">
-                <link rel="stylesheet" type="text/css" href="resources/css/wall.css?v2.5">
+                <link rel="stylesheet" type="text/css" href="resources/css/wall.css?v2.6">
                 <link rel="stylesheet" type="text/css" href="resources/css/popup.css?v1.5">
                 <link rel="stylesheet" type="text/css" href="resources/css/responsive.css?v2.1">
                 ' . $css_link . '

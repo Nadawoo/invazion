@@ -14,7 +14,7 @@
     border-top-left-radius:1rem;
     border-top-right-radius:1rem;
     box-shadow:-4px -4px 10px black;
-    z-index:20;
+    z-index:30;
     transition-duration: 0.3s;
 }
 #floating_wall #wall {

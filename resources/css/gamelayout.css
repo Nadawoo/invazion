@@ -94,7 +94,7 @@
     left:25%;
     right:25%;
     width:50%;
-    z-index:30;
+    z-index:40;
     margin-top:-0.3em;
     padding:0 0.5em;
     background:#fbeee6;
@@ -329,6 +329,7 @@
     border-radius:0.3rem;
     box-shadow:5px 5px 8px black;
     background:#fbeee6;
+    z-index:20;
 }
 legend {
     margin:auto;

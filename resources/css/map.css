@@ -118,6 +118,7 @@
     font-family:Calibri;
     font-size:0.8em;    
     box-shadow: 12px 12px 12px black;
+    z-index:2;
 }
 .triangle_down {
     width:0;
@@ -140,8 +141,6 @@
 /* Les cases non encore explorées sont en plus sombre */
 .not_visited {
     background-image:url("../img/hexagon_dark.png");
-    /* Pour ne pas chevaucher la ligne de la horde */
-    z-index:0;
 }
 /* Crypte */
 .vault {
@@ -169,7 +168,7 @@
     display:block;
     position:absolute;
     margin-top:-1em;
-    z-index:2;
+    z-index:1;
 }
 .hurd .icon {
     position:absolute;
