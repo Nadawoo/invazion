@@ -7,12 +7,13 @@ class HtmlWall
 {    
     
     /**
-     * Mainn method. Call this to display the wall.
+     * Main method. Call this to display the wall.
      * 
-     * @param string $citizen_pseudo The pseudo of the currently connectd player
+     * @param int    $citizen_id     The ID of the currently connected player
+     * @param string $citizen_pseudo The pseudo of the currently connected player
      * @return type
      */
-    public function wall($citizen_pseudo)
+    public function wall($citizen_id, $citizen_pseudo)
     {
         
         return '<div id="wall" class="city_block">
@@ -24,7 +25,13 @@ class HtmlWall
                     
                     '.$this->tabs().'               
                     
+                    <label>
+                        <input type="checkbox" id="onlyMyEvents" onchange="filterEvents()">
+                        Seulement ce qui me concerne
+                    </label>
+                    
                     <div id="citizenPseudo" style="display:none">'.$citizen_pseudo.'</div>
+                    <div id="citizenId" style="display:none">'.$citizen_id.'</div>
                     <div id="discussions"></div>
                     <div id="attacks"></div>
                     <div id="events"></div>

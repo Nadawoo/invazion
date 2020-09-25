@@ -341,7 +341,7 @@ echo $popup->customised('popsuccess', '', nl2br($msg_popup));
  
     
     <div id="floating_wall">
-        <?php echo $wall->wall($citizen['citizen_pseudo']) ?>
+        <?php echo $wall->wall($citizen['citizen_id'], $citizen['citizen_pseudo']) ?>
     </div>
     
 </div>

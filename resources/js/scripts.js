@@ -337,6 +337,16 @@ function getCookie(cname) {
 }
 
 
+/**
+ * Gets the ID of the connected player
+ * @returns {int}
+ */
+function getCitizenId() {
+
+    return parseInt(document.getElementById("citizenId").innerHTML);
+}
+    
+
 /*
  * Active l'onglet du smartphone à droite de la carte
  *
@@ -800,5 +810,18 @@ if (document.getElementById('map') !== null) {
         // By default, loads the first tab of the city
         var search_params = new URLSearchParams(window.location.search);
         switchCityTab(search_params.get('tab'));
+    }
+}
+
+
+/**
+ * Display only the events involving the connected player (as author or as target)
+ */
+function filterEvents() {
+    
+    if (document.getElementById("onlyMyEvents").checked === true) {
+        hideClasses(["iAmNotInvolved"]);
+    } else {
+        displayClasses(["iAmNotInvolved"]);
     }
 }

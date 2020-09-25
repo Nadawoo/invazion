@@ -64,16 +64,18 @@ function htmlDiscussionMessage(message, pseudo, utcDate, replyNum) {
 }
 
 
-function htmlEvent(title, message, datetimeString) {
+function htmlEvent(title, message, dateString, iAmInvolved) {
     
-    return '<div class="topic event">\
+    var classInvolved = (iAmInvolved === true) ? "iAmInvolved" : "iAmNotInvolved";
+    
+    return '<div class="topic event '+classInvolved+'">\
             <h3>'+title+'</h3>\
             <div class="message">\
                 <div class="text">\
                    '+message+'\
                 </div>\
                 <div class="time" title="Fuseau horaire de Paris">\
-                    <a href="#">Commenter</a> · '+datetimeString+'\
+                    <a href="#">Commenter</a> · '+dateString+'\
                 </div>\
             </div>\
         </div>';
@@ -151,21 +153,24 @@ function htmlAttackDoorOpen(apiData) {
 
 function htmlLogEvents(apiData) {
     
-    var coords = apiData.coord_x+":"+apiData.coord_y;
+    var coords = apiData.coord_x+":"+apiData.coord_y,
+        dateString = dateIsoToString(apiData.datetime_utc),
+        citizen_id = getCitizenId(),    
+        iAmInvolved = (citizen_id === apiData.author.citizen_id || citizen_id === apiData.target.citizen_id) ? true : false;
     
     if (apiData.event_type === "heal_citizen") {
         return htmlEvent("&#x1F489; <strong>"+apiData.author.citizen_pseudo+"</strong> a soigné la blessure \n\
                          de <strong>"+apiData.target.citizen_pseudo+"</strong>", 
-                         "en zone "+coords, dateIsoToString(apiData.datetime_utc));
+                         "en zone "+coords, dateString, iAmInvolved);
     }
     else if (apiData.event_type === "attack_citizen") {
         return htmlEvent("&#x1F44A;&#x1F3FC; <strong>"+apiData.author.citizen_pseudo+"</strong> \n\
                          a agressé <strong>"+apiData.target.citizen_pseudo+"</strong> !", 
-                         "en zone "+coords, dateIsoToString(apiData.datetime_utc));
+                         "en zone "+coords, dateString, iAmInvolved);
     }
     else {
         return htmlEvent("<strong class=\"red\">[BUG] Evénement non prévu - Signalez-le au développeur du jeu...</strong>", 
-                         "", dateIsoToString(apiData.datetime_utc));
+                         "", dateString, iAmInvolved);
     }
 }
 
