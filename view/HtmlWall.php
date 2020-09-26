@@ -44,8 +44,7 @@ class HtmlWall
     {
         
         return '<nav id="discussionTabs" style="margin-bottom:0.9em">
-                    <a id="tabWallAll" class="active_tab">Tout</a> 
-                    <a id="tabWallDiscuss">Discussions</a> 
+                    <a id="tabWallDiscuss" class="active_tab">Discussions</a> 
                     <a id="tabWallNotifications">Notifications</a>
                     <a id="tabWallEvents">Événements</a> 
                     <a id="tabWallAttacks">Attaques</a> 

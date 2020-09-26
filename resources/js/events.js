@@ -51,10 +51,6 @@ if (document.getElementById('map') !== null) {
     });
     
     // Filter discussions/events in the city
-    document.getElementById("tabWallAll").addEventListener("click", function() {
-        display(["discussions", "notifications", "events", "attacks"]);
-        activateDiscussionTab("tabWallAll");
-    });
     document.getElementById("tabWallDiscuss").addEventListener("click", function() {
         display("discussions");
         hide(["notifications", "events", "attacks"]);
