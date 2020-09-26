@@ -110,19 +110,26 @@ function displayFlex(className) {
 
 
 /**
- * Met un onglet au premier plan
+ * Highlights the active tab in the communication panel and inactivate the others
  * 
- * @param {type} activated_tab   L'onglet à mettre au premier plan
- * @param {type} inactivated_tab L'onglet à mettre en arrière-plan (masqué)
+ * @param {type} activatedTab The tab to highlight
  * @return {undefined}
  */
-function switch_tab(activated_tab, inactivated_tabs) {
+function activateDiscussionTab(activatedTab) {
     
-    document.getElementById(activated_tab).className = "active_tab";
+    var allTabs = document.getElementById("discussionTabs").children,
+        allTabsIds = [];
+    // Automatically list the tabs IDs
+    for (var i = 0; i < allTabs.length; i++) {
+        allTabsIds.push(allTabs[i].getAttribute("id"));
+    }
     
-    var i;
-    for (i = 0; i < inactivated_tabs.length; i++) {
-        document.getElementById(inactivated_tabs[i]).className = "inactive_tab";
+    document.getElementById(activatedTab).className = "active_tab";
+    
+    for (var i = 0; i < allTabsIds.length; i++) {
+        if (allTabsIds[i] !== activatedTab) {
+            document.getElementById(allTabsIds[i]).className = "inactive_tab";
+        }
     }
 }
 

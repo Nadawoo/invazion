@@ -43,7 +43,7 @@ class HtmlWall
     private function tabs()
     {
         
-        return '<nav style="margin-bottom:0.9em">
+        return '<nav id="discussionTabs" style="margin-bottom:0.9em">
                     <a id="tabWallAll" class="active_tab">Tout</a> 
                     <a id="tabWallDiscuss">Discussions</a> 
                     <a id="tabWallNotifications">Notifications</a>

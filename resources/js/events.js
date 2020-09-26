@@ -52,32 +52,32 @@ if (document.getElementById('map') !== null) {
     
     // Filter discussions/events in the city
     document.getElementById("tabWallAll").addEventListener("click", function() {
-        display(["discussions", "events", "attacks"]);
-        switch_tab("tabWallAll", ["tabWallNotifications", "tabWallDiscuss", "tabWallEvents", "tabWallAttacks"]);
+        display(["discussions", "notifications", "events", "attacks"]);
+        activateDiscussionTab("tabWallAll");
     });
     document.getElementById("tabWallDiscuss").addEventListener("click", function() {
         display("discussions");
-        hide(["events", "attacks"]);
-        switch_tab("tabWallDiscuss", ["tabWallNotifications", "tabWallAll", "tabWallEvents", "tabWallAttacks"]);
+        hide(["notifications", "events", "attacks"]);
+        activateDiscussionTab("tabWallDiscuss");
     });
     document.getElementById("tabWallAttacks").addEventListener("click", function() {
         display("attacks");
-        hide(["events", "discussions"]);
-        switch_tab("tabWallAttacks", ["tabWallNotifications", "tabWallAll", "tabWallDiscuss", "tabWallEvents"]);
+        hide(["discussions", "notifications", "events"]);
+        activateDiscussionTab("tabWallAttacks");
         // Updates the log of attacks
         getCyclicAttacks(nbrExecutionsGetCyclicAttacks);
         nbrExecutionsGetCyclicAttacks++;
     });
     document.getElementById("tabWallEvents").addEventListener("click", function() {
         display("events");
-        hide(["discussions", "attacks"]);
-        switch_tab("tabWallEvents", ["tabWallNotifications", "tabWallAttacks", "tabWallAll", "tabWallDiscuss"]);
+        hide(["discussions", "notifications", "attacks"]);
+        activateDiscussionTab("tabWallEvents");
         getLogEvents("events");
     });
     document.getElementById("tabWallNotifications").addEventListener("click", function() {
         display("notifications");
         hide(["discussions", "events", "attacks"]);
-        switch_tab("tabWallNotifications", ["tabWallEvents", "tabWallAttacks", "tabWallAll", "tabWallDiscuss"]);
+        activateDiscussionTab("tabWallNotifications");
         getLogEvents("notifications");
         hideClasses(["iAmNotInvolved"]);
     });
