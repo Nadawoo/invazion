@@ -23,16 +23,12 @@ class HtmlWall
                 </h2>
                 <div class="contents">
                     
-                    '.$this->tabs().'               
-                    
-                    <label>
-                        <input type="checkbox" id="onlyMyEvents" onchange="filterEvents()">
-                        Seulement ce qui me concerne
-                    </label>
+                    '.$this->tabs().'
                     
                     <div id="citizenPseudo" style="display:none">'.$citizen_pseudo.'</div>
                     <div id="citizenId" style="display:none">'.$citizen_id.'</div>
                     <div id="discussions"></div>
+                    <div id="notifications"></div>
                     <div id="attacks"></div>
                     <div id="events"></div>
                     
@@ -50,6 +46,7 @@ class HtmlWall
         return '<nav style="margin-bottom:0.9em">
                     <a id="tabWallAll" class="active_tab">Tout</a> 
                     <a id="tabWallDiscuss">Discussions</a> 
+                    <a id="tabWallNotifications">Notifications</a>
                     <a id="tabWallEvents">Événements</a> 
                     <a id="tabWallAttacks">Attaques</a> 
                 </nav>';

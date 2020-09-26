@@ -763,8 +763,9 @@ async function getCyclicAttacks(nbrExecutions) {
 
 /**
  * Gets the log of the citizens actions (healing...)
+ * @param {string} htmlContainerId L'ID du <div> dans lequel écrire la liste des événements 
  */
-async function getLogEvents() {
+async function getLogEvents(htmlContainerId) {
     
     var json = await callApi("GET", "events", "action=get&type=map"),
         html = "";
@@ -773,7 +774,7 @@ async function getLogEvents() {
         html += htmlLogEvents(json.datas[i]);
     }
     
-    document.getElementById("events").innerHTML = html;
+    document.getElementById(htmlContainerId).innerHTML = html;
 }
 
 
@@ -810,18 +811,5 @@ if (document.getElementById('map') !== null) {
         // By default, loads the first tab of the city
         var search_params = new URLSearchParams(window.location.search);
         switchCityTab(search_params.get('tab'));
-    }
-}
-
-
-/**
- * Display only the events involving the connected player (as author or as target)
- */
-function filterEvents() {
-    
-    if (document.getElementById("onlyMyEvents").checked === true) {
-        hideClasses(["iAmNotInvolved"]);
-    } else {
-        displayClasses(["iAmNotInvolved"]);
     }
 }
