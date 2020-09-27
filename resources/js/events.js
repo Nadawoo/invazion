@@ -50,7 +50,7 @@ if (document.getElementById('map') !== null) {
         toggleTooltip(event.target.closest(".hexagon"));
     });
     
-    // Filter discussions/events in the city
+    // Switch tabs in the communications panel
     document.getElementById("tabWallDiscuss").addEventListener("click", function() {
         display("discussions");
         hide(["notifications", "events", "attacks"]);
@@ -70,13 +70,13 @@ if (document.getElementById('map') !== null) {
         activateDiscussionTab("tabWallEvents");
         getLogEvents("events");
     });
-    document.getElementById("tabWallNotifications").addEventListener("click", function() {
-        display("notifications");
-        hide(["discussions", "events", "attacks"]);
-        activateDiscussionTab("tabWallNotifications");
-        getLogEvents("notifications");
-        hideClasses(["iAmNotInvolved"]);
-    });
+//    document.getElementById("tabWallNotifications").addEventListener("click", function() {
+//        display("notifications");
+//        hide(["discussions", "events", "attacks"]);
+//        activateDiscussionTab("tabWallNotifications");
+//        getLogEvents("notifications");
+//        hideClasses(["iAmNotInvolved"]);
+//    });
     
     // Show/hide the vertical panel for the discussions and events
     document.getElementById("enlarge_wall").addEventListener("click", function() {
