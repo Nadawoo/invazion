@@ -28,7 +28,7 @@ function toggle(element_name) {
 function changeDisplayValue(htmlIds, newDisplayValue) {
     
     if (typeof(htmlIds) === "object") {
-        for (i=0; i<htmlIds.length; i++) {
+        for (let i=0; i<htmlIds.length; i++) {
             document.getElementById(htmlIds[i]).style.display = newDisplayValue;
         }
     }
@@ -57,14 +57,12 @@ function hide(htmlIds) {
  */
 function hideClasses(classesNames) {
     
-    var i;
-    for (i=0; i < classesNames.length; i++) {
+    for (let i=0; i < classesNames.length; i++) {
         
         var classes = document.getElementsByClassName(classesNames[i]);
         
-        var i2;
-        for (i2=0; i2 < classes.length; i2++) {
-            classes[i2].style.display = "none";
+        for (let i=0; i < classes.length; i++) {
+            classes[i].style.display = "none";
         }
     }
 }
@@ -79,14 +77,12 @@ function hideClasses(classesNames) {
  */
 function displayClasses(classesNames) {
     
-    var i;
-    for (i=0; i < classesNames.length; i++) {
+    for (let i=0; i < classesNames.length; i++) {
         
         var classes = document.getElementsByClassName(classesNames[i]);
         
-        var i2;
-        for (i2=0; i2 < classes.length; i2++) {
-            classes[i2].style.display = "block";
+        for (let i=0; i < classes.length; i++) {
+            classes[i].style.display = "block";
         }
     }
 }
@@ -102,8 +98,7 @@ function displayFlex(className) {
     
     var classes = document.getElementsByClassName(className);
     
-    var i;
-    for (i = 0; i < classes.length; i++) {
+    for (let i = 0; i < classes.length; i++) {
         classes[i].style.display = "flex";
     }
 }
@@ -120,13 +115,13 @@ function activateDiscussionTab(activatedTab) {
     var allTabs = document.getElementById("discussionTabs").children,
         allTabsIds = [];
     // Automatically list the tabs IDs
-    for (var i = 0; i < allTabs.length; i++) {
+    for (let i = 0; i < allTabs.length; i++) {
         allTabsIds.push(allTabs[i].getAttribute("id"));
     }
     
     document.getElementById(activatedTab).className = "active_tab";
     
-    for (var i = 0; i < allTabsIds.length; i++) {
+    for (let i = 0; i < allTabsIds.length; i++) {
         if (allTabsIds[i] !== activatedTab) {
             document.getElementById(allTabsIds[i]).className = "inactive_tab";
         }
@@ -161,7 +156,7 @@ function toggleMapItems() {
         // Adds the HTML for the icons in the zones
         let classes = document.getElementsByClassName("hasItems");
         
-        for(var i=0; i < classes.length; i++) {
+        for(let i=0; i < classes.length; i++) {
             classes[i].innerHTML += '<img src="resources/img/map-location.svg" class="location">';
         }
         window.areItemsDisplayed = true;
@@ -171,7 +166,7 @@ function toggleMapItems() {
         // Hides the icons added by the previous call to the function
         let classes = document.getElementsByClassName("location");
         
-        for(var i=0; i < classes.length; i++) {
+        for(let i=0; i < classes.length; i++) {
             classes[i].style.display = 'none';
         }
         window.areItemsDisplayed = false;
@@ -203,7 +198,7 @@ function toggleActionBlock(buttonAlias) {
     else {
         // Hides all the action blocks...
         let actionBlocks = document.getElementById("actions").getElementsByTagName("fieldset");
-        for (i=0; i<actionBlocks.length; i++) {
+        for (let i=0; i<actionBlocks.length; i++) {
             document.getElementById("actions").getElementsByTagName("fieldset")[i].style.display = "none";
             document.getElementById("round_actions").getElementsByTagName("input")[i].parentNode.classList.remove("active");
         }
@@ -331,7 +326,7 @@ function getCookie(cname) {
 	var name = cname + "=";
 	var decodedCookie = decodeURIComponent(document.cookie);
 	var ca = decodedCookie.split(';');
-	for(var i = 0; i <ca.length; i++) {
+	for(let i = 0; i <ca.length; i++) {
 		var c = ca[i];
 		while (c.charAt(0) == ' ') {
 		  c = c.substring(1);
@@ -557,7 +552,7 @@ async function updateDiscussionsNotifs() {
     var length = jsonTopics.datas.length;
     var titles = "";
     
-    for (i=0; i<length; i++) {        
+    for (let i=0; i<length; i++) {        
         let topic        = jsonTopics.datas[i];
         let topicUrl     = urlDiscussion(topic["topic_id"], topic.last_message.message_id);
         let authorPseudo = topic.last_message.author_pseudo;
@@ -664,7 +659,7 @@ async function updateDiscussionsList() {
     var length = jsonTopics.datas.length;
     var discussions = "";
     
-    for (i=0; i<length; i++) {        
+    for (let i=0; i<length; i++) {        
         let topic            = jsonTopics.datas[i],
             nbrOtherMessages = topic.nbr_messages-1;
 
@@ -689,7 +684,7 @@ async function loadDiscussion(topicId) {
         htmlMessages = "",
         i = 0;
     
-    for(var msg in messages) {
+    for(let msg in messages) {
         i++;
         htmlMessages += htmlDiscussionMessage(messages[msg]["message"], messages[msg]["author_pseudo"], messages[msg]["datetime_utc"], i);
     }
@@ -760,7 +755,7 @@ async function getCyclicAttacks(nbrExecutions) {
     var json = await callApi("GET", "events", "action=get&type=cyclicattack&sort=desc"),
         html = "";
 
-    for (var i in json.datas) {
+    for (let i in json.datas) {
         html += htmlEventAttack(json.datas[i]);
     }
     
@@ -777,7 +772,7 @@ async function getLogEvents(htmlContainerId) {
     var json = await callApi("GET", "events", "action=get&type=map"),
         html = "";
 
-    for (var i in json.datas) {
+    for (let i in json.datas) {
         html += htmlLogEvents(json.datas[i]);
     }
     
