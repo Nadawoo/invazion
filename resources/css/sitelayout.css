@@ -112,6 +112,12 @@ li {
 /*
  * Mises en forme rapides
  */
+.block {
+    display:block !important;
+}
+.hidden {
+    display:none;
+}
 .center {
     text-align:center;
 }

@@ -57,12 +57,11 @@ function hide(htmlIds) {
  */
 function hideClasses(classesNames) {
     
-    for (let i=0; i < classesNames.length; i++) {
-        
+    for (let i=0; i < classesNames.length; i++) {        
         var classes = document.getElementsByClassName(classesNames[i]);
         
         for (let i=0; i < classes.length; i++) {
-            classes[i].style.display = "none";
+            classes[i].classList.add("hidden");
         }
     }
 }
@@ -597,7 +596,7 @@ function displayTooltip(hexagon) {
     
     if (hexagon !== null) {
         // Displays the tooltip
-        hexagon.getElementsByClassName("bubble")[0].style.display = "block";
+        hexagon.getElementsByClassName("bubble")[0].classList.add("block");
         // Shifts the zone tooltip to the left if it overflows the map on the right
         handleTooltipOverflow(hexagon);
     }
@@ -612,7 +611,7 @@ function displayTooltip(hexagon) {
 function hideTooltip(hexagon) {
     
     if (hexagon !== null) {
-        hexagon.getElementsByClassName("bubble")[0].style.display = "none";
+        hexagon.getElementsByClassName("bubble")[0].classList.remove("block");;
     }
 }
 
@@ -625,8 +624,8 @@ function hideTooltip(hexagon) {
 function toggleTooltip(hexagon) {
     
     if (hexagon !== null) {
-        var current_display = window.getComputedStyle(hexagon.getElementsByClassName("bubble")[0]).display;
-        (current_display === "none") ? displayTooltip(hexagon) : hideTooltip(hexagon);
+        hexagon.getElementsByClassName("bubble")[0].classList.toggle("block");
+        handleTooltipOverflow(hexagon);
     }
 }
 
