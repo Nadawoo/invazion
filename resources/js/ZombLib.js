@@ -65,6 +65,7 @@ async function toJson(response) {
             console.groupCollapsed("See the result returned by the API:");
             console.log(apiResult);
             console.groupEnd();
+            throw e;
         });
     }
 }
