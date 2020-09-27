@@ -62,6 +62,10 @@ de même type :
     - 11 : les blocs (citoyens, zombies, objets, ville...)
     - 12 : les boutons "afficher les objets / afficher ma zone"
 *  20 : les blocs d’action (affichés/masqués par les boutons bouger/fouiller/zombies…)
-*  30 : le volet "Communications"
-*  40 : la liste des notifications (cloche en haut) et la future barre du haut qui affichera les actions de profil dans un menu déroulant (modifier mon profil, me déconnecter...)
-*  50 : la pop-up
+*  30 : l'intérieur de la ville
+    - 30 : le fond sombre par-dessus la carte
+    - 31 : l'interface de la ville
+*  40 : le volet "Communications"
+*  50 : la liste des notifications (cloche en haut) et la future barre du haut qui affichera 
+        les actions de profil dans un menu déroulant (modifier mon profil, me déconnecter...)
+*  60 : la pop-up
