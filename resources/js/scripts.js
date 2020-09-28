@@ -378,7 +378,7 @@ function activatePhoneTab(tabId=null) {
     }
     
     // Par défaut, on cache tous les onglet du smartphone
-    hideClasses(["screen"]);
+    hide(["minimap", "health", "zone"]);
     // Puis on affiche le contenu de l'onglet actif
     display(tabId);
 }

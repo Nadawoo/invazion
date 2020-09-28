@@ -30,13 +30,13 @@ class HtmlSmartphone
                         '.$this->side_icons().'
                     </div>
 
-                    <div id="minimap" class="screen">
+                    <div id="minimap">
                         '.$this->screen_minimap($map_cols, $map_rows, $citizen['coord_x'], $citizen['coord_y']).'
                     </div>
-                    <div id="health" class="screen blocktext">
+                    <div id="health" class="blocktext">
                         '.$this->screen_health($speciality, $citizen['action_points'], (bool)$citizen['is_wounded']).'
                     </div>
-                    <div id="zone" class="screen blocktext">
+                    <div id="zone" class="blocktext">
                         '.$this->screen_zone_control($zone['controlpoints_citizens'], $zone['controlpoints_zombies']).'
                     </div>
                 </div>
