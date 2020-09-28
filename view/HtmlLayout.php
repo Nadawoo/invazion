@@ -293,14 +293,14 @@ class HtmlLayout extends HtmlPage
                    : '<div style="font-size:0.9em">Déplacement gratuit</div>';
         $AP_cost_reason = ($zone_zombies>0) ? 'présence de zombies' : 'aucun zombie dans la zone';
 
-        return '<div style="margin-left:auto;width:12.5rem;text-align:right">
-                <a href="#popmove" style="display:block;opacity:0.9;padding:0 0.5em 0.3em 0.5em;background:green;color:white">
+        return '<div id="movement_ap">
+                <a href="#popmove" id="actionpoints">
                     <strong style="font-size:2em">'.$citizen_AP.'</strong>
                     <span style="opacity:0.8">/'.$total_AP.'<br>points d\'action</span>
                 </a>
-                <a href="#popmove" style="display:block;color:grey;background:lightgrey;padding:0.3em 0.5em 0.2em 0.3em">
+                <a href="#popmove" id="movement_cost">
                     '.$AP_cost.'
-                    <em style="font-size:0.85em">('.$AP_cost_reason.')</em>
+                    <span style="font-size:0.85em">('.$AP_cost_reason.')</span>
                 </a>
             </div>';
     }

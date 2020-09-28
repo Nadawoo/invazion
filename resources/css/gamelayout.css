@@ -237,6 +237,26 @@
     text-align:center;
 }
 
+#movement_ap {
+    margin-left:auto;
+    width:12.5rem;
+    text-align:right;
+}
+#actionpoints {
+    display:block;
+    padding:0 0.5em 0.3em 0.5em;
+    box-shadow:4px 4px 6px black;
+    background:green;
+    color:white;
+    opacity:0.9;
+}
+#movement_cost {
+    display:block;
+    margin:0.2em 0 0 0.3em;
+    padding:0.3em 0.5em 0.2em 0.3em;
+    background:lightgrey;
+    color:grey; 
+}
 
 /* 
  * Actions at the right of the map
