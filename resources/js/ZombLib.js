@@ -1,6 +1,6 @@
 /**
  * Javacript version of the ZombLib (library to easily use the API of InvaZion)
- * v 1.1
+ * v. 1.3
  */
 
 
@@ -47,20 +47,20 @@ function getOfficialServerRoot() {
     // how many times you call the distant APIs, and eventually optimize the redundant calls
 //    console.log("API call: "+apiName);
     
-    return await fetch(apiUrl, option).then(apiResult=>toJson(apiResult));
+    return await fetch(apiUrl, option).then(toJson);
 }
 
 
 /**
  * Converts a string to JSON and prints the malformed JSON in the console
  */
-async function toJson(response) {
+async function toJson(apiResult) {
     
     try {
         //.text() pour retourner un texte brut, ou .json() pour parser du JSON
-        return await response.clone().json();
+        return await apiResult.clone().json();
     } catch (e) {
-        await response.clone().text().then(apiResult=>{
+        await apiResult.clone().text().then(apiResult=>{
             console.error(e);
             console.groupCollapsed("See the result returned by the API:");
             console.log(apiResult);
