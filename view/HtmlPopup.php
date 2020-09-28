@@ -192,7 +192,7 @@ class HtmlPopup
     private function popmove()
     {
         
-        return "<p>Explorer le désert hostile demande du courage, mais surtout... de l'endurance !
+        return "<p>Explorer le désert hostile exige du courage et de l'endurance.
             Vous aurez besoin de <strong>points d'action</strong> pour vous déplacer,
             en fonction du nombre de zombies dans la zone :
             </p>
