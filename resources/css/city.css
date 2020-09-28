@@ -58,8 +58,7 @@
 
 /* Permet de mettre les blocs de la ville (dépôt, maison...) sur plusieurs lignes */
 .city_row {
-    /* C'est le javascript du menu de la ville qui les affichera en "flex" */
-    display:none;
+    display:flex;
     justify-content:center;
 }
 /* Block containing a title for the section of the city where we are */

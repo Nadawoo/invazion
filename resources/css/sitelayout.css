@@ -116,7 +116,7 @@ li {
     display:block !important;
 }
 .hidden {
-    display:none;
+    display:none !important;
 }
 .center {
     text-align:center;

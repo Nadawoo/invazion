@@ -49,8 +49,7 @@ function hide(htmlIds) {
 
 
 /**
- * Masque des éléments à partir de noms de classes (pas d'id).
- * Utilisé notamment pour le menu de la ville.
+ * Ajoute la classe .hidden sur les classes CSS demandées
  * 
  * @param   {array} classesNames Liste des noms des classes à masquer
  * @returns {undefined}
@@ -63,6 +62,22 @@ function hideClasses(classesNames) {
         for (let i=0; i < classes.length; i++) {
             classes[i].classList.add("hidden");
         }
+    }
+}
+
+
+/**
+ * Supprime la classe .hidden sur la classe CSS demandée
+ * 
+ * @param   {string} className La nom de la classe à afficher
+ * @returns {undefined}
+ */
+function unhideClass(className) {
+    
+    var classes = document.getElementsByClassName(className);
+    
+    for (let i = 0; i < classes.length; i++) {
+        classes[i].classList.remove("hidden");
     }
 }
 
@@ -83,22 +98,6 @@ function displayClasses(classesNames) {
         for (let i=0; i < classes.length; i++) {
             classes[i].style.display = "block";
         }
-    }
-}
-
-
-/**
- * Affiche des éléments en Flexbox à partir d'un nom de classe (pas d'id)
- * 
- * @param   {string} className La nom de la classe à afficher
- * @returns {undefined}
- */
-function displayFlex(className) {
-    
-    var classes = document.getElementsByClassName(className);
-    
-    for (let i = 0; i < classes.length; i++) {
-        classes[i].style.display = "flex";
     }
 }
 
@@ -229,7 +228,7 @@ function switchCityTab(className) {
     // On masque tous les éléments de la ville sans exception...
     hideClasses(tabs_list);
     // ... puis on affiche celui qu'on veut voir
-    displayFlex(className);
+    unhideClass(className);
     // Modifie l'url pour mémoriser dans quel onglet de la ville on se trouve.    
     updateUrlParam('tab', className);
 }
