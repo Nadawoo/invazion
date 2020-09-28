@@ -288,17 +288,18 @@ class HtmlLayout extends HtmlPage
     function block_movement_AP($citizen_AP, $total_AP, $zone_zombies)
     {
         
-        $AP_cost        = ($zone_zombies>0) ? '<strong class="red">1</strong>' : 0;
-        $AP_cost_reason = ($zone_zombies>0) ? 'zombies dans la zone' : 'aucun zombie dans la zone';
+        $AP_cost = ($zone_zombies>0) 
+                   ? '<div class="darkred"><strong>-1</strong> point pour quitter la zone</div>' 
+                   : '<div style="font-size:0.9em">Déplacement gratuit</div>';
+        $AP_cost_reason = ($zone_zombies>0) ? 'présence de zombies' : 'aucun zombie dans la zone';
 
         return '<div style="margin-left:auto;width:12.5rem;text-align:right">
-                <a href="#popmove" style="display:block;opacity:0.9;margin-bottom:1rem;padding:0 0.5em 0.2em 0.5em;background:green;color:white">
+                <a href="#popmove" style="display:block;opacity:0.9;padding:0 0.5em 0.3em 0.5em;background:green;color:white">
                     <strong style="font-size:2em">'.$citizen_AP.'</strong>
                     <span style="opacity:0.8">/'.$total_AP.'<br>points d\'action</span>
                 </a>
-                <a href="#popmove" style="display:block;color:grey;background:lightgrey;margin-bottom:0.5em;padding:0.5em">
-                    Vous déplacer coûtera
-                    <div style="margin:0.2rem 0;color:black">'.$AP_cost.' point d\'action</div>
+                <a href="#popmove" style="display:block;color:grey;background:lightgrey;padding:0.3em 0.5em 0.2em 0.3em">
+                    '.$AP_cost.'
                     <em style="font-size:0.85em">('.$AP_cost_reason.')</em>
                 </a>
             </div>';
