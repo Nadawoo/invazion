@@ -192,13 +192,16 @@ class HtmlPopup
     private function popmove()
     {
         
-        return "<p>Vos déplacements dans le désert peuvent vous coûter des <strong>points d'action</strong>,
+        return "<p>Explorer le désert hostile demande du courage, mais surtout... de l'endurance !
+            Vous aurez besoin de <strong>points d'action</strong> pour vous déplacer,
             en fonction du nombre de zombies dans la zone :
             </p>
             <ul>
-                <li>&#x2714;&#xFE0F; S'il n'y a <strong>aucun zombie</strong> dans la zone, le déplacement ne coûte <strong>aucun point d'action</strong>.<br><br></li>
-                <li>&#x1F9DF; S'il y a <strong>1 zombie ou davantage</strong>, quitter la zone vous coûtera <strong>1 point d'action</strong>.</li>
-            </ul>
+                <li>&#x1F9DF; S'il y a <strong>1 zombie ou davantage</strong>, quitter la zone 
+                vous coûtera <strong>1 point d'action</strong>.<br><br></li>
+                <li>&#x2714;&#xFE0F; S'il n'y a <strong>aucun zombie</strong> dans la zone, 
+                le déplacement ne coûte <strong>aucun point d'action</strong>.</li>
+                </ul>
             <p>Surveillez vos points d'action ! Si vous restez bloqué dans le désert,
             une mort certaine vous attend cette nuit...</p>";
     }
