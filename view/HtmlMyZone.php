@@ -95,7 +95,7 @@ class HtmlMyZone
         }
         
         return '
-            <div id="my_zone">
+            <div id="my_zone" class="hidden">
                 <div id="hexagon">&#x2B22;</div>
                 <div id="zone_container">'.$hexagon_content.'</div>
             </div>';

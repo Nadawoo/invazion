@@ -82,6 +82,21 @@ function unhideClass(className) {
 }
 
 
+function hideId(htmlId) {    
+    document.getElementById(htmlId).classList.add("hidden");
+}
+
+
+function unhideId(htmlId) {    
+    document.getElementById(htmlId).classList.remove("hidden");
+}
+
+
+function toggleHide(htmlId) {
+    document.getElementById(htmlId).classList.toggle("hidden");
+}
+
+
 /**
  * Affiche des éléments masqués à partir de noms de classes (pas d'id).
  * Inverse de hideClasses()
@@ -787,12 +802,11 @@ if (document.getElementById('map') !== null) {
     
     // Memorizes if the player wants to see the whole map or just the area where he is
     if (getCookieConfig('show_zone') === 1) {
-        display('my_zone');
-        hide('displayMyZone');
-    }
-    else {
-        hide('my_zone');
-        hide('hideMyZone');
+        hideId("displayMyZone");
+        unhideId("my_zone");
+        unhideId("hideMyZone");
+    } else {
+        unhideId("displayMyZone");
     }
     
     toggleActionBlock(getCookieConfig("round_button"));
