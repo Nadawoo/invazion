@@ -109,15 +109,15 @@ class HtmlLayout extends HtmlPage
                 <ul id="specialities">
                     <li>'.$buttons->button('specialize_digger', '', 'inline').'&nbsp;
                         [Points d\'action&nbsp;:     '. $specialities['digger']['action_points']    .'&nbsp;&nbsp; |
-                        Temps&nbsp;de&nbsp;fouille&nbsp;: '. $specialities['digger']['digging_duration'] .'&nbsp;mn]
+                        Capacité du sac&nbsp;: '. $specialities['digger']['bag_size'] .'&nbsp;objets]
                     </li>
                     <li>'.$buttons->button('specialize_explorer', '', 'inline').'&nbsp;
                         [Points d\'action&nbsp;:     '. $specialities['explorer']['action_points']    .'&nbsp;&nbsp; |
-                        Temps&nbsp;de&nbsp;fouille&nbsp;: '. $specialities['explorer']['digging_duration']/60 .'&nbsp;mn]
+                        Capacité du sac&nbsp;: '. $specialities['explorer']['bag_size'] .'&nbsp;objets]
                     </li>
                     <li>'.$buttons->button('specialize_builder', '', 'inline').'&nbsp;
                         [Points d\'action&nbsp;:     '. $specialities['builder']['action_points']    .' |
-                        Temps&nbsp;de&nbsp;fouille&nbsp;: '. $specialities['builder']['digging_duration']/60 .'&nbsp;mn]
+                        Capacité du sac&nbsp;: '. $specialities['builder']['bag_size'] .'&nbsp;objets]
                     </li>
                 </ul>';
     }
