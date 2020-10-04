@@ -40,7 +40,7 @@ class HtmlLayout extends HtmlPage
         // on affiche le nom de ce citoyen
         else {
             
-            return 'Vous êtes le citoyen <strong>'.$citizen_pseudo.'</strong>'
+            return 'Vous êtes le citoyen <strong id="citizenPseudo">'.$citizen_pseudo.'</strong>'
                    . $buttons->disconnect();
         } 
     }
