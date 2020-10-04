@@ -104,7 +104,7 @@ class HtmlMap
                 $coords = $col.'_'.$row;
                 $cell   = (isset($cells[$coords])) ? $cells[$coords] : null;
                 // Définit si le joueur connecté se trouve dans cette zone
-                $is_player_in_zone = ($citizen['coord_x'] === $col and $citizen['coord_y'] === $row) ? true : false;
+                $is_player_in_zone = $this->is_player_in_zone([$col, $row], [$citizen['coord_x'], $citizen['coord_y']]);
                 // Pseudo d'un des citoyens présents sur la case
                 $fellow_pseudo = (isset($citizens_by_coord[$coords])) ? $citizens_by_coord[$coords][0]['citizen_pseudo'] : null;
                 
@@ -255,6 +255,22 @@ class HtmlMap
         
         return $result;
     }
+    
+    
+    /**
+     * Determines if the connected player is in the given zone
+     * 
+     * @param array $zone_coords    The coords of the zone (X,Y)
+     * @param array $citizen_coords The coords of the citizen (X,Y)
+     * @return bool Returns "true" if the player is in the zone
+     */
+    private function is_player_in_zone($zone_coords, $citizen_coords)
+    {
+        
+        return ($citizen_coords[0] === $zone_coords[0] and $citizen_coords[1] === $zone_coords[1]) 
+                ? true : false;
+    }
+    
     
     /**
      * Calcule le coefficient d'opacité CSS (opacity) d'une case.
