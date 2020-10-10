@@ -586,8 +586,14 @@ input[type="submit"] {
    Important : utiliser les alias retournés par les API 
    (info, warning, critical) */
 .critical {
-    background:red;
-    color:white;
+    background: red;
+    border-radius: 3px;
+    color: white;
+    display: block;
+    padding: 6px 12px;
+    text-align: justify;
+    white-space: break-spaces;
+    word-break: break-all;
 }
 .warning {
     background: #7d3c98 ;
