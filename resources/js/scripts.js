@@ -793,6 +793,31 @@ async function getLogEvents(htmlContainerId) {
 }
 
 
+/**
+ * Refreshes the HTML of the concerned zones when a player moves (server-sent events)
+ * param {array} event The event given by an EventSource() object
+ *                     Doc : https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events
+ */
+async function UpdateMapRealtime(event, timestamp) {
+    let citizenPseudo = document.getElementById("citizenPseudo").innerHTML,
+        citizenId     = document.getElementById("citizenId").innerHTML;
+    // If event notified, get the new HTML contents for the modified zones
+    let options = { method: "GET",
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+                    };
+    let htmlZones = await fetch("zone_generator.php?map_id=1&newerthan="+timestamp+"&citizen_id="+citizenId+"&citizen_pseudo="+citizenPseudo, options).then(toJson);
+
+    // Updates the HTML for the modified zones
+    for (let coords in htmlZones) {
+        document.getElementById("zone"+coords).outerHTML = htmlZones[coords];
+    }
+
+    // Refresh the timestamp to memorize that these actions have been treated
+    return timestamp = await JSON.parse(event.data).citizens;
+};
+
+
+
 /*
  * Executed as soon as the page loads, without user action
  */
@@ -826,4 +851,15 @@ if (document.getElementById('map') !== null) {
         var search_params = new URLSearchParams(window.location.search);
         switchCityTab(search_params.get('tab'));
     }
+        
+
+    // Server-sent events to update the map in real time
+    var timestamp = Math.floor(Date.now()/1000);
+    setTimeout(function() {
+        // NB: keep the ".php" extension, otherwise it will give a "CORS error" with the local API version
+        let evtSource = new EventSource(getOfficialServerRoot()+"/api/sse.php");
+        evtSource.onmessage = async function(event) { 
+            timestamp = await UpdateMapRealtime(event, timestamp);
+        };
+    }, 2000);
 }

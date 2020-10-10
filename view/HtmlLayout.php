@@ -41,6 +41,7 @@ class HtmlLayout extends HtmlPage
         else {
             
             return 'Vous êtes le citoyen <strong id="citizenPseudo">'.$citizen_pseudo.'</strong>'
+                   . '<span id="citizenId" class="hidden">'.$citizen_id.'</span>'
                    . $buttons->disconnect();
         } 
     }

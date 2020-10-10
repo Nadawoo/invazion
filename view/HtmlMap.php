@@ -132,7 +132,7 @@ class HtmlMap
      * 
      * @return string   Le HTML de la case
      */
-    private function hexagonal_zone($col, $row, $cell, $is_player_in_zone, $player_pseudo, $fellow_pseudo)
+    public function hexagonal_zone($col, $row, $cell, $is_player_in_zone, $player_pseudo, $fellow_pseudo)
     {
         
         // Important : la cellule doit toujours avoir un contenu, même 
@@ -216,7 +216,7 @@ class HtmlMap
         // - La classe "hexagon" sert à tracer le fond hexgonal
         // - La classe "square_container" est un conteneur carré pour assurer la symétrie du contenu
         // (un hexagone ne peut pas, par définition, être inscrit dans un carré)
-        return '<div class="hexagon'.$has_items.'" style="opacity:'.$opacity.'">
+        return '<div id="zone'.$col.'_'.$row.'" class="hexagon'.$has_items.'" style="opacity:'.$opacity.'">
                     <div class="square_container">'
                         . $cell_content . '
                         <div class="bubble">
@@ -264,7 +264,7 @@ class HtmlMap
      * @param array $citizen_coords The coords of the citizen (X,Y)
      * @return bool Returns "true" if the player is in the zone
      */
-    private function is_player_in_zone($zone_coords, $citizen_coords)
+    public function is_player_in_zone($zone_coords, $citizen_coords)
     {
         
         return ($citizen_coords[0] === $zone_coords[0] and $citizen_coords[1] === $zone_coords[1]) 
