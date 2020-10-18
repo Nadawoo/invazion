@@ -455,6 +455,10 @@ input[type="submit"] {
     border-style:inset;
     background:#CC0000;
 }
+.redbutton.inactive {
+    background:grey;
+    text-decoration:line-through;
+}
 
 /* Bouton de dépôt d'objet avec un aspect moderne et non le défaut HTML en relief */
 .drop_button {

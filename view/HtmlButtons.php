@@ -237,11 +237,12 @@ class HtmlButtons
      * 
      * @return string HTML
      */
-    function button($button_alias, $show_icon=true, $class='')
+    function button($button_alias, $show_icon=true, $class='', $is_active=true)
     {
         
         $button = $this->buttons[$button_alias];
         $icon   = ($show_icon === 'no_icon') ? '' : $button['icon'].'&nbsp;';
+        $class_inactive = ($is_active !== true) ? 'inactive' : '';
         
         // Generates the hidden fields for the HTML form
         $hidden_fields = '';
@@ -254,7 +255,7 @@ class HtmlButtons
         return
         '<form method="post" action="#popsuccess" class="'.$class.'">
             '.$hidden_fields.'
-            '.$icon.'<input type="submit" class="redbutton" value="'.$button['name'].'" title="'.$button['title'].'">'
+            '.$icon.'<input type="submit" class="redbutton '.$class_inactive.'" value="'.$button['name'].'" title="'.$button['title'].'">'
         .'</form>';
     }
     
