@@ -66,6 +66,9 @@ if ($api->user_seems_connected() === true) {
     if ($api_me['metas']['error_code'] === 'success') {
         $citizen = $api_me['datas'];
     }
+    elseif ($api_me['metas']['error_code'] === 'citizen_not_created') {
+        $citizen['user_id'] = $api_me['datas']['user_id'];
+    }
     else {
         $msg_build = '<p class="'.$api_me['metas']['error_class'].'">'.$api_me['metas']['error_message'].'</p>';
     }
