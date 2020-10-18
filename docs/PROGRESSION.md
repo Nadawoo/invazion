@@ -10,7 +10,7 @@ Le jeu est actuellement en **version alpha** : un certain nombre de fonctionnali
 * Déplacements et fouilles :
     - Se déplacer ✔️ Fait !
     - Fouiller ✔️ Fait !
-    - Ne pas pouvoir fouiller plusieurs fois la même zone ⌛ En cours
+    - Ne pas pouvoir fouiller plusieurs fois la même zone ✔️ Fait !
     - Ramasser/déposer des objets ✔️ Fait !
     - Être bloqué si zombies en surnombre ✔️ Fait !
     - Délai pour quitter la zone quand contrôle perdu ⌛ En cours
