@@ -20,6 +20,7 @@ function set_default_variables($variable) {
         'coord_y'           => null,
         'citizen_pseudo'    => null,
         'can_change_speciality' => false,
+        'can_dig'               => true,
         'is_inside_city'        => false,
         'is_wounded'            => false,
         // If player not connected, by default display the map #1

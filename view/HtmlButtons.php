@@ -233,7 +233,8 @@ class HtmlButtons
      * @param string $button_alias  The alias of the action button. Must exist in $this->buttons
      * @param bool   $show_icon Set at 'no_icon' to display the button without its icon.
      *                          Any other value will display the icon.
-     * @param string $class Set at 'formlink' to display the button like an simple link
+     * @param string $class     Set to "formlink" to display the button like an simple link
+     * @param bool   $is_active If set to "false", the button will be grayed out
      * 
      * @return string HTML
      */
@@ -263,11 +264,12 @@ class HtmlButtons
     /**
      * Generates a big round button with icon for the main actions (digging...)
      * 
-     * @param  string $button_alias  The alias of the action button. Must exist in $this->buttons
-     * @param  int    $amount A number to display in a small pastille beside the button
+     * @param string $button_alias  The alias of the action button. Must exist in $this->buttons
+     * @param int    $amount A number to display in a small pastille beside the button
+     * @param bool   $is_active If set to "false", the button will be grayed out
      * @return string HTML
      */
-    function button_round($button_alias, $amount=0)
+    function button_round($button_alias, $amount=0, $is_active=true)
     {
         
         $icons = [
@@ -309,9 +311,11 @@ class HtmlButtons
             $dot_number = '<div class="dot_number">'.$amount.'</div>';
         }
         
+        $class_inactive = ($is_active !== true) ? 'inactive' : '';
+        
         return
         '<div class="round_action_block" id="round_'.$button_alias.'">'
-            . '<input type="submit" class="round_action" value="'.$button['icon'].'" '
+            . '<input type="submit" class="round_action '.$class_inactive.'" value="'.$button['icon'].'" '
                     . 'onclick="toggleActionBlock(\''.$button_alias.'\')">'
             . $dot_number
             . '<label>'.$button['label'].'</label>'

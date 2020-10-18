@@ -298,6 +298,10 @@
     top: 1px;
     box-shadow:2px 2px 4px black;
 }
+.round_action.inactive {
+    background:grey;
+    border-color:grey;
+}
 .active .round_action, .active .round_action:hover {
     background:#d6eaf8;
     border:3px inset white; /*#808b96*/
