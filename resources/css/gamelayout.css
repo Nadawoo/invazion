@@ -301,11 +301,13 @@
 .round_action.inactive {
     background:grey;
     border-color:grey;
+    opacity:0.7;
 }
 .active .round_action, .active .round_action:hover {
     background:#d6eaf8;
     border:3px inset white; /*#808b96*/
     box-shadow:1px 1px 2px white;
+    opacity:1;
 }
 #round_actions label {
     display:block;
