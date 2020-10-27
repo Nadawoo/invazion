@@ -522,9 +522,10 @@ class HtmlLayout extends HtmlPage
                 <div class="text">
                     Les humains ont perdu le contrôle de la zone ! Il vous reste 
                     peu de temps pour fuir avant d\'être totalement bloqué :
-                    <br> <strong style="font-size:1.8em">'.$delay.'</strong><br>
+                    <br> <strong id="controlCountdown">'.$delay.'</strong><br>
                     <a href="#popcontrol">[En savoir plus...]</a>
                 </div>
+                <div class="hidden" id="controlTimestamp">'.$timestamp.'</div>
             </div>';
     }
     

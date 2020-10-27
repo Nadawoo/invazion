@@ -386,6 +386,9 @@ legend {
     padding:0.3em 0 0.4em 0;
 }
 
+#controlCountdown {
+    font-size:1.9em
+}
 
 /* Empty slot for an item in the bag */
 .empty_slot {

@@ -817,6 +817,21 @@ async function UpdateMapRealtime(event, timestamp) {
 };
 
 
+/**
+ * Countdown to escape once the humans have lost the control of the zone
+ * @param {int} timestamp  The limit time to escape (Unix timestamp)
+ */
+function controlCountdown() {
+    // Get the number of seconds from now to the end of the countdown
+    let timestamp = document.getElementById("controlTimestamp").innerHTML,
+        diff = (timestamp*1000-Date.now()) / 1000;
+    // Converts the difference to a manipulable date object    
+    let date = new Date(1970, 0, 1);
+    date.setSeconds(diff);
+    
+    document.getElementById("controlCountdown").innerHTML = date.getMinutes()+"mn "+date.getSeconds()+"s";
+}
+
 
 /*
  * Executed as soon as the page loads, without user action
@@ -851,7 +866,12 @@ if (document.getElementById('map') !== null) {
         var search_params = new URLSearchParams(window.location.search);
         switchCityTab(search_params.get('tab'));
     }
-        
+    
+    
+    // Countdown to escape once the humans have lost the control of the zone
+    if (document.getElementById("controlCountdown") !== "undefined") {
+        setInterval(controlCountdown, 1000);
+    }
 
     // Server-sent events to update the map in real time
     var timestamp = Math.floor(Date.now()/1000);
