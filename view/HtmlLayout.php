@@ -463,7 +463,7 @@ class HtmlLayout extends HtmlPage
         $buttons = new HtmlButtons;
         
         return '
-            <div id="alert_control">
+            <div id="alert_control" class="cover_paddle">
                 <div class="title">Bloqué par les zombies !</div>
                 <div class="text">
                     Les <strong style="font-size:1.3em">'.$zombies.'</strong> zombies 
@@ -489,7 +489,7 @@ class HtmlLayout extends HtmlPage
     {
         
         return '
-            <div id="alert_control">
+            <div id="alert_control" class="cover_paddle">
                 <div class="title">Vous êtes épuisé !</div>
                 <div class="text">
                     Vous n\'avez plus assez de points d\'action pour quitter la zone !
@@ -501,6 +501,29 @@ class HtmlLayout extends HtmlPage
                         ► Construisez une tente pour vous abriter<br>
                         ► Demandez l\'aide d\'un autre citoyen
                     </div>
+                </div>
+            </div>';
+    }
+    
+    
+    /**
+     * Displays the countdown to escape before the control of the zone is lost
+     * 
+     * @param int $timestamp The limit date to escape (Unix timestamp)
+     * @return string
+     */
+    function block_alert_escape($timestamp)
+    {
+        
+        $delay = date('i\m\n s\s', $timestamp-time());
+        
+        return '
+            <div id="alert_control">
+                <div class="text">
+                    Les humains ont perdu le contrôle de la zone ! Il vous reste 
+                    peu de temps pour fuir avant d\'être totalement bloqué :
+                    <br> <strong style="font-size:1.8em">'.$delay.'</strong><br>
+                    <a href="#popcontrol">[En savoir plus...]</a>
                 </div>
             </div>';
     }

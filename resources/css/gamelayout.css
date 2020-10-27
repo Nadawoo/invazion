@@ -512,12 +512,14 @@ input[type="submit"] {
  */
 #alert_control {
     margin-left:0;
+    margin-bottom:1rem;
     border:2px outset black;
     text-align:center;
     background:#a93226;
     animation: fadein 2.8s;
     box-shadow:0px 2px 15px black;
-    /* Covers the movement paddle */
+}
+.cover_paddle { /* Covers the movement paddle */
     position:absolute;
     top:-2rem;
     width:93%;
@@ -533,12 +535,15 @@ input[type="submit"] {
     padding:0.8em 0.5em;
     font-size:0.9em;
     color:#fbeee6;
-    max-height:8rem; /* Must not conver the contextual actions (enter in city...) */
+    max-height:9rem; /* Must not cover the contextual actions (enter in city...) */
     overflow:auto;
 }
 #alert_control a {
     font-size:0.8em;
     color:orange;
+}
+#alert_escape {
+    position:static;
 }
 
 @keyframes fadein {

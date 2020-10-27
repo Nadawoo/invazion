@@ -289,8 +289,11 @@ echo $popup->customised('popsuccess', '', nl2br($msg_popup));
         <div id="actions">
             <fieldset id="block_move">
                 <legend>Me déplacer</legend>
-                <?php 
-                if ($zone['controlpoints_citizens'] < $zone['controlpoints_zombies']) {
+                <?php
+                if ($zone['date_control_end'] !== null and time() < strtotime($zone['date_control_end'])) {
+                    echo $layout->block_alert_escape(strtotime($zone['date_control_end']));
+                }
+                elseif ($zone['controlpoints_citizens'] < $zone['controlpoints_zombies']) {
                     echo $layout->block_alert_control($zone['zombies']);
                 }
                 elseif ($citizen['action_points'] === 0 and $zone['zombies'] > 0) {                    
