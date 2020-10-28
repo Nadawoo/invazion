@@ -869,7 +869,7 @@ if (document.getElementById('map') !== null) {
     
     
     // Countdown to escape once the humans have lost the control of the zone
-    if (document.getElementById("controlCountdown") !== "undefined") {
+    if (document.getElementById("controlCountdown") !== null) {
         setInterval(controlCountdown, 1000);
     }
 
