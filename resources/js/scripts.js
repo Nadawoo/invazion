@@ -825,6 +825,7 @@ function controlCountdown() {
     // Get the number of seconds from now to the end of the countdown
     let timestamp = document.getElementById("controlTimestamp").innerHTML,
         diff = (timestamp*1000-Date.now()) / 1000;
+    diff = Math.max(0, diff);
     // Converts the difference to a manipulable date object    
     let date = new Date(1970, 0, 1);
     date.setSeconds(diff);
