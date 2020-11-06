@@ -61,6 +61,46 @@
     margin-left:1em;
 }
 
+
+/* Bar above the map, showing the countdown before attack and the current day */
+#attack_bar {
+    float:left;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    width:26.2rem;
+    margin-bottom:0.2rem;
+    padding:0.2em;
+    border-radius:0.2rem;
+    box-shadow:3px 3px 8px black;
+    background:#4a235a;
+    color:lightgrey;
+}
+#attack_bar div {
+    border-radius:0.2rem;
+}
+#day {
+    width:20%;
+    padding:0.2rem;
+    line-height:2.2rem;
+    text-align:center;
+    border-right:1px solid #6c3483;
+}
+#timer {
+    position:relative;
+    top:-0.1rem;
+    padding:0.2rem 0.5rem 0 0.5rem;
+    box-shadow:2px 2px 6px black;
+    text-align:center;
+    border-top:1px solid #6c3483;
+    border-left:1px solid #6c3483;
+}
+#balance {
+    padding:0.2rem;
+    border-left:1px solid #6c3483;
+}
+
+
 /* Bar at the top of the map, containing the map number, the notifications button, etc. */
 #gamebar {
     display:flex;

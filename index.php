@@ -2,6 +2,7 @@
 require_once 'controller/autoload.php';
 safely_require('model/set_default_variables.php');
 safely_require('controller/official_server_root.php');
+safely_require('controller/get_game_day.php');
 safely_require('controller/SortGameData.php');
 safely_require('ZombLib.php');
 
@@ -106,6 +107,7 @@ $html = [
     // Assembling the HTML for the map
     'map' => $map->hexagonal_map($maps['map_width'], $maps['map_height'], $maps['zones'], $citizens_by_coord, $citizen, $maps['next_attack_hour']),
     'map_citizens'      => $layout->map_citizens($citizens),
+    'attack_bar'        => $layout->attack_bar( get_game_day($citizen['last_death']) ),
     // Contents of the round action buttons at the right of the map
     'actions_build'     => $layout->block_actions_build($zone['city_size'], $zone['building']),
     'actions_bag'       => $layout->block_actions_bag($configs['items'], $citizen['bag_items']),
@@ -225,6 +227,13 @@ echo $popup->customised('popsuccess', '', nl2br($msg_popup));
         // Dark overlay to blur the map under the city interface
         echo '<div id="dark_background"></div>';
      } ?>
+    
+    
+    <!-- Let this bar *before* the round action buttons if you want them 
+         to go *below* the bar on small screens -->
+    <div id="attack_bar">
+        <?php echo $html['attack_bar'] ?>
+    </div>    
     
     
     <div id="round_actions">

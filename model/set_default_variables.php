@@ -23,6 +23,7 @@ function set_default_variables($variable) {
         'can_dig'               => true,
         'is_inside_city'        => false,
         'is_wounded'            => false,
+        'last_death'            => null,
         // If player not connected, by default display the map #1
         'map_id'            => 1,
         ];

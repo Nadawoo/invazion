@@ -159,6 +159,29 @@ class HtmlLayout extends HtmlPage
     
     
     /**
+     * Bar above the map showing the countdown before the next attack, the current day...
+     * @param  int $day The number of days since the game start
+     * @return string HTML
+     */
+    function attack_bar($day)
+    {
+        
+        return '
+            <div id="day">
+                Jour '.$day.'
+            </div>        
+            <div id="timer">
+                Attaque dans
+                <div style="font-size:1.3em">00h 00mn 00s</div>
+            </div>
+            <div id="balance">
+                <div>00 zombies</div>
+                <div>00 défenses</div>
+            </div>';
+    }
+    
+    
+    /**
      * Retourne la liste HTML des citoyens de la ville
      * 
      * @param array $citizens_caracs    Les données sur tous les citoyens
