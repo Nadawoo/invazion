@@ -172,7 +172,7 @@ class HtmlLayout extends HtmlPage
             </div>        
             <div id="timer">
                 Attaque dans
-                <div style="font-size:1.3em">00h 00mn 00s</div>
+                <div id="attackCountdown">&nbsp;</div>
             </div>
             <div id="balance">
                 <div>00 zombies</div>

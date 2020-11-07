@@ -95,6 +95,10 @@
     border-top:1px solid #6c3483;
     border-left:1px solid #6c3483;
 }
+#attackCountdown {
+    font-size:1.3em;
+    width:9rem; /* Fixed-width to avoid the temporary resizing while loading the timer */
+}
 #balance {
     padding:0.2rem;
     border-left:1px solid #6c3483;

@@ -819,7 +819,6 @@ async function UpdateMapRealtime(event, timestamp) {
 
 /**
  * Countdown to escape once the humans have lost the control of the zone
- * @param {int} timestamp  The limit time to escape (Unix timestamp)
  */
 function controlCountdown() {
     // Get the number of seconds from now to the end of the countdown
@@ -834,13 +833,34 @@ function controlCountdown() {
 }
 
 
+/**
+ * Countdown before the midnight attack
+ * Partially based on https://stackoverflow.com/questions/54256629/countdown-to-midnight-refresh-every-day/54257213
+ * Feel free to optimize it...
+ */
+function attackCountdown() {
+    
+    // Get the number of seconds from now to midnight
+    let now = new Date();
+    let nextMidnight = new Date();
+    nextMidnight.setHours(24,0,0,0);    
+    let remainingSeconds = (nextMidnight.getTime() - now.getTime())/1000;
+    
+    // Convert the difference to a manipulable date object 
+    let date = new Date(1970, 0, 1);
+    date.setSeconds(remainingSeconds);
+    
+    document.getElementById("attackCountdown").innerHTML = date.getHours()+"h "+date.getMinutes()+"mn "+date.getSeconds()+"s";
+}
+
+
 /*
  * Executed as soon as the page loads, without user action
  */
 
 // If we are on the main game page (those elements don't exist on the connection page)
 if (document.getElementById('map') !== null) {
-    
+       
     // Memorizes if the player wants to see the whole map or just the area where he is
     if (getCookieConfig('show_zone') === 1) {
         hideId("displayMyZone");
@@ -873,7 +893,11 @@ if (document.getElementById('map') !== null) {
     if (document.getElementById("controlCountdown") !== null) {
         setInterval(controlCountdown, 1000);
     }
-
+    
+    // Countdown before the next zombie attack
+    attackCountdown();
+    setInterval(attackCountdown, 1000);
+        
     // Server-sent events to update the map in real time
     var timestamp = Math.floor(Date.now()/1000);
     setTimeout(function() {
