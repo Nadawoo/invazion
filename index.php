@@ -139,6 +139,7 @@ echo $popup->predefined('popvault',   '');
 echo $popup->predefined('popwounded', '', ['citizen_id'=>$citizen['citizen_id'], 'healing_items'=>$healing_items]);
 echo $popup->predefined('popcontrol', 'Aide : le contrôle de zone');
 echo $popup->predefined('popmove', 'Aide : les déplacements');
+echo $popup->predefined('popattack', 'Aide : l\'attaque zombie quotidienne');
 
 // Generic pop-up describing the result of an action
 echo $popup->customised('popsuccess', '', nl2br($msg_popup));
@@ -231,9 +232,9 @@ echo $popup->customised('popsuccess', '', nl2br($msg_popup));
     
     <!-- Let this bar *before* the round action buttons if you want them 
          to go *below* the bar on small screens -->
-    <div id="attack_bar">
+    <a href="#popattack" id="attack_bar">
         <?php echo $html['attack_bar'] ?>
-    </div>    
+    </a>    
     
     
     <div id="round_actions">
