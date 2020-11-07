@@ -4,13 +4,18 @@
  * 
  * @param string $game_start_date The date the new city was launched 
  *                                (e.g. "2020-11-09"). If is null, the function
- *                                will return "0".
- * @return string
+ *                                will return NULL.
+ * @return int
  */
 function get_game_day($game_start_date) {
     
-    $last_death = new DateTime($game_start_date);
-    $curr_date  = new DateTime(date('Y-m-d'));
+    $result = null;
     
-    return $last_death->diff($curr_date)->days;
+    if ($game_start_date !== null) {
+        $last_death = new DateTime($game_start_date);
+        $curr_date  = new DateTime(date('Y-m-d'));
+        $result = $last_death->diff($curr_date)->days;
+    }
+    
+    return $result;
 }

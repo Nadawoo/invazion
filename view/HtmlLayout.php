@@ -168,7 +168,7 @@ class HtmlLayout extends HtmlPage
         
         return '
             <div id="day">
-                Jour '.$day.'
+                Jour '.(int)$day.'
             </div>        
             <div id="timer">
                 Attaque dans
