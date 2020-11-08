@@ -46,16 +46,22 @@
 }
 .popup .close {
     position: absolute;
-    top: 0.5em;
-    right: 1em;
-    transition: all 200ms;
+    top:   0.1em;
+    right: 0.1em;
+    height:     0.9em;
+    width:      0.9em;
+    line-height:0.9em;
+    text-align:center;
     font-size: 30px;
-    font-weight: bold;
     text-decoration: none;
-    color: #333;
+    background:darkred;
+    border-radius:1em;
+    color:white;
+    transition: all 200ms;
 }
 .popup .close:hover {
-    color: #06D85F;
+    /*color: #06D85F;*/
+    background:red;
 }
 .popup .content {
     max-height: 30%;
