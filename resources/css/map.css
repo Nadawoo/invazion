@@ -50,8 +50,8 @@
 
 .hexagon, .not_visited {
     
-    /* TEMPORAIRE */
-    __border:1px solid red;
+    /* Pour le débogage : décommenter cette ligne pour afficher le conteneur*/
+    /*border:1px solid red;*/
     
     background-image:url("../img/craftpix/desert/1.png");
     background-repeat:no-repeat;
@@ -92,6 +92,8 @@
     /* Centrage des éléments à l'intérieur de la case */
     display:flex;
     flex-direction: column;
+    align-items:center;
+    justify-content: center;
     /* Recentre verticalement le texte à l'intérieur du conteneur.
     Calibrage: le fond coloré sous le texte doit toucher la bordure du bas du conteneur. */
     line-height:2.2em;
@@ -99,9 +101,6 @@
 .tent {
     color:green;
     font-size:150%;
-    line-height:120%;
-    position:relative;
-    top:0.10em;
 }
 #map .zombies {
     font-weight:bold;
@@ -155,8 +154,7 @@
 }
 /* Crypte */
 .vault {
-    border-radius:50%;
-    background:antiquewhite;
+    font-size:150%;
 }
 /* Symbole d'un citoyen sur la carte hexagonale */
 .map_citizen {
@@ -164,6 +162,7 @@
     font-weight:bold;
     background:lightsteelblue;
     height:100%;
+    width:100%;
 }
 #me {
     background:lightgreen;
@@ -202,6 +201,7 @@
     border: 3px solid green;
     border-radius: 50%;
     height:85%;
+    width: 85%;
     margin-top:-2.2em;
 }
 
@@ -219,8 +219,8 @@
     z-index:-1;
 }
 .city_nbr_def {
-    position:relative;
-    top:-1.8em;
+    position:absolute;
+    bottom:-1em;
     color:white;
     font-weight:bold;
     font-size:0.8em;
