@@ -43,6 +43,11 @@
        sous la carte. */
     margin:-0.95em;
 }
+#map .row:nth-child(odd) {
+    /* Shift 1 line of 2 to fit the hexagons staggered */
+    padding-left:1.2em;
+}
+
 .hexagon, .not_visited {
     
     /* TEMPORAIRE */

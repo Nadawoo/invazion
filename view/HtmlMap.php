@@ -86,10 +86,7 @@ class HtmlMap
         // Pour chaque ligne de la carte
         for ($row=0; $row<$nbr_rows; $row++) {
             
-            // On décale 1 ligne sur 2 vers la droite pour disposer les hexagones en quinquonce
-            $left = ($row%2 === 1) ? 'style="padding-left:1.2em"' : '';
-            
-            $result .= '<div class="row" '.$left.'>';
+            $result .= '<div class="row">';
             
             // Ligne de la horde zombie sur la carte (triangles rouges)
             $result .= $this->html_hurd($nbr_cols, $row, $next_attack_hour);
