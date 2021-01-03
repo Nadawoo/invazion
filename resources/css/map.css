@@ -4,7 +4,7 @@
 #map {
     float:left;
     margin:0 0.2em 3em 0;
-    padding:0 0.7em 1em 0.7em;
+    padding:0 1em 1em 1em;
     border-radius:0.5em;
     background:repeating-linear-gradient(0.38turn, black, black 2px, #17202a 2px, #17202a 4px);
     box-shadow: 5px 5px 10px black;
@@ -41,14 +41,14 @@
     /* On remonter l'hexagone pour l'emboîter dans la ligne du dessus.
        Mieux qu'une position relative "top:-1em", qui créerait un gros blanc 
        sous la carte. */
-    margin:-0.58em;
+    margin:-0.95em;
 }
 .hexagon, .not_visited {
     
     /* TEMPORAIRE */
     __border:1px solid red;
     
-    background-image:url("../img/hexagon.png");
+    background-image:url("../img/craftpix/desert/1.png");
     background-repeat:no-repeat;
     background-size:100%;
     text-align:center;
@@ -58,8 +58,7 @@
     width:        2.4em;
     /* La hauteur va dépendre de la largeur : une bordure devra arriver 
     pile à la pointe du bas de l'hexagone */
-    height:       2.76em;
-    margin:       0 0.05em;
+    height:       3.1em;
     /* Assure que le conteneur intérieur ne déborde pas en bas
     (tracer une bordure sur square_container) )*/
     line-height:2.55em;
@@ -83,7 +82,7 @@
     margin:auto;
     /* Hack CSS pour centrer le conteneur verticalement */
     position: relative;
-    top: 50%; /* poussé de la moitié de hauteur du référent */
+    top: 45%; /* poussé de la moitié de hauteur du référent */
     transform: translateY(-50%); /* tiré de la moitié de sa propre hauteur */
     /* Centrage des éléments à l'intérieur de la case */
     display:flex;
@@ -98,6 +97,10 @@
     line-height:120%;
     position:relative;
     top:0.10em;
+}
+#map .zombies {
+    font-weight:bold;
+    color:darkred;
 }
 
 /*

@@ -31,7 +31,7 @@ class HtmlMap
             'tent'          => '<div class="tent">&#9978;</div>',
             'vault'         => '<div class="vault">&#9961;&#65039;</div>',
             'items'         => '&nbsp;',
-            'zombies'       => '<div class="grey">'.$string1.'</div>',
+            'zombies'       => '<div class="zombies">'.$string1.'</div>',
         ];
         
         return "    ".$templates[$cell_alias]."\n";
@@ -87,7 +87,7 @@ class HtmlMap
         for ($row=0; $row<$nbr_rows; $row++) {
             
             // On décale 1 ligne sur 2 vers la droite pour disposer les hexagones en quinquonce
-            $left = ($row%2 === 1) ? 'style="padding-left:1.25em"' : '';
+            $left = ($row%2 === 1) ? 'style="padding-left:1.2em"' : '';
             
             $result .= '<div class="row" '.$left.'>';
             
