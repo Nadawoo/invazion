@@ -28,8 +28,14 @@ class HtmlMap
                                 <div class="halo">&nbsp;</div>',
             'city'          => '<div><img src="resources/img/city.png" alt="&#10224;"></div>'
                                . '<div class="city_nbr_def">'.$string1.'</div>',
-            'tent'          => '<div class="tent">&#9978;</div>',
-            'vault'         => '<div class="vault">&#9961;&#65039;</div>',
+            'carwreck'      => '<div class="emoji">&#x1F693;</div>',
+            'circus'        => '<div class="emoji">&#x1F3AA;</div>',
+            'hut'           => '&nbsp;',
+            'pond'          => '&nbsp;',
+            'pharmacy'      => '<div class="emoji">&#x1F3E5;</div>',
+            'stonewall'     => '<div>&#x1F9F1;</div>',
+            'tent'          => '<div class="emoji">&#9978;</div>',
+            'vault'         => '<div class="emoji">&#9961;&#65039;</div>',
             'items'         => '&nbsp;',
             'zombies'       => '<div class="zombies">'.$string1.'</div>',
         ];
@@ -55,6 +61,18 @@ class HtmlMap
                                 . 'pour vous déplacer, fouiller le sol, attaquer des zombies, ramasser des objets...',
             'city'          => '<br>Cette ville offre '.$string1.' points de défense... '
                                . 'Peut-être pourrez-vous vous y réfugier&nbsp;?',
+            'carwreck'      => '<br>Mieux vaut ne pas savoir ce qu\'est devenu le propriétaire de cette voiture embourbée. '
+                             . 'Il a dû parvenir à s\'enfuir et coule des jours heureux quelque part... Oui, on va dire ça.',
+            'circus'        => '<br>Sous ce chapiteau déserté, plusieurs traces de zombies, d\'animaux et de dresseurs. '
+                             . 'Difficile de déterminer qui a mangé qui et dans quel ordre...',
+            'hut'           => '<br>Bien que ce cabanon branlant soit détrempé par les pluies, vous parviendrez '
+                             . 'sans doute à en tirer quelques planches utilisables.',
+            'pond'          => '<br>Une vieille mare d\'eau boueuse et parsemée de petites algues. '
+                             . 'Ce sera meilleur que l\'eau du puits de la ville !',
+            'pharmacy'      => '<br>Un cabinet de médecin, quelle chance ! Vous pourrez emporter quelques médicaments, '
+                             . 'à défaut de pouvoir ressusciter le praticien.',
+            'stonewall'     => '<br>A quel type de bâtiment appartenait donc ce mur effondré ? '
+                             . 'Peu importe, il va être avantageusement recyclé en carrière de pierres.',
             'tent'          => '<br>Un citoyen a planté sa tente ici.',
             'vault'         => '<br>Une crypte se trouve dans la zone... Qui sait quels secrets elle renferme&nbsp;?',
             'items'         => '<br>Il y a des objets dans cette zone... Mais lesquels&nbsp;?',
@@ -152,19 +170,40 @@ class HtmlMap
             // à chacune des condition suivantes.
             // TODO : revoir l'organisation de l'affichage afin d'éviter ce bricolage.
         }
-        elseif ($cell['building'] === 'vault') {
-            
+        elseif ($cell['building'] === 'vault') {            
             // Si la case contient une crypte, on l'affiche même si la case est inexplorée
             $cell_content = $this->html_cell_content('vault');
             $bubble       = $this->html_bubble('vault');
         }
+        elseif ($cell['building'] === 'carwreck') {
+            $cell_content = $this->html_cell_content('carwreck');
+            $bubble       = $this->html_bubble('carwreck');
+        }
+        elseif ($cell['building'] === 'circus') {
+            $cell_content = $this->html_cell_content('circus');
+            $bubble       = $this->html_bubble('circus');
+        }
+        elseif ($cell['building'] === 'pharmacy') {
+            $cell_content = $this->html_cell_content('pharmacy');
+            $bubble       = $this->html_bubble('pharmacy');
+        }
+        elseif ($cell['building'] === 'stonewall') {
+            $cell_content = $this->html_cell_content('stonewall');
+            $bubble       = $this->html_bubble('stonewall');
+        }
+        elseif ($cell['building'] === 'hut') {
+            $cell_content = $this->html_cell_content('hut');
+            $bubble       = $this->html_bubble('hut');
+        }
+        elseif ($cell['building'] === 'pond') {
+            $cell_content = $this->html_cell_content('pond');
+            $bubble       = $this->html_bubble('pond');
+        }
         elseif ($cell['city_size'] === 1) {
-
             $cell_content = $this->html_cell_content('tent');
             $bubble       = $this->html_bubble('tent');
         }
         elseif ($cell['city_size'] > 0) {
-
             // Si la ville a des défenses, on affiche un fond triangulaire vert
             $city_bg = ($cell['city_defenses'] > 0) ? '    <span class="city_bg"></span>' : '';
             $cell_content = $this->html_cell_content('city', $cell['city_defenses']) . $city_bg . "\n";
