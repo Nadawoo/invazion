@@ -26,6 +26,8 @@ class HtmlMovementPaddle
             <tr>
                 <td>'.$this->arrow('west').'</td>
                 <td colspan="2" id="central" title="Cliquez sur une flèche pour vous déplacer...">
+                    <br>
+                    <div class="me">&#129485;&#8205;&#9794;&#65039;</div>
                     ' . $coord_x . ':' . $coord_y . '
                 </td>
                 <td>'.$this->arrow('east').'</td>

@@ -247,10 +247,11 @@
     height:7.8rem;
     border-collapse:collapse;
     text-align:center;
-    background-image:url("../img/hexagon.png");
+    background-image:url("../img/craftpix/desert/9.png");
     background-repeat:no-repeat;
     background-size:3em;
     background-position: center;
+    font-weight:bold;
 }
 #movement_paddle td {
     padding:0;
@@ -272,7 +273,14 @@
 }
 /* L'hexagone central entre les flèches */
 #movement_paddle #central {
+    position:relative;
     cursor:pointer;
+}
+#movement_paddle .me {
+    position:absolute;
+    top:-0.7em;
+    left:27%;
+    font-size:2em;
 }
 /* Message under the movement paddle */
 #message_move {
