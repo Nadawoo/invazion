@@ -154,14 +154,15 @@ class HtmlMap
         // un simple espace, sinon décalages si la cellule contient ou non 
         // des citoyens/zombies/objets
         $cell_content   = '&nbsp;';
-        $me             = '';
+        $cell_zombies   = '';
+        $cell_me        = '';
         $bubble         = '';
         $bubble_zombies = '';
         $bubble_items   = '';        
         
         if ($is_player_in_zone === true) {            
-            $me     = $this->html_cell_content('citizen_me', $player_pseudo);
-            $bubble = $this->html_bubble('citizen_me', $player_pseudo);
+            $cell_me = $this->html_cell_content('citizen_me', $player_pseudo);
+            $bubble  = $this->html_bubble('citizen_me', $player_pseudo);
         }
         
         if ($cell === null) {
@@ -219,19 +220,17 @@ class HtmlMap
             $cell_content = $this->html_cell_content('citizen_alone', $fellow_pseudo);
             $bubble       = $this->html_bubble('citizen_alone', $fellow_pseudo);
         }
-        else {
+        
 
-            if ($cell['zombies'] > 0) {
-
-                $cell_content   = $this->html_cell_content('zombies', $cell['zombies']);
-                $bubble_zombies = $this->html_bubble('zombies', $cell['zombies']);
-            }
-
-            if (!empty($cell['items'])) {
-                
-                $bubble_items = $this->html_bubble('items');
-            }
+        if ($cell['zombies'] > 0) {
+            $cell_zombies   = $this->html_cell_content('zombies', $cell['zombies']);
+            $bubble_zombies = $this->html_bubble('zombies', $cell['zombies']);
         }
+
+        if (!empty($cell['items'])) {
+            $bubble_items = $this->html_bubble('items');
+        }
+        
 
 
         // La case est plus ou moins opaque selon la date de dernière visite
@@ -254,7 +253,7 @@ class HtmlMap
         // (un hexagone ne peut pas, par définition, être inscrit dans un carré)
         return '<div id="zone'.$col.'_'.$row.'" class="hexagon '.$has_items.' '.'ground_'.$cell['building'].'" style="opacity:'.$opacity.'">
                     <div class="square_container">'
-                        . $me . $cell_content . '
+                        . $cell_me . $cell_zombies . $cell_content . '
                         <div class="bubble">
                             [Zone '.$col.':'.$row.']'
                             . $bubble 
