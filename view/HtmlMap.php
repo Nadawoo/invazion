@@ -136,16 +136,17 @@ class HtmlMap
         // un simple espace, sinon décalages si la cellule contient ou non 
         // des citoyens/zombies/objets
         $cell_content   = '&nbsp;';
+        $me             = '';
         $bubble         = '';
         $bubble_zombies = '';
         $bubble_items   = '';        
         
-        if ($is_player_in_zone === true) {
-            
-            $cell_content = $this->html_cell_content('citizen_me', $player_pseudo);
-            $bubble       = $this->html_bubble('citizen_me', $player_pseudo);
+        if ($is_player_in_zone === true) {            
+            $me     = $this->html_cell_content('citizen_me', $player_pseudo);
+            $bubble = $this->html_bubble('citizen_me', $player_pseudo);
         }
-        elseif ($cell === null) {
+        
+        if ($cell === null) {
             // Quand la zone est vide.
             // Cette condition ne sert qu'à éviter de répéter "if(isset($cells[$coords])..."
             // à chacune des condition suivantes.
@@ -169,12 +170,12 @@ class HtmlMap
             $cell_content = $this->html_cell_content('city', $cell['city_defenses']) . $city_bg . "\n";
             $bubble       = $this->html_bubble('city', $cell['city_defenses']);
         }
-        elseif ($cell['citizens'] > 1) {
+        elseif ($cell['citizens'] > 1 and $is_player_in_zone === false) {
 
             $cell_content = $this->html_cell_content('citizens_group');
             $bubble       = $this->html_bubble('citizens_group');
         }
-        elseif ($cell['citizens'] === 1) {
+        elseif ($cell['citizens'] === 1 and $is_player_in_zone === false) {
 
             $cell_content = $this->html_cell_content('citizen_alone', $fellow_pseudo);
             $bubble       = $this->html_bubble('citizen_alone', $fellow_pseudo);
@@ -214,7 +215,7 @@ class HtmlMap
         // (un hexagone ne peut pas, par définition, être inscrit dans un carré)
         return '<div id="zone'.$col.'_'.$row.'" class="hexagon '.$has_items.' '.'ground_'.$cell['building'].'" style="opacity:'.$opacity.'">
                     <div class="square_container">'
-                        . $cell_content . '
+                        . $me . $cell_content . '
                         <div class="bubble">
                             [Zone '.$col.':'.$row.']'
                             . $bubble 

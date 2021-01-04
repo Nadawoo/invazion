@@ -178,12 +178,13 @@
     width:100%;
 }
 #me {
+    position:absolute;
     background:lightgreen;
     animation: blinker 2s linear infinite;
 }
 @keyframes blinker {
     50% {
-        opacity: 0.1;
+        opacity: 0;
     }
 }
 /* Ligne de zombies (zombies de l'attaque') */
@@ -211,11 +212,11 @@
 }
 
 .halo {
+    position:absolute;
     border: 3px solid green;
     border-radius: 50%;
     height:85%;
     width: 85%;
-    margin-top:-2.2em;
 }
 
 /* Le triangle derrière la ville */
