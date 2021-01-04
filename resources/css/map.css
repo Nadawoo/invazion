@@ -53,7 +53,6 @@
     /* Pour le débogage : décommenter cette ligne pour afficher le conteneur*/
     /*border:1px solid red;*/
     
-    background-image:url("../img/craftpix/desert/1.png");
     background-repeat:no-repeat;
     background-size:100%;
     text-align:center;
@@ -98,6 +97,20 @@
     Calibrage: le fond coloré sous le texte doit toucher la bordure du bas du conteneur. */
     line-height:2.2em;
 }
+
+.ground_stone {
+    background-image:url("../img/craftpix/desert/1.png");
+}
+.ground_peeble {
+    background-image:url("../img/craftpix/desert/2.png");
+}
+.ground_thintree {
+    background-image:url("../img/craftpix/desert/5.png");
+}
+.ground_sand, .ground_vault, .ground_ {
+    background-image:url("../img/craftpix/desert/9.png");
+}
+
 .tent {
     color:green;
     font-size:150%;

@@ -152,7 +152,7 @@ class HtmlMap
             // TODO : revoir l'organisation de l'affichage afin d'éviter ce bricolage.
         }
         elseif ($cell['building'] === 'vault') {
-
+            
             // Si la case contient une crypte, on l'affiche même si la case est inexplorée
             $cell_content = $this->html_cell_content('vault');
             $bubble       = $this->html_bubble('vault');
@@ -209,11 +209,10 @@ class HtmlMap
         // Permettra d'ajouter un marqueur en javascript sur la case
         $has_items = (empty($cell['items'])) ? '' : ' hasItems';
         
-        
         // - La classe "hexagon" sert à tracer le fond hexgonal
         // - La classe "square_container" est un conteneur carré pour assurer la symétrie du contenu
         // (un hexagone ne peut pas, par définition, être inscrit dans un carré)
-        return '<div id="zone'.$col.'_'.$row.'" class="hexagon'.$has_items.'" style="opacity:'.$opacity.'">
+        return '<div id="zone'.$col.'_'.$row.'" class="hexagon '.$has_items.' '.'ground_'.$cell['building'].'" style="opacity:'.$opacity.'">
                     <div class="square_container">'
                         . $cell_content . '
                         <div class="bubble">
