@@ -40,7 +40,7 @@ class HtmlMap
             'zombies'       => '<div class="zombies">'.$string1.'</div>',
         ];
         
-        return "    ".$templates[$cell_alias]."\n";
+        return (isset($templates[$cell_alias])) ? "    ".$templates[$cell_alias]."\n" : null;
     }
     
     
@@ -171,36 +171,13 @@ class HtmlMap
             // à chacune des condition suivantes.
             // TODO : revoir l'organisation de l'affichage afin d'éviter ce bricolage.
         }
-        elseif ($cell['building'] === 'vault') {            
-            // Si la case contient une crypte, on l'affiche même si la case est inexplorée
-            $cell_content = $this->html_cell_content('vault');
-            $bubble       = $this->html_bubble('vault');
-        }
-        elseif ($cell['building'] === 'carwreck') {
-            $cell_content = $this->html_cell_content('carwreck');
-            $bubble       = $this->html_bubble('carwreck');
-        }
-        elseif ($cell['building'] === 'circus') {
-            $cell_content = $this->html_cell_content('circus');
-            $bubble       = $this->html_bubble('circus');
-        }
-        elseif ($cell['building'] === 'pharmacy') {
-            $cell_content = $this->html_cell_content('pharmacy');
-            $bubble       = $this->html_bubble('pharmacy');
-        }
-        elseif ($cell['building'] === 'stonewall') {
-            $cell_content = $this->html_cell_content('stonewall');
-            $bubble       = $this->html_bubble('stonewall');
-        }
-        elseif ($cell['building'] === 'hut') {
-            $cell_content = $this->html_cell_content('hut');
-            $bubble       = $this->html_bubble('hut');
-        }
-        elseif ($cell['building'] === 'pond') {
-            $cell_content = $this->html_cell_content('pond');
-            $bubble       = $this->html_bubble('pond');
+        elseif ($cell['building'] !== null and $this->html_cell_content($cell['building']) !== null) {
+            
+            $cell_content = $this->html_cell_content($cell['building']);
+            $bubble       = $this->html_bubble($cell['building'] );
         }
         elseif ($cell['city_size'] === 1) {
+            
             $cell_content = $this->html_cell_content('tent');
             $bubble       = $this->html_bubble('tent');
         }
