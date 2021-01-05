@@ -161,7 +161,14 @@
     bottom:-1em;
     z-index:2;
 }
-
+.bubble .roleplay {
+    margin-top:0.7rem;
+    padding:0.1em 0;
+    font-size:1.1em;
+    line-height:110%;
+    background:#c40007;
+    border-radius:0.2em;
+}
 
 /* Symbole indiquant la présence d'objets sur la case */
 .items {
