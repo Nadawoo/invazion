@@ -214,7 +214,7 @@ class HtmlMap
         if($cell === null) {
             $opacity = 0;
         }
-        elseif ($is_player_in_zone === true or $cell['building'] !== null) {
+        elseif ($is_player_in_zone === true or $cell['building'] === 'vault') {
             $opacity = 1;
         }
         else {
