@@ -261,7 +261,7 @@ class HtmlMap
             
             $result .= '<div class="hurd" title="Une horde ravageuse est en train de progresser vers le sud ! '
                                               . 'Restez à distance ou vous mourrez...">'
-                    . str_repeat($triangle, $nbr_cols) 
+                    . str_repeat($triangle, $nbr_cols-1) 
                     . "</div>\n";
         }
         

@@ -13,7 +13,7 @@
     padding:0 0.2em;
     /* Garantit que les éléments sous la carte (liste des inscrits...) ne remontent
        pas dans la colonne à droite de la carte */
-    height:55.5rem;
+    height:61rem;
     margin-bottom:3rem;
     /* Au cas où l'enceinte de la ville descendrait trop bas
       (notamment si liste des chantiers trop longue)
