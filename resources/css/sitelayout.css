@@ -10,20 +10,44 @@ html, body {
     height:100%;
 }
 body {
-    max-width:52em;
     margin:auto;
-    background:#2c3e50;
-    background: linear-gradient(to bottom right,  black,  #1a5276, black);
-    background-attachment: fixed; /* Keep this *after* background definition to work */
+    background:black;/* #2c3e50  Darker color here = darker transparent background */
     font-family: Arial, Helvetica, "Liberation Sans", FreeSans, sans-serif;
     /* Garantit que les width en % des enfants seront calculées par rapport à la largeur
        de la page (limitée) et non celle de la fenêtre du navigateur */
     position:relative;
 }
+
+
+@media (min-width:52rem) { /* Same width as #page_container, to not load the background uselessly */
+    /* CSS hack to allow opacity on the background image */
+    #body_bg {
+      position: relative;
+      min-height:100%;
+    }
+    #body_bg::before {
+        background-image: url("../img/copyrighted/cave.png");
+        background-position: center;
+        background-attachment: fixed;
+        background-size:auto 100%; /* No empty space on big screens (24''))*/
+        opacity: 0.8;
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        content: "";
+        z-index: -1;
+    }
+    /* End of the hack */
+}
+
 nav::selection, nav ::selection {
     background:none;
 }
 #page_container {
+    margin:auto;
+    max-width:52rem;
     background:#fafafa;
     /* Le fond du contenu de la page doit toujours remplir au minimum toute la hauteur de l'écran.
        Pour fonctionner, nécessite : html,body{ height:100% } */

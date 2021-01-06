@@ -54,6 +54,7 @@ class HtmlPage
             </head>
             
             <body>    
+            <div id="body_bg">
             <div id="page_container">
                 <h1>InvaZion</h1>
                 <div id="slogan">Le projet de Hordes-like collaboratif</div>
@@ -88,7 +89,8 @@ class HtmlPage
     function page_footer()
     {
         
-        return '        </div>
+        return '        </div> <!-- End of #page_container -->
+                    </div> <!-- End of #body_bg -->
                     <script type="text/javascript" src="resources/js/ZombLib.js?v1.3"></script>
                     <script type="text/javascript" src="resources/js/wallTemplate.js?v4.1"></script>
                     <script type="text/javascript" src="resources/js/scripts.js?v5.8"></script>
