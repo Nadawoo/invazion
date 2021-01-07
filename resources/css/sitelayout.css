@@ -20,12 +20,8 @@ body {
 
 
 @media (min-width:52rem) { /* Same width as #page_container, to not load the background uselessly */
-    /* CSS hack to allow opacity on the background image */
-    #body_bg {
-      position: relative;
-      min-height:100%;
-    }
-    #body_bg::before {
+    
+    body::before { /* CSS hack to allow opacity on the background image */
         background-image: url("../img/copyrighted/cave.png");
         background-position: center;
         background-attachment: fixed;
@@ -39,7 +35,6 @@ body {
         content: "";
         z-index: -1;
     }
-    /* End of the hack */
 }
 
 nav::selection, nav ::selection {
