@@ -35,8 +35,8 @@
 /* La barre de connexion en haut de la page */
 #connectionbar {
     text-align:center;
-    border-top:1px solid grey;
-    border-bottom:1px solid grey;
+    border-top:1px solid lightgrey;
+    border-bottom:1px solid lightgrey;
 }
 #connectionbar .button {
     display:inline-block;

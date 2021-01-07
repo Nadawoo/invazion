@@ -50,9 +50,16 @@ nav::selection, nav ::selection {
     margin:auto;
     max-width:52rem;
     background:#fafafa;
+    border-left:3px ridge lightgrey;
+    border-right:3px ridge black;
     /* Le fond du contenu de la page doit toujours remplir au minimum toute la hauteur de l'écran.
        Pour fonctionner, nécessite : html,body{ height:100% } */
     min-height:100%;
+}
+header {
+    background: #f0d5c7;
+    margin-bottom:0.4rem;
+    border-bottom:3px ridge black;
 }
 header h1 {
     text-align:center;
@@ -65,18 +72,11 @@ header h1 {
     letter-spacing:0.1em;
     color:grey;
 }
-#sloganline {
-    max-width:15em;
-    margin-top:1.4em;
-    margin-bottom:1em;
-    border:none;
-    border-bottom:1px solid lightgrey;
-}
 
 /* Menu horizontal du site */
 #sitemenu {
-    margin:1.5em 0 2em 0;
-    line-height:80%;
+    padding:1.5rem 0;
+    line-height:70%;
     text-align:center;
     font-weight:bold;
 }
