@@ -46,6 +46,7 @@ nav::selection, nav ::selection {
     background:none;
 }
 #page_container {
+    position:relative;
     margin:auto;
     max-width:52rem;
     background:#fafafa;
