@@ -54,6 +54,7 @@ class HtmlPage
             </head>
             
             <body>    
+            <div id="body_bg">
                 <div id="page_container">
                     <header>
                         <h1>InvaZion</h1>
@@ -90,6 +91,7 @@ class HtmlPage
     {
         
         return '        </div> <!-- End of #page_container -->
+                    </div> <!-- End of #body_bg -->
                     <script type="text/javascript" src="resources/js/ZombLib.js?v1.3"></script>
                     <script type="text/javascript" src="resources/js/wallTemplate.js?v4.1"></script>
                     <script type="text/javascript" src="resources/js/scripts.js?v5.9"></script>
