@@ -54,7 +54,7 @@ nav::selection, nav ::selection {
        Pour fonctionner, nécessite : html,body{ height:100% } */
     min-height:100%;
 }
-h1 {
+header h1 {
     text-align:center;
     margin:0;
     font-family:"Courier New";
