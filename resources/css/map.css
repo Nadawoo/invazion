@@ -100,22 +100,22 @@
 }
 
 .ground_stone, .ground_circus {
-    background-image:url("../img/craftpix/desert/1.png");
+    background-image:url("../img/copyrighted/tiles/desert/1.png");
 }
 .ground_peeble {
-    background-image:url("../img/craftpix/desert/2.png");
+    background-image:url("../img/copyrighted/tiles/desert/2.png");
 }
 .ground_pond {
-    background-image:url("../img/craftpix/desert/4.png");
+    background-image:url("../img/copyrighted/tiles/desert/4.png");
 }
 .ground_thintree {
-    background-image:url("../img/craftpix/desert/5.png");
+    background-image:url("../img/copyrighted/tiles/desert/5.png");
 }
 .ground_hut {
-    background-image:url("../img/craftpix/desert/10.png");
+    background-image:url("../img/copyrighted/tiles/desert/10.png");
 }
 .ground_sand, .ground_vault, .ground_pharmacy, .ground_carwreck, .ground_stonewall, .ground_ {
-    background-image:url("../img/craftpix/desert/9.png");
+    background-image:url("../img/copyrighted/tiles/desert/9.png");
 }
 
 #map .emoji { /* Makes the unicode icons bigger without shifting the map tiles */
@@ -175,10 +175,6 @@
 .items {
     position:absolute;
     font-size:80%;
-}
-/* Les cases non encore explorées sont en plus sombre */
-.not_visited {
-    background-image:url("../img/hexagon_dark.png");
 }
 /* Symbole d'un citoyen sur la carte hexagonale */
 .map_citizen {

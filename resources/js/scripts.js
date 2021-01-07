@@ -170,7 +170,7 @@ function toggleMapItems() {
         let classes = document.getElementsByClassName("hasItems");
         
         for(let i=0; i < classes.length; i++) {
-            classes[i].innerHTML += '<img src="resources/img/map-location.svg" class="location">';
+            classes[i].innerHTML += '<img src="resources/img/free/map_location.svg" class="location">';
         }
         window.areItemsDisplayed = true;
     }

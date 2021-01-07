@@ -412,7 +412,7 @@ class HtmlLayout extends HtmlPage
                 <td>'.$buttons->button('build_tent', 'no_icon').'</td>
             </tr>
             <tr>
-                <td><img src="resources/img/city.png" alt="&#127751;"></td>
+                <td><img src="resources/img/free/city.png" alt="&#127751;"></td>
                 <td>'.$buttons->build_city('no_icon').'</td>
             </tr>';               
         }

@@ -75,7 +75,7 @@ class HtmlPage
                         <img src="/resources/img/thirdparty/GitHub-Mark-32px.png" alt="github_logo" style="height:1.4em;margin-bottom:-0.4em;"> Github
                     </a>
                     <a href="'.official_server_root().'/share" target="_blank" title="Partager et soutenir le projet InvaZion">
-                        <img src="/resources/img/share.png" alt="github_logo" style="height:1.4em;margin-bottom:-0.4em;"> Partager
+                        <img src="/resources/img/free/share.png" alt="share" style="height:1.4em;margin-bottom:-0.4em;"> Partager
                     </a>
                 </nav>';
     }
@@ -93,7 +93,7 @@ class HtmlPage
                     </div> <!-- End of #body_bg -->
                     <script type="text/javascript" src="resources/js/ZombLib.js?v1.3"></script>
                     <script type="text/javascript" src="resources/js/wallTemplate.js?v4.1"></script>
-                    <script type="text/javascript" src="resources/js/scripts.js?v5.8"></script>
+                    <script type="text/javascript" src="resources/js/scripts.js?v5.9"></script>
                     <script type="text/javascript" src="resources/js/events.js?v4.6"></script>
                 </body>
             </html>';
