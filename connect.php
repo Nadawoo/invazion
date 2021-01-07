@@ -36,8 +36,6 @@ elseif ($action === 'disconnect') {
 echo $html->page_header();
 ?>
 
-<h1>Me connecter</h1>
-
 <p class="center" style="color:red;font-weight:bold"><?php echo $html_error ?></p>
 <p id="error" class="center" style="color:orangered;font-weight:bold"></p>
 
@@ -59,7 +57,8 @@ if ($api->user_seems_connected() === TRUE) {
 else { 
     
     echo connect($email);
-    
 }
+
+echo '<p><br><br><br></p>';
 
 echo $html->page_footer();

@@ -10,20 +10,30 @@ function connect($email)
     
     return '<form method="post" id="connectionForm" onsubmit="connectUser(); return false;">
         
+        <h2>Me connecter</h2>
+        
         <input type="hidden" name="action" value="connect">
         
-        <p><strong>Mon email&nbsp;:</strong>
+        <fieldset>
+            <legend>E-mail</legend>
             <input type="email" name="email" id="email" value="'.$email.'" autofocus />
-            <span class="aside">L\'adresse mail que vous avez indiquée lorsque vous avez créé votre compte</span>
-        </p>
+        </fieldset>
+        <div class="aside">L\'adresse e-mail que vous avez indiquée lorsque
+                         vous avez créé votre compte.</div>
         
-        <p><strong>Mot de passe&nbsp;:</strong>
+        
+        <fieldset>
+            <legend>Mot de passe</legend>
             <input type="password" name="password" id="password" />
-            <span class="aside">Si vous n\'avez pas défini de mot passe, laissez ce champ vide </span>
-        </p>
+        </fieldset>
+        <div class="aside">Si vous n\'avez pas défini de mot passe, laissez ce champ vide.</div>
         
-        <p><input type="submit" value="Me connecter" /></p>
-        <p><a href="index" class="bold">&gt;&gt;&nbsp;Retourner au jeu</a></p>
+        <div id="buttonsBlock">
+            <a href="register.php">Créer un compte</a>
+            <input type="submit" value="Me connecter" />
+        </div>
+        
+        <p class="right"><a href="index">Annuler</a></p>
         
     </form>';
 }

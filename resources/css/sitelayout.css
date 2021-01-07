@@ -146,6 +146,9 @@ li {
 .center {
     text-align:center;
 }
+.right {
+    text-align:right;
+}
 .small {
     font-size:0.8em;
 }
@@ -183,4 +186,48 @@ li {
 
 .inline {
     display:inline;
+}
+
+/*
+ * Form to login
+ */
+#connectionForm {
+    border:1px solid lightgrey;
+    border-radius:0.2em;
+    margin:auto;
+    padding:0 1rem;
+    max-width:50%;
+}
+#connectionForm h2 {
+    margin-top:0.5em;
+    text-align:center
+}
+#connectionForm fieldset {
+    border-radius: 0.2em;
+    margin-top:1em;
+    padding:0 0.4em 0.4em 0.2em;
+}
+#connectionForm input[type="email"],
+#connectionForm input[type="password"] {
+    width:100%;
+    margin:auto;
+    font-size:1.1em;
+    border:none;
+}
+#connectionForm #buttonsBlock {
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-top:1.5rem;
+}
+#connectionForm input[type="submit"] {
+    padding:0.1em 0.5em 0.2em 0.5em;
+    font-size:1.2em;
+    background:darkred;
+    border-radius:1em;
+    color:white;
+    border:none;
+}
+#connectionForm .aside {
+    margin-left:0.3em;
 }
