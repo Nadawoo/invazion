@@ -68,7 +68,7 @@
     display:flex;
     align-items:center;
     justify-content:space-between;
-    width:26.2rem;
+    width:99%;
     margin-bottom:0.2rem;
     padding:0.2em;
     border-radius:0.2rem;
@@ -80,9 +80,8 @@
     border-radius:0.2rem;
 }
 #day {
-    width:20%;
+    min-width:10%;
     padding:0.2rem;
-    line-height:2.2rem;
     text-align:center;
     border-right:1px solid #6c3483;
 }
@@ -116,11 +115,6 @@
     /* To be sure that the width of the child block will be relative 
        to the width of #notif and not the width of the browser window */
     position:relative;
-}
-#gamebar #Outside {
-    color:darkblue;
-    font-size:1.2em;
-    font-weight:bold;
 }
 #gamebar #notifsButton {
     margin-top:0.2em;
@@ -320,7 +314,7 @@
 #round_actions {
     float:right;
     width:24.5rem;
-    padding:1rem 0 1rem 0;
+    margin:0.1rem 0 1rem 0;
     text-align:center;
     white-space:nowrap;
 }

@@ -159,15 +159,17 @@ class HtmlLayout extends HtmlPage
     
     /**
      * Bar above the map showing the countdown before the next attack, the current day...
+     * @param  int $map_id The ID of the map on which the player is
      * @param  int $day The number of days since the game start
      * @return string HTML
      */
-    function attack_bar($day)
+    function attack_bar($map_id, $day)
     {
         
         return '
             <div id="day">
-                Jour '.(int)$day.'
+                Carte n° '.$map_id.'<br>
+                &#x1F551; Jour '.(int)$day.'
             </div>        
             <div id="timer">
                 Attaque dans
