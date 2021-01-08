@@ -178,7 +178,7 @@ function htmlLogEvents(apiData) {
 function htmlNewDiscussionForm(citizenPseudo)
 {
 
-    var fieldPseudoStyle = (citizenPseudo === null) ? '' : 'display:none';
+    var fieldPseudoStyle = (citizenPseudo === "") ? '' : 'display:none';
 
     return '<div id="newDiscussion"></div>\
         <div id="send" class="topic discuss">\

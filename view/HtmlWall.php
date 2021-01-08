@@ -25,7 +25,8 @@ class HtmlWall
                     
                     '.$this->tabs().'
                     
-                    <div id="citizenId" style="display:none">'.$citizen_id.'</div>
+                    <div id="citizenId" class="hidden">'.$citizen_id.'</div>
+                    <div id="citizenPseudo" class="hidden">'.$citizen_pseudo.'</div>
                     <div id="discussions"></div>
                     <div id="notifications"></div>
                     <div id="attacks"></div>
