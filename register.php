@@ -3,7 +3,14 @@ require_once 'controller/autoload.php';
 safely_require('controller/official_server_root.php');
 safely_require('view/HtmlLayout.php');
 
-$http_host   = filter_var($_SERVER['HTTP_HOST'],   FILTER_SANITIZE_URL);
+
+$http_host = filter_var($_SERVER['HTTP_HOST'],   FILTER_SANITIZE_URL);
+$registration_page = official_server_root().'/register?redirect='.urlencode('http://'.$http_host.'/connect');
+
+// Redirect directly to the registration page on the Invazion's main server.
+header("Location: ".$registration_page);
+exit;
+
 
 $html = new HtmlLayout();
 
@@ -16,7 +23,7 @@ echo $html->page_header()
 <p>Pour des raisons de sécurité, vous devez créer votre compte sur le serveur central d'InvaZion :</p>
 
 <p class="center" style="font-size:1.3em">
-    <strong><a href="<?php echo official_server_root().'/register?redirect='.urlencode('http://'.$http_host.'/connect') ?>">► Créer mon compte ◄</a></strong>
+    <strong><a href="<?php echo $registration_page ?>">► Créer mon compte ◄</a></strong>
 </p>
 
 <p>Vous pourrez ensuite revenir ici pour jouer.</p>

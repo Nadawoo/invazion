@@ -10,26 +10,58 @@ html, body {
     height:100%;
 }
 body {
-    max-width:52em;
     margin:auto;
-    background:#2c3e50;
-    background: linear-gradient(to bottom right,  black,  #1a5276, black);
-    background-attachment: fixed; /* Keep this *after* background definition to work */
+    background:black;/* #2c3e50  Darker color here = darker transparent background */
     font-family: Arial, Helvetica, "Liberation Sans", FreeSans, sans-serif;
     /* Garantit que les width en % des enfants seront calculées par rapport à la largeur
        de la page (limitée) et non celle de la fenêtre du navigateur */
     position:relative;
 }
+
+
+@media (min-width:52rem) { /* Same width as #page_container, to not load the background uselessly */
+    /* CSS hack to allow opacity on the background image */
+    #body_bg {
+      position: relative;
+      min-height:100%;
+    }
+    #body_bg::before {
+        background-image: url("../img/copyrighted/cave.png");
+        background-position: center;
+        background-attachment: fixed;
+        background-size:auto 100%; /* No empty space on big screens (24''))*/
+        opacity: 0.8;
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        content: "";
+        z-index: -1;
+    }
+    /* End of the hack */
+}
+
 nav::selection, nav ::selection {
     background:none;
 }
 #page_container {
+    position:relative;
+    margin:auto;
+    max-width:52rem;
     background:#fafafa;
+    border-left:3px ridge lightgrey;
+    border-right:3px ridge black;
     /* Le fond du contenu de la page doit toujours remplir au minimum toute la hauteur de l'écran.
        Pour fonctionner, nécessite : html,body{ height:100% } */
     min-height:100%;
 }
-h1 {
+header {
+    background: #f0d5c7;
+    margin-bottom:0.4rem;
+    border-bottom:3px ridge black;
+}
+header h1 {
     text-align:center;
     margin:0;
     font-family:"Courier New";
@@ -40,18 +72,11 @@ h1 {
     letter-spacing:0.1em;
     color:grey;
 }
-#sloganline {
-    max-width:15em;
-    margin-top:1.4em;
-    margin-bottom:1em;
-    border:none;
-    border-bottom:1px solid lightgrey;
-}
 
 /* Menu horizontal du site */
 #sitemenu {
-    margin:1.5em 0 2em 0;
-    line-height:80%;
+    padding:1.5rem 0;
+    line-height:70%;
     text-align:center;
     font-weight:bold;
 }
@@ -121,6 +146,9 @@ li {
 .center {
     text-align:center;
 }
+.right {
+    text-align:right;
+}
 .small {
     font-size:0.8em;
 }
@@ -158,4 +186,48 @@ li {
 
 .inline {
     display:inline;
+}
+
+/*
+ * Form to login
+ */
+#connectionForm {
+    border:1px solid lightgrey;
+    border-radius:0.2em;
+    margin:auto;
+    padding:0 1rem;
+    max-width:50%;
+}
+#connectionForm h2 {
+    margin-top:0.5em;
+    text-align:center
+}
+#connectionForm fieldset {
+    border-radius: 0.2em;
+    margin-top:1em;
+    padding:0 0.4em 0.4em 0.2em;
+}
+#connectionForm input[type="email"],
+#connectionForm input[type="password"] {
+    width:100%;
+    margin:auto;
+    font-size:1.1em;
+    border:none;
+}
+#connectionForm #buttonsBlock {
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-top:1.5rem;
+}
+#connectionForm input[type="submit"] {
+    padding:0.1em 0.5em 0.2em 0.5em;
+    font-size:1.2em;
+    background:darkred;
+    border-radius:1em;
+    color:white;
+    border:none;
+}
+#connectionForm .aside {
+    margin-left:0.3em;
 }

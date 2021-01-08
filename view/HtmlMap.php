@@ -24,17 +24,23 @@ class HtmlMap
         $templates = [
             'citizens_group' => '<div class="map_citizen">&#10010;</div>'."\n",
             'citizen_alone' => '<div class="map_citizen">'.substr($string1, 0, 2).'</div>',
-            'citizen_me'    => '<div class="map_citizen" id="me">'.substr($string1, 0, 2).'</div>
+            'citizen_me'    => '<div class="map_citizen" id="me">&#129485;&#8205;&#9794;&#65039;</div>
                                 <div class="halo">&nbsp;</div>',
-            'city'          => '<div><img src="resources/img/city.png" alt="&#10224;"></div>'
+            'city'          => '<div><img src="resources/img/free/city.png" alt="&#10224;"></div>'
                                . '<div class="city_nbr_def">'.$string1.'</div>',
-            'tent'          => '<div class="tent">&#9978;</div>',
-            'vault'         => '<div class="vault">&#9961;&#65039;</div>',
+            'carwreck'      => '<div class="emoji">&#x1F693;</div>',
+            'circus'        => '<div class="emoji">&#x1F3AA;</div>',
+            'hut'           => '&nbsp;',
+            'pond'          => '&nbsp;',
+            'pharmacy'      => '<div class="emoji">&#x1F3E5;</div>',
+            'stonewall'     => '<div>&#x1F9F1;</div>',
+            'tent'          => '<div class="emoji">&#9978;</div>',
+            'vault'         => '<div class="emoji">&#9961;&#65039;</div>',
             'items'         => '&nbsp;',
-            'zombies'       => '<div class="grey">'.$string1.'</div>',
+            'zombies'       => '<div class="zombies">'.$string1.'</div>',
         ];
         
-        return "    ".$templates[$cell_alias]."\n";
+        return (isset($templates[$cell_alias])) ? "    ".$templates[$cell_alias]."\n" : null;
     }
     
     
@@ -49,14 +55,26 @@ class HtmlMap
     {
         
         $templates = [
-            'citizens_group' => '<br>Plusieurs citoyens se sont rassemblés ici... Complotent-ils quelque chose&nbsp;?',
-            'citizen_alone' => '<br>Le citoyen '.$string1.' est ici.',
-            'citizen_me'    => '<br>Vous êtes ici, '.$string1.'&nbsp;! Utilisez le volet à droite de la carte '
-                                . 'pour vous déplacer, fouiller le sol, attaquer des zombies, ramasser des objets...',
-            'city'          => '<br>Cette ville offre '.$string1.' points de défense... '
-                               . 'Peut-être pourrez-vous vous y réfugier&nbsp;?',
-            'tent'          => '<br>Un citoyen a planté sa tente ici.',
-            'vault'         => '<br>Une crypte se trouve dans la zone... Qui sait quels secrets elle renferme&nbsp;?',
+            'citizens_group' => '<div class="roleplay">Plusieurs citoyens se sont rassemblés ici... Complotent-ils quelque chose&nbsp;?</div>',
+            'citizen_alone' => '<div class="roleplay">Le citoyen '.$string1.' est ici.</div>',
+            'citizen_me'    => '<div class="roleplay">Vous êtes ici, '.$string1.'&nbsp;! Utilisez le volet à droite de la carte '
+                                . 'pour vous déplacer, fouiller le sol, attaquer des zombies, ramasser des objets...</div>',
+            'city'          => '<div class="roleplay">Cette ville offre '.$string1.' points de défense... '
+                               . 'Peut-être pourrez-vous vous y réfugier&nbsp;?</div>',
+            'carwreck'      => '<div class="roleplay">Mieux vaut ne pas savoir ce qu\'est devenu le propriétaire de cette voiture embourbée. '
+                             . 'Il a dû parvenir à s\'enfuir et coule des jours heureux quelque part... Oui, on va dire ça.</div>',
+            'circus'        => '<div class="roleplay">Sous ce chapiteau déserté, plusieurs traces de zombies, d\'animaux '
+                             . 'et de dresseurs. Difficile de déterminer qui a mangé qui et dans quel ordre...</div>',
+            'hut'           => '<div class="roleplay">Bien que ce cabanon branlant soit détrempé par les pluies, vous parviendrez '
+                             . 'sans doute à en tirer quelques planches utilisables.</div>',
+            'pond'          => '<div class="roleplay">Une vieille mare d\'eau boueuse et parsemée de petites algues. '
+                             . 'Ce sera meilleur que l\'eau du puits de la ville !</div>',
+            'pharmacy'      => '<div class="roleplay">Un cabinet de médecin, quelle chance ! Vous pourrez emporter '
+                             . 'quelques médicaments, à défaut de pouvoir ressusciter le praticien.</div>',
+            'stonewall'     => '<div class="roleplay">A quel type de bâtiment appartenait donc ce mur effondré ? '
+                             . 'Peu importe, il va être avantageusement recyclé en carrière de pierres.</div>',
+            'tent'          => '<div class="roleplay">Un citoyen a planté sa tente ici.</div>',
+            'vault'         => '<div class="roleplay">Une crypte se trouve dans la zone... Qui sait quels secrets elle renferme&nbsp;?</div>',
             'items'         => '<br>Il y a des objets dans cette zone... Mais lesquels&nbsp;?',
             'zombies'       => '<br>Il y a '.plural($string1, 'zombie').' dans cette zone&nbsp;!',
         ];
@@ -86,10 +104,7 @@ class HtmlMap
         // Pour chaque ligne de la carte
         for ($row=0; $row<$nbr_rows; $row++) {
             
-            // On décale 1 ligne sur 2 vers la droite pour disposer les hexagones en quinquonce
-            $left = ($row%2 === 1) ? 'style="padding-left:1.25em"' : '';
-            
-            $result .= '<div class="row" '.$left.'>';
+            $result .= '<div class="row">';
             
             // Ligne de la horde zombie sur la carte (triangles rouges)
             $result .= $this->html_hurd($nbr_cols, $row, $next_attack_hour);
@@ -139,69 +154,67 @@ class HtmlMap
         // un simple espace, sinon décalages si la cellule contient ou non 
         // des citoyens/zombies/objets
         $cell_content   = '&nbsp;';
+        $cell_zombies   = '';
+        $cell_me        = '';
         $bubble         = '';
         $bubble_zombies = '';
         $bubble_items   = '';        
         
-        if ($is_player_in_zone === true) {
-            
-            $cell_content = $this->html_cell_content('citizen_me', $player_pseudo);
-            $bubble       = $this->html_bubble('citizen_me', $player_pseudo);
+        if ($is_player_in_zone === true) {            
+            $cell_me = $this->html_cell_content('citizen_me', $player_pseudo);
+            $bubble  = $this->html_bubble('citizen_me', $player_pseudo);
         }
-        elseif ($cell === null) {
+        
+        if ($cell === null) {
             // Quand la zone est vide.
             // Cette condition ne sert qu'à éviter de répéter "if(isset($cells[$coords])..."
             // à chacune des condition suivantes.
             // TODO : revoir l'organisation de l'affichage afin d'éviter ce bricolage.
         }
-        elseif ($cell['building'] === 'vault') {
-
-            // Si la case contient une crypte, on l'affiche même si la case est inexplorée
-            $cell_content = $this->html_cell_content('vault');
-            $bubble       = $this->html_bubble('vault');
+        elseif ($cell['building'] !== null and $this->html_cell_content($cell['building']) !== null) {
+            
+            $cell_content = $this->html_cell_content($cell['building']);
+            $bubble       = $this->html_bubble($cell['building'] );
         }
         elseif ($cell['city_size'] === 1) {
-
+            
             $cell_content = $this->html_cell_content('tent');
             $bubble       = $this->html_bubble('tent');
         }
         elseif ($cell['city_size'] > 0) {
-
             // Si la ville a des défenses, on affiche un fond triangulaire vert
             $city_bg = ($cell['city_defenses'] > 0) ? '    <span class="city_bg"></span>' : '';
             $cell_content = $this->html_cell_content('city', $cell['city_defenses']) . $city_bg . "\n";
             $bubble       = $this->html_bubble('city', $cell['city_defenses']);
         }
-        elseif ($cell['citizens'] > 1) {
+        elseif ($cell['citizens'] > 1 and $is_player_in_zone === false) {
 
             $cell_content = $this->html_cell_content('citizens_group');
             $bubble       = $this->html_bubble('citizens_group');
         }
-        elseif ($cell['citizens'] === 1) {
+        elseif ($cell['citizens'] === 1 and $is_player_in_zone === false) {
 
             $cell_content = $this->html_cell_content('citizen_alone', $fellow_pseudo);
             $bubble       = $this->html_bubble('citizen_alone', $fellow_pseudo);
         }
-        else {
+        
 
-            if ($cell['zombies'] > 0) {
-
-                $cell_content   = $this->html_cell_content('zombies', $cell['zombies']);
-                $bubble_zombies = $this->html_bubble('zombies', $cell['zombies']);
-            }
-
-            if (!empty($cell['items'])) {
-                
-                $bubble_items = $this->html_bubble('items');
-            }
+        if ($cell['zombies'] > 0) {
+            $cell_zombies   = $this->html_cell_content('zombies', $cell['zombies']);
+            $bubble_zombies = $this->html_bubble('zombies', $cell['zombies']);
         }
+
+        if (!empty($cell['items'])) {
+            $bubble_items = $this->html_bubble('items');
+        }
+        
 
 
         // La case est plus ou moins opaque selon la date de dernière visite
         if($cell === null) {
             $opacity = 0;
         }
-        elseif ($is_player_in_zone === true or $cell['building'] !== null) {
+        elseif ($is_player_in_zone === true or $cell['building'] === 'vault') {
             $opacity = 1;
         }
         else {
@@ -212,13 +225,12 @@ class HtmlMap
         // Permettra d'ajouter un marqueur en javascript sur la case
         $has_items = (empty($cell['items'])) ? '' : ' hasItems';
         
-        
         // - La classe "hexagon" sert à tracer le fond hexgonal
         // - La classe "square_container" est un conteneur carré pour assurer la symétrie du contenu
         // (un hexagone ne peut pas, par définition, être inscrit dans un carré)
-        return '<div id="zone'.$col.'_'.$row.'" class="hexagon'.$has_items.'" style="opacity:'.$opacity.'">
+        return '<div id="zone'.$col.'_'.$row.'" class="hexagon '.$has_items.' '.'ground_'.$cell['building'].'" style="opacity:'.$opacity.'">
                     <div class="square_container">'
-                        . $cell_content . '
+                        . $cell_me . $cell_zombies . $cell_content . '
                         <div class="bubble">
                             [Zone '.$col.':'.$row.']'
                             . $bubble 
@@ -249,7 +261,7 @@ class HtmlMap
             
             $result .= '<div class="hurd" title="Une horde ravageuse est en train de progresser vers le sud ! '
                                               . 'Restez à distance ou vous mourrez...">'
-                    . str_repeat($triangle, $nbr_cols) 
+                    . str_repeat($triangle, $nbr_cols-1) 
                     . "</div>\n";
         }
         

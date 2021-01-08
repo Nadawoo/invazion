@@ -57,7 +57,6 @@ class HtmlLayout extends HtmlPage
         
         return '
             <div id="identification_near_map">
-                <br><br><br><br>
                 Identifiez-vous pour commencer à&nbsp;jouer...
                 <a href="register" id="register">Créer un&nbsp;compte</a>
                 ou
@@ -160,15 +159,17 @@ class HtmlLayout extends HtmlPage
     
     /**
      * Bar above the map showing the countdown before the next attack, the current day...
+     * @param  int $map_id The ID of the map on which the player is
      * @param  int $day The number of days since the game start
      * @return string HTML
      */
-    function attack_bar($day)
+    function attack_bar($map_id, $day)
     {
         
         return '
             <div id="day">
-                Jour '.(int)$day.'
+                Carte n° '.$map_id.'<br>
+                &#x1F551; Jour '.(int)$day.'
             </div>        
             <div id="timer">
                 Attaque dans
@@ -412,7 +413,7 @@ class HtmlLayout extends HtmlPage
                 <td>'.$buttons->button('build_tent', 'no_icon').'</td>
             </tr>
             <tr>
-                <td><img src="resources/img/city.png" alt="&#127751;"></td>
+                <td><img src="resources/img/free/city.png" alt="&#127751;"></td>
                 <td>'.$buttons->build_city('no_icon').'</td>
             </tr>';               
         }

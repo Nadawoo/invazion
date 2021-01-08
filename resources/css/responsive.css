@@ -6,7 +6,7 @@
         float:left;
         width:100%;
         max-width:26rem;
-        padding:0.2rem 0;
+        margin-bottom:0.1rem;
     }
     /* Panneau de discussions */
     #floating_wall {

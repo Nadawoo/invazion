@@ -107,7 +107,7 @@ $html = [
     // Assembling the HTML for the map
     'map' => $map->hexagonal_map($maps['map_width'], $maps['map_height'], $maps['zones'], $citizens_by_coord, $citizen, $maps['next_attack_hour']),
     'map_citizens'      => $layout->map_citizens($citizens),
-    'attack_bar'        => $layout->attack_bar( get_game_day($citizen['last_death']) ),
+    'attack_bar'        => $layout->attack_bar($citizen['map_id'], get_game_day($citizen['last_death'])),
     // Contents of the round action buttons at the right of the map
     'actions_build'     => $layout->block_actions_build($zone['city_size'], $zone['building']),
     'actions_bag'       => $layout->block_actions_bag($configs['items'], $citizen['bag_items']),
@@ -156,9 +156,7 @@ echo $popup->customised('popsuccess', '', nl2br($msg_popup));
     </p>
     
     <div id="gamebar">
-        <div id="Outside">
-            <a href="#Outside">#</a>&nbsp;Carte n° <?php echo $citizen['map_id'] ?>
-        </div>
+        <div id="Outside" style="width:12%">&nbsp;</div>
         <a id="notifsButton">&#x1F514; <strong>Notifications</strong></a>
         <?php echo $buttons->refresh() ?>
     </div>
@@ -384,7 +382,7 @@ echo $popup->customised('popsuccess', '', nl2br($msg_popup));
     <hr>
     
     <p>Merci à <a href="http://twinoid.com/user/7912453" target="_blank"><strong>Ross</strong></a> 
-        pour son image de ville <img src="resources/img/city.png" alt="city.png">
+        pour son image de ville <img src="resources/img/free/city.png" alt="city.png">
     </p>
     
     <hr>

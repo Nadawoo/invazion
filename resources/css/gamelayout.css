@@ -13,7 +13,7 @@
     padding:0 0.2em;
     /* Garantit que les éléments sous la carte (liste des inscrits...) ne remontent
        pas dans la colonne à droite de la carte */
-    height:55.5rem;
+    height:61rem;
     margin-bottom:3rem;
     /* Au cas où l'enceinte de la ville descendrait trop bas
       (notamment si liste des chantiers trop longue)
@@ -35,8 +35,8 @@
 /* La barre de connexion en haut de la page */
 #connectionbar {
     text-align:center;
-    border-top:1px solid grey;
-    border-bottom:1px solid grey;
+    border-top:1px solid lightgrey;
+    border-bottom:1px solid lightgrey;
 }
 #connectionbar .button {
     display:inline-block;
@@ -68,7 +68,7 @@
     display:flex;
     align-items:center;
     justify-content:space-between;
-    width:26.2rem;
+    width:99%;
     margin-bottom:0.2rem;
     padding:0.2em;
     border-radius:0.2rem;
@@ -80,9 +80,8 @@
     border-radius:0.2rem;
 }
 #day {
-    width:20%;
+    min-width:10%;
     padding:0.2rem;
-    line-height:2.2rem;
     text-align:center;
     border-right:1px solid #6c3483;
 }
@@ -116,11 +115,6 @@
     /* To be sure that the width of the child block will be relative 
        to the width of #notif and not the width of the browser window */
     position:relative;
-}
-#gamebar #Outside {
-    color:darkblue;
-    font-size:1.2em;
-    font-weight:bold;
 }
 #gamebar #notifsButton {
     margin-top:0.2em;
@@ -185,9 +179,11 @@
 
 /* Bloc invitant à se connecter ou à créer son 1er citoyen à droite de la carte */
 #identification_near_map {
-    height:18em;
-    margin-bottom:2rem;;
+    max-width:22.5em;
+    margin:auto;
+    padding:2.5em 0;
     box-shadow: 0px 15px 20px black;
+    border:3px outset darkred;
     color:white;
     text-align:center;
     overflow:hidden;
@@ -195,6 +191,7 @@
     background: linear-gradient(to bottom right, #3f51b5 30%, #17202a );
     position:relative;
     z-index:4;
+    box-sizing:border-box;
 }
 #identification_near_map #register {
     display:block;
@@ -247,10 +244,11 @@
     height:7.8rem;
     border-collapse:collapse;
     text-align:center;
-    background-image:url("../img/hexagon.png");
+    background-image:url("../img/copyrighted/tiles/desert/9.png");
     background-repeat:no-repeat;
     background-size:3em;
     background-position: center;
+    font-weight:bold;
 }
 #movement_paddle td {
     padding:0;
@@ -272,7 +270,14 @@
 }
 /* L'hexagone central entre les flèches */
 #movement_paddle #central {
+    position:relative;
     cursor:pointer;
+}
+#movement_paddle .me {
+    position:absolute;
+    top:-0.7em;
+    left:27%;
+    font-size:2em;
 }
 /* Message under the movement paddle */
 #message_move {
@@ -308,8 +313,8 @@
 /* The big round action buttons with icon */
 #round_actions {
     float:right;
-    width:24rem;
-    padding:1rem 0 1rem 0;
+    width:24.5rem;
+    margin:0.1rem 0 1rem 0;
     text-align:center;
     white-space:nowrap;
 }
