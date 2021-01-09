@@ -193,14 +193,14 @@ function toggleMapItems() {
  */
 function toggleActionBlock(buttonAlias) {
     
-    // In case the parameter is not present in the cookie yet
-    if (buttonAlias === undefined) {
-        return false;
-    }
-    
     let blockId = "block_"+buttonAlias;
     let roundId = "round_"+buttonAlias;
-            
+    
+    // In case the parameter is not in the cookie yet, or not valid
+    if (buttonAlias === undefined || document.getElementById(blockId) === null) {
+        return false;
+    }
+        
     if (document.getElementById(blockId).style.display === "block") {
         // If the block is already displayed, the button hides it
         hide(blockId);
