@@ -67,7 +67,6 @@ class HtmlPage
                             <a href="'.official_server_root().'/apis-list">API</a><span class="circle">&cir;</span>
                             <a href="http://invazion.wikidot.com" target="_blank">Wiki</a>
                             <br>
-                            <br>
                             <a href="https://discord.gg/2GRPTyM" target="_blank" title="Pour parler du jeu, faire des propositions... Ou tout simplement discuter :)">
                                 <img src="/resources/img/thirdparty/Discord-Logo-Black.png" alt="discord_logo" style="height:1.7em;margin-bottom:-0.6em;"> Discord
                             </a>

@@ -67,6 +67,7 @@ nav::selection, nav ::selection {
 header {
     background: #f0d5c7;
     margin-bottom:0.4rem;
+    padding-bottom:0.5rem;
     border-bottom:3px ridge black;
 }
 header h1 {
@@ -83,10 +84,13 @@ header h1 {
 
 /* Menu horizontal du site */
 #sitemenu {
-    padding:1.5rem 0;
-    line-height:70%;
+    padding:0.8em 0;
+    line-height:85%;
     text-align:center;
     font-weight:bold;
+}
+#sitemenu br {
+    margin:0.7em;
 }
 #sitemenu a {
     padding:0.5em;
