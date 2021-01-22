@@ -40,7 +40,7 @@ class HtmlPage
             <head>
                 <meta charset="utf-8">
                 <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-                <link rel="stylesheet" type="text/css" href="resources/css/sitelayout.css?v4.1">
+                <link rel="stylesheet" type="text/css" href="resources/css/sitelayout.css?v4.2">
                 <link rel="stylesheet" type="text/css" href="resources/css/gamelayout.css?v7.0">
                 <link rel="stylesheet" type="text/css" href="resources/css/map.css?v3.0">
                 <link rel="stylesheet" type="text/css" href="resources/css/smartphone.css?v1.5">
@@ -90,7 +90,15 @@ class HtmlPage
     function page_footer()
     {
         
-        return '        </div> <!-- End of #page_container -->
+        return '
+                            <footer>
+                                <p>Ce jeu est issu d\'<a href="https://invazion.nadazone.fr">Invazion</a>, créé par <strong>Nadawoo</strong> (développeur indépendant).<br> 
+                                Invazion est inspiré du jeu <strong>Hordes</strong> développé par <a href="https://motion-twin.com" target="_blank">Motion Twin</a>.<br>
+                                Il n\'est pas affilié à Motion Twin.<br>
+                                
+                                </p>
+                            </footer>
+                        </div> <!-- End of #page_container -->
                     </div> <!-- End of #body_bg -->
                     <script type="text/javascript" src="resources/js/ZombLib.js?v1.3"></script>
                     <script type="text/javascript" src="resources/js/wallTemplate.js?v4.2"></script>
