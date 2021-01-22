@@ -574,7 +574,7 @@ class HtmlCityEnclosure
                 <var class="progressbar_empty">
                     <span class="progressbar_filling" style="width:'.$progress.'%;background:'.$bar_color.'">' . $item_name . '</span>
                 </var>
-                <span style="color:'.$amount_color.'">'.$nbsp.$available_amount.'&nbsp;/&nbsp;<strong>'.$required_amount.'</strong></span>
+                <span style="font-size:1.1em;color:'.$amount_color.'">'.$nbsp.$available_amount.'</span>&nbsp;<span style="color:grey;font-size:0.9em;">/&nbsp;'.$required_amount.'</span>
             </li>';
     }
 }
