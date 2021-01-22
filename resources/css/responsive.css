@@ -60,4 +60,8 @@
         width:80%;
         left:1.5em;
     }
+    
+    #connectionForm {
+        max-width:80%;
+    }
 }
