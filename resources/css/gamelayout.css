@@ -484,6 +484,7 @@ var {
 .item_label var { 
     display:flex;
     align-items: center;
+    padding-left:0;
 }
 .item_label .drop_button {
     height:1.8em;

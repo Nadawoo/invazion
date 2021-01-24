@@ -340,8 +340,10 @@ class HtmlCityEnclosure
                 
                 $html_constructions .= '
                     <tr>
-                        <td onclick="toggle(\''.$css_id.'\')" class="foldable" style="background:darkgreen;margin:0">
-                            <h3 style="color:lightgreen">» '.$constr['name'].'</h3>
+                        <td onclick="toggle(\''.$css_id.'\')" class="foldable" style="background:darkgreen">
+                            <h3 style="color:lightgreen">
+                                <img src="../resources/img/copyrighted/buildings/'.$id.'.png" alt="icon_'.$id.'">&nbsp;'.$constr['name'].'
+                            </h3>
                             <div class="unfold_button" style="color:lightgreen">&check; Fini ! &nbsp;</div>
                         </td>
                         <td style="cursor:help" 
@@ -358,8 +360,10 @@ class HtmlCityEnclosure
                 
                 $html_constructions .= '
                     <tr>
-                        <td onclick="toggle(\''.$css_id.'\')" class="foldable" style="margin:0">
-                            <h3 style="color:grey">» '.$constr['name'].'</h3>
+                        <td onclick="toggle(\''.$css_id.'\')" class="foldable">
+                            <h3 style="color:grey">
+                                <img src="../resources/img/copyrighted/buildings/'.$id.'.png" alt="icon_'.$id.'">&nbsp;'.$constr['name'].'
+                            </h3>
                             <div class="unfold_button">bâtir&nbsp;<div class="arrow">&#65088;</div></div>
                         </td>
                         <td style="color:grey;cursor:help"
@@ -390,7 +394,7 @@ class HtmlCityEnclosure
                         <div style="display:inline-block;height:1.8em;width:1.8em;font-weight:normal;font-size:1.5em;color:white;background:green;border-radius:2em">'.$total_defenses.'</div> points
                     </div>
                 </div>
-                <table style="width:100%;margin:0">
+                <table id="constructions">
                     <tr style="font-size:0.9em">
                         <td></td>
                         <td>Défenses</td>

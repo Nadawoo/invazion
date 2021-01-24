@@ -110,7 +110,7 @@
 .city_block h3 {
     display:flex;
     align-items:center;
-    margin: 0.3em;
+    margin:0;
     color:navy;
     font-size:1em;
     text-align:left;
@@ -122,11 +122,31 @@
 .city_block td {
     border:none;
 }
+
+/* The table of the constructions in the city */
+#constructions {
+    border-collapse:collapse;
+    width:98%;
+    margin:0.2em;
+}
+#constructions td {
+    margin:0;
+    padding:0.2em 0;
+}
+#constructions .items_list {
+    margin:0 0 1em 0.3em;
+    padding:0.3em;
+    padding-right:0;
+    border-left:2px solid darkgrey;
+    border-bottom:1px solid darkgrey;
+    border-bottom-left-radius: 0.5em;
+}
+
 /* Foldable sections for lighter interface (e.g to hide the components in the workshop)*/
 .city_block .foldable {
     display:flex;
     justify-content:space-between;
-    margin:0.8em 0;
+    margin:0;
     padding-right:0.3em;
     background:lightgrey;
     cursor:pointer;
