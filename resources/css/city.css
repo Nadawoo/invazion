@@ -189,24 +189,17 @@
     color:white;
 }
 
-/* Chaque nom de ressource d'un chantier a une barre de prgression */
-.progressbar_empty {
-    /* Pas de marges gauche/droite afin que la barre de remplissage recouvre bien tout */
-    padding:0;
-}
 /* Remplissage coloré de la barre de progression */
 .progressbar_filling {
     display:block;
-    /* On rétablit la marge gauche/droite qu'on avait supprimée, afin que le texte 
-       ne soit pas collé à gauche mais tout en laissant le remplissage 
-       commencer complètement à gauche */
-    padding:0 0.3em;
+    margin-left:0.3em;
+    padding:0 0.3em; /* Minimal padding to show the progress bar even when empty */
     box-sizing: border-box;
     /* Même valeur que le fond vide de la barre */
     border-radius:0.3em;
     /* Emêche la barre de dépasser 100% s'il y a plus de ressources qu nécessaire.
        La largeur réelle de la barre pour chaque ressource est calculée en PHP */
-    max-width:100%;
+    max-width:80%;
 }
 
 

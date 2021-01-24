@@ -324,14 +324,14 @@ class HtmlCityEnclosure
             // Jauge des ressources requises/disponibles pour la construction
             foreach ($constr['resources'] as $item_id=>$required_amount) {
 
-                $html_resources .= $this->html_progressbar( $items_caracs[$item_id]['name'],
+                $html_resources .= $this->html_progressbar( $item_id, $items_caracs[$item_id]['name'],
                                                             $this->item_amount($zone_items, $item_id),
                                                             $required_amount,
                                                             'constructions');
             }
 
             // Jauge des points d'action déjà investis dans le chantier
-            $html_AP_invested = $this->html_progressbar('Points d\'action',
+            $html_AP_invested = $this->html_progressbar(null, 'Points d\'action',
                                                         $city_constructions[$id]['AP_invested'],
                                                         $constr['action_points'],
                                                         'action_points');
@@ -458,7 +458,7 @@ class HtmlCityEnclosure
                 
                 foreach($caracs['craftable_from'] as $compo_id=>$required_amount) {
                     
-                    $compo_list .= $this->html_progressbar( $items_caracs[$compo_id]['name'],
+                    $compo_list .= $this->html_progressbar( $compo_id, $items_caracs[$compo_id]['name'],
                                                             $this->item_amount($zone_items, $compo_id),
                                                             $required_amount,
                                                             'workshop');
@@ -504,8 +504,8 @@ class HtmlCityEnclosure
     {
         
         return  ($progress >= 100) 
-                ? "<span style=\"color:green;font-weight:bold;\">&check;</span>"
-                : "<span style=\"color:orangered;cursor:help\">&#x2718;</span>";
+                ? "<span style=\"font-size:1.1em;color:green;font-weight:bold;\">&check;</span>"
+                : "<span style=\"font-size:1.1em;color:orangered;cursor:help\">&#x2718;</span>";
     }
     
     
@@ -533,7 +533,7 @@ class HtmlCityEnclosure
      *                                  être affichés dans les infobulles
      * @return string
      */
-    private function html_progressbar($item_name, $available_amount, $required_amount, $comment_for)
+    private function html_progressbar($item_id, $item_name, $available_amount, $required_amount, $comment_for)
     {
         
         if ($comment_for === 'workshop') {
@@ -569,9 +569,10 @@ class HtmlCityEnclosure
         $nbsp = str_repeat('&nbsp;', 3-strlen($available_amount));
         
         return '
-            <li style="font-size:0.95em;cursor:help" title="'.$title.'">
+            <li class="item_label" style="cursor:help" title="'.$title.'">
                 ' . $this->html_check_sign($progress, $comment_for) . '
-                <var class="progressbar_empty">
+                <var>
+                    <img src="../resources/img/copyrighted/items/'.$item_id.'.png" alt="icon_'.$item_id.'"> 
                     <span class="progressbar_filling" style="width:'.$progress.'%;background:'.$bar_color.'">' . $item_name . '</span>
                 </var>
                 <span style="font-size:1.1em;color:'.$amount_color.'">'.$nbsp.$available_amount.'</span>&nbsp;<span style="color:grey;font-size:0.9em;">/&nbsp;'.$required_amount.'</span>
