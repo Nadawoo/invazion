@@ -331,7 +331,7 @@ class HtmlCityEnclosure
             }
 
             // Jauge des points d'action déjà investis dans le chantier
-            $html_AP_invested = $this->html_progressbar(null, 'Points d\'action',
+            $html_AP_invested = $this->html_progressbar('pa', 'Points d\'action',
                                                         $city_constructions[$id]['AP_invested'],
                                                         $constr['action_points'],
                                                         'action_points');
