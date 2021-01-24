@@ -467,7 +467,10 @@ class HtmlCityEnclosure
                 $css_id = 'workshop'.$item_id;
                 $html_craftable_items  .= '
                     <div onclick="toggle(\''.$css_id.'\')" class="foldable">
-                        <h3>'.$caracs['name'].'</h3>
+                        <h3>
+                            <img src="../resources/img/copyrighted/items/'.$item_id.'.png" alt="icon_'.$item_id.'"> 
+                            &nbsp;' . $caracs['name'] . '
+                        </h3>
                         <div class="unfold_button">composants&nbsp;<div class="arrow">&#65088;</div></div>
                     </div>
                     <ul class="items_list folded" id="'.$css_id.'">
