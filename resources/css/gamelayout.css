@@ -445,7 +445,7 @@ legend {
     border:1px solid grey;
     text-align:center;
     color:grey;
-    margin-left:2em;
+    margin-left:1.7em;
 }
 
 /* Listes d'objets */
@@ -462,7 +462,7 @@ legend {
 /* Etiquette pour un nom d'objet */
 var {
     display:inline-block;
-    width:11em;
+    width:12em;
     font-size:0.9em;
     margin: 0.1em;
     padding:0 0.3em;
@@ -470,7 +470,23 @@ var {
     font-style:normal;
     border-radius:0.3em;
     white-space:nowrap;
+    color:darkslategrey;
     box-sizing: border-box;
+}
+.item_label { /* More advanced than <var> (has an icon) */
+    display:flex;
+    align-items:center;
+}
+.item_label img {
+    height:32px;
+    width:32px;
+}
+.item_label var { 
+    display:flex;
+    align-items: center;
+}
+.item_label .drop_button {
+    height:1.8em;
 }
 
 /*
@@ -529,6 +545,7 @@ input[type="submit"] {
     padding:0;
     border-radius:30%;
     font-size:1.1em;
+    cursor:pointer;
 }
 .drop_button:hover {
     background:darkred;
