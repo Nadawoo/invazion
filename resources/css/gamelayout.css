@@ -462,7 +462,7 @@ legend {
 /* Etiquette pour un nom d'objet */
 var {
     display:inline-block;
-    width:12em;
+    width:14em;
     font-size:0.9em;
     margin: 0.1em;
     padding:0 0.3em;
