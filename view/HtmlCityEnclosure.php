@@ -21,16 +21,26 @@ class HtmlCityEnclosure
     {
         
         return '<div class="row">
-                    <div class="item" onclick="switchCityTab(\'city_perso\')">Chez moi</div>
-                    <div class="item" onclick="switchCityTab(\'city_build\')">Bâtir la&nbsp;ville</div>
+                    '.$this->city_menu_item('city_perso', 'Chez moi').'
+                    '.$this->city_menu_item('city_build', 'Chantiers').'
                     <div class="vertical">
                         <div class="item" onclick="switchCityTab(\'city_storage\')">Dépôt</div>
                         <div class="item" onclick="switchCityTab(\'city_craft\')  ">Atelier</div>
                         <div class="item" onclick="switchCityTab(\'city_well\')   ">Puits</div>
                     </div>
-                    <div class="item" onclick="switchCityTab(\'city_fellows\')">Habitants</div>
-                    <div class="item" onclick="switchCityTab(\'city_door\') ">Sortir explorer</div>
+                    '.$this->city_menu_item('city_fellows', 'Habitants').'
+                    '.$this->city_menu_item('city_door', 'Grande porte').'
                 </div>';
+    }
+    
+    
+    private function city_menu_item($item_alias, $item_name) {
+        
+        return '<div class="item"'
+                  . 'style="background-image:url(\'resources/img/copyrighted/'.$item_alias.'.png\')" '
+                  . 'onclick="switchCityTab(\''.$item_alias.'\')">'
+                  .'<span class="label">'. $item_name .'</span>'
+                .'</div>';
     }
     
     

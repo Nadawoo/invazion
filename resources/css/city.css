@@ -34,26 +34,35 @@
 #city_menu .row .item {
     display:flex;
     flex-direction:column;
-    justify-content:center;
-    width: 6em;
+    justify-content:flex-end;
+    overflow:hidden;
+    width: 5em;
     height:5em;
     margin:0 0.2em 0.4em 0.2em;
     font-weight:bold;
-    font-variant:small-caps;
     background:#ffebeb;
+    background-size:contain;
+    background-position:center;
+    background-repeat:no-repeat;
     color:darkred;
-    border-radius:1.5em;
-}
-#city_menu .row .item:hover {
-    background:darkred;
-    color:white;
+    border:2px outset black;
+    border-radius:0.3em;
     cursor:pointer;
+}
+#city_menu .label {
+    background:ivory;
+}
+#city_menu .row .item:hover,
+#city_menu .row .item:hover .label {
+    background-color:darkred;
+    color:white;
 }
 /* Boutons plus discrets du menu, empilés verticalement */
 #city_menu .vertical .item {
-    height:1.4em;
+    height:1.3em;
     width:6.5em;
     margin-bottom:0.25em;
+    font-variant:small-caps;
 }
 
 /* Permet de mettre les blocs de la ville (dépôt, maison...) sur plusieurs lignes */
