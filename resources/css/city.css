@@ -20,7 +20,7 @@
     position:absolute;
     left:0;
     right:0;
-    margin:2em 0;
+    margin:1em 0;
     z-index:31;
     text-align:center;
 }
@@ -29,7 +29,6 @@
 #city_menu .row {
     display:flex;
     justify-content:center;
-    align-items: center;
 }
 #city_menu .row .item {
     display:flex;
