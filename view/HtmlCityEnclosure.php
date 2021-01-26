@@ -55,12 +55,19 @@ class HtmlCityEnclosure
     function block_well($well_current_water)
     {
         
+        $buttons = new HtmlButtons;
+        
         return '
             <div class="city_block">
                 <h2>Réserves d\'eau</h2>
                 <br>
                 <br>
                 <strong style="font-size:1.8em;color:navy;">'.$well_current_water.'&nbsp;rations&nbsp;/&nbsp;50</strong>
+                <br>
+                <br>
+                <br>
+                '.$buttons->button('well_pickup').'
+                '.$buttons->button('well_add').'
             </div>';
     }
     

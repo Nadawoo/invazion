@@ -220,6 +220,24 @@ class HtmlButtons
                     'params[type]'  => 'builder',
                     ],
                 ],
+            'well_add' => [
+                'icon'  => '',
+                'name'  => 'Ajouter 1 ration d\'eau',
+                'title' => "",
+                'fields' => [
+                    'api_name'      => 'well',
+                    'action'        => 'add',
+                    ],
+                ],
+            'well_pickup' => [
+                'icon'  => '',
+                'name'  => 'Prendre 1 ration d\'eau',
+                'title' => "",
+                'fields' => [
+                    'api_name'      => 'well',
+                    'action'        => 'pickup',
+                    ],
+                ],
         ];
     }
     

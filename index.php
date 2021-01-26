@@ -41,8 +41,9 @@ if (!empty($_POST)) {
     // Calls the API ont the central server of InvaZion
     $api_result = $api->call_api($api_name, $action_post, $params_post, $method);
     
-    if (in_array($action_post, ['move', 'drop', 'pickup', 'bigfight'])
+    if (in_array($action_post, ['move', 'drop', 'bigfight'])
         or ($action_post === 'fight' and !isset($params_post['item_id']))
+        or ($api_name === 'zone' and $action_post === 'pickup')
         ) {
         // The result of these actions is displayed under the movement paddle
         $msg_move  = '<span class="'.$api_result['metas']['error_class'].'">'.$api_result['metas']['error_message'].'</span>';
@@ -209,7 +210,7 @@ echo $popup->customised('popsuccess', '', nl2br($msg_popup));
                 </div>
                 <div class="city_row city_well">
                     '. $enclosure->block_well($city_data['well_current_water']) .'
-                    <div class="city_block" style="visibility:hidden"></div>
+                    '. $enclosure->block_bag($html['bag_items']) .'
                 </div>
                 <div class="city_row city_craft">
                     '. $enclosure->block_workshop($zone['items'], $configs['items']) .'
