@@ -22,8 +22,8 @@ class HtmlCityEnclosure
         
         return '<div class="row">
                     '.$this->city_menu_item('city_perso', 'Chez moi').'
-                    '.$this->city_menu_item('city_build', 'Chantiers').'
                     '.$this->city_menu_item('city_fellows', 'Habitants').'
+                    '.$this->city_menu_item('city_build', 'Chantiers').'
                     '.$this->city_menu_item('city_door', 'Grande porte').'
                 </div>
                 <div class="row">
