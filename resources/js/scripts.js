@@ -82,8 +82,16 @@ function unhideClass(className) {
 }
 
 
-function hideId(htmlId) {    
-    document.getElementById(htmlId).classList.add("hidden");
+function hideId(htmlIds) {
+    
+    if(typeof(htmlIds) === "string") {
+        document.getElementById(htmlIds).classList.add("hidden");
+    }
+    else {
+        for(i=0; i < htmlIds.length; i++){
+            document.getElementById(htmlIds[i]).classList.add("hidden");
+        }
+    }
 }
 
 
@@ -226,16 +234,34 @@ function toggleActionBlock(buttonAlias) {
 
 
 /**
- * Affiche le panneau de la ville correspondant à l'onglet actif
+ * Affiche le sous-menu de la ville correspondant à l'onglet de ville actif
+ * (Chez moi, Ville, Habitant, Porte)
+ * 
+ * @param {string} cityMenuId L'id HTML du menu à afficher
+ * @returns {undefined}
+ */
+function switchCityMenu(cityMenuId) {
+    
+    var tabsList = ['cityMenuMyHome', 'cityMenuCity', 'cityMenuFellows', 'cityMenuDoor'];
+    
+    // On masque tous les sous-menus de ville sans exception...
+    hideId(tabsList);        
+    // ... puis on affiche celui qu'on veut voir
+    unhideId(cityMenuId);
+}
+
+
+/**
+ * Affiche le panneau de la ville correspondant au sous-menu de ville actif
  * (chantiers, maison, porte de la ville...)
  * 
  * @param {string} className La classe HTML des éléments à afficher
  * @returns {undefined}
  */
-function switchCityTab(className) {
+function switchCitySubmenu(className) {
     
     var tabs_list = ['city_perso', 'city_fellows', 'city_storage', 'city_well', 'city_craft', 'city_build', 'city_door'];
-    
+
     if (className === null) {
         className = tabs_list[0];
     }
@@ -885,7 +911,7 @@ if (document.getElementById('map') !== null) {
     if (document.getElementById('city_container') !== null) {    
         // By default, loads the first tab of the city
         var search_params = new URLSearchParams(window.location.search);
-        switchCityTab(search_params.get('tab'));
+        switchCitySubmenu(search_params.get('tab'));
     }
     
     

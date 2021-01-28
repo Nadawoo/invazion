@@ -193,8 +193,14 @@ echo $popup->customised('popsuccess', '', nl2br($msg_popup));
         
         echo '
             <div id="city_container">
-                <div id="city_menu">
-                    '.$enclosure->city_menu().'
+                <div id="city_tabs">
+                    <a onclick="switchCityMenu(\'cityMenuMyHome\')">Chez moi</a> &nbsp; 
+                    <a onclick="switchCityMenu(\'cityMenuFellows\')">Habitants</a> &nbsp; 
+                    <a onclick="switchCityMenu(\'cityMenuCity\')">La ville</a> &nbsp; 
+                    <a onclick="switchCityMenu(\'cityMenuDoor\')">Grande porte</a>
+                </div>
+                <div id="city_submenus">
+                    '.$enclosure->city_submenu().'
                 </div>
                 <div class="city_row city_perso">
                     '. $enclosure->block_home() .'

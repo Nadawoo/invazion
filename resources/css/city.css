@@ -25,12 +25,27 @@
     text-align:center;
 }
 
-/* Menu en haut de la ville (Réserves, construire, Sortir...) */
-#city_menu .row {
+/* 
+ * Menu en haut de la ville (Réserves, construire, Sortir...)
+ */
+#city_tabs {
+    margin-bottom:0.7em;
+    font-weight:bold;
+    color:darkred;
+}
+#city_tabs a {
+    color:red;
+}
+#city_tabs a:hover {
+    padding-bottom:0.2em;
+    border-bottom:2px solid red;
+}
+
+#city_submenus .row {
     display:flex;
     justify-content:center;
 }
-#city_menu .row .item {
+#city_submenus .row .item {
     display:flex;
     flex-direction:column;
     justify-content:flex-end;
@@ -48,16 +63,16 @@
     border-radius:0.3em;
     cursor:pointer;
 }
-#city_menu .label {
+#city_submenus .label {
     background:ivory;
 }
-#city_menu .row .item:hover,
-#city_menu .row .item:hover .label {
+#city_submenus .row .item:hover,
+#city_submenus .row .item:hover .label {
     background-color:darkred;
     color:white;
 }
 /* Boutons plus discrets du menu, empilés verticalement */
-#city_menu .vertical .item {
+#city_submenus .vertical .item {
     height:1.3em;
     width:6.5em;
     margin-bottom:0.25em;

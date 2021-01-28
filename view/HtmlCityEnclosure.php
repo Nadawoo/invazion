@@ -17,29 +17,32 @@ class HtmlCityEnclosure
      * 
      * @return string
      */
-    function city_menu()
+    function city_submenu()
     {
         
-        return '<div class="row">
-                    '.$this->city_menu_item('city_perso', 'Chez moi').'
-                    '.$this->city_menu_item('city_fellows', 'Habitants').'
-                    '.$this->city_menu_item('city_build', 'Chantiers').'
-                    '.$this->city_menu_item('city_door', 'Grande porte').'
+        return '<div class="row hidden" id="cityMenuMyHome">
+                    '.$this->city_submenu_item('city_perso', 'Chez moi').'
                 </div>
-                <div class="row">
-                    '.$this->city_menu_item('city_well', 'Puits').'
-                    '.$this->city_menu_item('city_craft', 'Atelier').'
-                    '.$this->city_menu_item('city_storage', 'Dépôt').'
-                    <div class="item" style="visibility:hidden"></div>
+                <div class="row hidden" id="cityMenuCity">
+                    '.$this->city_submenu_item('city_storage', 'Dépôt').'
+                    '.$this->city_submenu_item('city_build', 'Chantiers').'
+                    '.$this->city_submenu_item('city_craft', 'Atelier').'
+                    '.$this->city_submenu_item('city_well', 'Puits').'
+                </div>
+                <div class="row hidden" id="cityMenuFellows">
+                    '.$this->city_submenu_item('city_fellows', 'Habitants').'
+                </div>
+                <div class="row hidden" id="cityMenuDoor">
+                    '.$this->city_submenu_item('city_door', 'Grande porte').'
                 </div>';
     }
     
     
-    private function city_menu_item($item_alias, $item_name) {
+    private function city_submenu_item($item_alias, $item_name) {
         
         return '<div class="item"'
                   . 'style="background-image:url(\'resources/img/copyrighted/'.$item_alias.'.png\')" '
-                  . 'onclick="switchCityTab(\''.$item_alias.'\')">'
+                  . 'onclick="switchCitySubmenu(\''.$item_alias.'\')">'
                   .'<span class="label">'. $item_name .'</span>'
                 .'</div>';
     }
