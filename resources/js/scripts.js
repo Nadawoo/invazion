@@ -82,7 +82,7 @@ function unhideClass(className) {
 }
 
 
-function hideId(htmlIds) {
+function hideIds(htmlIds) {
     
     if(typeof(htmlIds) === "string") {
         document.getElementById(htmlIds).classList.add("hidden");
@@ -245,7 +245,7 @@ function switchCityMenu(cityMenuId) {
     var tabsList = ['cityMenuMyHome', 'cityMenuCity', 'cityMenuFellows', 'cityMenuDoor'];
     
     // On masque tous les sous-menus de ville sans exception...
-    hideId(tabsList);        
+    hideIds(tabsList);        
     // ... puis on affiche celui qu'on veut voir
     unhideId(cityMenuId);
 }
@@ -889,7 +889,7 @@ if (document.getElementById('map') !== null) {
        
     // Memorizes if the player wants to see the whole map or just the area where he is
     if (getCookieConfig('show_zone') === 1) {
-        hideId("displayMyZone");
+        hideIds("displayMyZone");
         unhideId("my_zone");
         unhideId("hideMyZone");
     } else {
