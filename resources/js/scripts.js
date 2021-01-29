@@ -255,23 +255,17 @@ function switchCityMenu(cityMenuId) {
  * Affiche le panneau de la ville correspondant au sous-menu de ville actif
  * (chantiers, maison, porte de la ville...)
  * 
- * @param {string} className La classe HTML des éléments à afficher
+ * @param {string} cityContentsId L'id HTML des éléments à afficher
  * @returns {undefined}
  */
-function switchCitySubmenu(className) {
-    
-    var tabs_list = ['city_perso', 'city_fellows', 'city_storage', 'city_well', 'city_craft', 'city_build', 'city_door'];
-
-    if (className === null) {
-        className = tabs_list[0];
-    }
+function switchCitySubmenu(cityContentsId) {
     
     // On masque tous les éléments de la ville sans exception...
-    hideClasses(tabs_list);
+    hideClasses(["city_row"]);
     // ... puis on affiche celui qu'on veut voir
-    unhideClass(className);
+    unhideId(cityContentsId);
     // Modifie l'url pour mémoriser dans quel onglet de la ville on se trouve.    
-    updateUrlParam('tab', className);
+    updateUrlParam('tab', cityContentsId);
 }
 
 

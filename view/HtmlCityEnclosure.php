@@ -11,6 +11,18 @@ class HtmlCityEnclosure
 {
     
     
+    function city_menu()
+    {
+         return '
+            <div id="city_tabs">
+                <a onclick="switchCityMenu(\'cityMenuMyHome\')">Chez moi</a> &nbsp; 
+                <a onclick="switchCityMenu(\'cityMenuFellows\')">Habitants</a> &nbsp; 
+                <a onclick="switchCityMenu(\'cityMenuCity\')">La ville</a> &nbsp; 
+                <a onclick="switchCityMenu(\'cityMenuDoor\')">Grande porte</a>
+            </div>';
+    }
+    
+    
     /**
      * Le menu horizontal pour les différentes parties de la ville
      * (dépôt, maison, porte...)
@@ -20,7 +32,9 @@ class HtmlCityEnclosure
     function city_submenu()
     {
         
-        return '<div class="row hidden" id="cityMenuMyHome">
+        return '
+            <div id="city_submenus">
+                <div class="row hidden" id="cityMenuMyHome">
                     '.$this->city_submenu_item('city_perso', 'Chez moi').'
                 </div>
                 <div class="row hidden" id="cityMenuCity">
@@ -34,7 +48,8 @@ class HtmlCityEnclosure
                 </div>
                 <div class="row hidden" id="cityMenuDoor">
                     '.$this->city_submenu_item('city_door', 'Grande porte').'
-                </div>';
+                </div>
+            </div>';
     }
     
     

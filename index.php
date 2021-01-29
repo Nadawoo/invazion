@@ -193,40 +193,37 @@ echo $popup->customised('popsuccess', '', nl2br($msg_popup));
         
         echo '
             <div id="city_container">
-                <div id="city_tabs">
-                    <a onclick="switchCityMenu(\'cityMenuMyHome\')">Chez moi</a> &nbsp; 
-                    <a onclick="switchCityMenu(\'cityMenuFellows\')">Habitants</a> &nbsp; 
-                    <a onclick="switchCityMenu(\'cityMenuCity\')">La ville</a> &nbsp; 
-                    <a onclick="switchCityMenu(\'cityMenuDoor\')">Grande porte</a>
-                </div>
-                <div id="city_submenus">
+                <nav id="city_menu">
+                    '.$enclosure->city_menu().'
                     '.$enclosure->city_submenu().'
-                </div>
-                <div class="city_row city_perso">
-                    '. $enclosure->block_home() .'
-                    '. $enclosure->block_bag($html['bag_items']) .'
-                </div>
-                <div class="city_row city_fellows">
-                    '. $enclosure->block_fellows_list($city_fellows, $specialities) .'
-                    '. $enclosure->block_fellows_homes($city_fellows, $specialities, $city_data['coord_x'], $city_data['coord_y']) .'
-                </div>
-                <div class="city_row city_storage">
-                    '. $enclosure->block_bank($html['zone_items']) .'
-                    '. $enclosure->block_bag($html['bag_items']) .'
-                </div>
-                <div class="city_row city_well">
-                    '. $enclosure->block_well($city_data['well_current_water']) .'
-                    '. $enclosure->block_bag($html['bag_items']) .'
-                </div>
-                <div class="city_row city_craft">
-                    '. $enclosure->block_workshop($zone['items'], $configs['items']) .'
-                </div>
-                <div class="city_row city_build">
-                    '. $enclosure->block_constructions($configs['constructions'], $configs['items'], $city_data['constructions'], 
-                                                       $city_data['total_defenses'], $zone['items']) .'
-                </div>
-                <div class="city_row city_door">
-                    '. $enclosure->block_door($city_data['is_door_closed']) .'
+                </nav>
+                <div id="city_contents">
+                    <div id="city_perso" class="city_row">
+                        '. $enclosure->block_home() .'
+                        '. $enclosure->block_bag($html['bag_items']) .'
+                    </div>
+                    <div id="city_fellows" class="city_row">
+                        '. $enclosure->block_fellows_list($city_fellows, $specialities) .'
+                        '. $enclosure->block_fellows_homes($city_fellows, $specialities, $city_data['coord_x'], $city_data['coord_y']) .'
+                    </div>
+                    <div id="city_storage" class="city_row">
+                        '. $enclosure->block_bank($html['zone_items']) .'
+                        '. $enclosure->block_bag($html['bag_items']) .'
+                    </div>
+                    <div id="city_well" class="city_row">
+                        '. $enclosure->block_well($city_data['well_current_water']) .'
+                        '. $enclosure->block_bag($html['bag_items']) .'
+                    </div>
+                    <div id="city_craft" class="city_row">
+                        '. $enclosure->block_workshop($zone['items'], $configs['items']) .'
+                    </div>
+                    <div id="city_build" class="city_row">
+                        '. $enclosure->block_constructions($configs['constructions'], $configs['items'], $city_data['constructions'], 
+                                                           $city_data['total_defenses'], $zone['items']) .'
+                    </div>
+                    <div id="city_door" class="city_row">
+                        '. $enclosure->block_door($city_data['is_door_closed']) .'
+                    </div>
                 </div>
             </div>';
 
