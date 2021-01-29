@@ -161,7 +161,7 @@ class HtmlCityEnclosure
                 : '<span class="highlight">[à&nbsp;'.$citizen['distance_to_city'].'&nbsp;km]</span>';
             
             $html_citizens .= '
-                <div style="" onclick="toggleHouse(\'citizen'.$citizen['citizen_id'].'\')">
+                <div onclick="toggleHouse(\'citizen'.$citizen['citizen_id'].'\')">
                     '.$localization.'
                     <a><strong>'.$citizen['citizen_pseudo'].'</strong></a>
                     ('.$specialities[$citizen['speciality']]['name'].')
@@ -205,11 +205,11 @@ class HtmlCityEnclosure
                         <h3 style="margin:0.5em">Infos sur <span style="font-variant:small-caps">'.$pseudo.'</span></h3>
                     </div>
                     
-                    <div class="city_row"style="display:flex;">
+                    <div class="city_row">
                         '.$this->block_fellow_situation($citizen, $specialities, $citizen['distance_to_city']).'
                         '.$this->block_fellow_home($pseudo).'
                     </div>
-                    <div class="city_row" style="display:flex;">
+                    <div class="city_row">
                         '.$this->block_fellow_notes().'
                     </div>
                     

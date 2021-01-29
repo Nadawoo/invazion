@@ -54,10 +54,11 @@ function hide(htmlIds) {
  * @param   {array} classesNames Liste des noms des classes à masquer
  * @returns {undefined}
  */
-function hideClasses(classesNames) {
+function hideClasses(classesNames, parentId=null) {
     
     for (let i=0; i < classesNames.length; i++) {        
-        var classes = document.getElementsByClassName(classesNames[i]);
+        var classes = (parentId === null) ? document.getElementsByClassName(classesNames[i])
+                                          : document.getElementById(parentId).document.getElementsByClassName(classesNames[i]);;
         
         for (let i=0; i < classes.length; i++) {
             classes[i].classList.add("hidden");
@@ -260,8 +261,15 @@ function switchCityMenu(cityMenuId) {
  */
 function switchCitySubmenu(cityContentsId) {
     
+    var cityContents = document.getElementById("city_contents").children;
+    var cityBlocksIds = [];
+    
+    for(i=0; i<cityContents.length; i++) {
+        cityBlocksIds.push(cityContents[i].id);
+    }
+    
     // On masque tous les éléments de la ville sans exception...
-    hideClasses(["city_row"]);
+    hideIds(cityBlocksIds);
     // ... puis on affiche celui qu'on veut voir
     unhideId(cityContentsId);
     // Modifie l'url pour mémoriser dans quel onglet de la ville on se trouve.    
