@@ -235,6 +235,18 @@ function toggleActionBlock(buttonAlias) {
 
 
 /**
+ * Hides all the blocs inside the city (e.g. list of constructions)
+ */
+function hideCityBlocks() {
+    
+    var cityContents = document.getElementById("city_contents").children;
+    for(i=0; i<cityContents.length; i++) {
+        hideIds(cityContents[i].id);
+    }
+}
+
+
+/**
  * Affiche le sous-menu de la ville correspondant à l'onglet de ville actif
  * (Chez moi, Ville, Habitant, Porte)
  * 
@@ -249,6 +261,8 @@ function switchCityMenu(cityMenuId) {
     hideIds(tabsList);        
     // ... puis on affiche celui qu'on veut voir
     unhideId(cityMenuId);
+    // On masque tous les blocs de la ville sans exception...
+    hideCityBlocks();
 }
 
 
@@ -260,16 +274,8 @@ function switchCityMenu(cityMenuId) {
  * @returns {undefined}
  */
 function switchCitySubmenu(cityContentsId) {
-    
-    var cityContents = document.getElementById("city_contents").children;
-    var cityBlocksIds = [];
-    
-    for(i=0; i<cityContents.length; i++) {
-        cityBlocksIds.push(cityContents[i].id);
-    }
-    
-    // On masque tous les éléments de la ville sans exception...
-    hideIds(cityBlocksIds);
+    // On masque tous les blocs de la ville sans exception...
+    hideCityBlocks();
     // ... puis on affiche celui qu'on veut voir
     unhideId(cityContentsId);
     // Modifie l'url pour mémoriser dans quel onglet de la ville on se trouve.    
