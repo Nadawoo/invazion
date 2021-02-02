@@ -45,7 +45,7 @@ class HtmlPage
                 <link rel="stylesheet" type="text/css" href="resources/css/map.css?v3.0">
                 <link rel="stylesheet" type="text/css" href="resources/css/smartphone.css?v1.5">
                 <link rel="stylesheet" type="text/css" href="resources/css/myzone.css?v1.4">
-                <link rel="stylesheet" type="text/css" href="resources/css/city.css?v3.1">
+                <link rel="stylesheet" type="text/css" href="resources/css/city.css?v3.2">
                 <link rel="stylesheet" type="text/css" href="resources/css/wall.css?v2.7">
                 <link rel="stylesheet" type="text/css" href="resources/css/popup.css?v1.7">
                 <link rel="stylesheet" type="text/css" href="resources/css/responsive.css?v2.1">

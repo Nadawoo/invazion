@@ -81,6 +81,15 @@ class HtmlButtons
                     'params[conditions]' => 'noconditions'
                     ],
                 ],
+            'end_cycle' => [
+                'icon'  => '',
+                'name'  => 'Passer au jour suivant',
+                'title' => "Bouton spécial béta-test",
+                'fields' => [
+                    'api_name'           => 'events',
+                    'action'             => 'endcycle',
+                    ],
+                ],
             'reveal_zones' => [
                 'icon'  => '',
                 'name'  => 'Dévoiler 10 zones de la carte',

@@ -9,9 +9,9 @@
     left:0;
     right:0;
     width:100%;
-    height:180%;
+    height:61rem;
     background:black;
-    border-radius:2%;
+    border-radius:0.5rem;
     opacity:0.85;
     z-index:30;
 }

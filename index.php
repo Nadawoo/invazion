@@ -368,7 +368,10 @@ echo $popup->customised('popsuccess', '', nl2br($msg_popup));
     
 <div id="rules">
     
-    <?php echo $buttons->button('add_mass_zombies') ?>
+    <?php
+    echo $buttons->button('add_mass_zombies');
+    echo $buttons->button('end_cycle');
+    ?>
     
     <br>
     
