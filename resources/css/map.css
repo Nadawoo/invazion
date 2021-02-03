@@ -194,6 +194,10 @@
         opacity: 0;
     }
 }
+#me img {
+    height:1.7em;
+    margin-top:0.2em;
+}
 /* Ligne de zombies (zombies de l'attaque') */
 .hurd {
     display:block;

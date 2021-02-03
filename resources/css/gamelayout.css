@@ -275,9 +275,9 @@
 }
 #movement_paddle .me {
     position:absolute;
-    top:-0.7em;
-    left:27%;
-    font-size:2em;
+    top:-1.3em;
+    left:31%;
+    height:2.6em;
 }
 /* Message under the movement paddle */
 #message_move {

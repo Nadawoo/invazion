@@ -24,7 +24,7 @@ class HtmlMap
         $templates = [
             'citizens_group' => '<div class="map_citizen">&#10010;</div>'."\n",
             'citizen_alone' => '<div class="map_citizen">'.substr($string1, 0, 2).'</div>',
-            'citizen_me'    => '<div class="map_citizen" id="me">&#129485;&#8205;&#9794;&#65039;</div>
+            'citizen_me'    => '<div class="map_citizen" id="me"><img src="resources/img/free/human.png"></div>
                                 <div class="halo">&nbsp;</div>',
             'city'          => '<div><img src="resources/img/free/city.png" alt="&#10224;"></div>'
                                . '<div class="city_nbr_def">'.$string1.'</div>',

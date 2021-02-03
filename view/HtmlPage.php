@@ -41,8 +41,8 @@ class HtmlPage
                 <meta charset="utf-8">
                 <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
                 <link rel="stylesheet" type="text/css" href="resources/css/sitelayout.css?v4.2">
-                <link rel="stylesheet" type="text/css" href="resources/css/gamelayout.css?v7.1">
-                <link rel="stylesheet" type="text/css" href="resources/css/map.css?v3.0">
+                <link rel="stylesheet" type="text/css" href="resources/css/gamelayout.css?v7.2">
+                <link rel="stylesheet" type="text/css" href="resources/css/map.css?v3.1">
                 <link rel="stylesheet" type="text/css" href="resources/css/smartphone.css?v1.5">
                 <link rel="stylesheet" type="text/css" href="resources/css/myzone.css?v1.4">
                 <link rel="stylesheet" type="text/css" href="resources/css/city.css?v3.2">
