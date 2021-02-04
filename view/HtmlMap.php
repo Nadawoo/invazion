@@ -18,7 +18,7 @@ class HtmlMap
      * @param string $string1      A free string to display a variable text (a pseudo...)
      * @return string HTML
      */
-    private function html_cell_content($cell_alias, $string1='')
+    private function html_cell_content($cell_alias, $string1='', $string2='')
     {
         
         $templates = [
@@ -37,7 +37,7 @@ class HtmlMap
             'tent'          => '<div class="emoji">&#9978;</div>',
             'vault'         => '<div class="emoji">&#9961;&#65039;</div>',
             'items'         => '&nbsp;',
-            'zombies'       => '<div class="zombies"><img src="resources/img/motiontwin/zombie.gif" alt="Z">'.$string1.'</div>',
+            'zombies'       => '<div class="zombies"><img src="resources/img/motiontwin/zombie'.$string2.'.gif" alt="Zx'.$string1.'"></div>',
         ];
         
         return (isset($templates[$cell_alias])) ? "    ".$templates[$cell_alias]."\n" : null;
@@ -201,7 +201,7 @@ class HtmlMap
         
 
         if ($cell['zombies'] > 0) {
-            $cell_zombies   = $this->html_cell_content('zombies', $cell['zombies']);
+            $cell_zombies   = $this->html_cell_content('zombies', $cell['zombies'], min (9, $cell['zombies']));
             $bubble_zombies = $this->html_bubble('zombies', $cell['zombies']);
             $ground         = 'ground_zombies_'.$cell['building'];
         }
@@ -232,7 +232,7 @@ class HtmlMap
         // (un hexagone ne peut pas, par définition, être inscrit dans un carré)
         return '<div id="zone'.$col.'_'.$row.'" class="hexagon '.$has_items.' '.$ground.'" style="opacity:'.$opacity.'">
                     <div class="square_container">'
-                        . $cell_me . $cell_zombies . $cell_content . '
+                        . $cell_zombies . $cell_me . $cell_content . '
                         <div class="bubble">
                             [Zone '.$col.':'.$row.']'
                             . $bubble 
