@@ -37,7 +37,7 @@ class HtmlMap
             'tent'          => '<div class="emoji">&#9978;</div>',
             'vault'         => '<div class="emoji">&#9961;&#65039;</div>',
             'items'         => '&nbsp;',
-            'zombies'       => '<div class="zombies">'.$string1.'</div>',
+            'zombies'       => '<div class="zombies"><img src="resources/img/motiontwin/zombie.gif" alt="Z">'.$string1.'</div>',
         ];
         
         return (isset($templates[$cell_alias])) ? "    ".$templates[$cell_alias]."\n" : null;
