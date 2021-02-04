@@ -154,6 +154,7 @@ class HtmlMap
         // un simple espace, sinon décalages si la cellule contient ou non 
         // des citoyens/zombies/objets
         $cell_content   = '&nbsp;';
+        $ground         = 'ground_'.$cell['building'];
         $cell_zombies   = '';
         $cell_me        = '';
         $bubble         = '';
@@ -202,6 +203,7 @@ class HtmlMap
         if ($cell['zombies'] > 0) {
             $cell_zombies   = $this->html_cell_content('zombies', $cell['zombies']);
             $bubble_zombies = $this->html_bubble('zombies', $cell['zombies']);
+            $ground         = 'ground_zombies_'.$cell['building'];
         }
 
         if (!empty($cell['items'])) {
@@ -228,7 +230,7 @@ class HtmlMap
         // - La classe "hexagon" sert à tracer le fond hexgonal
         // - La classe "square_container" est un conteneur carré pour assurer la symétrie du contenu
         // (un hexagone ne peut pas, par définition, être inscrit dans un carré)
-        return '<div id="zone'.$col.'_'.$row.'" class="hexagon '.$has_items.' '.'ground_'.$cell['building'].'" style="opacity:'.$opacity.'">
+        return '<div id="zone'.$col.'_'.$row.'" class="hexagon '.$has_items.' '.$ground.'" style="opacity:'.$opacity.'">
                     <div class="square_container">'
                         . $cell_me . $cell_zombies . $cell_content . '
                         <div class="bubble">
