@@ -35,7 +35,8 @@ class HtmlCityEnclosure
         return '
             <div id="city_submenus">
                 <div class="row hidden" id="cityMenuMyHome">
-                    '.$this->city_submenu_item('city_perso', 'Chez moi').'
+                    '.$this->city_submenu_item('home_house', 'Chez moi').'
+                    '.$this->city_submenu_item('home_storage', 'Coffre').'
                 </div>
                 <div class="row hidden" id="cityMenuCity">
                     '.$this->city_submenu_item('city_storage', 'Dépôt').'
@@ -120,6 +121,42 @@ class HtmlCityEnclosure
                     lors de leurs <a onclick="switchCityTab(\'city_door\')">expéditions</a>. Utilisez-les pour 
                     <a onclick="switchCityTab(\'city_build\')">construire la ville</a>... 
                     ou <a onclick="switchCityTab(\'city_perso\')">votre propre habitation</a>.
+                </div>
+                <div class="contents">
+                '. $html_bank_items .'
+                </div>
+            </div>';
+    }
+    
+    
+    /**
+     * Displays the personal chest of the player
+     * 
+     * @param  string $html_zone_items La liste HTML des objets de la zone, générée
+     *                                 par la classe HtmlLayout->zone_items()
+     * @return string
+     */
+    function block_home_storage($html_zone_items)
+    {
+        
+        if ($html_zone_items === '') {
+            
+            $html_bank_items = '<div class="grey">
+                    <br>Aucun objet dans votre coffre&nbsp;!
+                    Explorez le désert pour le remplir d\'objet utiles...
+                </div>';
+        }
+        else {
+            
+            $html_bank_items = $html_zone_items;
+        }
+        
+        return '
+            <div class="city_block">
+                <h2>Mon coffre</h2>
+                <div class="descr">Ce coffre vous permet de mettre à l\'abri les ressources 
+                    ramenées de vos <a onclick="switchCityTab(\'city_door\')">expéditions</a>.
+                    Utile pour améliorer <a onclick="switchCityTab(\'home_house\')">votre habitation</a>...
                 </div>
                 <div class="contents">
                 '. $html_bank_items .'

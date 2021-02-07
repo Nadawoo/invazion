@@ -198,8 +198,11 @@ echo $popup->customised('popsuccess', '', nl2br($msg_popup));
                     '.$enclosure->city_submenu().'
                 </nav>
                 <div id="city_contents">
-                    <div id="city_perso" class="city_row">
+                    <div id="home_house" class="city_row">
                         '. $enclosure->block_home() .'
+                    </div>
+                    <div id="home_storage" class="city_row">
+                        '. $enclosure->block_home_storage($html['zone_items']) .'
                         '. $enclosure->block_bag($html['bag_items']) .'
                     </div>
                     <div id="city_fellows" class="city_row">
