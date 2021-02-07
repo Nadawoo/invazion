@@ -96,7 +96,7 @@
 /* 1 block for the storage, 1 for the well, etc. */
 .city_block {
     background:white;
-    border-radius:0.5em;    
+    border-radius:0.4em;    
     margin:1em;
     padding:0 0 1em 0;
     width:15em;
@@ -203,22 +203,33 @@
     margin:0.8em 0 1.5em 0;
 }
 
-/* Liste des citoyens */
+/* Liste des habitants de la ville */
 #citizens_list {
-    width:18em;
+    display:flex;
+    flex-direction: row;
+    flex-wrap:wrap;
+    justify-content: center;
 }
-#citizens_list div {
-    text-align:left;
-    padding:0.6em 0.5em;
-    border-bottom:1px solid grey;
-}
-#citizens_list div:hover {
+#citizens_list .city_block {
+    width:14rem;
+    padding-bottom:0.4rem;
+    margin:0.3rem;
     cursor:pointer;
-    background:lightgrey;
 }
-#citizens_list a:hover {
-    color:darkred;
+#citizens_list ul {
+    margin:0.4em 0 0.8em 0;
+    padding-left:1.3em;
+    text-align:left;
 }
+#citizens_list .icons img {
+    border-radius:0.4em;
+    border:2px solid darkred;
+}
+#citizens_list .empty_block {
+    background:none;
+    border:1px solid grey;
+}
+
 /* Bouton pour retourner à la liste des citoyens lorsqu'on est dans une maison */
 .back_button {
     float:left;

@@ -152,27 +152,41 @@ class HtmlCityEnclosure
     function block_fellows_list($fellows, $specialities)
     {
         
-        $html_citizens  = '';
+        $html_citizens = '';
         
-        foreach ($fellows as $citizen) {
+        foreach($fellows as $citizen) {
             
             $localization = ($citizen['distance_to_city'] === 0)
-                ? '<span class="discreet">[en ville]</span>'
-                : '<span class="highlight">[à&nbsp;'.$citizen['distance_to_city'].'&nbsp;km]</span>';
+                ? 'en ville'
+                : '<span class="highlight">à&nbsp;'.$citizen['distance_to_city'].'&nbsp;km</span>';
+            
+            $wound = ($citizen['is_wounded'] === 0) ? '' : '<li><strong class="red">est blessé</strong></li>';
             
             $html_citizens .= '
-                <div onclick="toggleHouse(\'citizen'.$citizen['citizen_id'].'\')">
-                    '.$localization.'
-                    <a><strong>'.$citizen['citizen_pseudo'].'</strong></a>
-                    ('.$specialities[$citizen['speciality']]['name'].')
+                <div class="city_block" onclick="toggleHouse(\'citizen'.$citizen['citizen_id'].'\')">
+                    <h2>Joueur</h2>
+                    <img src="resources/img/free/human.png" style="height:32px">&nbsp;
+                    <a><strong style="font-size:1.8em">'.$citizen['citizen_pseudo'].'</strong></a>
+                    <ul>
+                        <li>est spécialisé <span class="highlight">'.$specialities[$citizen['speciality']]['name'].'</span></li>
+                        <li>se trouve <span class="highlight">'.$localization.'</span></li>
+                        '.$wound.'
+                    </ul>
+                    <div class="icons">
+                        <img src="resources/img/copyrighted/waggon_45px.png">
+                        <img src="resources/img/copyrighted/supplies_45px.png">
+                        <img src="resources/img/copyrighted/paper_45px.png">
+                        <img src="resources/img/copyrighted/disapproval_45px.png">
+                    </div>
                 </div>';
         }
         
-        return '
-            <div id="citizens_list" class="city_block">
-                <h2>Habitants de la ville</h2>
-                '.$html_citizens.'
-            </div>';
+        // Empty cards if the city has free places
+        for($i=count($fellows);$i<6;$i++) {            
+            $html_citizens .= '<div class="city_block empty_block"></div>';
+        }
+        
+        return '<div id="citizens_list">'.$html_citizens.'</div>';
     }
     
     
