@@ -99,19 +99,19 @@ class HtmlCityEnclosure
      *                                 par la classe HtmlLayout->zone_items()
      * @return string
      */
-    function block_bank($html_zone_items)
+    function block_storage($html_zone_items)
     {
         
         if ($html_zone_items === '') {
             
-            $html_bank_items = '<div class="grey">
+            $html_storage_items = '<div class="grey">
                     <br>Aucun objet dans le dépôt&nbsp;!
                     Vous devriez y déposer quelques objets personnels pour le remplir...
                 </div>';
         }
         else {
             
-            $html_bank_items = $html_zone_items;
+            $html_storage_items = $html_zone_items;
         }
         
         return '
@@ -123,7 +123,7 @@ class HtmlCityEnclosure
                     ou <a onclick="switchCityTab(\'city_perso\')">votre propre habitation</a>.
                 </div>
                 <div class="contents">
-                '. $html_bank_items .'
+                '. $html_storage_items .'
                 </div>
             </div>';
     }
@@ -141,14 +141,14 @@ class HtmlCityEnclosure
         
         if ($html_zone_items === '') {
             
-            $html_bank_items = '<div class="grey">
+            $html_storage_items = '<div class="grey">
                     <br>Aucun objet dans votre coffre&nbsp;!
                     Explorez le désert pour le remplir d\'objet utiles...
                 </div>';
         }
         else {
             
-            $html_bank_items = $html_zone_items;
+            $html_storage_items = $html_zone_items;
         }
         
         return '
@@ -159,7 +159,7 @@ class HtmlCityEnclosure
                     Utile pour améliorer <a onclick="switchCityTab(\'home_house\')">votre habitation</a>...
                 </div>
                 <div class="contents">
-                '. $html_bank_items .'
+                '. $html_storage_items .'
                 </div>
             </div>';
     }

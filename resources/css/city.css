@@ -293,7 +293,7 @@
     border:0.15em solid red;
     cursor:pointer;
 }
-/* Name of the block (home, bank...) when the mouse hovers the block */
+/* Name of the block (home, storage...) when the mouse hovers the block */
 #city_visual>div .label {
     display:none;
     position:absolute;

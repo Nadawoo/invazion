@@ -44,7 +44,7 @@
             <span style="font-size:2.2em">&#x1F528;</span>
         </div>
         <div class="road"><img src="resources/img/icons8/arrow-down-48.png"  class="arrow_left" alt="&lt;"></div>
-        <div id="bank">
+        <div id="storage">
             <div class="label">Le dépôt</div>
             <span class="big_icon">&#x1F3E6;</span>
         </div>

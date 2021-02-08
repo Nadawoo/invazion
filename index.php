@@ -92,7 +92,7 @@ if ($citizen['citizen_id'] !== NULL) {
     $zone               = $maps['zones'][$citizen['coord_x'].'_'.$citizen['coord_y']];
     $healing_items      = $sort->filter_bag_items('healing_wound', $configs['items'], $citizen['bag_items']);
     
-    // If the citizen is inside a city, we get its characteristics (bank, well...)
+    // If the citizen is inside a city, we get its characteristics (well, storage...)
     if ($citizen['is_inside_city'] === 1) {
         
         $city_data    = $api->call_api('cities', 'get', ['city_id'=>$zone['city_id']])['datas'];
@@ -210,7 +210,7 @@ echo $popup->customised('popsuccess', '', nl2br($msg_popup));
                         '. $enclosure->block_fellows_homes($city_fellows, $specialities, $city_data['coord_x'], $city_data['coord_y']) .'
                     </div>
                     <div id="city_storage" class="city_row">
-                        '. $enclosure->block_bank($html['zone_items']) .'
+                        '. $enclosure->block_storage($html['zone_items']) .'
                         '. $enclosure->block_bag($html['bag_items']) .'
                     </div>
                     <div id="city_well" class="city_row">
