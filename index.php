@@ -25,7 +25,6 @@ $nbr_zone_fellows   = 0;
 $healing_items      = [];
 $msg_popup          = NULL;
 $msg_move           = '';
-$msg_build          = '';
 
 
 /**
@@ -72,7 +71,7 @@ if ($api->user_seems_connected() === true) {
         $citizen['user_id'] = $api_me['datas']['user_id'];
     }
     else {
-        $msg_build = '<p class="'.$api_me['metas']['error_class'].'">'.$api_me['metas']['error_message'].'</p>';
+        $msg_move = '<p class="'.$api_me['metas']['error_class'].'">'.$api_me['metas']['error_message'].'</p>';
     }
 }
 
@@ -179,9 +178,6 @@ echo $popup->customised('popsuccess', '', nl2br($msg_popup));
         
         <?php
     } ?>
-    
-    
-    <?php echo $msg_build ?>
     
     
 <div id="game_container">
