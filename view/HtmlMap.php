@@ -177,7 +177,7 @@ class HtmlMap
             $cell_content = $this->html_cell_content($cell['building']);
             $bubble       = $this->html_bubble($cell['building'] );
         }
-        elseif ($cell['city_size'] === 1) {
+        elseif ($cell['city_type'] === 'home') {
             
             $cell_content = $this->html_cell_content('tent');
             $bubble       = $this->html_bubble('tent');

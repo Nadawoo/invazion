@@ -201,6 +201,10 @@ echo $popup->customised('popsuccess', '', nl2br($msg_popup));
                         '. $enclosure->block_home_storage($html['zone_items']) .'
                         '. $enclosure->block_bag($html['bag_items']) .'
                     </div>
+                    <div id="home_build" class="city_row">
+                        '. $enclosure->block_constructions($configs['constructions_home'], $configs['items'], $city_data['constructions'], 
+                                                           $city_data['total_defenses'], $zone['items']) .'
+                    </div>
                     <div id="city_fellows" class="city_row">
                         '. $enclosure->block_fellows_list($city_fellows, $specialities) .'
                         '. $enclosure->block_fellows_homes($city_fellows, $specialities, $city_data['coord_x'], $city_data['coord_y']) .'

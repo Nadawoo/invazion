@@ -37,6 +37,7 @@ class HtmlCityEnclosure
                 <div class="row hidden" id="cityMenuMyHome">
                     '.$this->city_submenu_item('home_house', 'Chez moi').'
                     '.$this->city_submenu_item('home_storage', 'Coffre').'
+                    '.$this->city_submenu_item('home_build', 'Améliorer').'
                 </div>
                 <div class="row hidden" id="cityMenuCity">
                     '.$this->city_submenu_item('city_storage', 'Dépôt').'
