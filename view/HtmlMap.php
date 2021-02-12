@@ -26,7 +26,7 @@ class HtmlMap
             'citizen_alone' => '<div class="map_citizen">'.substr($string1, 0, 2).'</div>',
             'citizen_me'    => '<div class="map_citizen" id="me"><img src="resources/img/free/human.png"></div>
                                 <div class="halo">&nbsp;</div>',
-            'city'          => '<div><img src="resources/img/free/city.png" alt="&#10224;"></div>'
+            'city'          => '<div class="city"><img src="resources/img/free/city.png" alt="&#10224;"></div>'
                                . '<div class="city_nbr_def">'.$string1.'</div>',
             'carwreck'      => '<div class="emoji">&#x1F693;</div>',
             'circus'        => '<div class="emoji">&#x1F3AA;</div>',

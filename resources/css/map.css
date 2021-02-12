@@ -74,14 +74,14 @@
 .square_container {
     
     /* Pour le débogage : décommenter cette ligne pour afficher le conteneur*/
-    /* border:1px solid green; */
+    /* border:1px solid red; */
     
     /* La largeur doit inscrire la bordure de .square_container 
     pile dans celle de .hexagon */
-    width:  2.2em;
+    width:  2.5rem;
     /* La hauteur doit être égale à la largeur pour garantir 
     que le conteneur sera parfaitement carré */
-    height: 2.2em;
+    height: 2.5rem;
     /* Evite que les éventuelles marges intérieures agrandissent le conteneur */
     box-sizing: border-box;
     /* Centre le conteneur horizontalement */
@@ -241,22 +241,26 @@
     width: 85%;
 }
 
+#map .city img {
+    height:24px;
+    width: 24px;
+}
 /* Le triangle derrière la ville */
 .city_bg {
     width:0;
     height:0;
     position:absolute;
     top:-20%;
-    left:-22%;
+    left:-13%;
     opacity:0.8;
     border-left:   1.6em solid transparent;
     border-right:  1.6em solid transparent;
-    border-bottom: 2.6em solid green;
+    border-bottom: 2.8em solid green;
     z-index:-1;
 }
 .city_nbr_def {
     position:absolute;
-    bottom:-1em;
+    bottom:-0.8em;
     color:white;
     font-weight:bold;
     font-size:0.8em;
