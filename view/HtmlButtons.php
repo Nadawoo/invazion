@@ -164,13 +164,18 @@ class HtmlButtons
                 'fields' => [
                     'api_name'          => 'city',
                     'action'            => 'build',
-                    'params[city_size]' => 1,
+                    'params[city_type]' => 'home',
                     ],
                 ],
             'build_city' => [
                 'icon'  => '&#x1F307;',
                 'name'  => 'Fonder une ville',
                 'title' => "En vous rassemblant avec d'autres citoyens dans une ville, vous serez plus forts.",
+                'fields' => [
+                    'api_name'          => 'city',
+                    'action'            => 'build',
+                    'params[city_type]' => 'city',
+                    ],
                 ],
             'get_out_city' => [
                 'icon'  => '',
@@ -404,10 +409,15 @@ class HtmlButtons
         $button = $this->buttons['build_city'];
         $icon = ($show_icon === 'no_icon') ? '' : $button['icon'];
         
+        // Parameters to send to the API
+        $hidden_fields = '';
+        foreach ($button['fields'] as $fieldname=>$fieldval) {            
+            $hidden_fields.= '<input type="hidden" name="'.$fieldname.'" value="'.$fieldval.'">';
+        }
+        
         return
         '<form method="post" action="#popsuccess">
-            <input type="hidden" name="api_name" value="city">
-            <input type="hidden" name="action" value="build">
+            '.$hidden_fields.'
             '.$icon.'<input type="submit" class="redbutton" value="'.$button['name'].'" title="'.$button['title'].'">
             de
             <select name="params[city_size]">
