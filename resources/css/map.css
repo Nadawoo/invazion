@@ -126,6 +126,9 @@
     background-image:url("../img/copyrighted/tiles/grey/6.png");
 }
 
+.ground_city {
+    background-image:url("../img/copyrighted/tiles/greenjungle/3.png");
+}
 
 
 #map .emoji { /* Makes the unicode icons bigger without shifting the map tiles */
@@ -245,19 +248,7 @@
     height:24px;
     width: 24px;
 }
-/* Le triangle derrière la ville */
-.city_bg {
-    width:0;
-    height:0;
-    position:absolute;
-    top:-20%;
-    left:-13%;
-    opacity:0.8;
-    border-left:   1.6em solid transparent;
-    border-right:  1.6em solid transparent;
-    border-bottom: 2.8em solid green;
-    z-index:-1;
-}
+
 .city_nbr_def {
     position:absolute;
     bottom:-0.8em;

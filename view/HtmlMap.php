@@ -154,7 +154,6 @@ class HtmlMap
         // un simple espace, sinon décalages si la cellule contient ou non 
         // des citoyens/zombies/objets
         $cell_content   = '&nbsp;';
-        $ground         = 'ground_'.$cell['building'];
         $cell_zombies   = '';
         $cell_me        = '';
         $bubble         = '';
@@ -183,9 +182,8 @@ class HtmlMap
             $bubble       = $this->html_bubble('tent');
         }
         elseif ($cell['city_size'] > 0) {
-            // Si la ville a des défenses, on affiche un fond triangulaire vert
-            $city_bg = ($cell['city_defenses'] > 0) ? '    <span class="city_bg"></span>' : '';
-            $cell_content = $this->html_cell_content('city', $cell['city_defenses']) . $city_bg . "\n";
+            
+            $cell_content = $this->html_cell_content('city', $cell['city_defenses']);
             $bubble       = $this->html_bubble('city', $cell['city_defenses']);
         }
         elseif ($cell['citizens'] > 1 and $is_player_in_zone === false) {
@@ -203,13 +201,11 @@ class HtmlMap
         if ($cell['zombies'] > 0) {
             $cell_zombies   = $this->html_cell_content('zombies', $cell['zombies'], min (9, $cell['zombies']));
             $bubble_zombies = $this->html_bubble('zombies', $cell['zombies']);
-            $ground         = 'ground_zombies_'.$cell['building'];
         }
 
         if (!empty($cell['items'])) {
             $bubble_items = $this->html_bubble('items');
-        }
-        
+        }        
 
 
         // La case est plus ou moins opaque selon la date de dernière visite
@@ -226,6 +222,7 @@ class HtmlMap
         
         // Permettra d'ajouter un marqueur en javascript sur la case
         $has_items = (empty($cell['items'])) ? '' : ' hasItems';
+        $ground = $this->ground_css_class($cell);
         
         // - La classe "hexagon" sert à tracer le fond hexgonal
         // - La classe "square_container" est un conteneur carré pour assurer la symétrie du contenu
@@ -242,6 +239,25 @@ class HtmlMap
                         </div>
                     </div>                    
                 </div>';
+    }
+    
+    
+    /**
+     * Gives the CSS class to display the appropriate tile in a zone
+     */
+    function ground_css_class($cell) {
+        
+        if ($cell['zombies'] > 0) {
+            $ground = 'ground_zombies_'.$cell['building'];
+        }
+        elseif ($cell['city_type'] === 'city') {
+            $ground = 'ground_city';
+        }
+        else {
+            $ground = 'ground_'.$cell['building'];
+        }
+        
+        return $ground;
     }
     
     
