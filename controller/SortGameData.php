@@ -34,8 +34,32 @@ class SortGameData
     
     
     /**
-     * Filtre une liste des citoyens avec leurs caractéristiques 
-     * pour ne garder que ceux d'une ville précise.
+     * Starting from a main city, gets of the citizens of all the habitations
+     * linked to this city.
+     * 
+     * @param int $child_cities_ids The IDs of the habitations linked to the main city.
+     * @param array $cities_data   The characteristics of the cities 
+     *                             (coming from the API "cities")
+     * @param array $citizens_data The characteristics of the citizens
+     *                             (coming from the API "citizens")
+     * @return array
+     */
+    function get_child_citizens($child_cities_ids, $cities_data, $citizens_data) {
+        
+        $city_fellows = [];
+        
+        foreach($child_cities_ids as $child_id) {
+            $citizen_id = $cities_data[$child_id]['citizens_ids'][0];
+            $city_fellows[$citizen_id] = $citizens_data[$citizen_id];
+        }
+        
+        return $city_fellows;
+    }
+    
+    
+    /**
+     * Filters a list of citizens coming from the API "citizens"
+     * to keep only the ones belonging to a specific city.
      * 
      * @param  array $citizens  Array contenant les citoyens de toute la carte,
      *                          issu de l'API map.php
