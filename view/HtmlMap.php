@@ -61,6 +61,7 @@ class HtmlMap
                                 . 'pour vous déplacer, fouiller le sol, attaquer des zombies, ramasser des objets...</div>',
             'city'          => '<div class="roleplay">Cette ville offre '.$string1.' points de défense... '
                                . 'Peut-être pourrez-vous vous y réfugier&nbsp;?</div>',
+            'player_home'   => '<div class="roleplay">Ceci est votre habitation, '.$string1.' ! Votre refuge contre les zombies...</div>',
             'carwreck'      => '<div class="roleplay">Mieux vaut ne pas savoir ce qu\'est devenu le propriétaire de cette voiture embourbée. '
                              . 'Il a dû parvenir à s\'enfuir et coule des jours heureux quelque part... Oui, on va dire ça.</div>',
             'circus'        => '<div class="roleplay">Sous ce chapiteau déserté, plusieurs traces de zombies, d\'animaux '
@@ -123,7 +124,9 @@ class HtmlMap
                 // Pseudo d'un des citoyens présents sur la case
                 $fellow_pseudo = (isset($citizens_by_coord[$coords])) ? $citizens_by_coord[$coords][0]['citizen_pseudo'] : null;
                 
-                $result .=  $this->hexagonal_zone($col, $row, $cell, $is_player_in_zone, $citizen['citizen_pseudo'], $fellow_pseudo);
+                $result .=  $this->hexagonal_zone($col, $row, $cell, $is_player_in_zone, 
+                                                  $citizen['citizen_pseudo'], $citizen['city_id'],
+                                                  $fellow_pseudo);
             }
             
             $result .=  "</div>\n";
@@ -142,12 +145,14 @@ class HtmlMap
      * @param array $cell   Le contenu de la zone, tel que retourné par l'API maps
      * @param bool  $is_player_in_zone Définit si le joueur connecté se trouve dans cette zone
      * @param array $player_pseudo  Le pseudo du joueur connecté
+     * @param int   $player_city_id L'ID de la vaille (habitation) du joueur
      * @param array $fellow_pseudo  Pseudo d'un des citoyens présents sur la case 
      *                              (autre celui du joueur actuel)
      * 
      * @return string   Le HTML de la case
      */
-    public function hexagonal_zone($col, $row, $cell, $is_player_in_zone, $player_pseudo, $fellow_pseudo)
+    public function hexagonal_zone($col, $row, $cell, $is_player_in_zone,
+                                   $player_pseudo, $player_city_id, $fellow_pseudo)
     {
         
         // Important : la cellule doit toujours avoir un contenu, même 
@@ -158,7 +163,8 @@ class HtmlMap
         $cell_me        = '';
         $bubble         = '';
         $bubble_zombies = '';
-        $bubble_items   = '';        
+        $bubble_items   = '';
+        $player_city_marker = '';
         
         if ($is_player_in_zone === true) {            
             $cell_me = $this->html_cell_content('citizen_me', $player_pseudo);
@@ -220,9 +226,17 @@ class HtmlMap
         }
 
         
-        // Permettra d'ajouter un marqueur en javascript sur la case
-        $has_items = (empty($cell['items'])) ? '' : ' hasItems';
+        // Variable grounds (sand, peebles...)
         $ground = $this->ground_css_class($cell);
+        // Put a marker with javascript if the zone contains items
+        $has_items = (empty($cell['items'])) ? '' : ' hasItems';
+        
+        // Put a permanent marker on the player's habitation
+        if($cell['city_id'] === $player_city_id) {
+            $player_city_marker = '<img src="resources/img/free/map_location.svg" class="location">';
+            $bubble             = $this->html_bubble('player_home', $player_pseudo);
+            $bubble_items       = '';
+        }
         
         // - La classe "hexagon" sert à tracer le fond hexgonal
         // - La classe "square_container" est un conteneur carré pour assurer la symétrie du contenu
@@ -237,7 +251,8 @@ class HtmlMap
                             . $bubble_items . '
                             <div class="triangle_down"></div>
                         </div>
-                    </div>                    
+                    </div>
+                    '.$player_city_marker.'
                 </div>';
     }
     
