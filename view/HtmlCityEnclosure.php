@@ -57,7 +57,7 @@ class HtmlCityEnclosure
     
     private function city_submenu_item($item_alias, $item_name) {
         
-        return '<div class="item"'
+        return '<div class="item" '
                   . 'style="background-image:url(\'resources/img/copyrighted/'.$item_alias.'.png\')" '
                   . 'onclick="switchCitySubmenu(\''.$item_alias.'\')">'
                   .'<span class="label">'. $item_name .'</span>'
