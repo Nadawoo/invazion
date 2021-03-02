@@ -19,6 +19,8 @@ function set_default_variables($variable) {
         'coord_x'           => null,
         'coord_y'           => null,
         'citizen_pseudo'    => null,
+        'city_id'           => 0,
+        'inside_city_id'    => 0,
         'can_change_speciality' => false,
         'can_dig'               => true,
         'is_inside_city'        => false,
