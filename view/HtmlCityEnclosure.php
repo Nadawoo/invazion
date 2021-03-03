@@ -38,6 +38,7 @@ class HtmlCityEnclosure
                     '.$this->city_submenu_item('home_house', 'Chez moi').'
                     '.$this->city_submenu_item('home_storage', 'Coffre').'
                     '.$this->city_submenu_item('home_build', 'Améliorer').'
+                    '.$this->city_submenu_item('home_door', 'Sortir<br>Explorer').'
                 </div>
                 <div class="row hidden" id="cityMenuCity">
                     '.$this->city_submenu_item('city_storage', 'Dépôt').'
@@ -494,14 +495,13 @@ class HtmlCityEnclosure
     
     
     /**
-     * Bloc à l'intérieur de la ville :
-     * la porte de la ville
+     * The door of the city
      * 
-     * @param int $is_door_closed   Vaut 1 (TRUE)  si la porte est fermée
-     *                              Vaut 0 (FALSE) si la porte est ouverte
-     * @return string
+     * @param int $is_door_closed   Is 1 if the door is closed (true)
+     *                              Is 0 if the door is open (false)
+     * @return string HTML
      */
-    function block_door($is_door_closed)
+    function block_city_door($is_door_closed)
     {
         
         $buttons = new HtmlButtons();
@@ -525,6 +525,24 @@ class HtmlCityEnclosure
                 <hr>
                 <p>' . $door_status . '</p>
                 <p>' . $door_button . '</p>
+            </div>';
+    }
+    
+    
+    /**
+     * The door of the individual habitation (not of the city)
+     * @return string HTML
+     */
+    function block_home_door()
+    {
+        
+        $buttons = new HtmlButtons();
+        
+        return '
+            <div class="city_block">
+                <h2>Sortir</h2>
+                <p>Partez en expédition dans le désert pour récuperer de précieuses ressources...</p>
+                <p>' . $buttons->button('get_out_home') . '</p>
             </div>';
     }
     

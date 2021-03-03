@@ -186,6 +186,15 @@ class HtmlButtons
                     'action'        => 'go_inout'
                     ],
                 ],
+            'get_out_home' => [
+                'icon'  => '',
+                'name'  => 'Explorer le désert',
+                'title' => "",
+                'fields' => [
+                    'api_name'      => 'city',
+                    'action'        => 'go_inout'
+                    ],
+                ],
             'open_door' => [
                 'icon'  => '',
                 'name'  => 'Ouvrir les portes !',

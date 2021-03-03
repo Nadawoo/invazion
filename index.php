@@ -207,6 +207,9 @@ echo $popup->customised('popsuccess', '', nl2br($msg_popup));
                         '. $enclosure->block_constructions($configs['constructions_home'], $configs['items'], $city_data['constructions'], 
                                                            $city_data['total_defenses'], $zone['items']) .'
                     </div>
+                    <div id="home_door" class="city_row">
+                        '. $enclosure->block_home_door($city_data['is_door_closed']) .'
+                    </div>
                     <div id="city_fellows" class="city_row">
                         '. $enclosure->block_fellows_list($city_fellows, $specialities) .'
                         '. $enclosure->block_fellows_homes($city_fellows, $specialities, $city_data['coord_x'], $city_data['coord_y']) .'
@@ -227,7 +230,7 @@ echo $popup->customised('popsuccess', '', nl2br($msg_popup));
                                                            $city_data['total_defenses'], $zone['items']) .'
                     </div>
                     <div id="city_door" class="city_row">
-                        '. $enclosure->block_door($city_data['is_door_closed']) .'
+                        '. $enclosure->block_city_door($city_data['is_door_closed']) .'
                     </div>
                 </div>
             </div>';
