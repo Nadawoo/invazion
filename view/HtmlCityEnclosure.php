@@ -16,7 +16,6 @@ class HtmlCityEnclosure
          return '
             <div id="city_tabs">
                 <a onclick="switchCityMenu(\'cityMenuMyHome\')">Chez moi</a> &nbsp; 
-                <a onclick="switchCityMenu(\'cityMenuFellows\')">Habitants</a> &nbsp; 
                 <a onclick="switchCityMenu(\'cityMenuCity\')">La ville</a> &nbsp; 
                 <a onclick="switchCityMenu(\'cityMenuDoor\')">Grande porte</a>
             </div>';
@@ -40,14 +39,16 @@ class HtmlCityEnclosure
                     '.$this->city_submenu_item('home_build', 'Améliorer').'
                     '.$this->city_submenu_item('home_door', 'Sortir<br>Explorer').'
                 </div>
-                <div class="row hidden" id="cityMenuCity">
-                    '.$this->city_submenu_item('city_storage', 'Dépôt').'
-                    '.$this->city_submenu_item('city_build', 'Chantiers').'
-                    '.$this->city_submenu_item('city_craft', 'Atelier').'
-                    '.$this->city_submenu_item('city_well', 'Puits').'
-                </div>
-                <div class="row hidden" id="cityMenuFellows">
-                    '.$this->city_submenu_item('city_fellows', 'Habitants').'
+                <div class="hidden" id="cityMenuCity">
+                    <div class="row">
+                        '.$this->city_submenu_item('city_storage', 'Dépôt').'
+                        '.$this->city_submenu_item('city_build', 'Chantiers').'
+                        '.$this->city_submenu_item('city_well', 'Puits').'
+                        '.$this->city_submenu_item('city_fellows', 'Habitants').'
+                    </div>
+                    <div class="row">
+                        '.$this->city_submenu_item('city_craft', 'Atelier').'
+                    </div>
                 </div>
                 <div class="row hidden" id="cityMenuDoor">
                     '.$this->city_submenu_item('city_door', 'Grande porte').'

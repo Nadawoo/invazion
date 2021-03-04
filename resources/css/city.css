@@ -41,9 +41,13 @@
     border-bottom:2px solid red;
 }
 
+#city_submenus {
+    display:flex;
+    justify-content: center;
+}
 #city_submenus .row {
     display:flex;
-    justify-content:center;
+    justify-content:flex-start;
 }
 #city_submenus .row .item {
     display:flex;

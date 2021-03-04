@@ -45,7 +45,7 @@ class HtmlPage
                 <link rel="stylesheet" type="text/css" href="resources/css/map.css?v3.2">
                 <link rel="stylesheet" type="text/css" href="resources/css/smartphone.css?v1.5">
                 <link rel="stylesheet" type="text/css" href="resources/css/myzone.css?v1.4">
-                <link rel="stylesheet" type="text/css" href="resources/css/city.css?v3.2">
+                <link rel="stylesheet" type="text/css" href="resources/css/city.css?v3.3">
                 <link rel="stylesheet" type="text/css" href="resources/css/wall.css?v2.7">
                 <link rel="stylesheet" type="text/css" href="resources/css/popup.css?v1.7">
                 <link rel="stylesheet" type="text/css" href="resources/css/responsive.css?v2.1">
@@ -101,7 +101,7 @@ class HtmlPage
                     </div> <!-- End of #body_bg -->
                     <script type="text/javascript" src="resources/js/ZombLib.js?v1.3"></script>
                     <script type="text/javascript" src="resources/js/wallTemplate.js?v4.2"></script>
-                    <script type="text/javascript" src="resources/js/scripts.js?v6.1"></script>
+                    <script type="text/javascript" src="resources/js/scripts.js?v6.2"></script>
                     <script type="text/javascript" src="resources/js/events.js?v4.6"></script>
                 </body>
             </html>';
