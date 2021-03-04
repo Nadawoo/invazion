@@ -17,7 +17,7 @@ class HtmlCityEnclosure
             <div id="city_tabs">
                 <a onclick="switchCityMenu(\'cityMenuMyHome\')">Chez moi</a> &nbsp; 
                 <a onclick="switchCityMenu(\'cityMenuCity\')">La ville</a> &nbsp; 
-                <a onclick="switchCityMenu(\'cityMenuDoor\')">Grande porte</a>
+                <a onclick="switchCityMenu(\'cityMenuDoor\')">L\'outre-monde</a>
             </div>';
     }
     
@@ -37,7 +37,6 @@ class HtmlCityEnclosure
                     '.$this->city_submenu_item('home_house', 'Chez moi').'
                     '.$this->city_submenu_item('home_storage', 'Coffre').'
                     '.$this->city_submenu_item('home_build', 'Améliorer').'
-                    '.$this->city_submenu_item('home_door', 'Sortir<br>Explorer').'
                 </div>
                 <div class="hidden" id="cityMenuCity">
                     <div class="row">
@@ -52,6 +51,7 @@ class HtmlCityEnclosure
                 </div>
                 <div class="row hidden" id="cityMenuDoor">
                     '.$this->city_submenu_item('city_door', 'Grande porte').'
+                    '.$this->city_submenu_item('explore', 'Sortir<br>Explorer').'
                 </div>
             </div>';
     }
@@ -507,23 +507,20 @@ class HtmlCityEnclosure
         
         $buttons = new HtmlButtons();
         
-        if ((bool)$is_door_closed === TRUE) {
-            
+        if ((bool)$is_door_closed === true) {            
             $door_status = 'Les portes de la ville sont <strong style="color:red">fermées</strong>';
             $door_button = $buttons->button('open_door');
         }
-        else {
-            
+        else {            
             $door_status = 'Les portes de la ville sont <strong style="color:green">ouvertes</strong>';
-            $door_button = $buttons->button('close_door', true, 'formlink');
+            $door_button = $buttons->button('close_door');
         }
         
         return '
             <div class="city_block">
                 <h2>Porte de la ville</h2>
-                <p>Partez en expédition dans le désert pour récuperer de précieuses ressources...</p>
-                <p>' . $buttons->button('get_out_city') . '</p>
-                <hr>
+                <p><em>Fermez la porte le soir pour activer les défenses de la ville,
+                    mais n\'oubliez personne dehors...</em></p>
                 <p>' . $door_status . '</p>
                 <p>' . $door_button . '</p>
             </div>';
@@ -531,10 +528,11 @@ class HtmlCityEnclosure
     
     
     /**
-     * The door of the individual habitation (not of the city)
+     * Block to get out of the city
+     * 
      * @return string HTML
      */
-    function block_home_door()
+    function block_explore()
     {
         
         $buttons = new HtmlButtons();
@@ -542,7 +540,8 @@ class HtmlCityEnclosure
         return '
             <div class="city_block">
                 <h2>Sortir</h2>
-                <p>Partez en expédition dans le désert pour récuperer de précieuses ressources...</p>
+                <p>Partez en exploration pour récupérer les ressources
+                    indispensables à la survie de la ville...</p>
                 <p>' . $buttons->button('get_out_home') . '</p>
             </div>';
     }
