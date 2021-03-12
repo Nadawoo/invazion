@@ -49,8 +49,10 @@ class SortGameData
         $city_fellows = [];
         
         foreach($child_cities_ids as $child_id) {
-            $citizen_id = $cities_data[$child_id]['citizens_ids'][0];
-            $city_fellows[$citizen_id] = $citizens_data[$citizen_id];
+            $citizens_ids = $cities_data[$child_id]['citizens_ids'];
+            if(!empty($citizens_ids)) {
+                $city_fellows[$citizens_ids[0]] = $citizens_data[$citizens_ids[0]];
+            }
         }
         
         return $city_fellows;
