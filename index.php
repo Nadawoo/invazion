@@ -193,7 +193,7 @@ echo $popup->customised('popsuccess', '', nl2br($msg_popup));
             <div id="city_container">
                 <nav id="city_menu">
                     '.$enclosure->city_menu().'
-                    '.$enclosure->city_submenu().'
+                    '.$enclosure->city_submenu($city_data['city_type'], $city_data['parent_city_id']).'
                 </nav>
                 <div id="city_contents">
                     <div id="home_house" class="city_row">

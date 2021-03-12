@@ -28,8 +28,30 @@ class HtmlCityEnclosure
      * 
      * @return string
      */
-    function city_submenu()
+    function city_submenu($city_type, $parent_city_id)
     {
+        
+        $buttons = new HtmlButtons();
+        
+        if($city_type === 'home' and $parent_city_id === 0) {
+            $city_menu = '<p style="max-width:25em;color:white">Une ville construite '
+                . 'avec les autres joueurs offre des infrastructures précieuses '
+                . 'pour la survie : défenses puissantes, réserves d\'eau...</p>'
+                . $buttons->button('connect_tent');
+        }
+        else {
+            $city_menu = '
+                <div class="row">
+                    '.$this->city_submenu_item('city_storage', 'Dépôt').'
+                    '.$this->city_submenu_item('city_build', 'Chantiers').'
+                    '.$this->city_submenu_item('city_well', 'Puits').'
+                    '.$this->city_submenu_item('city_fellows', 'Habitants').'
+                </div>
+                <div class="row">
+                    '.$this->city_submenu_item('city_craft', 'Atelier').'
+                </div>';
+        }
+        
         
         return '
             <div id="city_submenus">
@@ -39,15 +61,7 @@ class HtmlCityEnclosure
                     '.$this->city_submenu_item('home_build', 'Améliorer').'
                 </div>
                 <div class="hidden" id="cityMenuCity">
-                    <div class="row">
-                        '.$this->city_submenu_item('city_storage', 'Dépôt').'
-                        '.$this->city_submenu_item('city_build', 'Chantiers').'
-                        '.$this->city_submenu_item('city_well', 'Puits').'
-                        '.$this->city_submenu_item('city_fellows', 'Habitants').'
-                    </div>
-                    <div class="row">
-                        '.$this->city_submenu_item('city_craft', 'Atelier').'
-                    </div>
+                    '.$city_menu.'
                 </div>
                 <div class="row hidden" id="cityMenuDoor">
                     '.$this->city_submenu_item('city_door', 'Grande porte').'

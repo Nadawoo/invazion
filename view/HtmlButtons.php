@@ -177,6 +177,15 @@ class HtmlButtons
                     'params[city_type]' => 'city',
                     ],
                 ],
+            'connect_tent' => [
+                'icon'  => '',
+                'name'  => 'Connecter ma maison à la ville',
+                'title' => "",
+                'fields' => [
+                    'api_name'  => 'city',
+                    'action'    => 'connect'
+                    ],
+                ],
             'get_out_city' => [
                 'icon'  => '',
                 'name'  => 'Sortir de la ville',
