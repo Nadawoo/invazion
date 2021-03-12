@@ -53,6 +53,10 @@ class HtmlCityEnclosure
         }
         
         
+        // Display the door in a city but not in an individual home
+        $door_menu = ($city_type === 'home') ? '' : $this->city_submenu_item('city_door', 'Grande porte');
+        
+        
         return '
             <div id="city_submenus">
                 <div class="row hidden" id="cityMenuMyHome">
@@ -64,7 +68,7 @@ class HtmlCityEnclosure
                     '.$city_menu.'
                 </div>
                 <div class="row hidden" id="cityMenuDoor">
-                    '.$this->city_submenu_item('city_door', 'Grande porte').'
+                    '.$door_menu.'
                     '.$this->city_submenu_item('explore', 'Sortir<br>Explorer').'
                 </div>
             </div>';
