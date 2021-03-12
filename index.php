@@ -98,6 +98,8 @@ if ($citizen['citizen_id'] !== NULL) {
         $city_data = $cities_data[$citizen['inside_city_id']];
         // Gets the citizens linked to this city
         $city_fellows = $sort->get_child_citizens($city_data['child_cities_ids'], $cities_data, $citizens);
+        // TRUE if the player has connected his habitation to this city
+        $is_citizen_home_connected = in_array($citizen['city_id'], $city_data['child_cities_ids']) ? true : false;
     }
 }
 
@@ -193,7 +195,7 @@ echo $popup->customised('popsuccess', '', nl2br($msg_popup));
             <div id="city_container">
                 <nav id="city_menu">
                     '.$enclosure->city_menu().'
-                    '.$enclosure->city_submenu($city_data['city_type'], $city_data['parent_city_id']).'
+                    '.$enclosure->city_submenu($city_data['city_type'], $city_data['parent_city_id'], $is_citizen_home_connected).'
                 </nav>
                 <div id="city_contents">
                     <div id="home_house" class="city_row">

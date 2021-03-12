@@ -26,13 +26,29 @@ class HtmlCityEnclosure
      * Le menu horizontal pour les différentes parties de la ville
      * (dépôt, maison, porte...)
      * 
+     * @param string $city_type
+     * @param int $parent_city_id
+     * @param bool $is_citizen_home_connected TRUE if the player has connected 
+     *                                        his habitation to this city
      * @return string
      */
-    function city_submenu($city_type, $parent_city_id)
+    function city_submenu($city_type, $parent_city_id, $is_citizen_home_connected)
     {
         
         $buttons = new HtmlButtons();
         
+        // Content of the "Home" menu
+        if($city_type === 'city' and $is_citizen_home_connected === false) {
+            $home_menu = '<p style="max-width:25em;color:white">'
+                       . 'Votre habitation n\'est pas reliée à cette ville.</p>';
+        }
+        else {            
+            $home_menu = $this->city_submenu_item('home_house', 'Chez moi').'
+                       '.$this->city_submenu_item('home_storage', 'Coffre').'
+                       '.$this->city_submenu_item('home_build', 'Améliorer');
+        }
+        
+        // Content of the "City" menu
         if($city_type === 'home' and $parent_city_id === 0) {
             $city_menu = '<p style="max-width:25em;color:white">Une ville construite '
                 . 'avec les autres joueurs offre des infrastructures précieuses '
@@ -52,7 +68,6 @@ class HtmlCityEnclosure
                 </div>';
         }
         
-        
         // Display the door in a city but not in an individual home
         $door_menu = ($city_type === 'home') ? '' : $this->city_submenu_item('city_door', 'Grande porte');
         
@@ -60,9 +75,7 @@ class HtmlCityEnclosure
         return '
             <div id="city_submenus">
                 <div class="row hidden" id="cityMenuMyHome">
-                    '.$this->city_submenu_item('home_house', 'Chez moi').'
-                    '.$this->city_submenu_item('home_storage', 'Coffre').'
-                    '.$this->city_submenu_item('home_build', 'Améliorer').'
+                    '.$home_menu.'
                 </div>
                 <div class="hidden" id="cityMenuCity">
                     '.$city_menu.'
