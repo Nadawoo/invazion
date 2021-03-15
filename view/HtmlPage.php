@@ -64,7 +64,6 @@ class HtmlPage
                             <a href="'.official_server_root().'/discuss">Discuter</a>&nbsp;<span class="circle">&cir;</span>
                             <a href="'.official_server_root().'/project">Le projet</a>&nbsp;<span class="circle">&cir;</span>
                             <a href="'.official_server_root().'/customise-the-game">Créez votre version du jeu</a>&nbsp;<span class="circle">&cir;</span>
-                            <a href="'.official_server_root().'/apis-list">API</a><span class="circle">&cir;</span>
                             <a href="http://invazion.wikidot.com" target="_blank">Wiki</a>
                             <br>
                             <a href="https://discord.gg/2GRPTyM" target="_blank" title="Pour parler du jeu, faire des propositions... Ou tout simplement discuter :)">
@@ -75,6 +74,9 @@ class HtmlPage
                             </a>
                             <a href="'.official_server_root().'/share" target="_blank" title="Partager et soutenir le projet InvaZion">
                                 <img src="/resources/img/free/share.png" alt="share" style="height:1.4em;margin-bottom:-0.4em;"> Partager
+                            </a>
+                            <a href="'.official_server_root().'/apis-list" title="Modifiez toute l\'interface du jeu grâce aux API">
+                                <img src="/resources/img/free/api.png" alt="api_logo" style="height:1.4em;margin-bottom:-0.4em;"> API
                             </a>
                         </nav>
                     </header>';
