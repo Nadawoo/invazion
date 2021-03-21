@@ -117,7 +117,7 @@ $html = [
     'actions_bag'       => $layout->block_actions_bag($configs['items'], $citizen['bag_items']),
     'actions_context'   => $layout->block_actions_context($zone['city_size'], $zone['building']),
     'actions_zombies'   => $layout->block_actions_zombies($zone['zombies']),
-    'zone_items'        => $layout->block_zone_items($configs['items'], $zone, $citizen['citizen_id']),
+    'zone_items'        => $layout->block_zone_items($configs['items'], $zone),
     'bag_items'         => $layout->block_bag_items($configs['items'], $citizen['citizen_id'], $citizen['bag_items'], $citizen['bag_size']),
     'zone_fellows'      => $layout->block_zone_fellows($zone_fellows, $citizen['citizen_id']),
     // Smartphone at the right of the map

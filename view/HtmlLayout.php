@@ -253,7 +253,7 @@ class HtmlLayout extends HtmlPage
      * 
      * @return string
      */
-    function block_zone_items($items_caracs, $zone, $citizen_id)
+    function block_zone_items($items_caracs, $zone)
     {
         
         $html_items = '';
@@ -274,7 +274,6 @@ class HtmlLayout extends HtmlPage
             return '<form method="post" action="#Outside">'
                 . '<input type="hidden" name="api_name" value="zone">'
                 . '<input type="hidden" name="action" value="pickup">'
-                . '<input type="hidden" name="params[citizen_id]" value="'.$citizen_id.'">'
                 . '<ul class="items_list">'.$html_items.'</ul>'
                 . '</form>';
         }

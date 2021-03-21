@@ -50,7 +50,7 @@ $zone_api_result = $api->call_api('maps', 'get', ['map_id'=>$get['map_id'], 'zon
 $zone_datas      = $zone_api_result['datas']['zones'][$coord];
 
 // Generate the HTML of the player's personal chest
-$html['zone_items'] = $layout->block_zone_items($configs['items'], $zone_datas, 9999);
+$html['zone_items'] = $layout->block_zone_items($configs['items'], $zone_datas);
 
 
 echo json_encode([
