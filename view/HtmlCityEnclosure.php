@@ -11,12 +11,20 @@ class HtmlCityEnclosure
 {
     
     
-    function city_menu($map_id, $home_id)
+    /**
+     * Generates the main menu inside the city (My home / The city / The desert)
+     * 
+     * @param int $map_id
+     * @param int $city_id the ID of the main city, on which the home is connected
+     * @param int $home_id The ID of the personal home of the player
+     * @return string HTML
+     */
+    function city_menu($map_id, $city_id, $home_id)
     {
          return '
             <div id="city_tabs">
                 <a onclick="switchCityMenu(\'cityMenuMyHome\');teleportToCity('.$map_id.', '.$home_id.')">Chez moi</a> &nbsp; 
-                <a onclick="switchCityMenu(\'cityMenuCity\')">La ville</a> &nbsp; 
+                <a onclick="switchCityMenu(\'cityMenuCity\');  teleportToCity('.$map_id.', '.$city_id.')">La ville</a> &nbsp; 
                 <a onclick="switchCityMenu(\'cityMenuDoor\')">L\'outre-monde</a>
             </div>';
     }
@@ -133,7 +141,7 @@ class HtmlCityEnclosure
      *                                 par la classe HtmlLayout->zone_items()
      * @return string
      */
-    function block_storage($html_zone_items)
+    function block_city_storage($html_zone_items)
     {
         
         if ($html_zone_items === '') {
@@ -149,7 +157,6 @@ class HtmlCityEnclosure
         }
         
         return '
-            <div class="city_block">
                 <h2>Dépôt</h2>
                 <div class="descr">Les joueurs déposent ici les objets trouvés 
                     lors de leurs <a onclick="switchCityTab(\'city_door\')">expéditions</a>. Utilisez-les pour 
@@ -158,8 +165,7 @@ class HtmlCityEnclosure
                 </div>
                 <div class="contents">
                 '. $html_storage_items .'
-                </div>
-            </div>';
+                </div>';
     }
     
     

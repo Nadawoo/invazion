@@ -56,6 +56,7 @@ $html['zone_items'] = $layout->block_zone_items($configs['items'], $zone_datas);
 echo json_encode([
         'metas' => [],
         'datas' => [
-            'html_home_storage' => $enclosure->block_home_storage($html['zone_items'])
+            'html_home_storage' => $enclosure->block_home_storage($html['zone_items']),
+            'html_city_storage' => $enclosure->block_city_storage($html['zone_items']),
             ]
         ]);

@@ -637,6 +637,7 @@ async function teleportToCity(mapId, cityId) {
                         };            
         jsonCityEnclosure = await fetch("city_enclosure_generator.php?city_id="+cityId+"&map_id="+mapId+"&coord_x="+coordX+"&coord_y="+coordY, options).then(toJson);
         document.getElementById("blockHomeStorage").innerHTML = jsonCityEnclosure.datas.html_home_storage;
+        document.getElementById("blockCityStorage").innerHTML = jsonCityEnclosure.datas.html_city_storage;
     }
 }
 
