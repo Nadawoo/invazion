@@ -21,7 +21,7 @@ setlocale(LC_TIME, '');
 // Autoloader (to use a class without explicitly including the file)
 // @para sting $class The name of the class. Must be th same name as the file containing the class.
 spl_autoload_register(function ($class) {
-    require 'view/'.$class.'.php';
+    require dirname(__DIR__).'/view/'.$class.'.php';
 });
 
 

@@ -1,7 +1,6 @@
 <?php
-require_once 'controller/autoload.php';
-safely_require('view/HtmlLayout.php');
-safely_require('view/HtmlButtons.php');
+safely_require('/view/HtmlLayout.php');
+safely_require('/view/HtmlButtons.php');
 
 
 /**

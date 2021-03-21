@@ -1,7 +1,6 @@
 <?php
-require_once 'controller/autoload.php';
-safely_require('view/plural.php');
-safely_require('controller/get_coordx.php');
+safely_require('/view/plural.php');
+safely_require('/controller/get_coordx.php');
 
 
 /**

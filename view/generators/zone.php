@@ -4,10 +4,10 @@
  * Useful for the real time refreshing (refresh the modified zones).
  */
 
-require_once 'controller/autoload.php';
-safely_require('controller/official_server_root.php');
-safely_require('controller/SortGameData.php');
-safely_require('ZombLib.php');
+require_once '../../controller/autoload.php';
+safely_require('/controller/official_server_root.php');
+safely_require('/controller/SortGameData.php');
+safely_require('/ZombLib.php');
 
 header('content-type:application/json');
 
@@ -37,6 +37,7 @@ if ($zones['metas']['error_code'] === 'success') {
     if (isset($citizens[$citizen_id])) {
         $player_pseudo = $citizens[$citizen_id]['citizen_pseudo'];
         $player_coords = [$citizens[$citizen_id]['coord_x'], $citizens[$citizen_id]['coord_y']];
+        $player_city_id = $citizens[$citizen_id]['city_id'];
     }
     
     // Build the HTML of the modified zones
@@ -48,7 +49,8 @@ if ($zones['metas']['error_code'] === 'success') {
         $fellow_pseudo = (isset($citizens_by_coord[$coords])) ? $citizens_by_coord[$coords][0]['citizen_pseudo'] : null;
         $is_player_in_zone = $map->is_player_in_zone([$col, $row], $player_coords);
         
-        $html_zones[$coords] = $map->hexagonal_zone($col, $row, $zone, $is_player_in_zone, $player_pseudo, $fellow_pseudo);
+        $html_zones[$coords] = $map->hexagonal_zone($col, $row, $zone, $is_player_in_zone, 
+                                                    $player_pseudo, $player_city_id, $fellow_pseudo);
     }
 }
 
