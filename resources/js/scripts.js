@@ -615,6 +615,33 @@ async function updateDiscussionsNotifs() {
 
 
 /**
+ * Moves the player from the central city to his individual home.
+ * 
+ * @param {int} mapId
+ * @param {int} cityId
+ * @returns {undefined}
+ */
+async function teleportToCity(mapId, cityId) {
+    
+    // Moves the citizen form the main city to his indivdual home
+    jsonTeleport = await callApi("GET", "zone", "action=teleport&to=city&target_id="+cityId+"&token="+getCookie('token'));
+    
+    if(jsonTeleport.metas.error_code === "success") {    
+        coordX = jsonTeleport.datas.new_coord_x;
+        coordY = jsonTeleport.datas.new_coord_y;
+
+        // Refreshes the contents of the chest (replaces the contents of 
+        // the city repository by the contents of the personal chest)
+        let options = { method: "GET",
+                        headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+                        };            
+        jsonCityEnclosure = await fetch("city_enclosure_generator.php?city_id="+cityId+"&map_id="+mapId+"&coord_x="+coordX+"&coord_y="+coordY, options).then(toJson);
+        document.getElementById("blockHomeStorage").innerHTML = jsonCityEnclosure.datas.html_home_storage;
+    }
+}
+
+
+/**
  * Shifts the zone tooltip to the left if it overflows the map on the right
  * 
  * @param {type} hexagon The zone where the tooltip is

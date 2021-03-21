@@ -103,7 +103,7 @@ class HtmlPage
                     </div> <!-- End of #body_bg -->
                     <script type="text/javascript" src="resources/js/ZombLib.js?v1.3"></script>
                     <script type="text/javascript" src="resources/js/wallTemplate.js?v4.2"></script>
-                    <script type="text/javascript" src="resources/js/scripts.js?v6.2"></script>
+                    <script type="text/javascript" src="resources/js/scripts.js?v6.3"></script>
                     <script type="text/javascript" src="resources/js/events.js?v4.6"></script>
                 </body>
             </html>';

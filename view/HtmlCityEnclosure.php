@@ -11,11 +11,11 @@ class HtmlCityEnclosure
 {
     
     
-    function city_menu()
+    function city_menu($map_id, $home_id)
     {
          return '
             <div id="city_tabs">
-                <a onclick="switchCityMenu(\'cityMenuMyHome\')">Chez moi</a> &nbsp; 
+                <a onclick="switchCityMenu(\'cityMenuMyHome\');teleportToCity('.$map_id.', '.$home_id.')">Chez moi</a> &nbsp; 
                 <a onclick="switchCityMenu(\'cityMenuCity\')">La ville</a> &nbsp; 
                 <a onclick="switchCityMenu(\'cityMenuDoor\')">L\'outre-monde</a>
             </div>';
@@ -186,7 +186,6 @@ class HtmlCityEnclosure
         }
         
         return '
-            <div class="city_block">
                 <h2>Mon coffre</h2>
                 <div class="descr">Ce coffre vous permet de mettre à l\'abri les ressources 
                     ramenées de vos <a onclick="switchCityTab(\'city_door\')">expéditions</a>.
@@ -194,8 +193,7 @@ class HtmlCityEnclosure
                 </div>
                 <div class="contents">
                 '. $html_storage_items .'
-                </div>
-            </div>';
+                </div>';
     }
     
     

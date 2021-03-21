@@ -194,7 +194,7 @@ echo $popup->customised('popsuccess', '', nl2br($msg_popup));
         echo '
             <div id="city_container">
                 <nav id="city_menu">
-                    '.$enclosure->city_menu().'
+                    '.$enclosure->city_menu($citizen['map_id'], $citizen['city_id']).'
                     '.$enclosure->city_submenu($city_data['city_type'], $city_data['parent_city_id'], $is_citizen_home_connected).'
                 </nav>
                 <div id="city_contents">
@@ -202,7 +202,9 @@ echo $popup->customised('popsuccess', '', nl2br($msg_popup));
                         '. $enclosure->block_home() .'
                     </div>
                     <div id="home_storage" class="city_row">
-                        '. $enclosure->block_home_storage($html['zone_items']) .'
+                        <div id="blockHomeStorage" class="city_block">
+                            '. $enclosure->block_home_storage($html['zone_items']) .'
+                        </div>
                         '. $enclosure->block_bag($html['bag_items']) .'
                     </div>
                     <div id="home_build" class="city_row">
