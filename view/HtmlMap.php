@@ -231,7 +231,7 @@ class HtmlMap
         $has_items = (empty($cell['items'])) ? '' : ' hasItems';
         
         // Put a permanent marker on the player's habitation
-        if($cell['city_id'] === $player_city_id) {
+        if($cell['city_id'] === $player_city_id and $player_city_id !== null) {
             $player_city_marker = '<img src="resources/img/free/map_location.svg" class="location">';
             $bubble             = $this->html_bubble('player_home', $player_pseudo);
             $bubble_items       = '';

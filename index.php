@@ -92,7 +92,7 @@ if ($citizen['citizen_id'] !== NULL) {
     $healing_items      = $sort->filter_bag_items('healing_wound', $configs['items'], $citizen['bag_items']);
     
     // If the citizen is inside a city
-    if ($citizen['inside_city_id'] !== 0) {
+    if ($citizen['inside_city_id'] !== NULL) {
         // Gets the characteristics of this city (well, storage...)
         $cities_data  = $api->call_api('cities', 'get', ['map_id'=>$citizen['map_id']])['datas'];
         $city_data = $cities_data[$citizen['inside_city_id']];
@@ -189,7 +189,7 @@ echo $popup->customised('popsuccess', '', nl2br($msg_popup));
     <?php
     // If the citizen is inside a city, display the city enclosure over the map
     // (well, storage, constructions...)
-    if ($citizen['inside_city_id'] !== 0) {
+    if ($citizen['inside_city_id'] !== NULL) {
         
         echo '
             <div id="city_container">
