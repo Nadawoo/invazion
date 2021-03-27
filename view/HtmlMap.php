@@ -264,7 +264,7 @@ class HtmlMap
         if ($cell['zombies'] > 0) {
             $ground = 'ground_zombies_'.$cell['building'];
         }
-        elseif ($cell['city_type'] === 'city' or $cell['parent_city_id'] !== 0) {
+        elseif ($cell['city_type'] === 'city' or $cell['parent_city_id'] !== null) {
             $ground = 'ground_city';
         }
         else {

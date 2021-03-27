@@ -56,7 +56,7 @@ class HtmlCityEnclosure
         }
         
         // Content of the "City" menu
-        if($city_type === 'home' and $parent_city_id === 0) {
+        if($city_type === 'home' and $parent_city_id === null) {
             $city_menu = '<p style="max-width:25em;color:white">Une ville construite '
                 . 'avec les autres joueurs offre des infrastructures précieuses '
                 . 'pour la survie : défenses puissantes, réserves d\'eau...</p>'
