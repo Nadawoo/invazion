@@ -15,7 +15,7 @@ $type       = filter_input(INPUT_GET, 'type',   FILTER_SANITIZE_STRING);
 $sort       = filter_input(INPUT_GET, 'sort',   FILTER_SANITIZE_STRING);
 
 $api            = new ZombLib(official_server_root().'/api');
-$htmlLogAttacks = new HtmlLogattacks();
+$htmlLogAttacks = new HtmlLogAttacks();
 $html_attacks   = [];
 
 
