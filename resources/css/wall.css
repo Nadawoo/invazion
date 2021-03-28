@@ -232,3 +232,42 @@
     margin:0 auto;
     padding-left:2em;
 }
+
+/*
+ * Visual representation of the attack summary
+ */
+#wall .visual_attack_log {
+    display:flex;
+    align-items:center;
+    margin:0.5em auto;
+
+}
+.visual_attack_log .block {
+    display:flex;
+    align-items:center;
+    height:6.5em;
+    width: 6.5em;
+    padding-top:1em;
+    border:1px solid grey;
+    border-radius:0.4em;
+    background:#f6ddcc;
+    text-align:center;
+    box-shadow:4px 4px 6px black;
+    box-sizing:border-box;
+}
+.visual_attack_log .arrow {
+    font-size:1.4em;
+    opacity:0.9;
+}
+.visual_attack_log .miniblock {
+    height:6em;
+    padding-top:0.5em;
+    font-size:0.8em;
+}
+.visual_attack_log .good {
+    border:3px solid darkgreen;
+}
+.visual_attack_log .bad {
+    border:4px solid red;
+    background:salmon;
+}

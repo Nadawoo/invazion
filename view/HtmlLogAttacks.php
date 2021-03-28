@@ -17,9 +17,55 @@ class HtmlLogAttacks extends HtmlWall
     public function get_log_entry($entry_type, $attack_data) {
         
         $html_elements = $this->$entry_type($attack_data);
+        
         return $this->event($html_elements['title'],
-                            $html_elements['message'].$this->other_deaths(),
+                            $this->visual_attack($attack_data) . $html_elements['message'] . $this->other_deaths(),
                             $attack_data['datetime_utc']);
+    }
+    
+    
+    /**
+     * Displays a visual summary of the attack (nbr zombies /nbr def / nbr dead)
+     * 
+     * @param array $attack_data The data of the log entry, as returned by the API
+     * @return string HTML
+     */
+    private function visual_attack($attack_data) {
+        
+        $nbr_dead = count($attack_data['citizens_killed']);
+        
+        if($attack_data['zombies'] > $attack_data['defenses'] or $attack_data['is_door_closed'] === 0) {
+            $class_zombies_size = '';
+            $class_city_size    = 'miniblock';
+        } else {
+            $class_zombies_size = 'miniblock';
+            $class_city_size    = '';
+        }
+        
+        $text_defenses = ($attack_data['is_door_closed'] === 0)
+                         ? '&#x274C; <span style="color:lightred;font-weight:bold">Porte ouverte !</span>'
+                         : $attack_data['defenses'].' défenses';
+        
+        $class_city_color = ($attack_data['is_door_closed'] === 0 or $attack_data['zombies'] > $attack_data['defenses'])
+                            ? 'bad'
+                            : 'good';
+        
+        return '<div class="visual_attack_log">
+                    <div class="block '.$class_zombies_size.'">
+                        <img src="resources/img/motiontwin/zombie9.gif"><br>
+                        '.$attack_data['zombies'].' zombies
+                    </div>
+                    <div class="arrow">►</div>
+                    <div class="block '.$class_city_size.' '.$class_city_color.'">
+                        <img src="resources/img/free/city.png" style="height:2em"><br>
+                        '.$text_defenses.'
+                    </div>
+                    <div class="arrow">►</div>
+                    <div class="block miniblock">
+                        <span style="font-size:1.5em">&#x1F480;</span><br>
+                        '.$nbr_dead.' morts
+                    </div>
+                </div>';
     }
     
     
