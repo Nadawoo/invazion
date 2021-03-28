@@ -793,47 +793,26 @@ function toggleSendform(event) {
 
 
 /**
- * Generates the HTML for the result of the daily zombies attack
- * @param {array} apiData The data as returned by the API "events"
- */
-function htmlEventAttack(apiData) {
-    
-    var zombiesOverflow = apiData.zombies-apiData.defenses,
-        message = "";
-        
-    if (apiData.is_door_closed === 0) {
-        message = htmlAttackDoorOpen(apiData);
-    } else if (zombiesOverflow <= 0) {
-        message = htmlAttackRepulsed(apiData);
-    } else {
-        message = htmlAttackNotRepulsed(apiData);
-    }
-    
-    message.message += "<p>Par ailleurs, plusieurs citoyens se sont laissé <strong>dévorer dans le désert</strong> cette nuit.\
-                        Héroïsme ? Distraction fatale ? Suicide ? Nous ne le saurons jamais...\
-                        Paix à leurs moignons :<br>\
-                        nom1, nom2</p>";
-    
-    return htmlEvent(message.title, message.message, dateIsoToString(apiData.datetime_utc));
-}
-
-
-/**
  * Gets the log of attacks with the API and write it in the communications panel
  */
 async function getCyclicAttacks(nbrExecutions) {
+    
     // Don't run the function more than once (it calls the API)
     if (nbrExecutions >= 1) {
         return false;
     }
     
-    var json = await callApi("GET", "events", "action=get&type=cyclicattack&sort=desc"),
-        html = "";
-
-    for (let i in json.datas) {
-        html += htmlEventAttack(json.datas[i]);
-    }
+    // Get the HTML elements to build the log of attacks
+    let options = { method: "GET",
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+                    };
+    let htmlElements = await fetch("view/generators/log_attacks.php?action=get&type=cyclicattack&sort=desc", options).then(toJson);
+    let html = "";
     
+    // Build and display the log of attacks
+    for (let i in htmlElements) {
+        html += htmlEvent(htmlElements[i].title, htmlElements[i].message, dateIsoToString(htmlElements[i].datetime_utc));
+    }    
     document.getElementById("attacks").innerHTML += html;
 }
 
