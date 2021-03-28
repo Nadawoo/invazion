@@ -133,7 +133,7 @@ class HtmlLogAttacks extends HtmlWall
             'title'   => '&#x1F9DF; <strong>'.$attack_data['cycle_ended'].'<sup>e</sup> attaque zombie '
                        . '<span style="padding:0 0.2em;background:#6c3483;color:white">catastrophe !</span> &#x274C;</strong>',
             'message' => '<strong class="red">Les portes de la ville n\'étaient pas fermées !</strong>
-                        Cette négligence a permis aux <strong>'.($attack_data['zombies']-$attack_data['defenses']).'</strong> zombies 
+                        Cette négligence a permis aux <strong>'.$attack_data['zombies'].'</strong> zombies 
                         de pénétrer en contournant les <strong>'.$attack_data['defenses'].'</strong> défenses.
                         <br>Bilan :
                             <ul>
