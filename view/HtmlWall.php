@@ -32,8 +32,8 @@ class HtmlWall
                     <div id="attacks"></div>
                     <div id="events"></div>
                     
-                    '.$this->event_construction_completed().'                        
-                    '.$this->event_AP_invested('Nadawoo', 'Mur de renfort', 3).'
+                    '.$this->event_construction_completed(date('c')).'                        
+                    '.$this->event_AP_invested(date('c'), 'Nadawoo', 'Mur de renfort', 3).'
                     
                 </div>
             </div>';
@@ -63,8 +63,10 @@ class HtmlWall
      *                          Will be removed when real comments will be implemented.
      * @return string HTML
      */
-    private function event($title, $message, $comments='')
+    private function event($title, $message, $iso_date, $comments='')
     {
+        
+        $date = strftime("%a %d %B %Y à %H:%M", strtotime($iso_date));
         
         return '
             <div class="topic event">
@@ -74,7 +76,7 @@ class HtmlWall
                         '.$message.'
                     </div>
                     <div class="time" title="Fuseau horaire de Paris">
-                        <a href="#">Commenter</a> · Mardi 3 juin (2020) à 13h02
+                        <a href="#">Commenter</a> · '.$date.'
                     </div>
                 </div>
                 '.$comments.'
@@ -90,14 +92,14 @@ class HtmlWall
      * @param int    $AP_invested
      * @return string HTML
      */
-    private function event_AP_invested($author_pseudo, $construction_name, $AP_invested)
+    private function event_AP_invested($iso_date, $author_pseudo, $construction_name, $AP_invested)
     {
         
         $message =  '&#x1F528; '.$author_pseudo.' a investi 
                     '.$AP_invested.' <abbr title="points d\'action" style="font-variant:small-caps">pa</abbr> 
                     dans <strong>'.$construction_name.'</strong>';
         
-        return $this->event($message, '');
+        return $this->event($message, '', $iso_date);
     }
     
     
@@ -106,7 +108,7 @@ class HtmlWall
      * 
      * @return string HTML
      */    
-    private function event_construction_completed()
+    private function event_construction_completed($iso_date)
     {
         
         $message = '&#x2714;&#xFE0F; Le chantier <strong>Mur de renfort</strong> a été construit !';
@@ -114,7 +116,7 @@ class HtmlWall
         $comments = $this->comment_event('Nadawoo', 'Mais pourquoi vous avez construit ce chantier ? On avait dit qu\'on faisait la pompe !')
                   . $this->comment_event('Schmurtz', 'Il le fallait, on a une grosse attaque ce soir.');
         
-        return $this->event($message, '', $comments);
+        return $this->event($message, '', $iso_date, $comments);
     }
     
     
