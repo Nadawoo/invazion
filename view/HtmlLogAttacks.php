@@ -2,7 +2,25 @@
 /**
  * HTML elements to display the log of zombies attacks
  */
-class HtmlLogAttacks {
+class HtmlLogAttacks extends HtmlWall
+{
+    
+    
+    /**
+     * Call this method to get the complete HTML of a log attack entry.
+     * 
+     * @param string $entry_type The name of a private method of this class
+     *                         (e.g. 'attack_repulsed')
+     * @param array $attack_data The data of the log entry, as returned by the API
+     * @return string HTML
+     */
+    public function get_log_entry($entry_type, $attack_data) {
+        
+        $html_elements = $this->$entry_type($attack_data);
+        return $this->event($html_elements['title'],
+                            $html_elements['message'].$this->other_deaths(),
+                            $attack_data['datetime_utc']);
+    }
     
     
     /**
@@ -11,7 +29,7 @@ class HtmlLogAttacks {
      * @param array $attack_data The data as returned by the API "events"
      * @return array
      */
-    function attack_repulsed($attack_data) {
+    private function attack_repulsed($attack_data) {
         
         return [
             'title'   => '&#x1F9DF; <strong>'.$attack_data['cycle_ended'].'<sup>e</sup> attaque zombie '
@@ -34,7 +52,7 @@ class HtmlLogAttacks {
      * @param array $attack_data The data as returned by the API "events"
      * @return array
      */
-    function attack_not_repulsed($attack_data) {
+    private function attack_not_repulsed($attack_data) {
 
         return [
             'title'   => '&#x1F9DF; <strong>'.$attack_data['cycle_ended'].'<sup>e</sup> attaque zombie '
@@ -63,7 +81,7 @@ class HtmlLogAttacks {
      * @param array $attack_data The data as returned by the API "events"
      * @return array
      */
-    function attack_door_open($attack_data) {
+    private function attack_door_open($attack_data) {
 
         return [
             'title'   => '&#x1F9DF; <strong>'.$attack_data['cycle_ended'].'<sup>e</sup> attaque zombie '
@@ -90,7 +108,7 @@ class HtmlLogAttacks {
      * 
      * @return string HTML
      */
-    function other_deaths() {
+    public function other_deaths() {
         
         return "<p>Par ailleurs, plusieurs citoyens se sont laissés 
                 <strong>dévorer dans le désert</strong> cette nuit.

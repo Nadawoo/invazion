@@ -63,7 +63,7 @@ class HtmlWall
      *                          Will be removed when real comments will be implemented.
      * @return string HTML
      */
-    private function event($title, $message, $iso_date, $comments='')
+    protected function event($title, $message, $iso_date, $comments='')
     {
         
         $date = strftime("%a %d %B %Y à %H:%M", strtotime($iso_date));

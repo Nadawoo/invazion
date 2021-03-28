@@ -806,14 +806,10 @@ async function getCyclicAttacks(nbrExecutions) {
     let options = { method: "GET",
                     headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
                     };
-    let htmlElements = await fetch("view/generators/log_attacks.php?action=get&type=cyclicattack&sort=desc", options).then(toJson);
-    let html = "";
+    let htmlElements = await fetch("view/generators/log_attacks.php?action=get&type=cyclicattack&sort=asc", options).then(toJson);
     
-    // Build and display the log of attacks
-    for (let i in htmlElements) {
-        html += htmlEvent(htmlElements[i].title, htmlElements[i].message, dateIsoToString(htmlElements[i].datetime_utc));
-    }    
-    document.getElementById("attacks").innerHTML += html;
+    // Display the log of attacks
+    document.getElementById("attacks").innerHTML += htmlElements.join("\n");
 }
 
 

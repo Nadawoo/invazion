@@ -102,8 +102,8 @@ class HtmlPage
                         </div> <!-- End of #page_container -->
                     </div> <!-- End of #body_bg -->
                     <script type="text/javascript" src="resources/js/ZombLib.js?v1.3"></script>
-                    <script type="text/javascript" src="resources/js/wallTemplate.js?v4.3"></script>
-                    <script type="text/javascript" src="resources/js/scripts.js?v6.4"></script>
+                    <script type="text/javascript" src="resources/js/wallTemplate.js?v4.4"></script>
+                    <script type="text/javascript" src="resources/js/scripts.js?v6.5"></script>
                     <script type="text/javascript" src="resources/js/events.js?v4.6"></script>
                 </body>
             </html>';
