@@ -16,10 +16,8 @@ class HtmlLogAttacks extends HtmlWall
      */
     public function get_log_entry($entry_type, $attack_data) {
         
-        $html_elements = $this->$entry_type($attack_data);
-        
-        return $this->event($html_elements['title'],
-                            $this->visual_attack($attack_data) . $html_elements['message'],
+        return $this->event($this->$entry_type($attack_data),
+                            $this->visual_attack($entry_type, $attack_data),
                             $attack_data['datetime_utc']);
     }
     
@@ -30,7 +28,7 @@ class HtmlLogAttacks extends HtmlWall
      * @param array $attack_data The data of the log entry, as returned by the API
      * @return string HTML
      */
-    private function visual_attack($attack_data) {
+    private function visual_attack($entry_type, $attack_data) {
         
         $nbr_dead = count($attack_data['citizens_killed']);
         $event_id = $attack_data['event_id'];
@@ -69,7 +67,8 @@ class HtmlLogAttacks extends HtmlWall
                     </div>
                 </div>'
                 . $this->details_hurd($attack_data)
-                . $this->details_deads($attack_data);
+                . $this->details_deads($attack_data)
+                . $this->details_defenses($entry_type, $attack_data);
     }
     
     
@@ -81,11 +80,8 @@ class HtmlLogAttacks extends HtmlWall
      */
     private function attack_repulsed($attack_data) {
         
-        return [
-            'title'   => '&#x1F9DF; <strong>'.$attack_data['cycle_ended'].'<sup>e</sup> attaque zombie '
-                        . '<span style="padding:0 0.2em;background:green;color:white">repoussée !</span> &#x2714;&#xFE0F;</strong>',
-            'message' => $this->details_defenses($attack_data, 'attack_repulsed')
-            ];
+        return '&#x1F9DF; <strong>'.$attack_data['cycle_ended'].'<sup>e</sup> attaque zombie '
+             . '<span style="padding:0 0.2em;background:green;color:white">repoussée !</span> &#x2714;&#xFE0F;</strong>';
     }
     
     
@@ -97,11 +93,8 @@ class HtmlLogAttacks extends HtmlWall
      */
     private function attack_not_repulsed($attack_data) {
 
-        return [
-            'title'   => '&#x1F9DF; <strong>'.$attack_data['cycle_ended'].'<sup>e</sup> attaque zombie '
-                       . '<span style="padding:0 0.2em;background:red;color:white">submersion !</span> &#x274C;</strong>',
-            'message' => $this->details_defenses($attack_data, 'attack_not_repulsed')
-            ];
+        return '&#x1F9DF; <strong>'.$attack_data['cycle_ended'].'<sup>e</sup> attaque zombie '
+             . '<span style="padding:0 0.2em;background:red;color:white">submersion !</span> &#x274C;</strong>';
     }
     
     
@@ -113,11 +106,8 @@ class HtmlLogAttacks extends HtmlWall
      */
     private function attack_door_open($attack_data) {
                 
-        return [
-            'title'   => '&#x1F9DF; <strong>'.$attack_data['cycle_ended'].'<sup>e</sup> attaque zombie '
-                       . '<span style="padding:0 0.2em;background:#6c3483;color:white">catastrophe !</span> &#x274C;</strong>',
-            'message' => $this->details_defenses($attack_data, 'attack_door_open')
-            ];
+        return '&#x1F9DF; <strong>'.$attack_data['cycle_ended'].'<sup>e</sup> attaque zombie '
+             . '<span style="padding:0 0.2em;background:#6c3483;color:white">catastrophe !</span> &#x274C;</strong>';
     }
     
     
@@ -141,11 +131,11 @@ class HtmlLogAttacks extends HtmlWall
     /**
      * Display the details of the city defenses
      * 
-     * @param array $attack_data
      * @param string $entry_type Chose the text you want to display (see the list)
+     * @param array $attack_data
      * @return string HTML
      */
-    private function details_defenses($attack_data, $entry_type) {
+    private function details_defenses($entry_type, $attack_data) {
         
         $event_id = $attack_data['event_id'];
         
