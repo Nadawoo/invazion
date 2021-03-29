@@ -19,7 +19,7 @@ class HtmlLogAttacks extends HtmlWall
         $html_elements = $this->$entry_type($attack_data);
         
         return $this->event($html_elements['title'],
-                            $this->visual_attack($attack_data) . $html_elements['message'] . $this->other_deaths(),
+                            $this->visual_attack($attack_data) . $html_elements['message'],
                             $attack_data['datetime_utc']);
     }
     
@@ -33,6 +33,7 @@ class HtmlLogAttacks extends HtmlWall
     private function visual_attack($attack_data) {
         
         $nbr_dead = count($attack_data['citizens_killed']);
+        $event_id = $attack_data['event_id'];
         
         if($attack_data['zombies'] > $attack_data['defenses'] or $attack_data['is_door_closed'] === 0) {
             $class_zombies_size = '';
@@ -61,11 +62,12 @@ class HtmlLogAttacks extends HtmlWall
                         '.$text_defenses.'
                     </div>
                     <div class="arrow">►</div>
-                    <div class="block miniblock">
+                    <div class="block miniblock" onclick="toggle(\'logAttackDead'.$event_id.'\')">
                         <span style="font-size:1.5em">&#x1F480;</span><br>
                         '.$nbr_dead.' morts
                     </div>
-                </div>';
+                </div>'                    
+                . $this->details_daily_deads($attack_data);
     }
     
     
@@ -128,20 +130,13 @@ class HtmlLogAttacks extends HtmlWall
      * @return array
      */
     private function attack_door_open($attack_data) {
-
+                
         return [
             'title'   => '&#x1F9DF; <strong>'.$attack_data['cycle_ended'].'<sup>e</sup> attaque zombie '
                        . '<span style="padding:0 0.2em;background:#6c3483;color:white">catastrophe !</span> &#x274C;</strong>',
             'message' => '<strong class="red">Les portes de la ville n\'étaient pas fermées !</strong>
                         Cette négligence a permis aux <strong>'.$attack_data['zombies'].'</strong> zombies 
                         de pénétrer en contournant les <strong>'.$attack_data['defenses'].'</strong> défenses.
-                        <br>Bilan :
-                            <ul>
-                                <li>&#x26B0;&#xFE0F; <strong>'.$attack_data['citizens_killed'].' morts</strong>
-                                    (nom1, nom2)</li>
-                                <li>&#x1F9CD;&nbsp; <strong>'.$attack_data['citizens_survivors'].' survivants</strong>
-                                    (nom3, nom4, nom5)</li>
-                            </ul>
                         <strong>Fermez la porte de la ville</strong> avant chaque attaque,
                         sinon les défenses sont inutiles !'
             ];
@@ -149,17 +144,54 @@ class HtmlLogAttacks extends HtmlWall
     
     
     /**
-     * Additional message for citizens dead from other causes than the attack
-     * (infection...)
+     * Display the list of dead citizens after the attack
      * 
+     * @param array $attack_data
      * @return string HTML
      */
-    public function other_deaths() {
+    private function details_daily_deads($attack_data) {
         
-        return "<p>Par ailleurs, plusieurs citoyens se sont laissés 
-                <strong>dévorer dans le désert</strong> cette nuit.
-                Héroïsme ? Distraction fatale ? Suicide ? Nous ne le saurons jamais...
-                Paix à leurs moignons :<br>
-                nom1, nom2</p>";
+        $event_id = $attack_data['event_id'];
+        
+        return '<div id="logAttackDead'.$event_id.'" style="display:none;background:lightgrey">
+                    <strong>Bilan du matin :</strong> 
+                    <ul>
+                        <li>&#x26B0;&#xFE0F; <strong>'.$attack_data['citizens_killed'].' morts</strong>
+                            <ul>
+                                <li>nom1 (dévoré en ville)</li>
+                                <li>nom2 (infection)</li>
+                                <li>nom3 ('.$this->death_cause('desert').')</li>
+                            </ul>
+                        </li>
+                        <li>&#x1F9CD;&nbsp; <strong>'.$attack_data['citizens_survivors'].' survivants</strong>
+                            <ul>
+                                <li>nom4</li>
+                                <li>nom5</li>
+                                <li>nom6</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>';
+    }
+    
+    
+    /**
+     * Displays the cause of the death for this citizen (attack, infection...)
+     * 
+     * @param string $cause The alias of the death cause (see the list) 
+     * @return string HTML
+     */
+    public function death_cause($cause) {
+        
+        $causes = [
+            'desert' => [
+                'name'      => "disparu dans le désert",
+                'tooltip'   => "Ce citoyen s'est laissé dévorer dans l'outre-monde\n"
+                            . "cette nuit. Héroïsme ? Distraction fatale ? Suicide ?\n"
+                            . "Nous ne le saurons jamais. Paix à ses moignons..."
+                ],
+            ];
+        
+        return '<abbr title="'.$causes[$cause]['tooltip'].'">'.$causes[$cause]['name'].'</abbr>';
     }
 }
