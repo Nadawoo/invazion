@@ -254,6 +254,7 @@
     text-align:center;
     box-shadow:4px 4px 6px black;
     box-sizing:border-box;
+    cursor:pointer;
 }
 .visual_attack_log .arrow {
     font-size:1.4em;
@@ -270,4 +271,9 @@
 .visual_attack_log .bad {
     border:4px solid red;
     background:salmon;
+}
+
+#wall .log_details {
+    display:none;
+    background:lightgrey;
 }

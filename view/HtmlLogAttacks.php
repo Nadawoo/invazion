@@ -52,7 +52,7 @@ class HtmlLogAttacks extends HtmlWall
                             : 'good';
         
         return '<div class="visual_attack_log">
-                    <div class="block '.$class_zombies_size.'">
+                    <div class="block '.$class_zombies_size.'" onclick="toggle(\'logDetailsHurd'.$event_id.'\')">
                         <img src="resources/img/motiontwin/zombie9.gif"><br>
                         '.$attack_data['zombies'].' zombies
                     </div>
@@ -62,12 +62,13 @@ class HtmlLogAttacks extends HtmlWall
                         '.$text_defenses.'
                     </div>
                     <div class="arrow">►</div>
-                    <div class="block miniblock" onclick="toggle(\'logAttackDead'.$event_id.'\')">
+                    <div class="block miniblock" onclick="toggle(\'logDetailsDead'.$event_id.'\')">
                         <span style="font-size:1.5em">&#x1F480;</span><br>
                         '.$nbr_dead.' morts
                     </div>
-                </div>'                    
-                . $this->details_daily_deads($attack_data);
+                </div>'
+                . $this->details_hurd($attack_data)
+                . $this->details_deads($attack_data);
     }
     
     
@@ -144,16 +145,33 @@ class HtmlLogAttacks extends HtmlWall
     
     
     /**
+     * Display details about the number of attacking zombies
+     * 
+     * @param array $attack_data
+     * @return string HTML
+     */
+    private function details_hurd($attack_data) {
+        
+        $event_id = $attack_data['event_id'];
+        
+        return '<div id="logDetailsHurd'.$event_id.'" class="log_details">
+                    Cette nuit, la ville n° '.$attack_data['city_id'].' a été attaquée
+                    par une horde de <strong>'.$attack_data['zombies'].' zombies</strong> !
+                </div>';
+    }
+    
+    
+    /**
      * Display the list of dead citizens after the attack
      * 
      * @param array $attack_data
      * @return string HTML
      */
-    private function details_daily_deads($attack_data) {
+    private function details_deads($attack_data) {
         
         $event_id = $attack_data['event_id'];
         
-        return '<div id="logAttackDead'.$event_id.'" style="display:none;background:lightgrey">
+        return '<div id="logDetailsDead'.$event_id.'" class="log_details">
                     <strong>Bilan du matin :</strong> 
                     <ul>
                         <li>&#x26B0;&#xFE0F; <strong>'.$attack_data['citizens_killed'].' morts</strong>
