@@ -16,7 +16,7 @@ class HtmlLogAttacks extends HtmlWall
      */
     public function get_log_entry($entry_type, $attack_data) {
         
-        return $this->event($this->$entry_type($attack_data),
+        return $this->event($this->block_title($entry_type, $attack_data),
                             $this->visual_attack($entry_type, $attack_data),
                             $attack_data['datetime_utc']);
     }
@@ -78,36 +78,21 @@ class HtmlLogAttacks extends HtmlWall
      * @param array $attack_data The data as returned by the API "events"
      * @return array
      */
-    private function attack_repulsed($attack_data) {
+    private function block_title($entry_type, $attack_data) {
         
-        return '&#x1F9DF; <strong>'.$attack_data['cycle_ended'].'<sup>e</sup> attaque zombie '
-             . '<span style="padding:0 0.2em;background:green;color:white">repoussée !</span> &#x2714;&#xFE0F;</strong>';
-    }
-    
-    
-    /**
-     * Message if the cyclic attack has NOT been repulsed by the defenses
-     * 
-     * @param array $attack_data The data as returned by the API "events"
-     * @return array
-     */
-    private function attack_not_repulsed($attack_data) {
-
-        return '&#x1F9DF; <strong>'.$attack_data['cycle_ended'].'<sup>e</sup> attaque zombie '
-             . '<span style="padding:0 0.2em;background:red;color:white">submersion !</span> &#x274C;</strong>';
-    }
-    
-    
-    /**
-     * Message if the city doors were not closed during the cyclic attack
-     * 
-     * @param array $attack_data The data as returned by the API "events"
-     * @return array
-     */
-    private function attack_door_open($attack_data) {
-                
-        return '&#x1F9DF; <strong>'.$attack_data['cycle_ended'].'<sup>e</sup> attaque zombie '
-             . '<span style="padding:0 0.2em;background:#6c3483;color:white">catastrophe !</span> &#x274C;</strong>';
+        $titles = [
+            'attack_repulsed' =>
+                '&#x1F9DF; <strong>'.$attack_data['cycle_ended'].'<sup>e</sup> attaque zombie 
+                <span style="padding:0 0.2em;background:green;color:white">repoussée !</span> &#x2714;&#xFE0F;</strong>',
+            'attack_not_repulsed' =>
+                '&#x1F9DF; <strong>'.$attack_data['cycle_ended'].'<sup>e</sup> attaque zombie 
+                <span style="padding:0 0.2em;background:red;color:white">submersion !</span> &#x274C;</strong>',
+            'attack_door_open' =>
+                '&#x1F9DF; <strong>'.$attack_data['cycle_ended'].'<sup>e</sup> attaque zombie 
+                <span style="padding:0 0.2em;background:#6c3483;color:white">catastrophe !</span> &#x274C;</strong>',
+            ];
+        
+        return $titles[$entry_type];
     }
     
     
