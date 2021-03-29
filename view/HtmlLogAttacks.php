@@ -57,7 +57,8 @@ class HtmlLogAttacks extends HtmlWall
                         '.$attack_data['zombies'].' zombies
                     </div>
                     <div class="arrow">►</div>
-                    <div class="block '.$class_city_size.' '.$class_city_color.'">
+                    <div class="block '.$class_city_size.' '.$class_city_color.'" 
+                        onclick="toggle(\'logDetailsDefenses'.$event_id.'\')">
                         <img src="resources/img/free/city.png" style="height:2em"><br>
                         '.$text_defenses.'
                     </div>
@@ -83,14 +84,7 @@ class HtmlLogAttacks extends HtmlWall
         return [
             'title'   => '&#x1F9DF; <strong>'.$attack_data['cycle_ended'].'<sup>e</sup> attaque zombie '
                         . '<span style="padding:0 0.2em;background:green;color:white">repoussée !</span> &#x2714;&#xFE0F;</strong>',
-            'message' => 'La ville '.$attack_data['city_id'].' a été attaquée par une horde '
-                        . 'de <strong>'.$attack_data['zombies'].' zombies</strong> ! '
-                        . 'Heureusement, nos <strong>'.$attack_data['defenses'].' défenses</strong> '
-                        . 'ont été suffisantes pour les repousser. '
-                        . '<br>'
-                        . 'Bien joué ! Mais une <strong>nouvelle horde</strong> '
-                        . 'plus nombreuse attaquera cette nuit. '
-                        . 'Vous allez devoir renforcer les défenses de la ville...'
+            'message' => $this->details_defenses($attack_data, 'attack_repulsed')
             ];
     }
     
@@ -106,21 +100,8 @@ class HtmlLogAttacks extends HtmlWall
         return [
             'title'   => '&#x1F9DF; <strong>'.$attack_data['cycle_ended'].'<sup>e</sup> attaque zombie '
                        . '<span style="padding:0 0.2em;background:red;color:white">submersion !</span> &#x274C;</strong>',
-            'message' => '<strong class="red">'.($attack_data['zombies']-$attack_data['defenses']).' zombies 
-                        ont pénétré en ville !</strong>
-                        Les <strong>'.$attack_data['defenses'].'</strong> défenses 
-                        de la ville '.$attack_data['city_id'].' étaient insuffisantes 
-                        pour contenir les <strong>'.$attack_data['zombies'].'</strong> morts-vivants...
-                        <br>Bilan :
-                            <ul>
-                                <li>&#x26B0;&#xFE0F; <strong>'.$attack_data['citizens_killed'].' morts</strong> 
-                                    (nom1, nom2)</li>
-                                <li>&#x1F9CD;&nbsp; <strong>'.$attack_data['citizens_survivors'].' survivants</strong> 
-                                    (nom3, nom4, nom5)</li>
-                            </ul>
-                        <strong>Construisez des défenses</strong> avant la prochaine attaque
-                        si vous ne voulez pas tous y laisser votre peau !'
-                        ];
+            'message' => $this->details_defenses($attack_data, 'attack_not_repulsed')
+            ];
     }
     
     
@@ -135,11 +116,7 @@ class HtmlLogAttacks extends HtmlWall
         return [
             'title'   => '&#x1F9DF; <strong>'.$attack_data['cycle_ended'].'<sup>e</sup> attaque zombie '
                        . '<span style="padding:0 0.2em;background:#6c3483;color:white">catastrophe !</span> &#x274C;</strong>',
-            'message' => '<strong class="red">Les portes de la ville n\'étaient pas fermées !</strong>
-                        Cette négligence a permis aux <strong>'.$attack_data['zombies'].'</strong> zombies 
-                        de pénétrer en contournant les <strong>'.$attack_data['defenses'].'</strong> défenses.
-                        <strong>Fermez la porte de la ville</strong> avant chaque attaque,
-                        sinon les défenses sont inutiles !'
+            'message' => $this->details_defenses($attack_data, 'attack_door_open')
             ];
     }
     
@@ -157,6 +134,45 @@ class HtmlLogAttacks extends HtmlWall
         return '<div id="logDetailsHurd'.$event_id.'" class="log_details">
                     Cette nuit, la ville n° '.$attack_data['city_id'].' a été attaquée
                     par une horde de <strong>'.$attack_data['zombies'].' zombies</strong> !
+                </div>';
+    }
+    
+    
+    /**
+     * Display the details of the city defenses
+     * 
+     * @param array $attack_data
+     * @param string $entry_type Chose the text you want to display (see the list)
+     * @return string HTML
+     */
+    private function details_defenses($attack_data, $entry_type) {
+        
+        $event_id = $attack_data['event_id'];
+        
+        $texts = [
+            'attack_repulsed' =>
+                'Les <strong>'.$attack_data['defenses'].' défenses</strong> 
+                de la ville ont été suffisantes pour repousser la horde zombie.
+                <p style="background:none">Bien joué ! Mais une <strong>nouvelle horde</strong> 
+                plus nombreuse attaquera cette nuit. 
+                Vous allez devoir renforcer les défenses de la ville...</p>',
+            'attack_not_repulsed' =>
+                '<strong class="red">'.($attack_data['zombies']-$attack_data['defenses']).' zombies 
+                ont pénétré en ville !</strong>
+                Les <strong>'.$attack_data['defenses'].'</strong> défenses 
+                de la ville n° '.$attack_data['city_id'].' étaient insuffisantes...                        
+                <p><strong>Construisez des défenses</strong> avant la prochaine attaque
+                si vous ne voulez pas tous y laisser votre peau !</p>',
+            'attack_door_open' =>
+                '<strong class="red">Les portes de la ville n\'étaient pas fermées !</strong>
+                Cette négligence a permis aux <strong>'.$attack_data['zombies'].'</strong> zombies 
+                de pénétrer en contournant les <strong>'.$attack_data['defenses'].'</strong> défenses.
+                <p><strong>Fermez la porte de la ville</strong> avant chaque attaque,
+                sinon les défenses sont inutiles !</p>',
+            ];
+        
+        return  '<div id="logDetailsDefenses'.$event_id.'" class="log_details">'
+                    . $texts[$entry_type] . '
                 </div>';
     }
     

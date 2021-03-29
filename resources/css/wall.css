@@ -275,5 +275,14 @@
 
 #wall .log_details {
     display:none;
+    margin:0.5em 0;
+    padding:0.3em;
     background:lightgrey;
+}
+
+#wall .log_details p {
+    margin:0.5em 0.5em 0.2em 0.5em;
+    padding:0.3em;
+    background:salmon;
+    font-style: italic;
 }
