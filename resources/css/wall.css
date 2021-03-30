@@ -256,6 +256,12 @@
     box-sizing:border-box;
     cursor:pointer;
 }
+.visual_attack_log .block:hover {
+    position:relative;
+    left:0.15rem;
+    top: 0.2rem;
+    box-shadow:2px 2px 4px black;
+}
 .visual_attack_log .arrow {
     font-size:1.4em;
     opacity:0.9;
