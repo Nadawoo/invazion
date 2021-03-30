@@ -82,17 +82,15 @@ class HtmlLogAttacks extends HtmlWall
         
         $titles = [
             'attack_repulsed' =>
-                '&#x1F9DF; <strong>'.$attack_data['cycle_ended'].'<sup>e</sup> attaque zombie 
-                <span style="padding:0 0.2em;background:green;color:white">repoussée !</span> &#x2714;&#xFE0F;</strong>',
+                '<span style="padding:0 0.2em;background:green;color:white">repoussée !</span> &#x2714;&#xFE0F;',
             'attack_not_repulsed' =>
-                '&#x1F9DF; <strong>'.$attack_data['cycle_ended'].'<sup>e</sup> attaque zombie 
-                <span style="padding:0 0.2em;background:red;color:white">submersion !</span> &#x274C;</strong>',
+                '<span style="padding:0 0.2em;background:red;color:white">submersion !</span> &#x274C;',
             'attack_door_open' =>
-                '&#x1F9DF; <strong>'.$attack_data['cycle_ended'].'<sup>e</sup> attaque zombie 
-                <span style="padding:0 0.2em;background:#6c3483;color:white">catastrophe !</span> &#x274C;</strong>',
+                '<span style="padding:0 0.2em;background:#6c3483;color:white">catastrophe !</span> &#x274C;',
             ];
         
-        return $titles[$entry_type];
+        return '&#x1F9DF; <strong>'.$attack_data['cycle_ended'].'<sup>e</sup> attaque zombie&nbsp;'
+                . $titles[$entry_type].'</strong>';
     }
     
     
@@ -135,7 +133,7 @@ class HtmlLogAttacks extends HtmlWall
                 '<strong class="red">'.($attack_data['zombies']-$attack_data['defenses']).' zombies 
                 ont pénétré en ville !</strong>
                 Les <strong>'.$attack_data['defenses'].'</strong> défenses 
-                de la ville n° '.$attack_data['city_id'].' étaient insuffisantes...                        
+                de la ville étaient insuffisantes...                        
                 <p><strong>Construisez des défenses</strong> avant la prochaine attaque
                 si vous ne voulez pas tous y laisser votre peau !</p>',
             'attack_door_open' =>
