@@ -135,7 +135,8 @@ class HtmlLogAttacks extends HtmlWall
                 Les <strong>'.$attack_data['defenses'].'</strong> défenses 
                 de la ville étaient insuffisantes...                        
                 <p><strong>Construisez des défenses</strong> avant la prochaine attaque
-                si vous ne voulez pas tous y laisser votre peau !</p>',
+                si vous ne voulez pas tous y laisser votre peau ! <br>
+                <a href="#popattack">[Comment faire ?]</a></p>',
             'attack_door_open' =>
                 '<strong class="red">Les portes de la ville n\'étaient pas fermées !</strong>
                 Cette négligence a permis aux <strong>'.$attack_data['zombies'].'</strong> zombies 

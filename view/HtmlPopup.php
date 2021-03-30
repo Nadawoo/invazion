@@ -216,7 +216,8 @@ class HtmlPopup
             d'être impitoyablement <strong>dévorés</strong> !</p>
             <ul class=\"expanded\">
                 <li>&#x26CF;&#xFE0F; <strong>Fouillez</strong> le désert chaque jour ;</li>
-                <li>&#x1F4BC; <strong>Rapportez</strong> en ville les objets utiles
+                <li><img src=\"resources/img/free/city.png\" alt=\"ville\" style=\"height:22px;\">
+                    <strong>Rapportez</strong> en ville les objets utiles
                     que vous aurez trouvés ;</li>
                 <li>&#x1F3D7;&#xFE0F; <strong>Construisez</strong> les défenses de la ville
                     en mettant en commun ces ressources.</li>
