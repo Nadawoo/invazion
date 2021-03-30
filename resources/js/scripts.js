@@ -806,7 +806,7 @@ async function getCyclicAttacks(nbrExecutions) {
     let options = { method: "GET",
                     headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
                     };
-    let htmlElements = await fetch("view/generators/log_attacks.php?action=get&type=cyclicattack&sort=asc", options).then(toJson);
+    let htmlElements = await fetch("view/generators/log_attacks.php?action=get&type=cyclicattack&sort=desc", options).then(toJson);
     
     // Display the log of attacks
     document.getElementById("attacks").innerHTML += htmlElements.join("\n");
