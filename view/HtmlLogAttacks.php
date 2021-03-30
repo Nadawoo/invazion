@@ -67,8 +67,8 @@ class HtmlLogAttacks extends HtmlWall
                     </div>
                 </div>'
                 . $this->details_hurd($attack_data)
-                . $this->details_deads($attack_data)
-                . $this->details_defenses($entry_type, $attack_data);
+                . $this->details_defenses($entry_type, $attack_data)
+                . $this->details_deads($attack_data);
     }
     
     
