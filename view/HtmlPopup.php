@@ -41,10 +41,10 @@ class HtmlPopup
      * @param string $text  Free text to display in the pop-up
      * @return string HTML
      */
-    public function customised($popup_alias, $title, $text)
+    public function customised($popup_alias, $title, $text, $is_popup_visible=false)
     {
         
-        return $this->template($popup_alias, $title, $text);  
+        return $this->template($popup_alias, $title, $text, $is_popup_visible);  
     }
     
     
@@ -65,15 +65,17 @@ class HtmlPopup
     /**
      * Template for all the pop-ups. Don't call this directly.
      */
-    private function template($popup_alias, $title, $text)
+    private function template($popup_alias, $title, $text, $is_popup_visible=false)
     {
         
         // Fermer la pop-up ramènera au niveau de la carte de l'outre-monde.
         // Pour ramener en haut de la page, remplacer par "#".
         $anchor = '#Outside';
         
+        $css_class = ($is_popup_visible === true) ? 'force_visibility' : '';
+        
         return '
-        <div id="'.$popup_alias.'" class="overlay">
+        <div id="'.$popup_alias.'" class="overlay '.$css_class.'">
             <div class="popup">
                 <h2>'.$title.'</h2>
                 <a class="close" href="'.$anchor.'">&times;</a>

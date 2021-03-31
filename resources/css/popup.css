@@ -18,7 +18,9 @@
     opacity: 0;
     z-index:60;
 }
-.overlay:target {
+.overlay:target, /* Display popup when the anchor is in the url */
+.force_visibility /* Force the popup to display even without the anchor  */
+{
     visibility: visible;
     opacity: 1;
 }

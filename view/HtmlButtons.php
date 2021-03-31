@@ -252,6 +252,15 @@ class HtmlButtons
                     'params[type]'  => 'builder',
                     ],
                 ],
+            'validate_death' => [
+                'icon'  => '',
+                'name'  => 'Valider ma mort',
+                'title' => "",
+                'fields' => [
+                    'api_name'      => 'me',
+                    'action'        => 'validate_death',
+                    ],
+                ],
             'well_add' => [
                 'icon'  => '',
                 'name'  => 'Ajouter 1 ration d\'eau',

@@ -25,6 +25,7 @@ $nbr_zone_fellows   = 0;
 $healing_items      = [];
 $msg_popup          = NULL;
 $msg_move           = '';
+$is_custom_popup_visible = false;
 
 
 /**
@@ -49,7 +50,7 @@ if (!empty($_POST)) {
     }
     else {
         // The result of all the other actions is displayed in a pop-up
-        $msg_popup = '<p>'.$api_result['metas']['error_message'].'</p>';
+        $msg_popup = '<p>'.nl2br($api_result['metas']['error_message']).'</p>';
     }
 }
 
@@ -82,6 +83,20 @@ $maps               = $api->call_api('maps', 'get', ['map_id'=>$citizen['map_id'
 $configs            = $api->call_api('configs', 'get')['datas'];
 $specialities       = $configs['specialities'];
 $speciality_caracs  = $specialities[$citizen['speciality']];
+
+// Show the ending popup when the citizen is dead
+if($citizen['unvalidated_death_cause'] !== null) {
+    
+    $msg_popup = '<h2>Vous êtes mort !</h2>';
+    if($citizen['unvalidated_death_cause'] === 'outside') {
+        $msg_popup .= '<p>Les zombies vous ont dévoré dans le désert cette nuit ! '
+            . 'Rappelez-vous que les villes et les tentes sont les seuls abris valables  '
+            . 'contre l\'attaques zombie quotidienne. '
+            . 'La prochaine fois, pensez à rentrer en ville avant minuit...'
+            . $buttons->button('validate_death');
+    }
+    $is_custom_popup_visible = true;
+}
 
 // If the player is connected and has already created his citizen
 if ($citizen['citizen_id'] !== NULL) {
@@ -146,7 +161,7 @@ echo $popup->predefined('popmove', 'Aide : les déplacements');
 echo $popup->predefined('popattack', 'Aide : l\'attaque zombie quotidienne');
 
 // Generic pop-up describing the result of an action
-echo $popup->customised('popsuccess', '', nl2br($msg_popup));
+echo $popup->customised('popsuccess', '', $msg_popup, $is_custom_popup_visible);
 ?>
     
     <div id="connectionbar">
