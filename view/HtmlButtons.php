@@ -254,7 +254,7 @@ class HtmlButtons
                 ],
             'validate_death' => [
                 'icon'  => '',
-                'name'  => 'Valider ma mort',
+                'name'  => 'Valider',
                 'title' => "",
                 'fields' => [
                     'api_name'      => 'me',

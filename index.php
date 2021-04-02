@@ -87,14 +87,22 @@ $speciality_caracs  = $specialities[$citizen['speciality']];
 // Show the ending popup when the citizen is dead
 if($citizen['unvalidated_death_cause'] !== null) {
     
-    $msg_popup = '<h2>Vous êtes mort !</h2>';
+    $msg_popup = '<h2>Vous êtes mort !</h2>'
+               . '<img src="resources/img/copyrighted/skull.png" alt="image crâne" style="display:block;float:left;margin-right:0.5em;height:120px">';
+    
     if($citizen['unvalidated_death_cause'] === 'outside') {
-        $msg_popup .= '<p>Les zombies vous ont dévoré dans le désert cette nuit ! '
-            . 'Rappelez-vous que les villes et les tentes sont les seuls abris valables  '
-            . 'contre l\'attaques zombie quotidienne. '
-            . 'La prochaine fois, pensez à rentrer en ville avant minuit...'
-            . $buttons->button('validate_death');
+        $msg_popup .= 
+              '<p>Les zombies vous ont dévoré dans le désert cette nuit !</p> '
+            . '<p>Rappelez-vous que les villes et les tentes sont les seuls abris '
+            . 'valables contre l\'attaques zombie quotidienne. '
+            . 'La prochaine fois, pensez à rentrer en ville avant minuit...</p>';
     }
+    else {
+        $msg_popup .= '<p>[Bug: motif de mort inconnu]</p>';
+    }
+    
+    $msg_popup .= $buttons->button('validate_death', true, 'center');
+    
     $is_custom_popup_visible = true;
 }
 
