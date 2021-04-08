@@ -27,6 +27,7 @@ class HtmlMap
                                 <div class="halo">&nbsp;</div>',
             'city'          => '<div class="city"><img src="resources/img/free/city.png" alt="&#10224;"></div>'
                                . '<div class="city_nbr_def">'.$string1.'</div>',
+            'car'           => '<div class="emoji">&#x1F697;</div>',
             'carwreck'      => '<div class="emoji">&#x1F693;</div>',
             'circus'        => '<div class="emoji">&#x1F3AA;</div>',
             'hut'           => '&nbsp;',
@@ -62,6 +63,7 @@ class HtmlMap
             'city'          => '<div class="roleplay">Cette ville offre '.$string1.' points de défense... '
                                . 'Peut-être pourrez-vous vous y réfugier&nbsp;?</div>',
             'player_home'   => '<div class="roleplay">Ceci est votre habitation, '.$string1.' ! Votre refuge contre les zombies...</div>',
+            'car'           => '<div class="roleplay">Vous pouvez réparer cette voiture pour vous enfuir !</div>',
             'carwreck'      => '<div class="roleplay">Mieux vaut ne pas savoir ce qu\'est devenu le propriétaire de cette voiture embourbée. '
                              . 'Il a dû parvenir à s\'enfuir et coule des jours heureux quelque part... Oui, on va dire ça.</div>',
             'circus'        => '<div class="roleplay">Sous ce chapiteau déserté, plusieurs traces de zombies, d\'animaux '

@@ -75,7 +75,7 @@ class HtmlPopup
         $buttons = new HtmlButtons();
         
         $msg_popup = '<h2>Vous êtes mort !</h2>'
-           . '<img src="resources/img/copyrighted/skull.png" alt="image crâne" style="display:block;float:left;margin-right:0.5em;height:120px">';
+           . '<img src="resources/img/copyrighted/skull.png" alt="image crâne" style="height:120px">';
         
         if($unvalidated_death_cause === 'outside') {
             $msg_popup .= 
@@ -89,6 +89,29 @@ class HtmlPopup
         }
         
         $msg_popup .= $buttons->button('validate_death', true, 'center');
+        
+        return $msg_popup;
+    }
+    
+    
+    public function popcar()
+    {
+        
+        $msg_popup = '<h2>Objectif final</h2>
+            <img src="resources/img/copyrighted/tire.png" alt="image pneu">';
+        
+        $msg_popup .= 
+            '<p>Vous avez découvert une voiture abandonnée. Vous pouvez l\'utiliser  
+            pour vous enfuir et <strong>remporter la partie</strong> !</p>
+            <p>Cependant, le véhicule est endommagé et ne pourra démarrer qu\'après
+            plusieurs réparations.</p>
+            <p><strong>Trouvez les objets suivants</strong> en fouillant le désert,
+            puis amenez-les ici :</strong></p>
+            <ul>
+                <li>1 pneu</li>
+                <li>1 batterie</li>
+                <li>1 jerrycan d\'essence</li>
+            </ul>';
         
         return $msg_popup;
     }

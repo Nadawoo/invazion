@@ -70,6 +70,12 @@
     overflow: auto;
 }
 
+.popup img {
+    display:block;
+    float:left;
+    margin-right:0.5em;
+}
+
 .popup ul {
     margin: 0;
     padding: 0;

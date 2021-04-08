@@ -84,11 +84,6 @@ $configs            = $api->call_api('configs', 'get')['datas'];
 $specialities       = $configs['specialities'];
 $speciality_caracs  = $specialities[$citizen['speciality']];
 
-// Show the ending popup when the citizen is dead
-if($citizen['unvalidated_death_cause'] !== null) {    
-    $msg_popup = $popup->popdeath($citizen['unvalidated_death_cause']);    
-    $is_custom_popup_visible = true;
-}
 
 // If the player is connected and has already created his citizen
 if ($citizen['citizen_id'] !== NULL) {
@@ -107,6 +102,15 @@ if ($citizen['citizen_id'] !== NULL) {
         $city_fellows = $sort->get_child_citizens($city_data['child_cities_ids'], $cities_data, $citizens);
         // TRUE if the player has connected his habitation to this city
         $is_citizen_home_connected = in_array($citizen['city_id'], $city_data['child_cities_ids']) ? true : false;
+    }
+    
+    // Show the ending popup when the citizen is dead
+    if($citizen['unvalidated_death_cause'] !== null) {    
+        $msg_popup = $popup->popdeath($citizen['unvalidated_death_cause']);    
+        $is_custom_popup_visible = true;
+    }
+    elseif($zone['building'] == 'car') {
+        $msg_popup = $popup->popcar();
     }
 }
 
