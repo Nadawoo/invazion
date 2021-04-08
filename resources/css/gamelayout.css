@@ -529,10 +529,15 @@ input[type="submit"] {
 .redbutton:hover {
     border-style:inset;
     background:#CC0000;
+    color:white;
 }
 .redbutton.inactive {
     background:grey;
     text-decoration:line-through;
+}
+a.redbutton {
+    display:block;
+    padding:0.3em 0 0.7em 0;
 }
 
 /* Bouton de dépôt d'objet avec un aspect moderne et non le défaut HTML en relief */

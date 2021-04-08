@@ -573,6 +573,13 @@ class HtmlButtons
             &#x1F6E0;&#xFE0F; <input type="submit" value="Participer au chantier [1pa]" style="padding-top:0.8em">
         </form>';
     }
+    
+    
+    function final_goal()
+    {
+        
+        return '<a href="#popsuccess" class="redbutton">Explorer : <br>voiture en panne</a>';
+    }
         
     
     /**

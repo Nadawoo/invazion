@@ -101,14 +101,14 @@ class HtmlPopup
             <img src="resources/img/copyrighted/tire.png" alt="image pneu">';
         
         $msg_popup .= 
-            '<p>Vous avez découvert une voiture abandonnée. Vous pouvez l\'utiliser  
-            pour vous enfuir et <strong>remporter la partie</strong> !</p>
-            <p>Cependant, le véhicule est endommagé et ne pourra démarrer qu\'après
+            '<p>Vous avez découvert une voiture quasiment en état de marche. 
+            Vous pourriez l\'utiliser pour vous enfuir et remporter la partie !</p>
+            <p><strong>Cependant</strong>, le véhicule est endommagé et ne pourra démarrer qu\'après
             plusieurs réparations.</p>
             <p><strong>Trouvez les objets suivants</strong> en fouillant le désert,
             puis amenez-les ici :</strong></p>
             <ul>
-                <li>1 pneu</li>
+                <li>1 pneu de voiture</li>
                 <li>1 batterie</li>
                 <li>1 jerrycan d\'essence</li>
             </ul>';
