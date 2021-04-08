@@ -30,6 +30,7 @@ class HtmlMap
             'carwreck'      => '<div class="emoji">&#x1F693;</div>',
             'circus'        => '<div class="emoji">&#x1F3AA;</div>',
             'hut'           => '&nbsp;',
+            'peeble'        => '&nbsp;',
             'pond'          => '&nbsp;',
             'pharmacy'      => '<div class="emoji">&#x1F3E5;</div>',
             'stonewall'     => '<div>&#x1F9F1;</div>',
@@ -39,7 +40,7 @@ class HtmlMap
             'zombies'       => '<div class="zombies"><img src="resources/img/motiontwin/zombie'.$string2.'.gif" alt="Zx'.$string1.'"></div>',
         ];
         
-        return (isset($templates[$cell_alias])) ? "    ".$templates[$cell_alias]."\n" : null;
+        return (isset($templates[$cell_alias])) ? "    ".$templates[$cell_alias]."\n" : '{'.$cell_alias.'}';
     }
     
     
@@ -79,7 +80,7 @@ class HtmlMap
             'zombies'       => '<br>Il y a '.plural($string1, 'zombie').' dans cette zone&nbsp;!',
         ];
         
-        return $templates[$bubble_alias];
+        return (isset($templates[$bubble_alias])) ? "    ".$templates[$bubble_alias]."\n" : null;
     }
     
      
@@ -176,7 +177,7 @@ class HtmlMap
             // à chacune des condition suivantes.
             // TODO : revoir l'organisation de l'affichage afin d'éviter ce bricolage.
         }
-        elseif ($cell['building'] !== null and $this->html_cell_content($cell['building']) !== null) {
+        elseif ($cell['building'] !== null) {
             
             $cell_content = $this->html_cell_content($cell['building']);
             $bubble       = $this->html_bubble($cell['building'] );
