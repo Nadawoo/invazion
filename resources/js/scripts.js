@@ -643,6 +643,39 @@ async function teleportToCity(mapId, cityId) {
 
 
 /**
+ * Update the interface after killing a zombie
+ * 
+ * @param {string} apiAction The "action" parameter for the API url (e.g. "kill_zombies")
+ */
+async function killZombies(apiAction, coordX, coordY) {
+    
+    // Moves the citizen form the main city to his indivdual home
+    json = await callApi("GET", "zone", "action="+apiAction+"&token="+getCookie('token'));
+    
+    document.getElementById("message_move").innerHTML = '<span class="'+json.metas.error_class+'">'+json.metas.error_message+'</span>';
+    
+    if(json.metas.error_code === "success") {        
+        let nbrZombies = document.querySelector("#round_zombies .dot_number"),
+            newNbrZombies = Math.max(0, nbrZombies.innerHTML - json.datas.nbr_zombies_killed),
+            coordX = document.getElementById("citizenCoordX").innerHTML,
+            coordY = document.getElementById("citizenCoordY").innerHTML;
+    
+        // Update the number of zombies in the round button
+        nbrZombies.innerHTML = newNbrZombies;
+        // Update in the red frame above the movement paddle
+        document.querySelector("#alert_control .nbr_zombies").innerHTML = newNbrZombies;
+        if(newNbrZombies <= 0) {
+            hideIds("alert_control");
+        }
+        // Update in the action block "zombies"
+        document.querySelector("#block_zombies .nbr_zombies").innerHTML = newNbrZombies+" zombies";
+        // Update the zombie silhouettes on the map zone
+        document.querySelector("#zone"+coordX+"_"+coordY+" .zombies img").getAttribute("src").innerHTML = "resources/img/motiontwin/zombie"+newNbrZombies+".gif";
+    }
+}
+
+
+/**
  * Shifts the zone tooltip to the left if it overflows the map on the right
  * 
  * @param {type} hexagon The zone where the tooltip is

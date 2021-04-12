@@ -13,7 +13,7 @@ class HtmlWall
      * @param string $citizen_pseudo The pseudo of the currently connected player
      * @return type
      */
-    public function wall($citizen_id, $citizen_pseudo)
+    public function wall()
     {
         
         return '<div id="wall" class="city_block">
@@ -25,8 +25,6 @@ class HtmlWall
                     
                     '.$this->tabs().'
                     
-                    <div id="citizenId" class="hidden">'.$citizen_id.'</div>
-                    <div id="citizenPseudo" class="hidden">'.$citizen_pseudo.'</div>
                     <div id="discussions"></div>
                     <div id="notifications"></div>
                     <div id="attacks"></div>

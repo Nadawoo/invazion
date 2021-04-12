@@ -613,6 +613,9 @@ a.redbutton {
     max-height:9rem; /* Must not cover the contextual actions (enter in city...) */
     overflow:auto;
 }
+#alert_control .nbr_zombies {
+    font-size:1.3em;
+}
 #alert_control a {
     font-size:0.8em;
     color:orange;

@@ -119,6 +119,9 @@ if ($citizen['citizen_id'] !== NULL) {
  * HTML elements to build the interface
  */
 $html = [
+    // Data about the player for javascript treatments (his coordinates...)
+    'hidden_player_data' => $layout->hidden_player_data($citizen['citizen_id'], $citizen['citizen_pseudo'], 
+                                                        $citizen['coord_x'], $citizen['coord_y']),
     // Assembling the HTML for the map
     'map' => $map->hexagonal_map($maps['map_width'], $maps['map_height'], $maps['zones'], $citizens_by_coord, $citizen, $maps['next_attack_hour']),
     'map_citizens'      => $layout->map_citizens($citizens),
@@ -146,7 +149,7 @@ unset($maps, $citizens, $citizens_by_coord);
  * Start of the HTML page
  */
 echo $layout->page_header();
-
+echo $html['hidden_player_data'];
 
 // Textes des pop-up
 // TODO : ne pas charger toutes les textes dans le code, seulement celui utile
@@ -386,7 +389,7 @@ echo $popup->customised('popsuccess', '', $msg_popup, $is_custom_popup_visible);
  
     
     <div id="floating_wall">
-        <?php echo $wall->wall($citizen['citizen_id'], $citizen['citizen_pseudo']) ?>
+        <?php echo $wall->wall() ?>
     </div>
     
 </div>

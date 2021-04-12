@@ -490,9 +490,7 @@ class HtmlButtons
         }
                 
         return
-        '<form method="post" action="#Outside">
-            <input type="hidden" name="api_name" value="zone">
-            <input type="hidden" name="action" value="'.$button['fields']['action'].'">
+        '<form method="post" action="#Outside" onclick="killZombies(\''.$button['fields']['action'].'\'); return false;">
             <input type="submit" value="'.$button['icon'].' '.$button['name'].'" class="redbutton '.$class.'"  title="'.$title.'">
         </form>';
     }

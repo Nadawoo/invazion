@@ -296,7 +296,7 @@ class HtmlLayout extends HtmlPage
             return '<p class="greytext">Aucun zombie dans la zone. Vous êtes libre de vos mouvements...</p>';
         }
         else {
-            return '<strong style="font-size:1.3em;color:red">'.plural($zone_zombies, 'zombie').'</strong> autour de vous !
+            return '<strong style="font-size:1.3em;color:red" class="nbr_zombies">'.plural($zone_zombies, 'zombie').'</strong> autour de vous !
                     <div id="zombies_visual">'. str_repeat('<span class="zombie">&#x1F9DF;</span>', $zone_zombies) .'</div>'
                     . $buttons->kill_zombies($zone_zombies, 'kill_zombie')
                     . $buttons->kill_zombies($zone_zombies, 'kill_mass_zombies');
@@ -501,7 +501,7 @@ class HtmlLayout extends HtmlPage
             <div id="alert_control" class="cover_paddle">
                 <div class="title">Bloqué par les zombies !</div>
                 <div class="text">
-                    Les <strong style="font-size:1.3em">'.$zombies.'</strong> zombies 
+                    Les <span class="nbr_zombies">'.$zombies.'</span> zombies 
                     sont trop nombreux et vous encerclent ! Vous pouvez tenter 
                     d\'attaquer ces putrides afin de dégager le passage...<br>
                     <a href="#popcontrol">[En savoir plus...]</a>
@@ -664,5 +664,21 @@ class HtmlLayout extends HtmlPage
         }
         
         return $result;
+    }
+    
+    
+    /**
+     * Data about the player for javascript treatments (his coordinates...)
+     * 
+     * @param int $citizen_id
+     * @param string $citizen_pseudo
+     * @return string HTML
+     */
+    function hidden_player_data($citizen_id, $citizen_pseudo, $coord_x, $coord_y) {
+        
+        return '<div id="citizenId" class="hidden">'.$citizen_id.'</div>
+                <div id="citizenPseudo" class="hidden">'.$citizen_pseudo.'</div>
+                <div id="citizenCoordX" class="hidden">'.$coord_x.'</div>
+                <div id="citizenCoordY" class="hidden">'.$coord_y.'</div>';
     }
 }
