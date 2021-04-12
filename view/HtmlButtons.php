@@ -279,6 +279,15 @@ class HtmlButtons
                     'action'        => 'pickup',
                     ],
                 ],
+            'wingame' => [
+                'icon'  => '',
+                'name'  => "Monter dans la voiture !",
+                'title' => "",
+                'fields' => [
+                    'api_name'      => 'events',
+                    'action'        => 'wingame',
+                    ],
+                ],
         ];
     }
     

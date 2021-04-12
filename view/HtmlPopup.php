@@ -74,15 +74,25 @@ class HtmlPopup
         
         $buttons = new HtmlButtons();
         
-        $msg_popup = '<h2>Vous êtes mort !</h2>'
-           . '<img src="resources/img/copyrighted/skull.png" alt="image crâne" style="height:120px">';
-        
         if($unvalidated_death_cause === 'outside') {
-            $msg_popup .= 
-                  '<p>Les zombies vous ont dévoré dans le désert cette nuit !</p> '
+            $msg_popup = 
+                  '<h2>Vous êtes mort !</h2>'
+                . '<img src="resources/img/copyrighted/skull.png" alt="image crâne" style="height:120px">'
+                . '<p>Les zombies vous ont dévoré dans le désert cette nuit !</p> '
                 . '<p>Rappelez-vous que les villes et les tentes sont les seuls abris '
                 . 'valables contre l\'attaques zombie quotidienne. '
                 . 'La prochaine fois, pensez à rentrer en ville avant minuit...</p>';
+        }
+        elseif($unvalidated_death_cause === 'wingame') {
+            $msg_popup = 
+                '<h2>Félicitations, vous avez survécu !</h2>
+                <img src="resources/img/copyrighted/map.png" alt="image carte" style="height:120px">
+                <p>Votre ténacité et votre chance vous ont permis de vous enfuir
+                de cette contrée hostile.</p>
+                <p>Les payages désolés défilent lentement pendant que la voiture, 
+                secouée par les chaos de la route, vous emmène vers un lieu
+                plus sûr.</p>
+                <p>Pourvu que le moteur tienne le coup...</p>';
         }
         else {
             $msg_popup .= '<p>[Bug: motif de mort inconnu]</p>';
@@ -96,6 +106,8 @@ class HtmlPopup
     
     public function popcar()
     {
+        
+        $buttons = new HtmlButtons();
         
         $msg_popup = '<h2>Objectif final</h2>
             <img src="resources/img/copyrighted/tire.png" alt="image pneu">';
@@ -111,7 +123,8 @@ class HtmlPopup
                 <li>1 pneu de voiture</li>
                 <li>1 batterie</li>
                 <li>1 jerrycan d\'essence</li>
-            </ul>';
+            </ul>
+            <br>'.$buttons->button('wingame', true, 'center').'<br>';
         
         return $msg_popup;
     }
