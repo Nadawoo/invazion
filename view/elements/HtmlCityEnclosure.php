@@ -1,6 +1,6 @@
 <?php
-safely_require('/view/HtmlLayout.php');
-safely_require('/view/HtmlButtons.php');
+safely_require('/view/elements/HtmlLayout.php');
+safely_require('/view/elements/HtmlButtons.php');
 
 
 /**

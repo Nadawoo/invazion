@@ -7,9 +7,10 @@ Ils sont listés par ordre d'importance.*
 * register.php : page où le joueur se crée un compte
 * connect.php : page où le joueur se connecte à son compte
 * ZombLib : librairie pour exploiter les API du jeu - voir la doc : https://invazion.nadazone.fr/zomblib-doc.php
-* /view : contient les classes et fonctions générant les éléments HTML spécifiques (carte...)
+* /view : tout ce qui concerne la vue, c'est-à-dire les éléments HTML de l'interface
+  * /view/elements : les composants HTML de l'interface (menu, carte, boutons...)
   * /view/generators : scripts générant des vues partielles (ex : générer une zone du désert).
-  Appelez ces pages en javascript pour actualiser des éléments de l'interface
+  Appelez ces pages en javascript pour actualiser des éléments précis de l'interface
   au lieu de recharger toute la page.
 * /controller : fonctions pour traiter certaines données avant affichage
 * /resources : fichiers appelables par le client : images, CSS, javascript
