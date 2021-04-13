@@ -1,8 +1,8 @@
 <?php
-require_once 'controller/autoload.php';
-safely_require('controller/official_server_root.php');
-safely_require('view/elements/HtmlPage.php');
-safely_require('view/elements/connect.php');
+require_once 'core/controller/autoload.php';
+safely_require('core/controller/official_server_root.php');
+safely_require('core/view/elements/HtmlPage.php');
+safely_require('core/view/elements/connect.php');
 safely_require('ZombLib.php');
 
 $html       = new HtmlPage();

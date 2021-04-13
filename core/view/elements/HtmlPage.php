@@ -1,5 +1,5 @@
 <?php
-safely_require('/controller/official_server_root.php');
+safely_require('/core/controller/official_server_root.php');
 
 /**
  * Classe générique pour générer la structure HTML d'une page du site.
@@ -103,7 +103,7 @@ class HtmlPage
                     </div> <!-- End of #body_bg -->
                     <script type="text/javascript" src="resources/js/ZombLib.js?v1.3"></script>
                     <script type="text/javascript" src="resources/js/wallTemplate.js?v4.4"></script>
-                    <script type="text/javascript" src="resources/js/scripts.js?v6.7"></script>
+                    <script type="text/javascript" src="resources/js/scripts.js?v6.8"></script>
                     <script type="text/javascript" src="resources/js/events.js?v4.6"></script>
                 </body>
             </html>';

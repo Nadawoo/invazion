@@ -5,8 +5,8 @@
  * Useful to refresh the data of the city interface in javascript.
  */
 
-require_once '../../controller/autoload.php';
-safely_require('/controller/official_server_root.php');
+require_once '../../../core/controller/autoload.php';
+safely_require('/core/controller/official_server_root.php');
 safely_require('/ZombLib.php');
 
 header('content-type:application/json');

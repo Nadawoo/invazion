@@ -7,16 +7,16 @@ Ils sont listés par ordre d'importance.*
 * register.php : page où le joueur se crée un compte
 * connect.php : page où le joueur se connecte à son compte
 * ZombLib : librairie pour exploiter les API du jeu - voir la doc : https://invazion.nadazone.fr/zomblib-doc.php
-* /view : tout ce qui concerne la vue, c'est-à-dire les éléments HTML de l'interface
-  * /view/elements : les composants HTML de l'interface (menu, carte, boutons...)
-  * /view/generators : scripts générant des vues partielles (ex : générer une zone du désert).
+* /core/view : tout ce qui concerne la vue, c'est-à-dire les éléments HTML de l'interface
+  * /elements : les composants HTML de l'interface (menu, carte, boutons...)
+  * /generators : scripts générant des vues partielles (ex : générer une zone du désert).
   Appelez ces pages en javascript pour actualiser des éléments précis de l'interface
   au lieu de recharger toute la page.
-* /controller : fonctions pour traiter certaines données avant affichage
+* /core/controller : fonctions pour traiter certaines données avant affichage
 * /resources : fichiers appelables par le client : images, CSS, javascript
 * /archived : code non utilisé à ce jour mais éventuellement réutilisable
 
-### Dossier /view
+### Dossier /core/view
 * HtmlPage.php : structure de base de la page (header et footer HTML)
 * HtmlLayout.php : classe principale générant les blocs HTML du jeu, hors ceux placés dans une classe dédiée.
 * HtmlMap.php : génère le HTML de la carte
@@ -27,7 +27,7 @@ Ils sont listés par ordre d'importance.*
 * minimap.php : génère le smartphone-gps à côté de la carte
 * plural.php : petite fonction pour simplifier l'ajout des "s" aux mots au pluriel
 
-### Dossier /controller
+### Dossier /core/controller
 [à compléter]
 
 ### Dossier /resources

@@ -635,7 +635,7 @@ async function teleportToCity(mapId, cityId) {
         let options = { method: "GET",
                         headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
                         };            
-        jsonCityEnclosure = await fetch("view/generators/city_enclosure.php?city_id="+cityId+"&map_id="+mapId+"&coord_x="+coordX+"&coord_y="+coordY, options).then(toJson);
+        jsonCityEnclosure = await fetch("core/view/generators/city_enclosure.php?city_id="+cityId+"&map_id="+mapId+"&coord_x="+coordX+"&coord_y="+coordY, options).then(toJson);
         document.getElementById("blockHomeStorage").innerHTML = jsonCityEnclosure.datas.html_home_storage;
         document.getElementById("blockCityStorage").innerHTML = jsonCityEnclosure.datas.html_city_storage;
     }
@@ -839,7 +839,7 @@ async function getCyclicAttacks(nbrExecutions) {
     let options = { method: "GET",
                     headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
                     };
-    let htmlElements = await fetch("view/generators/log_attacks.php?action=get&type=cyclicattack&sort=desc", options).then(toJson);
+    let htmlElements = await fetch("core/view/generators/log_attacks.php?action=get&type=cyclicattack&sort=desc", options).then(toJson);
     
     // Display the log of attacks
     document.getElementById("attacks").innerHTML += htmlElements.join("\n");
@@ -875,7 +875,7 @@ async function UpdateMapRealtime(event, timestamp) {
     let options = { method: "GET",
                     headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
                     };
-    let htmlZones = await fetch("view/generators/zone.php?map_id=1&newerthan="+timestamp+"&citizen_id="+citizenId+"&citizen_pseudo="+citizenPseudo, options).then(toJson);
+    let htmlZones = await fetch("core/view/generators/zone.php?map_id=1&newerthan="+timestamp+"&citizen_id="+citizenId+"&citizen_pseudo="+citizenPseudo, options).then(toJson);
 
     // Updates the HTML for the modified zones
     for (let coords in htmlZones) {
