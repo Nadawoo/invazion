@@ -64,18 +64,22 @@ class HtmlPage
                             <a href="'.official_server_root().'/discuss">Discuter</a>&nbsp;<span class="circle">&cir;</span>
                             <a href="'.official_server_root().'/project">Le projet</a>&nbsp;<span class="circle">&cir;</span>
                             <a href="'.official_server_root().'/customise-the-game">Créez votre version du jeu</a>&nbsp;<span class="circle">&cir;</span>
-                            <a href="http://invazion.wikidot.com" target="_blank">Wiki</a>
+                            <a href="http://invazion.wikidot.com" target="_blank" rel="noopener">Wiki</a>
                             <br>
-                            <a href="https://discord.gg/2GRPTyM" target="_blank" title="Pour parler du jeu, faire des propositions... Ou tout simplement discuter :)">
+                            <a href="https://discord.gg/2GRPTyM" target="_blank" rel="noopener"
+                                title="Pour parler du jeu, faire des propositions... Ou tout simplement discuter :)">
                                 <img src="/resources/img/thirdparty/Discord-Logo-Black.png" alt="discord_logo" style="height:1.7em;margin-bottom:-0.6em;"> Discord
                             </a>
-                            <a href="https://github.com/Nadawoo/invazion" target="_blank" title="Le code source du jeu est disponible sur Github">
+                            <a href="https://github.com/Nadawoo/invazion" target="_blank" rel="noopener"
+                                title="Le code source du jeu est disponible sur Github">
                                 <img src="/resources/img/thirdparty/GitHub-Mark-32px.png" alt="github_logo" style="height:1.4em;margin-bottom:-0.4em;"> Github
                             </a>
-                            <a href="'.official_server_root().'/share" target="_blank" title="Partager et soutenir le projet InvaZion">
+                            <a href="'.official_server_root().'/share" target="_blank" rel="noopener"
+                                title="Partager et soutenir le projet InvaZion">
                                 <img src="/resources/img/free/share.png" alt="share" style="height:1.4em;margin-bottom:-0.4em;"> Partager
                             </a>
-                            <a href="'.official_server_root().'/apis-list" title="Modifiez toute l\'interface du jeu grâce aux API">
+                            <a href="'.official_server_root().'/apis-list" 
+                                title="Modifiez toute l\'interface du jeu grâce aux API">
                                 <img src="/resources/img/free/api.png" alt="api_logo" style="height:1.4em;margin-bottom:-0.4em;"> API
                             </a>
                         </nav>
@@ -93,8 +97,10 @@ class HtmlPage
         
         return '
                             <footer>
-                                <p>Ce jeu est issu d\'<a href="https://invazion.nadazone.fr">Invazion</a>, créé par <strong>Nadawoo</strong> (développeur indépendant).<br> 
-                                Invazion est inspiré du jeu <strong>Hordes</strong> développé par <a href="https://motion-twin.com" target="_blank">Motion Twin</a>.<br>
+                                <p>Ce jeu est issu d\'<a href="https://invazion.nadazone.fr">Invazion</a>, 
+                                créé par <strong>Nadawoo</strong> (développeur indépendant).<br> 
+                                Invazion est inspiré du jeu <strong>Hordes</strong> développé 
+                                par <a href="https://motion-twin.com" target="_blank" rel="noopener">Motion Twin</a>.<br>
                                 Il n\'est pas affilié à Motion Twin.<br>
                                 
                                 </p>

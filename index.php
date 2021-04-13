@@ -416,7 +416,7 @@ echo $popup->customised('popsuccess', '', $msg_popup, $is_custom_popup_visible);
     
     <hr>
     
-    <p>Merci à <a href="http://twinoid.com/user/7912453" target="_blank"><strong>Ross</strong></a> 
+    <p>Merci à <a href="http://twinoid.com/user/7912453" target="_blank" rel="noopener"><strong>Ross</strong></a> 
         pour son image de ville <img src="resources/img/free/city.png" alt="city.png">
     </p>
     
