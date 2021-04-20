@@ -109,6 +109,14 @@ echo $html->page_header();
 <div id="editConfig">
 
 <h2>Créer un nouvel objet</h2>
+
+<p style="width:70%;margin:auto;font-size:0.9em;text-align:center;font-style:italic;">
+    Note : les cases non cochables sont des options qui ne sont pas encore  
+    totalement opérationnelles dans le jeu.
+    Venez faire pression sur <a href="https://discord.gg/2GRPTyM">le Discord</a>
+    pour accélérer leur mise en place :)
+</p>
+    
 <form method="POST">
     <fieldset>
         <legend>Nom &amp; description</legend>
@@ -128,7 +136,7 @@ echo $html->page_header();
         <legend>Où trouver l'objet</legend>
         
         <div>
-            <input type="checkbox" name="is_findable" id="is_findable" checked onchange="toggle('block_findable')">
+            <input type="checkbox" name="is_findable" id="is_findable" onchange="toggle('block_findable')">
             <label for="is_findable">Peut être trouvé en fouillant le désert</label> 
         </div>
         <div style="margin-left:2em" id="block_findable">
@@ -157,7 +165,7 @@ echo $html->page_header();
         </div>
         
         <div>
-            <input type="checkbox" name="is_craftable" id="is_craftable" onchange="toggle('block_compo')">
+            <input type="checkbox" name="is_craftable" id="is_craftable" onchange="toggle('block_compo')" disabled>
             <label for="is_craftable">Peut être fabriqué en assemblant d'autres objets</label>
         </div>
         <div style="margin-left:2em" id="block_compo">
@@ -188,7 +196,7 @@ echo $html->page_header();
         </div>
         
         <div>
-            <input type="checkbox" name="is_malus" id="is_malus" onchange="toggle('block_malus')">
+            <input type="checkbox" name="is_malus" id="is_malus" onchange="toggle('block_malus')" disabled>
             <label for="is_malus">Dégrade la santé après utilisation</label>
         </div>
         <div style="margin-left:2em" id="block_malus">
@@ -203,7 +211,7 @@ echo $html->page_header();
         </div>
         
         <div>
-            <input type="checkbox" name="is_healing" id="is_healing" onchange="toggle('block_healing')">
+            <input type="checkbox" name="is_healing" id="is_healing" onchange="toggle('block_healing')" disabled>
             <label for="is_healing">Améliore la santé après utilisation</label>
         </div>
         <div style="margin-left:2em" id="block_healing">
@@ -218,7 +226,7 @@ echo $html->page_header();
         </div>
                 
         <div>
-            <input type="checkbox" name="bag_extensions" id="bag_extensions" onchange="toggle('block_bag')">
+            <input type="checkbox" name="bag_extensions" id="bag_extensions" onchange="toggle('block_bag')" disabled>
             <label for="bag_extensions">Augmente la capacité du sac à dos</label>
         </div>
         <div style="margin-left:2em" id="block_bag">
@@ -252,15 +260,15 @@ echo $html->page_header();
             </div>
         </div>
         
-        <input type="checkbox" name="is_defense" id="is_defense">
+        <input type="checkbox" name="is_defense" id="is_defense" disabled>
         <label for="is_defense">Est un objet de défense</label>
         <br>
-        <input type="checkbox" name="is_decoration" id="is_decoration">
+        <input type="checkbox" name="is_decoration" id="is_decoration" disabled>
         <label for="is_decoration">Est un objet de décoration</label>
         <br>
         
         <div>
-            <input type="checkbox" name="is_dropper" id="is_dropper" onchange="toggle('block_drop')">
+            <input type="checkbox" name="is_dropper" id="is_dropper" onchange="toggle('block_drop')" disabled>
             <label for="is_dropper">Fait apparaître un nouvel objet après utilisation</label>
         </div>
         <div style="margin-left:2em" id="block_drop">
@@ -280,7 +288,7 @@ echo $html->page_header();
         <legend>Conditions d'utilisation</legend>
         
         <div>
-            <input type="checkbox" name="is_loadable" id="is_loadable" onchange="toggle('block_loads')">
+            <input type="checkbox" name="is_loadable" id="is_loadable" onchange="toggle('block_loads')" disabled>
             <label for="is_loadable">Doit être chargé pour être utilisable (munition, énergie...)</label>
         </div>
         <div style="margin-left:2em" id="block_loads">
@@ -302,11 +310,11 @@ echo $html->page_header();
         
         <input type="radio" name="solidity" value="is_destroyed" id="is_destroyed" checked onchange="hide('block_solidity_custom')"> 
         <label for="is_destroyed">L'objet disparaît (définitif)</label><br>
-        <input type="radio" name="solidity" value="is_broken" id="is_broken" onchange="hide('block_solidity_custom')">
+        <input type="radio" name="solidity" value="is_broken" id="is_broken" onchange="hide('block_solidity_custom')" disabled>
         <label for="is_broken">L'objet est cassé (réparable)</label><br>
         <input type="radio" name="solidity" value="is_intact" id="is_intact" onchange="hide('block_solidity_custom')">
         <label for="is_intact">L'objet reste intact</label><br>
-        <input type="radio" name="solidity" value="custom" id="solidity_custom" onchange="toggle('block_solidity_custom')">
+        <input type="radio" name="solidity" value="custom" id="solidity_custom" onchange="toggle('block_solidity_custom')" disabled>
         <label for="solidity_custom">Personnaliser...</label><br>
         <div style="margin-left:2em" id="block_solidity_custom">
             <label for="break_rate">Cassé :</label>
