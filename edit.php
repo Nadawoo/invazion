@@ -105,8 +105,10 @@ echo $html->page_header();
 ?>
 
 
+<div id="editConfig">
+
 <h2>Créer un nouvel objet</h2>
-<form method="POST" id="editConfig">
+<form method="POST">
     <fieldset>
         <legend>Nom &amp; description</legend>
         <label for="item_name">Nom de l'objet :</label><br>
@@ -295,7 +297,7 @@ echo $html->page_header();
     </fieldset>
     
     <fieldset>
-        <legend>État de l'objet après utilisation active</legend>
+        <legend>État de l'objet après utilisation</legend>
         
         <input type="radio" name="solidity" value="is_destroyed" id="is_destroyed" checked onchange="hide('block_solidity_custom')"> 
         <label for="is_destroyed">L'objet disparaît (définitif)</label><br>
@@ -330,6 +332,10 @@ echo '<table>'
         .$table_header
         .$table_body.
     '</table>';
+?>
 
+<!-- End of the page container #editConfig -->
+</div>
 
+<?php
 echo $html->page_footer();
