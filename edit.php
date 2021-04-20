@@ -5,6 +5,7 @@
 
 require_once 'core/controller/autoload.php';
 safely_require('core/view/elements/html_options.php');
+safely_require('core/controller/official_server_root.php');
 safely_require('ZombLib.php');
 
 
@@ -70,7 +71,7 @@ $boost_types = ['food'      => 'Nourriture',
                 ];
 
 
-$api        = new ZombLib();
+$api        = new ZombLib(official_server_root().'/api');
 $html       = new HtmlPage();
 $htmlitem   = new HtmlConfigItems();
 $items      = $api->call_api('configs', 'get')['datas']['items'];
