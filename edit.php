@@ -117,18 +117,19 @@ echo $html->page_header();
     pour accélérer leur mise en place :)
 </p>
     
-<form method="POST">
+<form method="POST" onsubmit="createItem(); return false;">
+    
     <fieldset>
         <legend>Nom &amp; description</legend>
         <label for="item_name">Nom de l'objet :</label><br>
-        <input id="item_name" name="item_name" type="text" placeholder="Tranche de pain" style="width:22em">
+        <input id="item_name" name="item_characs[name]" type="text" placeholder="Tranche de pain" style="width:22em">
         <br>
-        <label for="descr_rp">Description d'ambiance (<em>roleplay</em>) :</label><br>
-        <textarea cols="35" rows="4" id="descr_rp" name="descr_rp" type="text" 
+        <label for="descr_ambiance">Description d'ambiance (<em>roleplay</em>) :</label><br>
+        <textarea cols="35" rows="4" id="descr_ambiance" name="item_characs[descr_ambiance]" type="text" 
                   placeholder="Ce morceau de pain moisi n'est guère appétissant, mais faute de mieux..."></textarea>
         <br>
         <label for="descr_purpose">Description de l'utilité :</label><br>
-        <textarea cols="35" rows="4" id="descr_purpose" name="descr_purpose" type="text" 
+        <textarea cols="35" rows="4" id="descr_purpose" name="item_characs[descr_purpose]" type="text" 
                   placeholder="Consommer cet objet vous donnera 6 points d'action."></textarea>
     </fieldset>
     
@@ -150,7 +151,7 @@ echo $html->page_header();
             </div>
             <div id="block_findable_advanced">
                 <label for="finding_rate">Chances de trouver l'objet à l'intérieur de sa catégorie :</label>
-                <input id="finding_rate" name="finding_rate" type="number" min="0" max="100"  step="10" value="100">%<br>
+                <input id="finding_rate" name="item_characs[finding_rate]" type="number" min="0" max="100"  step="10" value="100">%<br>
                 <div style="color:grey" class="aside"><span style="font-style:normal">&#9888;&#65039;</span>
                     Comprendre comment agit ce pourcentage :<br>
                     • Quel que soit le pourcentage, l'objet n'a <strong>aucune chance</strong> d'être trouvé 
@@ -165,7 +166,7 @@ echo $html->page_header();
         </div>
         
         <div>
-            <input type="checkbox" name="is_craftable" id="is_craftable" onchange="toggle('block_compo')" disabled>
+            <input type="checkbox" name="item_characs[is_craftable]" id="is_craftable" onchange="toggle('block_compo')" disabled>
             <label for="is_craftable">Peut être fabriqué en assemblant d'autres objets</label>
         </div>
         <div style="margin-left:2em" id="block_compo">
@@ -187,16 +188,16 @@ echo $html->page_header();
         </div>
         <div style="margin-left:2em" id="block_apgain">
             <label for="ap_gain">Nombre de points gagnés :</label>
-            <input id="ap_gain" name="ap_gain" type="number" min="0" value="0">
+            <input id="ap_gain" name="item_characs[ap_gain]" type="number" min="0" value="0">
             <br>
             <label for="boost_type">Règles de consommation de :</label>
-            <select id="boost_type" name="boost_type">
+            <select id="boost_type" name="item_characs[boost_type]">
                 <?php echo html_options($boost_types) ?>
             </select>
         </div>
         
         <div>
-            <input type="checkbox" name="is_malus" id="is_malus" onchange="toggle('block_malus')" disabled>
+            <input type="checkbox" name="item_characs[is_malus]" id="is_malus" onchange="toggle('block_malus')" disabled>
             <label for="is_malus">Dégrade la santé après utilisation</label>
         </div>
         <div style="margin-left:2em" id="block_malus">
@@ -211,7 +212,7 @@ echo $html->page_header();
         </div>
         
         <div>
-            <input type="checkbox" name="is_healing" id="is_healing" onchange="toggle('block_healing')" disabled>
+            <input type="checkbox" name="item_characs[is_healing]" id="is_healing" onchange="toggle('block_healing')" disabled>
             <label for="is_healing">Améliore la santé après utilisation</label>
         </div>
         <div style="margin-left:2em" id="block_healing">
@@ -243,7 +244,7 @@ echo $html->page_header();
         <br>
         <strong>Effets en tant qu'objet :</strong>
         <div>
-            <input type="checkbox" name="is_weapon" id="is_weapon" onchange="toggle('block_weapon')">
+            <input type="checkbox" name="item_characs[is_weapon]" id="is_weapon" onchange="toggle('block_weapon')">
             <label for="is_weapon">Est une arme contre les zombies</label>
         </div>
         <div style="margin-left:2em" id="block_weapon">
@@ -253,22 +254,22 @@ echo $html->page_header();
             <label for="weapon_efficiency_custom">Personnaliser...</label><br>
             <div style="margin-left:2em">
                 <label for="killing_rate">Chances de tuer un zombie :</label>
-                <input id="killing_rate" name="killing_rate" type="number" min="0" value="100">%
+                <input id="killing_rate" name="item_characs[killing_rate]" type="number" min="0" value="100">%
                 <br>
                 <label for="max_killed">Nombre de tués max. par coup :</label>
-                <input id="max_killed" name="max_killed" type="number" min="1" value="1">
+                <input id="max_killed" name="item_characs[max_killed]" type="number" min="1" value="1">
             </div>
         </div>
         
-        <input type="checkbox" name="is_defense" id="is_defense" disabled>
+        <input type="checkbox" name="item_characs[is_defense]" id="is_defense" disabled>
         <label for="is_defense">Est un objet de défense</label>
         <br>
-        <input type="checkbox" name="is_decoration" id="is_decoration" disabled>
+        <input type="checkbox" name="item_characs[is_decoration]" id="is_decoration" disabled>
         <label for="is_decoration">Est un objet de décoration</label>
         <br>
         
         <div>
-            <input type="checkbox" name="is_dropper" id="is_dropper" onchange="toggle('block_drop')" disabled>
+            <input type="checkbox" name="item_characs[is_dropper]" id="is_dropper" onchange="toggle('block_drop')" disabled>
             <label for="is_dropper">Fait apparaître un nouvel objet après utilisation</label>
         </div>
         <div style="margin-left:2em" id="block_drop">
@@ -288,7 +289,7 @@ echo $html->page_header();
         <legend>Conditions d'utilisation</legend>
         
         <div>
-            <input type="checkbox" name="is_loadable" id="is_loadable" onchange="toggle('block_loads')" disabled>
+            <input type="checkbox" name="item_characs[is_loadable]" id="is_loadable" onchange="toggle('block_loads')" disabled>
             <label for="is_loadable">Doit être chargé pour être utilisable (munition, énergie...)</label>
         </div>
         <div style="margin-left:2em" id="block_loads">
@@ -300,7 +301,7 @@ echo $html->page_header();
             <input id="loads" name="loads" type="number" min="1" value="1">
         </div>
         
-        <input type="checkbox" name="is_heavy" id="is_heavy">
+        <input type="checkbox" name="item_characs[is_heavy]" id="is_heavy">
         <label for="is_heavy">Est un objet encombrant</label>
 
     </fieldset>
@@ -312,22 +313,25 @@ echo $html->page_header();
         <label for="is_destroyed">L'objet disparaît (définitif)</label><br>
         <input type="radio" name="solidity" value="is_broken" id="is_broken" onchange="hide('block_solidity_custom')" disabled>
         <label for="is_broken">L'objet est cassé (réparable)</label><br>
-        <input type="radio" name="solidity" value="is_intact" id="is_intact" onchange="hide('block_solidity_custom')">
+        <input type="radio" name="solidity value="is_intact" id="is_intact" onchange="hide('block_solidity_custom')">
         <label for="is_intact">L'objet reste intact</label><br>
         <input type="radio" name="solidity" value="custom" id="solidity_custom" onchange="toggle('block_solidity_custom')" disabled>
         <label for="solidity_custom">Personnaliser...</label><br>
         <div style="margin-left:2em" id="block_solidity_custom">
             <label for="break_rate">Cassé :</label>
-            <input id="break_rate" name="break_rate" type="number" min="0" max="100" value="0">% | 
+            <input id="break_rate" name="item_characs[break_rate]" type="number" min="0" max="100" value="0">% | 
             <label for="destruction_rate">Détruit :</label>
-            <input id="destruction_rate" name="destruction_rate" type="number" min="0" max="100" value="100">% | 
+            <input id="destruction_rate" name="item_characs[destruction_rate]" type="number" min="0" max="100" value="100">% | 
             <label for="intact_rate">Intact :</label>
             <input id="intact_rate" name="intact_rate" type="number" min="0" max="100" value="0">%<br>
             <em>Intact = 100% - (Risque de casse + Risque de destruction)</em>
         </div>
     </fieldset>
     
-    <!-- <p class="center"><input type="submit" value="Enregistrer"></p> -->
+    
+    <p id="error" style="color:red;font-weight:bold;text-align:center"></p>
+    
+    <p class="center"><input type="submit" value="Enregistrer" class="redbutton"></p>
     
 </form>
 

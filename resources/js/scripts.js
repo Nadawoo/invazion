@@ -488,6 +488,26 @@ async function connectUser() {
 
 
 /**
+ * Sends the data to create a new item in game
+ */
+async function createItem() {
+    
+    let token = getCookie('token'),
+        formData = new FormData(document.querySelector('form')),
+        request = {};
+    
+    for (var pair of formData.entries()) {
+        request += "&"+pair[0]+"="+pair[1];
+    }
+    
+    // Sends the characteristics of the new item to the API
+    let json = await callApi("POST", "configs", `action=create&type=item&token=${token}&${request}`);
+    
+    document.getElementById("error").innerHTML = json.metas.error_message;
+}
+
+
+/**
  * Show/hide the vertical panel for the discussions and events
  */
 async function enlargeWall() {
