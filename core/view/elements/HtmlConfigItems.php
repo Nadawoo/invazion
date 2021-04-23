@@ -55,13 +55,7 @@ class HtmlConfigItems
     public function heaviness($items_caracs)
     {
 
-        if (!isset($items_caracs['heaviness'])) {
-
-            return  'non';
-        }
-        else {
-            return '<span class="red">oui</span>';
-        }
+        return ($items_caracs['heaviness'] === 0) ? 'non' : '<span class="red">oui</span>';
     }
 
 
