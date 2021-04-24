@@ -35,15 +35,16 @@ class HtmlConfigItems
     public function weapon($items_caracs)
     {
 
-        if (!isset($items_caracs['weapon'])) {
-
+        if ($items_caracs['killing_rate'] === 0) {
             return  '–';
         }
         else {
-            $weapon = $items_caracs['weapon'];
-            return 'Tuer zombie : '.$weapon['killing_rate'].'%<br>'
-                  .'Casse :       '.$weapon['break_rate'].'%<br>'
-                  .'Disparition : '.$weapon['destruction_rate'].'%<br>';
+            return '<abbr title="Probabilité que l\'arme tue un zombie">Réussite</abbr> : '
+                  . $items_caracs['killing_rate'].'%<br>'
+                  .'<abbr title="Probabilité que l\'arme se casse après un coup (mais réparable)">Casse</abbr> : '
+                  . $items_caracs['break_rate'].'%<br>'
+                  .'<abbr title="Probabilité que l\'arme disparaisse définitivement après un coup">Destruction</abbr> : '
+                  . $items_caracs['destruction_rate'].'%<br>';
         }
     }
 
