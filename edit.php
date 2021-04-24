@@ -62,7 +62,8 @@ function html_select_type()
 
 // Type of rules for eating a boost, e.g.: only 1 food per day
 // Must match with the list of boost types in the database (ENUM field)
-$boost_types = ['food'      => 'Nourriture',
+$boost_types = [null        => '–',
+                'food'      => 'Nourriture',
                 'water'     => 'Eau',                                
                 'alcohol'   => 'Alcool',
                 'drug'      => 'Drogue',
@@ -97,7 +98,7 @@ foreach ($items as $id=>$caracs) {
             <td>user'.$caracs['user_id'].'</td>
             <td style="text-align:right">'.$caracs['finding_rate'].'%</td>
             <td>'.$htmlitem->heaviness($caracs).'</td>
-            <td>'.$htmlitem->boost($caracs).'</td>
+            <td>'.$htmlitem->boost($caracs, $boost_types).'</td>
             <td>'.$htmlitem->weapon($caracs).'</td>
             <td>'.$htmlitem->craft($items, $id).'</td>
         </tr>';

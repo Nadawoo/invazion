@@ -62,15 +62,9 @@ class HtmlConfigItems
     /**
      * L'objet est-il un boost (nourriture, eau, drogue...)
      */
-    public function boost($items_caracs)
+    public function boost($items_caracs, $boost_types)
     {
 
-        if (!isset($items_caracs['boost'])) {
-
-            return  '–';
-        }
-        else {
-            return $items_caracs['boost'];
-        }
+        return $boost_types[$items_caracs['boost_type']];
     }
 }
