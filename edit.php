@@ -221,18 +221,18 @@ echo $html->page_header();
         </div>
         
         <div>
-            <input type="checkbox" name="item_characs[is_healing]" id="is_healing" onchange="toggle('block_healing')" disabled>
+            <input type="checkbox" id="is_healing" onchange="toggle('block_healing')">
             <label for="is_healing">Améliore la santé après utilisation</label>
         </div>
         <div style="margin-left:2em" id="block_healing">
-            <input type="checkbox" id="heals_thirst" value="heals_thirst">
-            <label for="heals_thirst">Enlève la soif</label><br>
-            <input type="checkbox" id="heals_wound" value="heals_wound">
-            <label for="heals_wound">Enlève la blessure</label><br>            
-            <input type="checkbox" id="heals_infection" value="heals_infection">
-            <label for="heals_infection">Enlève l'infection</label><br>
-            <input type="checkbox" id="heals_terror" value="heals_terror">
-            <label for="heals_terror">Enlève la terreur</label>
+            <input type="checkbox" id="healing_thirst" value="healing_thirst" disabled>
+            <label for="healing_thirst">Enlève la soif</label><br>
+            <input type="checkbox" id="healing_wound" value="healing_wound" disabled>
+            <label for="healing_wound">Enlève la blessure</label><br>            
+            <input type="checkbox" id="healing_infection" name="item_characs[healing_infection]" value="1">
+            <label for="healing_infection">Enlève l'infection</label><br>
+            <input type="checkbox" id="healing_terror" value="healing_terror" disabled>
+            <label for="healings_terror">Enlève la terreur</label>
         </div>
                 
         <div>
