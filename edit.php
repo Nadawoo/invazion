@@ -141,15 +141,20 @@ echo $html->page_header();
             <label for="is_findable">Peut être trouvé en fouillant le désert</label> 
         </div>
         <div style="margin-left:2em" id="block_findable">
+            Catégorie de fréquence : [fonctionnalité à venir]
+            <!--
             <label>Catégorie de fréquence : <?php echo html_select_type() ?></label><br>
             <div style="color:grey" class="aside">
                 Chaque catégorie d'objet a plus ou moins de chances d'être trouvée en fouilles. 
                 Ex : "soins" est plus rare que "ressource".
             </div>
+            -->
             <div style="margin-bottom:0.3em;font-size:0.8em">
                 <a onclick="toggle('block_findable_advanced')">► Réglages avancés...</a>
             </div>
             <div id="block_findable_advanced">
+                [fonctionnalité à venir]
+                <!--
                 <label for="finding_rate">Chances de trouver l'objet à l'intérieur de sa catégorie :</label>
                 <input id="finding_rate" name="item_characs[finding_rate]" type="number" min="0" max="100"  step="10" value="100">%<br>
                 <div style="color:grey" class="aside"><span style="font-style:normal">&#9888;&#65039;</span>
@@ -162,6 +167,7 @@ echo $html->page_header();
                     de la même catégorie. 
                     Ne réduisez ce taux que si l'objet doit être plus rare que les autres.
                 </div>
+                -->
             </div>
         </div>
         
