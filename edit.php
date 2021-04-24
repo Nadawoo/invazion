@@ -301,7 +301,7 @@ echo $html->page_header();
             <input id="loads" name="loads" type="number" min="1" value="1">
         </div>
         
-        <input type="checkbox" name="item_characs[is_heavy]" id="is_heavy">
+        <input type="checkbox" name="item_characs[heaviness]" value="1" id="is_heavy">
         <label for="is_heavy">Est un objet encombrant</label>
 
     </fieldset>
