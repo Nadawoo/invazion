@@ -265,9 +265,9 @@ class HtmlLayout extends HtmlPage
                 $html_items .= '<li class="item_label">'
                     . '<button type="submit" name="params[item_id]" value="'.$item_id.'" class="drop_button" title="Ramasser cet objet">&wedgeq;</button> '
                     . '<var>
-                        <img src="../resources/img/copyrighted/items/'.$item_id.'.png" alt="icon_'.$item_id.'">
+                        <img src="../resources/img/copyrighted/items/'.$item_id.'.png" alt="'.$items_caracs[$item_id]['icon_symbol'].'">
                         &nbsp;'. $items_caracs[$item_id]['name'] 
-                    . '</var> <span style="font-size:0.95em">×&nbsp;'.$item_amount .'<span>' 
+                    . '</var> <span style="font-size:0.95em">×&nbsp;'.$item_amount.'<span>' 
                     . '</li>';
             }
 
@@ -655,7 +655,7 @@ class HtmlLayout extends HtmlPage
                     <li class="item_label">
                         <button type="submit" name="params[item_id]" value="'.$item_id.'" class="drop_button" title="Déposer cet objet">&veeeq;</button>
                         <var>
-                            <img src="../resources/img/copyrighted/items/'.$item_id.'.png" alt="icon_'.$item_id.'"> 
+                            <img src="../resources/img/copyrighted/items/'.$item_id.'.png" alt="'.$items[$item_id]['icon_symbol'].'"> 
                             &nbsp;' . $items[$item_id]['name'] .
                         '</var>
                     </li>';

@@ -455,6 +455,9 @@ legend {
     padding-left:0;
     list-style-type:none;
 }
+.items_list img {
+    text-align:center; /* Useful to center the alternative textual icon (emoji...) */
+}
 .city_block .items_list {
     margin:0;
 }
