@@ -244,20 +244,20 @@ echo $html->page_header();
         <br>
         <strong>Effets en tant qu'objet :</strong>
         <div>
-            <input type="checkbox" name="item_characs[is_weapon]" id="is_weapon" onchange="toggle('block_weapon')">
+            <input type="checkbox" name="item_characs[killing_rate]" value="100" id="is_weapon" onchange="toggle('block_weapon')">
             <label for="is_weapon">Est une arme contre les zombies</label>
         </div>
         <div style="margin-left:2em" id="block_weapon">
-            <input type="radio" name="weapon_efficiency" value="default" id="is_weapon_efficient" checked>
+            <input type="radio" name="killing_rate" value="100" id="is_weapon_efficient" checked>
             <label for="is_weapon_efficient">L'objet tue 1 zombie à coup sûr</label><br>
-            <input type="radio" name="weapon_efficiency" value="custom" id="weapon_efficiency_custom">
+            <input type="radio" name="killing_rate" value="custom" id="weapon_efficiency_custom" disabled>
             <label for="weapon_efficiency_custom">Personnaliser...</label><br>
-            <div style="margin-left:2em">
+            <div id="block_killing_rate" style="margin-left:2em">
                 <label for="killing_rate">Chances de tuer un zombie :</label>
-                <input id="killing_rate" name="item_characs[killing_rate]" type="number" min="0" value="100">%
+                <input id="killing_rate" name="killing_rate" type="number" min="0" value="100">%
                 <br>
                 <label for="max_killed">Nombre de tués max. par coup :</label>
-                <input id="max_killed" name="item_characs[max_killed]" type="number" min="1" value="1">
+                <input id="max_killed" name="max_killed" type="number" min="1" value="1">
             </div>
         </div>
         

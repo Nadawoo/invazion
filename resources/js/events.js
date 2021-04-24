@@ -124,7 +124,8 @@ if (document.getElementById('editConfig') !== null) {
             'block_bag',
             'block_drop',
             'block_loads',
-            'block_solidity_custom'
+            'block_solidity_custom',
+            'block_killing_rate'
             ]);
 }
 
