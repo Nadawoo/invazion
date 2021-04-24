@@ -395,11 +395,17 @@ echo $popup->customised('popsuccess', '', $msg_popup, $is_custom_popup_visible);
 </div>
     
 <div id="rules">
-    
+    <br>
+    <br>
+    <br>
+
     <?php
     echo $buttons->button('add_mass_zombies');
     echo $buttons->button('end_cycle');
     ?>
+    <br>
+    <a href="edit" title="Paramétrez les objets disponibles dans le jeu (bêta)">Créer des objets</a>
+    <br>
     
     <br>
     
