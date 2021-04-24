@@ -87,6 +87,7 @@ $table_header = '<tr>
             <th>Encombrant</th>
             <th>Boost</th>
             <th>Arme</th>
+            <th>Santé</th>
             <th>Assemblable à partir de</th>
         </tr>';
 
@@ -100,6 +101,7 @@ foreach ($items as $id=>$caracs) {
             <td>'.$htmlitem->heaviness($caracs).'</td>
             <td>'.$htmlitem->boost($caracs, $boost_types).'</td>
             <td>'.$htmlitem->weapon($caracs).'</td>
+            <td>'.$htmlitem->health($caracs).'</td>
             <td>'.$htmlitem->craft($items, $id).'</td>
         </tr>';
 }
@@ -227,7 +229,7 @@ echo $html->page_header();
         <div style="margin-left:2em" id="block_healing">
             <input type="checkbox" id="healing_thirst" value="healing_thirst" disabled>
             <label for="healing_thirst">Enlève la soif</label><br>
-            <input type="checkbox" id="healing_wound" value="healing_wound" disabled>
+            <input type="checkbox" id="healing_wound" name="item_characs[healing_wound]"  value="1">
             <label for="healing_wound">Enlève la blessure</label><br>            
             <input type="checkbox" id="healing_infection" name="item_characs[healing_infection]" value="1">
             <label for="healing_infection">Enlève l'infection</label><br>
@@ -349,6 +351,9 @@ echo $html->page_header();
 
 
 <h2>Liste des objets existants</h2>
+
+<p class="center"><em>Tableau rudimentaire en attendant une plus belle présentation :)</em></p>
+
 <?php
 echo '<table>'
         .$table_header

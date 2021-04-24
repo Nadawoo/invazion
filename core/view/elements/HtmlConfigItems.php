@@ -67,4 +67,15 @@ class HtmlConfigItems
 
         return $boost_types[$items_caracs['boost_type']];
     }
+    
+    
+    public function health($items_caracs)
+    {
+        
+        $result = '';
+        $result .= ($items_caracs['healing_wound'] === 1) ? 'Soigne blessure<br>' : '';
+        $result .= ($items_caracs['healing_infection'] === 1) ? 'Soigne infection<br>' : '';
+        
+        return $result;
+    }
 }
