@@ -299,3 +299,7 @@
     font-style:normal;
     font-size:0.9em;
 }
+
+#wall h3 {
+    display:block;
+}
