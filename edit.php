@@ -99,7 +99,7 @@ foreach ($items as $id=>$caracs) {
             <td>'.$htmlitem->heaviness($caracs).'</td>
             <td>'.$htmlitem->boost($caracs).'</td>
             <td>'.$htmlitem->weapon($caracs).'</td>
-            <td>'.$htmlitem->craft($caracs).'</td>
+            <td>'.$htmlitem->craft($items, $id).'</td>
         </tr>';
 }
 

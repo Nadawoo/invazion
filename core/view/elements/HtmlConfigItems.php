@@ -8,21 +8,20 @@ class HtmlConfigItems
     /**
      * HTML de la liste des composants permettant d'assembler un objet
      * 
-     * @param $items_caracs Liste des objets telle que définie dans le fichier de config
+     * @param array $items The characteristics of all the items of the game
+     * @param int $item_id The ID of the item to craft
      */
-    public function craft($items_caracs)
+    public function craft($items, $item_id)
     {
 
         $html_craft = '';  
 
-        if (!isset($items_caracs['craftable_from'])) {
-
+        if (!isset($items[$item_id]['craftable_from'])) {
             $html_craft = '–';
         }
         else {
-
-            foreach ($items_caracs['craftable_from'] as $item_id=>$amount) {
-                $html_craft .= '• item #'.$item_id.' (x'.$amount.')<br>';
+            foreach ($items[$item_id]['craftable_from'] as $item_id=>$amount) {
+                $html_craft .= '• '.$items[$item_id]['name'].' (x'.$amount.')<br>';
             }
         }
 
