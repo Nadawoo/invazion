@@ -288,6 +288,15 @@ class HtmlButtons
                     'action'        => 'wingame',
                     ],
                 ],
+            'explore_building' => [
+                'icon'  => '',
+                'name'  => "Explorer le bâtiment",
+                'title' => "",
+                'fields' => [
+                    'api_name'      => 'zone',
+                    'action'        => 'explore',
+                    ],
+                ],
         ];
     }
     
@@ -582,10 +591,16 @@ class HtmlButtons
     }
     
     
-    function final_goal()
+    /**
+     * Explore a building in the desert
+     * 
+     * @param string $building_alias The alias of the building, as returned by the API
+     * @return string
+     */
+    function explore_building($building_alias)
     {
         
-        return '<a href="#popsuccess" class="redbutton">Explorer : <br>voiture en panne</a>';
+        return '<a href="#popsuccess" class="redbutton">Explorer : <br>'.$building_alias.'</a>';
     }
         
     

@@ -356,12 +356,12 @@ class HtmlLayout extends HtmlPage
                     . '</td>'
                 . '</tr>';
         }
-        elseif ($zone_building === 'car') {
+        elseif ($zone_building !== null) {
             
             $table .= '<tr>'
                     . '<td class="center">'
                     . '<span class="warning">Vous avez découvert un bâtiment !</span><br>'
-                    . $buttons->final_goal()
+                    . $buttons->explore_building($zone_building)
                     . '</td>'
                 . '</tr>';
         }

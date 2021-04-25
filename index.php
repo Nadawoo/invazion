@@ -112,6 +112,9 @@ if ($citizen['citizen_id'] !== NULL) {
     elseif($zone['building'] == 'car') {
         $msg_popup = $popup->popcar();
     }
+    elseif($zone['building'] !== null) {
+        $msg_popup = $popup->popbuilding($zone['building'], $msg_popup);
+    }
 }
 
 

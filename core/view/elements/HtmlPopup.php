@@ -131,6 +131,34 @@ class HtmlPopup
     
     
     /**
+     * Generic pop-up to explore the buildings in the desert
+     * 
+     * @param string $building_alias
+     * @param string $api_message The message returned by the API after the action
+     */
+    public function popbuilding($building_alias, $api_message)
+    {
+        
+        $buttons = new HtmlButtons();
+        
+        $msg_popup = '<h2>Bâtiment du désert</h2>
+            <img src="resources/img/copyrighted/tiles/desert/10.png" alt="image bâtiment" height="128">';
+        
+        $msg_popup .= 
+            '<p>Vous avez découvert un bâtiment isolé : <strong>'.$building_alias.'</strong></p>
+            <p><em>[description du bâtiment à venir]</em></p>
+            <p>Vous devriez le fouiller. Avec une peu de chance, vous y découvrirez 
+            un objet rare...</p>
+            <br>
+            <div style="background:green;color:white">'. $api_message .'</div>
+            <br>
+            '.$buttons->button('explore_building', true, 'center').'<br>';
+        
+        return $msg_popup;
+    }
+    
+    
+    /**
      * Template for all the pop-ups. Don't call this directly.
      */
     private function template($popup_alias, $title, $text, $is_popup_visible=false)
