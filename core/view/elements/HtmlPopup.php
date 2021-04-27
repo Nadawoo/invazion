@@ -133,10 +133,10 @@ class HtmlPopup
     /**
      * Generic pop-up to explore the buildings in the desert
      * 
-     * @param string $building_alias
+     * @param string $building_name
      * @param string $api_message The message returned by the API after the action
      */
-    public function popbuilding($building_alias, $api_message)
+    public function popbuilding($building_name, $api_message)
     {
         
         $buttons = new HtmlButtons();
@@ -145,7 +145,7 @@ class HtmlPopup
             <img src="resources/img/copyrighted/tiles/desert/10.png" alt="image bâtiment" height="128">';
         
         $msg_popup .= 
-            '<p>Vous avez découvert un bâtiment isolé : <strong>'.$building_alias.'</strong></p>
+            '<p>Vous avez découvert un bâtiment isolé : <strong>'.$building_name.'</strong></p>
             <p><em>[description du bâtiment à venir]</em></p>
             <p>Vous devriez le fouiller. Avec une peu de chance, vous y découvrirez 
             un objet rare...</p>

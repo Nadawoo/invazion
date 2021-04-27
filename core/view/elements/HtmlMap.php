@@ -10,6 +10,14 @@ class HtmlMap
 {
     
     
+    function set_config_buildings($config_buildings)
+    {
+        
+        $this->config_buildings = $config_buildings;
+    }
+
+
+    
     /**
      * Templates for the zone contents
      * 
@@ -27,16 +35,7 @@ class HtmlMap
                                 <div class="halo">&nbsp;</div>',
             'city'          => '<div class="city"><img src="resources/img/free/city.png" alt="&#10224;"></div>'
                                . '<div class="city_nbr_def">'.$string1.'</div>',
-            'car'           => '<div class="emoji">&#x1F697;</div>',
-            'carwreck'      => '<div class="emoji">&#x1F693;</div>',
-            'circus'        => '<div class="emoji">&#x1F3AA;</div>',
-            'hut'           => '&nbsp;',
-            'peeble'        => '&nbsp;',
-            'pond'          => '&nbsp;',
-            'pharmacy'      => '<div class="emoji">&#x1F3E5;</div>',
-            'stonewall'     => '<div>&#x1F9F1;</div>',
             'tent'          => '<div class="emoji">&#9978;</div>',
-            'vault'         => '<div class="emoji">&#9961;&#65039;</div>',
             'items'         => '&nbsp;',
             'zombies'       => '<div class="zombies"><img src="resources/img/motiontwin/zombie'.$string2.'.gif" alt="Zx'.$string1.'"></div>',
         ];
@@ -63,21 +62,7 @@ class HtmlMap
             'city'          => '<div class="roleplay">Cette ville offre '.$string1.' points de défense... '
                                . 'Peut-être pourrez-vous vous y réfugier&nbsp;?</div>',
             'player_home'   => '<div class="roleplay">Ceci est votre habitation, '.$string1.' ! Votre refuge contre les zombies...</div>',
-            'car'           => '<div class="roleplay">Vous pouvez réparer cette voiture pour vous enfuir !</div>',
-            'carwreck'      => '<div class="roleplay">Mieux vaut ne pas savoir ce qu\'est devenu le propriétaire de cette voiture embourbée. '
-                             . 'Il a dû parvenir à s\'enfuir et coule des jours heureux quelque part... Oui, on va dire ça.</div>',
-            'circus'        => '<div class="roleplay">Sous ce chapiteau déserté, plusieurs traces de zombies, d\'animaux '
-                             . 'et de dresseurs. Difficile de déterminer qui a mangé qui et dans quel ordre...</div>',
-            'hut'           => '<div class="roleplay">Bien que ce cabanon branlant soit détrempé par les pluies, vous parviendrez '
-                             . 'sans doute à en tirer quelques planches utilisables.</div>',
-            'pond'          => '<div class="roleplay">Une vieille mare d\'eau boueuse et parsemée de petites algues. '
-                             . 'Ce sera meilleur que l\'eau du puits de la ville !</div>',
-            'pharmacy'      => '<div class="roleplay">Un cabinet de médecin, quelle chance ! Vous pourrez emporter '
-                             . 'quelques médicaments, à défaut de pouvoir ressusciter le praticien.</div>',
-            'stonewall'     => '<div class="roleplay">A quel type de bâtiment appartenait donc ce mur effondré ? '
-                             . 'Peu importe, il va être avantageusement recyclé en carrière de pierres.</div>',
             'tent'          => '<div class="roleplay">Un citoyen a planté sa tente ici.</div>',
-            'vault'         => '<div class="roleplay">Une crypte se trouve dans la zone... Qui sait quels secrets elle renferme&nbsp;?</div>',
             'items'         => '<br>Il y a des objets dans cette zone... Mais lesquels&nbsp;?',
             'zombies'       => '<br>Il y a '.plural($string1, 'zombie').' dans cette zone&nbsp;!',
         ];
@@ -85,7 +70,38 @@ class HtmlMap
         return (isset($templates[$bubble_alias])) ? "    ".$templates[$bubble_alias]."\n" : null;
     }
     
-     
+    
+    /**
+     * Specific tooltip for the buildings in the desert
+     * 
+     * @param int $building_id
+     * @return string HTML
+     */
+    private function html_bubble_building($building_id)
+    {
+        
+        // TODO: make a generic class to get the config of the buildings
+        // e.g.: Config()->building(5)->descr_ambiance;
+        return '<div class="roleplay">'.$this->config_buildings[$building_id]['descr_ambiance'].'</div>';
+    }
+    
+    
+    /**
+     * Displays the icon of the buildings in the desert
+     * 
+     * @param int $building_id
+     * @return string HTML
+     */
+    private function html_icon_building($building_id)
+    {
+        
+        // TODO: make a generic class to get the config of the buildings
+        // e.g.: Config()->building(5)->icon_html;
+        $icon = $this->config_buildings[$building_id]['icon_html'];
+        return ($icon !== null) ? '<div class="emoji">'.$icon.'</div>' : '{'.$building_id.'}';
+    }
+    
+    
     /**
      * Génère une carte HTML à cases hexagonales
      * 
@@ -179,10 +195,10 @@ class HtmlMap
             // à chacune des condition suivantes.
             // TODO : revoir l'organisation de l'affichage afin d'éviter ce bricolage.
         }
-        elseif ($cell['building'] !== null) {
+        elseif ($cell['building_id'] !== null) {
             
-            $cell_content = $this->html_cell_content($cell['building']);
-            $bubble       = $this->html_bubble($cell['building'] );
+            $cell_content = $this->html_icon_building($cell['building_id']);
+            $bubble       = $this->html_bubble_building($cell['building_id']);
         }
         elseif ($cell['city_type'] === 'home') {
             
@@ -220,7 +236,11 @@ class HtmlMap
         if($cell === null) {
             $opacity = 0;
         }
-        elseif ($is_player_in_zone === true or $cell['building'] === 'vault') {
+        // TODO: get the building config in a cleaner way
+        elseif ($is_player_in_zone === true 
+                or ($cell['building_id'] !== null and
+                   (bool)$this->config_buildings[$cell['building_id']]['is_always_visible'] === true))
+                {
             $opacity = 1;
         }
         else {
@@ -264,14 +284,16 @@ class HtmlMap
      */
     function ground_css_class($cell) {
         
+        // TODO: those CSS class don't match the CSS since the buildings are 
+        // identified by an ID and no more by alias (pond, hut...)
         if ($cell['zombies'] > 0) {
-            $ground = 'ground_zombies_'.$cell['building'];
+            $ground = 'ground_zombies_'.$cell['building_id'];
         }
         elseif ($cell['city_type'] === 'city' or $cell['parent_city_id'] !== null) {
             $ground = 'ground_city';
         }
         else {
-            $ground = 'ground_'.$cell['building'];
+            $ground = 'ground_'.$cell['building_id'];
         }
         
         return $ground;

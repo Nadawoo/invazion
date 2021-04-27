@@ -339,15 +339,22 @@ class HtmlLayout extends HtmlPage
      * @param int $city_size Size of the city in the zone where the player is.
      * @return string HTML
      */
-    function block_actions_context($city_size, $zone_building)
+    function block_actions_context($city_size, $building_id, $configs_buildings)
     {
         
         $buttons = new HtmlButtons();
         $popup   = new HtmlPopup();
         $table   = '';
         
+        // TODO: make a generic class to get the configs without checking the nullity
+        // e.g.: Config()->building(5)->name;
+        $building_name = ($building_id !== null) 
+                         ? $building_name = $configs_buildings[$building_id]['name']
+                         : '';
+        
         // If there is a CRYPT in the zone, display the button to enter.
-        if ($zone_building === 'vault') {
+        // TODO: replace this hardcoded ID by a standard treatment
+        if ($building_id === 2) {
 
             $table .= '<tr>'
                     . '<td class="center">'
@@ -356,12 +363,12 @@ class HtmlLayout extends HtmlPage
                     . '</td>'
                 . '</tr>';
         }
-        elseif ($zone_building !== null) {
+        elseif ($building_id !== null) {
             
             $table .= '<tr>'
                     . '<td class="center">'
                     . '<span class="warning">Vous avez découvert un bâtiment !</span><br>'
-                    . $buttons->explore_building($zone_building)
+                    . $buttons->explore_building($building_name)
                     . '</td>'
                 . '</tr>';
         }
@@ -390,7 +397,7 @@ class HtmlLayout extends HtmlPage
     }
     
     
-    function block_actions_build($city_size, $zone_building)
+    function block_actions_build($city_size, $building_id)
     {
         
         $buttons = new HtmlButtons;
@@ -431,7 +438,8 @@ class HtmlLayout extends HtmlPage
         
         
         // If there is a CRYPT in the zone, display the button to enter.
-        if ($zone_building === 'vault') {
+        // TODO: replace this hardcoded ID (2 = crypt) by a generic method
+        if ($building_id === 2) {
 
             $table .= '<tr>'
                     . '<td>'.$buttons->icon('add_vault').'</td>'

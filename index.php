@@ -83,6 +83,7 @@ $maps               = $api->call_api('maps', 'get', ['map_id'=>$citizen['map_id'
 $configs            = $api->call_api('configs', 'get')['datas'];
 $specialities       = $configs['specialities'];
 $speciality_caracs  = $specialities[$citizen['speciality']];
+$map->set_config_buildings($configs['buildings']);
 
 
 // If the player is connected and has already created his citizen
@@ -109,11 +110,13 @@ if ($citizen['citizen_id'] !== NULL) {
         $msg_popup = $popup->popdeath($citizen['unvalidated_death_cause']);    
         $is_custom_popup_visible = true;
     }
-    elseif($zone['building'] == 'car') {
+    // If there is a car (ID=1) in the zone
+    // TODO: don't hardcode this ID
+    elseif($zone['building_id'] == 1) {
         $msg_popup = $popup->popcar();
     }
-    elseif($zone['building'] !== null) {
-        $msg_popup = $popup->popbuilding($zone['building'], $msg_popup);
+    elseif($zone['building_id'] !== null) {
+        $msg_popup = $popup->popbuilding($configs['buildings'][$zone['building_id']]['name'], $msg_popup);
     }
 }
 
@@ -130,9 +133,9 @@ $html = [
     'map_citizens'      => $layout->map_citizens($citizens),
     'attack_bar'        => $layout->attack_bar($citizen['map_id'], get_game_day($citizen['last_death'])),
     // Contents of the round action buttons at the right of the map
-    'actions_build'     => $layout->block_actions_build($zone['city_size'], $zone['building']),
+    'actions_build'     => $layout->block_actions_build($zone['city_size'], $zone['building_id']),
     'actions_bag'       => $layout->block_actions_bag($configs['items'], $citizen['bag_items']),
-    'actions_context'   => $layout->block_actions_context($zone['city_size'], $zone['building']),
+    'actions_context'   => $layout->block_actions_context($zone['city_size'], $zone['building_id'], $configs['buildings']),
     'actions_zombies'   => $layout->block_actions_zombies($zone['zombies']),
     'zone_items'        => $layout->block_zone_items($configs['items'], $zone),
     'bag_items'         => $layout->block_bag_items($configs['items'], $citizen['citizen_id'], $citizen['bag_items'], $citizen['bag_size']),
