@@ -682,11 +682,16 @@ async function killZombies(apiAction, coordX, coordY) {
     
         // Update the number of zombies in the round button
         nbrZombies.innerHTML = newNbrZombies;
+        
         // Update in the red frame above the movement paddle
-        document.querySelector("#alert_control .nbr_zombies").innerHTML = newNbrZombies;
-        if(newNbrZombies <= 0) {
-            hideIds("alert_control");
+        let alertControlNbrZombies = document.querySelector("#alert_control .nbr_zombies");
+        if(alertControlNbrZombies !== null) {
+            alertControlNbrZombies.innerHTML = newNbrZombies;
+            if(newNbrZombies <= 0) {
+                hideIds("alert_control");
+            }
         }
+        
         // Update in the action block "zombies"
         document.querySelector("#block_zombies .nbr_zombies").innerHTML = newNbrZombies+" zombies";
         // Update the zombie silhouettes on the map zone
