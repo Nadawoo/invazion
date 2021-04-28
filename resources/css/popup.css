@@ -82,11 +82,14 @@
     padding-left: 1em;
     list-style-type: none;
 }
-/* Description d'ambiance */
-.popup .rp {
+/* Description d'ambiance d'une bâtiment */
+.popup .descr_ambiance {
+    margin-left:7.5em;
+    padding-left:0.8em;
     font-size:0.95em;
-    font-style: italic;
-    margin-top:0;
+    font-style:italic;
+    border-left:4px solid grey;
+    border-radius:0.8em;
 }
 
 /*

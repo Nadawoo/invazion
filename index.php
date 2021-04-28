@@ -116,7 +116,9 @@ if ($citizen['citizen_id'] !== NULL) {
         $msg_popup = $popup->popcar();
     }
     elseif($zone['building_id'] !== null) {
-        $msg_popup = $popup->popbuilding($configs['buildings'][$zone['building_id']]['name'], $msg_popup);
+        $msg_popup = $popup->popbuilding($configs['buildings'][$zone['building_id']]['name'], 
+                                         $configs['buildings'][$zone['building_id']]['descr_ambiance'], 
+                                         $msg_popup);
     }
 }
 

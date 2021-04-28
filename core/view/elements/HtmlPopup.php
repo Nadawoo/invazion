@@ -134,19 +134,20 @@ class HtmlPopup
      * Generic pop-up to explore the buildings in the desert
      * 
      * @param string $building_name
+     * @param string $descr_ambiance
      * @param string $api_message The message returned by the API after the action
      */
-    public function popbuilding($building_name, $api_message)
+    public function popbuilding($building_name, $descr_ambiance, $api_message)
     {
         
         $buttons = new HtmlButtons();
         
         $msg_popup = '<h2>Bâtiment du désert</h2>
-            <img src="resources/img/copyrighted/tiles/desert/10.png" alt="image bâtiment" height="128">';
+            <img src="resources/img/copyrighted/tiles/desert/10.png" alt="image bâtiment" height="128px">';
         
         $msg_popup .= 
             '<p>Vous avez découvert un bâtiment isolé : <strong>'.$building_name.'</strong></p>
-            <p><em>[description du bâtiment à venir]</em></p>
+            <p class="descr_ambiance">'.$descr_ambiance.'</p>
             <p>Vous devriez le fouiller. Avec une peu de chance, vous y découvrirez 
             un objet rare...</p>
             <br>
@@ -189,19 +190,21 @@ class HtmlPopup
         
         $buttons = new HtmlButtons();
         
-        return '<p class="rp">Vous pénétrez dans la crypte obscure dont les murs irréguliers  
+        return '<img src="/resources/img/copyrighted/crypt.png" width="100px">
+            <p class="descr_ambiance">Vous pénétrez dans la crypte obscure dont les murs irréguliers  
             suintent d\'un&nbsp;liquide indéterminé. L\'odeur des moisissures vous enveloppe 
             tandis que vous descendez les marches étroites...
             </p>
+            <br>
             Cette découverte vous accorde une action à&nbsp;usage unique. Voulez-vous l\'utiliser 
-            pour aider vos congénères humains...<br>
+            pour <strong>aider vos congénères humains...</strong><br>
             <ul>
                 <li>+ <span style="color:grey;text-decoration:line-through">Exterminer les&nbsp;zombies sur les 7&nbsp;zones alentour</span></li>
                 <li>+ <span style="color:grey;text-decoration:line-through">Exterminer les&nbsp;zombies sur 7&nbsp;zones aléatoires</span></li>
                 <li>+ '.$buttons->button('reveal_zones', 'no_icon', 'formlink').'</li>
             </ul>
             <br>
-            ...  ou bien pour propager davantage le chaos&nbsp;?
+            ...  ou bien pour <strong>propager davantage le chaos&nbsp;?</strong>
             <ul>
                 <li>– '.$buttons->button('add_map_zombies', 'no_icon', 'formlink').'</li>
                 <li>– <span style="color:grey;text-decoration:line-through">Obscurcir 10&nbsp;zones de la&nbsp;carte</span></li>
@@ -230,9 +233,11 @@ class HtmlPopup
             }
         }
         
-        return '<p class="rp">Une vilaine plaie ouverte parcourt votre cuisse droite, 
+        return '<img src="/resources/img/copyrighted/wound.png" width="100px">
+            <p class="descr_ambiance">Une vilaine plaie ouverte parcourt votre cuisse droite, 
             ce n\'est pas beau à voir. La septicémie vous guette...</p>
-            <p>Vous êtes blessé ! Vous risquez de mourir 
+            <br>
+            <p><strong>Vous êtes blessé !</strong> Vous risquez de mourir 
             si vous ne vous soignez pas...</p>
             <ul>
                 ' . $html_healing. '
