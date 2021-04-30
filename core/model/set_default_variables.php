@@ -31,7 +31,7 @@ function set_default_variables($variable) {
         ];
     
     $default['zone'] = [
-        'building'                  => null,
+        'building_id'               => null,
         'city_size'                 => 0,
         'controlpoints_citizens'    => 0,
         'controlpoints_zombies'     => 0,
