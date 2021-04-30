@@ -179,6 +179,7 @@ class HtmlMap
         $cell_content   = '&nbsp;';
         $cell_zombies   = '';
         $cell_me        = '';
+        $elevate        = '';
         $bubble         = '';
         $bubble_zombies = '';
         $bubble_items   = '';
@@ -199,16 +200,19 @@ class HtmlMap
             
             $cell_content = $this->html_icon_building($cell['building_id']);
             $bubble       = $this->html_bubble_building($cell['building_id']);
+            $elevate      = 'elevate';
         }
         elseif ($cell['city_type'] === 'home') {
             
             $cell_content = $this->html_cell_content('tent');
             $bubble       = $this->html_bubble('tent');
+            $elevate      = 'elevate';
         }
         elseif ($cell['city_size'] > 0) {
             
             $cell_content = $this->html_cell_content('city', $cell['city_defenses']);
             $bubble       = $this->html_bubble('city', $cell['city_defenses']);
+            $elevate      = 'elevate';
         }
         elseif ($cell['citizens'] > 1 and $is_player_in_zone === false) {
 
@@ -263,7 +267,7 @@ class HtmlMap
         // - La classe "hexagon" sert à tracer le fond hexgonal
         // - La classe "square_container" est un conteneur carré pour assurer la symétrie du contenu
         // (un hexagone ne peut pas, par définition, être inscrit dans un carré)
-        return '<div id="zone'.$col.'_'.$row.'" class="hexagon '.$has_items.' '.$ground.'" style="opacity:'.$opacity.'">
+        return '<div id="zone'.$col.'_'.$row.'" class="hexagon '.$has_items.' '.$ground.' '.$elevate.'" style="opacity:'.$opacity.'">
                     <div class="square_container">'
                         . $cell_zombies . $cell_me . $cell_content . '
                         <div class="bubble">
