@@ -184,11 +184,19 @@
 }
 .bubble .roleplay {
     margin-top:0.7rem;
-    padding:0.1em 0;
+    padding:0.3em 0.2em;
     font-size:1.1em;
     line-height:110%;
     background:#c40007;
     border-radius:0.2em;
+}
+.bubble h5 {
+    font-size:1.2em;
+    margin:0;
+}
+.bubble hr {
+    color:white;
+    margin:0.2em 0;
 }
 
 /* Symbole indiquant la présence d'objets sur la case */

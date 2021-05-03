@@ -82,7 +82,10 @@ class HtmlMap
         
         // TODO: make a generic class to get the config of the buildings
         // e.g.: Config()->building(5)->descr_ambiance;
-        return '<div class="roleplay">'.$this->config_buildings[$building_id]['descr_ambiance'].'</div>';
+        return '<div class="roleplay">
+                    <h5>'.$this->config_buildings[$building_id]['name'].'</h5><hr>'
+                    . $this->config_buildings[$building_id]['descr_ambiance']
+                . '</div>';
     }
     
     
