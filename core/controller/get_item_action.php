@@ -15,7 +15,7 @@ function get_item_action($item_caracs)
     if ($item_caracs['ap_gain'] > 0) {
         $button_alias = 'eat';
     }
-    elseif ($item_caracs['killing_rate'] > 0) {
+    elseif ((bool)$item_caracs['is_weapon'] === true) {
         $button_alias = 'fight';
     }
     elseif ($item_caracs['healing_wound'] > 0) {
