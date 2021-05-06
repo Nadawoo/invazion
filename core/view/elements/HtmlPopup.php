@@ -104,7 +104,14 @@ class HtmlPopup
     }
     
     
-    public function popcar()
+    /**
+     * Pop-up to go into the car and win the game
+     * 
+     * @param string $error_message The evantual message returned by the API
+     *                              when trying to win the game
+     * @return string HTML
+     */
+    public function popcar($error_message)
     {
         
         $buttons = new HtmlButtons();
@@ -124,7 +131,8 @@ class HtmlPopup
                 <li>1 batterie</li>
                 <li>1 jerrycan d\'essence</li>
             </ul>
-            <br>'.$buttons->button('wingame', true, 'center').'<br>';
+            <p>'.$error_message.'</p>
+            <p>'.$buttons->button('wingame', true, 'center').'</p>';
         
         return $msg_popup;
     }
