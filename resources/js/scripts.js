@@ -515,10 +515,10 @@ async function enlargeWall() {
     let minBarHeight = "2.5rem",
         maxBarHeight = "100%";
 
-    if (document.getElementById("floating_wall").style.height !== maxBarHeight) {
+    if (document.querySelector("#floating_wall").style.height !== maxBarHeight) {
         // Enlarges the panel...
-        document.getElementById("floating_wall").style.height = maxBarHeight;
-        document.getElementById("enlarge_wall").getElementsByClassName("arrow")[0].style.transform = "rotate(+180deg)";
+        document.querySelector("#floating_wall").style.height = maxBarHeight;
+        document.querySelector("#enlarge_wall .arrow").style.transform = "rotate(+180deg)";
         // ... and loads the discussions if not already loaded
         if (document.getElementById("discussions").innerHTML === "") {
             await updateDiscussionsList();
@@ -526,8 +526,8 @@ async function enlargeWall() {
         }
     }
     else {
-        document.getElementById("floating_wall").style.height = minBarHeight;
-        document.getElementById("enlarge_wall").getElementsByClassName("arrow")[0].style.transform = "rotate(0)";
+        document.querySelector("#floating_wall").style.height = minBarHeight;
+        document.querySelector("#enlarge_wall .arrow").style.transform = "rotate(0)";
     }
 }
 
@@ -703,20 +703,20 @@ async function killZombies(apiAction, coordX, coordY) {
 /**
  * Shifts the zone tooltip to the left if it overflows the map on the right
  * 
- * @param {type} hexagon The zone where the tooltip is
+ * @param {type} hexagon The HTML of the zone where the tooltip is
  * @returns {undefined}
  */
 function handleTooltipOverflow(hexagon) {
     
-    let tooltipBounding = hexagon.getElementsByClassName("bubble")[0].getBoundingClientRect();
-    let mapBounding    = document.getElementById("map").getBoundingClientRect();
+    let tooltipBounding = hexagon.querySelector(".bubble").getBoundingClientRect();
+    let mapBounding    = document.querySelector("#map").getBoundingClientRect();
     if (tooltipBounding.right > mapBounding.right) {
-        hexagon.getElementsByClassName("bubble")[0].style.left        = "-15em";
-        hexagon.getElementsByClassName("triangle_down")[0].style.left = "16em";
+        hexagon.querySelector(".bubble").style.left        = "-15em";
+        hexagon.querySelector(".triangle_down").style.left = "16em";
     }
     else if (tooltipBounding.left < mapBounding.left) {
-        hexagon.getElementsByClassName("bubble")[0].style.left        = "0.5em";
-        hexagon.getElementsByClassName("triangle_down")[0].style.left = "0.5em";
+        hexagon.querySelector(".bubble").style.left        = "0.5em";
+        hexagon.querySelector(".triangle_down").style.left = "0.5em";
     }
 }
 
@@ -730,7 +730,7 @@ function displayTooltip(hexagon) {
     
     if (hexagon !== null) {
         // Displays the tooltip
-        hexagon.getElementsByClassName("bubble")[0].classList.add("block");
+        hexagon.querySelector(".bubble").classList.add("block");
         // Shifts the zone tooltip to the left if it overflows the map on the right
         handleTooltipOverflow(hexagon);
     }
@@ -745,7 +745,7 @@ function displayTooltip(hexagon) {
 function hideTooltip(hexagon) {
     
     if (hexagon !== null) {
-        hexagon.getElementsByClassName("bubble")[0].classList.remove("block");;
+        hexagon.querySelector(".bubble").classList.remove("block");;
     }
 }
 
@@ -758,7 +758,7 @@ function hideTooltip(hexagon) {
 function toggleTooltip(hexagon) {
     
     if (hexagon !== null) {
-        hexagon.getElementsByClassName("bubble")[0].classList.toggle("block");
+        hexagon.querySelector(".bubble").classList.toggle("block");
         handleTooltipOverflow(hexagon);
     }
 }
