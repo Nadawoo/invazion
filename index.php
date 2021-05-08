@@ -113,7 +113,7 @@ if ($citizen['citizen_id'] !== NULL) {
     // If there is a car (ID=1) in the zone
     // TODO: don't hardcode this ID
     elseif($zone['building_id'] == 1) {
-        $msg_popup = $popup->popcar();
+        $msg_popup = $popup->popcar($msg_popup);
     }
     elseif($zone['building_id'] !== null) {
         $msg_popup = $popup->popbuilding($configs['buildings'][$zone['building_id']]['name'], 
