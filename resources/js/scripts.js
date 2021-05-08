@@ -692,12 +692,18 @@ async function killZombies(apiAction, coordX, coordY) {
             }
         }
         
-        // Update in the action block "zombies"
-        document.querySelector("#block_zombies .zombies_visual .zombie").remove();
+        // Update movement cost (action points)
+        if(newNbrZombies <= 0) {
+            document.querySelector("#movement_cost").innerHTML = "Déplacement gratuit<br>(vous avez éliminé tous les zombies)";
+        }
+        
+        // Update in the action block "zombies"        
         if(newNbrZombies > 0) {
             document.querySelector("#block_zombies .nbr_zombies").innerHTML = newNbrZombies+" zombies";
+            document.querySelector("#block_zombies .zombies_visual .zombie").remove();
         } else {
             document.querySelector("#block_zombies .zombies_text").innerHTML = "Félicitations, vous avez éradiqué toutes les menaces alentour ! La voie est libre...";
+            document.querySelector("#block_zombies .zombies_visual").innerHTML = "";
         }
         
         // Update the zombie silhouettes on the map zone
