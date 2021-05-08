@@ -693,7 +693,13 @@ async function killZombies(apiAction, coordX, coordY) {
         }
         
         // Update in the action block "zombies"
-        document.querySelector("#block_zombies .nbr_zombies").innerHTML = newNbrZombies+" zombies";
+        document.querySelector("#block_zombies .zombies_visual .zombie").remove();
+        if(newNbrZombies > 0) {
+            document.querySelector("#block_zombies .nbr_zombies").innerHTML = newNbrZombies+" zombies";
+        } else {
+            document.querySelector("#block_zombies .zombies_text").innerHTML = "Félicitations, vous avez éradiqué toutes les menaces alentour ! La voie est libre...";
+        }
+        
         // Update the zombie silhouettes on the map zone
         document.querySelector("#zone"+coordX+"_"+coordY+" .zombies img").getAttribute("src").innerHTML = "resources/img/motiontwin/zombie"+newNbrZombies+".gif";
     }

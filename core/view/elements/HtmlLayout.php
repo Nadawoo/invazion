@@ -296,8 +296,10 @@ class HtmlLayout extends HtmlPage
             return '<p class="greytext">Aucun zombie dans la zone. Vous êtes libre de vos mouvements...</p>';
         }
         else {
-            return '<strong style="font-size:1.3em;color:red" class="nbr_zombies">'.plural($zone_zombies, 'zombie').'</strong> autour de vous !
-                    <div id="zombies_visual">'. str_repeat('<span class="zombie">&#x1F9DF;</span>', $zone_zombies) .'</div>'
+            return '<div class="zombies_text">
+                    <strong class="nbr_zombies">'.plural($zone_zombies, 'zombie').'</strong> autour de vous !
+                    </div>
+                    <div class="zombies_visual">'. str_repeat('<span class="zombie">&#x1F9DF;</span>', $zone_zombies) .'</div>'
                     . $buttons->kill_zombies($zone_zombies, 'kill_zombie')
                     . $buttons->kill_zombies($zone_zombies, 'kill_mass_zombies');
         }

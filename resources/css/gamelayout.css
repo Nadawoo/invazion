@@ -419,6 +419,15 @@ legend {
 #block_zombies {
     text-align:center;
 }
+#block_zombies .nbr_zombies {
+    font-size:1.3em;
+    color:red;
+}
+#block_zombies .zombies_visual {
+    width:50%;
+    margin:0.2em auto 0.5em auto;
+    padding:0.3em 0 0.4em 0;
+}
 #block_zombies .zombie {
     margin:0 0.05em;
     font-size:1.4em;
@@ -428,11 +437,6 @@ legend {
 }
 .zombie::selection {
     background:none;
-}
-#zombies_visual {
-    width:50%;
-    margin:0.2em auto 0.5em auto;
-    padding:0.3em 0 0.4em 0;
 }
 
 #controlCountdown {
