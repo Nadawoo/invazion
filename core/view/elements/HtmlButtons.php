@@ -564,8 +564,8 @@ class HtmlButtons
         
         return
         '<form method="post" action="#popsuccess" style="margin-top:0.25em">
-            <input type="hidden" name="api_name" value="buildings">
-            <input type="hidden" name="action" value="build">
+            <input type="hidden" name="api_name" value="items">
+            <input type="hidden" name="action" value="craft">
             <input type="hidden" name="params[item_id]" value="'.$item_id.'">
             &#128295;<input type="submit" class="redbutton" value="Assembler l\'objet">	
         </form>';
