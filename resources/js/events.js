@@ -52,23 +52,32 @@ if (document.getElementById('map') !== null) {
     
     // Switch tabs in the communications panel
     document.getElementById("tabWallDiscuss").addEventListener("click", function() {
-        display("discussions");
-        hide(["notifications", "events", "attacks"]);
+        display("wallDiscuss");
+        hide(["wallPhone", "wallNotifications", "wallEvents", "wallAttacks"]);
         activateDiscussionTab("tabWallDiscuss");
+        updateDiscussionsList();
+        // Add the listener on the form to create a topic.
+        // TODO: make a cleaner code with async
+        setTimeout(function() { listenToSendform(); }, 100);
     });
     document.getElementById("tabWallAttacks").addEventListener("click", function() {
-        display("attacks");
-        hide(["discussions", "notifications", "events"]);
+        display("wallAttacks");
+        hide(["wallPhone", "wallDiscuss", "wallNotifications", "wallEvents"]);
         activateDiscussionTab("tabWallAttacks");
         // Updates the log of attacks
         getCyclicAttacks(nbrExecutionsGetCyclicAttacks);
         nbrExecutionsGetCyclicAttacks++;
     });
     document.getElementById("tabWallEvents").addEventListener("click", function() {
-        display("events");
-        hide(["discussions", "notifications", "attacks"]);
+        display("wallEvents");
+        hide(["wallPhone", "wallDiscuss", "wallNotifications", "wallAttacks"]);
         activateDiscussionTab("tabWallEvents");
-        getLogEvents("events");
+        getLogEvents("wallEvents");
+    });
+    document.getElementById("tabWallPhone").addEventListener("click", function() {
+        display("wallPhone");
+        hide(["wallDiscuss", "wallNotifications", "wallEvents", "wallAttacks"]);
+        activateDiscussionTab("tabWallPhone");
     });
 //    document.getElementById("tabWallNotifications").addEventListener("click", function() {
 //        display("notifications");

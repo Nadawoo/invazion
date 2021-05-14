@@ -45,12 +45,12 @@ class HtmlPage
                 <link rel="stylesheet" type="text/css" href="resources/css/sitelayout.css?v4.2">
                 <link rel="stylesheet" type="text/css" href="resources/css/gamelayout.css?v7.5">
                 <link rel="stylesheet" type="text/css" href="resources/css/map.css?v3.5">
-                <link rel="stylesheet" type="text/css" href="resources/css/smartphone.css?v1.5">
+                <link rel="stylesheet" type="text/css" href="resources/css/smartphone.css?v1.6">
                 <link rel="stylesheet" type="text/css" href="resources/css/myzone.css?v1.4">
                 <link rel="stylesheet" type="text/css" href="resources/css/city.css?v3.3">
                 <link rel="stylesheet" type="text/css" href="resources/css/wall.css?v3.0">
                 <link rel="stylesheet" type="text/css" href="resources/css/popup.css?v2.0">
-                <link rel="stylesheet" type="text/css" href="resources/css/responsive.css?v2.1">
+                <link rel="stylesheet" type="text/css" href="resources/css/responsive.css?v2.2">
                 ' . $css_link . '
                 <title>InvaZion, le jeu de zombies</title>
             </head>
@@ -111,8 +111,8 @@ class HtmlPage
                     </div> <!-- End of #body_bg -->
                     <script type="text/javascript" src="resources/js/ZombLib.js?v1.3"></script>
                     <script type="text/javascript" src="resources/js/wallTemplate.js?v4.4"></script>
-                    <script type="text/javascript" src="resources/js/scripts.js?v7.1"></script>
-                    <script type="text/javascript" src="resources/js/events.js?v4.8"></script>
+                    <script type="text/javascript" src="resources/js/scripts.js?v7.2"></script>
+                    <script type="text/javascript" src="resources/js/events.js?v4.9"></script>
                 </body>
             </html>';
     }

@@ -516,16 +516,12 @@ async function enlargeWall() {
         maxBarHeight = "100%";
 
     if (document.querySelector("#floating_wall").style.height !== maxBarHeight) {
-        // Enlarges the panel...
+        // Enlarges the panel
         document.querySelector("#floating_wall").style.height = maxBarHeight;
         document.querySelector("#enlarge_wall .arrow").style.transform = "rotate(+180deg)";
-        // ... and loads the discussions if not already loaded
-        if (document.getElementById("discussions").innerHTML === "") {
-            await updateDiscussionsList();
-            await listenToSendform();
-        }
     }
     else {
+        // Reduces the panel
         document.querySelector("#floating_wall").style.height = minBarHeight;
         document.querySelector("#enlarge_wall .arrow").style.transform = "rotate(0)";
     }
@@ -811,7 +807,7 @@ async function updateDiscussionsList() {
         discussions += htmlDiscussion(topic.topic_id, topic.title, topic.last_message, nbrOtherMessages);
     }
     
-    document.getElementById("discussions").innerHTML = htmlNewDiscussionForm(citizenPseudo)
+    document.getElementById("wallDiscuss").innerHTML = htmlNewDiscussionForm(citizenPseudo)
                                                        + discussions;
 }
 
@@ -879,7 +875,7 @@ async function getCyclicAttacks(nbrExecutions) {
     let htmlElements = await fetch("core/view/generators/log_attacks.php?action=get&type=cyclicattack&sort=desc", options).then(toJson);
     
     // Display the log of attacks
-    document.getElementById("attacks").innerHTML += htmlElements.join("\n");
+    document.getElementById("wallAttacks").innerHTML += htmlElements.join("\n");
 }
 
 

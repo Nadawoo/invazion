@@ -13,7 +13,7 @@ class HtmlWall
      * @param string $citizen_pseudo The pseudo of the currently connected player
      * @return type
      */
-    public function wall()
+    public function wall($html_smartphone)
     {
         
         return '<div id="wall" class="city_block">
@@ -25,15 +25,16 @@ class HtmlWall
                     
                     '.$this->tabs().'
                     
-                    <div id="discussions"></div>
-                    <div id="notifications"></div>
-                    <div id="attacks"></div>
-                    <div id="events"></div>
+                    <div id="wallPhone">'.$html_smartphone.'</div>
+                    <div id="wallDiscuss"></div>
+                    <div id="wallNotifications"></div>
+                    <div id="wallAttacks"></div>
+                    <div id="wallEvents"></div>'
                     
-                    '.$this->event_construction_completed(date('c')).'                        
-                    '.$this->event_AP_invested(date('c'), 'Nadawoo', 'Mur de renfort', 3).'
+//                    '.$this->event_construction_completed(date('c')).'                        
+//                    '.$this->event_AP_invested(date('c'), 'Nadawoo', 'Mur de renfort', 3).'
                     
-                </div>
+                .'</div>
             </div>';
     }
     
@@ -42,7 +43,8 @@ class HtmlWall
     {
         
         return '<nav id="discussionTabs" style="margin-bottom:0.9em">
-                    <a id="tabWallDiscuss" class="active_tab">Discussions</a> 
+                    <a id="tabWallPhone" class="active_tab">Smartphone</a> 
+                    <a id="tabWallDiscuss">Discussions</a> 
                     <!--<a id="tabWallNotifications">Notifications</a>-->
                     <a id="tabWallEvents">Événements</a> 
                     <a id="tabWallAttacks">Attaques</a> 

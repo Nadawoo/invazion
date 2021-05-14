@@ -388,16 +388,11 @@ echo $popup->customised('popsuccess', '', $msg_popup, $is_custom_popup_visible);
             </fieldset>
         </div>
         
-        <?php
-        // Displays the smartphone at the right of the map (GPS, health...)
-        echo $html['smartphone'];
-        ?>
-        
     </div>
  
     
     <div id="floating_wall">
-        <?php echo $wall->wall() ?>
+        <?php echo $wall->wall($html['smartphone']) ?>
     </div>
     
 </div>
