@@ -344,7 +344,10 @@ echo $popup->customised('popsuccess', '', $msg_popup, $is_custom_popup_visible);
                 elseif ($zone['controlpoints_citizens'] < $zone['controlpoints_zombies']) {
                     echo $layout->block_alert_control($zone['zombies']);
                 }
-                elseif ($zone['zombies'] > 0 and $citizen['action_points'] < $configs['map']['moving_cost_zombies']) {                    
+                elseif (($zone['zombies'] === 0 and $citizen['action_points'] < $configs['map']['moving_cost_no_zombies'])
+                     or ($zone['zombies'] === 0 and $citizen['action_points'] === 0)
+                     or ($zone['zombies'] >   0 and $citizen['action_points'] < $configs['map']['moving_cost_zombies'])
+                    ) {                    
                     echo $layout->block_alert_tired($zone['zombies']);
                 }
                 

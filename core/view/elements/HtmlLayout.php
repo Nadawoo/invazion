@@ -533,6 +533,11 @@ class HtmlLayout extends HtmlPage
     function block_alert_tired($zombies)
     {
         
+        $tip_kill_zombie = ($zombies > 0) 
+                            ? '► Tuez <span class="nbr_zombies">'.plural($zombies, 'zombie').'</span>
+                               pour vous déplacer sans effort<br>'
+                            : '';
+        
         return '
             <div id="alert_control" class="cover_paddle">
                 <div class="title">Vous êtes épuisé !</div>
@@ -541,8 +546,7 @@ class HtmlLayout extends HtmlPage
                     Elle sera votre tombe si vous ne vous abritez pas avant la nuit...
                     <div style="margin-top:0.7rem;padding:0.7rem;color:lightsteelblue;border-top:1px solid grey">
                         Quelques suggestions pour vous sortir de ce mauvais pas...<br>
-                        ► Tuez <span class="nbr_zombies">'.plural($zombies, 'zombie').'</span>
-                           pour vous déplacer sans effort<br>
+                        '.$tip_kill_zombie.'
                         ► Explorez la zone pour chercher de la nourriture<br>
                         ► Construisez une tente pour vous abriter<br>
                         ► Demandez l\'aide d\'un autre citoyen
