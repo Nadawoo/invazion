@@ -903,12 +903,14 @@ async function getLogEvents(htmlContainerId) {
  */
 async function UpdateMapRealtime(event, timestamp) {
     let citizenPseudo = document.getElementById("citizenPseudo").innerHTML,
-        citizenId     = document.getElementById("citizenId").innerHTML;
+        citizenId     = document.getElementById("citizenId").innerHTML,
+        mapId         = document.getElementById("mapId").innerHTML;
+
     // If event notified, get the new HTML contents for the modified zones
     let options = { method: "GET",
                     headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
                     };
-    let htmlZones = await fetch("core/view/generators/zone.php?map_id=1&newerthan="+timestamp+"&citizen_id="+citizenId+"&citizen_pseudo="+citizenPseudo, options).then(toJson);
+    let htmlZones = await fetch("core/view/generators/zone.php?map_id="+mapId+"&newerthan="+timestamp+"&citizen_id="+citizenId+"&citizen_pseudo="+citizenPseudo, options).then(toJson);
 
     // Updates the HTML for the modified zones
     for (let coords in htmlZones) {

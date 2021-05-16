@@ -128,8 +128,7 @@ if ($citizen['citizen_id'] !== NULL) {
  */
 $html = [
     // Data about the player for javascript treatments (his coordinates...)
-    'hidden_player_data' => $layout->hidden_player_data($citizen['citizen_id'], $citizen['citizen_pseudo'], 
-                                                        $citizen['coord_x'], $citizen['coord_y']),
+    'hidden_player_data' => $layout->hidden_player_data($citizen),
     // Assembling the HTML for the map
     'map' => $map->hexagonal_map($maps['map_width'], $maps['map_height'], $maps['zones'], $citizens_by_coord, $citizen, $maps['next_attack_hour']),
     'map_citizens'      => $layout->map_citizens($citizens),

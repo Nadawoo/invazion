@@ -685,15 +685,16 @@ class HtmlLayout extends HtmlPage
     /**
      * Data about the player for javascript treatments (his coordinates...)
      * 
-     * @param int $citizen_id
-     * @param string $citizen_pseudo
+     * @param array $citizen The data about the citizen, as returned by the API
+     *                       (citizen ID, his coordinates on the map...)
      * @return string HTML
      */
-    function hidden_player_data($citizen_id, $citizen_pseudo, $coord_x, $coord_y) {
+    function hidden_player_data($citizen) {
         
-        return '<div id="citizenId" class="hidden">'.$citizen_id.'</div>
-                <div id="citizenPseudo" class="hidden">'.$citizen_pseudo.'</div>
-                <div id="citizenCoordX" class="hidden">'.$coord_x.'</div>
-                <div id="citizenCoordY" class="hidden">'.$coord_y.'</div>';
+        return '<div id="citizenId" class="hidden">'.$citizen['citizen_id'].'</div>
+                <div id="citizenPseudo" class="hidden">'.$citizen['citizen_pseudo'].'</div>
+                <div id="citizenCoordX" class="hidden">'.$citizen['coord_x'].'</div>
+                <div id="citizenCoordY" class="hidden">'.$citizen['coord_y'].'</div>
+                <div id="mapId" class="hidden">'.$citizen['map_id'].'</div>';
     }
 }
