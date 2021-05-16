@@ -80,7 +80,7 @@ if ($api->user_seems_connected() === true) {
 $citizens           = $api->call_api('citizens', 'get', ['map_id'=>$citizen['map_id']])['datas'];
 $citizens_by_coord  = $sort->sort_citizens_by_coord($citizens);
 $maps               = $api->call_api('maps', 'get', ['map_id'=>$citizen['map_id']])['datas'];
-$configs            = $api->call_api('configs', 'get')['datas'];
+$configs            = $api->call_api('configs', 'get', ['map_id'=>$citizen['map_id']])['datas'];
 $specialities       = $configs['specialities'];
 $speciality_caracs  = $specialities[$citizen['speciality']];
 $map->set_config_buildings($configs['buildings']);
@@ -163,7 +163,10 @@ echo $html['hidden_player_data'];
 echo $popup->predefined('popvault',   '');
 echo $popup->predefined('popwounded', '', ['citizen_id'=>$citizen['citizen_id'], 'healing_items'=>$healing_items]);
 echo $popup->predefined('popcontrol', 'Aide : le contrôle de zone');
-echo $popup->predefined('popmove', 'Aide : les déplacements');
+echo $popup->predefined('popmove', 'Aide : les déplacements', 
+                        ['moving_cost_no_zombies' => $configs['map']['moving_cost_no_zombies'], 
+                         'moving_cost_zombies'    => $configs['map']['moving_cost_zombies']
+                        ]);
 echo $popup->predefined('popattack', 'Aide : l\'attaque zombie quotidienne');
 
 // Generic pop-up describing the result of an action
@@ -351,7 +354,8 @@ echo $popup->customised('popsuccess', '', $msg_popup, $is_custom_popup_visible);
                 }
                 
                 echo $paddle->paddle($citizen['coord_x'], $citizen['coord_y']);
-                echo $layout->block_movement_AP($citizen['action_points'], $speciality_caracs['action_points'], $zone['zombies']);
+                echo $layout->block_movement_AP($citizen['action_points'], $speciality_caracs['action_points'], $zone['zombies'], 
+                                                $configs['map']['moving_cost_no_zombies'], $configs['map']['moving_cost_zombies']);
                 
                 // Special actions depending of the zone (go into a crypt, a city...)
                 echo $html['actions_context'];

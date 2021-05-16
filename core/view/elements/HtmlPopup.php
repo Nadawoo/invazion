@@ -300,7 +300,7 @@ class HtmlPopup
     /**
      * Text to explain moving and action points
      */
-    private function popmove()
+    private function popmove($params)
     {
         
         return "<p>Explorer le désert hostile exige du courage et de l'endurance.
@@ -308,10 +308,10 @@ class HtmlPopup
             en fonction du nombre de zombies dans la zone :
             </p>
             <ul>
-                <li>&#x1F9DF; S'il y a <strong>1 zombie ou davantage</strong>, quitter la zone 
-                vous coûtera <strong>1 point d'action</strong>.<br><br></li>
                 <li>&#x2714;&#xFE0F; S'il n'y a <strong>aucun zombie</strong> dans la zone, 
-                le déplacement ne coûte <strong>aucun point d'action</strong>.</li>
+                    le déplacement coûte <strong>".$params['moving_cost_no_zombies']." point d'action</strong>.<br><br></li>
+                <li>&#x1F9DF; S'il y a <strong>1 zombie ou davantage</strong>, quitter la zone 
+                    vous coûtera <strong>".$params['moving_cost_zombies']." point d'action</strong>.</li>
                 </ul>
             <p>Surveillez vos points d'action ! Si vous restez bloqué dans le désert,
             une mort certaine vous attend cette nuit...</p>";

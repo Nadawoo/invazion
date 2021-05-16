@@ -312,15 +312,35 @@ class HtmlLayout extends HtmlPage
      * @param int $citizen_AP The amount of action points the player currently has
      * @param int $total_AP   The maximumum amount of action points of his speciality
      * @param int $zone_zombies The amount of zombies in the zone
+     * @param int $moving_cost_no_zombies Amount of action points required to move 
+     *                                    in a zone without any zombie
+     * @param int $moving_cost_zombies Amount of action points required to move 
+     *                                 in a zone with 1 zombie or more
      * @return string HTML
      */
-    function block_movement_AP($citizen_AP, $total_AP, $zone_zombies)
-    {
+    function block_movement_AP($citizen_AP, $total_AP, $zone_zombies,
+                               $moving_cost_no_zombies, $moving_cost_zombies) {
         
-        $AP_cost = ($zone_zombies>0) 
-                   ? '<div class="darkred"><strong>-1</strong> point pour quitter la zone</div>' 
+        $moving_cost = ($zone_zombies > 0) ? $moving_cost_zombies : $moving_cost_no_zombies;
+        
+        $AP_cost = ($moving_cost > 0)
+                   ? '<div class="darkred"><strong>-'.$moving_cost.'</strong> point pour quitter la zone</div>' 
                    : '<div style="font-size:0.9em">Déplacement gratuit</div>';
-        $AP_cost_reason = ($zone_zombies>0) ? 'présence de zombies' : 'aucun zombie dans la zone';
+        
+        
+        if($moving_cost_no_zombies === $moving_cost_zombies) {
+            $AP_cost_reason = 'coût de la marche';
+        }
+        elseif($zone_zombies > 0 and $moving_cost_zombies > 0) {
+            $AP_cost_reason = 'présence de zombies';
+        }
+        elseif($zone_zombies === 0 and $moving_cost_no_zombies === 0) {
+            $AP_cost_reason = 'aucun zombie dans la zone';
+        }
+        else {
+            $AP_cost_reason = 'coût de la marche sans zombies';
+        }
+        
 
         return '<div id="movement_ap">
                 <a href="#popmove" id="actionpoints">
