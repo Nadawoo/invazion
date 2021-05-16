@@ -132,7 +132,7 @@ class HtmlPopup
                 <li>1 jerrycan d\'essence</li>
             </ul>
             <p>'.$error_message.'</p>
-            <p>'.$buttons->button('wingame', true, 'center').'</p>';
+            <p>'.$buttons->button('win_game', true, 'center').'</p>';
         
         return $msg_popup;
     }

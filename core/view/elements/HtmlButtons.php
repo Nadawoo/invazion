@@ -252,6 +252,15 @@ class HtmlButtons
                     'params[type]'  => 'builder',
                     ],
                 ],
+            'start_game' => [
+                'icon'  => '',
+                'name'  => "Commencer une partie",
+                'title' => "",
+                'fields' => [
+                    'api_name'      => 'events',
+                    'action'        => 'startgame',
+                    ],
+                ],
             'validate_death' => [
                 'icon'  => '',
                 'name'  => 'Valider',
@@ -279,7 +288,7 @@ class HtmlButtons
                     'action'        => 'pickup',
                     ],
                 ],
-            'wingame' => [
+            'win_game' => [
                 'icon'  => '',
                 'name'  => "Monter dans la voiture !",
                 'title' => "",
