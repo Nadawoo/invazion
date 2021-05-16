@@ -698,8 +698,9 @@ async function killZombies(apiAction, coordX, coordY) {
             document.querySelector("#block_zombies .nbr_zombies").innerHTML = newNbrZombies+" zombies";
             document.querySelector("#block_zombies .zombies_visual .zombie").remove();
         } else {
-            document.querySelector("#block_zombies .zombies_text").innerHTML = "Félicitations, vous avez éradiqué toutes les menaces alentour ! La voie est libre...";
+            document.querySelector("#block_zombies .zombies_text").innerHTML = "Vous avez éradiqué toutes les menaces alentour ! La voie est libre...";
             document.querySelector("#block_zombies .zombies_visual").innerHTML = "";
+            document.querySelector("#block_zombies .buttons_kill").innerHTML = "";
         }
         
         // Update the zombie silhouettes on the map zone

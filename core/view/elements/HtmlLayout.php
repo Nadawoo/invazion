@@ -299,9 +299,11 @@ class HtmlLayout extends HtmlPage
             return '<div class="zombies_text">
                     <strong class="nbr_zombies">'.plural($zone_zombies, 'zombie').'</strong> autour de vous !
                     </div>
-                    <div class="zombies_visual">'. str_repeat('<span class="zombie">&#x1F9DF;</span>', $zone_zombies) .'</div>'
-                    . $buttons->kill_zombies($zone_zombies, 'kill_zombie')
-                    . $buttons->kill_zombies($zone_zombies, 'kill_mass_zombies');
+                    <div class="zombies_visual">'. str_repeat('<span class="zombie">&#x1F9DF;</span>', $zone_zombies) .'</div>
+                    <div class="buttons_kill">'
+                        . $buttons->kill_zombies($zone_zombies, 'kill_zombie')
+                        . $buttons->kill_zombies($zone_zombies, 'kill_mass_zombies') .'
+                    </div>';
         }
     }
     
