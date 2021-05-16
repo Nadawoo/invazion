@@ -53,6 +53,9 @@ if ($zones['metas']['error_code'] === 'success') {
                                                     $player_pseudo, $player_city_id, $fellow_pseudo);
     }
 }
+else {
+    $html_zones = $zones;
+}
 
 
 echo json_encode($html_zones);
