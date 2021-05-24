@@ -493,14 +493,18 @@ class HtmlButtons
      * Retourne le bouton pour attaquer un zombie
      * 
      * @param int $nbr_zombies  Le nombre de zombies dans la zone
+     * @param string $button_alias
+     * @param int $ap_cost Amount of action points required to do the action
      * @return string
      */
-    function kill_zombies($nbr_zombies, $button_alias='kill_zombie')
+    function kill_zombies($nbr_zombies, $button_alias='kill_zombie', $ap_cost=0)
     {
         
         $button = $this->buttons[$button_alias];
         $class = '';
         $title = $button['title'];
+        
+        $text_nbr_ap = ($ap_cost > 0) ? ' [-'.$ap_cost.' PA]' : '';
         
         if ($nbr_zombies === 0) {
             $class = 'inactive';
@@ -509,7 +513,8 @@ class HtmlButtons
                 
         return
         '<form method="post" action="#Outside" onclick="killZombies(\''.$button['fields']['action'].'\'); return false;">
-            <input type="submit" value="'.$button['icon'].' '.$button['name'].'" class="redbutton '.$class.'"  title="'.$title.'">
+            <input type="submit" value="'.$button['icon'].' '.$button['name'] . $text_nbr_ap.'" 
+                   class="redbutton '.$class.'"  title="'.$title.'">
         </form>';
     }
     

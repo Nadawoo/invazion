@@ -286,7 +286,7 @@ class HtmlLayout extends HtmlPage
     }
     
     
-    function block_actions_zombies($zone_zombies)
+    function block_actions_zombies($zone_zombies, $ap_cost)
     {
         
         $buttons = new HtmlButtons;
@@ -301,7 +301,7 @@ class HtmlLayout extends HtmlPage
                     </div>
                     <div class="zombies_visual">'. str_repeat('<span class="zombie">&#x1F9DF;</span>', $zone_zombies) .'</div>
                     <div class="buttons_kill">'
-                        . $buttons->kill_zombies($zone_zombies, 'kill_zombie')
+                        . $buttons->kill_zombies($zone_zombies, 'kill_zombie', $ap_cost)
                         . $buttons->kill_zombies($zone_zombies, 'kill_mass_zombies') .'
                     </div>';
         }
