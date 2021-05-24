@@ -293,11 +293,18 @@
 }
 #actionpoints {
     display:block;
-    padding:0 0.5em 0.3em 0.5em;
+    padding:0.1em 0.5em 0.3em 0.5em;
     box-shadow:4px 4px 6px black;
     background:green;
     color:white;
     opacity:0.9;
+}
+#actionpoints p {
+    margin:0.2em 0;
+}
+#actionpoints .ap_bar {
+    font-size:1.5em;
+    word-break:break-all;
 }
 #movement_cost {
     display:block;

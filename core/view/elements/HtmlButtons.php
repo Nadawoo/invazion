@@ -504,7 +504,7 @@ class HtmlButtons
         $class = '';
         $title = $button['title'];
         
-        $text_nbr_ap = ($ap_cost > 0) ? ' [-'.$ap_cost.' PA]' : '';
+        $text_nbr_ap = ($ap_cost > 0) ? ' [-'.$ap_cost.'&#x26A1;]' : '';
         
         if ($nbr_zombies === 0) {
             $class = 'inactive';

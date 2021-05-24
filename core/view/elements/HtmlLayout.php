@@ -343,11 +343,14 @@ class HtmlLayout extends HtmlPage
             $AP_cost_reason = 'coût de la marche sans zombies';
         }
         
+        // Draws the thunder icons to symbolize the action points
+        $ap_bar = str_repeat('&#x26A1;', $citizen_AP);
+        $ap_bar .= '<span style="opacity:0.3">'.str_repeat('&#x26A1;', $total_AP-$citizen_AP).'</span>';
 
         return '<div id="movement_ap">
                 <a href="#popmove" id="actionpoints">
-                    <strong style="font-size:2em">'.$citizen_AP.'</strong>
-                    <span style="opacity:0.8">/'.$total_AP.'<br>points d\'action</span>
+                    <p style="opacity:0.7">Points d\'action</p>
+                    <p class="ap_bar">'.$ap_bar.'</p>
                 </a>
                 <a href="#popmove" id="movement_cost">
                     '.$AP_cost.'
