@@ -537,12 +537,12 @@ class HtmlLayout extends HtmlPage
                 <div class="title">Bloqué par les zombies !</div>
                 <div class="text">
                     Les <span class="nbr_zombies">'.$zombies.'</span> zombies 
-                    sont trop nombreux et vous encerclent ! Vous pouvez tenter 
-                    d\'attaquer ces putrides afin de dégager le passage...<br>
-                    <a href="#popcontrol">[En savoir plus...]</a>
+                    sont trop nombreux et vous empêchent de quitter la zone !
+                    <a href="#popcontrol">[Pourquoi ?]</a>
+                    <p>Vous pouvez tenter d\'attaquer ces putrides afin de dégager le passage...</p>
                     <p>
-                        '.$buttons->kill_zombies($zombies).'<br>
-                        '.$buttons->kill_zombies($zombies, 'kill_mass_zombies').'
+                        <input type="button" class="redbutton" onclick="toggleActionBlock(\'zombies\')" 
+                               value="&#x1F9DF; Voir mes actions d\'attaque...">
                     </p>
                 </div>
             </div>';
