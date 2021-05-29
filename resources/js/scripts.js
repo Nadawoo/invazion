@@ -672,7 +672,7 @@ async function killZombies(apiAction, coordX, coordY) {
     
     if(json.metas.error_code === "success") {        
         let nbrZombies = document.querySelector("#round_zombies .dot_number"),
-            newNbrZombies = Math.max(0, nbrZombies.innerHTML - json.datas.nbr_zombies_killed),
+            newNbrZombies = Math.max(0, nbrZombies.innerHTML - json.datas.nbr_zombies_removed),
             coordX = document.getElementById("citizenCoordX").innerHTML,
             coordY = document.getElementById("citizenCoordY").innerHTML;
     

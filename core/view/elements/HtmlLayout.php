@@ -302,7 +302,9 @@ class HtmlLayout extends HtmlPage
                     <div class="zombies_visual">'. str_repeat('<span class="zombie">&#x1F9DF;</span>', $zone_zombies) .'</div>
                     <div class="buttons_kill">'
                         . $buttons->kill_zombies($zone_zombies, 'kill_zombie', $ap_cost)
-                        . $buttons->kill_zombies($zone_zombies, 'kill_mass_zombies') .'
+                        . $buttons->kill_zombies($zone_zombies, 'kill_mass_zombies') 
+                        . $buttons->kill_zombies($zone_zombies, 'repel_zombie')
+                        .'
                     </div>';
         }
     }

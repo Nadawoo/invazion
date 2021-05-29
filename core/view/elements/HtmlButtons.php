@@ -222,6 +222,15 @@ class HtmlButtons
                     'action'        => 'close_door'
                     ],
                 ],
+            'repel_zombie' => [
+                'icon'  => '&#x1F4A8;',
+                'name'  => 'Chasser un zombie',
+                'title' => "Repousser un zombie vers une case voisine",
+                'fields' => [
+                    'api_name'      => 'zone',
+                    'action'        => 'repel'
+                    ],
+                ],
             'specialize_digger' => [
                 'icon'  => '',
                 'name'  => 'Fouineur',
