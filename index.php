@@ -357,6 +357,12 @@ echo $popup->customised('popsuccess', '', $msg_popup, $is_custom_popup_visible);
                 echo $layout->block_movement_AP($citizen['action_points'], $speciality_caracs['action_points'], $zone['zombies'], 
                                                 $configs['map']['moving_cost_no_zombies'], $configs['map']['moving_cost_zombies']);
                 
+                echo '<br><strong>Mes caractéristiques</strong><br>
+                    Spécialité : '.$speciality_caracs['name'].'<br>
+                    Vision niv. '.$citizen['vision'].'<br>
+                    Camouflage niv. '.$citizen['camouflage'].'<br>
+                    Blessé : '.($citizen['is_wounded'] === 1 ? 'oui' : 'non');
+                
                 // Special actions depending of the zone (go into a crypt, a city...)
                 echo $html['actions_context'];
                 ?>
