@@ -270,6 +270,26 @@ class HtmlButtons
                     'action'        => 'startgame',
                     ],
                 ],
+            'upgrade_camouflage' => [
+                'icon'  => '',
+                'name'  => "Camouflage +1 niveau",
+                'title' => "",
+                'fields' => [
+                    'api_name'      => 'me',
+                    'action'        => 'upgrade_capacity',
+                    'params[type]'  => 'camouflage',
+                    ],
+                ],
+            'upgrade_vision' => [
+                'icon'  => '',
+                'name'  => "Vision +1 niveau",
+                'title' => "",
+                'fields' => [
+                    'api_name'      => 'me',
+                    'action'        => 'upgrade_capacity',
+                    'params[type]'  => 'vision',
+                    ],
+                ],
             'validate_death' => [
                 'icon'  => '',
                 'name'  => 'Valider',

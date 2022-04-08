@@ -200,7 +200,7 @@ echo $popup->customised('popsuccess', '', $msg_popup, $is_custom_popup_visible);
         ?>
         
         <fieldset id="citizen_caracs">
-            <legend>Mes caractéristiques</legend>
+            <legend>Action du jour</legend>
             <?php echo $layout->block_speciality_choice($specialities) ?>
         </fieldset>
         

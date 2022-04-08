@@ -216,7 +216,7 @@
     color:red;
 }
 /* Choix du métier du citoyen */
-#specialities {
+#specialities, #capacities {
     display:none;
     text-align:left;
     margin-left:auto;

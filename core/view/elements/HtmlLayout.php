@@ -103,7 +103,8 @@ class HtmlLayout extends HtmlPage
         
         return '
                 <p class="center">
-                    <button class="redbutton" onclick="toggle(\'specialities\');return false">Choisir ma spécialité du jour</button>
+                    <button class="redbutton" onclick="toggle(\'specialities\');hide(\'capacities\');return false">Changer ma spécialité</button>
+                    <button class="redbutton" onclick="toggle(\'capacities\');hide(\'specialities\');return false">Améliorer une capacité</button>
                 </p>
 
                 <ul id="specialities">
@@ -119,6 +120,15 @@ class HtmlLayout extends HtmlPage
                         [Points d\'action&nbsp;:     '. $specialities['builder']['action_points']    .' |
                         Capacité du sac&nbsp;: '. $specialities['builder']['bag_size'] .'&nbsp;objets]
                     </li>
+                </ul>
+                
+                <ul id="capacities">
+                    <li>'.$buttons->button('upgrade_camouflage', '', 'inline').'
+                        Permet de vous dissimuler aux yeux des autres humains
+                    </li>
+                    <li>'.$buttons->button('upgrade_vision', '', 'inline').'
+                        Permet de percer le camouflage des humains et des bâtiments
+                    </li>            
                 </ul>';
     }
     
