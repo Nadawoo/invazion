@@ -112,24 +112,31 @@
 /*.ground_stone, .ground_circus {
     background-image:url("../img/copyrighted/tiles/desert/1.png");
 }*/
+.ground_grass {
+    background-image:url("../img/copyrighted/tiles/greenjungle/3.png");
+}
 .ground_peeble {
     background-image:url("../img/copyrighted/tiles/desert/2.png");
+}
+.ground_sand {
+    background-image:url("../img/copyrighted/tiles/desert/9.png");
+}
+.ground_lava {
+    background-image:url("../img/copyrighted/tiles/volcanic/7.png");
+    background-position-y: 0.25em;
 }
 .ground_6 { /* ID for the pond - TODO:don't harcode the ID */
     background-image:url("../img/copyrighted/tiles/desert/4.png");
 }
-.ground_thintree {
+.ground_drywoods {
     background-image:url("../img/copyrighted/tiles/desert/5.png");
 }
 .ground_5 { /* ID for the hut - TODO:don't harcode the ID */
     background-image:url("../img/copyrighted/tiles/desert/10.png");
 }
 
-.ground_zombies_ {
+.ground_zombies {
     background-image:url("../img/copyrighted/tiles/grey/5.png");
-}
-.ground_zombies_peeble {
-    background-image:url("../img/copyrighted/tiles/grey/6.png");
 }
 
 .ground_city {

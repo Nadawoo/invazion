@@ -42,9 +42,9 @@ class HtmlPage
                 <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
                 <meta name="description" content="Jeu de survie collaboratif inspiré de Hordes.fr.
                     Travaillez en équipe avec d\'autres joueurs ou tentez votre chance en solo...">
-                <link rel="stylesheet" type="text/css" href="resources/css/sitelayout.css?v4.2">
+                <link rel="stylesheet" type="text/css" href="resources/css/sitelayout.css?v4.3">
                 <link rel="stylesheet" type="text/css" href="resources/css/gamelayout.css?v7.6">
-                <link rel="stylesheet" type="text/css" href="resources/css/map.css?v3.5">
+                <link rel="stylesheet" type="text/css" href="resources/css/map.css?v3.6">
                 <link rel="stylesheet" type="text/css" href="resources/css/smartphone.css?v1.6">
                 <link rel="stylesheet" type="text/css" href="resources/css/myzone.css?v1.4">
                 <link rel="stylesheet" type="text/css" href="resources/css/city.css?v3.3">
