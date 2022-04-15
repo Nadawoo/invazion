@@ -659,6 +659,19 @@ async function teleportToCity(mapId, cityId) {
 
 
 /**
+ * Change the ground type of the zone (grass, peeble, lava...)
+ */
+async function updateLandType(landType, coordX, coordY) {
+    
+    let token = getCookie('token'),
+        mapId = document.getElementById("mapId").innerHTML;
+    
+    // Sends the characteristics of the new item to the API
+    let json = await callApi("GET", "zone", `action=edit&stuff=${landType}&map_id=${mapId}&coord_x=${coordX}&coord_y=${coordY}&token=${token}`);
+}
+
+
+/**
  * Update the interface after killing a zombie
  * 
  * @param {string} apiAction The "action" parameter for the API url (e.g. "kill_zombies")

@@ -665,6 +665,41 @@ class HtmlLayout extends HtmlPage
     
     
     /**
+     * Form to change the ground type of a zone (sand, grass, lava...)
+     * 
+     * @param int $coord_x The X coordinate of the zone to modify
+     * @param int $coord_y The Y coordinate of the zone to modify
+     * @return string HTML
+     */
+    function block_edit_land($coord_x, $coord_y) {
+        
+        $available_lands = [
+                'drywoods'  => 'Arbres morts',
+                'grass'     => 'Herbe',
+                'lava'      => 'Lave',
+                'peeble'    => 'Cailloux',
+                'sand'      => 'Sable',
+                ];
+        
+        $html_lands = '';
+        foreach($available_lands as $alias=>$name) {
+            $html_lands .= '<button type="submit" name="stuff" value="'.$alias.'">'.$name.'</button>';
+        }
+        
+        return '
+            <p><strong>Changer le type de terrain :</strong></p>
+            <form action="" method="GET" id="landform">
+                '.$html_lands.'
+                <br>
+                <label>X <input type="number" name="coord_x" min="0" style="width:3em"
+                                value="'.$coord_x.'"></label>&nbsp;
+                <label>Y <input type="number" name="coord_y" min="0" style="width:3em" 
+                                value="'.$coord_y.'"></label>
+            </form>';
+    }
+    
+    
+    /**
      * Emplacements vides du sac
      * 
      * @param type $nbr_free_slots Nombre d'emplacements libres dans le sac

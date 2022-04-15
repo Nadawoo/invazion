@@ -138,6 +138,7 @@ $html = [
     'actions_bag'       => $layout->block_actions_bag($configs['items'], $citizen['bag_items']),
     'actions_context'   => $layout->block_actions_context($zone['city_size'], $zone['building_id'], $configs['buildings']),
     'actions_zombies'   => $layout->block_actions_zombies($zone['zombies'], $configs['map']['killing_zombie_cost']),
+    'edit_land'         => $layout->block_edit_land($citizen['coord_x'], $citizen['coord_y']),
     'zone_items'        => $layout->block_zone_items($configs['items'], $zone),
     'bag_items'         => $layout->block_bag_items($configs['items'], $citizen['citizen_id'], $citizen['bag_items'], $citizen['bag_size']),
     'zone_fellows'      => $layout->block_zone_fellows($zone_fellows, $citizen['citizen_id']),
@@ -390,8 +391,10 @@ echo $popup->customised('popsuccess', '', $msg_popup, $is_custom_popup_visible);
             <fieldset id="block_build">
                 <legend>Bâtiments</legend>
                 <?php 
-                echo $html['actions_build'];
-                ?>                
+                echo $html['actions_build']
+                     .'<br>'
+                     . $html['edit_land']
+                ?>
             </fieldset>
 
             <fieldset  id="block_citizens">

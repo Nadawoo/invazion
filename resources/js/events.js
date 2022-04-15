@@ -8,6 +8,9 @@ var nbrExecutionsGetCyclicAttacks = 0;
 // If we are on the main game page (those elements don't exist on the connection page)
 if (document.getElementById('map') !== null) {
     
+    // Change the ground type of a zone (lava, grass...)
+    listenToLandform();
+    
     // Displays/hides the notifications panel
     document.getElementById("notifsButton").addEventListener("click", function(){
 
@@ -161,5 +164,24 @@ function listenToSendform() {
     document.getElementById("sendform").addEventListener("input", function() {
          document.getElementById("errorNewTopicPseudo").innerHTML  = "";
          document.getElementById("errorNewTopicMessage").innerHTML = "";
+    });
+}
+
+
+/**
+ * the form to edit the ground type of a zone (lava, grass...)
+ * @returns {undefined}
+ */
+async function listenToLandform() {
+    document.getElementById("landform").addEventListener("submit", function() {
+        // Desactivate the classic submission button (avoids reloading the page)
+        event.preventDefault();
+        
+        let fields = document.getElementById("landform").elements,
+            landType = event.submitter.value,
+            x = fields["coord_x"].value,
+            y = fields["coord_y"].value;
+        
+        updateLandType(landType, x, y);
     });
 }
