@@ -125,6 +125,10 @@
     background-image:url("../img/copyrighted/tiles/volcanic/7.png");
     background-position-y: 0.25em;
 }
+.ground_water {
+    background-image:url("../img/copyrighted/tiles/greenjungle/6.png");
+    background-position-y: 0.25em;
+}
 .ground_6 { /* ID for the pond - TODO:don't harcode the ID */
     background-image:url("../img/copyrighted/tiles/desert/4.png");
 }

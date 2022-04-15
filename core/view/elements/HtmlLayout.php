@@ -672,7 +672,11 @@ class HtmlLayout extends HtmlPage
      * @return string HTML
      */
     function block_edit_land($coord_x, $coord_y) {
-        
+        // The land aliases must exist in the Invazion API, otherwise 
+        // the land type won't be changed.
+        // If you add a land type here, don't forget to add the appropriate
+        // CSS class in map.css (.ground_xxxx), otherwise the default tile (sand)
+        // will be displayed.
         $lands = [
                 'drywoods'  => ['name'  => 'Arbres morts',
                                 'image' => 'desert/5.png'],
@@ -684,6 +688,8 @@ class HtmlLayout extends HtmlPage
                                 'image' => 'desert/2.png'],
                 'sand'      => ['name'  => 'Sable',
                                 'image' => 'desert/9.png'],
+                'water'     => ['name'  => 'Eau',
+                                'image' => 'greenjungle/6.png'],
                 ];
         
         $html_lands = '';
