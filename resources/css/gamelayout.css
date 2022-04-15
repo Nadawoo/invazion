@@ -422,6 +422,20 @@ legend {
     background:#34495e;
     color:white;
 }
+/* The form to change the ground type (lava...) */
+#landform button {
+    background:none;
+    border:none;
+    cursor:pointer;
+}
+#landform button :hover {
+    background: #e9e9ed;
+    outline:1px solid grey;
+    border-radius:0.4em;
+}
+#landform button img {
+    padding:0.1em 0.2em;
+}
 
 #block_zombies {
     text-align:center;

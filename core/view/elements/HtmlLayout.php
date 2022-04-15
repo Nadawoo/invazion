@@ -673,24 +673,32 @@ class HtmlLayout extends HtmlPage
      */
     function block_edit_land($coord_x, $coord_y) {
         
-        $available_lands = [
-                'drywoods'  => 'Arbres morts',
-                'grass'     => 'Herbe',
-                'lava'      => 'Lave',
-                'peeble'    => 'Cailloux',
-                'sand'      => 'Sable',
+        $lands = [
+                'drywoods'  => ['name'  => 'Arbres morts',
+                                'image' => 'desert/5.png'],
+                'grass'     => ['name'  => 'Herbe',
+                                'image' => 'greenjungle/3.png'],
+                'lava'      => ['name'  => 'Lave',
+                                'image' => 'volcanic/7.png'],
+                'peeble'    => ['name'  => 'Cailloux',
+                                'image' => 'desert/2.png'],
+                'sand'      => ['name'  => 'Sable',
+                                'image' => 'desert/9.png'],
                 ];
         
         $html_lands = '';
-        foreach($available_lands as $alias=>$name) {
-            $html_lands .= '<button type="submit" name="stuff" value="'.$alias.'">'.$name.'</button>';
+        foreach($lands as $alias=>$land) {
+            $html_lands .= '<button type="submit" name="stuff" value="'.$alias.'">
+                    <img src="resources/img/copyrighted/tiles/'.$land['image'].'" 
+                         alt="'.$land['name'].'" title="'.$land['name'].'" height="60">
+                </button>';
         }
         
         return '
             <p><strong>Changer le type de terrain :</strong></p>
             <form action="" method="GET" id="landform">
                 '.$html_lands.'
-                <br>
+                <br><br>
                 <label>X <input type="number" name="coord_x" min="0" style="width:3em"
                                 value="'.$coord_x.'"></label>&nbsp;
                 <label>Y <input type="number" name="coord_y" min="0" style="width:3em" 
