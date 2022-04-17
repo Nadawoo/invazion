@@ -44,7 +44,11 @@ function safely_require($filepath)
         
         // NB : filter_input() serait plus adapté que filter_var()
         // mais il ne fonctionne pas avec $_SERVER chez OVH à ce jour
-        $root = filter_var($_SERVER['DOCUMENT_ROOT'], FILTER_SANITIZE_STRING);
+        $public_root = filter_var($_SERVER['DOCUMENT_ROOT'], FILTER_SANITIZE_STRING);
+        // Remove the eventual final "/public" at the end of the path, 
+        // as the domain name points to the subfolder /public and not to 
+        // the real root folder
+        $root = preg_replace('!/public$!', '', $public_root);
     }
     
     require_once $root . $filepath;

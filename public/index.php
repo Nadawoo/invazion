@@ -1,10 +1,10 @@
 <?php
 require_once '../core/controller/autoload.php';
-safely_require('../core/model/set_default_variables.php');
-safely_require('../core/controller/official_server_root.php');
-safely_require('../core/controller/get_game_day.php');
-safely_require('../core/controller/SortGameData.php');
-safely_require('../core/ZombLib.php');
+safely_require('/core/model/set_default_variables.php');
+safely_require('/core/controller/official_server_root.php');
+safely_require('/core/controller/get_game_day.php');
+safely_require('/core/controller/SortGameData.php');
+safely_require('/core/ZombLib.php');
 
 $api                = new ZombLib(official_server_root().'/api');
 $layout             = new HtmlLayout();
