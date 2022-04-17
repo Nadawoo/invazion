@@ -1,8 +1,4 @@
 <?php
-safely_require('/core/view/elements/HtmlLayout.php');
-safely_require('/core/view/elements/HtmlButtons.php');
-
-
 /**
  * Génère les éléments de l'intérieur de la ville
  */

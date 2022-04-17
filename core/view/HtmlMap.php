@@ -1,5 +1,5 @@
 <?php
-safely_require('/core/view/elements/plural.php');
+safely_require('/core/view/plural.php');
 safely_require('/core/controller/get_coordx.php');
 
 

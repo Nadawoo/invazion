@@ -1,7 +1,6 @@
 <?php
 require_once '../core/controller/autoload.php';
 safely_require('/core/controller/official_server_root.php');
-safely_require('/core/view/elements/HtmlLayout.php');
 
 
 $http_host = filter_var($_SERVER['HTTP_HOST'],   FILTER_SANITIZE_URL);
