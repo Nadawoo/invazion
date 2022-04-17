@@ -586,6 +586,16 @@ function toggleTooltip(hexagon) {
 
 
 /**
+ * Displays/hides the big zoomed zone of the player over the map
+ */
+function toogleMyZone() {
+    toggleHide("my_zone");
+    toggleHide("displayMyZone");
+    toggleHide("hideMyZone");
+}
+
+
+/**
  * Converts a raw UTC date to a string text date
  * 
  * @param {string} utcDate  The date as returned by the Invazion's API (UTC time + ISO 8601 format)
@@ -722,15 +732,12 @@ function attackCountdown() {
 // If we are on the main game page (those elements don't exist on the connection page)
 if (document.getElementById('map') !== null) {
        
-    // Memorizes if the player wants to see the whole map or just the area where he is
+    // Restore the display of the player zone over the map before the page was refreshed
     if (getCookieConfig('show_zone') === 1) {
-        hideIds("displayMyZone");
-        unhideId("my_zone");
-        unhideId("hideMyZone");
-    } else {
-        unhideId("displayMyZone");
+        toogleMyZone();
     }
     
+    // Restore the display of the action button before the page was refreshed
     toggleActionBlock(getCookieConfig("round_button"));
     
     // By default, the list of objects in the bag and on the ground are reduced

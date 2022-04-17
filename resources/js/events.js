@@ -32,16 +32,11 @@ if (document.getElementById('map') !== null) {
 
 
     // Switches the action "Display my zone"/"Display the map"
-    document.getElementById("backToMap").addEventListener("click", function(){
-
-        if (getCookieConfig("show_zone") === 1) {
-            setCookieConfig("show_zone", 0);
-        } else {
-            setCookieConfig("show_zone", 1);
-        }
-        toggleHide("my_zone");
-        toggleHide("displayMyZone");
-        toggleHide("hideMyZone");
+    document.getElementById("backToMap").addEventListener("click", function(){        
+        toogleMyZone();
+        // Memorizes the display to restore it if the page is refreshed
+        let newCookieValue = (getCookieConfig("show_zone") === 1) ? 0 : 1;
+        setCookieConfig("show_zone", newCookieValue);
     });
     
     

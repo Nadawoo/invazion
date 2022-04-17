@@ -299,7 +299,7 @@ echo $popup->customised('popsuccess', '', $msg_popup, $is_custom_popup_visible);
         </div>
         
         <div id="backToMap">
-            <span id="displayMyZone" class="hidden">Afficher ma zone</span>
+            <span id="displayMyZone">Afficher ma zone</span>
             <span id="hideMyZone" class="hidden">Afficher la carte</span>
         </div>
         
