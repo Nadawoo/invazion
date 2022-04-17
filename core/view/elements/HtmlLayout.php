@@ -1,7 +1,7 @@
 <?php
 require 'HtmlPage.php';
 require 'plural.php';
-safely_require('../core/controller/get_item_action.php');
+safely_require('../../../core/controller/get_item_action.php');
 
 /**
  * Génère les blocs HTML du jeu.

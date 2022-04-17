@@ -1,5 +1,5 @@
 <?php
-safely_require('../core/controller/official_server_root.php');
+safely_require('../../../core/controller/official_server_root.php');
 
 /**
  * Classe générique pour générer la structure HTML d'une page du site.

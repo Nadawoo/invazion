@@ -1,6 +1,6 @@
 <?php
-safely_require('../core/view/elements/plural.php');
-safely_require('../core/controller/get_coordx.php');
+require_once 'plural.php';
+require_once '../../../core/controller/get_coordx.php';
 
 
 /**
