@@ -4,7 +4,7 @@
  * Useful for the real time refreshing (refresh the modified zones).
  */
 
-require_once '../../../core/controller/autoload.php';
+require_once '../../core/controller/autoload.php';
 safely_require('/core/controller/official_server_root.php');
 safely_require('/core/controller/SortGameData.php');
 safely_require('/core/ZombLib.php');

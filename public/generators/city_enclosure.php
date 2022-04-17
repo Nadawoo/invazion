@@ -5,7 +5,7 @@
  * Useful to refresh the data of the city interface in javascript.
  */
 
-require_once '../../../core/controller/autoload.php';
+require_once '../../core/controller/autoload.php';
 safely_require('/core/controller/official_server_root.php');
 safely_require('/core/ZombLib.php');
 

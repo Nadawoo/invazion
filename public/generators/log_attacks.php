@@ -4,7 +4,7 @@
  * Useful for loading it with asynchronous javacript.
  */
 
-require_once '../../../core/controller/autoload.php';
+require_once '../../core/controller/autoload.php';
 safely_require('/core/controller/official_server_root.php');
 safely_require('/core/ZombLib.php');
 
