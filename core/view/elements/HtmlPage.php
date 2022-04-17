@@ -111,7 +111,8 @@ class HtmlPage
                     </div> <!-- End of #body_bg -->
                     <script type="text/javascript" src="resources/js/ZombLib.js?v1.3"></script>
                     <script type="text/javascript" src="resources/js/wallTemplate.js?v4.4"></script>
-                    <script type="text/javascript" src="resources/js/scripts.js?v7.4"></script>
+                    <script type="text/javascript" src="resources/js/discussions.func.js?v1.0"></script>
+                    <script type="text/javascript" src="resources/js/scripts.js?v8"></script>
                     <script type="text/javascript" src="resources/js/events.js?v5.0"></script>
                 </body>
             </html>';

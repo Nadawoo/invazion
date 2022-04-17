@@ -127,31 +127,6 @@ function displayClasses(classesNames) {
 
 
 /**
- * Highlights the active tab in the communication panel and inactivate the others
- * 
- * @param {type} activatedTab The tab to highlight
- * @return {undefined}
- */
-function activateDiscussionTab(activatedTab) {
-    
-    var allTabs = document.getElementById("discussionTabs").children,
-        allTabsIds = [];
-    // Automatically list the tabs IDs
-    for (let i = 0; i < allTabs.length; i++) {
-        allTabsIds.push(allTabs[i].getAttribute("id"));
-    }
-    
-    document.getElementById(activatedTab).className = "active_tab";
-    
-    for (let i = 0; i < allTabsIds.length; i++) {
-        if (allTabsIds[i] !== activatedTab) {
-            document.getElementById(allTabsIds[i]).className = "inactive_tab";
-        }
-    }
-}
-
-
-/**
  * Modifie la valeur d'un paramètre dans l'url
  * 
  * @param {string} name  Le nom du paramètre
@@ -433,24 +408,6 @@ function activatePhoneTab(tabId=null) {
 
 
 /**
- * Calls the API to get the list of the discussions, in the most performant way:
- * > By default, calls the API only once, then stores the result in memory (faster)
- * > If you need to update the results, you can force recalling the API (up-to-date but slower)
- * 
- * @param {string} refresh Set this value to "true" to force the function to call the API
- *                         even if the result of a previous call is already stored in memory.
- * @return jsonDiscussionApi JSON list of the discussions returned by the API
- */
-async function callDiscussionApiOnce(refresh=false) {
-    
-    if (jsonDiscussionApi === undefined || refresh === true) {        
-        jsonDiscussionApi = await callApi("GET", "discuss/threads", "action=get&sort=last_message_date&fullmsg=1");
-    }
-    return jsonDiscussionApi;
-}
-
-
-/**
  * Connects the user to his account (sends logins and gets the API result)
  */
 async function connectUser() {
@@ -504,101 +461,6 @@ async function createItem() {
     let json = await callApi("POST", "configs", `action=create&type=item&token=${token}&${request}`);
     
     document.getElementById("error").innerHTML = json.metas.error_message;
-}
-
-
-/**
- * Show/hide the vertical panel for the discussions and events
- */
-async function enlargeWall() {
-    
-    let minBarHeight = "2.5rem",
-        maxBarHeight = "100%";
-
-    if (document.querySelector("#floating_wall").style.height !== maxBarHeight) {
-        // Enlarges the panel
-        document.querySelector("#floating_wall").style.height = maxBarHeight;
-        document.querySelector("#enlarge_wall .arrow").style.transform = "rotate(+180deg)";
-    }
-    else {
-        // Reduces the panel
-        document.querySelector("#floating_wall").style.height = minBarHeight;
-        document.querySelector("#enlarge_wall .arrow").style.transform = "rotate(0)";
-    }
-}
-
-
-/**
- * To start a new discussion
- * @returns {Boolean}
- */
-async function createDiscussion() {
-    
-    let title         = document.getElementById("titleNew").value,
-        message       = document.getElementById("messageNew").value,
-        guest_pseudo  = document.getElementById("guestPseudo").value,
-        author_pseudo = document.getElementById("citizenPseudo").innerHTML,
-        token         = getCookie('token');
-
-    let json = await callApi("POST", "discuss/threads", `action=create&title=${title}&message=${message}&guest_pseudo=${guest_pseudo}&token=${token}`);
-    
-    if (json.metas.error_code === "success") {
-        json.datas.message = message;
-        json.datas.author_pseudo = author_pseudo;
-        // Display the new discussion thread
-        document.getElementById("newDiscussion").innerHTML += htmlDiscussion(json.datas.topic_id, title, json.datas, 0);
-        hide("send");
-        // Clear the form for the eventual next thread to send
-        document.getElementById("sendform").reset();
-    }
-    else if (json.metas.error_code === "undefined_pseudo") {
-        document.getElementById("errorNewTopicPseudo").innerHTML = json.metas.error_message;
-    }
-    else {
-        document.getElementById("errorNewTopicMessage").innerHTML = json.metas.error_message;
-    }
-}
-
-
-/**
- * To send a reply in an existing discussion
- */
-async function replyDiscussion(topicId, nbrMessages) {
-    
-    let citizenPseudo = document.getElementById("citizenPseudo").innerHTML,
-        message  = document.getElementById("message"+topicId).value,
-        token    = getCookie('token');
-        
-    let json = await callApi("POST", "discuss/threads", `action=reply&topic_id=${topicId}&message=${message}&token=${token}`);
-    
-    if (json.metas.error_code === "success") {
-        // Clears and hides the form after posting
-        document.getElementById("message"+topicId).value = "";
-        hide("sendform"+topicId);
-        // Unhides the "Reply" button
-        display("replyButton"+topicId);
-        // Appends the text of the posted reply at the bottom of the discussion
-        document.getElementById("replies"+topicId).innerHTML += htmlDiscussionMessage(message, citizenPseudo, new Date().toISOString(), nbrMessages+1);
-        // Clears the eventual error message (obsolete after sending)
-        document.getElementById("replyError"+topicId).innerHTML = "";
-    }
-    else {
-        document.getElementById("replyError"+topicId).innerHTML = '<span class="red">'+json.metas.error_message+'</span>';
-    }
-}
-
-
-/**
- * Builds the url to a discussion, eventually with an anchor to a reply
- * Example : https://invazion.nadazone.fr/discuss/topic?topic=7&p=#msg37
- * @param {int} discussionId The ID of the discussion
- * @param {int} messageId    The ID of a message inside the discussion, if you want to
- *                            direct the user directly on it.
- * @return {String}
- */
-function urlDiscussion(discussionId, messageId="") {
-    
-    return getOfficialServerRoot()+'/discuss/topic?topic='+discussionId+'#msg'+messageId;
 }
 
 
@@ -803,51 +665,6 @@ function dateIsoToString(utcDate) {
 
 
 /**
- * Displays the discussions on the constructions page in the city.
- */
-async function updateDiscussionsList() {
-    
-    // Gets the titles of the discussions, by calling the InvaZion's API
-    var jsonTopics = await callDiscussionApiOnce();
-    
-    var citizenPseudo = document.getElementById("citizenPseudo").innerHTML;
-    var length = jsonTopics.datas.length;
-    var discussions = "";
-    
-    for (let i=0; i<length; i++) {        
-        let topic            = jsonTopics.datas[i],
-            nbrOtherMessages = topic.nbr_messages-1;
-
-        discussions += htmlDiscussion(topic.topic_id, topic.title, topic.last_message, nbrOtherMessages);
-    }
-    
-    document.getElementById("wallDiscuss").innerHTML = htmlNewDiscussionForm(citizenPseudo)
-                                                       + discussions;
-}
-
-
-/**
- * Gets the all the messages of a discussion by calling the InvaZion's API to 
- * 
- * @param {int} topicId the ID of the discussion to load
- * @returns {string} The JSON returned by the API
- */
-async function loadDiscussion(topicId) {
-    
-    var json = await callApi("GET", "discuss/threads", `action=get&topic_id=${topicId}`),
-        messages = json["datas"]["messages"],
-        htmlMessages = "",
-        i = 0;
-    
-    for(let msg in messages) {
-        i++;
-        htmlMessages += htmlDiscussionMessage(messages[msg]["message"], messages[msg]["author_pseudo"], messages[msg]["datetime_utc"], i);
-    }
-    document.getElementById("replies"+topicId).innerHTML = htmlMessages;
-}
-
-
-/**
  * Converts newlines into <br> in a text to preserves them in HTML
  * Source : https://gist.github.com/yidas/41cc9272d3dff50f3c9560fb05e7255e
  *
@@ -857,18 +674,6 @@ async function loadDiscussion(topicId) {
 function nl2br (text) {
     
     return (text + '').replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1'+'<br>');
-}
-
-
-/**
- * Show/hide the form to create a new discussion thread
- */
-function toggleSendform(event) {
-    
-    toggle("sendform");
-    toggle("buttonNewTopic");
-    // Desactivate the normal form
-    event.preventDefault();
 }
 
 
