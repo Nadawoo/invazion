@@ -749,18 +749,6 @@ if (document.getElementById('map') !== null) {
     // Displays the active tab of the in-game du smartphone
     activatePhoneTab();
     
-    // If we are inside a city
-    if (document.getElementById('city_container') !== null) {    
-        // By default, loads the first tab of the city
-        var search_params = new URLSearchParams(window.location.search);
-        switchCitySubmenu(search_params.get('tab'));
-    }
-    
-    
-    // Countdown to escape once the humans have lost the control of the zone
-    if (document.getElementById("controlCountdown") !== null) {
-        setInterval(controlCountdown, 1000);
-    }
     
     // Countdown before the next zombie attack
     attackCountdown();
