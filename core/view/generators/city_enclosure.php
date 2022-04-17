@@ -6,7 +6,7 @@
  */
 
 require_once '../../../core/controller/autoload.php';
-safely_require('/core/controller/official_server_root.php');
+safely_require('../core/controller/official_server_root.php');
 safely_require('/ZombLib.php');
 
 header('content-type:application/json');
