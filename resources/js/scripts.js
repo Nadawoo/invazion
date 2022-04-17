@@ -1,3 +1,10 @@
+/**
+ * Miscellaneous JS functions that doesn't fit the others JS scripts.
+ * Don't put events listeners here (see events.js) nor actions executed 
+ * on loading the page (see onPageLoad.js)
+ */
+
+
 // Will store the result of the API whichs gives the discussions list 
 var jsonDiscussionApi;
 
@@ -722,45 +729,4 @@ function attackCountdown() {
     date.setSeconds(remainingSeconds);
     
     document.getElementById("attackCountdown").innerHTML = date.getHours()+"h "+date.getMinutes()+"mn "+date.getSeconds()+"s";
-}
-
-
-/*
- * Executed as soon as the page loads, without user action
- */
-
-// If we are on the main game page (those elements don't exist on the connection page)
-if (document.getElementById('map') !== null) {
-       
-    // Restore the display of the player zone over the map before the page was refreshed
-    if (getCookieConfig('show_zone') === 1) {
-        toogleMyZone();
-    }
-    
-    // Restore the display of the action button before the page was refreshed
-    toggleActionBlock(getCookieConfig("round_button"));
-    
-    // By default, the list of objects in the bag and on the ground are reduced
-    // UNUSED : the panel is now replaced by the big action button at the right of the map
-//    if (getCookie('showitemspanel') === null || getCookie('showitemspanel') === '0') {
-//        toggleItemsPanel();
-//    }
-     
-    // Displays the active tab of the in-game du smartphone
-    activatePhoneTab();
-    
-    
-    // Countdown before the next zombie attack
-    attackCountdown();
-    setInterval(attackCountdown, 1000);
-        
-    // Server-sent events to update the map in real time
-    var timestamp = Math.floor(Date.now()/1000);
-    setTimeout(function() {
-        // NB: keep the ".php" extension, otherwise it will give a "CORS error" with the local API version
-        let evtSource = new EventSource(getOfficialServerRoot()+"/api/sse.php");
-        evtSource.onmessage = async function(event) { 
-            timestamp = await UpdateMapRealtime(event, timestamp);
-        };
-    }, 2000);
 }
