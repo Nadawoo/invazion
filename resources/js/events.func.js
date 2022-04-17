@@ -48,3 +48,19 @@ async function listenToLandform() {
     });
 }
 
+
+/**
+ * Displays/hides the tooltip of any zone when the mouse hovers one
+ */
+function listenToMapZones() {
+    document.getElementById("map").addEventListener("mouseover", function(){
+        displayTooltip(event.target.closest(".hexagon"));
+    });
+    document.getElementById("map").addEventListener("mouseout",  function(){
+        hideTooltip(event.target.closest(".hexagon"));
+    });
+    // The onclick event is required for the mobile devices (no notion of "hover" there)
+    document.getElementById("map").addEventListener("click", function(){
+        toggleTooltip(event.target.closest(".hexagon"));
+    });
+}

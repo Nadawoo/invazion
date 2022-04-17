@@ -11,6 +11,10 @@ if (document.getElementById('map') !== null) {
     // Change the ground type of a zone (lava, grass...)
     listenToLandform();
     
+    // Displays/hides the tooltip of any zone when the mouse hovers one
+    listenToMapZones();
+    
+    
     // Displays/hides the notifications panel
     document.getElementById("notifsButton").addEventListener("click", function(){
 
@@ -39,19 +43,7 @@ if (document.getElementById('map') !== null) {
         toggleHide("displayMyZone");
         toggleHide("hideMyZone");
     });
-
-
-    // Displays/hides the tooltip of any zone when the mouse hovers one
-    document.getElementById("map").addEventListener("mouseover", function(){
-        displayTooltip(event.target.closest(".hexagon"));
-    });
-    document.getElementById("map").addEventListener("mouseout",  function(){
-        hideTooltip(event.target.closest(".hexagon"));
-    });
-    // The onclick event is required for the mobile devices (no notion of "hover" there)
-    document.getElementById("map").addEventListener("click", function(){
-        toggleTooltip(event.target.closest(".hexagon"));
-    });
+    
     
     // Switch tabs in the communications panel
     document.getElementById("tabWallDiscuss").addEventListener("click", function() {
