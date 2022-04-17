@@ -99,27 +99,19 @@ if (document.getElementById('map') !== null) {
 // If the player is connected
 if (document.getElementById("me") !== null) {
     
+    let myHexagon = document.getElementById("me").closest(".hexagon");
+    
     // Displays the tooltip of the player's zone when hovering the movement paddle
-    document.getElementById("central").addEventListener("mouseover", function() {
-        displayTooltip(document.getElementById("me").closest(".hexagon"));
-    });
-    document.getElementById("central").addEventListener("mouseout", function() {
-        hideTooltip(document.getElementById("me").closest(".hexagon"));
-    });
-    document.getElementById("central").addEventListener("click", function() {
-        toggleTooltip(document.getElementById("me").closest(".hexagon"));
-    });
+    let paddle = document.getElementById("central");
+    paddle.addEventListener("mouseover", function() { displayTooltip(myHexagon); });
+    paddle.addEventListener("mouseout",  function() { hideTooltip(myHexagon);    });
+    paddle.addEventListener("click",     function() { toggleTooltip(myHexagon);  });
 
     // Same thing when hovering the GPS on the smartphone
-    document.getElementById("minimap").addEventListener("mouseover", function() {
-        displayTooltip(document.getElementById("me").closest(".hexagon"));
-    });
-    document.getElementById("minimap").addEventListener("mouseout", function() {
-        hideTooltip(document.getElementById("me").closest(".hexagon"));
-    });
-    document.getElementById("minimap").addEventListener("click", function() {
-        toggleTooltip(document.getElementById("me").closest(".hexagon"));
-    });
+    let minimap = document.getElementById("minimap");
+    minimap.addEventListener("mouseover", function() { displayTooltip(myHexagon); });
+    minimap.addEventListener("mouseout",  function() { hideTooltip(myHexagon);    });
+    minimap.addEventListener("click",     function() { toggleTooltip(myHexagon);  });
 }
 
 //If we are on the panel to edit the items available in game
