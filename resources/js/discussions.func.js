@@ -2,7 +2,6 @@
  * This script gathers all the functions related to the discussions space
  * (forum/communications).
  * Put only functions here, no immediatly executable code or events listeners.
- * If you need them, put them in the main script: scripts.js
  */
 
 
