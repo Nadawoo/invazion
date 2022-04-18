@@ -508,40 +508,60 @@ async function killZombies(apiAction, coordX, coordY) {
     document.getElementById("message_move").innerHTML = '<span class="'+json.metas.error_class+'">'+json.metas.error_message+'</span>';
     
     if(json.metas.error_code === "success") {        
-        let nbrZombies = document.querySelector("#round_zombies .dot_number"),
-            newNbrZombies = Math.max(0, nbrZombies.innerHTML - json.datas.nbr_zombies_removed),
+        let oldNbrZombies = document.querySelector("#round_zombies .dot_number").innerHTML,
+            newNbrZombies = Math.max(0, oldNbrZombies - json.datas.nbr_zombies_removed),
             coordX = document.getElementById("citizenCoordX").innerHTML,
             coordY = document.getElementById("citizenCoordY").innerHTML;
-    
-        // Update the number of zombies in the round button
-        nbrZombies.innerHTML = newNbrZombies;
-        
-        // Update in the red frame above the movement paddle
-        let alertControlNbrZombies = document.querySelector("#alert_control .nbr_zombies");
-        if(alertControlNbrZombies !== null) {
-            alertControlNbrZombies.innerHTML = newNbrZombies;
-            if(newNbrZombies <= 0) {
-                hideIds("alert_control");
-            }
-        }
-        
-        // Update movement cost (action points)
-        if(newNbrZombies <= 0) {
-            document.querySelector("#movement_cost").innerHTML = "Déplacement gratuit<br>(vous avez éliminé tous les zombies)";
-        }
-        
-        // Update in the action block "zombies"        
-        if(newNbrZombies > 0) {
-            document.querySelector("#block_zombies .nbr_zombies").innerHTML = newNbrZombies+" zombies";
-            document.querySelector("#block_zombies .zombies_visual .zombie").remove();
-        } else {
-            document.querySelector("#block_zombies .zombies_text").innerHTML = "Vous avez éradiqué toutes les menaces alentour ! La voie est libre...";
-            document.querySelector("#block_zombies .zombies_visual").innerHTML = "";
-            document.querySelector("#block_zombies .buttons_kill").innerHTML = "";
-        }
+            
+        // Update the action blocks (round buttons next to the map)
+        updateBlockActionZombies(newNbrZombies);
+        updateBlockActionMove(newNbrZombies);
         
         // Update the zombie silhouettes on the map zone
         document.querySelector("#zone"+coordX+"_"+coordY+" .zombies img").getAttribute("src").innerHTML = "resources/img/motiontwin/zombie"+newNbrZombies+".gif";
+    }
+}
+
+
+/**
+ * Update the content of the action block "Zombies" 
+ * @param {int} newNbrZombies The number of zombies in the zone after the action
+ */
+function updateBlockActionZombies(newNbrZombies) {
+    
+    // Update the number of zombies in the round button
+    document.querySelector("#round_zombies .dot_number").innerHTML = newNbrZombies;
+    
+    // Update the content of the "zobmies" frame
+    if(newNbrZombies > 0) {
+        document.querySelector("#block_zombies .nbr_zombies").innerHTML = newNbrZombies+" zombies";
+        document.querySelector("#block_zombies .zombies_visual .zombie").remove();
+    } else {
+        document.querySelector("#block_zombies .zombies_text").innerHTML = "Vous avez éradiqué toutes les menaces alentour ! La voie est libre...";
+        document.querySelector("#block_zombies .zombies_visual").innerHTML = "";
+        document.querySelector("#block_zombies .buttons_kill").innerHTML = "";
+    }
+}
+
+
+/**
+ * Update the content of the action block "Move"
+ * @param {int} newNbrZombies The number of zombies in the zone after the action
+ */
+function updateBlockActionMove(newNbrZombies) {
+
+    // Update the red alert frame above the movement paddle
+    let alertControlNbrZombies = document.querySelector("#alert_control .nbr_zombies");
+    if(alertControlNbrZombies !== null) {
+        alertControlNbrZombies.innerHTML = newNbrZombies;
+        if(newNbrZombies <= 0) {
+            hideIds("alert_control");
+        }
+    }
+    
+    // Update the details about movement cost (action points)
+    if(newNbrZombies <= 0) {
+        document.querySelector("#movement_cost").innerHTML = "Déplacement gratuit<br>(vous avez éliminé tous les zombies)";
     }
 }
 
