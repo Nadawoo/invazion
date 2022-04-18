@@ -729,7 +729,7 @@ async function UpdateMapRealtime(event, timestamp) {
     }
 
     // Refresh the timestamp to memorize that these actions have been treated
-    return timestamp = await JSON.parse(event.data).citizens;
+    return timestamp = await JSON.parse(event.data).zones;
 };
 
 
