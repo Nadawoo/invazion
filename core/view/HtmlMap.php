@@ -16,7 +16,22 @@ class HtmlMap
         $this->config_buildings = $config_buildings;
     }
 
-
+    
+    /**
+     * Returns a property of a building (name, icon, description...)
+     * 
+     * @param int $building_id The ID of the building, as returned by the API "zone"
+     * @param string $field The name of the property needed. Must be a key 
+     *                      returned by the API "configs"
+     * @return string|int Depends on the property asked
+     */
+    function building($building_id, $field) {
+            
+        return (isset($this->config_buildings[$building_id]))
+                ? $this->config_buildings[$building_id][$field]
+                : null;
+    }
+    
     
     /**
      * Templates for the zone contents
@@ -82,9 +97,12 @@ class HtmlMap
         
         // TODO: make a generic class to get the config of the buildings
         // e.g.: Config()->building(5)->descr_ambiance;
+        $name           = $this->building($building_id, 'name');
+        $descr_ambiance = $this->building($building_id, 'descr_ambiance');
+        
         return '<div class="roleplay">
-                    <h5>'.$this->config_buildings[$building_id]['name'].'</h5><hr>'
-                    . $this->config_buildings[$building_id]['descr_ambiance']
+                    <h5>'.$name.'</h5><hr>'
+                    . $descr_ambiance
                 . '</div>';
     }
     
@@ -100,7 +118,8 @@ class HtmlMap
         
         // TODO: make a generic class to get the config of the buildings
         // e.g.: Config()->building(5)->icon_html;
-        $icon = $this->config_buildings[$building_id]['icon_html'];
+        $icon = $this->building($building_id, 'icon_html');
+        
         return ($icon !== null) ? '<div class="emoji">'.$icon.'</div>' : '{'.$building_id.'}';
     }
     
@@ -246,7 +265,7 @@ class HtmlMap
         // TODO: get the building config in a cleaner way
         elseif ($is_player_in_zone === true 
                 or ($cell['building_id'] !== null and
-                   (bool)$this->config_buildings[$cell['building_id']]['is_always_visible'] === true))
+                   (bool)$this->building($cell['building_id'], 'is_always_visible') === true))
                 {
             $opacity = 1;
         }
