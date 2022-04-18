@@ -120,7 +120,10 @@ class HtmlMap
         // e.g.: Config()->building(5)->icon_html;
         $icon = $this->building($building_id, 'icon_html');
         
-        return ($icon !== null) ? '<div class="emoji">'.$icon.'</div>' : '{'.$building_id.'}';
+        $html_icon = ($icon !== null) ? $icon 
+                                      : '<div class="buildingId">'.$building_id.'</div>';
+        
+        return '<div class="emoji">'.$html_icon.'</div>';
     }
     
     

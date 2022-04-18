@@ -21,6 +21,11 @@
     /*overflow:auto; */
 }
 
+/* The unvariable data of the game (building names...) */
+#configs {
+    display:none;
+}
+
 #column_right {
     min-height:16em;
     margin-bottom:1em;

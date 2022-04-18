@@ -129,6 +129,8 @@ if ($citizen['citizen_id'] !== NULL) {
 $html = [
     // Data about the player for javascript treatments (his coordinates...)
     'hidden_player_data' => $layout->hidden_player_data($citizen),
+    // The unvariable data of the game (buildings names...)
+    'json_configs'      => $layout->json_configs(json_encode($configs['buildings'])),
     // Assembling the HTML for the map
     'map' => $map->hexagonal_map($maps['map_width'], $maps['map_height'], $maps['zones'], $citizens_by_coord, $citizen, $maps['next_attack_hour']),
     'map_citizens'      => $layout->map_citizens($citizens),
@@ -158,6 +160,7 @@ unset($maps, $citizens, $citizens_by_coord);
  */
 echo $layout->page_header();
 echo $html['hidden_player_data'];
+echo $html['json_configs'];
 
 // Textes des pop-up
 // TODO : ne pas charger toutes les textes dans le code, seulement celui utile

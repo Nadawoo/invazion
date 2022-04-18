@@ -727,10 +727,26 @@ async function UpdateMapRealtime(event, timestamp) {
     for (let coords in htmlZones) {
         document.getElementById("zone"+coords).outerHTML = htmlZones[coords];
     }
-
+    
+    replaceBuildingIdsByIcons();
+    
     // Refresh the timestamp to memorize that these actions have been treated
     return timestamp = await JSON.parse(event.data).zones;
 };
+
+
+function replaceBuildingIdsByIcons() {
+    // The unvariable data of the game (building names...) are stored in the HTML
+    // to avoid multiple callings to the Invazion's API
+    let configsBuildings = JSON.parse(document.querySelector("#configs .buildings").innerHTML);
+    let buildingIds = document.querySelectorAll("#map .buildingId");
+    
+    for(let building of buildingIds) {
+        let buildingId = building.innerHTML;
+        // Replace the building ID by the icon of the building
+        building.outerHTML = configsBuildings[buildingId].icon_html;
+    }
+}
 
 
 /**

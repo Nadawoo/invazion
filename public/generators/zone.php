@@ -33,10 +33,6 @@ if ($zones['metas']['error_code'] === 'success') {
     $citizens = $api->call_api('citizens', 'get', ['map_id'=>$map_id, 'zones'=>array_keys($zones['datas']['zones'])])['datas'];
     $citizens_by_coord = $sort->sort_citizens_by_coord($citizens);
     
-    // Get the data for the eventual buildings in the zones
-    $config_buildings = $api->call_api('configs', 'get', ['map_id'=>$map_id])['datas']['buildings'];
-    $map->set_config_buildings($config_buildings);
-    
     // Data of the connected player
     if (isset($citizens[$citizen_id])) {
         $player_pseudo = $citizens[$citizen_id]['citizen_pseudo'];

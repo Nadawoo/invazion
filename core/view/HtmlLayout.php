@@ -11,6 +11,25 @@ safely_require('/core/controller/get_item_action.php');
 class HtmlLayout extends HtmlPage
 {
     
+    
+    /**
+     * Store in the HTML the unvariable data of the game (building names...).
+     * Useful to reuse those data with javascript without calling the Invazion's API
+     * 
+     * @param string $json_buildings The JSON string containing the configuration 
+     *                               of the game, as returned by the Invazion's API
+     * @return string HTML
+     */
+    function json_configs($json_buildings) {
+        
+        return '<section id="configs">
+                    <div class="buildings">
+                    '.$json_buildings.'
+                    </div>
+                </section>';
+    }
+    
+    
     /**
      * Barre de connexion horizontale en haut de la page
      * 
