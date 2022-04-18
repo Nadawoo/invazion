@@ -5,6 +5,40 @@
 class HtmlMovementPaddle
 {
     
+    private $arrows = [
+                'northwest' => [
+                    'title' => 'Aller au nord-ouest',
+                    'icon'  => '▲',
+                    'style' => 'margin-left:-0.5em;transform:rotate(-30deg)',
+                    ],
+                'northeast' => [
+                    'title' => 'Aller au nord-est',
+                    'icon'  => '▲',
+                    'style' => 'margin-right:-0.5em;transform:rotate(30deg)',
+                    ],
+                'west' => [
+                    'title' => 'Aller à l\'ouest',
+                    'icon'  => '&#9664;',
+                    'style' => '',
+                    ],
+                'east' => [
+                    'title' => 'Aller à l\'est',
+                    'icon'  => '&#9654;',
+                    'style' => '',
+                    ],
+                'southwest' => [
+                    'title' => 'Aller au sud-ouest',
+                    'icon'  => '▼',
+                    'style' => 'margin-left:-0.5em;transform:rotate(30deg)',
+                    ],
+                'southeast' => [
+                    'title' => 'Aller au sud-est',
+                    'icon'  => '▼',
+                    'style' => 'margin-right:-0.5em;transform:rotate(-30deg)',
+                    ],
+                ];
+    
+    
     /**
      * Main method: generates the paddle
      * 
@@ -53,44 +87,11 @@ class HtmlMovementPaddle
      */
     private function arrow($direction)
     {
-
-        $arrows = [
-            'northwest' => [
-                'title' => 'Aller au nord-ouest',
-                'icon'  => '▲',
-                'style' => 'margin-left:-0.5em;transform:rotate(-30deg)',
-                ],
-            'northeast' => [
-                'title' => 'Aller au nord-est',
-                'icon'  => '▲',
-                'style' => 'margin-right:-0.5em;transform:rotate(30deg)',
-                ],
-            'west' => [
-                'title' => 'Aller à l\'ouest',
-                'icon'  => '&#9664;',
-                'style' => '',
-                ],
-            'east' => [
-                'title' => 'Aller à l\'est',
-                'icon'  => '&#9654;',
-                'style' => '',
-                ],
-            'southwest' => [
-                'title' => 'Aller au sud-ouest',
-                'icon'  => '▼',
-                'style' => 'margin-left:-0.5em;transform:rotate(30deg)',
-                ],
-            'southeast' => [
-                'title' => 'Aller au sud-est',
-                'icon'  => '▼',
-                'style' => 'margin-right:-0.5em;transform:rotate(-30deg)',
-                ],
-            ];
-
+        
         return '<button type="submit" name="direction" value="'.$direction.'" 
-                    title="'.$arrows[$direction]['title'].'"
-                    style="'.$arrows[$direction]['style'].'">
-                    '.$arrows[$direction]['icon'].'
+                    title="'.$this->arrows[$direction]['title'].'"
+                    style="'.$this->arrows[$direction]['style'].'">
+                    '.$this->arrows[$direction]['icon'].'
                 </button>
             ';
     }
