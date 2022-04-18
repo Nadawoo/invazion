@@ -257,7 +257,7 @@
     height:2.5em;
     box-sizing:border-box;
 }
-#movement_paddle input {
+#movement_paddle button {
     min-width:0;
     padding:0;
     font-size:1.8em;
@@ -265,8 +265,9 @@
     background:none;
     border:none;
 }
-#movement_paddle input:hover {
+#movement_paddle button:hover {
     color:red;
+    cursor:pointer;
 }
 /* L'hexagone central entre les flèches */
 #movement_paddle #central {

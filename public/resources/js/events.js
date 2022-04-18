@@ -14,7 +14,13 @@ if (document.getElementById('map') !== null) {
     // Displays/hides the tooltip of any zone when the mouse hovers one
     listenToMapZones();
     
-    
+    // Move the citizen on the map
+    document.getElementById("block_move").addEventListener("submit", function() {
+        // Desactivate the classic submission button (avoids reloading the page)
+        event.preventDefault();
+        moveCitizen(event.submitter.value);
+    });
+        
     // Displays/hides the notifications panel
     document.getElementById("notifsButton").addEventListener("click", function(){
 

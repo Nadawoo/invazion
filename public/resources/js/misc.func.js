@@ -478,6 +478,24 @@ async function updateLandType(landType, coordX, coordY) {
 
 
 /**
+ * Move the citizen on the map
+ * 
+ * @param {string} direction One of the allowed directions (north, east, northeast...)
+ *                           See the documentation of the "zone" API
+ */
+async function moveCitizen(direction) {
+    
+    let token = getCookie('token');
+    // Sends the characteristics of the new item to the API
+    let json = await callApi("GET", "zone", `action=move&to=${direction}&token=${token}`);
+    
+    document.getElementById("message_move").innerHTML = (json.metas.error_code === "success") 
+        ? ''
+        : '<span class="'+json.metas.error_class+'">'+json.metas.error_message+'</span>';
+}
+
+
+/**
  * Update the interface after killing a zombie
  * 
  * @param {string} apiAction The "action" parameter for the API url (e.g. "kill_zombies")

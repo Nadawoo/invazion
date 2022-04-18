@@ -38,7 +38,7 @@ if (document.getElementById('map') !== null) {
         evtSource.onmessage = async function(event) { 
             timestamp = await UpdateMapRealtime(event, timestamp);
         };
-    }, 2000);
+    }, 1000);
 }
 
 

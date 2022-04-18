@@ -16,6 +16,7 @@ class HtmlMovementPaddle
     {
 
         return '
+        <form method="post" action="#Outside">
         <table id="movement_paddle">
             <tr>
                 <td></td>
@@ -38,7 +39,8 @@ class HtmlMovementPaddle
                 <td>'.$this->arrow('southeast').'</td>
                 <td></td>
             </tr>
-        </table>';
+        </table>
+        </form>';
     }
     
     
@@ -85,13 +87,12 @@ class HtmlMovementPaddle
                 ],
             ];
 
-        return '
-            <form method="post" action="#Outside">
-                <input type="hidden" name="api_name" value="zone">
-                <input type="hidden" name="action" value="move">
-                <input type="hidden" name="params[to]" value="'.$direction.'">
-                <input type="submit" title="'.$arrows[$direction]['title'].'" value="'.$arrows[$direction]['icon'].'" style="'.$arrows[$direction]['style'].'">
-            </form>';
+        return '<button type="submit" name="direction" value="'.$direction.'" 
+                    title="'.$arrows[$direction]['title'].'"
+                    style="'.$arrows[$direction]['style'].'">
+                    '.$arrows[$direction]['icon'].'
+                </button>
+            ';
     }
 }
 
