@@ -25,6 +25,10 @@
 #configs {
     display:none;
 }
+/* Stores some useful data for javascript (citizen name...) */
+#gameData {
+    display:none;
+}
 
 #column_right {
     min-height:16em;
@@ -308,7 +312,7 @@
 #actionpoints p {
     margin:0.2em 0;
 }
-#actionpoints .ap_bar {
+#actionpoints #apBar {
     font-size:1.5em;
     word-break:break-all;
 }

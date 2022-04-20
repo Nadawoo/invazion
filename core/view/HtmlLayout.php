@@ -60,7 +60,6 @@ class HtmlLayout extends HtmlPage
         else {
             
             return 'Vous êtes le citoyen <strong>'.$citizen_pseudo.'</strong>'
-                   . '<span id="citizenId" class="hidden">'.$citizen_id.'</span>'
                    . $buttons->disconnect();
         } 
     }
@@ -381,7 +380,7 @@ class HtmlLayout extends HtmlPage
         return '<div id="movement_ap">
                 <a href="#popmove" id="actionpoints">
                     <p style="opacity:0.7">Points d\'action</p>
-                    <p class="ap_bar">'.$ap_bar.'</p>
+                    <p id="apBar">'.$ap_bar.'</p>
                 </a>
                 <a href="#popmove" id="movement_cost">
                     '.$AP_cost.'
@@ -794,12 +793,17 @@ class HtmlLayout extends HtmlPage
      *                       (citizen ID, his coordinates on the map...)
      * @return string HTML
      */
-    function hidden_player_data($citizen) {
+    function hidden_player_data($citizen, $max_action_points) {
         
-        return '<div id="citizenId" class="hidden">'.$citizen['citizen_id'].'</div>
-                <div id="citizenPseudo" class="hidden">'.$citizen['citizen_pseudo'].'</div>
-                <div id="citizenCoordX" class="hidden">'.$citizen['coord_x'].'</div>
-                <div id="citizenCoordY" class="hidden">'.$citizen['coord_y'].'</div>
-                <div id="mapId" class="hidden">'.$citizen['map_id'].'</div>';
+        return '
+            <section id="gameData">
+                <div id="citizenId">'.$citizen['citizen_id'].'</div>
+                <div id="citizenPseudo">'.$citizen['citizen_pseudo'].'</div>
+                <div id="citizenCoordX">'.$citizen['coord_x'].'</div>
+                <div id="citizenCoordY">'.$citizen['coord_y'].'</div>
+                <div id="actionPoints">'.$citizen['action_points'].'</div>
+                <div id="maxActionPoints">'.$max_action_points.'</div>
+                <div id="mapId">'.$citizen['map_id'].'</div>
+            </section>';
     }
 }

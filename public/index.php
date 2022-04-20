@@ -128,7 +128,7 @@ if ($citizen['citizen_id'] !== NULL) {
  */
 $html = [
     // Data about the player for javascript treatments (his coordinates...)
-    'hidden_player_data' => $layout->hidden_player_data($citizen),
+    'hidden_player_data' => $layout->hidden_player_data($citizen, $speciality_caracs['action_points']),
     // The unvariable data of the game (buildings names...)
     'json_configs'      => $layout->json_configs(json_encode($configs['buildings'])),
     // Assembling the HTML for the map

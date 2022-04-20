@@ -494,6 +494,8 @@ async function moveCitizen(direction) {
     document.getElementById("message_move").innerHTML = (json.metas.error_code === "success") 
         ? ''
         : '<span class="'+json.metas.error_class+'">'+json.metas.error_message+'</span>';
+        
+    updateActionPointsBar(json.datas.action_points_lost);
 }
 
 
@@ -800,4 +802,24 @@ function attackCountdown() {
     date.setSeconds(remainingSeconds);
     
     document.getElementById("attackCountdown").innerHTML = date.getHours()+"h "+date.getMinutes()+"mn "+date.getSeconds()+"s";
+}
+
+
+/**
+ * Update the HTML displaying the action points after consuming AP
+ * 
+ * @param {int} actionsPointsLost The amount of AP to decrease
+ */
+function updateActionPointsBar(actionsPointsLost) {
+    // Update the number of AP in the hidden data storage
+    document.querySelector("#actionPoints").innerHTML -= actionsPointsLost;
+    
+    let currentAP   = document.querySelector("#actionPoints").innerHTML,
+        maxAP       = document.querySelector("#maxActionPoints").innerHTML;
+    
+    let htmlCurrentAP = '&#x26A1'.repeat(currentAP),
+        htmlConsumedAP  = '<span style="opacity:0.3">'+('&#x26A1;'.repeat(maxAP-currentAP))+'</span>';
+    
+    // Update the HTML gauge displaying the number of action points
+    document.querySelector("#apBar").innerHTML = htmlCurrentAP + htmlConsumedAP;
 }
