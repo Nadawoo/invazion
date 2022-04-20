@@ -148,7 +148,7 @@
 }
 
 
-#map .emoji { /* Makes the unicode icons bigger without shifting the map tiles */
+#map .icon_html { /* Makes the unicode icons bigger without shifting the map tiles */
     font-size:1.3em;
     margin-bottom:0.2em;
 }

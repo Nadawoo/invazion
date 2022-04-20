@@ -5,6 +5,8 @@
  */
 
 
+// Get the unvariable data of the game (building names...) stored in the HTML
+var configsBuildings = JSON.parse(document.querySelector("#configs .buildings").innerHTML);
 // Will store the result of the API whichs gives the discussions list 
 var jsonDiscussionApi;
 
@@ -728,23 +730,38 @@ async function UpdateMapRealtime(event, timestamp) {
         document.getElementById("zone"+coords).outerHTML = htmlZones[coords];
     }
     
-    replaceBuildingIdsByIcons();
+    replaceBuildingsPlaceholders(configsBuildings);
     
     // Refresh the timestamp to memorize that these actions have been treated
     return timestamp = await JSON.parse(event.data).zones;
 };
 
 
-function replaceBuildingIdsByIcons() {
-    // The unvariable data of the game (building names...) are stored in the HTML
-    // to avoid multiple callings to the Invazion's API
-    let configsBuildings = JSON.parse(document.querySelector("#configs .buildings").innerHTML);
-    let buildingIds = document.querySelectorAll("#map .buildingId");
+/**
+ * Replaces the buildings IDs on the map by the real data (building name, description...)
+ * Useful to load those data from the configs stored in JSON in the HTML page,
+ * without calling the "configs" API
+ * 
+ * @param {array} configsBuildings The configuration data of the game, as structured
+ *                                 in the Invazion's "configs" API. Example :
+ *                                 [
+ *                                 [1 => ['name' => 'Circus', 'description' = > '...'],
+ *                                 [2 => ['name' => 'Car', 'description' = > '...'],
+ *                                 ],
+ */
+function replaceBuildingsPlaceholders(configsBuildings) {
+    
+    // Gets all the placeholders on the map
+    var buildingIds = document.querySelectorAll("#map .buildingId");
     
     for(let building of buildingIds) {
+        // Warning: the class of the parent tag must be named as the field is
+        // in the "configs" API. Example for the building #17: class="name" if we want 
+        // to get configs["buildings"][17]["name"]
+        let field = building.parentNode.className;        
         let buildingId = building.innerHTML;
-        // Replace the building ID by the icon of the building
-        building.outerHTML = configsBuildings[buildingId].icon_html;
+        // Replaces the building ID placeholder by the data of the field
+        building.outerHTML = configsBuildings[buildingId][field];
     }
 }
 

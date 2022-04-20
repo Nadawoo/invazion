@@ -23,13 +23,15 @@ class HtmlMap
      * @param int $building_id The ID of the building, as returned by the API "zone"
      * @param string $field The name of the property needed. Must be a key 
      *                      returned by the API "configs"
-     * @return string|int Depends on the property asked
+     * @return string|int If the building ID exists, returns the asked property (name...)
+     *                    If doesn't exist, returns a placeholer containing
+     *                    the building ID. Useful to replace it asynchronously with javascript.
      */
     function building($building_id, $field) {
             
         return (isset($this->config_buildings[$building_id]))
                 ? $this->config_buildings[$building_id][$field]
-                : null;
+                : '<div class="buildingId">'.$building_id.'</div>';
     }
     
     
@@ -50,7 +52,7 @@ class HtmlMap
                                 <div class="halo">&nbsp;</div>',
             'city'          => '<div class="city"><img src="resources/img/free/city.png" alt="&#10224;"></div>'
                                . '<div class="city_nbr_def">'.$string1.'</div>',
-            'tent'          => '<div class="emoji">&#9978;</div>',
+            'tent'          => '<div class="icon_html">&#9978;</div>',
             'items'         => '&nbsp;',
             'zombies'       => '<div class="zombies"><img src="resources/img/motiontwin/zombie'.$string2.'.gif" alt="Zx'.$string1.'"></div>',
         ];
@@ -101,9 +103,10 @@ class HtmlMap
         $descr_ambiance = $this->building($building_id, 'descr_ambiance');
         
         return '<div class="roleplay">
-                    <h5>'.$name.'</h5><hr>'
-                    . $descr_ambiance
-                . '</div>';
+                    <h5 class="name">'.$name.'</h5>
+                    <hr>
+                    <div class="descr_ambiance">'.$descr_ambiance.'</div>
+                </div>';
     }
     
     
@@ -120,10 +123,7 @@ class HtmlMap
         // e.g.: Config()->building(5)->icon_html;
         $icon = $this->building($building_id, 'icon_html');
         
-        $html_icon = ($icon !== null) ? $icon 
-                                      : '<div class="buildingId">'.$building_id.'</div>';
-        
-        return '<div class="emoji">'.$html_icon.'</div>';
+        return '<div class="icon_html">'.$icon.'</div>';
     }
     
     
