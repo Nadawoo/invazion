@@ -624,6 +624,7 @@ a.redbutton {
  * Bloc rouge indiquant que le joueur est bloqué par les zombies
  */
 #alert_control {
+    display:none;
     margin-left:0;
     margin-bottom:1rem;
     border:2px outset black;

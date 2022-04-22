@@ -293,7 +293,12 @@ class HtmlMap
         // - La classe "square_container" est un conteneur carré pour assurer la symétrie du contenu
         // (un hexagone ne peut pas, par définition, être inscrit dans un carré)
         return '<div id="zone'.$col.'_'.$row.'" class="hexagon '.$has_items.' '.$ground.' '.$elevate.'" style="opacity:'.$opacity.'">
-                    <div class="square_container">'
+                    <div class="square_container"
+                        data-zombies="'.$cell['zombies'].'"
+                        data-citizens="'.$cell['citizens'].'"
+                        data-controlPointsZombies="'.$cell['controlpoints_zombies'].'"
+                        data-controlPointsCitizens="'.$cell['controlpoints_citizens'].'"
+                        >'
                         . $cell_zombies . $cell_me . $cell_content . '
                         <div class="bubble">
                             [Zone '.$col.':'.$row.']'

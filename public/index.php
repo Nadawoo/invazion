@@ -347,9 +347,6 @@ echo $popup->customised('popsuccess', '', $msg_popup, $is_custom_popup_visible);
                 if ($zone['controlpoints_citizens'] < $zone['controlpoints_zombies'] and time() < strtotime($zone['date_control_end'])) {
                     echo $layout->block_alert_escape(strtotime($zone['date_control_end']));
                 }
-                elseif ($zone['controlpoints_citizens'] < $zone['controlpoints_zombies']) {
-                    echo $layout->block_alert_control($zone['zombies']);
-                }
                 elseif (($zone['zombies'] === 0 and $citizen['action_points'] < $configs['map']['moving_cost_no_zombies'])
                      or ($zone['zombies'] === 0 and $citizen['action_points'] === 0 and $configs['map']['moving_cost_no_zombies'] > 0)
                      or ($zone['zombies'] >   0 and $citizen['action_points'] < $configs['map']['moving_cost_zombies'])
@@ -357,6 +354,7 @@ echo $popup->customised('popsuccess', '', $msg_popup, $is_custom_popup_visible);
                     echo $layout->block_alert_tired($zone['zombies']);
                 }
                 
+                echo $layout->block_alert_control($zone['zombies']);
                 echo $paddle->paddle($citizen['coord_x'], $citizen['coord_y']);
                 echo $layout->block_movement_AP($citizen['action_points'], $speciality_caracs['action_points'], $zone['zombies'], 
                                                 $configs['map']['moving_cost_no_zombies'], $configs['map']['moving_cost_zombies']);

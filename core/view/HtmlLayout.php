@@ -560,13 +560,11 @@ class HtmlLayout extends HtmlPage
     function block_alert_control($zombies)
     {
         
-        $buttons = new HtmlButtons;
-        
         return '
             <div id="alert_control" class="cover_paddle">
                 <div class="title">Bloqué par les zombies !</div>
                 <div class="text">
-                    Les <span class="nbr_zombies">'.$zombies.'</span> zombies 
+                    Les zombies 
                     sont trop nombreux et vous empêchent de quitter la zone !
                     <a href="#popcontrol">[Pourquoi ?]</a>
                     <p>Vous pouvez tenter d\'attaquer ces putrides afin de dégager le passage...</p>
@@ -789,8 +787,9 @@ class HtmlLayout extends HtmlPage
     /**
      * Data about the player for javascript treatments (his coordinates...)
      * 
-     * @param array $citizen The data about the citizen, as returned by the API
+     * @param array $citizen The data about the citizen, as returned by the "citizen" API
      *                       (citizen ID, his coordinates on the map...)
+     * @param int $max_action_points The maximum amount of AP stockable by the player
      * @return string HTML
      */
     function hidden_player_data($citizen, $max_action_points) {

@@ -523,6 +523,8 @@ async function killZombies(apiAction, coordX, coordY) {
         
         // Update the zombie silhouettes on the map zone
         document.querySelector("#zone"+coordX+"_"+coordY+" .zombies img").getAttribute("src").innerHTML = "resources/img/motiontwin/zombie"+newNbrZombies+".gif";
+        // Update the hidden data about the zone
+        document.querySelector("#me").parentNode.dataset.zombies = newNbrZombies;
     }
 }
 
@@ -734,9 +736,25 @@ async function UpdateMapRealtime(event, timestamp) {
     
     replaceBuildingsPlaceholders(configsBuildings);
     
+    // Get informations about the current zone through the "data-*" HTML attributes
+    let zoneData = document.querySelector("#me").parentNode.dataset;
+    // Display an alert over the movement paddle if the player is blocked
+    updateBlockAlertControl(zoneData.zombies);
+    
     // Refresh the timestamp to memorize that these actions have been treated
     return timestamp = await JSON.parse(event.data).zones;
 };
+
+
+/**
+ * Display an alert over the movement paddle if the player is blocked
+ * 
+ * @param {int} nbrZombies The number of zombies in the player's zone
+ */
+function updateBlockAlertControl(nbrZombies) {
+    
+    document.querySelector("#alert_control").style.display = (nbrZombies > 0) ? "block" : "none";
+}
 
 
 /**

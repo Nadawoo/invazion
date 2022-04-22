@@ -7,7 +7,13 @@
 
 // If we are on the main game page (those elements don't exist on the connection page)
 if (document.getElementById('map') !== null) {
-       
+    
+    // Get informations about the current zone through the "data-*" HTML attributes
+    let zoneData = document.querySelector("#me").parentNode.dataset;
+    
+    // Display an alert over the movement paddle if the player is blocked
+    updateBlockAlertControl(zoneData.zombies);
+    
     // Restore the display of the player zone over the map before the page was refreshed
     if (getCookieConfig('show_zone') === 1) {
         toogleMyZone();
