@@ -50,7 +50,7 @@ class HtmlMovementPaddle
     {
 
         return '
-        <form method="post" action="#Outside">
+        <form method="post" action="#Outside" name="move">
         <table id="movement_paddle">
             <tr>
                 <td></td>

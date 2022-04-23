@@ -15,7 +15,7 @@ if (document.getElementById('map') !== null) {
     listenToMapZones();
     
     // Move the citizen on the map
-    document.getElementById("block_move").addEventListener("submit", function() {
+    document.querySelector('#block_move [name="move"]').addEventListener("submit", function() {
         // Desactivate the classic submission button (avoids reloading the page)
         event.preventDefault();
         moveCitizen(event.submitter.value);
