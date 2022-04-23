@@ -231,12 +231,12 @@ class HtmlMap
             $bubble       = $this->html_bubble('city', $cell['city_defenses']);
             $elevate      = 'elevate';
         }
-        elseif ($cell['citizens'] > 1 and $is_player_in_zone === false) {
+        elseif ($cell['citizens'] > 1) {
 
             $cell_content = $this->html_cell_content('citizens_group');
             $bubble       = $this->html_bubble('citizens_group');
         }
-        elseif ($cell['citizens'] === 1 and $is_player_in_zone === false) {
+        elseif ($cell['citizens'] === 1) {
 
             $cell_content = $this->html_cell_content('citizen_alone', $fellow_pseudo);
             $bubble       = $this->html_bubble('citizen_alone', $fellow_pseudo);

@@ -552,7 +552,17 @@ function addMeOnMap() {
                     attaquer des zombies, ramasser des objets...</div>\
                     <div class="triangle_down"></div>';
     
-    myZone.innerHTML += htmlMe;
+    // Don't show the other citizens or buildings under the player's silhouette
+    if(myZone.querySelector(".map_citizen") !==  null) {
+        myZone.querySelector(".map_citizen").remove();
+    }
+    if(myZone.querySelector(".icon_html") !==  null) {
+        myZone.querySelector(".icon_html").remove();
+    }
+    
+    // Add the player's silhouette
+    // TODO: the map breaks without this "&nbsp;". This fix is ugly.  
+    myZone.innerHTML += "&nbsp"+htmlMe;
     myZone.querySelector(".bubble").innerHTML = htmlBubble;
 }
 
