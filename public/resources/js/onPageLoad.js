@@ -8,6 +8,9 @@
 // If we are on the main game page (those elements don't exist on the connection page)
 if (document.getElementById('map') !== null) {
     
+    // Place the player on the appropriate zone of the map
+    addMeOnMap();
+    
     // Get informations about the current zone through the "data-*" HTML attributes
     let zoneData = document.querySelector("#me").parentNode.dataset;
     

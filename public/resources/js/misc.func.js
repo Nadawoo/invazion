@@ -496,6 +496,10 @@ async function moveCitizen(direction) {
         : '<span class="'+json.metas.error_class+'">'+json.metas.error_message+'</span>';
         
     updateActionPointsBar(json.datas.action_points_lost);
+    
+    // Update the stored coordinates of the player
+    document.querySelector("#citizenCoordX").innerHTML = json.datas.new_coord_x;
+    document.querySelector("#citizenCoordY").innerHTML = json.datas.new_coord_y;
 }
 
 
@@ -528,6 +532,28 @@ async function killZombies(apiAction) {
         // Update the hidden data about the zone
         myZone.dataset.zombies = newNbrZombies;
     }
+}
+
+
+/**
+ * Adds the connected player on the appropriate zone of the map
+ */
+function addMeOnMap() {
+    
+    let myCoordX = document.querySelector("#citizenCoordX").innerHTML,
+        myCoordY = document.querySelector("#citizenCoordY").innerHTML,    
+        myZone = document.querySelector(`#zone${myCoordX}_${myCoordY} .square_container`);
+
+    let htmlMe = '<div class="map_citizen" id="me"><img src="resources/img/free/human.png"></div>\
+                  <div class="halo">&nbsp;</div>',
+        htmlBubble = '[Zone '+myCoordX+':'+myCoordY+']\
+                    <div class="roleplay">Vous êtes ici&nbsp;! Utilisez le volet \
+                    à droite de la carte pour vous déplacer, fouiller le sol, \
+                    attaquer des zombies, ramasser des objets...</div>\
+                    <div class="triangle_down"></div>';
+    
+    myZone.innerHTML += htmlMe;
+    myZone.querySelector(".bubble").innerHTML = htmlBubble;
 }
 
 
@@ -745,6 +771,9 @@ async function UpdateMapRealtime(event, timestamp) {
     }
     
     replaceBuildingsPlaceholders(configsBuildings);
+    
+    // Place the player on his new zone
+    addMeOnMap();
     
     // Get informations about the current zone through the "data-*" HTML attributes
     let zoneData = document.querySelector("#me").parentNode.dataset;

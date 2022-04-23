@@ -21,7 +21,6 @@ $sort          = new SortGameData();
 $api           = new ZombLib(official_server_root().'/api');
 $html_zones    = [];
 $player_coords = [];
-$player_pseudo = null;
 
 // Get the modified zones
 $zones = $api->call_api('maps', 'get', ['map_id'=>$map_id, 'newerthan'=>$newerthan]);
@@ -35,8 +34,6 @@ if ($zones['metas']['error_code'] === 'success') {
     
     // Data of the connected player
     if (isset($citizens[$citizen_id])) {
-        $player_pseudo = $citizens[$citizen_id]['citizen_pseudo'];
-        $player_coords = [$citizens[$citizen_id]['coord_x'], $citizens[$citizen_id]['coord_y']];
         $player_city_id = $citizens[$citizen_id]['city_id'];
     }
     
@@ -47,10 +44,9 @@ if ($zones['metas']['error_code'] === 'success') {
         list($col, $row) = array_map('intval', explode('_', $coords));
         // Pseudo of one of the citizens in the zone
         $fellow_pseudo = (isset($citizens_by_coord[$coords])) ? $citizens_by_coord[$coords][0]['citizen_pseudo'] : null;
-        $is_player_in_zone = $map->is_player_in_zone([$col, $row], $player_coords);
         
-        $html_zones[$coords] = $map->hexagonal_zone($col, $row, $zone, $is_player_in_zone, 
-                                                    $player_pseudo, $player_city_id, $fellow_pseudo);
+        $html_zones[$coords] = $map->hexagonal_zone($col, $row, $zone, null, 
+                                                    null, $player_city_id, $fellow_pseudo);
     }
 }
 else {

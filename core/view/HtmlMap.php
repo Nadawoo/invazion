@@ -48,8 +48,6 @@ class HtmlMap
         $templates = [
             'citizens_group' => '<div class="map_citizen">&#10010;</div>'."\n",
             'citizen_alone' => '<div class="map_citizen">'.substr($string1, 0, 2).'</div>',
-            'citizen_me'    => '<div class="map_citizen" id="me"><img src="resources/img/free/human.png"></div>
-                                <div class="halo">&nbsp;</div>',
             'city'          => '<div class="city"><img src="resources/img/free/city.png" alt="&#10224;"></div>'
                                . '<div class="city_nbr_def">'.$string1.'</div>',
             'tent'          => '<div class="icon_html">&#9978;</div>',
@@ -74,8 +72,6 @@ class HtmlMap
         $templates = [
             'citizens_group' => '<div class="roleplay">Plusieurs citoyens se sont rassemblés ici... Complotent-ils quelque chose&nbsp;?</div>',
             'citizen_alone' => '<div class="roleplay">Le citoyen '.$string1.' est ici.</div>',
-            'citizen_me'    => '<div class="roleplay">Vous êtes ici, '.$string1.'&nbsp;! Utilisez le volet à droite de la carte '
-                                . 'pour vous déplacer, fouiller le sol, attaquer des zombies, ramasser des objets...</div>',
             'city'          => '<div class="roleplay">Cette ville offre '.$string1.' points de défense... '
                                . 'Peut-être pourrez-vous vous y réfugier&nbsp;?</div>',
             'player_home'   => '<div class="roleplay">Ceci est votre habitation, '.$string1.' ! Votre refuge contre les zombies...</div>',
@@ -209,11 +205,6 @@ class HtmlMap
         $bubble_zombies = '';
         $bubble_items   = '';
         $player_city_marker = '';
-        
-        if ($is_player_in_zone === true) {            
-            $cell_me = $this->html_cell_content('citizen_me', $player_pseudo);
-            $bubble  = $this->html_bubble('citizen_me', $player_pseudo);
-        }
         
         if ($cell === null) {
             // Quand la zone est vide.
