@@ -10,6 +10,8 @@ if (document.getElementById('map') !== null) {
     
     // Place the player on the appropriate zone of the map
     addMeOnMap();
+    // Add a location sign above the city of the player
+    addCityLocationMarker();
     
     // Get informations about the current zone through the "data-*" HTML attributes
     let zoneData = document.querySelector("#me").parentNode.dataset;

@@ -800,6 +800,7 @@ class HtmlLayout extends HtmlPage
                 <div id="actionPoints">'.$citizen['action_points'].'</div>
                 <div id="maxActionPoints">'.$max_action_points.'</div>
                 <div id="mapId">'.$citizen['map_id'].'</div>
+                <div id="cityId">'.$citizen['city_id'].'</div>
             </section>';
     }
 }

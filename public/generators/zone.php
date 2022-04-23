@@ -32,11 +32,6 @@ if ($zones['metas']['error_code'] === 'success') {
     $citizens = $api->call_api('citizens', 'get', ['map_id'=>$map_id, 'zones'=>array_keys($zones['datas']['zones'])])['datas'];
     $citizens_by_coord = $sort->sort_citizens_by_coord($citizens);
     
-    // Data of the connected player
-    if (isset($citizens[$citizen_id])) {
-        $player_city_id = $citizens[$citizen_id]['city_id'];
-    }
-    
     // Build the HTML of the modified zones
     foreach ($zones['datas']['zones'] as $coords=>$zone) {
     
@@ -46,7 +41,7 @@ if ($zones['metas']['error_code'] === 'success') {
         $fellow_pseudo = (isset($citizens_by_coord[$coords])) ? $citizens_by_coord[$coords][0]['citizen_pseudo'] : null;
         
         $html_zones[$coords] = $map->hexagonal_zone($col, $row, $zone, null, 
-                                                    null, $player_city_id, $fellow_pseudo);
+                                                    null, null, $fellow_pseudo);
     }
 }
 else {

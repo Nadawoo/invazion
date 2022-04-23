@@ -48,8 +48,10 @@ class HtmlMap
         $templates = [
             'citizens_group' => '<div class="map_citizen">&#10010;</div>'."\n",
             'citizen_alone' => '<div class="map_citizen">'.substr($string1, 0, 2).'</div>',
-            'city'          => '<div class="city"><img src="resources/img/free/city.png" alt="&#10224;"></div>'
-                               . '<div class="city_nbr_def">'.$string1.'</div>',
+            'city'          => '<div class="city" data-cityid="'.$string1.'">
+                                    <img src="resources/img/free/city.png" alt="&#10224;">
+                                </div>
+                                <div class="city_nbr_def">'.$string2.'</div>',
             'tent'          => '<div class="icon_html">&#9978;</div>',
             'items'         => '&nbsp;',
             'zombies'       => '<div class="zombies"><img src="resources/img/motiontwin/zombie'.$string2.'.gif" alt="Zx'.$string1.'"></div>',
@@ -74,7 +76,6 @@ class HtmlMap
             'citizen_alone' => '<div class="roleplay">Le citoyen '.$string1.' est ici.</div>',
             'city'          => '<div class="roleplay">Cette ville offre '.$string1.' points de défense... '
                                . 'Peut-être pourrez-vous vous y réfugier&nbsp;?</div>',
-            'player_home'   => '<div class="roleplay">Ceci est votre habitation, '.$string1.' ! Votre refuge contre les zombies...</div>',
             'tent'          => '<div class="roleplay">Un citoyen a planté sa tente ici.</div>',
             'items'         => '<br>Il y a des objets dans cette zone... Mais lesquels&nbsp;?',
             'zombies'       => '<br>Il y a '.plural($string1, 'zombie').' dans cette zone&nbsp;!',
@@ -226,7 +227,7 @@ class HtmlMap
         }
         elseif ($cell['city_size'] > 0) {
             
-            $cell_content = $this->html_cell_content('city', $cell['city_defenses']);
+            $cell_content = $this->html_cell_content('city', $cell['city_id'], $cell['city_defenses']);
             $bubble       = $this->html_bubble('city', $cell['city_defenses']);
             $elevate      = 'elevate';
         }
@@ -273,18 +274,14 @@ class HtmlMap
         // Put a marker with javascript if the zone contains items
         $has_items = (empty($cell['items'])) ? '' : ' hasItems';
         
-        // Put a permanent marker on the player's habitation
-        if($cell['city_id'] === $player_city_id and $player_city_id !== null) {
-            $player_city_marker = '<img src="resources/img/free/map_location.svg" class="location">';
-            $bubble             = $this->html_bubble('player_home', $player_pseudo);
-            $bubble_items       = '';
-        }
         
         // - La classe "hexagon" sert à tracer le fond hexgonal
         // - La classe "square_container" est un conteneur carré pour assurer la symétrie du contenu
         // (un hexagone ne peut pas, par définition, être inscrit dans un carré)
         return '<div id="zone'.$col.'_'.$row.'" class="hexagon '.$has_items.' '.$ground.' '.$elevate.'" style="opacity:'.$opacity.'">
                     <div class="square_container"
+                        data-coordx="'.$col.'"
+                        data-coordy="'.$row.'"
                         data-zombies="'.$cell['zombies'].'"
                         data-citizens="'.$cell['citizens'].'"
                         data-controlPointsZombies="'.$cell['controlpoints_zombies'].'"

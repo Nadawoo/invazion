@@ -558,6 +558,25 @@ function addMeOnMap() {
 
 
 /**
+ * Add a location sign above the player's city on the map
+ */
+function addCityLocationMarker() {
+    
+    let htmlBubble = '<div class="roleplay">Ceci est votre habitation ! Votre refuge contre les zombies...</div>\
+                      <div class="triangle_down"></div>',
+        htmlLocationMarker = '<img src="resources/img/free/map_location.svg" class="location">';
+        
+    let myCityId = document.querySelector("#gameData #cityId").innerHTML,
+        myCityNode = document.querySelector(`[data-cityid="${myCityId}"]`);
+
+    if(myCityNode !== null) {
+        myCityNode.parentNode.querySelector(".bubble").innerHTML = htmlBubble;
+        myCityNode.parentNode.innerHTML += htmlLocationMarker;
+    }
+}
+
+
+/**
  * Update the content of the action block "Zombies" 
  * @param {int} newNbrZombies The number of zombies in the zone after the action
  */
