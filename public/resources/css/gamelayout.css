@@ -450,6 +450,9 @@ legend {
 #block_zombies {
     text-align:center;
 }
+#block_zombies #action_zombies {
+    display:none;
+}
 #block_zombies .nbr_zombies {
     font-size:1.3em;
     color:red;

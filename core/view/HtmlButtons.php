@@ -422,7 +422,7 @@ class HtmlButtons
         if ($amount >= $min_amount and isset($button['alert'])) {
              $dot_number = '<div class="alert_icon">'.$button['alert'].'</div>';
         } 
-        elseif ($amount >= $min_amount) {
+        elseif ($amount >= 0) {
             $dot_number = '<div class="dot_number">'.$amount.'</div>';
         }
         
@@ -530,20 +530,18 @@ class HtmlButtons
     {
         
         $button = $this->buttons[$button_alias];
-        $class = '';
         $title = $button['title'];
         
         $text_nbr_ap = ($ap_cost > 0) ? ' [-'.$ap_cost.'&#x26A1;]' : '';
         
         if ($nbr_zombies === 0) {
-            $class = 'inactive';
             $title = "Il n'y a aucun zombie dans la zone";
         }
                 
         return
         '<form method="post" action="#Outside" onclick="killZombies(\''.$button['fields']['action'].'\'); return false;">
             <input type="submit" value="'.$button['icon'].' '.$button['name'] . $text_nbr_ap.'" 
-                   class="redbutton '.$class.'"  title="'.$title.'">
+                   class="redbutton"  title="'.$title.'">
         </form>';
     }
     

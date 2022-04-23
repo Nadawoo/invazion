@@ -319,22 +319,19 @@ class HtmlLayout extends HtmlPage
         
         $buttons = new HtmlButtons;
         
-        if ($zone_zombies === 0) {
-            
-            return '<p class="greytext">Aucun zombie dans la zone. Vous êtes libre de vos mouvements...</p>';
-        }
-        else {
-            return '<div class="zombies_text">
+        return '
+            <div id="action_zombies">
+                <div class="zombies_text">
                     <strong class="nbr_zombies">'.plural($zone_zombies, 'zombie').'</strong> autour de vous !
-                    </div>
-                    <div class="zombies_visual">'. str_repeat('<span class="zombie">&#x1F9DF;</span>', $zone_zombies) .'</div>
-                    <div class="buttons_kill">'
-                        . $buttons->kill_zombies($zone_zombies, 'kill_zombie', $ap_cost)
-                        . $buttons->kill_zombies($zone_zombies, 'kill_mass_zombies') 
-                        . $buttons->kill_zombies($zone_zombies, 'repel_zombie')
-                        .'
-                    </div>';
-        }
+                </div>
+                <div class="zombies_visual">'. str_repeat('<span class="zombie">&#x1F9DF;</span>', $zone_zombies) .'</div>
+                <div class="buttons_kill">'
+                    . $buttons->kill_zombies($zone_zombies, 'kill_zombie', $ap_cost)
+                    . $buttons->kill_zombies($zone_zombies, 'kill_mass_zombies') 
+                    . $buttons->kill_zombies($zone_zombies, 'repel_zombie')
+                    .'
+                </div>
+            </div>';
     }
     
     

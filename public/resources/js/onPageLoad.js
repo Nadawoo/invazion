@@ -19,6 +19,11 @@ if (document.getElementById('map') !== null) {
         toogleMyZone();
     }
     
+    // Display the actions for fighting against zombies
+    if(zoneData.zombies > 0) {
+        document.querySelector("#action_zombies").style.display = "block";
+    }
+    
     // Restore the display of the action button before the page was refreshed
     toggleActionBlock(getCookieConfig("round_button"));
     

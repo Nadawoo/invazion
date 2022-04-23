@@ -504,27 +504,29 @@ async function moveCitizen(direction) {
  * 
  * @param {string} apiAction The "action" parameter for the API url (e.g. "kill_zombies")
  */
-async function killZombies(apiAction, coordX, coordY) {
+async function killZombies(apiAction) {
     
     // Moves the citizen form the main city to his indivdual home
     json = await callApi("GET", "zone", "action="+apiAction+"&token="+getCookie('token'));
     
     document.getElementById("message_move").innerHTML = '<span class="'+json.metas.error_class+'">'+json.metas.error_message+'</span>';
     
-    if(json.metas.error_code === "success") {        
-        let oldNbrZombies = document.querySelector("#round_zombies .dot_number").innerHTML,
-            newNbrZombies = Math.max(0, oldNbrZombies - json.datas.nbr_zombies_removed),
-            coordX = document.getElementById("citizenCoordX").innerHTML,
-            coordY = document.getElementById("citizenCoordY").innerHTML;
+    if(json.metas.error_code === "success") {  
+        // The main container of the zone where the player is
+        let myZone = document.querySelector("#me").parentNode;
+        let oldNbrZombies = myZone.dataset.zombies,
+            newNbrZombies = Math.max(0, oldNbrZombies - json.datas.nbr_zombies_removed);
             
         // Update the action blocks (round buttons next to the map)
         updateBlockActionZombies(newNbrZombies);
         updateBlockActionMove(newNbrZombies);
         
         // Update the zombie silhouettes on the map zone
-        document.querySelector("#zone"+coordX+"_"+coordY+" .zombies img").getAttribute("src").innerHTML = "resources/img/motiontwin/zombie"+newNbrZombies+".gif";
+        if(newNbrZombies > 0) {
+            myZone.querySelector(".zombies img").getAttribute("src").innerHTML = "resources/img/motiontwin/zombie"+newNbrZombies+".gif";
+        }
         // Update the hidden data about the zone
-        document.querySelector("#me").parentNode.dataset.zombies = newNbrZombies;
+        myZone.dataset.zombies = newNbrZombies;
     }
 }
 
@@ -535,17 +537,25 @@ async function killZombies(apiAction, coordX, coordY) {
  */
 function updateBlockActionZombies(newNbrZombies) {
     
+    // Activates the big round action button "Zombies"
+    let zombiesButton = document.querySelector("#round_zombies");
+    if(newNbrZombies > 0) {
+        zombiesButton.querySelector("input").classList.remove("inactive");
+    } else {
+        zombiesButton.querySelector("input").classList.add("inactive");
+    }
+    
     // Update the number of zombies in the round button
     document.querySelector("#round_zombies .dot_number").innerHTML = newNbrZombies;
     
-    // Update the content of the "zobmies" frame
+    // Update the content of the "zombies" frame
     if(newNbrZombies > 0) {
         document.querySelector("#block_zombies .nbr_zombies").innerHTML = newNbrZombies+" zombies";
-        document.querySelector("#block_zombies .zombies_visual .zombie").remove();
+        document.querySelector("#block_zombies .zombies_visual").innerHTML = '<span class="zombie">&#x1F9DF;</span>'.repeat(newNbrZombies);
+        document.querySelector("#action_zombies").style.display = "block";
     } else {
-        document.querySelector("#block_zombies .zombies_text").innerHTML = "Vous avez éradiqué toutes les menaces alentour ! La voie est libre...";
-        document.querySelector("#block_zombies .zombies_visual").innerHTML = "";
-        document.querySelector("#block_zombies .buttons_kill").innerHTML = "";
+        // If there is no more zombies, hide the buttons & infos about killing zombies
+        document.querySelector("#action_zombies").style.display = "none";
     }
 }
 
@@ -740,6 +750,8 @@ async function UpdateMapRealtime(event, timestamp) {
     let zoneData = document.querySelector("#me").parentNode.dataset;
     // Display an alert over the movement paddle if the player is blocked
     updateBlockAlertControl(zoneData.zombies);
+    
+    updateBlockActionZombies(zoneData.zombies);    
     
     // Refresh the timestamp to memorize that these actions have been treated
     return timestamp = await JSON.parse(event.data).zones;
