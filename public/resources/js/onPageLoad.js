@@ -8,8 +8,12 @@
 // If we are on the main game page (those elements don't exist on the connection page)
 if (document.getElementById('map') !== null) {
     
-    // Place the player on the appropriate zone of the map
+    let mapId = document.querySelector("#gameData #mapId").innerHTML;
+    
+    // Place the current player on the appropriate zone of the map
     addMeOnMap();
+    // Place the citizens on the appropriate zones of the map
+    addCitizensOnMap(mapId);    
     // Add a location sign above the city of the player
     addCityLocationMarker();
     
@@ -18,15 +22,12 @@ if (document.getElementById('map') !== null) {
     
     // Display an alert over the movement paddle if the player is blocked
     updateBlockAlertControl(zoneData.zombies);
+    // Display the actions for fighting against zombies
+    showFightingZombiesButtons(zoneData.zombies);
     
     // Restore the display of the player zone over the map before the page was refreshed
     if (getCookieConfig('show_zone') === 1) {
         toogleMyZone();
-    }
-    
-    // Display the actions for fighting against zombies
-    if(zoneData.zombies > 0) {
-        document.querySelector("#action_zombies").style.display = "block";
     }
     
     // Restore the display of the action button before the page was refreshed
@@ -40,7 +41,6 @@ if (document.getElementById('map') !== null) {
      
     // Displays the active tab of the in-game du smartphone
     activatePhoneTab();
-    
     
     // Countdown before the next zombie attack
     attackCountdown();

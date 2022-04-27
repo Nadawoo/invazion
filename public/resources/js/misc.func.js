@@ -558,9 +558,8 @@ function addMeOnMap() {
         myZone.querySelector(".icon_html").remove();
     }
     
-    // Add the player's silhouette
-    // TODO: the map breaks without this "&nbsp;". This fix is ugly.  
-    myZone.innerHTML += "&nbsp"+htmlMe;
+    // Add the player's silhouette 
+    myZone.innerHTML += htmlMe;
     myZone.querySelector(".bubble .roleplay").innerHTML = htmlBubble;
 }
 
@@ -776,6 +775,44 @@ async function getLogEvents(htmlContainerId) {
 
 
 /**
+ * Place the citizens on the map. They are not loaded by the PHP to speed up
+ * the loading of the map.
+ * 
+ * @param {int} mapId
+ */
+async function addCitizensOnMap(mapId) {
+    
+    // Get the citizens of the map by calling the Invazion's API
+    let json = await callApi("GET", "citizens", `action=get&map_id=${mapId}`);
+    
+    // Place the citizens on the appropriate zones
+    for(let citizenId in json.datas) {
+        let citizen = json.datas[citizenId],
+            htmlCoords = citizen.coord_x+"_"+citizen.coord_y,
+            zone = document.querySelector("#zone"+htmlCoords+" .square_container");
+        
+        // Don't add the citizen if an other citizen is already placed in the zone
+        if(zone.querySelector(".map_citizen") === null && zone.dataset.zombies < 1) {
+            
+            if(zone.dataset.citizens > 1)  {
+                var content = "&#10010;",
+                    bubble = "Plusieurs citoyens se sont rassemblés ici... \
+                              Complotent-ils quelque chose&nbsp;?";
+            } else {
+                var content = citizen.citizen_pseudo.slice(0, 2),
+                    bubble = "Le citoyen "+citizen.citizen_pseudo+" est ici.";
+            }
+            
+            zone.insertAdjacentHTML("afterbegin", '<div class="map_citizen">'+content+'</div>');
+            zone.querySelector(".roleplay").innerHTML = bubble;
+            // Delete the "&nbsp;" required on the empty zones 
+            zone.querySelector(".empty").remove();
+        }
+    }
+}
+
+
+/**
  * Refreshes the HTML of the concerned zones when a player moves (server-sent events)
  * param {array} event The event given by an EventSource() object
  *                     Doc : https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events
@@ -821,6 +858,19 @@ async function UpdateMapRealtime(event, timestamp) {
 function updateBlockAlertControl(nbrZombies) {
     
     document.querySelector("#alert_control").style.display = (nbrZombies > 0) ? "block" : "none";
+}
+
+
+/**
+ * Display the actions for fighting against zombies
+ * 
+ * @param {int} nbrZombies The number of zombies in the player's zone
+ */
+function showFightingZombiesButtons(nbrZombies) {
+    
+    if(nbrZombies > 0) {
+        document.querySelector("#action_zombies").style.display = "block";
+    }
 }
 
 

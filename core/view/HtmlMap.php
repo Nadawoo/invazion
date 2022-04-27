@@ -46,7 +46,6 @@ class HtmlMap
     {
         
         $templates = [
-            'citizens_group' => '<div class="map_citizen">&#10010;</div>'."\n",
             'citizen_alone' => '<div class="map_citizen">'.substr($string1, 0, 2).'</div>',
             'city'          => '<div class="city" data-cityid="'.$string1.'">
                                     <img src="resources/img/free/city.png" alt="&#10224;">
@@ -72,7 +71,6 @@ class HtmlMap
     {
         
         $templates = [
-            'citizens_group' => 'Plusieurs citoyens se sont rassemblés ici... Complotent-ils quelque chose&nbsp;?',
             'citizen_alone' => 'Le citoyen '.$string1.' est ici.',
             'city'          => 'Cette ville offre '.$string1.' points de défense... '
                                . 'Peut-être pourrez-vous vous y réfugier&nbsp;?',
@@ -196,7 +194,7 @@ class HtmlMap
         // Important : la cellule doit toujours avoir un contenu, même 
         // un simple espace, sinon décalages si la cellule contient ou non 
         // des citoyens/zombies/objets
-        $cell_content   = '&nbsp;';
+        $cell_content   = '<span class="empty">&nbsp;</span>';
         $cell_zombies   = '';
         $cell_me        = '';
         $elevate        = '';
@@ -228,16 +226,6 @@ class HtmlMap
             $cell_content = $this->html_cell_content('city', $cell['city_id'], $cell['city_defenses']);
             $bubble_roleplay = $this->html_bubble('city', $cell['city_defenses']);
             $elevate      = 'elevate';
-        }
-        elseif ($cell['citizens'] > 1) {
-
-            $cell_content = $this->html_cell_content('citizens_group');
-            $bubble_roleplay = $this->html_bubble('citizens_group');
-        }
-        elseif ($cell['citizens'] === 1) {
-
-            $cell_content = $this->html_cell_content('citizen_alone', $fellow_pseudo);
-            $bubble_roleplay = $this->html_bubble('citizen_alone', $fellow_pseudo);
         }
         
 
