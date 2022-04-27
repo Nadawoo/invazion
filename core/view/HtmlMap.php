@@ -72,11 +72,11 @@ class HtmlMap
     {
         
         $templates = [
-            'citizens_group' => '<div class="roleplay">Plusieurs citoyens se sont rassemblés ici... Complotent-ils quelque chose&nbsp;?</div>',
-            'citizen_alone' => '<div class="roleplay">Le citoyen '.$string1.' est ici.</div>',
-            'city'          => '<div class="roleplay">Cette ville offre '.$string1.' points de défense... '
-                               . 'Peut-être pourrez-vous vous y réfugier&nbsp;?</div>',
-            'tent'          => '<div class="roleplay">Un citoyen a planté sa tente ici.</div>',
+            'citizens_group' => 'Plusieurs citoyens se sont rassemblés ici... Complotent-ils quelque chose&nbsp;?',
+            'citizen_alone' => 'Le citoyen '.$string1.' est ici.',
+            'city'          => 'Cette ville offre '.$string1.' points de défense... '
+                               . 'Peut-être pourrez-vous vous y réfugier&nbsp;?',
+            'tent'          => 'Un citoyen a planté sa tente ici.',
             'items'         => '<br>Il y a des objets dans cette zone... Mais lesquels&nbsp;?',
             'zombies'       => '<br>Il y a '.plural($string1, 'zombie').' dans cette zone&nbsp;!',
         ];
@@ -99,11 +99,9 @@ class HtmlMap
         $name           = $this->building($building_id, 'name');
         $descr_ambiance = $this->building($building_id, 'descr_ambiance');
         
-        return '<div class="roleplay">
-                    <h5 class="name">'.$name.'</h5>
-                    <hr>
-                    <div class="descr_ambiance">'.$descr_ambiance.'</div>
-                </div>';
+        return '<h5 class="name">'.$name.'</h5>
+                <hr>
+                <div class="descr_ambiance">'.$descr_ambiance.'</div>';
     }
     
     
@@ -202,7 +200,7 @@ class HtmlMap
         $cell_zombies   = '';
         $cell_me        = '';
         $elevate        = '';
-        $bubble         = '';
+        $bubble_roleplay = '';
         $bubble_zombies = '';
         $bubble_items   = '';
         $player_city_marker = '';
@@ -216,30 +214,30 @@ class HtmlMap
         elseif ($cell['building_id'] !== null) {
             
             $cell_content = $this->html_icon_building($cell['building_id']);
-            $bubble       = $this->html_bubble_building($cell['building_id']);
+            $bubble_roleplay = $this->html_bubble_building($cell['building_id']);
             $elevate      = 'elevate';
         }
         elseif ($cell['city_type'] === 'home') {
             
             $cell_content = $this->html_cell_content('tent');
-            $bubble       = $this->html_bubble('tent');
+            $bubble_roleplay = $this->html_bubble('tent');
             $elevate      = 'elevate';
         }
         elseif ($cell['city_size'] > 0) {
             
             $cell_content = $this->html_cell_content('city', $cell['city_id'], $cell['city_defenses']);
-            $bubble       = $this->html_bubble('city', $cell['city_defenses']);
+            $bubble_roleplay = $this->html_bubble('city', $cell['city_defenses']);
             $elevate      = 'elevate';
         }
         elseif ($cell['citizens'] > 1) {
 
             $cell_content = $this->html_cell_content('citizens_group');
-            $bubble       = $this->html_bubble('citizens_group');
+            $bubble_roleplay = $this->html_bubble('citizens_group');
         }
         elseif ($cell['citizens'] === 1) {
 
             $cell_content = $this->html_cell_content('citizen_alone', $fellow_pseudo);
-            $bubble       = $this->html_bubble('citizen_alone', $fellow_pseudo);
+            $bubble_roleplay = $this->html_bubble('citizen_alone', $fellow_pseudo);
         }
         
 
@@ -289,8 +287,8 @@ class HtmlMap
                         >'
                         . $cell_zombies . $cell_me . $cell_content . '
                         <div class="bubble">
-                            [Zone '.$col.':'.$row.']'
-                            . $bubble 
+                            <div class="coords">[Zone '.$col.':'.$row.']</div>
+                            <div class="roleplay">'.$bubble_roleplay.'</div>'
                             . $bubble_zombies 
                             . $bubble_items . '
                             <div class="triangle_down"></div>

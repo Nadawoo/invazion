@@ -546,11 +546,9 @@ function addMeOnMap() {
 
     let htmlMe = '<div class="map_citizen" id="me"><img src="resources/img/free/human.png"></div>\
                   <div class="halo">&nbsp;</div>',
-        htmlBubble = '[Zone '+myCoordX+':'+myCoordY+']\
-                    <div class="roleplay">Vous êtes ici&nbsp;! Utilisez le volet \
+        htmlBubble = 'Vous êtes ici&nbsp;! Utilisez le volet \
                     à droite de la carte pour vous déplacer, fouiller le sol, \
-                    attaquer des zombies, ramasser des objets...</div>\
-                    <div class="triangle_down"></div>';
+                    attaquer des zombies, ramasser des objets...</div>';
     
     // Don't show the other citizens or buildings under the player's silhouette
     if(myZone.querySelector(".map_citizen") !==  null) {
@@ -563,7 +561,7 @@ function addMeOnMap() {
     // Add the player's silhouette
     // TODO: the map breaks without this "&nbsp;". This fix is ugly.  
     myZone.innerHTML += "&nbsp"+htmlMe;
-    myZone.querySelector(".bubble").innerHTML = htmlBubble;
+    myZone.querySelector(".bubble .roleplay").innerHTML = htmlBubble;
 }
 
 
@@ -572,15 +570,14 @@ function addMeOnMap() {
  */
 function addCityLocationMarker() {
     
-    let htmlBubble = '<div class="roleplay">Ceci est votre habitation ! Votre refuge contre les zombies...</div>\
-                      <div class="triangle_down"></div>',
+    let htmlBubble = 'Ceci est votre habitation ! Votre refuge contre les zombies...',
         htmlLocationMarker = '<img src="resources/img/free/map_location.svg" class="location">';
         
     let myCityId = document.querySelector("#gameData #cityId").innerHTML,
         myCityNode = document.querySelector(`[data-cityid="${myCityId}"]`);
 
     if(myCityNode !== null) {
-        myCityNode.parentNode.querySelector(".bubble").innerHTML = htmlBubble;
+        myCityNode.parentNode.querySelector(".bubble .roleplay").innerHTML = htmlBubble;
         myCityNode.parentNode.innerHTML += htmlLocationMarker;
     }
 }
