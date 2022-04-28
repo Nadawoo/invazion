@@ -400,7 +400,7 @@ echo $popup->customised('popsuccess', '', $msg_popup, $is_custom_popup_visible);
 
             <fieldset  id="block_citizens">
                 <legend>Humains dans ma zone</legend>
-                <?php echo $html['zone_fellows'] ?>
+                <div class="content"><?php echo $html['zone_fellows'] ?></div>
             </fieldset>
         </div>
         

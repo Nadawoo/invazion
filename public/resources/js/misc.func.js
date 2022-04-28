@@ -494,12 +494,37 @@ async function moveCitizen(direction) {
     document.getElementById("message_move").innerHTML = (json.metas.error_code === "success") 
         ? ''
         : '<span class="'+json.metas.error_class+'">'+json.metas.error_message+'</span>';
-        
-    updateActionPointsBar(json.datas.action_points_lost);
     
     // Update the stored coordinates of the player
     document.querySelector("#citizenCoordX").innerHTML = json.datas.new_coord_x;
     document.querySelector("#citizenCoordY").innerHTML = json.datas.new_coord_y;
+    
+    updateActionPointsBar(json.datas.action_points_lost);
+}
+
+
+/**
+ * Update the content of the actions blocks next to the map (move, dig, zombies...)
+ * 
+ * @param {string} blockAlias The name of the action block to update 
+ */
+async function updateBlockAction(blockAlias) {
+    
+    if(blockAlias === "citizens") {
+        
+        let citizenId   = document.querySelector("#citizenId").innerHTML,
+            mapId       = document.querySelector("#mapId").innerHTML,
+            coordX      = document.querySelector("#citizenCoordX").innerHTML,
+            coordY      = document.querySelector("#citizenCoordY").innerHTML;
+        
+        // Get the HTML elements for the list of citizens in the zone
+        let options = { method: "GET",
+                        headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+                        };
+        let htmlElements = await fetch(`/generators/block_action_humans.php?map_id=${mapId}&coord_x=${coordX}&coord_y=${coordY}&citizen_id=${citizenId}`, options).then(toJson);
+
+        document.querySelector("#block_citizens .content").innerHTML = htmlElements.datas;
+    }
 }
 
 

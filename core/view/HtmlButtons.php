@@ -431,7 +431,7 @@ class HtmlButtons
         return
         '<div class="round_action_block" id="round_'.$button_alias.'">'
             . '<input type="submit" class="round_action '.$class_inactive.'" value="'.$button['icon'].'" '
-                    . 'onclick="toggleActionBlock(\''.$button_alias.'\')">'
+                    . 'onclick="toggleActionBlock(\''.$button_alias.'\'); updateBlockAction(\''.$button_alias.'\')">'
             . $dot_number
             . '<label>'.$button['label'].'</label>'
         . '</div>';
