@@ -28,20 +28,13 @@ $zones = $api->call_api('maps', 'get', ['map_id'=>$map_id, 'newerthan'=>$newerth
 // If zones have been modified
 if ($zones['metas']['error_code'] === 'success') {
     
-    // Get the citizens in the modified zones
-    $citizens = $api->call_api('citizens', 'get', ['map_id'=>$map_id, 'zones'=>array_keys($zones['datas']['zones'])])['datas'];
-    $citizens_by_coord = $sort->sort_citizens_by_coord($citizens);
-    
     // Build the HTML of the modified zones
     foreach ($zones['datas']['zones'] as $coords=>$zone) {
     
         // Parse the string of coords list
         list($col, $row) = array_map('intval', explode('_', $coords));
-        // Pseudo of one of the citizens in the zone
-        $fellow_pseudo = (isset($citizens_by_coord[$coords])) ? $citizens_by_coord[$coords][0]['citizen_pseudo'] : null;
         
-        $html_zones[$coords] = $map->hexagonal_zone($col, $row, $zone, null, 
-                                                    null, null, $fellow_pseudo);
+        $html_zones[$coords] = $map->hexagonal_zone($col, $row, $zone, null);
     }
 }
 else {

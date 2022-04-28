@@ -157,12 +157,8 @@ class HtmlMap
                 $cell   = (isset($cells[$coords])) ? $cells[$coords] : null;
                 // Définit si le joueur connecté se trouve dans cette zone
                 $is_player_in_zone = $this->is_player_in_zone([$col, $row], [$citizen['coord_x'], $citizen['coord_y']]);
-                // Pseudo d'un des citoyens présents sur la case
-                $fellow_pseudo = (isset($citizens_by_coord[$coords])) ? $citizens_by_coord[$coords][0]['citizen_pseudo'] : null;
                 
-                $result .=  $this->hexagonal_zone($col, $row, $cell, $is_player_in_zone, 
-                                                  $citizen['citizen_pseudo'], $citizen['city_id'],
-                                                  $fellow_pseudo);
+                $result .=  $this->hexagonal_zone($col, $row, $cell, $is_player_in_zone);
             }
             
             $result .=  "</div>\n";
@@ -180,15 +176,10 @@ class HtmlMap
      *                  Ex : 3 si c'est la 3e ligne de la carte
      * @param array $cell   Le contenu de la zone, tel que retourné par l'API maps
      * @param bool  $is_player_in_zone Définit si le joueur connecté se trouve dans cette zone
-     * @param array $player_pseudo  Le pseudo du joueur connecté
-     * @param int   $player_city_id L'ID de la vaille (habitation) du joueur
-     * @param array $fellow_pseudo  Pseudo d'un des citoyens présents sur la case 
-     *                              (autre celui du joueur actuel)
      * 
      * @return string   Le HTML de la case
      */
-    public function hexagonal_zone($col, $row, $cell, $is_player_in_zone,
-                                   $player_pseudo, $player_city_id, $fellow_pseudo)
+    public function hexagonal_zone($col, $row, $cell, $is_player_in_zone)
     {
         
         // Important : la cellule doit toujours avoir un contenu, même 
