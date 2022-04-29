@@ -499,6 +499,11 @@ async function moveCitizen(direction) {
     document.querySelector("#citizenCoordX").innerHTML = json.datas.new_coord_x;
     document.querySelector("#citizenCoordY").innerHTML = json.datas.new_coord_y;
     
+    // Update the attribute "data-citizen" of the destination zone to add the player
+    let htmlCoord = json.datas.new_coord_x+"_"+json.datas.new_coord_y;
+        myZone = document.querySelector("#zone"+htmlCoord+" .square_container");
+    myZone.dataset.citizens = parseInt(myZone.dataset.citizens, 10) + 1;
+    
     updateRoundActionButtons(json.datas.new_coord_x, json.datas.new_coord_y);
     updateActionPointsBar(json.datas.action_points_lost);
 }
@@ -1000,9 +1005,9 @@ function updateRoundActionButtons(coordX, coordY) {
     let zone = document.querySelector("#zone"+coordX+"_"+coordY+" .square_container");
     
     // Display the number of citizens in the zone
-    document.querySelector("#round_citizens .dot_number").innerHTML = zone.dataset.citizens;
+    document.querySelector("#round_citizens .dot_number").innerHTML = zone.dataset.citizens - 1;
     // Highlight the "humans" button if there are other citizens in the zone
-    if(zone.dataset.citizens > 0) {
+    if(zone.dataset.citizens > 1) {
         document.querySelector("#round_citizens input").classList.remove("inactive");
     } else {
         document.querySelector("#round_citizens input").classList.add("inactive");

@@ -21,7 +21,6 @@ $zone               = set_default_variables('zone');
 $citizen            = set_default_variables('citizen');
 $city_fellows       = [];
 $zone_fellows       = [];
-$nbr_zone_fellows   = 0;
 $healing_items      = [];
 $msg_popup          = NULL;
 $msg_move           = '';
@@ -90,7 +89,6 @@ $map->set_config_buildings($configs['buildings']);
 if ($citizen['citizen_id'] !== NULL) {
     
     $zone_fellows       = $citizens_by_coord[$citizen['coord_x'].'_'.$citizen['coord_y']];
-    $nbr_zone_fellows   = count($zone_fellows);
     $zone               = $maps['zones'][$citizen['coord_x'].'_'.$citizen['coord_y']];
     $healing_items      = $sort->filter_bag_items('healing_wound', $configs['items'], $citizen['bag_items']);
     
@@ -286,7 +284,7 @@ echo $popup->customised('popsuccess', '', $msg_popup, $is_custom_popup_visible);
         echo  $buttons->button_round('move', ($zone['controlpoints_zombies']-$zone['controlpoints_citizens']))
             . $buttons->button_round('dig', array_sum((array)$zone['items']), (bool)$citizen['can_dig'])
             . $buttons->button_round('zombies', $zone['zombies'], (bool)$zone['zombies'])
-            . $buttons->button_round('citizens', $nbr_zone_fellows, (bool)($nbr_zone_fellows-1))
+            . $buttons->button_round('citizens', null, null)
             . $buttons->button_round('build', min($zone['city_size'], 1), (bool)$zone['city_size']);
         // Warn if wounded
         echo $layout->block_alert_wounded((bool)$citizen['is_wounded']);

@@ -20,6 +20,8 @@ if (document.getElementById('map') !== null) {
     // Get informations about the current zone through the "data-*" HTML attributes
     let zoneData = document.querySelector("#me").parentNode.dataset;
     
+    // Update the numbers in the big buttons next to the map
+    updateRoundActionButtons(zoneData.coordx, zoneData.coordy);
     // Display an alert over the movement paddle if the player is blocked
     updateBlockAlertControl(zoneData.zombies);
     // Display the actions for fighting against zombies
