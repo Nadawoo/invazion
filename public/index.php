@@ -133,7 +133,6 @@ $html = [
     'json_configs'      => $layout->json_configs(json_encode($configs['buildings'])),
     // Assembling the HTML for the map
     'map' => $map->hexagonal_map($maps['map_width'], $maps['map_height'], $maps['zones'], $citizens_by_coord, $citizen, $maps['next_attack_hour']),
-    'map_citizens'      => $layout->map_citizens($citizens),
     'attack_bar'        => $layout->attack_bar($citizen['map_id'], get_game_day($citizen['last_death'])),
     // Contents of the round action buttons at the right of the map
     'actions_build'     => $layout->block_actions_build($zone['city_size'], $zone['building_id']),
@@ -435,11 +434,6 @@ echo $popup->customised('popsuccess', '', $msg_popup, $is_custom_popup_visible);
         <input type="submit" value="Debugage"  class="formlink" style="color:grey"
                title="Lien spécial pour le débugage - Ignorez-le sauf si un administrateur du jeu vous le demande." />
     </form>
-    
-    
-    <h3 id="Citizens"><a href="#Citizens">&Hat;</a>&nbsp;Liste des citoyens</h3>
-    
-    <?php echo $html['map_citizens'] ?>
     
     <hr>
     
