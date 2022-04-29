@@ -1001,6 +1001,13 @@ function updateRoundActionButtons(coordX, coordY) {
     
     // Display the number of citizens in the zone
     document.querySelector("#round_citizens .dot_number").innerHTML = zone.dataset.citizens;
+    // Highlight the "humans" button if there are other citizens in the zone
+    if(zone.dataset.citizens > 0) {
+        document.querySelector("#round_citizens input").classList.remove("inactive");
+    } else {
+        document.querySelector("#round_citizens input").classList.add("inactive");
+    }
+    
     // Display "1" if ther is a building or a city in the zone
     document.querySelector("#round_build .dot_number").innerHTML = Math.min(1, zone.dataset.buildingid + zone.dataset.cityid);
 }
