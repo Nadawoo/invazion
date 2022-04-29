@@ -264,6 +264,7 @@ class HtmlMap
                         data-controlPointsZombies="'.$cell['controlpoints_zombies'].'"
                         data-controlPointsCitizens="'.$cell['controlpoints_citizens'].'"
                         data-cityid="'.$cell['city_id'].'"
+                        data-buildingid="'.$cell['building_id'].'"
                         >'
                         . $cell_zombies . $cell_me . $cell_content . '
                         <div class="bubble">

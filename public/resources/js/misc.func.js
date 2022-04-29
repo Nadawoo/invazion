@@ -499,6 +499,7 @@ async function moveCitizen(direction) {
     document.querySelector("#citizenCoordX").innerHTML = json.datas.new_coord_x;
     document.querySelector("#citizenCoordY").innerHTML = json.datas.new_coord_y;
     
+    updateRoundActionButtons(json.datas.new_coord_x, json.datas.new_coord_y);
     updateActionPointsBar(json.datas.action_points_lost);
 }
 
@@ -831,7 +832,9 @@ async function addCitizensOnMap(mapId) {
             zone.insertAdjacentHTML("afterbegin", '<div class="map_citizen">'+content+'</div>');
             zone.querySelector(".roleplay").innerHTML = bubble;
             // Delete the "&nbsp;" required on the empty zones 
-            zone.querySelector(".empty").remove();
+            if(zone.querySelector(".empty") !== null) {
+                zone.querySelector(".empty").remove();
+            }
         }
     }
 }
@@ -982,4 +985,22 @@ function updateActionPointsBar(actionsPointsLost) {
     
     // Update the HTML gauge displaying the number of action points
     document.querySelector("#apBar").innerHTML = htmlCurrentAP + htmlConsumedAP;
+}
+
+
+/**
+ * Refresh the numbers in the big round buttons next to the map
+ * (move, zombies, humans...)
+ * 
+ * @param {int} coordX
+ * @param {int} coordY
+ */
+function updateRoundActionButtons(coordX, coordY) {
+    
+    let zone = document.querySelector("#zone"+coordX+"_"+coordY+" .square_container");
+    
+    // Display the number of citizens in the zone
+    document.querySelector("#round_citizens .dot_number").innerHTML = zone.dataset.citizens;
+    // Display "1" if ther is a building or a city in the zone
+    document.querySelector("#round_build .dot_number").innerHTML = Math.min(1, zone.dataset.buildingid + zone.dataset.cityid);
 }
