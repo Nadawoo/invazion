@@ -817,7 +817,7 @@ async function addCitizensOnMap(mapId) {
             zone = document.querySelector("#zone"+htmlCoords+" .square_container");
         
         // Don't add the citizen if an other citizen is already placed in the zone
-        if(zone.querySelector(".map_citizen") === null && zone.dataset.zombies < 1) {
+        if(zone.querySelector(".map_citizen") === null && zone.dataset.zombies < 1 && zone.dataset.cityid < 1) {
             
             if(zone.dataset.citizens > 1)  {
                 var content = "&#10010;",
