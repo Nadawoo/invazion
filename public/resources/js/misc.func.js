@@ -447,7 +447,7 @@ async function updateDiscussionsNotifs() {
  */
 async function teleportToCity(mapId, cityId) {
     
-    // Moves the citizen form the main city to his indivdual home
+    // Moves the citizen from the main city to his indivdual home
     jsonTeleport = await callApi("GET", "zone", "action=teleport&to=city&target_id="+cityId+"&token="+getCookie('token'));
     
     if(jsonTeleport.metas.error_code === "success") {    
