@@ -518,24 +518,35 @@ async function updateBlockAction(blockAlias) {
     
     if(blockAlias === "citizens") {
         
-        let citizenId   = document.querySelector("#citizenId").innerHTML,
-            mapId       = document.querySelector("#mapId").innerHTML,
-            coordX      = document.querySelector("#citizenCoordX").innerHTML,
-            coordY      = document.querySelector("#citizenCoordY").innerHTML;
-        
-        // Get the HTML elements for the list of citizens in the zone
-        let options = { method: "GET",
-                        headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
-                        };
-        let htmlElements = await fetch(`/generators/block_action_humans.php?map_id=${mapId}&coord_x=${coordX}&coord_y=${coordY}&citizen_id=${citizenId}`, options).then(toJson);
-
-        document.querySelector("#block_citizens .content").innerHTML = htmlElements.datas;
+        let myZone = document.querySelector("#me").parentNode.dataset;
+        updateBlockActionCitizens(myZone.coordx, myZone.coordy);
     }
     else if(blockAlias === "zombies") {
         
-        let nbrZombies = document.querySelector("#me").parentNode.dataset.zombies;
+        let nbrZombies = document.querySelector("#me").parentNode.dataset.zombies; 
         updateBlockActionZombies(nbrZombies); 
     }
+}
+
+
+/**
+ * Update the content of the "humans" block next to the map
+ * 
+ * @param {int} coordX
+ * @param {int} coordY
+ */
+async function updateBlockActionCitizens(coordX, coordY) {
+    
+    let citizenId = document.querySelector("#citizenId").innerHTML,
+        mapId     = document.querySelector("#mapId").innerHTML;
+
+    // Get the HTML elements for the list of citizens in the zone
+    let options = { method: "GET",
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+                    };
+    let htmlElements = await fetch(`/generators/block_action_humans.php?map_id=${mapId}&coord_x=${coordX}&coord_y=${coordY}&citizen_id=${citizenId}`, options).then(toJson);
+
+    document.querySelector("#block_citizens .content").innerHTML = htmlElements.datas;
 }
 
 
