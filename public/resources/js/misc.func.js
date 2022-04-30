@@ -531,6 +531,11 @@ async function updateBlockAction(blockAlias) {
 
         document.querySelector("#block_citizens .content").innerHTML = htmlElements.datas;
     }
+    else if(blockAlias === "zombies") {
+        
+        let nbrZombies = document.querySelector("#me").parentNode.dataset.zombies;
+        updateBlockActionZombies(nbrZombies); 
+    }
 }
 
 
@@ -874,9 +879,7 @@ async function UpdateMapRealtime(event, timestamp) {
     // Get informations about the current zone through the "data-*" HTML attributes
     let zoneData = document.querySelector("#me").parentNode.dataset;
     // Display an alert over the movement paddle if the player is blocked
-    updateBlockAlertControl(zoneData.zombies);
-    
-    updateBlockActionZombies(zoneData.zombies);    
+    updateBlockAlertControl(zoneData.zombies);  
     
     // Refresh the timestamp to memorize that these actions have been treated
     return timestamp = await JSON.parse(event.data).zones;
@@ -1013,6 +1016,8 @@ function updateRoundActionButtons(coordX, coordY) {
         document.querySelector("#round_citizens input").classList.add("inactive");
     }
     
+    // Update the number of zombies in the round button
+    document.querySelector("#round_zombies .dot_number").innerHTML = zone.dataset.zombies;
     // Display "1" if ther is a building or a city in the zone
     document.querySelector("#round_build .dot_number").innerHTML = Math.min(1, zone.dataset.buildingid + zone.dataset.cityid);
 }

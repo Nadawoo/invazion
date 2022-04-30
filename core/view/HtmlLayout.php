@@ -566,7 +566,8 @@ class HtmlLayout extends HtmlPage
                     <a href="#popcontrol">[Pourquoi ?]</a>
                     <p>Vous pouvez tenter d\'attaquer ces putrides afin de dégager le passage...</p>
                     <p>
-                        <input type="button" class="redbutton" onclick="toggleActionBlock(\'zombies\')" 
+                        <input type="button" class="redbutton" 
+                               onclick="toggleActionBlock(\'zombies\'); updateBlockAction(\'zombies\')" 
                                value="&#x1F9DF; Voir mes actions d\'attaque...">
                     </p>
                 </div>
