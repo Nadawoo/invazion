@@ -41,10 +41,10 @@ function activateDiscussionTab(activatedTab) {
  */
 async function callDiscussionApiOnce(refresh=false) {
     
-    if (jsonDiscussionApi === undefined || refresh === true) {        
-        jsonDiscussionApi = await callApi("GET", "discuss/threads", "action=get&sort=last_message_date&fullmsg=1");
+    if (_jsonDiscussionApi === null || refresh === true) {        
+        _jsonDiscussionApi = await callApi("GET", "discuss/threads", "action=get&sort=last_message_date&fullmsg=1");
     }
-    return jsonDiscussionApi;
+    return _jsonDiscussionApi;
 }
 
 

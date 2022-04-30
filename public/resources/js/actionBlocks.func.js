@@ -131,12 +131,12 @@ async function updateBlockActionCitizens(coordX, coordY) {
             mapId           = document.querySelector("#mapId").innerHTML;
             
         // Get the citizens of the map by calling the Invazion's API
-        citizens = await getMapCitizensOnce(mapId);    
+        _citizens = await getMapCitizensOnce(mapId);    
         
         // Keep only the citizens who are in the player's zone
-        zoneCitizens = Object.values(citizens).filter(citizen => citizen.coord_x == coordX 
-                                                              && citizen.coord_y == coordY
-                                                              && citizen.citizen_id != myCitizenId);
+        zoneCitizens = Object.values(_citizens).filter(citizen => citizen.coord_x == coordX 
+                                                               && citizen.coord_y == coordY
+                                                               && citizen.citizen_id != myCitizenId);
         
         if(zoneCitizens.length <= 0) {
             // If the conected player is alone, show a generic text

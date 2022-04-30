@@ -5,13 +5,6 @@
  */
 
 
-// Get the unvariable data of the game (building names...) stored in the HTML
-var configsBuildings = JSON.parse(document.querySelector("#configs .buildings").innerHTML);
-var _configsItems    = JSON.parse(document.querySelector("#configs .items").innerHTML);
-// Will store the result of the API whichs gives the discussions list 
-var jsonDiscussionApi;
-
-
 /**
  * Afficher/masquer l'élement indiqué en cliquant sur un lien
  * 
@@ -739,12 +732,12 @@ async function getLogEvents(htmlContainerId) {
 async function getMapCitizensOnce(mapId) {
     
     // If the API has already be called before, don't re-call it
-    if(citizens === null) {
+    if(_citizens === null) {
         let json = await callApi("GET", "citizens", `action=get&map_id=${mapId}`);    
-        citizens = json.datas;
+        _citizens = json.datas;
     }
     
-    return citizens;
+    return _citizens;
 }
 
 
@@ -773,11 +766,11 @@ async function getMyZoneOnce(mapId, coordX, coordY) {
 async function addCitizensOnMap(mapId) {
     
     // Get the citizens of the map by calling the Invazion's API
-    citizens = await getMapCitizensOnce(mapId);
+    _citizens = await getMapCitizensOnce(mapId);
     
     // Place the citizens on the appropriate zones
-    for(let citizenId in citizens) {
-        let citizen = citizens[citizenId],
+    for(let citizenId in _citizens) {
+        let citizen = _citizens[citizenId],
             htmlCoords = citizen.coord_x+"_"+citizen.coord_y,
             zone = document.querySelector("#zone"+htmlCoords+" .square_container");
         
@@ -825,7 +818,7 @@ async function UpdateMapRealtime(event, timestamp) {
         document.getElementById("zone"+coords).outerHTML = htmlZones[coords];
     }
     
-    replaceBuildingsPlaceholders(configsBuildings);
+    replaceBuildingsPlaceholders();
     
     // Place the player on his new zone
     addMeOnMap();
@@ -857,15 +850,8 @@ function showFightingZombiesButtons(nbrZombies) {
  * Replaces the buildings IDs on the map by the real data (building name, description...)
  * Useful to load those data from the configs stored in JSON in the HTML page,
  * without calling the "configs" API
- * 
- * @param {array} configsBuildings The configuration data of the game, as structured
- *                                 in the Invazion's "configs" API. Example :
- *                                 [
- *                                 [1 => ['name' => 'Circus', 'description' = > '...'],
- *                                 [2 => ['name' => 'Car', 'description' = > '...'],
- *                                 ],
  */
-function replaceBuildingsPlaceholders(configsBuildings) {
+function replaceBuildingsPlaceholders() {
     
     // Gets all the placeholders on the map
     var buildingIds = document.querySelectorAll("#map .buildingId");
@@ -877,7 +863,7 @@ function replaceBuildingsPlaceholders(configsBuildings) {
         let field = building.parentNode.className;        
         let buildingId = building.innerHTML;
         // Replaces the building ID placeholder by the data of the field
-        building.outerHTML = configsBuildings[buildingId][field];
+        building.outerHTML = _configsBuildings[buildingId][field];
     }
 }
 
