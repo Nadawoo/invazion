@@ -261,6 +261,7 @@ class HtmlMap
                         data-coordy="'.$row.'"
                         data-zombies="'.$cell['zombies'].'"
                         data-citizens="'.$cell['citizens'].'"
+                        data-items="'.count($cell['items']).'"
                         data-controlPointsZombies="'.$cell['controlpoints_zombies'].'"
                         data-controlPointsCitizens="'.$cell['controlpoints_citizens'].'"
                         data-cityid="'.$cell['city_id'].'"

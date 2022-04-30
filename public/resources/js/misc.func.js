@@ -1027,8 +1027,12 @@ function updateRoundActionButtons(coordX, coordY) {
         document.querySelector("#round_citizens input").classList.add("inactive");
     }
     
+    // Update the number of items in the round button
+    document.querySelector("#round_dig .dot_number").innerHTML = zone.dataset.items;
+    
     // Update the number of zombies in the round button
     document.querySelector("#round_zombies .dot_number").innerHTML = zone.dataset.zombies;
+    
     // Display "1" if ther is a building or a city in the zone
     document.querySelector("#round_build .dot_number").innerHTML = Math.min(1, zone.dataset.buildingid + zone.dataset.cityid);
 }
