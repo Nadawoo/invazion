@@ -1,0 +1,159 @@
+/* 
+ * Functions about the "action blocks" next to the map (the big round buttons :
+ * move, items, zombies, humans, building)
+ */
+
+
+/**
+ * Main function : pdate the content of the actions blocks next to the map 
+ * (move, items, zombies...)
+ * 
+ * @param {string} blockAlias The name of the action block to update 
+ */
+async function updateBlockAction(blockAlias) {
+    
+    if(blockAlias === "citizens") {
+        
+        let myZone = document.querySelector("#me").parentNode.dataset;
+        updateBlockActionCitizens(myZone.coordx, myZone.coordy);
+    }
+    else if(blockAlias === "zombies") {
+        
+        let nbrZombies = document.querySelector("#me").parentNode.dataset.zombies; 
+        updateBlockActionZombies(nbrZombies); 
+    }
+}
+
+
+/**
+ * Update the content of the action block "Move"
+ * @param {int} newNbrZombies The number of zombies in the zone after the action
+ */
+function updateBlockActionMove(newNbrZombies) {
+
+    // Update the red alert frame above the movement paddle
+    let alertControlNbrZombies = document.querySelector("#alert_control .nbr_zombies");
+    if(alertControlNbrZombies !== null) {
+        alertControlNbrZombies.innerHTML = newNbrZombies;
+        if(newNbrZombies <= 0) {
+            hideIds("alert_control");
+        }
+    }
+    
+    // Update the details about movement cost (action points)
+    if(newNbrZombies <= 0) {
+        document.querySelector("#movement_cost").innerHTML = "Déplacement gratuit<br>(vous avez éliminé tous les zombies)";
+    }
+}
+
+
+/**
+ * Update the HTML displaying the action points after consuming AP
+ * 
+ * @param {int} actionsPointsLost The amount of AP to decrease
+ */
+function updateActionPointsBar(actionsPointsLost) {
+    // Update the number of AP in the hidden data storage
+    document.querySelector("#actionPoints").innerHTML -= actionsPointsLost;
+    
+    let currentAP   = document.querySelector("#actionPoints").innerHTML,
+        maxAP       = document.querySelector("#maxActionPoints").innerHTML;
+    
+    let htmlCurrentAP = '&#x26A1'.repeat(currentAP),
+        htmlConsumedAP  = '<span style="opacity:0.3">'+('&#x26A1;'.repeat(maxAP-currentAP))+'</span>';
+    
+    // Update the HTML gauge displaying the number of action points
+    document.querySelector("#apBar").innerHTML = htmlCurrentAP + htmlConsumedAP;
+}
+
+
+/**
+ * Display an alert over the movement paddle if the player is blocked
+ * 
+ * @param {int} nbrZombies The number of zombies in the player's zone
+ */
+function updateBlockAlertControl(nbrZombies) {
+    
+    document.querySelector("#alert_control").style.display = (nbrZombies > 0) ? "block" : "none";
+}
+
+
+/**
+ * Update the content of the action block "Zombies" 
+ * @param {int} newNbrZombies The number of zombies in the zone after the action
+ */
+function updateBlockActionZombies(newNbrZombies) {
+    
+    // Activates the big round action button "Zombies"
+    let zombiesButton = document.querySelector("#round_zombies");
+    if(newNbrZombies > 0) {
+        zombiesButton.querySelector("input").classList.remove("inactive");
+    } else {
+        zombiesButton.querySelector("input").classList.add("inactive");
+    }
+    
+    // Update the number of zombies in the round button
+    document.querySelector("#round_zombies .dot_number").innerHTML = newNbrZombies;
+    
+    // Update the content of the "zombies" frame
+    if(newNbrZombies > 0) {
+        document.querySelector("#block_zombies .nbr_zombies").innerHTML = newNbrZombies+" zombies";
+        document.querySelector("#block_zombies .zombies_visual").innerHTML = '<span class="zombie">&#x1F9DF;</span>'.repeat(newNbrZombies);
+        document.querySelector("#action_zombies").style.display = "block";
+    } else {
+        // If there is no more zombies, hide the buttons & infos about killing zombies
+        document.querySelector("#action_zombies").style.display = "none";
+    }
+}
+
+
+/**
+ * Update the content of the "humans" block next to the map
+ * 
+ * @param {int} coordX
+ * @param {int} coordY
+ */
+async function updateBlockActionCitizens(coordX, coordY) {
+    
+    let citizenId = document.querySelector("#citizenId").innerHTML,
+        mapId     = document.querySelector("#mapId").innerHTML;
+
+    // Get the HTML elements for the list of citizens in the zone
+    let options = { method: "GET",
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+                    };
+    let htmlElements = await fetch(`/generators/block_action_humans.php?map_id=${mapId}&coord_x=${coordX}&coord_y=${coordY}&citizen_id=${citizenId}`, options).then(toJson);
+
+    document.querySelector("#block_citizens .content").innerHTML = htmlElements.datas;
+}
+
+
+/**
+ * Refresh the numbers in the big round buttons next to the map
+ * (move, zombies, humans...)
+ * 
+ * @param {int} coordX
+ * @param {int} coordY
+ */
+function updateRoundActionButtons(coordX, coordY) {
+    
+    let zone = document.querySelector("#zone"+coordX+"_"+coordY+" .square_container");
+    
+    // Display the number of citizens in the zone
+    document.querySelector("#round_citizens .dot_number").innerHTML = zone.dataset.citizens - 1;
+    // Highlight the "humans" button if there are other citizens in the zone
+    if(zone.dataset.citizens > 1) {
+        document.querySelector("#round_citizens input").classList.remove("inactive");
+    } else {
+        document.querySelector("#round_citizens input").classList.add("inactive");
+    }
+    
+    // Update the number of items in the round button
+    document.querySelector("#round_dig .dot_number").innerHTML = zone.dataset.items;
+    
+    // Update the number of zombies in the round button
+    document.querySelector("#round_zombies .dot_number").innerHTML = zone.dataset.zombies;
+    
+    // Display "1" if ther is a building or a city in the zone
+    document.querySelector("#round_build .dot_number").innerHTML = Math.min(1, zone.dataset.buildingid + zone.dataset.cityid);
+}
