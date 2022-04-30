@@ -3,6 +3,8 @@
  * Don't put functions here (see scripts.js) nor events listeners (see events.js)
  */
 
+// Stores the result returned by the "citizens" API of Invazion
+var citizens = null;
 
 
 // If we are on the main game page (those elements don't exist on the connection page)

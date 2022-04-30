@@ -141,7 +141,7 @@ $html = [
     'edit_land'         => $layout->block_edit_land($citizen['coord_x'], $citizen['coord_y']),
     'zone_items'        => $layout->block_zone_items($configs['items'], $zone),
     'bag_items'         => $layout->block_bag_items($configs['items'], $citizen['citizen_id'], $citizen['bag_items'], $citizen['bag_size']),
-    'zone_fellows'      => $layout->block_zone_fellows($zone_fellows, $citizen['citizen_id']),
+    'zone_fellows_template' => $layout->block_zone_fellow_template(),
     // Smartphone at the right of the map
     'smartphone'        => $phone->smartphone($maps['map_width'], $maps['map_height'], $citizen, $speciality_caracs, $zone),
     ];
@@ -396,11 +396,14 @@ echo $popup->customised('popsuccess', '', $msg_popup, $is_custom_popup_visible);
                 ?>
             </fieldset>
 
-            <fieldset  id="block_citizens">
+            <fieldset id="block_citizens">
                 <legend>Humains dans ma zone</legend>
-                <div class="content" data-coordx="" data-coordy="">
-                    <?php echo $html['zone_fellows'] ?>
-                </div>
+                
+                <p class="greytext">Personne à proximité. Vous êtes seul au milieu 
+                    de cette zone désertique...</p>
+                
+                <?php echo $html['zone_fellows_template'] ?>
+                <ol class="citizens" data-coordx="" data-coordy=""></ol>
             </fieldset>
         </div>
         

@@ -729,6 +729,21 @@ async function getLogEvents(htmlContainerId) {
 }
 
 
+/*
+ * Get the citizens of the map by calling the Invazion's API
+ */
+async function getMapCitizensOnce(mapId) {
+    
+    // If the API has already be called before, don't re-call it
+    if(citizens === null) {
+        let json = await callApi("GET", "citizens", `action=get&map_id=${mapId}`);    
+        citizens = json.datas;
+    }
+    
+    return citizens;
+}
+
+
 /**
  * Place the citizens on the map. They are not loaded by the PHP to speed up
  * the loading of the map.
@@ -738,11 +753,11 @@ async function getLogEvents(htmlContainerId) {
 async function addCitizensOnMap(mapId) {
     
     // Get the citizens of the map by calling the Invazion's API
-    let json = await callApi("GET", "citizens", `action=get&map_id=${mapId}`);
+    citizens = await getMapCitizensOnce(mapId);
     
     // Place the citizens on the appropriate zones
-    for(let citizenId in json.datas) {
-        let citizen = json.datas[citizenId],
+    for(let citizenId in citizens) {
+        let citizen = citizens[citizenId],
             htmlCoords = citizen.coord_x+"_"+citizen.coord_y,
             zone = document.querySelector("#zone"+htmlCoords+" .square_container");
         

@@ -115,21 +115,59 @@ function updateBlockActionZombies(newNbrZombies) {
  */
 async function updateBlockActionCitizens(coordX, coordY) {
     
-    let block = document.querySelector("#block_citizens .content");
+    let block = document.querySelector("#block_citizens .citizens");
     
     // Update the data only one time per zone
     if(block.dataset.coordx !== coordX || block.dataset.coordy !== coordY) {
-           
-        let citizenId = document.querySelector("#citizenId").innerHTML,
-            mapId     = document.querySelector("#mapId").innerHTML;
-
-        // Get the HTML elements for the list of citizens in the zone
-        let options = { method: "GET",
-                        headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
-                        };
-        let htmlElements = await fetch(`/generators/block_action_humans.php?map_id=${mapId}&coord_x=${coordX}&coord_y=${coordY}&citizen_id=${citizenId}`, options).then(toJson);
-
-        block.innerHTML = htmlElements.datas;
+        
+        let myCitizenId     = document.querySelector("#citizenId").innerHTML,
+            myCitizenPseudo = document.querySelector("#citizenPseudo").innerHTML,
+            mapId           = document.querySelector("#mapId").innerHTML;
+            
+        // Get the citizens of the map by calling the Invazion's API
+        citizens = await getMapCitizensOnce(mapId);    
+        
+        // Keep only the citizens who are in the player's zone
+        zoneCitizens = Object.values(citizens).filter(citizen => citizen.coord_x == coordX 
+                                                              && citizen.coord_y == coordY
+                                                              && citizen.citizen_id != myCitizenId);
+        
+        if(zoneCitizens.length <= 0) {
+            // If the conected player is alone, show a generic text
+            document.querySelector("#block_citizens .greytext").style.display = "block";
+            block.innerHTML = "";
+            
+        } else {
+            // Hide the generic text
+            document.querySelector("#block_citizens .greytext").style.display = "none";
+            // Add the player's pseudo at the top of the list of citizens
+            let template = document.querySelector("#tplActionBlockFellowMe").content.cloneNode(true);
+            template.querySelector(".pseudo").innerHTML = myCitizenPseudo;
+            document.querySelector("#block_citizens ol").appendChild(template);
+        }
+        
+        // Show the list of the other citizens in the zone
+        for(let i in zoneCitizens) {
+            
+            let citizen = zoneCitizens[i],
+                template = document.querySelector("#tplActionBlockFellow").content.cloneNode(true);
+                
+            // Populate the template with the citizen's data
+            template.querySelector(".pseudo").innerHTML = citizen.citizen_pseudo;
+            template.querySelector('form[name="attack"] input[name="params[target_id]"]').value = citizen.citizen_id;
+            template.querySelector('form[name="heal"] input[name="params[target_id]"]').value = citizen.citizen_id;
+            
+            // Switch buttons attack/heal according to the wounds of the player
+            if(citizen.is_wounded === 0) {
+                template.querySelector('form[name="heal"]').style.display = "none";
+            } else {
+                template.querySelector('form[name="attack"]').style.display = "none";
+            }
+            
+            // Add the new template to the list of citiziens
+            document.querySelector("#block_citizens ol").appendChild(template);
+        }
+        
         // Useful to know if the block is up-to-date after moving the player
         block.dataset.coordx = coordX;
         block.dataset.coordy = coordY;

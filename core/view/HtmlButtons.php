@@ -559,8 +559,8 @@ class HtmlButtons
         $button = $this->buttons['attack_citizen'];
         $icon = ($show_icon === 'no_icon') ? '' : $button['icon'].' ';
         
-        return
-        '<form method="post" action="#popsuccess" style="display:inline">
+        return'
+        <form name=attack method="post" action="#popsuccess" style="display:inline">
             <input type="hidden" name="api_name" value="me">
             <input type="hidden" name="action" value="attack">
             <input type="hidden" name="params[target_id]" value="'.$target_id.'">
@@ -583,8 +583,8 @@ class HtmlButtons
         $icon = ($show_icon === 'no_icon') ? '' : $button['icon'].' ';
         $text = ($text !== 'default') ? $text : $button['name']; 
         
-        return
-        '<form method="post" action="#popsuccess" style="display:inline">
+        return '
+        <form name="heal" method="post" action="#popsuccess" style="display:inline">
             <input type="hidden" name="api_name" value="me">
             <input type="hidden" name="action" value="heal">
             <input type="hidden" name="params[item_id]" value="'.$item_id.'">

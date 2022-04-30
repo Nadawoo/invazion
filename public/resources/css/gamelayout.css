@@ -477,6 +477,10 @@ legend {
     font-size:1.9em
 }
 
+#block_citizens ol {
+    padding-left:0.9em;
+}
+
 /* Empty slot for an item in the bag */
 .empty_slot {
     background:none;

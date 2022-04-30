@@ -234,41 +234,39 @@ class HtmlLayout extends HtmlPage
     
     
     /**
-     * Retourne la liste HTML des citoyens sur la case
+     * HTML blank template to display one citizen in the "humans" action block
+     * next to the map (list of the citizens in the zone)
+     * The appropriate data are then fulfilled by the javascript.
      * 
-     * @param array $citizens_caracs    Les données sur tous les citoyens de la zone
-     *                                  (issues de la BDD et triées avec citizens_by_coords())
-     * 
-     * @return string
+     * @return string HTML
      */
-    function block_zone_fellows($citizens_caracs, $citizen_id)
+    function block_zone_fellow_template()
     {
         
         $buttons = new HtmlButtons;
-        $html = '';
         
-        if (count($citizens_caracs) <= 1) {
+        $player_template = '
+            <template id="tplActionBlockFellowMe">
+                <li>
+                    <span class="userlabel"><span class="avatar">&#x1F464;</span> 
+                        <span class="pseudo">{{citizen_pseudo}}</span>
+                    </span>
+                    <span class="itsme" style="color:grey;font-size:0.8em"> [c\'est vous !]</span>
+                </li>
+            </template>';
             
-            return '<p class="greytext">Personne à proximité. Vous êtes seul au milieu de cette zone désertique...</p>';
-        }
+        $other_citizen_template = '
+            <template id="tplActionBlockFellow">
+                <li>
+                    <span class="userlabel"><span class="avatar">&#x1F464;</span> 
+                        <span class="pseudo">{{citizen_pseudo}}</span>
+                    </span>
+                    '.$buttons->attack_citizen('{citizen_id}', '{citizen_pseudo}').'
+                    '.$buttons->heal_citizen('{citizen_id}', '{citizen_pseudo}').'
+                </li>
+            </template>';
         
-        foreach ($citizens_caracs as $caracs) {
-            
-            $attack_button = '<span style="color:grey;font-size:0.8em"> [c\'est vous !]</span>';
-            
-            if ($caracs['citizen_id'] !== $citizen_id) {
-                // Bouton pour agresser/soigner le citoyen
-                $attack_button = ($caracs['is_wounded'] === 0)
-                              ? $buttons->attack_citizen($caracs['citizen_id'], $caracs['citizen_pseudo'])
-                              : $buttons->heal_citizen($caracs['citizen_id'], $caracs['citizen_pseudo']);
-            }
-
-            $html.= '<li><span class="userlabel"><span class="avatar">&#x1F464;</span> '.$caracs['citizen_pseudo'].'</span>'
-                  . $attack_button
-                  . '</li>';
-        }
-        
-        return '<ol style="padding-left:0.9em">'.$html.'</ol>';
+        return $player_template . $other_citizen_template;
     }
     
     
