@@ -126,14 +126,11 @@ class HtmlMap
      * @param type $nbr_cols    Le nombre de colonnes de la carte
      * @param type $nbr_rows    Le nombre de lignes de la carte
      * @param array $cells      Les zones de la carte, tel que retourné par l'API maps
-     * @param array $citizens_by_coord  Les données des citoyens, indexées par leurs coordonnées
-     *                                  (données de l'API citizens tirées par 
-     *                                  la fonction sort_citizens_by_coord())
      * @param int $next_attack_hour L'heure de la prochaine attaque
      * 
      * @return string   Le HTML de la catte hexagonale
      */
-    public function hexagonal_map($nbr_cols, $nbr_rows, $cells, $citizens_by_coord, $citizen, $next_attack_hour)
+    public function hexagonal_map($nbr_cols, $nbr_rows, $cells, $citizen, $next_attack_hour)
     {
         
         $result = '';

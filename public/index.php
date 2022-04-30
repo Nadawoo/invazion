@@ -130,7 +130,7 @@ $html = [
     // The unvariable data of the game (buildings names...)
     'json_configs'      => $layout->json_configs(json_encode($configs['buildings'])),
     // Assembling the HTML for the map
-    'map' => $map->hexagonal_map($maps['map_width'], $maps['map_height'], $maps['zones'], $citizens_by_coord, $citizen, $maps['next_attack_hour']),
+    'map' => $map->hexagonal_map($maps['map_width'], $maps['map_height'], $maps['zones'], $citizen, $maps['next_attack_hour']),
     'map_citizens'      => $layout->map_citizens($citizens),
     'attack_bar'        => $layout->attack_bar($citizen['map_id'], get_game_day($citizen['last_death'])),
     // Contents of the round action buttons at the right of the map
