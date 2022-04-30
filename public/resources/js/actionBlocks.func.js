@@ -22,6 +22,12 @@ async function updateBlockAction(blockAlias) {
         let nbrZombies = document.querySelector("#me").parentNode.dataset.zombies; 
         updateBlockActionZombies(nbrZombies); 
     }
+    else if(blockAlias === "dig") {
+        
+        let mapId = document.querySelector("#mapId").innerHTML,
+            myZone = document.querySelector("#me").parentNode.dataset;
+        updateBlockActionDig(mapId, myZone.coordx, myZone.coordy); 
+    }
 }
 
 
@@ -166,6 +172,57 @@ async function updateBlockActionCitizens(coordX, coordY) {
             
             // Add the new template to the list of citiziens
             document.querySelector("#block_citizens ol").appendChild(template);
+        }
+        
+        // Useful to know if the block is up-to-date after moving the player
+        block.dataset.coordx = coordX;
+        block.dataset.coordy = coordY;
+    }
+}
+
+
+/**
+ * Update the content of the "dig" block next to the map
+ * 
+ * @param {int} mapId
+ * @param {int} coordX
+ * @param {int} coordY
+ */
+async function updateBlockActionDig(mapId, coordX, coordY) {
+    
+    let block = document.querySelector("#block_dig .items_ground .items_list");
+    
+    // Update the data only one time per zone
+    if(block.dataset.coordx !== coordX || block.dataset.coordy !== coordY) {
+    
+        // Clear the obsolete items list from the previous zone
+        block.innerHTML = "";
+        // Get the items in the zone by calling the Invazion's API
+        _myZone = await getMyZoneOnce(mapId, coordX, coordY);
+        
+        if(_myZone.items === null) {
+            // Show the default text if no items on the ground
+            document.querySelector("#block_dig .items_ground .greytext").style.display = "block";
+        }
+        else {
+            // Hide the default text if there are items
+            document.querySelector("#block_dig .items_ground .greytext").style.display = "none";
+            
+            for(let [itemId, itemAmount] of Object.entries(_myZone.items)) {
+
+                let item = _configsItems[itemId],
+                    template = document.querySelector("#tplActionBlockItem").content.cloneNode(true);
+
+                // Populate the template with the item data
+                template.querySelector('button[name="params[item_id]"]').value = itemId;
+                template.querySelector('img').src = `../resources/img/copyrighted/items/${itemId}.png`;
+                template.querySelector('img').alt = item.icon_symbol;
+                template.querySelector('.item_name').innerHTML = item.name;
+                template.querySelector('.item_amount').innerHTML = itemAmount;
+
+                // Add the new template to the list of items
+                block.appendChild(template);
+            }
         }
         
         // Useful to know if the block is up-to-date after moving the player

@@ -3,8 +3,9 @@
  * Don't put functions here (see scripts.js) nor events listeners (see events.js)
  */
 
-// Stores the result returned by the "citizens" API of Invazion
+// Permanently stores the results returned by the Invazion's APIs.
 var citizens = null;
+var _myZone = null;
 
 
 // If we are on the main game page (those elements don't exist on the connection page)

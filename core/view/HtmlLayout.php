@@ -16,15 +16,20 @@ class HtmlLayout extends HtmlPage
      * Store in the HTML the unvariable data of the game (building names...).
      * Useful to reuse those data with javascript without calling the Invazion's API
      * 
-     * @param string $json_buildings The JSON string containing the configuration 
-     *                               of the game, as returned by the Invazion's API
+     * @param string $json_buildings The JSON string containing the informations
+     *                               about the buildings, as returned by the "configs" API
+     * @param string $json_items     The JSON string containing the informations 
+     *                               about the items, as returned by the "configs"  API
      * @return string HTML
      */
-    function json_configs($json_buildings) {
+    function json_configs($json_buildings, $json_items) {
         
         return '<section id="configs">
                     <div class="buildings">
                     '.$json_buildings.'
+                    </div>
+                    <div class="items">
+                    '.$json_items.'
                     </div>
                 </section>';
     }
@@ -309,6 +314,30 @@ class HtmlLayout extends HtmlPage
                     Aucun objet au sol pour l\'instant. Vous allez devoir fouiller...
                     </div>';
         }
+    }
+    
+    
+    /**
+     * HTML blank template to display one item in the "Dig" action block
+     * next to the map (list of the items on the ground)
+     * The appropriate data are then fulfilled by the javascript.
+     * 
+     * @return string
+     */
+    function block_zone_item_template()
+    {
+                
+        return '
+            <template id="tplActionBlockItem">
+                <li class="item_label">
+                    <button type="submit" name="params[item_id]" value="{item_id}" 
+                            class="drop_button" title="Ramasser cet objet">&wedgeq;</button> 
+                    <var>
+                        <img src="{url}" alt="{icon_symbol}">
+                        &nbsp;<span class="item_name">{item_name}</span>
+                    </var> <span style="font-size:0.95em">×&nbsp;<span class="item_amount">{item_amount}</span><span>
+                </li>
+            </template>';
     }
     
     

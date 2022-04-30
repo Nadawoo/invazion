@@ -128,7 +128,8 @@ $html = [
     // Data about the player for javascript treatments (his coordinates...)
     'hidden_player_data' => $layout->hidden_player_data($citizen, $speciality_caracs['action_points']),
     // The unvariable data of the game (buildings names...)
-    'json_configs'      => $layout->json_configs(json_encode($configs['buildings'])),
+    'json_configs'      => $layout->json_configs(json_encode($configs['buildings']),
+                                                 json_encode($configs['items'])),
     // Assembling the HTML for the map
     'map' => $map->hexagonal_map($maps['map_width'], $maps['map_height'], $maps['zones'], $citizen, $maps['next_attack_hour']),
     'map_citizens'      => $layout->map_citizens($citizens),
@@ -140,6 +141,7 @@ $html = [
     'actions_zombies'   => $layout->block_actions_zombies($zone['zombies'], $configs['map']['killing_zombie_cost']),
     'edit_land'         => $layout->block_edit_land($citizen['coord_x'], $citizen['coord_y']),
     'zone_items'        => $layout->block_zone_items($configs['items'], $zone),
+    'zone_items_template' => $layout->block_zone_item_template(),
     'bag_items'         => $layout->block_bag_items($configs['items'], $citizen['citizen_id'], $citizen['bag_items'], $citizen['bag_size']),
     'zone_fellows_template' => $layout->block_zone_fellow_template(),
     // Smartphone at the right of the map
@@ -373,10 +375,21 @@ echo $popup->customised('popsuccess', '', $msg_popup, $is_custom_popup_visible);
                 <?php 
                 echo $buttons->button('dig', false, '', (bool)$citizen['can_dig']).'<br>';
                 ?>
+                
                 &#x1F4BC; <strong>Déposer un objet de mon sac :</strong>
                     <div style="margin-left:1.5rem;"><?php echo $html['bag_items'] ?></div>
+                    
                 &#x270B;&#x1F3FC; <strong>Ramasser un objet au sol :</strong>
-                    <div style="margin-left:1.5rem;"><?php echo $html['zone_items'] ?></div>
+                    <?php echo $html['zone_items_template'] ?>
+                    <form class="items_ground" method="post" action="#Outside">
+                        <p class="greytext">
+                            Aucun objet au sol pour l'instant. Vous allez devoir fouiller...
+                        </p>
+                        <input type="hidden" name="api_name" value="zone">
+                        <input type="hidden" name="action" value="pickup">
+                        <ul class="items_list" style="margin-left:1.5rem;"
+                            data-coordx="" data-coordy=""></ul>
+                    </form>
             </fieldset>
 
             <fieldset id="block_zombies">

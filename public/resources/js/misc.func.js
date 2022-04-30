@@ -7,6 +7,7 @@
 
 // Get the unvariable data of the game (building names...) stored in the HTML
 var configsBuildings = JSON.parse(document.querySelector("#configs .buildings").innerHTML);
+var _configsItems    = JSON.parse(document.querySelector("#configs .items").innerHTML);
 // Will store the result of the API whichs gives the discussions list 
 var jsonDiscussionApi;
 
@@ -487,6 +488,9 @@ async function updateLandType(landType, coordX, coordY) {
  */
 async function moveCitizen(direction) {
     
+    // Delete the informations about the previous zone (obsolete)
+    _myZone = null;
+    
     let token = getCookie('token');
     // Sends the characteristics of the new item to the API
     let json = await callApi("GET", "zone", `action=move&to=${direction}&token=${token}`);
@@ -741,6 +745,22 @@ async function getMapCitizensOnce(mapId) {
     }
     
     return citizens;
+}
+
+
+/*
+ * Get the data about the player's zone by calling the Invazion's API
+ */
+async function getMyZoneOnce(mapId, coordX, coordY) {
+    
+    // If the API has already be called before, don't re-call it
+    if(_myZone === null) {
+        let htmlCoord = coordX+"_"+coordY,
+            json = await callApi("GET", "maps", `action=get&map_id=${mapId}&zones=${htmlCoord}`);    
+        _myZone = json.datas.zones[htmlCoord];
+    }
+    
+    return _myZone;
 }
 
 
