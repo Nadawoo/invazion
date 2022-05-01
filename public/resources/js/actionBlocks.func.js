@@ -85,6 +85,24 @@ function updateBlockAlertControl(nbrZombies) {
 
 
 /**
+ * Toggles the digging button to active/inactive if the player can't dig here
+ * 
+ * @param {int} is_visited_today Values "1" if the player has already visited 
+ *                               the zone today(comes from the Invazion's API) 
+ */
+function updateDigButton(is_visited_today) {
+    
+    let digButton = document.querySelector('#block_dig form[name="dig"] .redbutton');
+    
+    if(is_visited_today === 1) {
+        digButton.classList.add("inactive");
+    } else {
+        digButton.classList.remove("inactive");
+    }  
+}
+
+
+/**
  * Update the content of the action block "Zombies" 
  * @param {int} newNbrZombies The number of zombies in the zone after the action
  */
@@ -196,9 +214,11 @@ async function updateBlockActionDig(mapId, coordX, coordY) {
     if(block.dataset.coordx !== coordX || block.dataset.coordy !== coordY) {
     
         // Clear the obsolete items list from the previous zone
-        block.innerHTML = "";
+        block.innerHTML = "";        
         // Get the items in the zone by calling the Invazion's API
-        _myZone = await getMyZoneOnce(mapId, coordX, coordY);
+        _myZone = await getMyZoneOnce(mapId, coordX, coordY);        
+        // Set the digging button to grey if the player can't dig
+        updateDigButton(_myZone.user_specific.is_visited_today);
         
         if(_myZone.items === null) {
             // Show the default text if no items on the ground

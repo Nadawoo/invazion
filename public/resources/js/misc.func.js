@@ -749,7 +749,8 @@ async function getMyZoneOnce(mapId, coordX, coordY) {
     // If the API has already be called before, don't re-call it
     if(_myZone === null) {
         let htmlCoord = coordX+"_"+coordY,
-            json = await callApi("GET", "maps", `action=get&map_id=${mapId}&zones=${htmlCoord}`);    
+            token = getCookie('token'),
+            json = await callApi("GET", "maps", `action=get&map_id=${mapId}&token=${token}&zones=${htmlCoord}`);    
         _myZone = json.datas.zones[htmlCoord];
     }
     

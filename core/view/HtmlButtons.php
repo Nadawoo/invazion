@@ -369,7 +369,7 @@ class HtmlButtons
         
         // Returns the complete HTML form
         return
-        '<form method="post" action="#popsuccess" class="'.$class.'">
+        '<form method="post" action="#popsuccess" name="'.$button_alias.'" class="'.$class.'">
             '.$hidden_fields.'
             '.$icon.'<input type="submit" class="redbutton '.$class_inactive.'" value="'.$button['name'].'" title="'.$button['title'].'">'
         .'</form>';
