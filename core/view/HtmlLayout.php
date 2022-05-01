@@ -333,7 +333,7 @@ class HtmlLayout extends HtmlPage
                     <button type="submit" name="params[item_id]" value="{item_id}" 
                             class="drop_button" title="Ramasser cet objet">&wedgeq;</button> 
                     <var>
-                        <img src="{url}" alt="{icon_symbol}">
+                        <img src="" alt="{icon_symbol}">
                         &nbsp;<span class="item_name">{item_name}</span>
                     </var> <span style="font-size:0.95em">×&nbsp;<span class="item_amount">{item_amount}</span><span>
                 </li>
