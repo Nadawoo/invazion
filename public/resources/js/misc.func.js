@@ -553,12 +553,9 @@ function addMeOnMap() {
                     à droite de la carte pour vous déplacer, fouiller le sol, \
                     attaquer des zombies, ramasser des objets...</div>';
     
-    // Don't show the other citizens or buildings under the player's silhouette
+    // Don't show the other citizens under the player's silhouette
     if(myZone.querySelector(".map_citizen") !==  null) {
         myZone.querySelector(".map_citizen").remove();
-    }
-    if(myZone.querySelector(".icon_html") !==  null) {
-        myZone.querySelector(".icon_html").remove();
     }
     
     // Add the player's silhouette 

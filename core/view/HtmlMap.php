@@ -184,7 +184,6 @@ class HtmlMap
         // des citoyens/zombies/objets
         $cell_content   = '<span class="empty">&nbsp;</span>';
         $cell_zombies   = '';
-        $cell_me        = '';
         $elevate        = '';
         $bubble_roleplay = '';
         $bubble_zombies = '';
@@ -264,7 +263,7 @@ class HtmlMap
                         data-cityid="'.$cell['city_id'].'"
                         data-buildingid="'.$cell['building_id'].'"
                         >'
-                        . $cell_zombies . $cell_me . $cell_content . '
+                        . $cell_zombies . $cell_content . '
                         <div class="bubble">
                             <div class="coords">[Zone '.$col.':'.$row.']</div>
                             <div class="roleplay">'.$bubble_roleplay.'</div>'
