@@ -27,6 +27,12 @@ if (document.getElementById('map') !== null) {
         event.preventDefault();
         pickupItem(event.submitter);
     });
+    // Drops an item from the player's bag and puts it on the ground
+    document.querySelector('#block_dig form[name="items_bag"]').addEventListener("submit", function() {
+        // Desactivate the classic submission button (avoids reloading the page)
+        event.preventDefault();
+        dropItem(event.submitter);
+    });
     
     // Displays/hides the notifications panel
     document.getElementById("notifsButton").addEventListener("click", function(){

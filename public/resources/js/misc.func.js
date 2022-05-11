@@ -847,7 +847,7 @@ function showFightingZombiesButtons(nbrZombies) {
 /**
  * Picks up an item from the ground and puts it in the player's bag
  * 
- * @param {int} itemId The ID of the item to pick up
+ * @param {object} eventSubmitter The event.submitter returned by the eventListener
  */
 async function pickupItem(eventSubmitter) {
     
@@ -859,12 +859,44 @@ async function pickupItem(eventSubmitter) {
     
     if(json.metas.error_code === "success") {
         // HTML: moves the item from the ground list to the bag list
-        let groundItemNode = eventSubmitter.closest("li");
-        document.querySelector('form[name="items_bag"] ul').prepend(groundItemNode);
+        let itemNode = eventSubmitter.closest("li");
+        document.querySelector('form[name="items_bag"] ul').prepend(itemNode);
         // Removes 1 empty slot in the bag
         document.querySelector('form[name="items_bag"] .empty_slot').remove();
         // Replaces the "pick-up" icon by the "drop" icon for this item
-        groundItemNode.querySelector('button').innerHTML = "&veeeq;";
+        itemNode.querySelector('button').innerHTML = "&veeeq;";
+    } else {
+        // Displays the eventual error message in a pop-up
+        document.querySelector("#popsuccess").classList.add("force_visibility");
+        document.querySelector("#popsuccess .content").innerHTML = json.metas.error_message;
+    }
+}
+
+
+/**
+ * Drops an item from the player's bag and puts it on the ground
+ * 
+ * @param {object} eventSubmitter The event.submitter returned by the eventListener
+ */
+async function dropItem(eventSubmitter) {
+    
+    let token = getCookie('token'),
+        itemId = eventSubmitter.value;
+    
+    // Calls the API to pick up the item
+    let json = await callApi("GET", "zone", `action=drop&item_id=${itemId}&token=${token}`);
+    
+    if(json.metas.error_code === "success") {
+        // HTML: moves the item from the ground list to the bag list
+        let itemNode = eventSubmitter.closest("li");
+        document.querySelector('form[name="items_ground"] ul').prepend(itemNode);
+        // Adds 1 empty slot in the bag
+        let tplEmptySlot = document.querySelector('#tplEmptySlot').content.cloneNode(true);
+        document.querySelector('form[name="items_bag"] .items_list').appendChild(tplEmptySlot);
+        // Replaces the "drop" icon by the "pick-up" icon for this item
+        itemNode.querySelector('button').innerHTML = "&wedgeq;";
+        // Hides the message "There are no items on the ground..."
+        document.querySelector('form[name="items_ground"] .greytext').style.display = "none";
     } else {
         // Displays the eventual error message in a pop-up
         document.querySelector("#popsuccess").classList.add("force_visibility");
