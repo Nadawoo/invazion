@@ -257,28 +257,34 @@ async function updateBlockActionDig(mapId, coordX, coordY) {
  * Refresh the numbers in the big round buttons next to the map
  * (move, zombies, humans...)
  * 
- * @param {int} coordX
- * @param {int} coordY
+ * @param {int} coordX The X coordinate of the zone to get. If not set, will be 
+ *                     by default the player's zone.
+ * @param {int} coordY The Y coordinate of the zone to get. Ignored if coordX 
+ *                     was not set.
  */
-function updateRoundActionButtons(coordX, coordY) {
+function updateRoundActionButtons(coordX=null, coordY=null) {
     
-    let zone = document.querySelector("#zone"+coordX+"_"+coordY+" .square_container");
+    // NB: forcing the X/Y coordinates is useful to get the data of the good zone 
+    // (= the landing zone) after moving.
+    let myZone = (coordX === null)
+                  ? document.querySelector("#me").parentNode.dataset
+                  : document.querySelector("#zone"+coordX+"_"+coordY+" .square_container").dataset;
     
     // Display the number of citizens in the zone
-    document.querySelector("#round_citizens .dot_number").innerHTML = zone.dataset.citizens - 1;
+    document.querySelector("#round_citizens .dot_number").innerHTML = myZone.citizens - 1;
     // Highlight the "humans" button if there are other citizens in the zone
-    if(zone.dataset.citizens > 1) {
+    if(myZone.citizens > 1) {
         document.querySelector("#round_citizens input").classList.remove("inactive");
     } else {
         document.querySelector("#round_citizens input").classList.add("inactive");
     }
     
     // Update the number of items in the round button
-    document.querySelector("#round_dig .dot_number").innerHTML = zone.dataset.items;
+    document.querySelector("#round_dig .dot_number").innerHTML = myZone.items;
     
     // Update the number of zombies in the round button
-    document.querySelector("#round_zombies .dot_number").innerHTML = zone.dataset.zombies;
+    document.querySelector("#round_zombies .dot_number").innerHTML = myZone.zombies;
     
     // Display "1" if ther is a building or a city in the zone
-    document.querySelector("#round_build .dot_number").innerHTML = Math.min(1, zone.dataset.buildingid + zone.dataset.cityid);
+    document.querySelector("#round_build .dot_number").innerHTML = Math.min(1, myZone.buildingid + myZone.cityid);
 }

@@ -865,6 +865,10 @@ async function pickupItem(eventSubmitter) {
         document.querySelector('form[name="items_bag"] .empty_slot').remove();
         // Replaces the "pick-up" icon by the "drop" icon for this item
         itemNode.querySelector('button').innerHTML = "&veeeq;";
+        // Decreases the counter for the ground items
+        let myZone = document.querySelector("#me").parentNode.dataset;
+        myZone.items = parseInt(myZone.items, 10) - 1;
+        document.querySelector("#round_dig .dot_number").innerHTML = myZone.items;
     } else {
         // Displays the eventual error message in a pop-up
         document.querySelector("#popsuccess").classList.add("force_visibility");
@@ -897,6 +901,10 @@ async function dropItem(eventSubmitter) {
         itemNode.querySelector('button').innerHTML = "&wedgeq;";
         // Hides the message "There are no items on the ground..."
         document.querySelector('form[name="items_ground"] .greytext').style.display = "none";
+        // Increases the counter for the ground items
+        let myZone = document.querySelector("#me").parentNode.dataset;
+        myZone.items = parseInt(myZone.items, 10) + 1;
+        document.querySelector("#round_dig .dot_number").innerHTML = myZone.items;
     } else {
         // Displays the eventual error message in a pop-up
         document.querySelector("#popsuccess").classList.add("force_visibility");
