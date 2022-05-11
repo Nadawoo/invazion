@@ -183,7 +183,7 @@ class HtmlPopup
         <div id="'.$popup_alias.'" class="overlay '.$css_class.'">
             <div class="popup">
                 <h2>'.$title.'</h2>
-                <a class="close" href="'.$anchor.'">&times;</a>
+                <a class="close" href="'.$anchor.'" onclick="closePopup()">&times;</a>
                 <div class="content">'.$text.'</div>
             </div>
         </div>';

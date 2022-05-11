@@ -845,6 +845,35 @@ function showFightingZombiesButtons(nbrZombies) {
 
 
 /**
+ * To pick up an item form the ground and put it in the bag
+ * 
+ * @param {int} itemId The ID of the item to pick up
+ */
+async function pickupItem(itemId) {
+    
+    let token = getCookie('token');
+    
+    // Calls the API to pick up the item
+    let json = await callApi("GET", "zone", `action=pickup&item_id=${itemId}&token=${token}`);
+    
+    // Displays the eventual error message in a pop-up
+    if(json.metas.error_code !== "success") {
+        document.querySelector("#popsuccess").classList.add("force_visibility");
+        document.querySelector("#popsuccess .content").innerHTML = json.metas.error_message;
+    }
+}
+
+
+/**
+ * Hides the pop-up over the map
+ */
+function closePopup() {
+    
+    document.querySelector("#popsuccess").classList.remove("force_visibility");
+}
+
+
+/**
  * Replaces the buildings IDs on the map by the real data (building name, description...)
  * Useful to load those data from the configs stored in JSON in the HTML page,
  * without calling the "configs" API

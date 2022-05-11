@@ -208,11 +208,12 @@ async function updateBlockActionCitizens(coordX, coordY) {
  */
 async function updateBlockActionDig(mapId, coordX, coordY) {
     
-    let block = document.querySelector("#block_dig .items_ground .items_list");
+    let block = document.querySelector('#block_dig form[name="items_ground"] .items_list');
     
     // Update the data only one time per zone
     if(block.dataset.coordx !== coordX || block.dataset.coordy !== coordY) {
     
+        let noItemsText = document.querySelector('#block_dig form[name="items_ground"] .greytext');
         // Clear the obsolete items list from the previous zone
         block.innerHTML = "";        
         // Get the items in the zone by calling the Invazion's API
@@ -222,11 +223,11 @@ async function updateBlockActionDig(mapId, coordX, coordY) {
         
         if(_myZone.items === null) {
             // Show the default text if no items on the ground
-            document.querySelector("#block_dig .items_ground .greytext").style.display = "block";
+            noItemsText.style.display = "block";
         }
         else {
             // Hide the default text if there are items
-            document.querySelector("#block_dig .items_ground .greytext").style.display = "none";
+            noItemsText.style.display = "none";
             
             for(let [itemId, itemAmount] of Object.entries(_myZone.items)) {
 

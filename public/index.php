@@ -381,7 +381,7 @@ echo $popup->customised('popsuccess', '', $msg_popup, $is_custom_popup_visible);
                     
                 &#x270B;&#x1F3FC; <strong>Ramasser un objet au sol :</strong>
                     <?php echo $html['zone_items_template'] ?>
-                    <form class="items_ground" method="post" action="#Outside">
+                    <form name="items_ground" method="post" action="#Outside">
                         <p class="greytext">
                             Aucun objet au sol pour l'instant. Vous allez devoir fouiller...
                         </p>
