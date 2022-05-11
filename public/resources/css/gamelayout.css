@@ -482,7 +482,7 @@ legend {
 }
 
 /* Empty slot for an item in the bag */
-.empty_slot {
+.empty_slot var {
     background:none;
     border:1px solid grey;
     text-align:center;

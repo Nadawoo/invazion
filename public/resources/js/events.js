@@ -25,7 +25,7 @@ if (document.getElementById('map') !== null) {
     document.querySelector('#block_dig form[name="items_ground"]').addEventListener("submit", function() {
         // Desactivate the classic submission button (avoids reloading the page)
         event.preventDefault();
-        pickupItem(event.submitter.value);
+        pickupItem(event.submitter);
     });
     
     // Displays/hides the notifications panel

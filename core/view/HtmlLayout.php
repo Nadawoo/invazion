@@ -693,7 +693,7 @@ class HtmlLayout extends HtmlPage
         $nbr_free_slots = $max_bag_slots - array_sum(array_values($bag_items));
         
         return '
-            <form method="post" action="#Outside">
+            <form name="items_bag" method="post" action="#Outside" style="margin-left:1.5rem">
                 <input type="hidden" name="api_name" value="zone">
                 <input type="hidden" name="action" value="drop">
                 <input type="hidden" name="params[citizen_id]" value="'.$citizen_id.'">
@@ -767,7 +767,7 @@ class HtmlLayout extends HtmlPage
         
         for ($i=0; $i<$nbr_free_slots; $i++) {
             
-            $result.= "\n<li><var class=\"empty_slot\">-vide-</var></li>\n";
+            $result.= "\n<li class=\"empty_slot\"><var>-vide-</var></li>\n";
         }
         
         return $result;

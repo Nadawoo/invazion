@@ -377,7 +377,7 @@ echo $popup->customised('popsuccess', '', $msg_popup, $is_custom_popup_visible);
                 ?>
                 
                 &#x1F4BC; <strong>Déposer un objet de mon sac :</strong>
-                    <div style="margin-left:1.5rem;"><?php echo $html['bag_items'] ?></div>
+                    <?php echo $html['bag_items'] ?>
                     
                 &#x270B;&#x1F3FC; <strong>Ramasser un objet au sol :</strong>
                     <?php echo $html['zone_items_template'] ?>

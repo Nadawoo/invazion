@@ -845,19 +845,28 @@ function showFightingZombiesButtons(nbrZombies) {
 
 
 /**
- * To pick up an item form the ground and put it in the bag
+ * Picks up an item from the ground and puts it in the player's bag
  * 
  * @param {int} itemId The ID of the item to pick up
  */
-async function pickupItem(itemId) {
+async function pickupItem(eventSubmitter) {
     
-    let token = getCookie('token');
+    let token = getCookie('token'),
+        itemId = eventSubmitter.value;
     
     // Calls the API to pick up the item
     let json = await callApi("GET", "zone", `action=pickup&item_id=${itemId}&token=${token}`);
     
-    // Displays the eventual error message in a pop-up
-    if(json.metas.error_code !== "success") {
+    if(json.metas.error_code === "success") {
+        // HTML: moves the item from the ground list to the bag list
+        let groundItemNode = eventSubmitter.closest("li");
+        document.querySelector('form[name="items_bag"] ul').prepend(groundItemNode);
+        // Removes 1 empty slot in the bag
+        document.querySelector('form[name="items_bag"] .empty_slot').remove();
+        // Replaces the "pick-up" icon by the "drop" icon for this item
+        groundItemNode.querySelector('button').innerHTML = "&veeeq;";
+    } else {
+        // Displays the eventual error message in a pop-up
         document.querySelector("#popsuccess").classList.add("force_visibility");
         document.querySelector("#popsuccess .content").innerHTML = json.metas.error_message;
     }
