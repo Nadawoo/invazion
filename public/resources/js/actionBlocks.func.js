@@ -286,21 +286,39 @@ function updateRoundActionButtons(coordX=null, coordY=null) {
                   ? document.querySelector("#me").parentNode.dataset
                   : document.querySelector("#zone"+coordX+"_"+coordY+" .square_container").dataset;
     
-    // Display the number of citizens in the zone
-    document.querySelector("#round_citizens .dot_number").innerHTML = myZone.citizens - 1;
-    // Highlight the "humans" button if there are other citizens in the zone
-    if(myZone.citizens > 1) {
-        document.querySelector("#round_citizens input").classList.remove("inactive");
+    // Displays the number of citizens in the zone (current player excepted)
+    updateRoundButtonDotNumber("round_citizens", myZone.citizens - 1);
+    // Displays the number of items in the round button
+    updateRoundButtonDotNumber("round_dig", myZone.items);    
+    // Displays the number of zombies in the round button
+    updateRoundButtonDotNumber("round_zombies", myZone.zombies);    
+    // Displays "1" if there is a building or a city in the zone
+    updateRoundButtonDotNumber("round_build", Math.min(1, myZone.buildingid + myZone.cityid));
+}
+
+
+/**
+ * Updates the number inside the dot next to a round action button
+ * 
+ * 
+ * @param {string} roundButtonId The HTML ID of the round button to update
+ * @param {int} amount The amount of stuff (zombies, citizens... depends on 
+ *                     the function of the button)
+ */
+function updateRoundButtonDotNumber(roundButtonId, amount) {
+    
+    if(amount == 0) {
+        // Don't show the dot number if 0 stuff in the zone
+        document.querySelector(`#${roundButtonId} .dot_number`).style.display = "none";
     } else {
-        document.querySelector("#round_citizens input").classList.add("inactive");
+        document.querySelector(`#${roundButtonId} .dot_number`).style.display = "block";
+        document.querySelector(`#${roundButtonId} .dot_number`).innerHTML = amount;
     }
     
-    // Update the number of items in the round button
-    document.querySelector("#round_dig .dot_number").innerHTML = myZone.items;
-    
-    // Update the number of zombies in the round button
-    document.querySelector("#round_zombies .dot_number").innerHTML = myZone.zombies;
-    
-    // Display "1" if ther is a building or a city in the zone
-    document.querySelector("#round_build .dot_number").innerHTML = Math.min(1, myZone.buildingid + myZone.cityid);
+    // Highlights the big round button if there is stuff in the zone
+    if(amount >= 1) {
+        document.querySelector(`#${roundButtonId} input`).classList.remove("inactive");
+    } else {
+        document.querySelector(`#${roundButtonId} input`).classList.add("inactive");
+    }
 }
