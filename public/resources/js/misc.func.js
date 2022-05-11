@@ -845,6 +845,34 @@ function showFightingZombiesButtons(nbrZombies) {
 
 
 /**
+ * Digs to find an item in the zone
+ */
+async function dig() {
+    
+    let token = getCookie('token');
+    
+    // Calls the API to dig
+    let json = await callApi("GET", "zone", `action=dig&token=${token}`);
+    
+    // Displays the result of the digging in pop-up
+    document.querySelector("#popsuccess").classList.add("force_visibility");
+    document.querySelector("#popsuccess .content").innerHTML = json.metas.error_message;
+    
+    if(json.metas.error_code === "success") {
+        // Hides the message "There are no items on the ground..."
+        document.querySelector('form[name="items_ground"] .greytext').style.display = "none";
+        // Adds an HTML entry in the ground items list
+        let itemsFound = json.datas.items_found,
+            itemId     = Object.keys(itemsFound)[0],
+            item       = itemsFound[itemId];
+        htmlAddGroundItem(itemId, item.icon_symbol, item.name, 1);
+        // Makes the digging button inactive
+        updateDigButton(1);
+    }
+}
+
+
+/**
  * Picks up an item from the ground and puts it in the player's bag
  * 
  * @param {object} eventSubmitter The event.submitter returned by the eventListener

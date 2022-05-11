@@ -21,6 +21,12 @@ if (document.getElementById('map') !== null) {
         moveCitizen(event.submitter.value);
     });
     
+    // Digs a zone to find items
+    document.querySelector('#block_dig form[name="dig"]').addEventListener("submit", function() {
+        // Desactivate the classic submission button (avoids reloading the page)
+        event.preventDefault();
+        dig();
+    });
     // Picks up an item on the ground and puts it in the bag
     document.querySelector('#block_dig form[name="items_ground"]').addEventListener("submit", function() {
         // Desactivate the classic submission button (avoids reloading the page)
