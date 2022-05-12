@@ -16,31 +16,39 @@ var _jsonDiscussionApi = null;
 // If we are on the main game page (those elements don't exist on the connection page)
 if (document.getElementById('map') !== null) {
     
-    let mapId = document.querySelector("#gameData #mapId").innerHTML;
+    // Default map to show if the visitor is not connected
+    let mapId = 1;
     
-    // Place the current player on the appropriate zone of the map
-    addMeOnMap();
-    // Place the citizens on the appropriate zones of the map
-    addCitizensOnMap(mapId);    
-    // Add a location sign above the city of the player
-    addCityLocationMarker();
+    // Only if the visitor is connected
+    if(document.querySelector("#citizenId").innerHTML !== "") {
     
-    // Get informations about the current zone through the "data-*" HTML attributes
-    let zoneData = document.querySelector("#me").parentNode.dataset;
-    let myHexagon = document.getElementById("me").closest(".hexagon");
-    
-    displayTooltip(myHexagon);
-    // Update the numbers in the big buttons next to the map
-    updateRoundActionButtons(zoneData.coordx, zoneData.coordy);
-    // Display an alert over the movement paddle if the player is blocked
-    updateBlockAlertControl(zoneData.zombies);
-    // Display the actions for fighting against zombies
-    showFightingZombiesButtons(zoneData.zombies);
-    
-    // Restore the display of the player zone over the map before the page was refreshed
-    if (getCookieConfig('show_zone') === 1) {
-        toogleMyZone();
+        let mapId = document.querySelector("#gameData #mapId").innerHTML;
+        // Place the current player on the appropriate zone of the map
+        addMeOnMap();
+        // Add a location sign above the city of the player
+        addCityLocationMarker();
+        
+        // Get informations about the current zone through the "data-*" HTML attributes
+        let zoneData = document.querySelector("#me").parentNode.dataset;
+        let myHexagon = document.getElementById("me").closest(".hexagon");
+        
+        // Highlights the player's location on page load
+        displayTooltip(myHexagon);
+        // Update the numbers in the big buttons next to the map
+        updateRoundActionButtons(zoneData.coordx, zoneData.coordy);
+        // Display an alert over the movement paddle if the player is blocked
+        updateBlockAlertControl(zoneData.zombies);
+        // Display the actions for fighting against zombies
+        showFightingZombiesButtons(zoneData.zombies);
+
+        // Restore the display of the player zone over the map before the page was refreshed
+        if (getCookieConfig('show_zone') === 1) {
+            toogleMyZone();
+        }
     }
+    
+    // Place the citizens on the appropriate zones of the map
+    addCitizensOnMap(mapId);  
     
     // Restore the display of the action button before the page was refreshed
 //    toggleActionBlock(getCookieConfig("round_button"));
@@ -50,8 +58,8 @@ if (document.getElementById('map') !== null) {
 //    if (getCookie('showitemspanel') === null || getCookie('showitemspanel') === '0') {
 //        toggleItemsPanel();
 //    }
-     
-    // Displays the active tab of the in-game du smartphone
+      
+    // Displays the active tab of the in-game smartphone
     activatePhoneTab();
     
     // Countdown before the next zombie attack
