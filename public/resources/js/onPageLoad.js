@@ -34,6 +34,8 @@ if (document.getElementById('map') !== null) {
         
         // Highlights the player's location on page load
         displayTooltip(myHexagon);
+        // Updates the coordinates of the player in the movement paddle
+        updateMovementPaddle(zoneData.coordx, zoneData.coordy);
         // Update the numbers in the big buttons next to the map
         updateRoundActionButtons(zoneData.coordx, zoneData.coordy);
         // Display an alert over the movement paddle if the player is blocked

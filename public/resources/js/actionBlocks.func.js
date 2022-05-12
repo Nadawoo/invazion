@@ -322,3 +322,16 @@ function updateRoundButtonDotNumber(roundButtonId, amount) {
         document.querySelector(`#${roundButtonId} input`).classList.add("inactive");
     }
 }
+
+
+/**
+ * Updates the movement paddle next to the map
+ * 
+ * @param {int} coordX The X coordinate of the player
+ * @param {int} coordY The Y coordinate of the player
+ */
+function updateMovementPaddle(coordX, coordY) {
+    
+    // Updates the coordinates of the player in the movement paddle
+    document.querySelector('form[name="move"] .coords').innerHTML = coordX+":"+coordY;
+}

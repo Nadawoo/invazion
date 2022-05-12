@@ -63,7 +63,7 @@ class HtmlMovementPaddle
                 <td colspan="2" id="central" title="Cliquez sur une flèche pour vous déplacer...">
                     <br>
                     <img src="resources/img/free/human.png" class="me">
-                    ' . $coord_x . ':' . $coord_y . '
+                    <span class="coords"></span>
                 </td>
                 <td>'.$this->arrow('east').'</td>
             </tr>

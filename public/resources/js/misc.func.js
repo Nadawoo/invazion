@@ -496,6 +496,9 @@ async function moveCitizen(direction) {
     document.querySelector("#citizenCoordX").innerHTML = json.datas.new_coord_x;
     document.querySelector("#citizenCoordY").innerHTML = json.datas.new_coord_y;
     
+    // Updates the coordinates of the player in the movement paddle
+    updateMovementPaddle(json.datas.new_coord_x, json.datas.new_coord_y);
+    
     // Update the attribute "data-citizen" of the destination zone to add the player
     let htmlCoord = json.datas.new_coord_x+"_"+json.datas.new_coord_y;
         myZone = document.querySelector("#zone"+htmlCoord+" .square_container");
