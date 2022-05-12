@@ -36,6 +36,8 @@ if (document.getElementById('map') !== null) {
         displayTooltip(myHexagon);
         // Updates the coordinates of the player in the movement paddle
         updateMovementPaddle(zoneData.coordx, zoneData.coordy);
+        // Updates the coordinates of the player in the land editor
+        updateMapEditor(zoneData.coordx, zoneData.coordy);
         // Update the numbers in the big buttons next to the map
         updateRoundActionButtons(zoneData.coordx, zoneData.coordy);
         // Display an alert over the movement paddle if the player is blocked

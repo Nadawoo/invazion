@@ -335,3 +335,17 @@ function updateMovementPaddle(coordX, coordY) {
     // Updates the coordinates of the player in the movement paddle
     document.querySelector('form[name="move"] .coords').innerHTML = coordX+":"+coordY;
 }
+
+
+/**
+ * Updates the map editor next to the map
+ * 
+ * @param {int} coordX The X coordinate of the player
+ * @param {int} coordY The Y coordinate of the player
+ */
+function updateMapEditor(coordX, coordY) {
+    
+    // Sets the current coordinates of the player as the default zone to edit
+    document.querySelector('#landform input[name="coord_x"]').value = coordX;
+    document.querySelector('#landform input[name="coord_y"]').value = coordY;
+}

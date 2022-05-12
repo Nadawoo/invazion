@@ -750,9 +750,9 @@ class HtmlLayout extends HtmlPage
                 '.$html_lands.'
                 <br><br>
                 <label>X <input type="number" name="coord_x" min="0" style="width:3em"
-                                onClick="this.select()" value="'.$coord_x.'"></label>&nbsp;
+                                onClick="this.select()" value="{coordX}"></label>&nbsp;
                 <label>Y <input type="number" name="coord_y" min="0" style="width:3em" 
-                                onClick="this.select()" value="'.$coord_y.'"></label>
+                                onClick="this.select()" value="{coordY}"></label>
             </form>';
     }
     
