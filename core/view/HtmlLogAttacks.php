@@ -49,6 +49,15 @@ class HtmlLogAttacks extends HtmlWall
                             ? 'bad'
                             : 'good';
         
+        if($nbr_dead > 0) {
+            $icon_dead = str_repeat('&#x1F480;', min($nbr_dead, 3));
+            $text_dead = $nbr_dead.' morts de l\'attaque';
+        }
+        else {
+            $icon_dead = '&#x2714;&#xFE0F;';
+            $text_dead = 'Aucun mort de l\'attaque';
+        }
+        
         return '<div class="visual_attack_log">
                     <div class="block '.$class_zombies_size.'" onclick="toggle(\'logDetailsHurd'.$event_id.'\')">
                         <img src="resources/img/motiontwin/zombie9.gif"><br>
@@ -62,13 +71,37 @@ class HtmlLogAttacks extends HtmlWall
                     </div>
                     <div class="arrow">►</div>
                     <div class="block miniblock" onclick="toggle(\'logDetailsDead'.$event_id.'\')">
-                        <span style="font-size:1.5em">&#x1F480;</span><br>
-                        '.$nbr_dead.' morts
+                        <span style="font-size:1.5em">'.$icon_dead.'</span><br>
+                        '.$text_dead.'
                     </div>
                 </div>'
+                . $this->survivors_frieze($attack_data['event_id'], $attack_data['citizens_survivors'], $nbr_dead)
                 . $this->details_hurd($attack_data)
                 . $this->details_defenses($entry_type, $attack_data)
-                . $this->details_deads($attack_data);
+                . $this->details_deads($attack_data)
+                . $this->details_frieze($attack_data);
+    }
+    
+    
+    /**
+     * Visual representation of all the citizens of the city after the attack
+     * (silouhettes for the alive ones, coffins for the dead ones)
+     * 
+     * @param int $nbr_alive The number of alive citizens after the attack
+     * @param int $nbr_dead  The number of dead citizens from the beginning 
+     *                       of the city until this attack (not only the citizens
+     *                       killed during this attack)
+     * @return string HTML
+     */
+    private function survivors_frieze($event_id, $nbr_alive, $nbr_dead) {
+        
+        $frieze_alive = str_repeat('&#129485;&#8205;&#9794;&#65039;', $nbr_alive);
+        $frieze_dead  = str_repeat('&#x26B0;&#xFE0F;', $nbr_dead);
+        
+        return '<div class="survivors_frieze" onclick="toggle(\'logDetailsFrieze'.$event_id.'\')">
+                '.$frieze_alive.
+                '<span style="font-size:0.9em">'.$frieze_dead.'</span>
+            </div>';
     }
     
     
@@ -86,7 +119,7 @@ class HtmlLogAttacks extends HtmlWall
             'attack_not_repulsed' =>
                 '<span style="padding:0 0.2em;background:red;color:white">submersion !</span> &#x274C;',
             'attack_door_open' =>
-                '<span style="padding:0 0.2em;background:#6c3483;color:white">catastrophe !</span> &#x274C;',
+                '<span style="padding:0 0.2em;background:#6c3483;color:white">sans défense !</span> &#x274C;',
             ];
         
         return '&#x1F9DF; <strong>'.$attack_data['cycle_ended'].'<sup>e</sup> attaque zombie&nbsp;'
@@ -105,7 +138,8 @@ class HtmlLogAttacks extends HtmlWall
         $event_id = $attack_data['event_id'];
         
         return '<div id="logDetailsHurd'.$event_id.'" class="log_details">
-                    Cette nuit, la ville n° '.$attack_data['city_id'].' a été attaquée
+                    Lors de cette '.$attack_data['cycle_ended'].'<sup>e</sup> nuit, 
+                    la ville n° '.$attack_data['city_id'].' a été attaquée
                     par une horde de <strong>'.$attack_data['zombies'].' zombies</strong> !
                 </div>';
     }
@@ -141,7 +175,7 @@ class HtmlLogAttacks extends HtmlWall
                 '<strong class="red">Les portes de la ville n\'étaient pas fermées !</strong>
                 Cette négligence a permis aux <strong>'.$attack_data['zombies'].'</strong> zombies 
                 de pénétrer en contournant les <strong>'.$attack_data['defenses'].'</strong> défenses.
-                <p><strong>Fermez la porte de la ville</strong> avant chaque attaque,
+                <p>&#x26A0;&#xFE0F; <strong>Fermez la porte de la ville</strong> avant chaque attaque,
                 sinon les défenses sont inutiles !</p>',
             ];
         
@@ -162,22 +196,37 @@ class HtmlLogAttacks extends HtmlWall
         $event_id = $attack_data['event_id'];
         
         return '<div id="logDetailsDead'.$event_id.'" class="log_details">
-                    <strong>Bilan du matin :</strong> 
+                    <strong>Sont morts cette nuit-là :</strong> 
                     <ul>
-                        <li>&#x26B0;&#xFE0F; <strong>'.$attack_data['citizens_killed'].' morts</strong>
-                            <ul>
-                                <li>nom1 (dévoré en ville)</li>
-                                <li>nom2 (infection)</li>
-                                <li>nom3 ('.$this->death_cause('desert').')</li>
-                            </ul>
-                        </li>
-                        <li>&#x1F9CD;&nbsp; <strong>'.$attack_data['citizens_survivors'].' survivants</strong>
-                            <ul>
-                                <li>nom4</li>
-                                <li>nom5</li>
-                                <li>nom6</li>
-                            </ul>
-                        </li>
+                        <li>nom1 (dévoré en ville)</li>
+                        <li>nom2 (infection)</li>
+                        <li>nom3 ('.$this->death_cause('desert').')</li>
+                    </ul>
+                </div>';
+    }
+    
+    
+    /**
+     * Display the details of the whole city survivors/dead 
+     * (not only the dead of the current attack)
+     * 
+     * @param array $attack_data
+     * @return string HTML
+     */
+    private function details_frieze($attack_data) {
+        
+        $event_id = $attack_data['event_id'];
+        
+        return  '<div id="logDetailsFrieze'.$event_id.'" class="log_details">
+                    <strong>Appel des citoyens au matin du '.($attack_data['cycle_ended']+1).'<sup>e</sup> jour :</strong> 
+                    <ul>
+                        <li>&#129485;&#8205;&#9794;&#65039; <strong>nom1</strong> est vivant</li>
+                        <li>&#129485;&#8205;&#9794;&#65039; <strong>nom2</strong> est vivant</li>
+                        <li>&#129485;&#8205;&#9794;&#65039; <strong>nom3</strong> est vivant</li>
+                        <li>&#129485;&#8205;&#9794;&#65039; <strong>nom7</strong> est vivant</li>
+                        <li>&#x26B0;&#xFE0F; <strong>nom4</strong> est mort pendant la 2<sup>e</sup> nuit (dévoré en ville)</li>
+                        <li>&#x26B0;&#xFE0F; <strong>nom5</strong> est mort pendant la 1<sup>e</sup> nuit (infection)</li>
+                        <li>&#x26B0;&#xFE0F; <strong>nom6</strong> est mort pendant la 1<sup>e</sup> nuit ('.$this->death_cause('desert').')</li>
                     </ul>
                 </div>';
     }
