@@ -246,9 +246,15 @@
 }
 
 /* Boutons de déplacement du joueur */
+#column_move {
+    display:flex;
+    flex-direction:column;
+    float:left;
+}
 #movement_paddle {
     float:left;
-    margin-left:1%; /* No margin:auto because Chrome centers the paddle over the floating text */
+    margin-top:-0.5em; /* TODO: fix this ugly artificial alignment */
+    margin-left:8%; /* No margin:auto because Chrome centers the paddle over the floating text */
     width: 7.8rem; /* Fixed width to avoid crushing the paddle when downsizing the window */
     height:7.8rem;
     border-collapse:collapse;
@@ -263,7 +269,7 @@
     padding:0;
     /* Assure un écartement symétrique des flèches */
     width:2em;
-    height:2.5em;
+    height:2.4em;
     box-sizing:border-box;
 }
 #movement_paddle button {
@@ -285,8 +291,8 @@
 }
 #movement_paddle .me {
     position:absolute;
-    top:-1.3em;
-    left:31%;
+    top:-1.5em; /* TODO: fix those artificial alignments */
+    left:28%;
     height:2.6em;
 }
 /* Shows the distance to the city */
@@ -295,6 +301,8 @@
     align-items:center;
     justify-content:center;
     height:32px; /* Stabilize the block height when the city image is resized */
+    width:10em;
+    margin-bottom:0.5em;
     background:#d3d3d3;
     text-align:center;
     font-weight:normal;
@@ -323,7 +331,7 @@
 
 #movement_ap {
     margin-left:auto;
-    width:12.5rem;
+    width:11.5rem;
     text-align:right;
 }
 #actionpoints {
@@ -333,6 +341,7 @@
     background:green;
     color:white;
     opacity:0.9;
+    height:6rem;
 }
 #actionpoints p {
     margin:0.2em 0;

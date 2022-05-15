@@ -74,10 +74,6 @@ class HtmlMovementPaddle
                 <td></td>
             </tr>
         </table>
-        <div id="block_distance">
-            <div class="city_image"><img src="resources/img/free/city.png" alt="ville"></div>'
-            .'<span class="distance"></span> km
-        </div>
         </form>';
     }
     

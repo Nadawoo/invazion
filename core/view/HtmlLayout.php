@@ -391,7 +391,7 @@ class HtmlLayout extends HtmlPage
             $AP_cost_reason = 'présence de zombies';
         }
         elseif($zone_zombies === 0 and $moving_cost_no_zombies === 0) {
-            $AP_cost_reason = 'aucun zombie dans la zone';
+            $AP_cost_reason = 'aucun zombie alentour';
         }
         else {
             $AP_cost_reason = 'coût de la marche sans zombies';
@@ -410,6 +410,21 @@ class HtmlLayout extends HtmlPage
                     '.$AP_cost.'
                     <span style="font-size:0.85em">('.$AP_cost_reason.')</span>
                 </a>
+            </div>';
+    }
+    
+    
+    /**
+     * Displays the distance between the citizen and his city
+     * 
+     * @return string HTML
+     */
+    function block_distance() {
+        
+        return '
+            <div id="block_distance">
+                <div class="city_image"><img src="resources/img/free/city.png" alt="ville"></div>'
+                .'<span class="distance"></span> km
             </div>';
     }
     

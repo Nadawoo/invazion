@@ -509,6 +509,21 @@ async function moveCitizen(direction) {
     updateRoundActionButtons(json.datas.new_coord_x, json.datas.new_coord_y);
     updateActionPointsBar(json.datas.action_points_lost);
     updateCityDistance(json.datas.new_coord_x, json.datas.new_coord_y);
+    updateEnterCityButton(myZone.dataset.cityid);
+
+}
+
+
+/**
+ * Displays/hides the button to enter the city, following the presence or absence
+ * of city in the player's zone. 
+ * 
+ * @param {int} cityId The ID of the city in the zone, if there is one
+ */
+function updateEnterCityButton(cityId) {
+    
+    let value = (cityId === '') ? "none" : "block";
+    document.querySelector('#column_move form[name="enter_city"]').style.display = value;
 }
 
 

@@ -38,6 +38,8 @@ if (document.getElementById('map') !== null) {
         updateMovementPaddle(zoneData.coordx, zoneData.coordy);
         // Updates the distance to the city displayed under the movement paddle
         updateCityDistance(zoneData.coordx, zoneData.coordy);     
+        // Displays the button to enter if there is a city in the zone
+        updateEnterCityButton(zoneData.cityid);
         // Updates the coordinates of the player in the land editor
         updateMapEditor(zoneData.coordx, zoneData.coordy);
         // Update the numbers in the big buttons next to the map
