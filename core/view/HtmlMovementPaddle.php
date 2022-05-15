@@ -50,8 +50,8 @@ class HtmlMovementPaddle
     {
 
         return '
-        <form method="post" action="#Outside" name="move">
-        <table id="movement_paddle">
+        <form method="post" action="#Outside" name="move" id="movement_paddle">
+        <table>
             <tr>
                 <td></td>
                 <td>'.$this->arrow('northwest').'</td>
@@ -74,6 +74,10 @@ class HtmlMovementPaddle
                 <td></td>
             </tr>
         </table>
+        <div id="block_distance">
+            <div class="city_image"><img src="resources/img/free/city.png" alt="ville"></div>'
+            .'<span class="distance"></span> km
+        </div>
         </form>';
     }
     

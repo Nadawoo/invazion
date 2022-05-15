@@ -31,11 +31,13 @@ if (document.getElementById('map') !== null) {
         // Get informations about the current zone through the "data-*" HTML attributes
         let zoneData = document.querySelector("#me").parentNode.dataset;
         let myHexagon = document.getElementById("me").closest(".hexagon");
-        
+           
         // Highlights the player's location on page load
         displayTooltip(myHexagon);
         // Updates the coordinates of the player in the movement paddle
         updateMovementPaddle(zoneData.coordx, zoneData.coordy);
+        // Updates the distance to the city displayed under the movement paddle
+        updateCityDistance(zoneData.coordx, zoneData.coordy);     
         // Updates the coordinates of the player in the land editor
         updateMapEditor(zoneData.coordx, zoneData.coordy);
         // Update the numbers in the big buttons next to the map

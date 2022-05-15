@@ -508,6 +508,7 @@ async function moveCitizen(direction) {
     
     updateRoundActionButtons(json.datas.new_coord_x, json.datas.new_coord_y);
     updateActionPointsBar(json.datas.action_points_lost);
+    updateCityDistance(json.datas.new_coord_x, json.datas.new_coord_y);
 }
 
 
@@ -1011,4 +1012,48 @@ function attackCountdown() {
     date.setSeconds(remainingSeconds);
     
     document.getElementById("attackCountdown").innerHTML = date.getHours()+"h "+date.getMinutes()+"mn "+date.getSeconds()+"s";
+}
+
+
+/**
+ * Updates the distance to the city displayed under the movement paddle
+ * 
+ * @param {int} citizenCoordX
+ * @param {int} citizenCoordY
+ */
+async function updateCityDistance(citizenCoordX, citizenCoordY) {
+    
+    let myCityId = document.querySelector("#gameData #cityId").innerHTML,
+        myCityNode = document.querySelector(`[data-cityid="${myCityId}"]`);   
+    
+    if(myCityNode !== null) {
+        let myCityZone = myCityNode.parentNode.querySelector(".square_container").dataset;
+            distance = getDistance(myCityZone.coordx, myCityZone.coordy, citizenCoordX, citizenCoordY);
+    }
+    // Reduces the image of the city as we move away
+    document.querySelector("#block_distance img").height = Math.max(16, 32-distance*2);
+    // Updates the number of kilometers
+    document.querySelector("#block_distance .distance").innerHTML = distance;
+}
+
+
+/**
+ * Calculates the number of cells between a citizen and its city
+ * 
+ * @param {int} cityX    The X coordinate of the city
+ * @param {int} cityY    The Y coordinate of the city
+ * @param {int} citizenX The X coordinate of the citizen
+ * @param {int} citizenY The Y coordinate of the citizen
+ * @return {int} The number of cells between the citizen and the city
+ */
+function getDistance(cityX, cityY, citizenX, citizenY) {
+
+    // We calculate the relative coordinates of the citizen as if the city was in [0:0].
+    // And we remove the eventual negative sign, because the orientation (N/S/W/E)
+    // has no influence on the distance.
+    let distanceX = Math.abs(citizenX - cityX),
+        distanceY = Math.abs(citizenY - cityY);
+
+    // Formula provided by https://www.redblobgames.com/grids/hexagons/#distances
+    return distanceY + Math.max(0, (distanceX-distanceY)/2);
 }

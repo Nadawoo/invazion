@@ -289,6 +289,31 @@
     left:31%;
     height:2.6em;
 }
+/* Shows the distance to the city */
+#block_distance {
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    height:32px; /* Stabilize the block height when the city image is resized */
+    background:#d3d3d3;
+    text-align:center;
+    font-weight:normal;
+}
+#block_distance .city_image {
+    /* Keep the city image vertically centered when resized */
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    height:32px;
+    width:32px;
+}
+#block_distance .distance {
+    /* Stabilize the position of the number of kilometers when it is on 1 or 2 digits */
+    display:inline-block;
+    width:1em;
+    text-align:right;
+}
+
 /* Message under the movement paddle */
 #message_move {
     min-height:2rem;
