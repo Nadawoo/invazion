@@ -115,8 +115,8 @@ class HtmlPage
                     <script type="text/javascript" src="resources/js/cityEnclosure.func.js?v1.0"></script>
                     <script type="text/javascript" src="resources/js/discussions.func.js?v1.0"></script>
                     <script type="text/javascript" src="resources/js/events.func.js?v1.0"></script>
-                    <script type="text/javascript" src="resources/js/misc.func.js?v8.2"></script>
-                    <script type="text/javascript" src="resources/js/onPageLoad.js?v1.2"></script>
+                    <script type="text/javascript" src="resources/js/misc.func.js?v8.3"></script>
+                    <script type="text/javascript" src="resources/js/onPageLoad.js?v1.3"></script>
                     <script type="text/javascript" src="resources/js/events.js?v5.0"></script>
                 </body>
             </html>';

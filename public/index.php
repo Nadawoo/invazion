@@ -361,6 +361,7 @@ echo $popup->customised('popsuccess', '', $msg_popup, $is_custom_popup_visible);
                     .$paddle->paddle($citizen['coord_x'], $citizen['coord_y'])
                     .$layout->block_distance()
                     .$buttons->button('enter_city', 'no_icon').'
+                    <a href="#popsuccess" id="button_explore" class="redbutton center">Explorer : <br><span class="building_name"></span></a>
                 </div>';
                 
                 echo $layout->block_movement_AP($citizen['action_points'], $speciality_caracs['action_points'], $zone['zombies'], 

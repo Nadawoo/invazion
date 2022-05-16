@@ -459,15 +459,6 @@ class HtmlLayout extends HtmlPage
                     . '</td>'
                 . '</tr>';
         }
-        elseif ($building_id !== null) {
-            
-            $table .= '<tr>'
-                    . '<td class="center">'
-                    . '<span class="warning">Vous avez découvert un bâtiment !</span><br>'
-                    . $buttons->explore_building($building_name)
-                    . '</td>'
-                . '</tr>';
-        }
         // If there is a TENT in the zone, display the button to enter.
         elseif ($city_size === 1) {
             
