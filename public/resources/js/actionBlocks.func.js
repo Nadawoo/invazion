@@ -48,7 +48,7 @@ function updateBlockActionMove(newNbrZombies) {
     
     // Update the details about movement cost (action points)
     if(newNbrZombies <= 0) {
-        document.querySelector("#movement_cost").innerHTML = "Déplacement gratuit<br>(vous avez éliminé tous les zombies)";
+        document.querySelector("#movement_cost").innerHTML = '<span style="font-size:0.85em">Déplacement gratuit<br>(aucun zombie alentour)';
     }
 }
 
