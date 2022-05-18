@@ -528,8 +528,16 @@ function updateEnterBuildingButton(cityId, buildingId) {
     let buildingVisibility = (buildingId === '') ? "none" : "block";
     document.querySelector("#button_explore").style.display = buildingVisibility;
     if(buildingId !== "" && buildingId !== undefined) {
-        let buildingName = _configsBuildings[buildingId]["name"];
-        document.querySelector("#button_explore .building_name").innerHTML = buildingName;
+        let building = _configsBuildings[buildingId];
+        document.querySelector("#button_explore .building_name").innerHTML = building["name"];
+        
+        // Update the content of the pop-up
+        let tplPopupBuilding = document.querySelector('#tplPopupBuilding').content.cloneNode(true),
+            popup = document.querySelector("#popsuccess .content");
+        popup.innerHTML = "";
+        popup.appendChild(tplPopupBuilding);
+        popup.querySelector(".building_name").innerHTML = building["name"];
+        popup.querySelector(".descr_ambiance").innerHTML = building["descr_ambiance"];;
     }
 }
 

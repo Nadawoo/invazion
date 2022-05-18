@@ -113,11 +113,6 @@ if ($citizen['citizen_id'] !== NULL) {
     elseif($zone['building_id'] == 1) {
         $msg_popup = $popup->popcar($msg_popup);
     }
-    elseif($zone['building_id'] !== null) {
-        $msg_popup = $popup->popbuilding($configs['buildings'][$zone['building_id']]['name'], 
-                                         $configs['buildings'][$zone['building_id']]['descr_ambiance'], 
-                                         $msg_popup);
-    }
 }
 
 
@@ -172,7 +167,7 @@ echo $popup->predefined('popmove', 'Aide : les déplacements',
                          'moving_cost_zombies'    => $configs['map']['moving_cost_zombies']
                         ]);
 echo $popup->predefined('popattack', 'Aide : l\'attaque zombie quotidienne');
-
+echo $popup->template_popbuilding($msg_popup);
 // Generic pop-up describing the result of an action
 echo $popup->customised('popsuccess', '', $msg_popup, $is_custom_popup_visible);
 ?>

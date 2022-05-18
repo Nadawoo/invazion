@@ -139,31 +139,28 @@ class HtmlPopup
     
     
     /**
-     * Generic pop-up to explore the buildings in the desert
+     * Template for a pop-up when exploring the buildings in the desert
      * 
-     * @param string $building_name
-     * @param string $descr_ambiance
      * @param string $api_message The message returned by the API after the action
      */
-    public function popbuilding($building_name, $descr_ambiance, $api_message)
+    public function template_popbuilding($api_message)
     {
         
         $buttons = new HtmlButtons();
         
-        $msg_popup = '<h2>Bâtiment du désert</h2>
-            <img src="resources/img/copyrighted/tiles/desert/10.png" alt="image bâtiment" height="128px">';
-        
-        $msg_popup .= 
-            '<p>Vous avez découvert un bâtiment isolé : <strong>'.$building_name.'</strong></p>
-            <p class="descr_ambiance">'.$descr_ambiance.'</p>
+        return '
+        <template id="tplPopupBuilding">
+            <h2>Bâtiment du désert</h2>
+            <img src="resources/img/copyrighted/tiles/desert/10.png" alt="image bâtiment" height="128px">
+    <p>Vous avez découvert un bâtiment isolé : <strong class="building_name">{building_name}</strong></p>
+            <p class="descr_ambiance">{descr_ambiance}</p>
             <p>Vous devriez le fouiller. Avec une peu de chance, vous y découvrirez 
             un objet rare...</p>
             <br>
-            <div style="background:green;color:white">'. $api_message .'</div>
+            <div style="background:green;color:white">'.$api_message.'</div>
             <br>
-            '.$buttons->button('explore_building', true, 'center').'<br>';
-        
-        return $msg_popup;
+            '.$buttons->button('explore_building', true, 'center').'<br>
+        </template>';
     }
     
     
