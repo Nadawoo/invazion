@@ -355,14 +355,16 @@ echo $popup->customised('popsuccess', '', $msg_popup, $is_custom_popup_visible);
                 <div id="column_move">'
                     .$paddle->paddle($citizen['coord_x'], $citizen['coord_y'])
                     .$layout->block_distance()
-                    .$buttons->button('enter_city', 'no_icon').'
+                    .$buttons->button('enter_city', 'no_icon')
+                    .$buttons->button('enter_tent', 'no_icon')
+                    .$buttons->button('attack_tent', 'no_icon').'
                     <a href="#popsuccess" id="button_explore" class="redbutton center">Explorer : <br><span class="building_name"></span></a>
                 </div>';
                 
                 echo $layout->block_movement_AP($citizen['action_points'], $speciality_caracs['action_points'], $zone['zombies'], 
                                                 $configs['map']['moving_cost_no_zombies'], $configs['map']['moving_cost_zombies']);
                 
-                echo '<br><br><br><br>
+                echo '<br><br><br><br><br>
                     <strong>Mes caractéristiques</strong><br>
                     Spécialité : '.$speciality_caracs['name'].'<br>
                     Vision niv. '.$citizen['vision'].'<br>

@@ -459,27 +459,7 @@ class HtmlLayout extends HtmlPage
                     . '</td>'
                 . '</tr>';
         }
-        // If there is a TENT in the zone, display the button to enter.
-        elseif ($city_size === 1) {
-            
-            $table .= '<tr>
-                <td>'.$buttons->icon('enter_tent').'</td>
-                <td>'.$buttons->button('enter_tent', 'no_icon').'</td>
-            </tr>
-            <tr>
-                <td>'.$buttons->icon('attack_tent').'</td>
-                <td>'.$buttons->button('attack_tent', 'no_icon').'</td>
-            </tr>';
-        }
-        // If there is a CITY in the zone, display the button to enter.
-        elseif ($city_size > 0) {
-            
-            $table .= '<tr>
-                <td>'.$buttons->icon('enter_city').'</td>
-                <td>'.$buttons->button('enter_city', 'no_icon').'</td>
-            </tr>';
-        }
-                
+              
         return '<table style="margin:1.5rem auto 0 auto">'.$table.'</table>';
     }
     

@@ -261,6 +261,7 @@ class HtmlMap
                         data-controlPointsZombies="'.$cell['controlpoints_zombies'].'"
                         data-controlPointsCitizens="'.$cell['controlpoints_citizens'].'"
                         data-cityid="'.$cell['city_id'].'"
+                        data-citysize="'.$cell['city_size'].'"
                         data-buildingid="'.$cell['building_id'].'"
                         >'
                         . $cell_zombies . $cell_content . '
