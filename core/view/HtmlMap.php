@@ -112,11 +112,8 @@ class HtmlMap
     private function html_icon_building($building_id)
     {
         
-        // TODO: make a generic class to get the config of the buildings
-        // e.g.: Config()->building(5)->icon_html;
-        $icon = $this->building($building_id, 'icon_html');
-        
-        return '<div class="icon_html">'.$icon.'</div>';
+        // Placeholder. The real icon will be placed by javascript.
+        return '<div class="icon_placeholder"><div class="buildingId">'.$building_id.'</div></div>';
     }
     
     

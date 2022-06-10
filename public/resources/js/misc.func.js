@@ -1006,8 +1006,20 @@ function replaceBuildingsPlaceholders() {
         // to get configs["buildings"][17]["name"]
         let field = building.parentNode.className;        
         let buildingId = building.innerHTML;
-        // Replaces the building ID placeholder by the data of the field
-        building.outerHTML = _configsBuildings[buildingId][field];
+        
+        // Special treatment to display the icon of the building
+        if(field === "icon_placeholder") {
+            let icon_html = _configsBuildings[buildingId]["icon_html"];
+            let icon_path = _configsBuildings[buildingId]["icon_path"];
+            // If the building has an image, display it. If not, display an emoji.
+            building.outerHTML = (_configsBuildings[buildingId]["icon_path"] === null)
+                ? `<div class="icon_html">${icon_html}</div>`
+                : `<img src="resources/img/${icon_path}" alt="${icon_html}" width="24" height="24">`;
+        } 
+        else {
+            // Replaces the building ID placeholder by the data of the field
+            building.outerHTML = _configsBuildings[buildingId][field];
+        } 
     }
 }
 

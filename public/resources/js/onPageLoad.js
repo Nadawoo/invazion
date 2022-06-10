@@ -58,6 +58,8 @@ if (document.getElementById('map') !== null) {
     // Place the citizens on the appropriate zones of the map
     addCitizensOnMap(mapId);  
     
+    replaceBuildingsPlaceholders();
+    
     // Restore the display of the action button before the page was refreshed
 //    toggleActionBlock(getCookieConfig("round_button"));
     
