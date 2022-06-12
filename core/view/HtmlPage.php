@@ -44,7 +44,7 @@ class HtmlPage
                     Travaillez en équipe avec d\'autres joueurs ou tentez votre chance en solo...">
                 <link rel="stylesheet" type="text/css" href="resources/css/sitelayout.css?v4.3">
                 <link rel="stylesheet" type="text/css" href="resources/css/gamelayout.css?v8.0">
-                <link rel="stylesheet" type="text/css" href="resources/css/map.css?v3.7">
+                <link rel="stylesheet" type="text/css" href="resources/css/map.css?v3.8">
                 <link rel="stylesheet" type="text/css" href="resources/css/smartphone.css?v1.6">
                 <link rel="stylesheet" type="text/css" href="resources/css/myzone.css?v1.4">
                 <link rel="stylesheet" type="text/css" href="resources/css/city.css?v3.3">
@@ -115,7 +115,7 @@ class HtmlPage
                     <script type="text/javascript" src="resources/js/cityEnclosure.func.js?v1.0"></script>
                     <script type="text/javascript" src="resources/js/discussions.func.js?v1.0"></script>
                     <script type="text/javascript" src="resources/js/events.func.js?v1.0"></script>
-                    <script type="text/javascript" src="resources/js/misc.func.js?v8.3"></script>
+                    <script type="text/javascript" src="resources/js/misc.func.js?v8.4"></script>
                     <script type="text/javascript" src="resources/js/onPageLoad.js?v1.3"></script>
                     <script type="text/javascript" src="resources/js/events.js?v5.0"></script>
                 </body>

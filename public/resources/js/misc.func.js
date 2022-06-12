@@ -1010,12 +1010,24 @@ function replaceBuildingsPlaceholders() {
         // Special treatment to display the icon of the building
         if(field === "icon_placeholder") {
             let icon_html = _configsBuildings[buildingId]["icon_html"];
-            let icon_path = _configsBuildings[buildingId]["icon_path"];
-            // If the building has an image, display it. If not, display an emoji.
-            building.outerHTML = (_configsBuildings[buildingId]["icon_path"] === null)
-                ? `<div class="icon_html">${icon_html}</div>`
-                : `<img src="resources/img/${icon_path}" alt="${icon_html}" width="24" height="24">`;
-        } 
+            let icon_path = "resources/img/"+_configsBuildings[buildingId]["icon_path"];
+            
+            if(_configsBuildings[buildingId]["icon_path"] !== null) {
+                if(_configsBuildings[buildingId]["is_icon_tiled"] === 1) {
+                    // Displays the building with the tile included in the image
+                    building.closest(".hexagon").style.backgroundImage = `url(${icon_path})`;
+                    // Erases the placeholder (ID) of the building
+                    building.outerHTML = "";
+                } else {
+                    // Displays the image (PNG) of the building (without tile)
+                    building.outerHTML = `<img src="${icon_path}" alt="${icon_html}" width="24" height="24">`;
+                }
+            }
+            else {
+                // If no image file for this building, displays an emoji for the building
+                building.outerHTML = `<div class="icon_html">${icon_html}</div>`;
+            }
+        }
         else {
             // Replaces the building ID placeholder by the data of the field
             building.outerHTML = _configsBuildings[buildingId][field];

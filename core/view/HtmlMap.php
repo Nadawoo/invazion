@@ -280,8 +280,6 @@ class HtmlMap
      */
     function ground_css_class($cell) {
         
-        // TODO: separate the "land" type (grass, sand...) from the building
-        // placed on it
         if ($cell['zombies'] > 0) {
             // If there are 1 zombies or more, the ground is always the same for map clarity
             $ground = 'ground_zombies';
@@ -289,10 +287,6 @@ class HtmlMap
         elseif ($cell['city_type'] === 'city' or $cell['parent_city_id'] !== null) {
             // City build by the players
             $ground = 'ground_city';
-        }
-        elseif($cell['building_id'] > 0) {
-            // Explorable building in the zone (circus...)
-            $ground = 'ground_'.$cell['building_id'];
         }
         else {
             // Simple visual tiles (grass, sand...)

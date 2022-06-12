@@ -129,14 +129,8 @@
     background-image:url("../img/copyrighted/tiles/greenjungle/6.png");
     background-position-y: 0.25em;
 }
-.ground_6 { /* ID for the pond - TODO:don't harcode the ID */
-    background-image:url("../img/copyrighted/tiles/desert/4.png");
-}
 .ground_drywoods {
     background-image:url("../img/copyrighted/tiles/desert/5.png");
-}
-.ground_5 { /* ID for the hut - TODO:don't harcode the ID */
-    background-image:url("../img/copyrighted/tiles/desert/10.png");
 }
 
 .ground_zombies {
