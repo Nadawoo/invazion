@@ -218,7 +218,7 @@ echo $popup->customised('popsuccess', '', $msg_popup, $is_custom_popup_visible);
             <div id="city_container">
                 <nav id="city_menu">
                     '.$enclosure->city_menu($citizen['map_id'], $city_data['parent_city_id'], $citizen['city_id']).'
-                    '.$enclosure->city_submenu($city_data['city_type'], $city_data['parent_city_id'], $is_citizen_home_connected).'
+                    '.$enclosure->city_submenu($city_data['city_type_id'], $city_data['parent_city_id'], $is_citizen_home_connected).'
                 </nav>
                 <div id="city_contents">
                     <div id="home_house" class="city_row">
@@ -365,6 +365,14 @@ echo $popup->customised('popsuccess', '', $msg_popup, $is_custom_popup_visible);
                                                 $configs['map']['moving_cost_no_zombies'], $configs['map']['moving_cost_zombies']);
                 
                 echo '<br><br><br><br><br>
+                    <strong>Objectifs</strong><br>
+                    Construire un abri avant minuit<br>
+                    Chercher des ressources<br>
+                    Rejoindre l\'abri avant minuit<br>
+                    Améliorer les défenses<br>
+                    Fermer les portes de l\'abri avant l\'attaque<br>
+                    <br>
+                    <br>
                     <strong>Mes caractéristiques</strong><br>
                     Spécialité : '.$speciality_caracs['name'].'<br>
                     Vision niv. '.$citizen['vision'].'<br>

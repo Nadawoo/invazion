@@ -40,8 +40,8 @@ class HtmlCityEnclosure
         
         $buttons = new HtmlButtons();
         
-        // Content of the "Home" menu
-        if($city_type === 'city' and $is_citizen_home_connected === false) {
+        // Content of the "Home" menu (ID #13 in the DB)
+        if($city_type === 13 and $is_citizen_home_connected === false) {
             $home_menu = '<p style="max-width:25em;color:white">'
                        . 'Votre habitation n\'est pas reliée à cette ville.</p>';
         }
@@ -51,8 +51,8 @@ class HtmlCityEnclosure
                        '.$this->city_submenu_item('home_build', 'Améliorer');
         }
         
-        // Content of the "City" menu
-        if($city_type === 'home' and $parent_city_id === null) {
+        // Content of the "City" menu (ID #12 in the DB)
+        if($city_type === 12 and $parent_city_id === null) {
             $city_menu = '<p style="max-width:25em;color:white">Une ville construite '
                 . 'avec les autres joueurs offre des infrastructures précieuses '
                 . 'pour la survie : défenses puissantes, réserves d\'eau...</p>'

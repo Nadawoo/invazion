@@ -272,7 +272,8 @@ class HtmlMap
             // If there are 1 zombies or more, the ground is always the same for map clarity
             $ground = 'ground_zombies';
         }
-        elseif ($cell['city_type'] === 'city' or $cell['parent_city_id'] !== null) {
+        // City = ID #12 in the DB
+        elseif ($cell['city_type_id'] === 12 or $cell['parent_city_id'] !== null) {
             // City build by the players
             $ground = 'ground_city';
         }
