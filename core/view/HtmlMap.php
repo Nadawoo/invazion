@@ -47,11 +47,6 @@ class HtmlMap
         
         $templates = [
             'citizen_alone' => '<div class="map_citizen">'.substr($string1, 0, 2).'</div>',
-            'city'          => '<div class="city" data-cityid="'.$string1.'">
-                                    <img src="resources/img/free/city.png" alt="&#10224;">
-                                </div>
-                                <div class="city_nbr_def">'.$string2.'</div>',
-            'tent'          => '<div class="icon_html">&#9978;</div>',
             'items'         => '&nbsp;',
             'zombies'       => '<div class="zombies"><img src="resources/img/motiontwin/zombie'.$string2.'.gif" alt="Zx'.$string1.'"></div>',
         ];
@@ -72,9 +67,6 @@ class HtmlMap
         
         $templates = [
             'citizen_alone' => 'Le citoyen '.$string1.' est ici.',
-            'city'          => 'Cette ville offre '.$string1.' points de défense... '
-                               . 'Peut-être pourrez-vous vous y réfugier&nbsp;?',
-            'tent'          => 'Un citoyen a planté sa tente ici.',
             'items'         => '<br>Il y a des objets dans cette zone... Mais lesquels&nbsp;?',
             'zombies'       => '<br>Il y a '.plural($string1, 'zombie').' dans cette zone&nbsp;!',
         ];
@@ -199,16 +191,11 @@ class HtmlMap
             $bubble_roleplay = $this->html_bubble_building($cell['building_id']);
             $elevate      = 'elevate';
         }
-        elseif ($cell['city_type'] === 'home') {
-            
-            $cell_content = $this->html_cell_content('tent');
-            $bubble_roleplay = $this->html_bubble('tent');
-            $elevate      = 'elevate';
-        }
-        elseif ($cell['city_size'] > 0) {
-            
-            $cell_content = $this->html_cell_content('city', $cell['city_id'], $cell['city_defenses']);
-            $bubble_roleplay = $this->html_bubble('city', $cell['city_defenses']);
+        elseif ($cell['city_type_id'] !== null) {
+            // The appropriate icon will be added by javascript
+            $cell_content = '<div class="icon_placeholder">
+                                <div class="buildingId">'.$cell['city_type_id'].'</div>
+                            </div>';
             $elevate      = 'elevate';
         }
         
@@ -258,6 +245,7 @@ class HtmlMap
                         data-controlPointsZombies="'.$cell['controlpoints_zombies'].'"
                         data-controlPointsCitizens="'.$cell['controlpoints_citizens'].'"
                         data-cityid="'.$cell['city_id'].'"
+                        data-citytypeid="'.$cell['city_type_id'].'"
                         data-citysize="'.$cell['city_size'].'"
                         data-buildingid="'.$cell['building_id'].'"
                         >'

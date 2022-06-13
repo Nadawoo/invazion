@@ -1037,6 +1037,26 @@ function replaceBuildingsPlaceholders() {
 
 
 /**
+ * Place the cities on the map
+ * TODO: merge this function with replaceBuildingsPlaceholders(). Requires that
+ * the desert buildings are treated as cities in the API and the database.
+ * 
+ */
+function replaceCitiesPlaceholders() {
+    
+    let zonesWithCity = document.querySelectorAll('#map [data-citytypeid]:not([data-citytypeid=""])');
+    
+    for(let zone of zonesWithCity) {
+        let buildingTypeId = zone.dataset.citytypeid;
+        let config = _configsBuildings[buildingTypeId];
+        // Adds the text in the bubble of the zone
+        zone.querySelector(".bubble .roleplay").innerHTML = '<h5 class="name">'+config.name+'</h5><hr>'
+                                                            +config.descr_ambiance;
+    }
+}
+
+
+/**
  * Countdown to escape once the humans have lost the control of the zone
  */
 function controlCountdown() {
