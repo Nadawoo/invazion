@@ -1017,7 +1017,7 @@ function replaceBuildingsPlaceholders() {
                     // Displays the building with the tile included in the image
                     building.closest(".hexagon").style.backgroundImage = `url(${icon_path})`;
                     // Erases the placeholder (ID) of the building
-                    building.outerHTML = "";
+                    building.outerHTML = "&nbsp;";
                 } else {
                     // Displays the image (PNG) of the building (without tile)
                     building.outerHTML = `<img src="${icon_path}" alt="${icon_html}" width="24" height="24">`;
