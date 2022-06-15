@@ -509,22 +509,22 @@ async function moveCitizen(direction) {
     updateRoundActionButtons(json.datas.new_coord_x, json.datas.new_coord_y);
     updateActionPointsBar(json.datas.action_points_lost);
     updateCityDistance(json.datas.new_coord_x, json.datas.new_coord_y);
-    updateEnterBuildingButton(myZone.dataset.citysize, myZone.dataset.buildingid);
+    updateEnterBuildingButton(myZone.dataset.citytypeid, myZone.dataset.buildingid);
 }
 
 
 /**
  * Displays/hides the button to enter the bulding or city in the player's zone. 
  * 
- * @param {int} citySize The capacity of citizens of the city in the zone
+ * @param {int} cityTypeId The ID of the city type in the zone (not the ID of the city)
  * @param {int} buildingId
  */
-function updateEnterBuildingButton(citySize, buildingId) {
-    // Button to enter in the city
-    let cityDisplay = (citySize > 1) ? "block" : "none";
+function updateEnterBuildingButton(cityTypeId, buildingId) {
+    // Button to enter in the city (building #12 in the database)
+    let cityDisplay = (cityTypeId === "12") ? "block" : "none";
     document.querySelector('#column_move form[name="enter_city"]').style.display = cityDisplay;
-    // Button to enter in the tent
-    let tentDisplay = (citySize == 1) ? "block" : "none";
+    // Button to enter in the tent (building #13 in the database)
+    let tentDisplay = (cityTypeId === "13") ? "block" : "none";
     document.querySelector('#column_move form[name="enter_tent"]').style.display = tentDisplay;
     document.querySelector('#column_move form[name="attack_tent"]').style.display = tentDisplay;
     
