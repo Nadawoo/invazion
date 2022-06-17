@@ -282,7 +282,7 @@ echo $popup->customised('popsuccess', '', $msg_popup, $is_custom_popup_visible);
             . $buttons->button_round('dig', array_sum((array)$zone['items']), (bool)$citizen['can_dig'])
             . $buttons->button_round('zombies', $zone['zombies'], (bool)$zone['zombies'])
             . $buttons->button_round('citizens', null, null)
-            . $buttons->button_round('build', min($zone['city_size'], 1), (bool)$zone['city_size']);
+            . $buttons->button_round('build');
         // Warn if wounded
         echo $layout->block_alert_wounded((bool)$citizen['is_wounded']);
         ?>

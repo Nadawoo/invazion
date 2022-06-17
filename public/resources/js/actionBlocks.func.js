@@ -293,7 +293,7 @@ function updateRoundActionButtons(coordX=null, coordY=null) {
     // Displays the number of zombies in the round button
     updateRoundButtonDotNumber("round_zombies", myZone.zombies);    
     // Displays "1" if there is a building or a city in the zone
-    updateRoundButtonDotNumber("round_build", Math.min(1, myZone.buildingid + myZone.cityid));
+    updateRoundButtonDotNumber("round_build", 0, true);
 }
 
 
@@ -304,8 +304,10 @@ function updateRoundActionButtons(coordX=null, coordY=null) {
  * @param {string} roundButtonId The HTML ID of the round button to update
  * @param {int} amount The amount of stuff (zombies, citizens... depends on 
  *                     the function of the button)
+ * @param {bool} forceHighlight Set to TRUE to make the button always active,
+ *                              no matter the "amount" paramter
  */
-function updateRoundButtonDotNumber(roundButtonId, amount) {
+function updateRoundButtonDotNumber(roundButtonId, amount, forceHighlight=false) {
     
     if(amount == 0) {
         // Don't show the dot number if 0 stuff in the zone
@@ -316,7 +318,7 @@ function updateRoundButtonDotNumber(roundButtonId, amount) {
     }
     
     // Highlights the big round button if there is stuff in the zone
-    if(amount >= 1) {
+    if(amount >= 1 || forceHighlight === true) {
         document.querySelector(`#${roundButtonId} input`).classList.remove("inactive");
     } else {
         document.querySelector(`#${roundButtonId} input`).classList.add("inactive");

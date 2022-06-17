@@ -408,7 +408,7 @@ class HtmlButtons
                 ],
             'build' => [
                 'icon'  => '&#x1F3DA;&#xFE0F;',
-                'label' => 'bâtiments',
+                'label' => 'construire',
                 ],
         ];
                 
