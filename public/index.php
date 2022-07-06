@@ -310,10 +310,9 @@ echo $popup->customised('popsuccess', '', $msg_popup, $is_custom_popup_visible);
         $my_zone->set_city_size($zone['city_size']);
         $my_zone->set_citizen_pseudo($citizen['citizen_pseudo']);
         echo $my_zone->main();
-        
-        // The map
-        echo $html['map'];
         ?>
+        
+        <?php echo $html['map']; ?>
         
     </div>
     
@@ -333,11 +332,8 @@ echo $popup->customised('popsuccess', '', $msg_popup, $is_custom_popup_visible);
     
     <div id="column_right">
         
-        <div id="message_move"><?php echo $msg_move ?></div>
-        
         <div id="actions">
             <fieldset id="block_move">
-                <legend>Me déplacer</legend>
                 <?php
                 if ($zone['controlpoints_citizens'] < $zone['controlpoints_zombies'] and time() < strtotime($zone['date_control_end'])) {
                     echo $layout->block_alert_escape(strtotime($zone['date_control_end']));
@@ -385,7 +381,6 @@ echo $popup->customised('popsuccess', '', $msg_popup, $is_custom_popup_visible);
             </fieldset>
             
             <fieldset id="block_dig">
-                <legend>Fouiller</legend>
                 <?php 
                 echo $buttons->button('dig', false, '', (bool)$citizen['can_dig']).'<br>';
                 ?>
@@ -407,7 +402,6 @@ echo $popup->customised('popsuccess', '', $msg_popup, $is_custom_popup_visible);
             </fieldset>
 
             <fieldset id="block_zombies">
-                <legend>Actions de zone</legend>
                 <?php
                 echo $html['actions_zombies'];
                 echo '<br>'.$html['actions_bag'];
@@ -415,7 +409,6 @@ echo $popup->customised('popsuccess', '', $msg_popup, $is_custom_popup_visible);
             </fieldset>
 
             <fieldset id="block_build">
-                <legend>Bâtiments</legend>
                 <?php 
                 echo $html['actions_build']
                      .'<br>'
@@ -423,9 +416,7 @@ echo $popup->customised('popsuccess', '', $msg_popup, $is_custom_popup_visible);
                 ?>
             </fieldset>
 
-            <fieldset id="block_citizens">
-                <legend>Humains dans ma zone</legend>
-                
+            <fieldset id="block_citizens">                
                 <p class="greytext">Personne à proximité. Vous êtes seul au milieu 
                     de cette zone désertique...</p>
                 
@@ -433,6 +424,8 @@ echo $popup->customised('popsuccess', '', $msg_popup, $is_custom_popup_visible);
                 <ol class="citizens" data-coordx="" data-coordy=""></ol>
             </fieldset>
         </div>
+        
+        <div id="message_move"><?php echo $msg_move ?></div>
         
     </div>
  

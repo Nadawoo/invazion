@@ -365,7 +365,7 @@
 #round_actions {
     float:right;
     width:24.5rem;
-    margin:0.1rem 0 1rem 0;
+    margin:0.1rem 0 0 0;
     text-align:center;
     white-space:nowrap;
 }
@@ -377,8 +377,8 @@
     border-radius:0.2rem;
 }
 .round_action {
-    height:3.5rem;
-    width: 3.5rem;
+    height:3.8rem;
+    width: 3.8rem;
      /* Bigger margin at the right and bottom to compensate for the feeling 
         of asymetry caused by the shadow */
     margin:0.4rem 0.5rem 0.7rem 0.4rem;
@@ -447,15 +447,20 @@
 #actions fieldset {
     display:none;
     position:relative;
-    width:90%;
+    width:90.5%;
     margin:0 auto 3rem auto;
     padding-top:1rem;
     padding-bottom:2rem;
     border:1px solid #34495e;
-    border-radius:0.3rem;
+    border-radius: 0 0 0.3rem 0.3rem;
     box-shadow:5px 5px 8px black;
     background:#fbeee6;
     z-index:20;
+    animation: switchAction 0.3s;
+}
+@keyframes switchAction {
+    from { opacity: 0; }
+    to   { opacity: 1; }
 }
 legend {
     margin:auto;
