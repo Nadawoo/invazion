@@ -98,13 +98,13 @@ class HtmlLayout extends HtmlPage
         
         return '
             <div id="identification_near_map">
-                <h3>Créer mon premier citoyen</h3>
                 <form method="post" action="#popsuccess">
-                    Nom de mon citoyen&nbsp;:
+                    Donnez un nom à votre citoyen&nbsp;:
                     <input type="hidden" name="method" value="POST">
                     <input type="hidden" name="api_name" value="user">
                     <input type="hidden" name="action" value="create_citizen"><br>
-                    <input type="text" name="params[pseudo]"><br>
+                    <input type="text" name="params[pseudo]" placeholder="Votre pseudo"><br>
+                    <br>
                     <input type="submit" value="Valider">
                 </form>
             </div>';

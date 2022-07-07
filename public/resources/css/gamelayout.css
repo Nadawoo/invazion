@@ -188,7 +188,6 @@
 
 /* Bloc invitant à se connecter ou à créer son 1er citoyen à droite de la carte */
 #identification_near_map {
-    max-width:22.5em;
     margin:auto;
     padding:2.5em 0;
     box-shadow: 0px 15px 20px black;
@@ -199,7 +198,7 @@
     border-radius:0.5rem;
     background: linear-gradient(to bottom right, #3f51b5 30%, #17202a );
     position:relative;
-    z-index:4;
+    z-index:20;
     box-sizing:border-box;
 }
 #identification_near_map #register {

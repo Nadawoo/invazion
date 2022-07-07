@@ -303,21 +303,22 @@ echo $popup->customised('popsuccess', '', $msg_popup, $is_custom_popup_visible);
         
     </div>
     
-    <div>
-        <?php
-        if ($citizen['user_id'] === NULL) {        
-            // If the player is not connected, display the connection panel
-            echo $layout->block_connect();
-        }
-        elseif ($citizen['citizen_id'] === NULL) {         
-            // If the player is connected but has not created his citizen yet,
-            // display the panel for creating a citizen
-            echo $layout->block_create_citizen();
-        }
-        ?>
-    </div>
-    
     <div id="column_right">
+        
+        <div>
+            <?php
+            if ($citizen['user_id'] === NULL) {        
+                // If the player is not connected, display the connection panel
+                echo $layout->block_connect();
+            }
+            elseif ($citizen['citizen_id'] === NULL) {         
+                // If the player is connected but has not created his citizen yet,
+                // display the panel for creating a citizen
+                echo $layout->block_create_citizen();
+            }
+            ?>
+        </div>
+        
         <div id="round_actions">
             <?php
             echo  $buttons->button_round('move', ($zone['controlpoints_zombies']-$zone['controlpoints_citizens']))
