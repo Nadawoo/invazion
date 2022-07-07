@@ -363,11 +363,16 @@
  */
 /* The big round action buttons with icon */
 #round_actions {
+    display:flex;
+    align-items:flex-start;
+    justify-content:space-between;
+    position:relative;
     float:right;
     width:24.5rem;
     margin:0.1rem 0 0 0;
     text-align:center;
     white-space:nowrap;
+    z-index:21;
 }
 .round_action_block {
     position:relative;
@@ -377,17 +382,19 @@
     border-radius:0.2rem;
 }
 .round_action {
-    height:3.8rem;
-    width: 3.8rem;
+    position:relative;
+    height:3.9rem;
+    width: 3.9rem;
      /* Bigger margin at the right and bottom to compensate for the feeling 
         of asymetry caused by the shadow */
-    margin:0.4rem 0.5rem 0.7rem 0.4rem;
+    margin:0.5rem 0.5rem 0.8rem 0.4rem;
     padding:0;
     font-size:1.7em;
     background:#c0392b;
     border:3px outset #f5b7b1;    
     border-radius:3em;
     box-shadow:5px 5px 5px black;
+    z-index:1;
 }
 .round_action:focus {
     outline:none; /* Chrome adds an ugly outline when button is clicked */
@@ -404,6 +411,7 @@
     opacity:0.7;
 }
 .active .round_action, .active .round_action:hover {
+    margin-bottom:2rem;
     background:#d6eaf8;
     border:3px inset white; /*#808b96*/
     box-shadow:1px 1px 2px white;
@@ -422,19 +430,17 @@
 #round_actions .dot_number {
     position:absolute;
     right:0;
-    bottom:1rem;
-    min-width:1rem; /* Not simply "width" to avoid overflow with 3-digits numbers */
-    height:   1rem;
+    min-width:1.2rem; /* Not simply "width" to avoid overflow with 3-digits numbers */
+    height:   1.2rem;
     padding:0.1em;
     font-size:0.9em;
     border-radius:1rem;
     background:#fae5d3;
     color:black;
-    z-index:0;
 }
 #round_actions .alert_icon {
     position:absolute;
-    bottom:1rem;
+    top:-0.2rem;
     right:-0.15rem;
     background:none;
     font-size:1.3em;
@@ -442,14 +448,15 @@
     opacity:0.1; /* To play the animation in the right way */
     animation: alert_blinker 1.5s linear infinite;
     animation-direction: alternate;
+    z-index:10;
 }
 /* The maskable frames which contain the actions buttons */
 #actions fieldset {
     display:none;
     position:relative;
-    width:90.5%;
-    margin:0 auto 3rem auto;
-    padding-top:1rem;
+    top:-1.2rem;
+    margin:0 0.1rem 3rem 0.1rem;
+    padding-top:3rem;
     padding-bottom:2rem;
     border:1px solid #34495e;
     border-radius: 0 0 0.3rem 0.3rem;
@@ -681,8 +688,8 @@ a.redbutton {
 }
 .cover_paddle { /* Covers the movement paddle */
     position:absolute;
-    top:-2rem;
-    width:93%;
+    top:2.4rem;
+    width:94%;
     z-index:1;
 }
 #alert_control .title {
