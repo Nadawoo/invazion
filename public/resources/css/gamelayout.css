@@ -367,8 +367,7 @@
     align-items:flex-start;
     justify-content:space-between;
     position:relative;
-    float:right;
-    width:24.5rem;
+    width:100%;
     margin:0.1rem 0 0 0;
     text-align:center;
     white-space:nowrap;
@@ -454,8 +453,8 @@
 #actions fieldset {
     display:none;
     position:relative;
-    top:-1.2rem;
-    margin:0 0.1rem 3rem 0.1rem;
+    top:-1.25rem;
+    margin-left:0;
     padding-top:3rem;
     padding-bottom:2rem;
     border:1px solid #34495e;
@@ -689,7 +688,7 @@ a.redbutton {
 .cover_paddle { /* Covers the movement paddle */
     position:absolute;
     top:2.4rem;
-    width:94%;
+    margin-right:0.5rem;
     z-index:1;
 }
 #alert_control .title {

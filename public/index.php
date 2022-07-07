@@ -275,19 +275,6 @@ echo $popup->customised('popsuccess', '', $msg_popup, $is_custom_popup_visible);
         <?php echo $html['attack_bar'] ?>
     </a>    
     
-    
-    <div id="round_actions">
-        <?php
-        echo  $buttons->button_round('move', ($zone['controlpoints_zombies']-$zone['controlpoints_citizens']))
-            . $buttons->button_round('dig', array_sum((array)$zone['items']), (bool)$citizen['can_dig'])
-            . $buttons->button_round('zombies', $zone['zombies'], (bool)$zone['zombies'])
-            . $buttons->button_round('citizens', null, null)
-            . $buttons->button_round('build');
-        // Warn if wounded
-        echo $layout->block_alert_wounded((bool)$citizen['is_wounded']);
-        ?>
-    </div>
-    
     <!-- The map -->
     
     <div id="map">
@@ -316,7 +303,7 @@ echo $popup->customised('popsuccess', '', $msg_popup, $is_custom_popup_visible);
         
     </div>
     
-    <div style="margin-top:8rem">
+    <div>
         <?php
         if ($citizen['user_id'] === NULL) {        
             // If the player is not connected, display the connection panel
@@ -331,6 +318,17 @@ echo $popup->customised('popsuccess', '', $msg_popup, $is_custom_popup_visible);
     </div>
     
     <div id="column_right">
+        <div id="round_actions">
+            <?php
+            echo  $buttons->button_round('move', ($zone['controlpoints_zombies']-$zone['controlpoints_citizens']))
+                . $buttons->button_round('dig', array_sum((array)$zone['items']), (bool)$citizen['can_dig'])
+                . $buttons->button_round('zombies', $zone['zombies'], (bool)$zone['zombies'])
+                . $buttons->button_round('citizens', null, null)
+                . $buttons->button_round('build');
+            // Warn if wounded
+            echo $layout->block_alert_wounded((bool)$citizen['is_wounded']);
+            ?>
+        </div>
         
         <div id="actions">
             <fieldset id="block_move">

@@ -1,20 +1,11 @@
 /*
  * Responsive design for all CSS
  */
-@media (max-width:835px) {
-    #round_actions {
-        float:left;
-        width:100%;
-        max-width:26rem;
-        margin-bottom:0.1rem;
-    }
+@media (max-width:850px) {
     /* Panneau de discussions */
     #floating_wall {
         margin-left:1rem;
     }
-}
-
-@media (max-width:600px) {
     #game_container {
         padding:0;
     }
@@ -24,6 +15,7 @@
        width:100%;
        max-width:26rem;
        margin:0;
+       margin-top:3.4rem;
     }
     .box{
         width: 80%;
