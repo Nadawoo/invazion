@@ -50,6 +50,15 @@ class HtmlButtons
                     'action'        => 'heal'
                     ],
                 ],
+            'open' => [
+                'icon'  => '',
+                'name'  => 'Ouvrir',
+                'title' => "",
+                'fields' => [
+                    'api_name'      => 'items',
+                    'action'        => 'open'
+                    ],
+                ],
             'add_vault' => [
                 'icon'  => '&#9961;&#65039;',
                 'name'  => 'Chercher une crypte',

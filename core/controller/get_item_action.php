@@ -21,6 +21,9 @@ function get_item_action($item_caracs)
     elseif ($item_caracs['healing_wound'] > 0) {
         $button_alias = 'heal';
     }
+    elseif ($item_caracs['items_inside_min'] > 0) {
+        $button_alias = 'open';
+    }
     
     return $button_alias;
 }
