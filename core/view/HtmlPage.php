@@ -35,13 +35,46 @@ class HtmlPage
                     ? '<link rel="stylesheet" type="text/css" href="'.$css_path.'?v1.6">'
                     : '';
         
+        $metas = [
+            'canonical'     => "https://invaziongame.nadazone.fr",
+            'page_title'    => "InvaZion, le jeu de zombies",
+            'meta_title'    => "Jeu de survie collaboratif. Explorer, construire, résister",
+            'description'   => "Jeu de survie collaboratif inspiré de Hordes.fr. "
+                             . "Explorez le désert en équipe ou en solo, dénichez les précieuses ressources, "
+                             . "construisez des défenses et survivez à l'attaque quotidienne !",
+            'image'         => "https://invaziongame.nadazone.fr/resources/img/free/screenshots/map.png",
+            'image_alt'     => "Preview of the game's map. A player has revealed some zones "
+                             . "with different grounds (sand, woods, water...), the others are "
+                             . "still in the obscurity.",
+            'image_width'   => "426",
+            'image_height'  => "345",
+            ];
+        
         return '<!doctype html>
             <html lang="fr">
             <head>
                 <meta charset="utf-8">
                 <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-                <meta name="description" content="Jeu de survie collaboratif inspiré de Hordes.fr.
-                    Travaillez en équipe avec d\'autres joueurs ou tentez votre chance en solo...">
+                <meta name="title" content="'.$metas['meta_title'].'">
+                <meta name="description" content="'.$metas['description'].'">
+                <meta name="keywords" content="Jeu, Hordes, collaboration, équipe, construction, défenses, zombies">
+                
+                <meta property="og:url" content="'.$metas['canonical'].'">
+                <meta property="og:type" content="website">
+                <meta property="og:title" content="'.$metas['page_title'].'">
+                <meta property="og:description" content="'.$metas['description'].'">
+                <meta property="og:image" content="'.$metas['image'].'">
+                <meta property="og:image:alt" content="'.$metas['image_alt'].'">
+                <meta property="og:image:width" content="'.$metas['image_width'].'">
+                <meta property="og:image:height" content="'.$metas['image_height'].'">
+                
+                <meta name="twitter:card" content="summary_large_image">
+                <meta name="twitter:title" content="'.$metas['page_title'].'">
+                <meta name="twitter:description" content="'.$metas['description'].'">
+                <meta name="twitter:image:src" content="'.$metas['image'].'">
+                <meta property="twitter:image:alt" content="'.$metas['image_alt'].'">
+                
+                <link rel="canonical" href="'.$metas['canonical'].'">
                 <link rel="stylesheet" type="text/css" href="resources/css/sitelayout.css?v4.3">
                 <link rel="stylesheet" type="text/css" href="resources/css/gamelayout.css?v8.1">
                 <link rel="stylesheet" type="text/css" href="resources/css/map.css?v3.8">
@@ -52,7 +85,7 @@ class HtmlPage
                 <link rel="stylesheet" type="text/css" href="resources/css/popup.css?v2.0">
                 <link rel="stylesheet" type="text/css" href="resources/css/responsive.css?v2.3">
                 ' . $css_link . '
-                <title>InvaZion, le jeu de zombies</title>
+                <title>'.$metas['page_title'].'</title>
             </head>
             
             <body>    
