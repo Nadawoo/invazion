@@ -250,6 +250,10 @@
     flex-direction:column;
     float:left;
 }
+#column_move .buildingName {
+    text-align:center;
+    font-weight:bold;
+}
 #movement_paddle {
     float:left;
     margin-top:-0.5em; /* TODO: fix this ugly artificial alignment */

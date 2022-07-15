@@ -111,25 +111,16 @@ class HtmlButtons
                 ],
             'enter_city' => [
                 'icon'  => '&#x1F5DD;&#xFE0F;',
-                'name'  => 'Entrer en ville !',
-                'title' => "Vous êtes aux portes d'une ville ! Si vous y entrez vous serez protégé des zombies... provisoirement.",
+                'name'  => 'Entrer',
+                'title' => "",
                 'fields' => [
                     'api_name'          => 'city',
                     'action'            => 'go_inout'
                     ],
                 ],
-            'enter_tent' => [
-                'icon'  => '&#9978;',
-                'name'  => 'Entrer dans la tente',
-                'title' => "Une tente a été montée ici. Cet abri ne semble pas très solide mais vous protègera de la rigueur du désert.",
-                'fields' => [
-                    'api_name'          => 'city',
-                    'action'            => 'go_inout'
-                    ],
-                ],
-            'attack_tent' => [
+            'destroy_city' => [
                 'icon'  => '&#10060;',
-                'name'  => 'Détruire cette tente !',
+                'name'  => 'Détruire',
                 'title' => "Un citoyen a planté sa tente ici. Vous avez l'opportunité de la détruire...",
                 'fields' => [
                     'api_name'      => 'city',

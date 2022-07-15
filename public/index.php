@@ -350,9 +350,9 @@ echo $popup->customised('popsuccess', '', $msg_popup, $is_custom_popup_visible);
                 <div id="column_move">'
                     .$paddle->paddle($citizen['coord_x'], $citizen['coord_y'])
                     .$layout->block_distance()
+                    .'<div class="buildingName"></div>'
                     .$buttons->button('enter_city', 'no_icon')
-                    .$buttons->button('enter_tent', 'no_icon')
-                    .$buttons->button('attack_tent', 'no_icon').'
+                    .$buttons->button('destroy_city', 'no_icon').'
                     <a href="#popsuccess" id="button_explore" class="redbutton center">Explorer : <br><span class="building_name"></span></a>
                 </div>';
                 

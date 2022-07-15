@@ -520,15 +520,20 @@ async function moveCitizen(direction) {
  * @param {int} buildingId
  */
 function updateEnterBuildingButton(cityTypeId, buildingId) {
-    // Button to enter in the city (building #12 in the database)
-    let cityDisplay = (cityTypeId === "12") ? "block" : "none";
-    document.querySelector('#column_move form[name="enter_city"]').style.display = cityDisplay;
-    // Button to enter in the tent (building #13 in the database)
-    let tentDisplay = (cityTypeId === "13") ? "block" : "none";
-    document.querySelector('#column_move form[name="enter_tent"]').style.display = tentDisplay;
-    document.querySelector('#column_move form[name="attack_tent"]').style.display = tentDisplay;
     
-    // Button to enter the building
+    // Displays the building's name under the movement paddle
+    let buildingName = (cityTypeId !== "") ? "Bâtiment : "+_configsBuildings[cityTypeId]["name"] : "";
+    document.querySelector("#column_move .buildingName").innerHTML = buildingName;
+    
+    // Button to enter in the city
+    let enterCity = (cityTypeId !== "" && _configsBuildings[cityTypeId]["is_enterable"] === 1) ? "block" : "none";
+    document.querySelector(`#column_move form[name="enter_city"]`).style.display = enterCity;
+    
+    // Button to destroy the tent (building #13 in the database)
+    let destroyCity = (cityTypeId !== "" && _configsBuildings[cityTypeId]["is_destroyable"] === 1) ? "block" : "none";
+    document.querySelector('#column_move form[name="destroy_city"]').style.display = destroyCity;
+    
+    // Button to explore the building
     let buildingVisibility = (buildingId === '') ? "none" : "block";
     document.querySelector("#button_explore").style.display = buildingVisibility;
     if(buildingId !== "" && buildingId !== undefined) {
