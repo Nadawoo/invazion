@@ -250,7 +250,7 @@
     flex-direction:column;
     float:left;
 }
-#column_move .buildingName {
+#column_move .building_name {
     text-align:center;
     font-weight:bold;
 }

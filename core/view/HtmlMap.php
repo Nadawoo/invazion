@@ -185,17 +185,10 @@ class HtmlMap
             // à chacune des condition suivantes.
             // TODO : revoir l'organisation de l'affichage afin d'éviter ce bricolage.
         }
-        elseif ($cell['building_id'] !== null) {
-            
-            $cell_content = $this->html_icon_building($cell['building_id']);
-            $bubble_roleplay = $this->html_bubble_building($cell['building_id']);
-            $elevate      = 'elevate';
-        }
         elseif ($cell['city_type_id'] !== null) {
             // The appropriate icon will be added by javascript
-            $cell_content = '<div class="icon_placeholder">
-                                <div class="buildingId">'.$cell['city_type_id'].'</div>
-                            </div>';
+            $cell_content = $this->html_icon_building($cell['city_type_id']);
+            $bubble_roleplay = $this->html_bubble_building($cell['city_type_id']);
             $elevate      = 'elevate';
         }
         
@@ -246,7 +239,6 @@ class HtmlMap
                         data-controlPointsCitizens="'.$cell['controlpoints_citizens'].'"
                         data-cityid="'.$cell['city_id'].'"
                         data-citytypeid="'.$cell['city_type_id'].'"
-                        data-buildingid="'.$cell['building_id'].'"
                         >'
                         . $cell_zombies . $cell_content . '
                         <div class="bubble">

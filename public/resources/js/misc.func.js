@@ -509,7 +509,7 @@ async function moveCitizen(direction) {
     updateRoundActionButtons(json.datas.new_coord_x, json.datas.new_coord_y);
     updateActionPointsBar(json.datas.action_points_lost);
     updateCityDistance(json.datas.new_coord_x, json.datas.new_coord_y);
-    updateEnterBuildingButton(myZone.dataset.citytypeid, myZone.dataset.buildingid);
+    updateEnterBuildingButton(myZone.dataset.citytypeid);
 }
 
 
@@ -517,13 +517,12 @@ async function moveCitizen(direction) {
  * Displays/hides the button to enter the bulding or city in the player's zone. 
  * 
  * @param {int} cityTypeId The ID of the city type in the zone (not the ID of the city)
- * @param {int} buildingId
  */
-function updateEnterBuildingButton(cityTypeId, buildingId) {
+function updateEnterBuildingButton(cityTypeId) {
     
     // Displays the building's name under the movement paddle
     let buildingName = (cityTypeId !== "") ? "Bâtiment : "+_configsBuildings[cityTypeId]["name"] : "";
-    document.querySelector("#column_move .buildingName").innerHTML = buildingName;
+    document.querySelector("#column_move .building_name").innerHTML = buildingName;
     
     // Button to enter in the city
     let enterCity = (cityTypeId !== "" && _configsBuildings[cityTypeId]["is_enterable"] === 1) ? "block" : "none";
@@ -533,12 +532,15 @@ function updateEnterBuildingButton(cityTypeId, buildingId) {
     let destroyCity = (cityTypeId !== "" && _configsBuildings[cityTypeId]["is_destroyable"] === 1) ? "block" : "none";
     document.querySelector('#column_move form[name="destroy_city"]').style.display = destroyCity;
     
+    // Button to activate a crypt (building ID #2)
+    let enterCrypt = (cityTypeId === "2") ? "block" : "none";
+    document.querySelector('#button_crypt').style.display = enterCrypt;
+    
     // Button to explore the building
-    let buildingVisibility = (buildingId === '') ? "none" : "block";
+    let buildingVisibility = (cityTypeId !== "" && _configsBuildings[cityTypeId]["is_explorable"]) ? "block" : "none";
     document.querySelector("#button_explore").style.display = buildingVisibility;
-    if(buildingId !== "" && buildingId !== undefined) {
-        let building = _configsBuildings[buildingId];
-        document.querySelector("#button_explore .building_name").innerHTML = building["name"];
+    if(cityTypeId !== "") {
+        let building = _configsBuildings[cityTypeId];
         
         // Update the content of the pop-up
         let tplPopupBuilding = document.querySelector('#tplPopupBuilding').content.cloneNode(true),
@@ -1041,24 +1043,24 @@ function replaceBuildingsPlaceholders() {
 }
 
 
-/**
- * Place the cities on the map
- * TODO: merge this function with replaceBuildingsPlaceholders(). Requires that
- * the desert buildings are treated as cities in the API and the database.
- * 
- */
-function replaceCitiesPlaceholders() {
-    
-    let zonesWithCity = document.querySelectorAll('#map [data-citytypeid]:not([data-citytypeid=""])');
-    
-    for(let zone of zonesWithCity) {
-        let buildingTypeId = zone.dataset.citytypeid;
-        let config = _configsBuildings[buildingTypeId];
-        // Adds the text in the bubble of the zone
-        zone.querySelector(".bubble .roleplay").innerHTML = '<h5 class="name">'+config.name+'</h5><hr>'
-                                                            +config.descr_ambiance;
-    }
-}
+///**
+// * Place the cities on the map
+// * TODO: merge this function with replaceBuildingsPlaceholders(). Requires that
+// * the desert buildings are treated as cities in the API and the database.
+// * 
+// */
+//function replaceCitiesPlaceholders() {
+//    
+//    let zonesWithCity = document.querySelectorAll('#map [data-citytypeid]:not([data-citytypeid=""])');
+//    
+//    for(let zone of zonesWithCity) {
+//        let buildingTypeId = zone.dataset.citytypeid;
+//        let config = _configsBuildings[buildingTypeId];
+//        // Adds the text in the bubble of the zone
+//        zone.querySelector(".bubble .roleplay").innerHTML = '<h5 class="name">'+config.name+'</h5><hr>'
+//                                                            +config.descr_ambiance;
+//    }
+//}
 
 
 /**

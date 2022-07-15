@@ -39,7 +39,7 @@ if (document.getElementById('map') !== null) {
         // Updates the distance to the city displayed under the movement paddle
         updateCityDistance(zoneData.coordx, zoneData.coordy);     
         // Displays the button to enter if there is a city in the zone
-        updateEnterBuildingButton(zoneData.citytypeid, zoneData.buildingid);
+        updateEnterBuildingButton(zoneData.citytypeid);
         // Updates the coordinates of the player in the land editor
         updateMapEditor(zoneData.coordx, zoneData.coordy);
         // Update the numbers in the big buttons next to the map
@@ -58,9 +58,8 @@ if (document.getElementById('map') !== null) {
     // Place the citizens on the appropriate zones of the map
     addCitizensOnMap(mapId);  
     
+    // Place on the map the buildings and cities
     replaceBuildingsPlaceholders();    
-    // Place the cities on the map
-    replaceCitiesPlaceholders();
     
     
     // Restore the display of the action button before the page was refreshed

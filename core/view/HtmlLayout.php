@@ -429,41 +429,6 @@ class HtmlLayout extends HtmlPage
     }
     
     
-    /**
-     * Actions block next to the map
-     * 
-     * @param int $city_size Size of the city in the zone where the player is.
-     * @return string HTML
-     */
-    function block_actions_context($city_size, $building_id, $configs_buildings)
-    {
-        
-        $buttons = new HtmlButtons();
-        $popup   = new HtmlPopup();
-        $table   = '';
-        
-        // TODO: make a generic class to get the configs without checking the nullity
-        // e.g.: Config()->building(5)->name;
-        $building_name = ($building_id !== null) 
-                         ? $building_name = $configs_buildings[$building_id]['name']
-                         : '';
-        
-        // If there is a CRYPT in the zone, display the button to enter.
-        // TODO: replace this hardcoded ID by a standard treatment
-        if ($building_id === 2) {
-
-            $table .= '<tr>'
-                    . '<td class="center">'
-                    . '<span class="warning">Vous avez découvert une crypte&nbsp;!</span><br>'
-                    . $popup->link('popvault', 'Pouvoir cryptique')
-                    . '</td>'
-                . '</tr>';
-        }
-              
-        return '<table style="margin:1.5rem auto 0 auto">'.$table.'</table>';
-    }
-    
-    
     function block_actions_build($city_size, $building_id)
     {
         
@@ -471,24 +436,24 @@ class HtmlLayout extends HtmlPage
         $popup   = new HtmlPopup;
         $table = '';
         
-        // If there is a TENT in the zone, display the button to enter.
-        if ($city_size === 1) {
-            
-            $table .= '
-            <tr>
-                <td>'.$buttons->icon('destroy_city').'</td>
-                <td>'.$buttons->button('destroy_city', 'no_icon').'</td>
-            </tr>';
-        }
-        // If there is a CITY in the zone, display the button to enter.
-        elseif ($city_size > 0) {
-            
-            $table .= '<tr>
-                <td>'.$buttons->icon('enter_city').'</td>
-                <td>'.$buttons->button('enter_city', 'no_icon').'</td>
-            </tr>';
-        }
-        else {
+//        // If there is a TENT in the zone, display the button to enter.
+//        if ($city_size === 1) {
+//            
+//            $table .= '
+//            <tr>
+//                <td>'.$buttons->icon('destroy_city').'</td>
+//                <td>'.$buttons->button('destroy_city', 'no_icon').'</td>
+//            </tr>';
+//        }
+//        // If there is a CITY in the zone, display the button to enter.
+//        elseif ($city_size > 0) {
+//            
+//            $table .= '<tr>
+//                <td>'.$buttons->icon('enter_city').'</td>
+//                <td>'.$buttons->button('enter_city', 'no_icon').'</td>
+//            </tr>';
+//        }
+//        else {
             
             $table .= '<tr>
                 <td>'.$buttons->icon('build_tent').'</td>
@@ -498,24 +463,24 @@ class HtmlLayout extends HtmlPage
                 <td><img style="height:1.4em" src="resources/img/free/city.png" alt="&#127751;"></td>
                 <td>'.$buttons->build_city('no_icon').'</td>
             </tr>';               
-        }
-        
-        
-        // If there is a CRYPT in the zone, display the button to enter.
-        // TODO: replace this hardcoded ID (2 = crypt) by a generic method
-        if ($building_id === 2) {
-
-            $table .= '<tr>'
-                    . '<td>'.$buttons->icon('add_vault').'</td>'
-                    . '<td>'. $popup->link('popvault', 'Pouvoir cryptique').'</td>'
-                . '</tr>';
-        }
-        else {
+//        }
+//        
+//        
+//        // If there is a CRYPT in the zone, display the button to enter.
+//        // TODO: replace this hardcoded ID (2 = crypt) by a generic method
+//        if ($building_id === 2) {
+//
+//            $table .= '<tr>'
+//                    . '<td>'.$buttons->icon('add_vault').'</td>'
+//                    . '<td>'. $popup->link('popvault', 'Pouvoir cryptique').'</td>'
+//                . '</tr>';
+//        }
+//        else {
             $table .= '<tr>
                 <td>'.$buttons->icon('add_vault').'</td>
                 <td>'.$buttons->button('add_vault', 'no_icon').'</td>
             </tr>';
-        }
+//        }
         
         
         return '<table>'.$table.'</table>';

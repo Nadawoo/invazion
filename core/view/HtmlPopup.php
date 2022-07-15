@@ -55,10 +55,10 @@ class HtmlPopup
      * @param  string $text         Le texte du lien
      * @return string HTML
      */
-    public function link($popup_alias, $text)
+    public function link($popup_alias, $text, $html_id="")
     {
         
-        return '<a href="#'.$popup_alias.'"><input type="submit" value="'.$text.'" class="redbutton"></a>';
+        return '<a href="#'.$popup_alias.'"><input type="submit" value="'.$text.'" class="redbutton" id='.$html_id.'></a>';
     }
     
     

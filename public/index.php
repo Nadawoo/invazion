@@ -132,7 +132,6 @@ $html = [
     // Contents of the round action buttons at the right of the map
     'actions_build'     => $layout->block_actions_build($zone['city_size'], $zone['building_id']),
     'actions_bag'       => $layout->block_actions_bag($configs['items'], $citizen['bag_items']),
-    'actions_context'   => $layout->block_actions_context($zone['city_size'], $zone['building_id'], $configs['buildings']),
     'actions_zombies'   => $layout->block_actions_zombies($zone['zombies'], $configs['map']['killing_zombie_cost']),
     'edit_land'         => $layout->block_edit_land($citizen['coord_x'], $citizen['coord_y']),
     'zone_items'        => $layout->block_zone_items($configs['items'], $zone),
@@ -350,10 +349,11 @@ echo $popup->customised('popsuccess', '', $msg_popup, $is_custom_popup_visible);
                 <div id="column_move">'
                     .$paddle->paddle($citizen['coord_x'], $citizen['coord_y'])
                     .$layout->block_distance()
-                    .'<div class="buildingName"></div>'
+                    .'<div class="building_name"></div>'
                     .$buttons->button('enter_city', 'no_icon')
-                    .$buttons->button('destroy_city', 'no_icon').'
-                    <a href="#popsuccess" id="button_explore" class="redbutton center">Explorer : <br><span class="building_name"></span></a>
+                    .$buttons->button('destroy_city', 'no_icon')
+                    .$popup->link('popsuccess', 'Explorer', 'button_explore')
+                    .$popup->link('popvault', 'Pouvoir cryptique', 'button_crypt').'
                 </div>';
                 
                 echo $layout->block_movement_AP($citizen['action_points'], $speciality_caracs['action_points'], $zone['zombies'], 
@@ -373,9 +373,6 @@ echo $popup->customised('popsuccess', '', $msg_popup, $is_custom_popup_visible);
                     Vision niv. '.$citizen['vision'].'<br>
                     Camouflage niv. '.$citizen['camouflage'].'<br>
                     Blessé : '.($citizen['is_wounded'] === 1 ? 'oui' : 'non');
-                
-                // Special actions depending of the zone (go into a crypt, a city...)
-                echo $html['actions_context'];
                 ?>
             </fieldset>
             
