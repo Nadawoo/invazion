@@ -496,7 +496,7 @@ class HtmlCityEnclosure
                             <ul class="items_list">
                                 ' . $html_resources . '
                                 ' . $html_AP_invested . '<br>
-                                ' . $buttons->construct($id) . '
+                                ' . $buttons->construct($id, 'no_notif') . '
                             </ul>
                         </td>
                     </tr>

@@ -632,6 +632,15 @@ a.redbutton {
     display:block;
     padding:0.3em 0 0.7em 0;
 }
+.redbutton .dot_number {
+    position:absolute;
+    top:-1em;
+    right:-0.5em;
+    height:1.5em;
+    width: 1.5em;
+    background:green;
+    border-radius:2em;
+}
 
 /* Bouton de dépôt d'objet avec un aspect moderne et non le défaut HTML en relief */
 .drop_button {

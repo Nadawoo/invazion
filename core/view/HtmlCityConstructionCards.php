@@ -116,6 +116,15 @@ class HtmlCityConstructionCards
     }
     
     
+    private function resources_completed() {
+        
+        return '
+            <p>&#x2714;&#xFE0F; Les matériaux requis sont présents 
+                <a href="#" onclick="switchCitySubmenu(\'city_storage\')">au dépôt</a>.
+            </p>';
+    }
+    
+    
     /**
      * Text to invite the player to put action points to build the construction
      * 
@@ -129,10 +138,9 @@ class HtmlCityConstructionCards
         $buttons = new HtmlButtons();
         
         return '
-            <p>&#x2714;&#xFE0F; Les matériaux requis sont présents 
-                <a href="#" onclick="switchCitySubmenu(\'city_storage\')">au dépôt</a>.</p>
-            <p>&#10060; Il manque <strong>'.$total_AP_missing.' points d\'action</strong>
-                pour terminer le chantier :'
-            .$buttons->construct($construction_id, 'Participer [1 PA]').'</p>';
+            <p>&#128296; Il manque <strong>'.$total_AP_missing.' points d\'action</strong>
+                pour terminer le chantier :
+            '.$buttons->construct($construction_id, 'notify', 'Participer [1 PA]').'
+            </p>';
     }
 }
