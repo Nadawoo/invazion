@@ -495,7 +495,7 @@ class HtmlCityEnclosure
                         <td id="'.$css_id.'" class="folded">
                             <ul class="items_list">
                                 ' . $html_resources . '
-                                ' . $html_AP_invested . '
+                                ' . $html_AP_invested . '<br>
                                 ' . $buttons->construct($id) . '
                             </ul>
                         </td>
@@ -507,7 +507,7 @@ class HtmlCityEnclosure
         
         return '
             <div class="city_block" style="width:21.5em">
-                <h2>Chantiers</h2>
+                <h2>Tous les chantiers</h2>
                 <div style="height:1.7em;vertical-align:center;font-weight:bold;background:lightgreen;margin-bottom:0.8em;line-height:250%;">
                     <div style="position:relative;top:-0.5em">
                         <span style="font-variant:small-caps">Défenses totales :</span>

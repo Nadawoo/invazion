@@ -619,15 +619,15 @@ class HtmlButtons
      * @param  int $construction_id L'ID du chantier à construire
      * @return string
      */
-    function construct($construction_id)
+    function construct($construction_id, $button_label='Participer au chantier [1pa]')
     {
         
         return
-        '<form method="post" action="#popsuccess" class="formlink" style="text-align:center;margin-top:0.25em">
+        '<form method="post" action="#popsuccess">
             <input type="hidden" name="api_name" value="buildings">
             <input type="hidden" name="action" value="build">
             <input type="hidden" name="params[construction_id]" value="'.$construction_id.'">
-            &#x1F6E0;&#xFE0F; <input type="submit" value="Participer au chantier [1pa]" style="padding-top:0.8em">
+            <input type="submit" value="&#x1F6E0;&#xFE0F; '.$button_label.'" class="redbutton">
         </form>';
     }
     

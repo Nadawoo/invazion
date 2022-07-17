@@ -11,6 +11,7 @@ $layout             = new HtmlLayout();
 $map                = new HtmlMap();
 $my_zone            = new HtmlMyZone();
 $enclosure          = new HtmlCityEnclosure();
+$constructionCards  = new HtmlCityConstructionCards();
 $buttons            = new HtmlButtons();
 $paddle             = new HtmlMovementPaddle();
 $phone              = new HtmlSmartphone();
@@ -250,9 +251,15 @@ echo $popup->customised('popsuccess', '', $msg_popup, $is_custom_popup_visible);
                     <div id="city_craft" class="city_row">
                         '. $enclosure->block_workshop($zone['items'], $configs['items']) .'
                     </div>
-                    <div id="city_build" class="city_row">
+                    <div id="city_build">
+                        <div class="city_row">
+                        '. $constructionCards->all_cards($configs['items'], $zone['items'], 
+                                                         $configs['constructions'], $city_data['constructions']) .'
+                        </div>
+                        <div class="city_row">
                         '. $enclosure->block_constructions($configs['constructions'], $configs['items'], $city_data['constructions'], 
                                                            $city_data['total_defenses'], $zone['items']) .'
+                        </div>
                     </div>
                     <div id="city_door" class="city_row">
                         '. $enclosure->block_city_door($city_data['is_door_closed']) .'
