@@ -28,6 +28,11 @@ $msg_move           = '';
 $is_custom_popup_visible = false;
 
 
+
+// TODO: FOR THE TESTS ONLY
+$zombies_next_attack = 99;
+
+
 /**
  * Executes the actions asked by the player (moving, digging...)
  */
@@ -232,7 +237,7 @@ echo $popup->customised('popsuccess', '', $msg_popup, $is_custom_popup_visible);
                     </div>
                     <div id="home_build" class="city_row">
                         '. $enclosure->block_constructions($configs['constructions_home'], $configs['items'], $city_data['constructions'], 
-                                                           $city_data['total_defenses'], $zone['items']) .'
+                                                           $city_data['total_defenses'], $zombies_next_attack, $zone['items']) .'
                     </div>
                     <div id="city_fellows" class="city_row">
                         '. $enclosure->block_fellows_list($city_fellows, $specialities) .'
@@ -258,7 +263,7 @@ echo $popup->customised('popsuccess', '', $msg_popup, $is_custom_popup_visible);
                         </div>
                         <div class="city_row">
                         '. $enclosure->block_constructions($configs['constructions'], $configs['items'], $city_data['constructions'], 
-                                                           $city_data['total_defenses'], $zone['items']) .'
+                                                           $city_data['total_defenses'], $zombies_next_attack, $zone['items']) .'
                         </div>
                     </div>
                     <div id="city_door" class="city_row">

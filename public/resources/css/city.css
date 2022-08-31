@@ -169,6 +169,21 @@
     border-bottom-left-radius: 0.5em;
 }
 
+/* The two bars comparing the defenses and the zombies */
+#defenses_bar {
+    height:1.7em;
+    margin-bottom:2em;
+    line-height:170%;
+    text-align:left;
+    white-space:nowrap;
+    font-weight:bold;
+    font-variant:small-caps;
+    color:white;
+}
+#defenses_bar {
+    
+}
+
 /* Foldable sections for lighter interface (e.g to hide the components in the workshop)*/
 .city_block .foldable {
     display:flex;

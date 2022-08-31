@@ -422,7 +422,8 @@ class HtmlCityEnclosure
      *                                    (qui sont, à ce jour, les objets au sol)
      * @return string
      */
-    function block_constructions($constructions_caracs, $items_caracs, $city_constructions, $total_defenses, $zone_items)
+    function block_constructions($constructions_caracs, $items_caracs, $city_constructions, 
+                                  $total_defenses, $zombies_next_attack, $zone_items)
     {
         
         $buttons = new HtmlButtons;
@@ -499,8 +500,7 @@ class HtmlCityEnclosure
                                 ' . $buttons->construct($id, 'no_notif') . '
                             </ul>
                         </td>
-                    </tr>
-                    ';
+                    </tr>';
             }
 
         }
@@ -508,12 +508,7 @@ class HtmlCityEnclosure
         return '
             <div class="city_block" style="width:21.5em">
                 <h2>Tous les chantiers</h2>
-                <div style="height:1.7em;vertical-align:center;font-weight:bold;background:lightgreen;margin-bottom:0.8em;line-height:250%;">
-                    <div style="position:relative;top:-0.5em">
-                        <span style="font-variant:small-caps">Défenses totales :</span>
-                        <div style="display:inline-block;height:1.8em;width:1.8em;font-weight:normal;font-size:1.5em;color:white;background:green;border-radius:2em">'.$total_defenses.'</div> points
-                    </div>
-                </div>
+                '.$this->defenses_bar($total_defenses, $zombies_next_attack).'
                 <table id="constructions">
                     <tr style="font-size:0.9em">
                         <td></td>
@@ -521,6 +516,36 @@ class HtmlCityEnclosure
                     </tr>
                     '.$html_constructions.'
                 </table>
+            </div>';
+    }
+    
+    
+    /**
+     * The two bars comparing the defenses and the zombies
+     */
+    function defenses_bar($total_defenses, $zombies_next_attack) {
+        
+        $zombies_overflow = max(0, $zombies_next_attack - $total_defenses);
+        $total = ($total_defenses + $zombies_next_attack);
+        
+        $defense_percent = $total_defenses / $total * 100;
+        $zombies_percent = $zombies_next_attack / $total * 100;
+        
+        return '
+            <div id="defenses_bar">
+                <div style="background:lightgreen">
+                    <div style="padding-left:0.2em;background:darkgreen;width:'.$defense_percent.'%">
+                        Nos défenses '.$total_defenses.'
+                    </div>
+                </div>
+                <div style="background:salmon">                        
+                    <div style="padding-left:0.2em;background:darkred;width:'.$zombies_percent.'%;">
+                        Zombies attendus '.$zombies_next_attack.'
+                    </div>
+                </div>
+            </div>
+            <div style="color:red;font-weight:bold;padding:0.3em 0 1em 0;">
+                &#9888;&#65039; '.$zombies_overflow.' défenses manquantes &#9888;&#65039;
             </div>';
     }
     
