@@ -331,7 +331,7 @@ class HtmlButtons
                 'name'  => "Explorer le bâtiment",
                 'title' => "",
                 'fields' => [
-                    'api_name'      => 'zone',
+                    'api_name'      => 'city',
                     'action'        => 'explore',
                     ],
                 ],
