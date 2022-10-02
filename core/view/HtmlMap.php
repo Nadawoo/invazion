@@ -209,9 +209,9 @@ class HtmlMap
         }
         // TODO: get the building config in a cleaner way
         elseif ($is_player_in_zone === true 
-                or ($cell['building_id'] !== null and
-                   (bool)$this->building($cell['building_id'], 'is_always_visible') === true))
-                {
+//                or ($cell['building_id'] !== null and
+//                   (bool)$this->building($cell['building_id'], 'is_always_visible') === true)
+                ) {
             $opacity = 1;
         }
         else {

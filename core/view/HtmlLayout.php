@@ -429,7 +429,7 @@ class HtmlLayout extends HtmlPage
     }
     
     
-    function block_actions_build($city_size, $building_id)
+    function block_actions_build()
     {
         
         $buttons = new HtmlButtons;

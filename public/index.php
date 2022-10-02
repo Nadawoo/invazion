@@ -116,9 +116,9 @@ if ($citizen['citizen_id'] !== NULL) {
     }
     // If there is a car (ID=1) in the zone
     // TODO: don't hardcode this ID
-    elseif($zone['building_id'] == 1) {
-        $msg_popup = $popup->popcar($msg_popup);
-    }
+//    elseif($zone['building_id'] == 1) {
+//        $msg_popup = $popup->popcar($msg_popup);
+//    }
 }
 
 
@@ -136,7 +136,7 @@ $html = [
     'map_citizens'      => $layout->map_citizens($citizens),
     'attack_bar'        => $layout->attack_bar($citizen['map_id'], get_game_day($citizen['last_death'])),
     // Contents of the round action buttons at the right of the map
-    'actions_build'     => $layout->block_actions_build($zone['city_size'], $zone['building_id']),
+    'actions_build'     => $layout->block_actions_build(),
     'actions_bag'       => $layout->block_actions_bag($configs['items'], $citizen['bag_items']),
     'actions_zombies'   => $layout->block_actions_zombies($zone['zombies'], $configs['map']['killing_zombie_cost']),
     'edit_land'         => $layout->block_edit_land($citizen['coord_x'], $citizen['coord_y']),
