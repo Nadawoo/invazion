@@ -177,6 +177,16 @@ class HtmlButtons
                     'params[city_type_id]' => 12,
                     ],
                 ],
+            'build_outpost' => [
+                'icon'  => '',
+                'name'  => 'Bâtir avant-poste',
+                'title' => "Les avant-postes fournissent ressources et protection lors des explorations.",
+                'fields' => [
+                    'api_name'      => 'city',
+                    'action'        => 'build',
+                    'params[city_type_id]' => 11,
+                    ],
+                ],
             'connect_tent' => [
                 'icon'  => '',
                 'name'  => 'Connecter ma maison à la ville',

@@ -462,7 +462,11 @@ class HtmlLayout extends HtmlPage
             <tr>
                 <td><img style="height:1.4em" src="resources/img/free/city.png" alt="&#127751;"></td>
                 <td>'.$buttons->build_city('no_icon').'</td>
-            </tr>';               
+            </tr>
+            <tr>
+                <td><img style="height:2.1em" src="resources/img/copyrighted/tiles/greenjungle/11.png" alt="&#128508;"></td>
+                <td>'.$buttons->button('build_outpost', 'no_icon').'</td>
+            </tr>';            
 //        }
 //        
 //        
