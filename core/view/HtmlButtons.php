@@ -164,7 +164,7 @@ class HtmlButtons
                 'fields' => [
                     'api_name'          => 'city',
                     'action'            => 'build',
-                    'params[city_type]' => 'home',
+                    'params[city_type_id]' => 13,
                     ],
                 ],
             'build_city' => [
@@ -174,7 +174,7 @@ class HtmlButtons
                 'fields' => [
                     'api_name'          => 'city',
                     'action'            => 'build',
-                    'params[city_type]' => 'city',
+                    'params[city_type_id]' => 12,
                     ],
                 ],
             'connect_tent' => [
