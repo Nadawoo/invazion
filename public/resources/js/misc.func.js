@@ -1109,7 +1109,8 @@ function attackCountdown() {
 async function updateCityDistance(citizenCoordX, citizenCoordY) {
     
     let myCityId = document.querySelector("#gameData #cityId").innerHTML,
-        myCityNode = document.querySelector(`[data-cityid="${myCityId}"]`);   
+        myCityNode = document.querySelector(`[data-cityid="${myCityId}"]`),
+        distance = null;   
     
     if(myCityNode !== null) {
         let myCityZone = myCityNode.parentNode.querySelector(".square_container").dataset;
