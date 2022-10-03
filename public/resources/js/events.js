@@ -34,10 +34,15 @@ if (document.getElementById('map') !== null) {
         pickupItem(event.submitter);
     });
     // Drops an item from the player's bag and puts it on the ground
-    document.querySelector('#block_dig form[name="items_bag"]').addEventListener("submit", function() {
-        // Desactivate the classic submission button (avoids reloading the page)
-        event.preventDefault();
-        dropItem(event.submitter);
+    document.querySelector('#block_dig').addEventListener("submit", function() {
+        let formType = event.target.closest("form").className;
+        // NB: this condition avoids interferences with the other forms in the block
+        // (actions specific to the item, e.g. to eat a burger)
+        if(formType === "form_drop") {
+            // Desactivate the classic submission button (avoids reloading the page)
+            event.preventDefault();
+            dropItem(event.submitter);
+        }
     });
     
     // Displays/hides the notifications panel

@@ -648,15 +648,10 @@ class HtmlLayout extends HtmlPage
             <template id="tplEmptySlot">
                 <li class="empty_slot"><var>-vide-</var></li>
             </template>
-            <form name="items_bag" method="post" action="#Outside" style="margin-left:1.5rem">
-                <input type="hidden" name="api_name" value="zone">
-                <input type="hidden" name="action" value="drop">
-                <input type="hidden" name="params[citizen_id]" value="'.$citizen_id.'">
-                <ul class="items_list">
-                    ' . $this->bag_filled_slots($bag_items, $items_caracs) . '
-                    ' . $this->bag_free_slots($nbr_free_slots) . '
-                </ul>
-            </form>';
+            <ul id="items_bag" class="items_list">
+                ' . $this->bag_filled_slots($bag_items, $items_caracs, $citizen_id) . '
+                ' . $this->bag_free_slots($nbr_free_slots) . '
+            </ul>';
     }
     
     
@@ -733,12 +728,13 @@ class HtmlLayout extends HtmlPage
      * Emplacements occupés du sac
      * 
      * @param array $bag_items      Liste des id des objets dans le sac
-     * @param array $items          Les caractéristiques de tous les items exitants dans le jeu
+     * @param array $items_caracs   Les caractéristiques de tous les items exitants dans le jeu
      * @return string
      */
-    private function bag_filled_slots($bag_items, $items)
+    private function bag_filled_slots($bag_items, $items_caracs, $citizen_id)
     {
         
+        $buttons = new HtmlButtons();
         $result = '';
         
         foreach ($bag_items as $item_id=>$item_amount) {
@@ -747,13 +743,27 @@ class HtmlLayout extends HtmlPage
             // apparaître autant de fois dans le sac.
             while ($item_amount > 0) {
                 
+                $button_alias = get_item_action($items_caracs[$item_id]);
+                
                 $result .= '
                     <li class="item_label">
-                        <button type="submit" name="params[item_id]" value="'.$item_id.'" class="drop_button">&veeeq;</button>
-                        <var>
-                            <img src="../resources/img/copyrighted/items/'.$item_id.'.png" alt="'.$items[$item_id]['icon_symbol'].'"> 
-                            &nbsp;' . $items[$item_id]['name'] .
-                        '</var>
+                        <form class="form_drop" method="post" action="#Outside">
+                            <input type="hidden" name="api_name" value="zone">
+                            <input type="hidden" name="action" value="drop">
+                            <input type="hidden" name="params[citizen_id]" value="'.$citizen_id.'">
+                            <button type="submit" name="params[item_id]" value="'.$item_id.'" class="drop_button">&veeeq;</button>
+                        </form>
+                        <div style="margin-left:0.1em;margin-bottom:0.3em;background:#d3d3d3;border-radius:0.3em">
+                            <var onclick="toggle(\'detailsItem'.$item_id.'\')">
+                                <img src="../resources/img/copyrighted/items/'.$item_id.'.png" alt="'.$items_caracs[$item_id]['icon_symbol'].'"> 
+                                &nbsp;' . $items_caracs[$item_id]['name'] .'
+                            </var>
+                            <div id="detailsItem'.$item_id.'" class="details">
+                                <p class="descr_ambiance">'. $items_caracs[$item_id]['descr_ambiance'] .'</p>
+                                <p class="descr_purpose">'. $items_caracs[$item_id]['descr_purpose'] .'</p>
+                                '.$buttons->use_item($button_alias, $item_id, $items_caracs[$item_id]['name']).'
+                            </div>
+                        </div>
                     </li>';
                 
                 $item_amount--;

@@ -470,24 +470,27 @@ class HtmlButtons
      * - the name of the button contains a variable element (the name of the item)
      * 
      * @param string $button_alias  The alias of the action button. Must exist in $this->buttons
-     * @param int    $item_id   The ID of the iem to use (ex : 501)
-     * @param string $item_name The name of the item to display (ex : Bandage")
+     * @param int    $item_id   The ID of the item to use (ex : 501)
+     * @param string $item_name The name of the item to display (ex : "Bandage")
      * 
      * @return string HTML
      */
     function use_item($button_alias, $item_id, $item_name)
     {
         
-        $button = $this->buttons[$button_alias];
-        $fields = $button['fields'];
-        
-        return
-        '<form method="post" action="#popsuccess" class="formlink">
-            <input type="hidden" name="api_name" value="'.$fields['api_name'].'">
-            <input type="hidden" name="action" value="'.$fields['action'].'">
-            <input type="hidden" name="params[item_id]" value="'.$item_id.'">
-            <input type="submit" value="'.$button['name'].' '.$item_name.'" />
-        </form>';
+        if(isset($this->buttons[$button_alias])) {
+            
+            $button = $this->buttons[$button_alias];
+            $fields = $button['fields'];
+
+            return
+            '<form method="post" action="#popsuccess" class="formredbutton">
+                <input type="hidden" name="api_name" value="'.$fields['api_name'].'">
+                <input type="hidden" name="action" value="'.$fields['action'].'">
+                <input type="hidden" name="params[item_id]" value="'.$item_id.'">
+                <input type="submit" value="'.$button['name'].' '.$item_name.'" />
+            </form>';
+        }
     }
     
     

@@ -935,9 +935,9 @@ async function pickupItem(eventSubmitter) {
     if(json.metas.error_code === "success") {
         // HTML: moves the item from the ground list to the bag list
         let itemNode = eventSubmitter.closest("li");
-        document.querySelector('form[name="items_bag"] ul').prepend(itemNode);
+        document.querySelector('#items_bag').prepend(itemNode);
         // Removes 1 empty slot in the bag
-        document.querySelector('form[name="items_bag"] .empty_slot').remove();
+        document.querySelector('#items_bag .empty_slot').remove();
         // Replaces the "pick-up" icon by the "drop" icon for this item
         itemNode.querySelector('button').innerHTML = "&veeeq;";
         // Decreases the counter for the ground items
@@ -971,7 +971,7 @@ async function dropItem(eventSubmitter) {
         document.querySelector('form[name="items_ground"] ul').prepend(itemNode);
         // Adds 1 empty slot in the bag
         let tplEmptySlot = document.querySelector('#tplEmptySlot').content.cloneNode(true);
-        document.querySelector('form[name="items_bag"] .items_list').appendChild(tplEmptySlot);
+        document.querySelector('#items_bag').appendChild(tplEmptySlot);
         // Replaces the "drop" icon by the "pick-up" icon for this item
         itemNode.querySelector('button').innerHTML = "&wedgeq;";
         // Hides the message "There are no items on the ground..."

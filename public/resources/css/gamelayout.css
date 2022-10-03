@@ -530,7 +530,10 @@ legend {
     padding-left:0.9em;
 }
 
-/* Empty slot for an item in the bag */
+/* The player's bag */
+#items_bag {
+    margin-left:1.5rem;
+}
 .empty_slot var {
     background:none;
     border:1px solid grey;
@@ -569,7 +572,7 @@ var {
 }
 .item_label { /* More advanced than <var> (has an icon) */
     display:flex;
-    align-items:center;
+    align-items:start;
 }
 .item_label img {
     height:32px;
@@ -579,9 +582,28 @@ var {
     display:flex;
     align-items: center;
     padding-left:0;
+    cursor:pointer;
+}
+.item_label var::selection {
+    background:none;
 }
 .item_label .drop_button {
     height:1.8em;
+}
+
+.item_label .details {
+    display:none;
+    width:14em;
+    padding:0.2em 0.2em 0.7em 0.5em;
+    line-height:normal;
+}
+.item_label .descr_ambiance {
+    font-size:0.75em;
+    margin:0;
+    font-style:italic;
+}
+.item_label .descr_purpose {
+    font-size:0.85em;
 }
 
 /*
@@ -659,6 +681,13 @@ a.redbutton {
 .drop_button:hover {
     background:darkred;
     color:white;
+}
+
+.formredbutton input {
+    padding:0.4em 0.6em;
+    background:#8b0000;
+    color:white;
+    border-radius:2em;
 }
 
 /* To display the form buttons (<input>) as simple links (<a>) */
