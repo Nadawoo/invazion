@@ -177,9 +177,9 @@ echo $popup->template_popbuilding($msg_popup);
 echo $popup->customised('popsuccess', '', $msg_popup, $is_custom_popup_visible);
 ?>
     
-    <div id="connectionbar">
+    <section id="connectionbar">
         <?php echo $layout->connection_bar($citizen['user_id'], $citizen['citizen_id'], $citizen['citizen_pseudo']); ?>
-    </div>
+    </section>
     
     <p id="GameDemo" class="aside">L'interface est volontairement minimaliste pour le moment. 
         La priorité du projet est de mettre à disposition les API (le moteur du jeu) 
@@ -220,7 +220,7 @@ echo $popup->customised('popsuccess', '', $msg_popup, $is_custom_popup_visible);
     if ($citizen['inside_city_id'] !== NULL) {
         
         echo '
-            <div id="city_container">
+            <section id="city_container">
                 <nav id="city_menu">
                     '.$enclosure->city_menu($citizen['map_id'], $city_data['parent_city_id'], $citizen['city_id']).'
                     '.$enclosure->city_submenu($city_data['city_type_id'], $city_data['parent_city_id'], $is_citizen_home_connected).'
@@ -273,7 +273,7 @@ echo $popup->customised('popsuccess', '', $msg_popup, $is_custom_popup_visible);
                         '. $enclosure->block_explore() .'
                     </div>
                 </div>
-            </div>';
+            </section>';
 
         // Dark overlay to blur the map under the city interface
         echo '<div id="dark_background"></div>';
@@ -282,13 +282,13 @@ echo $popup->customised('popsuccess', '', $msg_popup, $is_custom_popup_visible);
     
     <!-- Let this bar *before* the round action buttons if you want them 
          to go *below* the bar on small screens -->
-    <a href="#popattack" id="attack_bar">
+    <section id="attack_bar">
         <?php echo $html['attack_bar'] ?>
-    </a>    
+    </section>    
     
     <!-- The map -->
     
-    <div id="map">
+    <section id="map">
         
         <div id="map_header">
             <span onclick="toggleMapItems()">Objets sur la carte</span>
@@ -312,11 +312,11 @@ echo $popup->customised('popsuccess', '', $msg_popup, $is_custom_popup_visible);
         
         <?php echo $html['map']; ?>
         
-    </div>
+    </section>
     
     <div id="column_right">
         
-        <div>
+        <section>
             <?php
             if ($citizen['user_id'] === NULL) {        
                 // If the player is not connected, display the connection panel
@@ -328,9 +328,9 @@ echo $popup->customised('popsuccess', '', $msg_popup, $is_custom_popup_visible);
                 echo $layout->block_create_citizen();
             }
             ?>
-        </div>
+        </section>
         
-        <div id="round_actions">
+        <section id="round_actions">
             <?php
             echo  $buttons->button_round('move', ($zone['controlpoints_zombies']-$zone['controlpoints_citizens']))
                 . $buttons->button_round('dig', array_sum((array)$zone['items']), (bool)$citizen['can_dig'])
@@ -340,9 +340,9 @@ echo $popup->customised('popsuccess', '', $msg_popup, $is_custom_popup_visible);
             // Warn if wounded
             echo $layout->block_alert_wounded((bool)$citizen['is_wounded']);
             ?>
-        </div>
+        </section>
         
-        <div id="actions">
+        <section id="actions">
             <fieldset id="block_move">
                 <?php
                 if ($zone['controlpoints_citizens'] < $zone['controlpoints_zombies'] and time() < strtotime($zone['date_control_end'])) {
@@ -431,16 +431,16 @@ echo $popup->customised('popsuccess', '', $msg_popup, $is_custom_popup_visible);
                 <?php echo $html['zone_fellows_template'] ?>
                 <ol class="citizens" data-coordx="" data-coordy=""></ol>
             </fieldset>
-        </div>
+        </section>
         
         <div id="message_move"><?php echo $msg_move ?></div>
         
     </div>
  
     
-    <div id="floating_wall">
+    <section id="floating_wall">
         <?php echo $wall->wall($html['smartphone']) ?>
-    </div>
+    </section>
     
 </div>
     
@@ -468,9 +468,10 @@ echo $popup->customised('popsuccess', '', $msg_popup, $is_custom_popup_visible);
     </form>
     
     
-    <h3 id="Citizens"><a href="#Citizens">&Hat;</a>&nbsp;Liste des citoyens</h3>
-    
-    <?php echo $html['map_citizens'] ?>
+    <section>
+        <h3 id="Citizens"><a href="#Citizens">&Hat;</a>&nbsp;Liste des citoyens</h3>    
+        <?php echo $html['map_citizens'] ?>
+    </section>
     
     <hr>
     
@@ -480,29 +481,31 @@ echo $popup->customised('popsuccess', '', $msg_popup, $is_custom_popup_visible);
     
     <hr>
     
-    <h2 id="Help">Mémo des règles</h2>
-    <strong>Se déplacer</strong>
-    <ul class="expanded">
-        <li>Le contrôle d'une zone dépend du nombre d'humains et de zombies présents
-            sur la case&nbsp;: 10 points par humain et 1 point par zombie.</li>
-        <li>Les humains ne peuvent pas quitter une zone dont ils n'ont pas le contrôle 
-            (forces zombies supérieures aux forces humaines). Il faudra tuer des zombies 
-            jusqu'à ce que le rapport de force s'inverse.</li>
-        <li>Se déplacer sur une case qui contient un zombie ou plus coûte 1 point d'action,
-            même si les humains en ont le contrôle de la zone. Si vous n'avez plus de point d'action,
-            vous ne pouvez pas quitter la zone.</li>
-        <li>S'il n'y a aucun zombie sur la case, le déplacement ne coûte aucun point d'action.</li>
-    </ul>
-    <strong>L'attaque de la horde</strong>
-    <ul class="expanded">
-        <li>La horde progresse chaque jour du nord vers le sud, 
-            à&nbsp;raison d'une ligne par&nbsp;heure.</li>
-        <li>Les citoyens qui ne sont pas abrités dans une ville ou une tente
-            au moment où la horde passe sur leur zone meurent. Ils se réincarnent 
-            dans la zone 0:0 (en haut à gauche).</li>
-        <li>Les tentes sont à usage unique&nbsp;: elles protègent les citoyens
-            qui sont à l'intérieur, mais elles sont détruites par l'attaque.</li>
-    </ul>
+    <section>
+        <h2 id="Help">Mémo des règles</h2>
+        <strong>Se déplacer</strong>
+        <ul class="expanded">
+            <li>Le contrôle d'une zone dépend du nombre d'humains et de zombies présents
+                sur la case&nbsp;: 10 points par humain et 1 point par zombie.</li>
+            <li>Les humains ne peuvent pas quitter une zone dont ils n'ont pas le contrôle 
+                (forces zombies supérieures aux forces humaines). Il faudra tuer des zombies 
+                jusqu'à ce que le rapport de force s'inverse.</li>
+            <li>Se déplacer sur une case qui contient un zombie ou plus coûte 1 point d'action,
+                même si les humains en ont le contrôle de la zone. Si vous n'avez plus de point d'action,
+                vous ne pouvez pas quitter la zone.</li>
+            <li>S'il n'y a aucun zombie sur la case, le déplacement ne coûte aucun point d'action.</li>
+        </ul>
+        <strong>L'attaque de la horde</strong>
+        <ul class="expanded">
+            <li>La horde progresse chaque jour du nord vers le sud, 
+                à&nbsp;raison d'une ligne par&nbsp;heure.</li>
+            <li>Les citoyens qui ne sont pas abrités dans une ville ou une tente
+                au moment où la horde passe sur leur zone meurent. Ils se réincarnent 
+                dans la zone 0:0 (en haut à gauche).</li>
+            <li>Les tentes sont à usage unique&nbsp;: elles protègent les citoyens
+                qui sont à l'intérieur, mais elles sont détruites par l'attaque.</li>
+        </ul>
+    </section>
 
 </div>
     

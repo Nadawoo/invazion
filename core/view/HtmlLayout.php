@@ -204,10 +204,10 @@ class HtmlLayout extends HtmlPage
                 Carte n° '.$map_id.'<br>
                 &#x1F551; Jour '.(int)$day.'
             </div>        
-            <div id="timer">
+            <a href="#popattack" id="timer">
                 Attaque dans
                 <div id="attackCountdown">&nbsp;</div>
-            </div>
+            </a>
             <div id="balance">
                 <div>00 zombies</div>
                 <div>00 défenses</div>
