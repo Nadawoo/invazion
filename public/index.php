@@ -222,8 +222,8 @@ echo $popup->customised('popsuccess', '', $msg_popup, $is_custom_popup_visible);
         echo '
             <section id="city_container">
                 <nav id="city_menu">
-                    '.$enclosure->city_menu($citizen['map_id'], $city_data['parent_city_id'], $citizen['city_id']).'
-                    '.$enclosure->city_submenu($city_data['city_type_id'], $city_data['parent_city_id'], $is_citizen_home_connected).'
+                    '.$enclosure->city_menu($citizen['map_id'], $city_data['connected_city_id'], $citizen['city_id']).'
+                    '.$enclosure->city_submenu($city_data['city_type_id'], $city_data['connected_city_id'], $is_citizen_home_connected).'
                 </nav>
                 <div id="city_contents">
                     <div id="home_house" class="city_row">

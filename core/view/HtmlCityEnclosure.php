@@ -30,12 +30,12 @@ class HtmlCityEnclosure
      * (dépôt, maison, porte...)
      * 
      * @param string $city_type
-     * @param int $parent_city_id
+     * @param int $connected_city_id
      * @param bool $is_citizen_home_connected TRUE if the player has connected 
      *                                        his habitation to this city
      * @return string
      */
-    function city_submenu($city_type, $parent_city_id, $is_citizen_home_connected)
+    function city_submenu($city_type, $connected_city_id, $is_citizen_home_connected)
     {
         
         $buttons = new HtmlButtons();
@@ -52,7 +52,7 @@ class HtmlCityEnclosure
         }
         
         // Content of the "City" menu (ID #12 in the DB)
-        if($city_type === 12 and $parent_city_id === null) {
+        if($city_type === 12 and $connected_city_id === null) {
             $city_menu = '<p style="max-width:25em;color:white">Une ville construite '
                 . 'avec les autres joueurs offre des infrastructures précieuses '
                 . 'pour la survie : défenses puissantes, réserves d\'eau...</p>'
