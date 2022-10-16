@@ -12,6 +12,7 @@ $map                = new HtmlMap();
 $my_zone            = new HtmlMyZone();
 $enclosure          = new HtmlCityEnclosure();
 $constructionCards  = new HtmlCityConstructionCards();
+$cityIso            = new HtmlCityIso();
 $buttons            = new HtmlButtons();
 $paddle             = new HtmlMovementPaddle();
 $phone              = new HtmlSmartphone();
@@ -220,12 +221,14 @@ echo $popup->customised('popsuccess', '', $msg_popup, $is_custom_popup_visible);
     if ($citizen['inside_city_id'] !== NULL) {
         
         echo '
-            <section id="city_container">
+            <div id="city_container">
                 <nav id="city_menu">
                     '.$enclosure->city_menu($citizen['map_id'], $city_data['connected_city_id'], $citizen['city_id']).'
                     '.$enclosure->city_submenu($city_data['city_type_id'], $city_data['connected_city_id'], $is_citizen_home_connected).'
                 </nav>
-                <div id="city_contents">
+                
+                <!-- Textual representation of the city -->
+                <section id="city_contents">
                     <div id="home_house" class="city_row">
                         '. $enclosure->block_home() .'
                     </div>
@@ -272,8 +275,13 @@ echo $popup->customised('popsuccess', '', $msg_popup, $is_custom_popup_visible);
                     <div id="explore" class="city_row">
                         '. $enclosure->block_explore() .'
                     </div>
-                </div>
-            </section>';
+                </section>
+                
+                <!-- Isometric representation of the city -->
+                <section id="city_iso">
+                    '.$cityIso->city().'
+                </section>
+            </div>';
 
         // Dark overlay to blur the map under the city interface
         echo '<div id="dark_background"></div>';

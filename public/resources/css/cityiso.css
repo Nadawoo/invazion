@@ -1,0 +1,99 @@
+/*
+ * Styles for the isometric representation of the interior of the city
+ */
+
+#city_iso ::selection {
+    color:none;
+}
+#city_iso table {
+    /* Rotates the map to make it isometric */
+    transform: rotateX(55deg)  rotateZ(45deg);
+    border-collapse: collapse;
+    border:09x solid black;
+    background-image:url('http://invaziongame.localhost/resources/img/motiontwin/mapBg.jpg');
+    background-repeat: no-repeat;
+    background-size:50em;
+    /* Repositionates the map because the rotation puts it higher */
+    /*transform: translate(50%, 50%);*/
+    
+}
+#city_iso td {
+    /* The td must be positioned, otherwise the z-index of the children won't work */
+    position:relative;
+    z-index: 1;
+    width: 8rem;
+    height:8rem;
+    margin:auto;
+    border:1px solid #794918;
+    /* Compensates the rotation of the map 
+       (puts the assets vertically + cancels the 3D-distortion) */
+    transform: rotateX(45deg) rotateY(35deg) rotateZ(-60deg);
+}
+
+#city_iso td:hover {
+    cursor:pointer;
+    /* Avoids that the action block is hidden by buildings at the front */
+    z-index: 2;
+}
+
+#city_iso .asset {
+    position:absolute; /* top and left are set in the HTML (variables) */
+    height:256px;
+    width: 256px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#city_iso .actions {
+    position:absolute;
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height:100%;
+    width: 100%;
+    border:1px solid #34495e;
+    text-align:center;
+    opacity:0;
+}
+#city_iso .actions>.name,
+#city_iso .actionblock {
+    background:black;
+    box-shadow: 12px 12px 12px black;
+    color:white;
+}
+#city_iso .actions>.name {
+    font-size:2em;
+    font-variant:small-caps;
+}
+#city_iso .actionblocks {
+    display:flex;
+    justify-content:space-around;
+}
+
+#city_iso .actionblock {
+    height:5em;
+    width: 6em;
+    padding:0.3em 0;
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+#city_iso .actionblock>.name {
+    font-size:1.1em;
+}
+#city_iso .actionblock .number {
+    font-size:2.5em;
+}
+
+#city_iso td:hover .actions {
+    opacity:1;
+}
+
+/* Properly aligns the walls */
+#city_iso .citywall_left {
+    transform:rotateX(25deg) rotateY(18deg) rotateZ(0deg);
+}
+#city_iso .citywall_right {
+    transform:rotateX(25deg) rotateY(-18deg) rotateZ(0deg);
+}
