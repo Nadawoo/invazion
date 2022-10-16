@@ -239,8 +239,8 @@ echo $popup->customised('popsuccess', '', $msg_popup, $is_custom_popup_visible);
                         '. $enclosure->block_bag($html['bag_items']) .'
                     </div>
                     <div id="home_build" class="city_row">
-                        '. $enclosure->block_constructions($configs['constructions_home'], $configs['items'], $city_data['constructions'], 
-                                                           $city_data['total_defenses'], $zombies_next_attack, $zone['items']) .'
+                        '. $enclosure->block_constructions($configs['constructions_home'], $configs['items'], 
+                                                           $city_data['constructions'], $zone['items']) .'
                     </div>
                     <div id="city_fellows" class="city_row">
                         '. $enclosure->block_fellows_list($city_fellows, $specialities) .'
@@ -274,6 +274,9 @@ echo $popup->customised('popsuccess', '', $msg_popup, $is_custom_popup_visible);
                     </div>
                     <div id="explore" class="city_row">
                         '. $enclosure->block_explore() .'
+                    </div>
+                    <div id="city_defenses" class="city_row">
+                        '. $enclosure->block_defenses($city_data['total_defenses'], $zombies_next_attack) .'
                     </div>
                 </section>
                 

@@ -60,15 +60,16 @@ class HtmlCityEnclosure
         else {
             $city_menu = '
                 <div class="row">
+                    '.$this->city_submenu_item('city_defenses', 'Défenses').'
                     '.$this->city_submenu_item('city_constructions', 'Chantiers').'
                     '.$this->city_submenu_item('city_fellows', 'Habitants').'
-                    '.$this->city_submenu_item('city_door', 'Grande porte').'
                     '.$this->city_submenu_item('explore', 'Sortir<br>Explorer').'
                 </div>
                 <div class="row">
                     '.$this->city_submenu_item('city_storage', 'Dépôt').'
                     '.$this->city_submenu_item('city_well', 'Puits').'
                     '.$this->city_submenu_item('city_workshop', 'Atelier').'
+                    '.$this->city_submenu_item('city_door', 'Grande porte').'
                 </div>';
         }
         
@@ -412,14 +413,12 @@ class HtmlCityEnclosure
      * @param array $constructions_caracs Les caractéristiques statiques des chantiers (nom...)
      * @param array $items_caracs         Les caractéristiques statiques des objets
      * @param array $city_constructions   L'état des chantiers de la ville (avancement...)
-     * @param int   $total_defenses       Total des points de défense de la ville
-     *                                    (somme des points de tous les chantiers achevés)
      * @param array $zone_items           Les objets disponibles dans le dépôt de la ville
      *                                    (qui sont, à ce jour, les objets au sol)
      * @return string
      */
-    function block_constructions($constructions_caracs, $items_caracs, $city_constructions, 
-                                  $total_defenses, $zombies_next_attack, $zone_items)
+    function block_constructions($constructions_caracs, $items_caracs,  
+                                  $city_constructions, $zone_items)
     {
         
         $buttons = new HtmlButtons;
@@ -504,11 +503,10 @@ class HtmlCityEnclosure
         return '
             <div class="city_block" style="width:21.5em">
                 <h2>Tous les chantiers</h2>
-                '.$this->defenses_bar($total_defenses, $zombies_next_attack).'
                 <table id="constructions">
                     <tr style="font-size:0.9em">
-                        <td></td>
-                        <td>Défenses</td>
+                        <th></th>
+                        <th>Défenses</th>
                     </tr>
                     '.$html_constructions.'
                 </table>
@@ -541,7 +539,7 @@ class HtmlCityEnclosure
                 </div>
             </div>
             <div style="color:red;font-weight:bold;padding:0.3em 0 1em 0;">
-                &#9888;&#65039; '.$zombies_overflow.' défenses manquantes &#9888;&#65039;
+                &#9888;&#65039; '.$zombies_overflow.' défenses manquantes !
             </div>';
     }
     
@@ -574,6 +572,31 @@ class HtmlCityEnclosure
                     mais n\'oubliez personne dehors...</em></p>
                 <p>' . $door_status . '</p>
                 <p>' . $door_button . '</p>
+            </div>';
+    }
+    
+    
+    /**
+     * Summary of the number of defense points owned by the city
+     * 
+     * @param int $total_defenses Total des points de défense de la ville
+     *                            (somme des points de tous les chantiers achevés)
+     * @param int $zombies_next_attack Amount of zombies which will attack the city
+     * @return string HTML
+     */
+    function block_defenses($total_defenses, $zombies_next_attack)
+    {
+        
+        return '
+            <div class="city_block">
+                <h2>Défenses</h2>
+                <p class="descr">Objectif : construire suffisamment de défenses  
+                    pour repousser l\'attaque zombie de ce soir.</p>
+                '.$this->defenses_bar($total_defenses, $zombies_next_attack).'
+                <hr>
+                <p style="font-size:0.9em"><em>Pour augmenter les défenses, 
+                    construisez de nouveaux chantiers.</em></p>
+                <strong><a onclick="switchCitySubmenu(\'city_constructions\')">Améliorer les défenses</a></strong>
             </div>';
     }
     
