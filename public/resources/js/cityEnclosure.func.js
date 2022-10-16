@@ -27,7 +27,7 @@ function hideCityBlocks() {
  */
 function switchCityMenu(cityMenuId) {
     
-    var tabsList = ['cityMenuMyHome', 'cityMenuCity', 'cityMenuDoor'];
+    var tabsList = ['cityMenuMyHome', 'cityMenuCity'];
     
     // On masque tous les sous-menus de ville sans exception...
     hideIds(tabsList);        

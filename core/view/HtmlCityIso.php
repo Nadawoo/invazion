@@ -11,7 +11,8 @@ class HtmlCityIso {
     const IMAGE_POSITION_LEFT = -4;
     
     // Define here the characteristics of the images you want to place 
-    // on the isometric view of the city
+    // on the isometric view of the city. The key MUST be named the same as
+    // an HTML id in the block #city_contents (otherwise the JS onclick() will fail).
     // Sample structure for each item of the array:
     //'resources' => [
     //    'name'  => 'Ressources',
@@ -24,7 +25,7 @@ class HtmlCityIso {
     //                        ['name'=>'Épuisé', 'amount'=>0]
     //                        ]
     private $cityIsoBlocks = [
-        'citizens' => [
+        'city_fellows' => [
             'name'  => 'Habitants',
             'image' => 'copyrighted/buildings/Ho-042.png',
             'action_blocks' => [['name'=>'En ville', 'amount'=>1],
@@ -32,14 +33,14 @@ class HtmlCityIso {
                                 ['name'=>'Morts', 'amount'=>0]
                                 ]
         ],
-        'constructions' => [
+        'city_constructions' => [
             'name'  => 'Chantiers',
             'image' => 'copyrighted/buildings/Ho-026.png',
             'action_blocks' => [['name'=>'Disponibles', 'amount'=>3],
                                 ['name'=>'Achevés', 'amount'=>0]
                                 ]
         ],
-        'defenses' => [
+        'city_defenses' => [
             'name'  => 'Défenses',
             'image' => 'copyrighted/buildings/Ho-163.png',
             'image_size' => 380,
@@ -54,7 +55,7 @@ class HtmlCityIso {
             'image' => 'copyrighted/buildings/Ho-052.png',
             'action_blocks' => [['name'=>'À lire', 'amount'=>0]]
         ],
-        'door' => [
+        'city_door' => [
             'name'  => 'Grande porte',
             'image' => 'copyrighted/buildings/Ho-164.png',
             'image_size' => 300,
@@ -69,7 +70,7 @@ class HtmlCityIso {
                                 ['name'=>'Décoration', 'amount'=>0]
                                 ]
         ],        
-        'resources' => [
+        'explore' => [
             'name'  => 'Ressources',
             'image' => 'copyrighted/items/scrap.png',
             'image_size' => 170,
@@ -80,17 +81,17 @@ class HtmlCityIso {
                                 ['name'=>'Épuisé', 'amount'=>0]
                                 ]
         ],
-        'storage' => [
+        'city_storage' => [
             'name'  => 'Dépôt',
             'image' => 'copyrighted/buildings/Ho-046.png',
             'action_blocks' => [['name'=>'Objets', 'amount'=>0]]
         ],
-        'well' => [
+        'city_well' => [
             'name'  => 'Puits',
             'image' => 'copyrighted/buildings/Ho-043.png',
             'action_blocks' => [['name'=>'Eau', 'amount'=>0]]
         ],
-        'workshop' => [
+        'city_workshop' => [
             'name'  => 'Atelier',
             'image' => 'copyrighted/buildings/Ho-231.png',
             'action_blocks' => [['name'=>'Composants', 'amount'=>0]]
@@ -127,24 +128,24 @@ class HtmlCityIso {
         return '
             <table>
                 <tr>
-                    <td>'.$this->building('storage').'</td>
-                    <td>'.$this->building('citizens').'</td>
+                    <td>'.$this->building('city_storage').'</td>
+                    <td>'.$this->building('city_fellows').'</td>
                     <td>'.$this->building('my_home').'</td>
                     <td>'.$this->wall(4, 'right').'</td>
                     <td></td>
                     <td></td>
                 </tr>
                 <tr>
-                    <td>'.$this->building('well').'</td>
+                    <td>'.$this->building('city_well').'</td>
                     <td>'.$this->building('discuss').'</td>
                     <td></td>
-                    <td>'.$this->building('door').'</td>
-                    <td>'.$this->building('resources').'</td>
+                    <td>'.$this->building('city_door').'</td>
+                    <td>'.$this->building('explore').'</td>
                     <td></td>
                 </tr>
                 <tr>
-                    <td>'.$this->building('workshop').'</td>
-                    <td>'.$this->building('constructions').'</td>
+                    <td>'.$this->building('city_workshop').'</td>
+                    <td>'.$this->building('city_constructions').'</td>
                     <td></td>
                     <td>'.$this->wall(7, 'right').'</td>
                     <td></td>
@@ -154,7 +155,7 @@ class HtmlCityIso {
                     <td>'.$this->wall(4, 'left').'</td>
                     <td>'.$this->wall(4, 'left').'</td>
                     <td>'.$this->wall(7, 'left').'</td>
-                    <td>'.$this->building('defenses').'</td>
+                    <td>'.$this->building('city_defenses').'</td>
                     <td></td>
                     <td></td>
                 </tr>
@@ -258,7 +259,7 @@ class HtmlCityIso {
             $this->setImagePosition($asset['image_position_top'], $asset['image_position_left']);
         }
         
-        return $this->asset($asset['name'], $asset['image']);
+        return $this->asset($alias, $asset['name'], $asset['image']);
     }
     
     
@@ -309,7 +310,7 @@ class HtmlCityIso {
      * @param string $image_path The path to the image of the building
      * @return string HTML
      */
-    private function asset($name, $image_path) {
+    private function asset($alias, $name, $image_path) {
         
         $size = $this->imageSize;
         $top  = $this->imagePositionTop;
@@ -319,7 +320,8 @@ class HtmlCityIso {
         $this->setImagePosition(self::IMAGE_POSITION_TOP, self::IMAGE_POSITION_LEFT);
         
         return '
-            <div class="asset" style="top:'.$top.'em;left:'.$left.'em;">
+            <div class="asset" style="top:'.$top.'em;left:'.$left.'em;"
+                 onclick="switchCitySubmenu(\''.$alias.'\')">
                 <div class="actions">
                     <div class="name">'.$name.'</div>
                     <div class="actionblocks">

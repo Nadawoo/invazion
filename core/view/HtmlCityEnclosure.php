@@ -19,8 +19,7 @@ class HtmlCityEnclosure
          return '
             <div id="city_tabs">
                 <a onclick="switchCityMenu(\'cityMenuMyHome\');teleportToCity('.$map_id.', '.$home_id.')">Chez moi</a> &nbsp; 
-                <a onclick="switchCityMenu(\'cityMenuCity\');  teleportToCity('.$map_id.', '.$city_id.')">La ville</a> &nbsp; 
-                <a onclick="switchCityMenu(\'cityMenuDoor\')">L\'outre-monde</a>
+                <a onclick="switchCityMenu(\'cityMenuCity\');  teleportToCity('.$map_id.', '.$city_id.')">La ville</a>
             </div>';
     }
     
@@ -61,18 +60,17 @@ class HtmlCityEnclosure
         else {
             $city_menu = '
                 <div class="row">
-                    '.$this->city_submenu_item('city_storage', 'Dépôt').'
-                    '.$this->city_submenu_item('city_build', 'Chantiers').'
-                    '.$this->city_submenu_item('city_well', 'Puits').'
+                    '.$this->city_submenu_item('city_constructions', 'Chantiers').'
                     '.$this->city_submenu_item('city_fellows', 'Habitants').'
+                    '.$this->city_submenu_item('city_door', 'Grande porte').'
+                    '.$this->city_submenu_item('explore', 'Sortir<br>Explorer').'
                 </div>
                 <div class="row">
-                    '.$this->city_submenu_item('city_craft', 'Atelier').'
+                    '.$this->city_submenu_item('city_storage', 'Dépôt').'
+                    '.$this->city_submenu_item('city_well', 'Puits').'
+                    '.$this->city_submenu_item('city_workshop', 'Atelier').'
                 </div>';
         }
-        
-        // Display the door in a city but not in an individual home
-        $door_menu = ($city_type === 'home') ? '' : $this->city_submenu_item('city_door', 'Grande porte');
         
         
         return '
@@ -80,12 +78,10 @@ class HtmlCityEnclosure
                 <div class="row hidden" id="cityMenuMyHome">
                     '.$home_menu.'
                 </div>
+                <div class="hidden" id="cityMenuCityIso">
+                </div>
                 <div class="hidden" id="cityMenuCity">
                     '.$city_menu.'
-                </div>
-                <div class="row hidden" id="cityMenuDoor">
-                    '.$door_menu.'
-                    '.$this->city_submenu_item('explore', 'Sortir<br>Explorer').'
                 </div>
             </div>';
     }
@@ -155,7 +151,7 @@ class HtmlCityEnclosure
                 <h2>Dépôt</h2>
                 <div class="descr">Les joueurs déposent ici les objets trouvés 
                     lors de leurs <a onclick="switchCityTab(\'city_door\')">expéditions</a>. Utilisez-les pour 
-                    <a onclick="switchCityTab(\'city_build\')">construire la ville</a>... 
+                    <a onclick="switchCityTab(\'city_constructions\')">construire la ville</a>... 
                     ou <a onclick="switchCityTab(\'city_perso\')">votre propre habitation</a>.
                 </div>
                 <div class="contents">
@@ -398,7 +394,7 @@ class HtmlCityEnclosure
                 <h2>Mon sac</h2>
                 <div class="descr">Déposez les objets de votre sac 
                     <a onclick="switchCityTab(\'city_storage\')">au dépôt de la ville</a>
-                    pour bâtir <a onclick="switchCityTab(\'city_build\')">des chantiers communs</a>... 
+                    pour bâtir <a onclick="switchCityTab(\'city_constructions\')">des chantiers communs</a>... 
                     ou gardez-les pour aménager
                     <a onclick="switchCityTab(\'city_perso\')">votre habitation</a>.
                 </div>
@@ -650,7 +646,7 @@ class HtmlCityEnclosure
                 <h2>Atelier</h2>
                 <div class="descr">En assemblant des objets à l\'atelier, vous  
                     augmentez les défenses de la ville ou créez des ressources utiles 
-                    pour <a onclick="switchCityTab(\'city_build\')">les chantiers communs</a>...
+                    pour <a onclick="switchCityTab(\'city_constructions\')">les chantiers communs</a>...
                 </div>
                 <div class="contents">
                 '.$html_craftable_items.'

@@ -256,10 +256,10 @@ echo $popup->customised('popsuccess', '', $msg_popup, $is_custom_popup_visible);
                         '. $enclosure->block_well($city_data['well_current_water']) .'
                         '. $enclosure->block_bag($html['bag_items']) .'
                     </div>
-                    <div id="city_craft" class="city_row">
+                    <div id="city_workshop" class="city_row">
                         '. $enclosure->block_workshop($zone['items'], $configs['items']) .'
                     </div>
-                    <div id="city_build">
+                    <div id="city_constructions">
                         <div class="city_row">
                         '. $constructionCards->all_cards($configs['items'], $zone['items'], 
                                                          $configs['constructions'], $city_data['constructions']) .'

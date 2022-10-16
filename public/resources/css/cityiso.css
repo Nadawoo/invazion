@@ -5,6 +5,9 @@
 #city_iso ::selection {
     color:none;
 }
+#city_iso {
+    overflow-x: hidden;
+}
 #city_iso table {
     /* Rotates the map to make it isometric */
     transform: rotateX(55deg)  rotateZ(45deg);
