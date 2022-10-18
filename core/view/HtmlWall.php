@@ -43,11 +43,11 @@ class HtmlWall
     {
         
         return '<nav id="discussionTabs" style="margin-bottom:0.9em">
-                    <a id="tabWallPhone" class="active_tab">Smartphone</a> 
-                    <a id="tabWallDiscuss">Discussions</a> 
+                    <a id="tabWallDiscuss" class="active_tab">Discussions</a> 
                     <!--<a id="tabWallNotifications">Notifications</a>-->
                     <a id="tabWallEvents">Événements</a> 
                     <a id="tabWallAttacks">Attaques</a> 
+                    <a id="tabWallPhone">Smartphone</a> 
                 </nav>';
     }
     

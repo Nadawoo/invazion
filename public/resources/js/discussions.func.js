@@ -66,6 +66,9 @@ async function enlargeWall() {
         document.querySelector("#floating_wall").style.height = minBarHeight;
         document.querySelector("#enlarge_wall .arrow").style.transform = "rotate(0)";
     }
+    
+    // Loads the discussions tab by default
+    switchToDiscussTab();
 }
 
 
@@ -197,4 +200,20 @@ async function updateDiscussionsList() {
     
     document.getElementById("wallDiscuss").innerHTML = htmlNewDiscussionForm(citizenPseudo)
                                                        + discussions;
+}
+
+
+/**
+ * In the "communications" panel, activates the "Discussions" tab
+ * @returns {undefined}
+ */
+function switchToDiscussTab() {
+    
+    display("wallDiscuss");
+    hide(["wallPhone", "wallNotifications", "wallEvents", "wallAttacks"]);
+    activateDiscussionTab("tabWallDiscuss");
+    updateDiscussionsList();
+    // Add the listener on the form to create a topic.
+    // TODO: make a cleaner code with async
+    setTimeout(function() { listenToSendform(); }, 100);
 }

@@ -71,15 +71,7 @@ if (document.getElementById('map') !== null) {
     
     
     // Switch tabs in the communications panel
-    document.getElementById("tabWallDiscuss").addEventListener("click", function() {
-        display("wallDiscuss");
-        hide(["wallPhone", "wallNotifications", "wallEvents", "wallAttacks"]);
-        activateDiscussionTab("tabWallDiscuss");
-        updateDiscussionsList();
-        // Add the listener on the form to create a topic.
-        // TODO: make a cleaner code with async
-        setTimeout(function() { listenToSendform(); }, 100);
-    });
+    document.getElementById("tabWallDiscuss").addEventListener("click", switchToDiscussTab);
     document.getElementById("tabWallAttacks").addEventListener("click", function() {
         display("wallAttacks");
         hide(["wallPhone", "wallDiscuss", "wallNotifications", "wallEvents"]);
@@ -108,9 +100,9 @@ if (document.getElementById('map') !== null) {
 //    });
     
     // Show/hide the vertical panel for the discussions and events
-    document.getElementById("enlarge_wall").addEventListener("click", function() {
-        enlargeWall();
-    });
+    document.getElementById("enlarge_wall").addEventListener("click", enlargeWall);
+    // In the isometric view of the city, a building deploys the "communications"
+    document.querySelector("#city_iso .discuss").addEventListener("click", enlargeWall);
 }
 
 // If the player is connected

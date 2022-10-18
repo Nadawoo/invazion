@@ -320,7 +320,7 @@ class HtmlCityIso {
         $this->setImagePosition(self::IMAGE_POSITION_TOP, self::IMAGE_POSITION_LEFT);
         
         return '
-            <div class="asset" style="top:'.$top.'em;left:'.$left.'em;"
+            <div class="asset '.$alias.'" style="top:'.$top.'em;left:'.$left.'em;"
                  onclick="switchCitySubmenu(\''.$alias.'\')">
                 <div class="actions">
                     <div class="name">'.$name.'</div>
