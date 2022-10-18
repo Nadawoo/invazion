@@ -155,6 +155,17 @@
 .city_block td {
     border:none;
 }
+/* Button to hide all the city blocks */
+.close_city_blocks {
+    height:1.5em;
+    width: 1.5em;
+    font-size:1.4em;
+    font-weight:bold;
+    border:none;
+    border-radius:2em;
+    background:darkred;
+    color:white;
+}
 
 /* The table of the constructions in the city */
 #constructions {

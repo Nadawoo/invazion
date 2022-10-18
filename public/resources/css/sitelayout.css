@@ -125,6 +125,10 @@ a:hover, .formlink:hover {
     color:red;
 }
 
+button {
+    cursor:pointer;
+}
+
 /* Centre les icônes verticalement par rapport à la ligne de texte */
 p img {
     vertical-align:middle;

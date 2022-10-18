@@ -245,24 +245,29 @@ echo $popup->customised('popsuccess', '', $msg_popup, $is_custom_popup_visible);
                     <div id="city_fellows" class="city_row">
                         '. $enclosure->block_fellows_list($city_fellows, $specialities) .'
                         '. $enclosure->block_fellows_homes($city_fellows, $specialities, $city_data['coord_x'], $city_data['coord_y']) .'
+                        '. $enclosure->button_close_block().'
                     </div>
                     <div id="city_storage" class="city_row">
                         <div id="blockCityStorage" class="city_block">
                             '. $enclosure->block_city_storage($html['zone_items']) .'
                         </div>
                         '. $enclosure->block_bag($html['bag_items']) .'
+                        '. $enclosure->button_close_block() .'
                     </div>
                     <div id="city_well" class="city_row">
                         '. $enclosure->block_well($city_data['well_current_water']) .'
                         '. $enclosure->block_bag($html['bag_items']) .'
+                        '. $enclosure->button_close_block() .'
                     </div>
                     <div id="city_workshop" class="city_row">
                         '. $enclosure->block_workshop($zone['items'], $configs['items']) .'
+                        '. $enclosure->button_close_block().'
                     </div>
                     <div id="city_constructions">
                         <div class="city_row">
                         '. $constructionCards->all_cards($configs['items'], $zone['items'], 
                                                          $configs['constructions'], $city_data['constructions']) .'
+                        '. $enclosure->button_close_block().'
                         </div>
                         <div class="city_row">
                         '. $enclosure->block_constructions($configs['constructions'], $configs['items'], $city_data['constructions'], 
@@ -271,12 +276,15 @@ echo $popup->customised('popsuccess', '', $msg_popup, $is_custom_popup_visible);
                     </div>
                     <div id="city_door" class="city_row">
                         '. $enclosure->block_city_door($city_data['is_door_closed']) .'
+                        '. $enclosure->button_close_block().'
                     </div>
                     <div id="explore" class="city_row">
                         '. $enclosure->block_explore() .'
+                        '. $enclosure->button_close_block().'
                     </div>
                     <div id="city_defenses" class="city_row">
                         '. $enclosure->block_defenses($city_data['total_defenses'], $zombies_next_attack) .'
+                        '. $enclosure->button_close_block().'
                     </div>
                 </section>
                 

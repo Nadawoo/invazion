@@ -96,6 +96,12 @@ class HtmlCityEnclosure
     }
     
     
+    function button_close_block() {
+        
+        return '<button class="close_city_blocks" onclick="hideCityBlocks();display(\'city_iso\')">&times;</button>';
+    } 
+    
+    
     /**
      * Bloc à l'intérieur de la ville :
      * le puits

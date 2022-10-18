@@ -75,12 +75,12 @@ class HtmlPage
                 <meta property="twitter:image:alt" content="'.$metas['image_alt'].'">
                 
                 <link rel="canonical" href="'.$metas['canonical'].'">
-                <link rel="stylesheet" type="text/css" href="resources/css/sitelayout.css?v4.3">
+                <link rel="stylesheet" type="text/css" href="resources/css/sitelayout.css?v4.4">
                 <link rel="stylesheet" type="text/css" href="resources/css/gamelayout.css?v8.3">
                 <link rel="stylesheet" type="text/css" href="resources/css/map.css?v3.8">
                 <link rel="stylesheet" type="text/css" href="resources/css/smartphone.css?v1.6">
                 <link rel="stylesheet" type="text/css" href="resources/css/myzone.css?v1.4">
-                <link rel="stylesheet" type="text/css" href="resources/css/city.css?v3.4">
+                <link rel="stylesheet" type="text/css" href="resources/css/city.css?v3.5">
                 <link rel="stylesheet" type="text/css" href="resources/css/cityiso.css?v1.1">
                 <link rel="stylesheet" type="text/css" href="resources/css/wall.css?v3.1">
                 <link rel="stylesheet" type="text/css" href="resources/css/popup.css?v2.0">
