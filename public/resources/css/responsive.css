@@ -53,4 +53,11 @@
     #connectionForm {
         max-width:80%;
     }
+    /* Replaces the isometric city by the textual menu on small screens */
+    #cityMenuCity {
+        display:block;
+    }
+    #city_iso {
+        display:none;
+    }
 }

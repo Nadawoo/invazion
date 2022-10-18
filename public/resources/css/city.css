@@ -41,6 +41,12 @@
     border-bottom:2px solid red;
 }
 
+/* The submenus for the city are by default replaced by the isometric view of the city.
+   They are still useful on small screen though, see responsive.css */
+#cityMenuCity {
+    display:none;
+}
+
 #city_submenus {
     display:flex;
     justify-content: center;

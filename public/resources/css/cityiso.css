@@ -16,6 +16,7 @@
     background-image:url('http://invaziongame.localhost/resources/img/motiontwin/mapBg.jpg');
     background-repeat: no-repeat;
     background-size:50em;
+    margin-top:-2rem;
     /* Repositionates the map because the rotation puts it higher */
     /*transform: translate(50%, 50%);*/
     

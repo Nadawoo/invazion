@@ -79,8 +79,6 @@ class HtmlCityEnclosure
                 <div class="row hidden" id="cityMenuMyHome">
                     '.$home_menu.'
                 </div>
-                <div class="hidden" id="cityMenuCityIso">
-                </div>
                 <div class="hidden" id="cityMenuCity">
                     '.$city_menu.'
                 </div>
