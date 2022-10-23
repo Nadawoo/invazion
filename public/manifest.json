@@ -1,0 +1,27 @@
+{
+  "background_color": "#c0392b",
+  "description": "Jeu de survie collaboratif inspiré de Hordes.fr. Explorez le désert en équipe ou en solo, dénichez les précieuses ressources, construisez des défenses et survivez à l'attaque quotidienne !",
+  "dir": "ltr",
+  "display_override": ["standalone", "minimal-ui"],
+  "display": "browser",
+  "name": "InvaZion, le jeu de zombies",
+  "orientation": "any",
+  "scope": "/",
+  "short_name": "InvaZion",
+  "start_url": "/",
+  "theme_color": "#ffffff",
+  "categories": [
+    "games"
+  ],
+  "screenshots": [
+  ],
+  "icons": [
+    {
+      "src": "https://invaziongame.nadazone.fr/resources/img/favicon.png",
+      "type": "image/png",
+      "sizes": "672x672"
+    }
+  ],
+  "shortcuts": [],
+  "lang": "fr"
+}

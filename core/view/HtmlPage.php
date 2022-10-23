@@ -75,6 +75,8 @@ class HtmlPage
                 <meta property="twitter:image:alt" content="'.$metas['image_alt'].'">
                 
                 <link rel="canonical" href="'.$metas['canonical'].'">
+                <link rel="icon" type="image/png" href="resources/img/favicon.png">                
+                <link rel="manifest" href="manifest.json" />
                 <link rel="stylesheet" type="text/css" href="resources/css/sitelayout.css?v4.4">
                 <link rel="stylesheet" type="text/css" href="resources/css/gamelayout.css?v8.3">
                 <link rel="stylesheet" type="text/css" href="resources/css/map.css?v3.8">
