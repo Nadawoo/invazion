@@ -145,6 +145,14 @@ class HtmlPage
                             </footer>
                         </div> <!-- End of #page_container -->
                     </div> <!-- End of #body_bg -->
+                    
+                    <script>
+                    <!-- Registers the service workers to handle the website as a PWA -->
+                    if (typeof navigator.serviceWorker !== "undefined") {
+                        navigator.serviceWorker.register("resources/js/serviceWorkers.js?v=1")
+                    }
+                    </script>
+
                     <script type="text/javascript" src="resources/js/ZombLib.js?v1.3"></script>
                     <script type="text/javascript" src="resources/js/wallTemplate.js?v4.4"></script>
                     <script type="text/javascript" src="resources/js/actionBlocks.func.js?v1.0"></script>
