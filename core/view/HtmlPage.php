@@ -149,7 +149,7 @@ class HtmlPage
                     <script>
                     <!-- Registers the service workers to handle the website as a PWA -->
                     if (typeof navigator.serviceWorker !== "undefined") {
-                        navigator.serviceWorker.register("resources/js/serviceWorkers.js?v=1")
+                        navigator.serviceWorker.register("/sw.js?v=1")
                     }
                     </script>
 
