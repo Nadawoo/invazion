@@ -537,7 +537,7 @@ class HtmlLayout extends HtmlPage
     {
         
         return '
-            <div id="alert_control" class="cover_paddle">
+            <div id="alert_control" class="block_alert cover_paddle">
                 <div class="title">Bloqué par les zombies !</div>
                 <div class="text">
                     Les zombies 
@@ -569,7 +569,7 @@ class HtmlLayout extends HtmlPage
                             : '';
         
         return '
-            <div id="alert_control" class="cover_paddle">
+            <div id="alert_tired" class="block_alert cover_paddle">
                 <div class="title">Vous êtes épuisé !</div>
                 <div class="text">
                     Vous n\'avez plus assez de points d\'action pour quitter la zone !
@@ -598,7 +598,7 @@ class HtmlLayout extends HtmlPage
         $delay = date('i\m\n s\s', $timestamp-time());
         
         return '
-            <div id="alert_control">
+            <div id="alert_control_lost" class="block_alert">
                 <div class="text">
                     Les humains ont perdu le contrôle de la zone ! Il vous reste 
                     peu de temps pour fuir avant d\'être totalement bloqué :

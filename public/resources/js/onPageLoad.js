@@ -45,7 +45,7 @@ if (document.getElementById('map') !== null) {
         // Update the numbers in the big buttons next to the map
         updateRoundActionButtons(zoneData.coordx, zoneData.coordy);
         // Display an alert over the movement paddle if the player is blocked
-        updateBlockAlertControl(zoneData.zombies);
+        updateBlockAlertControl(zoneData.controlpointscitizens, zoneData.controlpointszombies);
         // Display the actions for fighting against zombies
         showFightingZombiesButtons(zoneData.zombies);
 

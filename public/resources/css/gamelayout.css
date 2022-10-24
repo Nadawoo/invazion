@@ -719,6 +719,8 @@ a.redbutton {
  */
 #alert_control {
     display:none;
+}
+.block_alert {
     margin-left:0;
     margin-bottom:1rem;
     border:2px outset black;
@@ -733,23 +735,23 @@ a.redbutton {
     margin-right:0.5rem;
     z-index:1;
 }
-#alert_control .title {
+.block_alert .title {
     padding:0.3em 0;
     background:#940a0a;
     color:white;
     font-weight:bold;
 }
-#alert_control .text {
+.block_alert .text {
     padding:0.8em 0.5em;
     font-size:0.9em;
     color:#fbeee6;
     max-height:9rem; /* Must not cover the contextual actions (enter in city...) */
     overflow:auto;
 }
-#alert_control .nbr_zombies {
+.block_alert .nbr_zombies {
     font-size:1.3em;
 }
-#alert_control a {
+.block_alert a {
     font-size:0.8em;
     color:orange;
 }

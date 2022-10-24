@@ -38,11 +38,11 @@ async function updateBlockAction(blockAlias) {
 function updateBlockActionMove(newNbrZombies) {
 
     // Update the red alert frame above the movement paddle
-    let alertControlNbrZombies = document.querySelector("#alert_control .nbr_zombies");
+    let alertControlNbrZombies = document.querySelector("#alert_tired .nbr_zombies");
     if(alertControlNbrZombies !== null) {
         alertControlNbrZombies.innerHTML = newNbrZombies;
         if(newNbrZombies <= 0) {
-            hideIds("alert_control");
+            hideIds("alert_tired");
         }
     }
     
@@ -76,11 +76,12 @@ function updateActionPointsBar(actionsPointsLost) {
 /**
  * Display an alert over the movement paddle if the player is blocked
  * 
- * @param {int} nbrZombies The number of zombies in the player's zone
+ * @param {int} controlpointsCitizens The sum of control points of the citizens in the zone
+ * @param {int} controlpointsZobmies  The sum of control points of the zombies in the zone
  */
-function updateBlockAlertControl(nbrZombies) {
+function updateBlockAlertControl(controlpointsCitizens, controlpointsZombies) {
     
-    document.querySelector("#alert_control").style.display = (nbrZombies > 0) ? "block" : "none";
+    document.querySelector("#alert_control").style.display = (parseInt(controlpointsCitizens) < parseInt(controlpointsZombies)) ? "block" : "none";
 }
 
 
