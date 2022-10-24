@@ -601,11 +601,16 @@ class ZombLib
      */
     private function update_cookie($name, $value)
     {
-        // Sets or updates the value of the cookie in the browser
-        // NB : doesn't use setcookie() to ensure compatibility with all PHP versions,
-        // as setcookie doesn't support SameSite attribute before PHP < 7.3
-        header('Set-Cookie: '.$name.'='.$value.'; path=/; SameSite=Lax');
-        // Updates the PHP variable too, otherwise the new value of the cookie
+        // 1°) Sets or updates the value of the cookie in the browser
+        // Set an explicit expiration time, otherwise the user will be disconnected 
+        // each time he PWA is closed.
+        $max_age = 3600 * 24 * 30;
+        // NB : uses header('Set-Cookie') instead of setcookie() to ensure 
+        // compatibility with old PHP versions, as setcookie doesn't support 
+        // the SameSite attribute before PHP < 7.3
+        header('Set-Cookie: '.$name.'='.$value.'; path=/; SameSite=Lax; Max-Age='.$max_age);
+        
+        // 2°) Updates the PHP variable too, otherwise the new value of the cookie
         // would be ignored until the script has finished running.
         $_COOKIE[$name] = $value;
     }
