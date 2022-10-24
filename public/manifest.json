@@ -19,7 +19,7 @@
     {
       "src": "https://invaziongame.nadazone.fr/resources/img/favicon.png",
       "type": "image/png",
-      "sizes": "672x672"
+      "sizes": "any"
     }
   ],
   "shortcuts": [],
