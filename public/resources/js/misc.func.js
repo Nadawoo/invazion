@@ -237,8 +237,11 @@ function toggleItemsPanel() {
  * @param {string} value Le contenu du cookie
  */
 function setCookie(name, value) {
-	
-	document.cookie = name+"="+value+"; SameSite=Lax"; 
+    
+    // Set an explicit expiration time, otherwise the cookies will be deleted 
+    // each time he PWA is closed.
+    let maxAge = 3600*24*30;
+    document.cookie = name+"="+value+"; SameSite=Lax; Max-Age="+maxAge+";"; 
 }
 
 

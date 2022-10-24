@@ -159,7 +159,7 @@ class HtmlPage
                     <script type="text/javascript" src="resources/js/cityEnclosure.func.js?v1.0"></script>
                     <script type="text/javascript" src="resources/js/discussions.func.js?v1.1"></script>
                     <script type="text/javascript" src="resources/js/events.func.js?v1.0"></script>
-                    <script type="text/javascript" src="resources/js/misc.func.js?v9.1"></script>
+                    <script type="text/javascript" src="resources/js/misc.func.js?v9.2"></script>
                     <script type="text/javascript" src="resources/js/onPageLoad.js?v1.4"></script>
                     <script type="text/javascript" src="resources/js/events.js?v5.3"></script>
                 </body>
