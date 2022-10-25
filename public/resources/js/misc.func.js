@@ -577,6 +577,7 @@ async function killZombies(apiAction) {
         // Update the action blocks (round buttons next to the map)
         updateBlockActionZombies(newNbrZombies);
         updateBlockActionMove(newNbrZombies);
+        updateBlockAlertControl(myZone.dataset.controlpointscitizens, myZone.dataset.controlpointszombies);
         
         // Update the zombie silhouettes on the map zone
         if(newNbrZombies > 0) {
@@ -874,7 +875,7 @@ async function UpdateMapRealtime(event, timestamp) {
     // Get informations about the current zone through the "data-*" HTML attributes
     let zoneData = document.querySelector("#me").parentNode.dataset;
     // Display an alert over the movement paddle if the player is blocked
-    updateBlockAlertControl(zoneData.zombies);  
+    updateBlockAlertControl(zoneData.controlpointscitizens, zoneData.controlpointszombies);  
     
     // Refresh the timestamp to memorize that these actions have been treated
     return timestamp = await JSON.parse(event.data).zones;

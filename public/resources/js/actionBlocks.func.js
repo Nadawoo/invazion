@@ -36,15 +36,6 @@ async function updateBlockAction(blockAlias) {
  * @param {int} newNbrZombies The number of zombies in the zone after the action
  */
 function updateBlockActionMove(newNbrZombies) {
-
-    // Update the red alert frame above the movement paddle
-    let alertControlNbrZombies = document.querySelector("#alert_tired .nbr_zombies");
-    if(alertControlNbrZombies !== null) {
-        alertControlNbrZombies.innerHTML = newNbrZombies;
-        if(newNbrZombies <= 0) {
-            hideIds("alert_tired");
-        }
-    }
     
     // Update the details about movement cost (action points)
     if(newNbrZombies <= 0) {
@@ -77,10 +68,23 @@ function updateActionPointsBar(actionsPointsLost) {
  * Display an alert over the movement paddle if the player is blocked
  * 
  * @param {int} controlpointsCitizens The sum of control points of the citizens in the zone
- * @param {int} controlpointsZobmies  The sum of control points of the zombies in the zone
+ * @param {int} controlpointsZombies  The sum of control points of the zombies in the zone
  */
 function updateBlockAlertControl(controlpointsCitizens, controlpointsZombies) {
     
+    let actionPoints = document.querySelector("#gameData #actionPoints").innerHTML;
+    
+    // Displays an alert when the player has not enough action points to  move
+    if ((   controlpointsZombies === 0 && actionPoints < _configsMap.moving_cost_no_zombies)
+        || (controlpointsZombies === 0 && actionPoints === 0 && _configsMap.moving_cost_no_zombies > 0)
+        || (controlpointsZombies   > 0 && actionPoints < _configsMap.moving_cost_zombies)
+        ) { 
+        display("alert_tired");
+    } else {
+        hide("alert_tired");
+    }
+    
+    // Displays an alert when the citizens have less control points than the zombies on the zone
     document.querySelector("#alert_control").style.display = (parseInt(controlpointsCitizens) < parseInt(controlpointsZombies)) ? "block" : "none";
 }
 

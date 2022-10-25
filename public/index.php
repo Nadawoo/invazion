@@ -130,7 +130,8 @@ $html = [
     // Data about the player for javascript treatments (his coordinates...)
     'hidden_player_data' => $layout->hidden_player_data($citizen, $speciality_caracs['action_points']),
     // The unvariable data of the game (buildings names...)
-    'json_configs'      => $layout->json_configs(json_encode($configs['buildings']),
+    'json_configs'      => $layout->json_configs(json_encode($configs['map']),
+                                                 json_encode($configs['buildings']),
                                                  json_encode($configs['items'])),
     // Assembling the HTML for the map
     'map' => $map->hexagonal_map($maps['map_width'], $maps['map_height'], $maps['zones'], $citizen, $maps['next_attack_hour']),
@@ -367,13 +368,7 @@ echo $popup->customised('popsuccess', '', $msg_popup, $is_custom_popup_visible);
                 if ($zone['controlpoints_citizens'] < $zone['controlpoints_zombies'] and time() < strtotime($zone['date_control_end'])) {
                     echo $layout->block_alert_escape(strtotime($zone['date_control_end']));
                 }
-                elseif (($zone['zombies'] === 0 and $citizen['action_points'] < $configs['map']['moving_cost_no_zombies'])
-                     or ($zone['zombies'] === 0 and $citizen['action_points'] === 0 and $configs['map']['moving_cost_no_zombies'] > 0)
-                     or ($zone['zombies'] >   0 and $citizen['action_points'] < $configs['map']['moving_cost_zombies'])
-                    ) {                    
-                    echo $layout->block_alert_tired($zone['zombies']);
-                }
-                
+                echo $layout->block_alert_tired($zone['zombies']);
                 echo $layout->block_alert_control($zone['zombies']);
                 
                 echo '

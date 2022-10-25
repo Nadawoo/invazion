@@ -16,15 +16,20 @@ class HtmlLayout extends HtmlPage
      * Store in the HTML the unvariable data of the game (building names...).
      * Useful to reuse those data with javascript without calling the Invazion's API
      * 
+     * @param string $json_map       The JSON string containing the general characteristics
+     *                               of the map : cost of a move...
      * @param string $json_buildings The JSON string containing the informations
      *                               about the buildings, as returned by the "configs" API
      * @param string $json_items     The JSON string containing the informations 
      *                               about the items, as returned by the "configs"  API
      * @return string HTML
      */
-    function json_configs($json_buildings, $json_items) {
+    function json_configs($json_map, $json_buildings, $json_items) {
         
         return '<section id="configs">
+                    <div class="map">
+                    '.$json_map.'
+                    </div>
                     <div class="buildings">
                     '.$json_buildings.'
                     </div>

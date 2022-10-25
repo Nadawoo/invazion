@@ -9,6 +9,7 @@ var _myZone = null;
 // Get the unvariable data of the game (building names...) stored in the HTML
 var _configsBuildings = JSON.parse(document.querySelector("#configs .buildings").innerHTML);
 var _configsItems     = JSON.parse(document.querySelector("#configs .items").innerHTML);
+var _configsMap       = JSON.parse(document.querySelector("#configs .map").innerHTML);
 // Permanently stores the result of the API whichs gives the discussions list 
 var _jsonDiscussionApi = null;
 

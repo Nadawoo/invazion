@@ -717,7 +717,7 @@ a.redbutton {
 /*
  * Bloc rouge indiquant que le joueur est bloqué par les zombies
  */
-#alert_control {
+#alert_control, #alert_tired {
     display:none;
 }
 .block_alert {
