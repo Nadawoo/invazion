@@ -271,6 +271,16 @@ class HtmlButtons
                     'params[type]'  => 'builder',
                     ],
                 ],
+            'specialize_weak' => [
+                'icon'  => '',
+                'name'  => 'Ordinaire',
+                'title' => "",
+                'fields' => [
+                    'api_name'      => 'me',
+                    'action'        => 'specialize',
+                    'params[type]'  => 'weak',
+                    ],
+                ],
             'specialize_zombie' => [
                 'icon'  => '',
                 'name'  => 'Zombie',

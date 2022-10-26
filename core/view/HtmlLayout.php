@@ -129,6 +129,18 @@ class HtmlLayout extends HtmlPage
         
         $buttons = new HtmlButtons();
         
+        $html_specialities = '';
+        foreach($specialities as $alias=>$speciality) {
+            
+            $html_specialities .= '
+                <li>'.$buttons->button('specialize_'.$alias, '', 'inline').'&nbsp;
+                    [<abbr title="Les points d\'action vous permettent d\'explorer le désert, construire des bâtiments et d\'autres actions encore.">Points d\'action</abbr>&nbsp;:
+                                  '. $speciality['action_points'].'&nbsp; |&nbsp;
+                    <abbr title="Plus votre sac est grand, plus vous pouvez transporter d\'objets en même temps.">Sac</abbr>&nbsp;:
+                    '.plural($speciality['bag_size'], 'objet').']
+                </li>';
+        }
+        
         return '
                 <p class="center">
                     <button class="redbutton" onclick="toggle(\'specialities\');hide(\'capacities\');return false">Changer ma spécialité</button>
@@ -136,30 +148,15 @@ class HtmlLayout extends HtmlPage
                 </p>
 
                 <ul id="specialities">
-                    <li>'.$buttons->button('specialize_digger', '', 'inline').'&nbsp;
-                        [Points d\'action&nbsp;:     '. $specialities['digger']['action_points']    .'&nbsp;&nbsp; |
-                        Capacité du sac&nbsp;: '. $specialities['digger']['bag_size'] .'&nbsp;objets]
-                    </li>
-                    <li>'.$buttons->button('specialize_explorer', '', 'inline').'&nbsp;
-                        [Points d\'action&nbsp;:     '. $specialities['explorer']['action_points']    .'&nbsp;&nbsp; |
-                        Capacité du sac&nbsp;: '. $specialities['explorer']['bag_size'] .'&nbsp;objets]
-                    </li>
-                    <li>'.$buttons->button('specialize_builder', '', 'inline').'&nbsp;
-                        [Points d\'action&nbsp;:     '. $specialities['builder']['action_points']    .' |
-                        Capacité du sac&nbsp;: '. $specialities['builder']['bag_size'] .'&nbsp;objets]
-                    </li>
-                    <li>'.$buttons->button('specialize_zombie', '', 'inline').'&nbsp;
-                        [Points d\'action&nbsp;:     '. $specialities['zombie']['action_points']    .' |
-                        Capacité du sac&nbsp;: '. $specialities['zombie']['bag_size'] .'&nbsp;objets]
-                    </li>
+                    '.$html_specialities.'
                 </ul>
                 
                 <ul id="capacities">
-                    <li>'.$buttons->button('upgrade_camouflage', '', 'inline').'
-                        Permet de vous dissimuler aux yeux des autres humains
+                    <li>'.$buttons->button('upgrade_camouflage', '', 'inline').'<br>
+                        &nbsp;&nbsp;&nbsp;Permet de vous dissimuler aux yeux des autres humains
                     </li>
-                    <li>'.$buttons->button('upgrade_vision', '', 'inline').'
-                        Permet de percer le camouflage des humains et des bâtiments
+                    <li>'.$buttons->button('upgrade_vision', '', 'inline').'<br>
+                        &nbsp;&nbsp;&nbsp;Permet de percer le camouflage des humains et des bâtiments
                     </li>            
                 </ul>';
     }
