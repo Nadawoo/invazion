@@ -3,16 +3,15 @@
  */
 
 #city_iso ::selection {
-    color:none;
+    color:inherit;
 }
 #city_iso {
     overflow-x: hidden;
 }
 #city_iso table {
     /* Rotates the map to make it isometric */
-    transform: rotateX(55deg)  rotateZ(45deg);
+    transform: rotateX(55deg) rotateZ(45deg);
     border-collapse: collapse;
-    border:09x solid black;
     background-image:url('http://invaziongame.localhost/resources/img/motiontwin/mapBg.jpg');
     background-repeat: no-repeat;
     background-size:50em;
