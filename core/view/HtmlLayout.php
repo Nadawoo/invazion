@@ -148,6 +148,10 @@ class HtmlLayout extends HtmlPage
                         [Points d\'action&nbsp;:     '. $specialities['builder']['action_points']    .' |
                         Capacité du sac&nbsp;: '. $specialities['builder']['bag_size'] .'&nbsp;objets]
                     </li>
+                    <li>'.$buttons->button('specialize_zombie', '', 'inline').'&nbsp;
+                        [Points d\'action&nbsp;:     '. $specialities['zombie']['action_points']    .' |
+                        Capacité du sac&nbsp;: '. $specialities['zombie']['bag_size'] .'&nbsp;objets]
+                    </li>
                 </ul>
                 
                 <ul id="capacities">

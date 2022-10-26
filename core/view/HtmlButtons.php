@@ -271,6 +271,16 @@ class HtmlButtons
                     'params[type]'  => 'builder',
                     ],
                 ],
+            'specialize_zombie' => [
+                'icon'  => '',
+                'name'  => 'Zombie',
+                'title' => "",
+                'fields' => [
+                    'api_name'      => 'me',
+                    'action'        => 'specialize',
+                    'params[type]'  => 'zombie',
+                    ],
+                ],
             'start_game' => [
                 'icon'  => '',
                 'name'  => "Commencer une partie",
