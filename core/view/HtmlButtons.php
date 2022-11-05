@@ -281,14 +281,14 @@ class HtmlButtons
                     'params[type]'  => 'weak',
                     ],
                 ],
-            'specialize_zombie' => [
+            'specialize_zombie_excavator' => [
                 'icon'  => '',
-                'name'  => 'Zombie',
+                'name'  => 'Zombie excavateur',
                 'title' => "",
                 'fields' => [
                     'api_name'      => 'me',
                     'action'        => 'specialize',
-                    'params[type]'  => 'zombie',
+                    'params[type]'  => 'zombie_excavator',
                     ],
                 ],
             'start_game' => [

@@ -138,6 +138,7 @@ class HtmlLayout extends HtmlPage
                                   '. $speciality['action_points'].'&nbsp; |&nbsp;
                     <abbr title="Plus votre sac est grand, plus vous pouvez transporter d\'objets en même temps.">Sac</abbr>&nbsp;:
                     '.plural($speciality['bag_size'], 'objet').']
+                    <div style="margin-left:0.5em;margin-bottom:0.5em;font-style:italic">'.$speciality['descr_purpose'].'</div>
                 </li>';
         }
         
