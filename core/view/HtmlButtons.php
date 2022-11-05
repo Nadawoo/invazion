@@ -281,6 +281,16 @@ class HtmlButtons
                     'params[type]'  => 'weak',
                     ],
                 ],
+            'specialize_zombie_cryptic' => [
+                'icon'  => '',
+                'name'  => 'Zombie cryptique',
+                'title' => "",
+                'fields' => [
+                    'api_name'      => 'me',
+                    'action'        => 'specialize',
+                    'params[type]'  => 'zombie_cryptic',
+                    ],
+                ],
             'specialize_zombie_excavator' => [
                 'icon'  => '',
                 'name'  => 'Zombie excavateur',
