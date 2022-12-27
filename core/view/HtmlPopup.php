@@ -83,6 +83,13 @@ class HtmlPopup
                 . 'valables contre l\'attaques zombie quotidienne. '
                 . 'La prochaine fois, pensez à rentrer en ville avant minuit...</p>';
         }
+        elseif($unvalidated_death_cause === 'wound') {
+            $msg_popup = 
+                  '<h2>Vous êtes mort !</h2>'
+                . '<img src="resources/img/copyrighted/skull.png" alt="image crâne" style="height:120px">'
+                . '<p>Votre blessure s\'est infectée et la gangrène a eu raison de vous.</p> '
+                . '<p>La prochaine fois, soignez vos blessures avant minuit...</p>';
+        }
         elseif($unvalidated_death_cause === 'wingame') {
             $msg_popup = 
                 '<h2>Félicitations, vous avez survécu !</h2>
