@@ -386,12 +386,22 @@ echo $popup->customised('popsuccess', '', $msg_popup, $is_custom_popup_visible);
                                                 $configs['map']['moving_cost_no_zombies'], $configs['map']['moving_cost_zombies']);
                 
                 echo '<br><br><br><br><br>
-                    <strong>Objectifs</strong><br>
+                    <strong>Objectifs (joueur humain)</strong><br>
                     Construire un abri avant minuit<br>
                     Chercher des ressources<br>
                     Rejoindre l\'abri avant minuit<br>
                     Améliorer les défenses<br>
                     Fermer les portes de l\'abri avant l\'attaque<br>
+                    <br>
+                    <br>
+                    <strong>Pouvoirs (joueur zombie)</strong><br>
+                    <img src="resources\img\copyrighted\wolf.png" alt="&#128200;" height="32" width="32"> Augmenter l\'attaque quotidienne <abbr title="Augmente le nombre de zombies qui attaqueront la ville lors de la prochaine attaque de fin de cycle.">[?]</abbr><br>
+                    <img src="resources\img\motiontwin\zombie6.gif" alt="&#129503;" height="32" width="32"> Ajouter des zombies sur la carte <abbr title="Ajoute aléatoirement des zombies sur la carte du jeu.">[?]</abbr><br>
+                    <img src="resources\img\copyrighted\chemistry.png" alt="&#9763;&#65039;" height="32" width="32"> Empoisonner l\'eau <abbr title="Les rations d\'eau consommées par les humains ne leur restaurent que la moitié des points d\'action normaux. L\'effet dure pendant 1 cycle.">[?]</abbr><br>
+                    <img src="resources\img\copyrighted\city_well.png" alt="&#128167;" height="32" width="32"> Percer le puits <abbr title="Détruit définitivement plusieurs rations d\'eau dans le puits de la ville des humains.">[?]</abbr><br>
+                    <img src="resources\img\copyrighted\wound.png" alt="&#129656;" height="32" width="32"> Blesser un humain <abbr title="Inflige à distance une blessure à un humain aléatoire, sans besoin de l\'agresser.">[?]</abbr><br>
+                    <img src="resources\img\copyrighted\oracle.png" alt="&#128374;&#65039;" height="32" width="32"> Obscurcir des zones <abbr title="Masque à nouveau des zones de la carte qui avaient été explorées par les humains.">[?]</abbr><br>
+                    <img src="resources\img\copyrighted\forging.png" alt="&#128295;" height="32" width="32"> Empêcher les assemblages <abbr title="Les humains ne peuvent plus fabriquer d\'objets à partir de composants. L\'effet dure pendant 1 cycle.">[?]</abbr><br>
                     <br>
                     <br>
                     <strong>Mes caractéristiques</strong><br>
