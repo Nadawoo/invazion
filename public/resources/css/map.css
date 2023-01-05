@@ -19,12 +19,15 @@
     background:none;
 }
 
+/*
+ * Map header
+ */
 #map_header {
     margin-bottom:1.5em;
     text-align:center;
     font-size:0.9em;
 }
-#map_header span {
+#map_header .mapview {
     padding:0 0.5em 0.2em 0.5em;
     background:darkred;
     border-radius:0 0 0.8em 0.8em;
@@ -32,10 +35,55 @@
     font-weight:bold;
     opacity:0.7;
 }
-#map_header span:hover {
+#map_header .mapview:hover {
     cursor:pointer;
     opacity:1;
 }
+
+#statusbar {
+    display:flex;
+    justify-content:space-around;
+    width:17rem;
+    margin:0.5em auto 0.5em auto;
+    padding:0.4em;
+    padding-bottom:0.3em;
+}
+#statusbar .status {
+    position:relative;
+    height:2.8rem;
+    width: 2.8rem;
+    border:1px solid white;
+    border-radius:0.4rem;
+    font-size:1.8em;
+    font-weight:bold;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    background:#fbeee6; /* Useful when the content is text, not image */
+    cursor:help;
+}
+#statusbar img {
+    height:100%;
+    width: 100%;
+    border-radius:0.3rem;
+    outline:3px solid red;
+}
+#statusbar .dot_number {
+    position:absolute;
+    top:  -0.3em;
+    right:-0.3em;
+    height:1.4em;
+    width: 1.4em;
+    background:red;
+    font-size:0.5em;
+    border-radius:0.1em;
+    line-height:130%;
+}
+#statusbar .empty {
+    background:none; /* Useful when the content is text, not image */
+    cursor:default;
+}
+
 
 #map .row {
     white-space:nowrap;

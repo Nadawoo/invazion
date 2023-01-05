@@ -10,6 +10,7 @@ $api                = new ZombLib(official_server_root().'/api');
 $layout             = new HtmlLayout();
 $map                = new HtmlMap();
 $my_zone            = new HtmlMyZone();
+$statusbar          = new HtmlStatusBar();
 $enclosure          = new HtmlCityEnclosure();
 $constructionCards  = new HtmlCityConstructionCards();
 $cityIso            = new HtmlCityIso();
@@ -311,7 +312,12 @@ echo $popup->customised('popsuccess', '', $msg_popup, $is_custom_popup_visible);
     <section id="map">
         
         <div id="map_header">
-            <span onclick="toggleMapItems()">Objets sur la carte</span>
+            <span class="mapview" onclick="toggleMapItems()">Objets sur la carte</span>
+            <?php
+            echo $statusbar->statusbar($citizen['action_points'], $citizen['city_id'], $citizen['is_wounded'],
+                                        count($citizen['bag_items']),
+                                        count($zone_fellows)-1);
+            ?>
         </div>
         
         <div id="backToMap">
@@ -386,14 +392,6 @@ echo $popup->customised('popsuccess', '', $msg_popup, $is_custom_popup_visible);
                                                 $configs['map']['moving_cost_no_zombies'], $configs['map']['moving_cost_zombies']);
                 
                 echo '<br><br><br><br><br>
-                    <strong>Objectifs (joueur humain)</strong><br>
-                    Construire un abri avant minuit<br>
-                    Chercher des ressources<br>
-                    Rejoindre l\'abri avant minuit<br>
-                    Améliorer les défenses<br>
-                    Fermer les portes de l\'abri avant l\'attaque<br>
-                    <br>
-                    <br>
                     <strong>Pouvoirs (joueur zombie)</strong><br>
                     <img src="resources\img\copyrighted\wolf.png" alt="&#128200;" height="32" width="32"> Augmenter l\'attaque quotidienne <abbr title="Augmente le nombre de zombies qui attaqueront la ville lors de la prochaine attaque de fin de cycle.">[?]</abbr><br>
                     <img src="resources\img\motiontwin\zombie6.gif" alt="&#129503;" height="32" width="32"> Ajouter des zombies sur la carte <abbr title="Ajoute aléatoirement des zombies sur la carte du jeu.">[?]</abbr><br>
