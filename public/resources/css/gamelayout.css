@@ -85,10 +85,13 @@
     background:#4a235a;
     color:lightgrey;
 }
+#attack_bar ::selection {
+    background:none;
+}
 #attack_bar div {
     border-radius:0.2rem;
 }
-#day {
+#attack_bar .left {
     min-width:10%;
     padding:0.2rem;
     text-align:center;
@@ -108,43 +111,27 @@
     font-size:1.3em;
     width:9rem; /* Fixed-width to avoid the temporary resizing while loading the timer */
 }
-#balance {
+#attack_bar .right {
     padding:0.2rem;
-    border-left:1px solid #6c3483;
 }
 
-
-/* Bar at the top of the map, containing the map number, the notifications button, etc. */
-#gamebar {
-    display:flex;
-    flex-direction:row;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:0.3em;
-    padding:0 0.2em;
-    /* To be sure that the width of the child block will be relative 
-       to the width of #notif and not the width of the browser window */
-    position:relative;
-}
-#gamebar #notifsButton {
-    margin-top:0.2em;
-    margin-left:-5rem; /* Quick fix to keep centered despite that the refresh button is less wide */
-    padding:0.1em 0.4em;
-    border:1px solid darkred;
+#notifsButton {
+/*    margin-top:0.2em;
+    margin-left:-5rem;  Quick fix to keep centered despite that the refresh button is less wide */
+    padding:0.4em;
+    /*border:1px solid darkred;*/
     border-radius:2em;
-}
-#gamebar #notifsButton ::selection {
-    background:none;
+    font-size:1.5rem;
 }
 #notifsBlock {
     display:none;
     position:absolute;
-    left:25%;
-    right:25%;
-    width:50%;
+    right:0;
+    width:23.5rem;
     z-index:50;
-    margin-top:-0.3em;
+    margin-top:0.7em;
     padding:0 0.5em;
+    text-align:left;
     background:#fbeee6;
     border:4px solid darkred;
     border-radius:0.3em;
@@ -153,8 +140,8 @@
 #notifsBlock #notifsClose {
     display:block;
     position:absolute;
-    right:-1.4rem;
-    top:  -1.4rem;
+    right:-0.5rem;
+    top:  -0.5rem;
     text-align:center;
     font-size:1.3em;
     line-height:2.2rem;

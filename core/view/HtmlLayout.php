@@ -206,8 +206,10 @@ class HtmlLayout extends HtmlPage
     function attack_bar($map_id, $day)
     {
         
+        $buttons = new HtmlButtons();
+        
         return '
-            <div id="day">
+            <div class="left">
                 Carte n° '.$map_id.'<br>
                 &#x1F551; Jour '.(int)$day.'
             </div>        
@@ -215,9 +217,13 @@ class HtmlLayout extends HtmlPage
                 Attaque dans
                 <div id="attackCountdown">&nbsp;</div>
             </a>
-            <div id="balance">
-                <div>00 zombies</div>
-                <div>00 défenses</div>
+            <div class="right">
+                <a id="notifsButton" title="Notifications">&#x1F514;</a>
+                '.$buttons->refresh().'
+                <div id="notifsBlock">
+                    <a id="notifsClose">X</a>
+                    <div id="notifsList"><div style="text-align:center;padding:0.8em;color:grey">Chargement en cours...</div></div>
+                </div>
             </div>';
     }
     
