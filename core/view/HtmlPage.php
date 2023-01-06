@@ -78,7 +78,7 @@ class HtmlPage
                 <link rel="icon" type="image/png" href="resources/img/favicon.png">                
                 <link rel="manifest" href="manifest.json" />
                 <link rel="stylesheet" type="text/css" href="resources/css/sitelayout.css?v4.4">
-                <link rel="stylesheet" type="text/css" href="resources/css/gamelayout.css?v8.5">
+                <link rel="stylesheet" type="text/css" href="resources/css/gamelayout.css?v8.6">
                 <link rel="stylesheet" type="text/css" href="resources/css/map.css?v3.9">
                 <link rel="stylesheet" type="text/css" href="resources/css/smartphone.css?v1.6">
                 <link rel="stylesheet" type="text/css" href="resources/css/myzone.css?v1.4">

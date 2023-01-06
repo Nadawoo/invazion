@@ -190,17 +190,6 @@ echo $popup->customised('popsuccess', '', $msg_popup, $is_custom_popup_visible);
         sa propre interface graphique. <a href="https://invazion.nadazone.fr/project">[En savoir plus]</a>
     </p>
     
-    <div id="gamebar">
-        <div id="Outside" style="width:12%">&nbsp;</div>
-        <a id="notifsButton">&#x1F514; <strong>Notifications</strong></a>
-        <?php echo $buttons->refresh() ?>
-    </div>
-    <div id="notifsBlock">
-        <a id="notifsClose">X</a>
-        <div id="notifsList"><div style="text-align:center;padding:0.8em;color:grey">Chargement en cours...</div></div>
-    </div>
-    
-    
     <?php
     // Asks for chosing a citizen speciality (builder, digger...)
     if ($citizen['can_change_speciality'] === 1) {
@@ -303,6 +292,7 @@ echo $popup->customised('popsuccess', '', $msg_popup, $is_custom_popup_visible);
     
     <!-- Let this bar *before* the round action buttons if you want them 
          to go *below* the bar on small screens -->
+    <div id="Outside" style="line-height:0.1rem">&nbsp;</div>
     <section id="attack_bar">
         <?php echo $html['attack_bar'] ?>
     </section>    
