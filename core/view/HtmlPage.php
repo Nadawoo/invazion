@@ -160,7 +160,7 @@ class HtmlPage
                     <script type="text/javascript" src="resources/js/discussions.func.js?v1.1"></script>
                     <script type="text/javascript" src="resources/js/events.func.js?v1.0"></script>
                     <script type="text/javascript" src="resources/js/misc.func.js?v9.3"></script>
-                    <script type="text/javascript" src="resources/js/onPageLoad.js?v1.6"></script>
+                    <script type="text/javascript" src="resources/js/onPageLoad.js?v1.7"></script>
                     <script type="text/javascript" src="resources/js/events.js?v5.4"></script>
                 </body>
             </html>';

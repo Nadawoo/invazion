@@ -11,9 +11,11 @@ class HtmlStatusBar {
         
         $status_defenses = (is_int($city_id))
             ? $this->status_image("Attaque du soir", "resources/img/copyrighted/wolf.png", "&#9888;&#65039;",
-                                "Construisez des défenses dans votre ville &#10;pour contrer l'attaque zombie du soir !")
+                                "Construisez des défenses dans votre ville &#10;pour contrer l'attaque zombie du soir !",
+                                "popattack")
             : $this->status_image("Abri", "resources/img/copyrighted/home_house.png", "&#9888;&#65039;",
-                                  "Abritez-vous dans une ville ou une tente &#10;avant la prochaine attaque zombie, &#10;sinon vous mourrez !");
+                                  "Abritez-vous dans une ville ou une tente &#10;avant la prochaine attaque zombie, &#10;sinon vous mourrez !",
+                                  "popattack");
                 
         $status_wounded = ($is_wounded >= 1)
             ? $this->status_image("Blessure", "resources/img/copyrighted/wound.png", "&#9888;&#65039;",
@@ -50,12 +52,16 @@ class HtmlStatusBar {
      * @param string $title
      * @return string HTML
      */
-    private function status_image($img_alt, $img_path, $amount, $title) {
+    private function status_image($img_alt, $img_path, $amount, $title, $popup_id=null) {
         
-        return '<div class="status" title="'.$title.'">
+        // If a pop-up must open when we click on the status icon
+        $popup_link   = ($popup_id !== null) ? 'href="#'.$popup_id.'"' : '';
+        $cursor_style = ($popup_id !== null) ? 'style="cursor:pointer"' : '';
+        
+        return '<a class="status" title="'.$title.'" '.$popup_link.' '.$cursor_style.'>
                     <img src="'.$img_path.'" alt="'.$img_alt.'">
                     <span class="dot_number">'.$amount.'</span>
-                </div>';
+                </a>';
     }
     
     

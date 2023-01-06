@@ -76,8 +76,8 @@ if (document.getElementById('map') !== null) {
     activatePhoneTab();
     
     // Countdown before the next zombie attack
-    attackCountdown();
-    setInterval(attackCountdown, 1000);
+//    attackCountdown();
+//    setInterval(attackCountdown, 1000);
         
     // Server-sent events to update the map in real time
     var timestamp = Math.floor(Date.now()/1000);

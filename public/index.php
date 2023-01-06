@@ -467,7 +467,6 @@ echo $popup->customised('popsuccess', '', $msg_popup, $is_custom_popup_visible);
     <?php
     echo $buttons->button('start_game');
     echo $buttons->button('add_mass_zombies');
-    echo $buttons->button('end_cycle');
     ?>
     <br>
     <a href="edit" title="Paramétrez les objets disponibles dans le jeu (bêta)">Créer des objets</a>

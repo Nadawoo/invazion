@@ -93,7 +93,7 @@ class HtmlButtons
             'end_cycle' => [
                 'icon'  => '',
                 'name'  => 'Passer au jour suivant',
-                'title' => "Bouton spécial béta-test",
+                'title' => "Met fin au cycle en cours et déclenche l'attaque zombie quotidienne.",
                 'fields' => [
                     'api_name'           => 'events',
                     'action'             => 'endcycle',

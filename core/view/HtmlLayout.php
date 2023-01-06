@@ -213,10 +213,9 @@ class HtmlLayout extends HtmlPage
                 Carte n° '.$map_id.'<br>
                 &#x1F551; Jour '.(int)$day.'
             </div>        
-            <a href="#popattack" id="timer">
-                Attaque dans
-                <div id="attackCountdown">&nbsp;</div>
-            </a>
+            <div id="timer">
+                '.$buttons->button('end_cycle').'
+            </div>
             <div class="right">
                 <a id="notifsButton" title="Notifications">&#x1F514;</a>
                 '.$buttons->refresh().'
