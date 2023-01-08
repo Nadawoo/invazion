@@ -64,7 +64,7 @@ if (document.getElementById('map') !== null) {
     document.getElementById("tabWallDiscuss").addEventListener("click", switchToDiscussTab);
     document.getElementById("tabWallAttacks").addEventListener("click", function() {
         display("wallAttacks");
-        hide(["wallPhone", "wallDiscuss", "wallNotifications", "wallEvents"]);
+        hide(["wallDiscuss", "wallNotifications", "wallEvents"]);
         activateDiscussionTab("tabWallAttacks");
         // Updates the log of attacks
         getCyclicAttacks(nbrExecutionsGetCyclicAttacks);
@@ -72,14 +72,9 @@ if (document.getElementById('map') !== null) {
     });
     document.getElementById("tabWallEvents").addEventListener("click", function() {
         display("wallEvents");
-        hide(["wallPhone", "wallDiscuss", "wallNotifications", "wallAttacks"]);
+        hide(["wallDiscuss", "wallNotifications", "wallAttacks"]);
         activateDiscussionTab("tabWallEvents");
         getLogEvents("wallEvents");
-    });
-    document.getElementById("tabWallPhone").addEventListener("click", function() {
-        display("wallPhone");
-        hide(["wallDiscuss", "wallNotifications", "wallEvents", "wallAttacks"]);
-        activateDiscussionTab("tabWallPhone");
     });
 //    document.getElementById("tabWallNotifications").addEventListener("click", function() {
 //        display("notifications");

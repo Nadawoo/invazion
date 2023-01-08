@@ -210,7 +210,7 @@ async function updateDiscussionsList() {
 function switchToDiscussTab() {
     
     display("wallDiscuss");
-    hide(["wallPhone", "wallNotifications", "wallEvents", "wallAttacks"]);
+    hide(["wallNotifications", "wallEvents", "wallAttacks"]);
     activateDiscussionTab("tabWallDiscuss");
     updateDiscussionsList();
     // Add the listener on the form to create a topic.

@@ -9,11 +9,9 @@ class HtmlWall
     /**
      * Main method. Call this to display the wall.
      * 
-     * @param int    $citizen_id     The ID of the currently connected player
-     * @param string $citizen_pseudo The pseudo of the currently connected player
-     * @return type
+     * @return string HTML
      */
-    public function wall($html_smartphone)
+    public function wall()
     {
         
         return '<div id="wall" class="city_block">
@@ -25,7 +23,6 @@ class HtmlWall
                     
                     '.$this->tabs().'
                     
-                    <div id="wallPhone">'.$html_smartphone.'</div>
                     <div id="wallDiscuss"></div>
                     <div id="wallNotifications"></div>
                     <div id="wallAttacks"></div>
@@ -47,7 +44,6 @@ class HtmlWall
                     <!--<a id="tabWallNotifications">Notifications</a>-->
                     <a id="tabWallEvents">Événements</a> 
                     <a id="tabWallAttacks">Attaques</a> 
-                    <a id="tabWallPhone">Smartphone</a> 
                 </nav>';
     }
     

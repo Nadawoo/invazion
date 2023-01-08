@@ -19,7 +19,7 @@ class HtmlPopup
      * 
      * @param string $popup_alias  L'identifiant de la pop-up. Doit correspondre 
      *                             à celui utilisé par le lien d'appel (ex: href="#mypopup")
-     *                             et à une méthode de la classe Popup (texte prédéfini)
+     *                             et à une méthode de la classe HtmlPopup (texte prédéfini)
      * @param string $title     Le titre de la pop-up (peut être vide)
      * @param array  $params    Paramètres additionnels pour certaines pop-up
      *                          (ex : le nom du citoyen)
@@ -337,5 +337,18 @@ class HtmlPopup
                 <li>&#x1F3D7;&#xFE0F; <strong>Construisez</strong> les défenses de la ville
                     en mettant en commun ces ressources.</li>
             </ul>";
+    }
+    
+    
+    /**
+     * Displays the in-game smartphone (which shows action points, radar, etc.)
+     * 
+     * @param string The HTML of the smartphone
+     * @return string HTML
+     */
+    private function popsmartphone($html_smartphone)
+    {
+        
+        return $html_smartphone;
     }
 }
