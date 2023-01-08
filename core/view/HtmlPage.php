@@ -79,7 +79,7 @@ class HtmlPage
                 <link rel="manifest" href="manifest.json" />
                 <link rel="stylesheet" type="text/css" href="resources/css/sitelayout.css?v4.4">
                 <link rel="stylesheet" type="text/css" href="resources/css/gamelayout.css?v8.6">
-                <link rel="stylesheet" type="text/css" href="resources/css/map.css?v3.9">
+                <link rel="stylesheet" type="text/css" href="resources/css/map.css?v4.0">
                 <link rel="stylesheet" type="text/css" href="resources/css/smartphone.css?v1.6">
                 <link rel="stylesheet" type="text/css" href="resources/css/myzone.css?v1.4">
                 <link rel="stylesheet" type="text/css" href="resources/css/city.css?v3.5">
@@ -157,10 +157,10 @@ class HtmlPage
                     <script type="text/javascript" src="resources/js/wallTemplate.js?v4.4"></script>
                     <script type="text/javascript" src="resources/js/actionBlocks.func.js?v1.2"></script>
                     <script type="text/javascript" src="resources/js/cityEnclosure.func.js?v1.0"></script>
-                    <script type="text/javascript" src="resources/js/discussions.func.js?v1.1"></script>
+                    <script type="text/javascript" src="resources/js/discussions.func.js?v1.2"></script>
                     <script type="text/javascript" src="resources/js/events.func.js?v1.0"></script>
-                    <script type="text/javascript" src="resources/js/misc.func.js?v9.3"></script>
-                    <script type="text/javascript" src="resources/js/onPageLoad.js?v1.7"></script>
+                    <script type="text/javascript" src="resources/js/misc.func.js?v9.4"></script>
+                    <script type="text/javascript" src="resources/js/onPageLoad.js?v1.8"></script>
                     <script type="text/javascript" src="resources/js/events.js?v5.4"></script>
                 </body>
             </html>';

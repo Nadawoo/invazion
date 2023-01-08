@@ -302,7 +302,6 @@ echo $popup->customised('popsuccess', '', $msg_popup, $is_custom_popup_visible);
     <section id="map">
         
         <div id="map_header">
-            <span class="mapview" onclick="toggleMapItems()">Objets sur la carte</span>
             <?php
             echo $statusbar->statusbar($citizen['action_points'], $citizen['city_id'], $citizen['is_wounded'],
                                         count($citizen['bag_items']),
@@ -334,6 +333,7 @@ echo $popup->customised('popsuccess', '', $msg_popup, $is_custom_popup_visible);
                 <button onclick="zoomMapIn()" title="Zoomer la carte"><span style="font-size:75%;margin-top:-0.1em;">+</span></button>
                 <button onclick="zoomMapOut()" title="Dézoomer la carte"><span style="margin-top:-0.1em;">-</span></button>
                 <button onclick="centerMapOnMe()" title="Centrer sur ma zone""><img src="resources/img/icons8/mylocation-48.png" height="28" alt="Cible ma position"></button>
+                <button onclick="toggleMapItems()" title="Voir les objets au sol sur la carte"><img src="resources/img/copyrighted/items/scrap.png" height="38" alt="Objets"></button>
             </div>
         </div>
         
