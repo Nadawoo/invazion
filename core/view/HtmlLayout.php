@@ -212,7 +212,7 @@ class HtmlLayout extends HtmlPage
             <div class="left">
                 Carte n° '.$map_id.'<br>
                 &#x1F551; Jour '.(int)$day.'
-            </div>        
+            </div>
             <div id="timer">
                 '.$buttons->button('end_cycle').'
             </div>
