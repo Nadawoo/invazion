@@ -1,8 +1,9 @@
 <?php
 
 /**
- * Génère le HTML de la case sur laquelle le citoyen se trouve
- * (en grand format par-dessus la carte)
+ * **** UNSED ****
+ * Old class to generate the player's zone in big dimensions. Largely unfinished,  
+ * ugly and quite useless since the map itself can be zoomed.
  */
 class HtmlMyZone
 {

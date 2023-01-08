@@ -59,17 +59,7 @@ if (document.getElementById('map') !== null) {
     document.getElementById("notifsClose").addEventListener("click", function(){
         hide("notifsBlock");
     });
-
-
-    // Switches the action "Display my zone"/"Display the map"
-    document.getElementById("backToMap").addEventListener("click", function(){        
-        toogleMyZone();
-        // Memorizes the display to restore it if the page is refreshed
-        let newCookieValue = (getCookieConfig("show_zone") === 1) ? 0 : 1;
-        setCookieConfig("show_zone", newCookieValue);
-    });
-    
-    
+        
     // Switch tabs in the communications panel
     document.getElementById("tabWallDiscuss").addEventListener("click", switchToDiscussTab);
     document.getElementById("tabWallAttacks").addEventListener("click", function() {

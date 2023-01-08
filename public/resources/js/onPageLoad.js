@@ -51,11 +51,6 @@ if (document.getElementById('map') !== null) {
         updateBlockAlertControl(zoneData.controlpointscitizens, zoneData.controlpointszombies);
         // Display the actions for fighting against zombies
         showFightingZombiesButtons(zoneData.zombies);
-
-        // Restore the display of the player zone over the map before the page was refreshed
-        if (getCookieConfig('show_zone') === 1) {
-            toogleMyZone();
-        }
     }
     
     // Place the citizens on the appropriate zones of the map

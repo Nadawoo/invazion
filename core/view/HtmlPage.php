@@ -81,7 +81,6 @@ class HtmlPage
                 <link rel="stylesheet" type="text/css" href="resources/css/gamelayout.css?v8.6">
                 <link rel="stylesheet" type="text/css" href="resources/css/map.css?v4.0">
                 <link rel="stylesheet" type="text/css" href="resources/css/smartphone.css?v1.6">
-                <link rel="stylesheet" type="text/css" href="resources/css/myzone.css?v1.4">
                 <link rel="stylesheet" type="text/css" href="resources/css/city.css?v3.5">
                 <link rel="stylesheet" type="text/css" href="resources/css/cityiso.css?v1.2">
                 <link rel="stylesheet" type="text/css" href="resources/css/wall.css?v3.1">

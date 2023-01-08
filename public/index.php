@@ -9,7 +9,6 @@ safely_require('/core/ZombLib.php');
 $api                = new ZombLib(official_server_root().'/api');
 $layout             = new HtmlLayout();
 $map                = new HtmlMap();
-$my_zone            = new HtmlMyZone();
 $statusbar          = new HtmlStatusBar();
 $enclosure          = new HtmlCityEnclosure();
 $constructionCards  = new HtmlCityConstructionCards();
@@ -308,22 +307,6 @@ echo $popup->customised('popsuccess', '', $msg_popup, $is_custom_popup_visible);
                                         count($zone_fellows)-1);
             ?>
         </div>
-        
-        <div id="backToMap">
-            <span id="displayMyZone">Afficher ma zone</span>
-            <span id="hideMyZone" class="hidden">Afficher la carte</span>
-        </div>
-        
-        <?php 
-        // Display the zone where the player is       
-        $my_zone->set_nbr_zombies($zone['zombies']);
-        $my_zone->set_nbr_items($zone['items']);
-        $my_zone->set_citizens_in_zone($zone_fellows);
-        $my_zone->set_citizens_in_city($city_fellows);
-        $my_zone->set_city_size($zone['city_size']);
-        $my_zone->set_citizen_pseudo($citizen['citizen_pseudo']);
-        echo $my_zone->main();
-        ?>
         
         <div id="map_body_wrapper">
             <div id="map_body">

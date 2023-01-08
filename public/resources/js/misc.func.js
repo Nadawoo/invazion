@@ -700,16 +700,6 @@ function toggleTooltip(hexagon) {
 
 
 /**
- * Displays/hides the big zoomed zone of the player over the map
- */
-function toogleMyZone() {
-    toggleHide("my_zone");
-    toggleHide("displayMyZone");
-    toggleHide("hideMyZone");
-}
-
-
-/**
  * Converts a raw UTC date to a string text date
  * 
  * @param {string} utcDate  The date as returned by the Invazion's API (UTC time + ISO 8601 format)

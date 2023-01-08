@@ -22,27 +22,6 @@
        (dû au line-height) */
     overflow:hidden;
 }
-#backToMap {
-    display:block;
-    z-index:12;
-    position:absolute;
-    right:0;
-    top:0;
-    width:  5em;
-    height: 2.2em;
-    padding:0.2em 0;
-    background:darkred;
-    border-bottom-left-radius:1em;
-    text-align:center;
-    color:white;
-    font-weight:bold;
-    font-variant:small-caps;
-    cursor:pointer;
-    opacity:0.7;
-}
-#backToMap:hover {
-    opacity:1;
-}
 
 /* Centre tout le contenu de la zone au mileu du fond hexagonal
    sans besoin de positionner chaque élément 1 par 1 (la ville, le joueur...) */
