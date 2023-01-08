@@ -215,5 +215,5 @@ function switchToDiscussTab() {
     updateDiscussionsList();
     // Add the listener on the form to create a topic.
     // TODO: make a cleaner code with async
-    setTimeout(function() { listenToSendform(); }, 100);
+    setTimeout(listenToSendform, 100);
 }

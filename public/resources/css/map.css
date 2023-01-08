@@ -4,13 +4,11 @@
 #map {
     float:left;
     margin:0 0.2em 3em 0;
-    padding:0 1em 1em 1em;
     max-width:95%;
     font-size:1.05em;
     border-radius:0.5em;
     background:repeating-linear-gradient(0.38turn, black, black 2px, #17202a 2px, #17202a 4px);
     box-shadow: 5px 5px 10px black;
-    overflow:auto;
     /* Pour que la largeur de la ville en surimpression soit calculée 
        par rapport celle la carte et pas à celle de la page */
     position:relative;
@@ -20,12 +18,68 @@
 }
 
 /*
+ * Zooming on the map
+ */
+#map_body_wrapper {
+    /* Avoids map overflow when the map is zoomed */
+    overflow:hidden;
+    /* Avoids hiding zones under the borders when the map is unzoomed
+       TODO: do that in a cleaner way (insufficient map width?) */
+    padding:1em;
+}
+#map_body.zoomedIn {
+    transform:scale(300%);
+    transition: all .3s ease;
+    /* Forces the zoom to start from the corner of the map. The default behavior
+       (zoom on the center) would place the top and left parts out of the scrollbars. */
+    transform-origin: top left;
+}
+#map_body.zoomedIn .bubble {
+    /* Avoids getting an enormous bubble when the map is zoomed */
+    transform:scale(33%);
+    bottom:1.5em;
+}
+#map_body.zoomedOut {
+    /* Cancels the zoom */
+    transform:scale(100%);
+    transition: all .4s ease;
+}
+
+/* 
+ * Buttons +/- to zoom in/out on the map
+ */
+#map_navigation {
+    display:flex;
+    flex-direction:column;
+    justify-content: space-between;
+    height:10rem;
+    position:absolute;
+    top:  8rem;
+    right:0.5em;
+}
+#map_navigation button {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    height:1em;
+    width: 1em;
+    border-radius:50%;
+    font-size:3em;
+    border:none;
+    background:lightgrey;
+    opacity:0.8;
+    box-shadow: 12px 12px 12px black;
+}
+
+/*
  * Map header
  */
 #map_header {
+    position:relative;
     margin-bottom:1.5em;
     text-align:center;
     font-size:0.9em;
+    z-index:10; /* Keeps the block over the zones when zoming on the map*/
 }
 #map_header .mapview {
     padding:0 0.5em 0.2em 0.5em;
@@ -92,7 +146,7 @@
        sous la carte. */
     margin:-0.95em;
 }
-#map .row:nth-child(odd) {
+#map .row:nth-child(even) {
     /* Shift 1 line of 2 to fit the hexagons staggered */
     padding-left:1.2em;
 }

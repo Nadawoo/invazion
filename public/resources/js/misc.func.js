@@ -513,6 +513,8 @@ async function moveCitizen(direction) {
     updateActionPointsBar(json.datas.action_points_lost);
     updateCityDistance(json.datas.new_coord_x, json.datas.new_coord_y);
     updateEnterBuildingButton(myZone.dataset.citytypeid);
+    
+     setTimeout(centerMapOnMe, 1000);
 }
 
 
@@ -1146,4 +1148,35 @@ function getDistance(cityX, cityY, citizenX, citizenY) {
 
     // Formula provided by https://www.redblobgames.com/grids/hexagons/#distances
     return distanceY + Math.max(0, (distanceX-distanceY)/2);
+}
+
+
+/**
+ * Zooms on the map
+ */
+function zoomMapIn() {
+    
+    document.querySelector("#map_body").classList.add("zoomedIn");
+    setTimeout(centerMapOnMe, 300);
+    document.querySelector("#map_body").classList.remove("zoomedOut");
+}
+
+
+/**
+ * Cancels the zoom on the map
+ */
+function zoomMapOut() {
+    
+    document.querySelector("#map_body").classList.add("zoomedOut");
+    centerMapOnMe();
+    document.querySelector("#map_body").classList.remove("zoomedIn");
+}
+
+
+/**
+ * Centers the zoomed map on the player
+ */
+function centerMapOnMe() {
+    
+    document.querySelector("#me").scrollIntoView({behavior: "smooth", block: "center", inline: "center"});
 }

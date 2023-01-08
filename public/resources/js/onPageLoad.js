@@ -28,6 +28,8 @@ if (document.getElementById('map') !== null) {
         addMeOnMap();
         // Add a location sign above the city of the player
         addCityLocationMarker();
+        // Centers the map on the current player
+        centerMapOnMe();
         
         // Get informations about the current zone through the "data-*" HTML attributes
         let zoneData = document.querySelector("#me").parentNode.dataset;
