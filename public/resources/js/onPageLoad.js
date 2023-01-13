@@ -30,6 +30,8 @@ if (document.getElementById('map') !== null) {
         addCityLocationMarker();
         // Centers the map on the current player
         centerMapOnMe();
+        // Draws a line between the player and his city
+        updateLineBetweenZones("#me", "#zone10_6");
         
         // Get informations about the current zone through the "data-*" HTML attributes
         let zoneData = document.querySelector("#me").parentNode.dataset;

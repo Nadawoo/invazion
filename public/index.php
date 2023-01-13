@@ -298,7 +298,6 @@ echo $popup->customised('popsuccess', '', $msg_popup, $is_custom_popup_visible);
     </section>    
     
     <!-- The map -->
-    
     <section id="map">
         
         <div id="map_header">
@@ -311,6 +310,9 @@ echo $popup->customised('popsuccess', '', $msg_popup, $is_custom_popup_visible);
         
         <div id="map_body_wrapper">
             <div id="map_body">
+                <!-- Let the SVG *before* the map zones, otherwise the invisible
+                 SVG area will cover it and block all interactions (clicking, hovering...) -->
+                <svg id="mapSvg"></svg>
                 <?php echo $html['map']; ?>
             </div>
             <div id="map_navigation">

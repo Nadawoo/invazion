@@ -488,7 +488,7 @@ async function moveCitizen(direction) {
     _myZone = null;
     
     let token = getCookie('token');
-    // Sends the characteristics of the new item to the API
+    // Asks the API for moving the player
     let json = await callApi("GET", "zone", `action=move&to=${direction}&token=${token}`);
     
     document.getElementById("message_move").innerHTML = (json.metas.error_code === "success") 
@@ -514,7 +514,7 @@ async function moveCitizen(direction) {
     updateCityDistance(json.datas.new_coord_x, json.datas.new_coord_y);
     updateEnterBuildingButton(myZone.dataset.citytypeid);
     
-     setTimeout(centerMapOnMe, 1000);
+    setTimeout(centerMapOnMe, 1000);
 }
 
 

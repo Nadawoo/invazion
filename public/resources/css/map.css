@@ -23,8 +23,12 @@
 #map_body_wrapper {
     /* Avoids map overflow when the map is zoomed */
     overflow:hidden;
+    width:100%;
+}
+#map_body {
+    position:relative;
     /* Avoids hiding zones under the borders when the map is unzoomed
-       TODO: do that in a cleaner way (insufficient map width?) */
+       (due to the artificial horizontal shifting of the rows) */
     padding:1em;
 }
 #map_body.zoomedIn {
@@ -134,7 +138,7 @@
        sous la carte. */
     margin:-0.95em;
 }
-#map .row:nth-child(even) {
+#map_body .row:nth-child(odd) {
     /* Shift 1 line of 2 to fit the hexagons staggered */
     padding-left:1.2em;
 }
@@ -194,6 +198,22 @@
 #map .elevate {
     position:relative;
     top:-0.3rem;
+}
+
+/*
+ * An <svg> area covers the map to allow drawing on it (lines between zones...)
+ */
+#mapSvg {
+    position:absolute;
+    top:0;
+    left:0;
+    width: 100%;
+    height:100%;
+    opacity:0.8;
+}
+#mapSvg line {
+    stroke:green;
+    stroke-width:4;
 }
 
 /*

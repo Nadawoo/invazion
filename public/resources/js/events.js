@@ -19,6 +19,7 @@ if (document.getElementById('map') !== null) {
         // Desactivate the classic submission button (avoids reloading the page)
         event.preventDefault();
         moveCitizen(event.submitter.value);
+        setTimeout(function() {updateLineBetweenZones("#me", "#zone10_6");}, 1000);
     });
     
     // Digs a zone to find items
