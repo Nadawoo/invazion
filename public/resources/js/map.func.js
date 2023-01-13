@@ -5,6 +5,25 @@
 
 
 /**
+ * Returns the HTML ID of the zone where the player's city is.
+ * 
+ * @returns {string} The ID of the zone, e.g. "zone10_8"
+ */
+function getMyCityZoneId() {
+
+    let myCityId = document.querySelector("#gameData #cityId").innerHTML, 
+        result = null;
+    
+    if(myCityId !== "") {
+        let myCityNode = document.querySelector(`[data-cityid="${myCityId}"]`);
+        result = myCityNode.parentNode.id;
+    }
+    
+    return result; 
+}
+    
+    
+/**
  * Gets the X and Y position of a zone on the screen (e.g. 297, 153).
  * Useful to draw an SVG line between two zones.
  * Not to be confused with the coordinates shown on the map (e.g. [7:12])

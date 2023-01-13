@@ -618,19 +618,19 @@ function addMeOnMap() {
 
 
 /**
- * Add a location sign above the player's city on the map
+ * Adds a location sign above the player's city on the map
+ * 
+ * @param {string} myCityZoneId The HTML ID of the zone which contains the player's city
+ * @returns {undefined}
  */
-function addCityLocationMarker() {
+function addCityLocationMarker(myCityZoneId) {
     
     let htmlBubble = 'Ceci est votre habitation ! Votre refuge contre les zombies...',
         htmlLocationMarker = '<img src="resources/img/free/map_location.svg" class="location">';
-        
-    let myCityId = document.querySelector("#gameData #cityId").innerHTML,
-        myCityNode = document.querySelector(`[data-cityid="${myCityId}"]`);
 
-    if(myCityNode !== null) {
-        myCityNode.parentNode.querySelector(".bubble .roleplay").innerHTML = htmlBubble;
-        myCityNode.parentNode.innerHTML += htmlLocationMarker;
+    if(myCityZoneId !== null) {
+        document.querySelector(`#${myCityZoneId} .bubble .roleplay`).innerHTML = htmlBubble;
+        document.querySelector(`#${myCityZoneId}`).innerHTML += htmlLocationMarker;
     }
 }
 

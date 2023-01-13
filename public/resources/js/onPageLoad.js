@@ -23,15 +23,18 @@ if (document.getElementById('map') !== null) {
     // Only if the visitor is connected
     if(document.querySelector("#citizenId").innerHTML !== "") {
     
-        let mapId = document.querySelector("#gameData #mapId").innerHTML;
+        let mapId = document.querySelector("#gameData #mapId").innerHTML,
+            myCityZoneId = getMyCityZoneId();
         // Place the current player on the appropriate zone of the map
         addMeOnMap();
         // Add a location sign above the city of the player
-        addCityLocationMarker();
+        addCityLocationMarker(myCityZoneId);
         // Centers the map on the current player
         centerMapOnMe();
         // Draws a line between the player and his city
-        updateLineBetweenZones("#me", "#zone10_6");
+        if(myCityZoneId !== null) {
+            updateLineBetweenZones("#me", "#"+myCityZoneId);
+        }
         
         // Get informations about the current zone through the "data-*" HTML attributes
         let zoneData = document.querySelector("#me").parentNode.dataset;

@@ -8,6 +8,8 @@ var nbrExecutionsGetCyclicAttacks = 0;
 // If we are on the main game page (those elements don't exist on the connection page)
 if (document.getElementById('map') !== null) {
     
+    let myCityZoneId = getMyCityZoneId();
+    
     // Change the ground type of a zone (lava, grass...)
     listenToLandform();
     
@@ -19,7 +21,7 @@ if (document.getElementById('map') !== null) {
         // Desactivate the classic submission button (avoids reloading the page)
         event.preventDefault();
         moveCitizen(event.submitter.value);
-        setTimeout(function() {updateLineBetweenZones("#me", "#zone10_6");}, 1000);
+        setTimeout(function() {updateLineBetweenZones("#me", "#"+myCityZoneId);}, 1000);
     });
     
     // Digs a zone to find items
