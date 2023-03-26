@@ -281,6 +281,7 @@ echo $popup->customised('popsuccess', '', $msg_popup, $is_custom_popup_visible);
                 
                 <!-- Isometric representation of the city -->
                 <section id="city_iso">
+                    '.$cityIso->resources_bar().'
                     '.$cityIso->city().'
                 </section>
             </div>';

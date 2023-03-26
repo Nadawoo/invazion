@@ -180,6 +180,34 @@ class HtmlCityIso {
     
     
     /**
+     * The horizontal bar showing the main resources of the city
+     * 
+     * @return string HTML
+     */
+    public function resources_bar() {
+        
+        return '
+            <ul class="resources_bar">
+                <li onclick="switchCitySubmenu(\'city_defenses\');hide(\'city_iso\')"
+                    title="Défenses de la ville contre l\'attaque du soir">
+                    <div class="icon">&#128737;&#65039;</div> <div class="amount">?</div>
+                </li>
+                <li onclick="switchCitySubmenu(\'city_storage\');hide(\'city_iso\')"
+                    title="Objets dans le dépôt de la ville">
+                    <div class="icon" style="bottom:0.25rem">&#129520;</div> <div class="amount">?</div>
+                </li>
+                <li onclick="switchCitySubmenu(\'city_well\');hide(\'city_iso\')"
+                    title="Rations d\'eau dans le puits de la ville">
+                    <div class="icon">&#128167;</div> <div class="amount">?</div>
+                </li>
+                <li onclick="switchCitySubmenu(\'explore\');hide(\'city_iso\')">
+                    <div style="font-size:1.5rem">&#10060;</div>
+                </li>
+            </ul>';
+    }
+    
+    
+    /**
      * Call this method (facultative)  before the asset() method if you want to set 
      * an image size different from the default value.
      * 

@@ -8,6 +8,40 @@
 #city_iso {
     overflow-x: hidden;
 }
+
+/*
+ * The horizontal bar showing the main resources of the city
+ */
+#city_iso .resources_bar {
+    display:flex;
+    justify-content: flex-end;
+    padding:0.1em;
+    background-color:#af694c;
+    list-style-type: none;
+}
+#city_iso .resources_bar li {
+    margin:0 0.8em;
+    cursor:pointer;
+}
+#city_iso .resources_bar .icon {
+    float:left;
+    position:relative;
+    left:-0.8rem;
+    font-size:170%;
+}
+#city_iso .resources_bar .amount {
+    width:4em;
+    padding:0 0.5em;
+    text-align:right;
+    background-color:black;
+    color:white;
+    border-radius:0.2em;
+}
+
+
+/*
+ * The isometric view of the city
+ */
 #city_iso table {
     /* Rotates the map to make it isometric */
     transform: rotateX(55deg) rotateZ(45deg);
