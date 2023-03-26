@@ -73,9 +73,9 @@ class HtmlCityIso {
         'explore' => [
             'name'  => 'Ressources',
             'image' => 'copyrighted/items/scrap.png',
-            'image_size' => 170,
-            'image_position_top'  => -1,
-            'image_position_left' => 4,
+            'image_size' => 200,
+            'image_position_top'  => 0,
+            'image_position_left' => 0,
             'action_blocks' => [['name'=>'Inexploré', 'amount'=>100],
                                 ['name'=>'Exploré', 'amount'=>0],
                                 ['name'=>'Épuisé', 'amount'=>0]
@@ -101,7 +101,7 @@ class HtmlCityIso {
             'image' => 'motiontwin/zombie9.gif',
             'image_size' => 180,
             'image_position_top'  => 0,
-            'image_position_left' => -3,
+            'image_position_left' => -4,
             'action_blocks' => [['name'=>'Zombies', 'amount'=>47],
                                 ['name'=>'Attaque dans', 'amount'=>'12h']
                                 ]
@@ -140,7 +140,7 @@ class HtmlCityIso {
                     <td>'.$this->building('discuss').'</td>
                     <td></td>
                     <td>'.$this->building('city_door').'</td>
-                    <td>'.$this->building('explore').'</td>
+                    <td></td>
                     <td></td>
                 </tr>
                 <tr>
@@ -156,15 +156,15 @@ class HtmlCityIso {
                     <td>'.$this->wall(4, 'left').'</td>
                     <td>'.$this->wall(7, 'left').'</td>
                     <td>'.$this->building('city_defenses').'</td>
-                    <td></td>
+                    <td>'.$this->building('explore').'</td>
                     <td></td>
                 </tr>
                 <tr>
                     <td></td>
                     <td></td>
                     <td></td>
-                    <td></td>
                     <td>'.$this->building('zombies').'</td>
+                    <td></td>
                     <td></td>
                 </tr>
                 <tr>
