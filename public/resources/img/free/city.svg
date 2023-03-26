@@ -1,0 +1,15 @@
+<?xml version="1.0" standalone="no"?>
+ <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 20010904//EN"
+ "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+<svg  version="1.0" xmlns="http://www.w3.org/2000/svg" width="64" height="64">
+<path style="fill:none; stroke:none;" d="M0 0L0 44L8 44L8 20L28 20L28 4L56 4L56 44L64 44L64 0L0 0z"/>
+<path style="fill:#2a2a2a; stroke:none;" d="M28 4L28 20L8 20L8 44L0 44L0 64L64 64L64 44L56 44L56 4L28 4z"/>
+<path style="fill:#a0a0a0; stroke:none;" d="M32 8L32 20L40 20L40 24L36 24L36 28L40 28L40 32L36 32L36 36L40 36L40 40L36 40L36 44L52 44L52 8L32 8z"/>
+<path style="fill:#2a2a2a; stroke:none;" d="M36 12L36 16L40 16L40 12L36 12M44 12L44 16L48 16L48 12L44 12M44 20L44 24L48 24L48 20L44 20z"/>
+<path style="fill:#a0a0a0; stroke:none;" d="M12 24L12 44L32 44L32 24L12 24z"/>
+<path style="fill:#2a2a2a; stroke:none;" d="M16 28L16 32L20 32L20 28L16 28M24 28L24 32L28 32L28 28L24 28M44 28L44 32L48 32L48 28L44 28M16 36L16 40L20 40L20 36L16 36M24 36L24 40L28 40L28 36L24 36M44 36L44 40L48 40L48 36L44 36z"/>
+<path style="fill:#a0a0a0; stroke:none;" d="M4 48L4 60L24 60L24 52L40 52L40 60L60 60L60 48L4 48z"/>
+<path style="fill:#2a2a2a; stroke:none;" d="M8 52L8 56L12 56L12 52L8 52M16 52L16 56L20 56L20 52L16 52z"/>
+<path style="fill:#3f3f3f; stroke:none;" d="M24 52L24 60L40 60L40 52L24 52z"/>
+<path style="fill:#2a2a2a; stroke:none;" d="M44 52L44 56L48 56L48 52L44 52M52 52L52 56L56 56L56 52L52 52z"/>
+</svg>

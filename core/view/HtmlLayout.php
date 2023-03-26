@@ -435,7 +435,7 @@ class HtmlLayout extends HtmlPage
         
         return '
             <div id="block_distance">
-                <div class="city_image"><img src="resources/img/free/city.png" alt="ville"></div>'
+                <div class="city_image"><img src="resources/img/free/city.svg" alt="ville"></div>'
                 .'<span class="distance"></span> km
             </div>';
     }
@@ -472,7 +472,7 @@ class HtmlLayout extends HtmlPage
                 <td>'.$buttons->button('build_tent', 'no_icon').'</td>
             </tr>
             <tr>
-                <td><img style="height:1.4em" src="resources/img/free/city.png" alt="&#127751;"></td>
+                <td><img style="height:1.4em" src="resources/img/free/city.svg" alt="&#127751;"></td>
                 <td>'.$buttons->build_city('no_icon').'</td>
             </tr>
             <tr>

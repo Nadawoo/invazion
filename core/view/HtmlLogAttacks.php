@@ -66,7 +66,7 @@ class HtmlLogAttacks extends HtmlWall
                     <div class="arrow">►</div>
                     <div class="block '.$class_city_size.' '.$class_city_color.'" 
                         onclick="toggle(\'logDetailsDefenses'.$event_id.'\')">
-                        <img src="resources/img/free/city.png" style="height:2em"><br>
+                        <img src="resources/img/free/city.svg" style="height:2em"><br>
                         '.$text_defenses.'
                     </div>
                     <div class="arrow">►</div>
