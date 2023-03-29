@@ -155,11 +155,11 @@ class HtmlPage
                     <script type="text/javascript" src="resources/js/ZombLib.js?v1.3"></script>
                     <script type="text/javascript" src="resources/js/map.func.js?v1.0"></script>
                     <script type="text/javascript" src="resources/js/wallTemplate.js?v4.4"></script>
-                    <script type="text/javascript" src="resources/js/actionBlocks.func.js?v1.2"></script>
+                    <script type="text/javascript" src="resources/js/actionBlocks.func.js?v1.3"></script>
                     <script type="text/javascript" src="resources/js/cityEnclosure.func.js?v1.0"></script>
                     <script type="text/javascript" src="resources/js/discussions.func.js?v1.3"></script>
                     <script type="text/javascript" src="resources/js/events.func.js?v1.0"></script>
-                    <script type="text/javascript" src="resources/js/misc.func.js?v9.4"></script>
+                    <script type="text/javascript" src="resources/js/misc.func.js?v9.5"></script>
                     <script type="text/javascript" src="resources/js/onPageLoad.js?v1.9"></script>
                     <script type="text/javascript" src="resources/js/events.js?v5.6"></script>
                 </body>

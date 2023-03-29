@@ -1170,3 +1170,38 @@ function centerMapOnMe() {
     
     document.querySelector("#me").scrollIntoView({behavior: "smooth", block: "center", inline: "center"});
 }
+
+
+/**
+ * Generates the HTML of a citizen with his name in a chips + the actions buttons
+ * (to heal, to attack...)
+ * 
+ * @param {dict} citizen The citzen's data, as returned by the Invazion's API
+ *                       (citizen_id, citizen_pseudo...) 
+ * @param {boolean} hideActionButtons Set to "false" if you want to hide the buttons 
+ *                                    for healing/attacking the citizen (useful 
+ *                                    when the citizen is not in the same zone)
+ * @returns {string} HTML
+ */
+function getHtmlActionBlockFellow(citizen, displayActionButtons=true) {
+    
+    // The model for the HTML is located in a <template> tag
+    template = document.querySelector("#tplActionBlockFellow").content.cloneNode(true);
+    
+    // Populates the template with the citizen's data
+    template.querySelector(".pseudo").innerHTML = citizen.citizen_pseudo;
+    template.querySelector('form[name="attack"] input[name="params[target_id]"]').value = citizen.citizen_id;
+    template.querySelector('form[name="heal"] input[name="params[target_id]"]').value = citizen.citizen_id;
+    
+    // Displays/hides the buttons attack/heal according to the wounds of the player
+    if(displayActionButtons === false) {
+        template.querySelector('.actionButtons').style.display = "none";
+    }
+    else if(citizen.is_wounded === 0) {
+        template.querySelector('form[name="heal"]').style.display = "none";
+    } else {
+        template.querySelector('form[name="attack"]').style.display = "none";
+    }
+    
+    return template;
+}

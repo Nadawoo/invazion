@@ -278,8 +278,10 @@ class HtmlLayout extends HtmlPage
                     <span class="userlabel"><span class="avatar">&#x1F464;</span> 
                         <span class="pseudo">{{citizen_pseudo}}</span>
                     </span>
-                    '.$buttons->attack_citizen('{citizen_id}', '{citizen_pseudo}').'
-                    '.$buttons->heal_citizen('{citizen_id}', '{citizen_pseudo}').'
+                    <span class="actionButtons">
+                        '.$buttons->attack_citizen('{citizen_id}', '{citizen_pseudo}').'
+                        '.$buttons->heal_citizen('{citizen_id}', '{citizen_pseudo}').'
+                    </span>
                 </li>
             </template>';
         

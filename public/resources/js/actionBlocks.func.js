@@ -156,13 +156,18 @@ async function updateBlockActionCitizens(coordX, coordY) {
         // Get the citizens of the map by calling the Invazion's API
         _citizens = await getMapCitizensOnce(mapId);    
         
-        // Keep only the citizens who are in the player's zone
-        zoneCitizens = Object.values(_citizens).filter(citizen => citizen.coord_x == coordX 
-                                                               && citizen.coord_y == coordY
-                                                               && citizen.citizen_id != myCitizenId);
+        // Keeps only the citizens who are in the player's zone
+        citizensInMyZone = Object.values(_citizens).filter(citizen => citizen.coord_x == coordX 
+                                                                    && citizen.coord_y == coordY
+                                                                    && citizen.citizen_id != myCitizenId);
+        // All the other citizens (not in my zone)
+        citizensInOtherZones = Object.values(_citizens).filter(citizen => citizen.coord_x != coordX 
+                                                                        && citizen.coord_y != coordY
+                                                                        && citizen.citizen_id != myCitizenId);
         
-        if(zoneCitizens.length <= 0) {
-            // If the conected player is alone, show a generic text
+        // Shows me in the list of the citizens
+        if(citizensInMyZone.length <= 0) {
+            // If the connected player is alone, show a generic text
             document.querySelector("#block_citizens .greytext").style.display = "block";
             block.innerHTML = "";
             
@@ -175,26 +180,17 @@ async function updateBlockActionCitizens(coordX, coordY) {
             document.querySelector("#block_citizens ol").appendChild(template);
         }
         
-        // Show the list of the other citizens in the zone
-        for(let i in zoneCitizens) {
-            
-            let citizen = zoneCitizens[i],
-                template = document.querySelector("#tplActionBlockFellow").content.cloneNode(true);
-                
-            // Populate the template with the citizen's data
-            template.querySelector(".pseudo").innerHTML = citizen.citizen_pseudo;
-            template.querySelector('form[name="attack"] input[name="params[target_id]"]').value = citizen.citizen_id;
-            template.querySelector('form[name="heal"] input[name="params[target_id]"]').value = citizen.citizen_id;
-            
-            // Switch buttons attack/heal according to the wounds of the player
-            if(citizen.is_wounded === 0) {
-                template.querySelector('form[name="heal"]').style.display = "none";
-            } else {
-                template.querySelector('form[name="attack"]').style.display = "none";
-            }
-            
-            // Add the new template to the list of citiziens
-            document.querySelector("#block_citizens ol").appendChild(template);
+        // Shows the list of the other citizens in my zone
+        for(let i in citizensInMyZone) {
+            template = getHtmlActionBlockFellow(citizensInMyZone[i]);
+            document.querySelector("#block_citizens #citizensInMyZone").appendChild(template);
+        }
+        
+        // Shows the list of the other citizens in the zone
+        document.querySelector("#block_citizens #citizensInOtherZones").innerHTML = "";
+        for(let i in citizensInOtherZones) {
+            template = getHtmlActionBlockFellow(citizensInOtherZones[i], displayActionButtons=false);
+            document.querySelector("#block_citizens #citizensInOtherZones").appendChild(template);
         }
         
         // Useful to know if the block is up-to-date after moving the player

@@ -436,11 +436,13 @@ echo $popup->customised('popsuccess', '', $msg_popup, $is_custom_popup_visible);
             </fieldset>
 
             <fieldset id="block_citizens">                
+                <?php echo $html['zone_fellows_template'] ?>
+                <strong>Humains dans ma zone :</strong>
                 <p class="greytext">Personne à proximité. Vous êtes seul au milieu 
                     de cette zone désertique...</p>
-                
-                <?php echo $html['zone_fellows_template'] ?>
-                <ol class="citizens" data-coordx="" data-coordy=""></ol>
+                <ol id="citizensInMyZone" class="citizens" data-coordx="" data-coordy=""></ol>
+                <strong>Humains dans d'autres zones :</strong>
+                <ol id="citizensInOtherZones" class="citizens" data-coordx="" data-coordy=""></ol>
             </fieldset>
         </section>
         
