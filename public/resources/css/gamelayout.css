@@ -768,7 +768,7 @@ a.redbutton {
 }
 
 /*
- * Etiquette pour nom d'utilisateur (icône + pseudo sur fond coloré)
+ * Chips (label) for the user name (avatar + pseudo on a colored background)
  */
 .userListItem {
     display:flex;
@@ -797,11 +797,13 @@ a.redbutton {
     border-radius:0.2rem;
     background:lightgreen;
 }
-.userLabel.big {
-    height:3rem;
-    margin-bottom:0.5em;
+.userListItem.big {
+    padding:0.3em 0;
 }
-.userLabel.big .avatar {
+.big .userLabel {
+    height:3rem;
+}
+.big .userLabel .avatar {
     height:3rem;
     width: 3rem;
     font-size:2rem; /* Useful when the default avatar is an emoji (e.g. silhouette) */

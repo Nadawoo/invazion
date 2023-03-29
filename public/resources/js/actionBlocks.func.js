@@ -175,9 +175,8 @@ async function updateBlockActionCitizens(coordX, coordY) {
             // Hide the generic text
             document.querySelector("#block_citizens .greytext").style.display = "none";
             // Add the player's pseudo at the top of the list of citizens
-            let template = document.querySelector("#tplActionBlockFellowMe").content.cloneNode(true);
-            template.querySelector(".pseudo").innerHTML = myCitizenPseudo;
-            document.querySelector("#block_citizens ol").appendChild(template);
+            template = getHtmlActionBlockFellow(_citizens[myCitizenId], bigChips=true, displayActionButtons=false, displayItsMe=true);
+            document.querySelector("#block_citizens #citizensInMyZone").appendChild(template);
         }
         
         // Shows the list of the other citizens in my zone
