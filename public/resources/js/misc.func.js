@@ -1178,12 +1178,13 @@ function centerMapOnMe() {
  * 
  * @param {dict} citizen The citzen's data, as returned by the Invazion's API
  *                       (citizen_id, citizen_pseudo...) 
+ * @param {boolean} bigChips Set to "true" to make bigger the chips of the user
  * @param {boolean} hideActionButtons Set to "false" if you want to hide the buttons 
  *                                    for healing/attacking the citizen (useful 
  *                                    when the citizen is not in the same zone)
  * @returns {string} HTML
  */
-function getHtmlActionBlockFellow(citizen, displayActionButtons=true) {
+function getHtmlActionBlockFellow(citizen, bigChips=false, displayActionButtons=true) {
     
     // The model for the HTML is located in a <template> tag
     template = document.querySelector("#tplActionBlockFellow").content.cloneNode(true);
@@ -1192,6 +1193,10 @@ function getHtmlActionBlockFellow(citizen, displayActionButtons=true) {
     template.querySelector(".pseudo").innerHTML = citizen.citizen_pseudo;
     template.querySelector('form[name="attack"] input[name="params[target_id]"]').value = citizen.citizen_id;
     template.querySelector('form[name="heal"] input[name="params[target_id]"]').value = citizen.citizen_id;
+    
+    if(bigChips === true) {
+        template.querySelector(".userLabel").classList.add("big");
+    }
     
     // Displays/hides the buttons attack/heal according to the wounds of the player
     if(displayActionButtons === false) {

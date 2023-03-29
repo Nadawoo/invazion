@@ -182,14 +182,14 @@ async function updateBlockActionCitizens(coordX, coordY) {
         
         // Shows the list of the other citizens in my zone
         for(let i in citizensInMyZone) {
-            template = getHtmlActionBlockFellow(citizensInMyZone[i]);
+            template = getHtmlActionBlockFellow(citizensInMyZone[i], bigChips=true);
             document.querySelector("#block_citizens #citizensInMyZone").appendChild(template);
         }
         
         // Shows the list of the other citizens in the zone
         document.querySelector("#block_citizens #citizensInOtherZones").innerHTML = "";
         for(let i in citizensInOtherZones) {
-            template = getHtmlActionBlockFellow(citizensInOtherZones[i], displayActionButtons=false);
+            template = getHtmlActionBlockFellow(citizensInOtherZones[i], bigChips=false, displayActionButtons=false);
             document.querySelector("#block_citizens #citizensInOtherZones").appendChild(template);
         }
         

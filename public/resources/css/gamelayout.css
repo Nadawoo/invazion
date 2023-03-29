@@ -770,26 +770,43 @@ a.redbutton {
 /*
  * Etiquette pour nom d'utilisateur (icône + pseudo sur fond coloré)
  */
-.userlabel {
-    display:inline-block;
+.userListItem {
+    display:flex;
+    margin:0.2em 0;
+}
+.userLabel {
+    display:flex;
+    align-items:center;
     height:1.4em;
-    margin:0.1em 0;
+    width: 10em;
+    margin-right:0.4em;
     padding-right:0.8em;
-    width:8em;
     white-space:nowrap;
     border:1px solid green;
-    border-radius:1em;
+    border-radius:0.2rem;
     background:green;
     color:white;
 }
-.userlabel .avatar {
-    display:inline-block;
-    height:1.4em; /* Height and width must be equal to the height of .userlabel */
+.userLabel .avatar {
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    height:1.4em; /* Height and width must be equal to the height of .userLabel */
     width: 1.4em;
-    border-radius:1em;
-    text-align:center;
+    margin-right:0.2em;
+    border-radius:0.2rem;
     background:lightgreen;
-} 
+}
+.userLabel.big {
+    height:3rem;
+    margin-bottom:0.5em;
+}
+.userLabel.big .avatar {
+    height:3rem;
+    width: 3rem;
+    font-size:2rem; /* Useful when the default avatar is an emoji (e.g. silhouette) */
+}
+
 
 /* Message d'erreur, ex : "Vous n'avez plus assez de PA"
    Important : utiliser les alias retournés par les API 

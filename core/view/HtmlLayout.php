@@ -264,24 +264,28 @@ class HtmlLayout extends HtmlPage
         
         $player_template = '
             <template id="tplActionBlockFellowMe">
-                <li>
-                    <span class="userlabel"><span class="avatar">&#x1F464;</span> 
-                        <span class="pseudo">{{citizen_pseudo}}</span>
-                    </span>
-                    <span class="itsme" style="color:grey;font-size:0.8em"> [c\'est vous !]</span>
+                <li class="userListItem">
+                    <div class="userLabel big">
+                        <div class="avatar">&#x1F464;</div> 
+                        <div class="pseudo">{{citizen_pseudo}}</div>
+                    </div>
+                    <div class="itsme" style="color:grey;font-size:0.8em">
+                        [c\'est vous !]
+                    </div>
                 </li>
             </template>';
             
         $other_citizen_template = '
             <template id="tplActionBlockFellow">
-                <li>
-                    <span class="userlabel"><span class="avatar">&#x1F464;</span> 
-                        <span class="pseudo">{{citizen_pseudo}}</span>
-                    </span>
-                    <span class="actionButtons">
+                <li class="userListItem">
+                    <div class="userLabel">
+                        <div class="avatar">&#x1F464;</div> 
+                        <div class="pseudo">{{citizen_pseudo}}</div>
+                    </div>
+                    <div class="actionButtons">
                         '.$buttons->attack_citizen('{citizen_id}', '{citizen_pseudo}').'
                         '.$buttons->heal_citizen('{citizen_id}', '{citizen_pseudo}').'
-                    </span>
+                    </div>
                 </li>
             </template>';
         
