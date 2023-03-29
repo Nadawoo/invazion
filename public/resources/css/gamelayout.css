@@ -772,7 +772,7 @@ a.redbutton {
  */
 .userListItem {
     display:flex;
-    margin:0.2em 0;
+    margin-bottom:0.3em;
 }
 .userLabel {
     display:flex;
@@ -783,7 +783,7 @@ a.redbutton {
     padding-right:0.8em;
     white-space:nowrap;
     border:1px solid green;
-    border-radius:0.2rem;
+    border-radius:2em 0.6em 0.6em 2em;
     background:green;
     color:white;
 }
@@ -794,7 +794,7 @@ a.redbutton {
     height:1.4em; /* Height and width must be equal to the height of .userLabel */
     width: 1.4em;
     margin-right:0.2em;
-    border-radius:0.2rem;
+    border-radius:2em;
     background:lightgreen;
 }
 .userListItem.big {
