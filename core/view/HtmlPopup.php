@@ -307,15 +307,14 @@ class HtmlPopup
     private function popmove($params)
     {
         
-        return "<p>Explorer le désert hostile exige du courage et de l'endurance.
-            Vous aurez besoin de <strong>points d'action</strong> pour vous déplacer,
+        return "<p>Explorer le désert exige de l'endurance.
+            Vous avez besoin de &#9889;<strong>points d'action</strong> pour vous déplacer,
             en fonction du nombre de zombies dans la zone :
             </p>
             <ul>
-                <li>&#x2714;&#xFE0F; S'il n'y a <strong>aucun zombie</strong> dans la zone, 
-                    le déplacement coûte <strong>".$params['moving_cost_no_zombies']." point d'action</strong>.<br><br></li>
-                <li>&#x1F9DF; S'il y a <strong>1 zombie ou davantage</strong>, quitter la zone 
-                    vous coûtera <strong>".$params['moving_cost_zombies']." point d'action</strong>.</li>
+                <li class=\"orange\">&#x1F9DF; <strong>1 zombie ou davantage</strong> &#x2794;
+                    coût <strong>".$params['moving_cost_zombies']."</strong>&#9889;<br><br></li>
+                <li class=\"green\">&#x2714;&#xFE0F; <strong>aucun zombie</strong> &#x2794; gratuit</li>
                 </ul>
             <p>Surveillez vos points d'action ! Si vous restez bloqué dans le désert,
             une mort certaine vous attend cette nuit...</p>";

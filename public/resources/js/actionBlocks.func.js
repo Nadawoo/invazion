@@ -32,15 +32,17 @@ async function updateBlockAction(blockAlias) {
 
 
 /**
- * Update the content of the action block "Move"
+ * Updates the cost (in action points) for leaving the zone
  * @param {int} newNbrZombies The number of zombies in the zone after the action
  */
-function updateBlockActionMove(newNbrZombies) {
-    
-    // Update the details about movement cost (action points)
+function updateMoveCost(newNbrZombies) {
+    // Updates the block under the action points (lightnings)
     if(newNbrZombies <= 0) {
         document.querySelector("#movement_cost").innerHTML = '<span style="font-size:0.85em">Déplacement gratuit<br>(aucun zombie alentour)';
     }
+    // Updates the card under the movement paddle
+    let display = (newNbrZombies > 0) ? "block": "none";
+    document.querySelector("#card_ap_cost").style.display = display;
 }
 
 

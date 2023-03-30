@@ -344,13 +344,14 @@
  * (to explore a building, to dig the zone...)
  */
 #block_move .card {
-    display:none;
+    display:flex;
     align-items:center;
     justify-content: space-between;
     margin:1em 0;
     padding:1em;
     border:1px solid green;
     border-radius:0.3em;
+    color:inherit; /* Keeps the text in bleck when the card is a <a> tag */
     box-shadow:6px 6px 6px black;
 }
 #block_move #card_building {

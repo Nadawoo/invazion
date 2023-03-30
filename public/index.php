@@ -168,12 +168,12 @@ echo $html['json_configs'];
 // TODO : ne pas charger toutes les textes dans le code, seulement celui utile
 echo $popup->predefined('popvault',   '');
 echo $popup->predefined('popwounded', '', ['citizen_id'=>$citizen['citizen_id'], 'healing_items'=>$healing_items]);
-echo $popup->predefined('popcontrol', 'Aide : le contrôle de zone');
-echo $popup->predefined('popmove', 'Aide : les déplacements', 
+echo $popup->predefined('popcontrol', '&#8505;&#65039; Le contrôle de zone');
+echo $popup->predefined('popmove', '&#8505;&#65039; Les déplacements', 
                         ['moving_cost_no_zombies' => $configs['map']['moving_cost_no_zombies'], 
                          'moving_cost_zombies'    => $configs['map']['moving_cost_zombies']
                         ]);
-echo $popup->predefined('popattack', 'Aide : l\'attaque zombie quotidienne');
+echo $popup->predefined('popattack', '&#8505;&#65039; L\'attaque zombie quotidienne');
 echo $popup->template_popbuilding($msg_popup);
 echo $popup->customised('popsmartphone', '', $html['smartphone']);
 // Generic pop-up describing the result of an action
@@ -385,10 +385,15 @@ echo $popup->customised('popsuccess', '', $msg_popup, $is_custom_popup_visible);
                     .$popup->link('popsuccess', 'Explorer', 'button_explore')
                     .$popup->link('popvault', 'Pouvoir cryptique', 'button_crypt').'
                 </div>
-                <div id="card_dig" class="card">
+                <a id="card_dig" class="card"
+                    onclick="toggleActionBlock(\'dig\'); updateBlockAction(\'dig\')">
                     La zone peut être fouillée.
-                    <a onclick="toggleActionBlock(\'dig\'); updateBlockAction(\'dig\')" style="display:block;height:3em;line-height:3em;font-weight:bold">&#9935;&#65039; Fouiller &#9002;</a>
-                </div>';
+                    <strong style="color:darkred">&#9935;&#65039; Fouiller &#9002;</strong>
+                </a>
+                <a href="#popmove" id="card_ap_cost" class="card"
+                   style="display:block;border:2px solid #e65100;color:inherit">
+                   Quitter la zone vous coûtera <strong>1</strong>&#9889;
+                </a>';
                 
                 echo '<br><br><br>
                     <strong>Pouvoirs (joueur zombie)</strong><br>
