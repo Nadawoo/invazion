@@ -147,29 +147,39 @@ function updateUrlParam(name, value) {
 
 
 /**
- *  Displays the location icon on every zone which contains items
+ *  Displays the location icon on every zone which contains the specified element
+ *  
+ *  @param {string} objectToMark The alias of the object to mark on the map.
+ *                               See the dictionary "markableObjects" in the present 
+ *                               function to know the available aliases.
  */
-function toggleMapItems() {
+function toggleMapMarker(objectToMark) {
+    
+    // Here are listed the DOM selectors to mark the zones you want (e.g. class name...)
+    // Example: the zone which contains items are currently identified by 
+    // a class named "hasItems"
+    var markableObjects = {
+        "items":    ".hasItems",
+        "citizens": ".square_container:not([data-citizens='0'])"
+        };
 
-    if (window.areItemsDisplayed !== true) {
-        
+    if (window.areMapMarkersActive !== true) {        
         // Adds the HTML for the icons in the zones
-        let classes = document.getElementsByClassName("hasItems");
+        let classes = document.querySelectorAll(markableObjects[objectToMark]);
         
         for(let i=0; i < classes.length; i++) {
             classes[i].innerHTML += '<img src="resources/img/free/map_location.svg" class="location">';
         }
-        window.areItemsDisplayed = true;
+        window.areMapMarkersActive = true;
     }
-    else {
-    
+    else {    
         // Hides the icons added by the previous call to the function
-        let classes = document.getElementsByClassName("location");
+        let classes = document.querySelectorAll(".location");
         
         for(let i=0; i < classes.length; i++) {
             classes[i].style.display = 'none';
         }
-        window.areItemsDisplayed = false;
+        window.areMapMarkersActive = false;
     }
 }
 
