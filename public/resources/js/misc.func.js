@@ -508,7 +508,7 @@ async function moveCitizen(direction) {
     let htmlCoord = json.datas.new_coord_x+"_"+json.datas.new_coord_y;
         myZone = document.querySelector("#zone"+htmlCoord+" .square_container");
     myZone.dataset.citizens = parseInt(myZone.dataset.citizens, 10) + 1;
-    
+       
     updateRoundActionButtons(json.datas.new_coord_x, json.datas.new_coord_y);
     updateActionPointsBar(json.datas.action_points_lost);
     updateCityDistance(json.datas.new_coord_x, json.datas.new_coord_y);
@@ -526,16 +526,20 @@ async function moveCitizen(direction) {
 function updateEnterBuildingButton(cityTypeId) {
     
     // Displays the building's name under the movement paddle
-    let buildingName = (cityTypeId !== "") ? "Bâtiment : "+_configsBuildings[cityTypeId]["name"] : "";
-    document.querySelector("#column_move .building_name").innerHTML = buildingName;
+    if(cityTypeId === "") {
+        document.querySelector("#block_move #card_building").style.display = "none";
+    } else {
+        document.querySelector("#block_move .building_name").innerHTML = _configsBuildings[cityTypeId]["name"];
+        document.querySelector("#block_move #card_building").style.display = "block";
+    }
     
     // Button to enter in the city
     let enterCity = (cityTypeId !== "" && _configsBuildings[cityTypeId]["is_enterable"] === 1) ? "block" : "none";
-    document.querySelector(`#column_move form[name="enter_city"]`).style.display = enterCity;
+    document.querySelector(`#block_move form[name="enter_city"]`).style.display = enterCity;
     
     // Button to destroy the tent (building #13 in the database)
     let destroyCity = (cityTypeId !== "" && _configsBuildings[cityTypeId]["is_destroyable"] === 1) ? "block" : "none";
-    document.querySelector('#column_move form[name="destroy_city"]').style.display = destroyCity;
+    document.querySelector('#block_move form[name="destroy_city"]').style.display = destroyCity;
     
     // Button to activate a crypt (building ID #2)
     let enterCrypt = (cityTypeId === "2") ? "block" : "none";
@@ -910,7 +914,7 @@ async function dig() {
             item       = itemsFound[itemId];
         htmlAddGroundItem(itemId, item.icon_symbol, item.name, 1);
         // Makes the digging button inactive
-        updateDigButton(1);
+        updateDigButtons(1);
     }
 }
 

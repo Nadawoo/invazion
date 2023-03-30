@@ -367,18 +367,30 @@ echo $popup->customised('popsuccess', '', $msg_popup, $is_custom_popup_visible);
                 echo '
                 <div id="column_move">'
                     .$paddle->paddle($citizen['coord_x'], $citizen['coord_y'])
-                    .$layout->block_distance()
-                    .'<div class="building_name"></div>'
-                    .$buttons->button('enter_city', 'no_icon')
-                    .$buttons->button('destroy_city', 'no_icon')
-                    .$popup->link('popsuccess', 'Explorer', 'button_explore')
-                    .$popup->link('popvault', 'Pouvoir cryptique', 'button_crypt').'
+                    .$layout->block_distance().'
                 </div>';
                 
                 echo $layout->block_movement_AP($citizen['action_points'], $speciality_caracs['action_points'], $zone['zombies'], 
                                                 $configs['map']['moving_cost_no_zombies'], $configs['map']['moving_cost_zombies']);
                 
-                echo '<br><br><br><br><br>
+                echo '
+                <br>
+                <div id="card_building" class="card">
+                    <img src="resources/img/copyrighted/tiles/desert/10.png" height="96" width="73" alt="Bâtiment"
+                         style="float:left;margin-right:1em;">
+                    <strong>Bâtiment découvert :<br><span class="building_name"></span></strong>
+                    <br><br>'
+                    .$buttons->button('enter_city', 'no_icon')
+                    .$buttons->button('destroy_city', 'no_icon')
+                    .$popup->link('popsuccess', 'Explorer', 'button_explore')
+                    .$popup->link('popvault', 'Pouvoir cryptique', 'button_crypt').'
+                </div>
+                <div id="card_dig" class="card">
+                    La zone peut être fouillée.
+                    <a onclick="toggleActionBlock(\'dig\'); updateBlockAction(\'dig\')" style="display:block;height:3em;line-height:3em;font-weight:bold">&#9935;&#65039; Fouiller &#9002;</a>
+                </div>';
+                
+                echo '<br><br><br>
                     <strong>Pouvoirs (joueur zombie)</strong><br>
                     <img src="resources\img\copyrighted\wolf.png" alt="&#128200;" height="32" width="32"> Augmenter l\'attaque quotidienne <abbr title="Augmente le nombre de zombies qui attaqueront la ville lors de la prochaine attaque de fin de cycle.">[?]</abbr><br>
                     <img src="resources\img\motiontwin\zombie6.gif" alt="&#129503;" height="32" width="32"> Ajouter des zombies sur la carte <abbr title="Ajoute aléatoirement des zombies sur la carte du jeu.">[?]</abbr><br>
@@ -400,9 +412,14 @@ echo $popup->customised('popsuccess', '', $msg_popup, $is_custom_popup_visible);
             </fieldset>
             
             <fieldset id="block_dig">
+                <p class="center" style="margin:0 0 1.5em 0">
+                    <em>En fouillant le désert, vous collectez les objets indispensables 
+                    à votre survie.</em>
+                </p>
                 <?php 
                 echo $buttons->button('dig', false, '', (bool)$citizen['can_dig']).'<br>';
                 ?>
+                <hr>
                 
                 &#x1F4BC; <strong>Déposer un objet de mon sac :</strong>
                     <?php echo $html['bag_items'] ?>
@@ -442,7 +459,6 @@ echo $popup->customised('popsuccess', '', $msg_popup, $is_custom_popup_visible);
                     de cette zone désertique...</p>
                 <ol id="citizensInMyZone" class="citizens" data-coordx="" data-coordy=""></ol>
                 <hr>
-                <br>
                 <strong>Autres humains sur la carte :</strong>
                 <ol id="citizensInOtherZones" class="citizens" data-coordx="" data-coordy=""></ol>
             </fieldset>

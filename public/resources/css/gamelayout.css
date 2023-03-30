@@ -232,10 +232,6 @@
     flex-direction:column;
     float:left;
 }
-#column_move .building_name {
-    text-align:center;
-    font-weight:bold;
-}
 #movement_paddle {
     float:left;
     margin-top:-0.5em; /* TODO: fix this ugly artificial alignment */
@@ -341,6 +337,30 @@
     padding:0.3em 0.5em 0.2em 0.3em;
     background:lightgrey;
     color:grey; 
+}
+
+/*
+ * The cards under the movement paddle, indicating the main actions
+ * (to explore a building, to dig the zone...)
+ */
+#block_move .card {
+    display:none;
+    align-items:center;
+    justify-content: space-between;
+    margin:1em 0;
+    padding:1em;
+    border:1px solid green;
+    border-radius:0.3em;
+    box-shadow:6px 6px 6px black;
+}
+#block_move #card_building {
+    height:6em;
+}
+#block_move #card_building .building_name {
+    font-weight:bold;
+}
+#block_move #card_dig {
+    height:1.5em;
 }
 
 /* 
@@ -461,6 +481,9 @@ legend {
     border-radius:0.3rem;
     background:#34495e;
     color:white;
+}
+#actions hr {
+    margin:2em 0;
 }
 /* The form to change the ground type (lava...) */
 #landform button {
