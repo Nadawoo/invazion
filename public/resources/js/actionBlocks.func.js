@@ -41,8 +41,12 @@ function updateMoveCost(newNbrZombies) {
         document.querySelector("#movement_cost").innerHTML = '<span style="font-size:0.85em">Déplacement gratuit<br>(aucun zombie alentour)';
     }
     // Updates the card under the movement paddle
-    let display = (newNbrZombies > 0) ? "block": "none";
+    let display = (newNbrZombies > 0) ? "flex": "none";
     document.querySelector("#card_ap_cost").style.display = display;
+    
+    let currentAp = document.querySelector("#actionPoints").innerHTML,
+        ApAfterMove = currentAp - 1;    
+    document.querySelector("#card_ap_cost .actionspoints_decrease").innerHTML = currentAp+"&#x2794;"+ApAfterMove+"&#9889;";
 }
 
 

@@ -391,8 +391,9 @@ echo $popup->customised('popsuccess', '', $msg_popup, $is_custom_popup_visible);
                     <strong style="color:darkred">&#9935;&#65039; Fouiller &#9002;</strong>
                 </a>
                 <a href="#popmove" id="card_ap_cost" class="card"
-                   style="display:block;border:2px solid #e65100;color:inherit">
-                   Quitter la zone vous coûtera <strong>1</strong>&#9889;
+                   style="border:2px solid #e65100;color:inherit">
+                   <span>Quitter la zone vous coûtera <strong>1</strong>&#9889;</span>
+                   <span class="actionspoints_decrease"></span>
                 </a>';
                 
                 echo '<br><br><br>

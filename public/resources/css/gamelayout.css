@@ -347,6 +347,7 @@
     display:flex;
     align-items:center;
     justify-content: space-between;
+    height:1.5em;
     margin:1em 0;
     padding:1em;
     border:1px solid green;
@@ -360,8 +361,13 @@
 #block_move #card_building .building_name {
     font-weight:bold;
 }
-#block_move #card_dig {
-    height:1.5em;
+#block_move #card_ap_cost .actionspoints_decrease {
+    font-size:1.1em;
+    padding:0.2em 0.2em 0.2em 0.5em;
+    background:#bf360c;
+    color:white;
+    font-weight:bold;
+    border-radius:0.2em;
 }
 
 /* 
