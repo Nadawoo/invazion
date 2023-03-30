@@ -513,7 +513,7 @@ async function moveCitizen(direction) {
     updateActionPointsBar(json.datas.action_points_lost);
     updateCityDistance(json.datas.new_coord_x, json.datas.new_coord_y);
     updateEnterBuildingButton(myZone.dataset.citytypeid);
-    updateMoveCost(myZone.dataset.zombies);
+    updateMoveCost(parseInt(myZone.dataset.zombies));
     
     setTimeout(centerMapOnMe, 1000);
 }

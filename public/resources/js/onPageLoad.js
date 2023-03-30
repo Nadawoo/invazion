@@ -44,7 +44,7 @@ if (document.getElementById('map') !== null) {
         displayTooltip(myHexagon);
         // Updates the coordinates of the player in the movement paddle
         updateMovementPaddle(zoneData.coordx, zoneData.coordy);
-        updateMoveCost(zoneData.zombies);
+        updateMoveCost(parseInt(zoneData.zombies));
         // Updates the distance to the city displayed under the movement paddle
         updateCityDistance(zoneData.coordx, zoneData.coordy);     
         // Displays the button to enter if there is a city in the zone

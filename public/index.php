@@ -370,8 +370,7 @@ echo $popup->customised('popsuccess', '', $msg_popup, $is_custom_popup_visible);
                     .$layout->block_distance().'
                 </div>';
                 
-                echo $layout->block_movement_AP($citizen['action_points'], $speciality_caracs['action_points'], $zone['zombies'], 
-                                                $configs['map']['moving_cost_no_zombies'], $configs['map']['moving_cost_zombies']);
+                echo $layout->block_movement_AP($citizen['action_points'], $speciality_caracs['action_points']);
                 
                 echo '
                 <br>

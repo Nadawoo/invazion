@@ -313,6 +313,7 @@
 #movement_ap {
     margin-left:auto;
     width:11.5rem;
+    height:9rem;
     text-align:right;
 }
 #actionpoints {
@@ -322,7 +323,6 @@
     background:green;
     color:white;
     opacity:0.9;
-    height:6rem;
 }
 #actionpoints p {
     margin:0.2em 0;
@@ -330,13 +330,6 @@
 #actionpoints #apBar {
     font-size:1.5em;
     word-break:break-all;
-}
-#movement_cost {
-    display:block;
-    margin:0.2em 0 0 0.3em;
-    padding:0.3em 0.5em 0.2em 0.3em;
-    background:lightgrey;
-    color:grey; 
 }
 
 /*
