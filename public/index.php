@@ -374,6 +374,11 @@ echo $popup->customised('popsuccess', '', $msg_popup, $is_custom_popup_visible);
                 
                 echo '
                 <br>
+                <a id="card_citizens" class="card" style="border-width:2px"
+                    onclick="toggleActionBlock(\'citizens\'); updateBlockAction(\'citizens\')">
+                    D\'autres humains se trouvent dans la zone !
+                    <strong style="color:darkred">&#x1F465; Interagir &#9002;</strong>
+                </a>
                 <div id="card_building" class="card">
                     <img src="resources/img/copyrighted/tiles/desert/10.png" height="96" width="73" alt="Bâtiment"
                          style="float:left;margin-right:1em;">

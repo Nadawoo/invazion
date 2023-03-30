@@ -39,12 +39,14 @@ if (document.getElementById('map') !== null) {
         // Get informations about the current zone through the "data-*" HTML attributes
         let zoneData = document.querySelector("#me").parentNode.dataset;
         let myHexagon = document.getElementById("me").closest(".hexagon");
-           
+        
         // Highlights the player's location on page load
         displayTooltip(myHexagon);
         // Updates the coordinates of the player in the movement paddle
         updateMovementPaddle(zoneData.coordx, zoneData.coordy);
+        // Updates the cards of contextual actions under the movement paddle
         updateMoveCost(parseInt(zoneData.zombies));
+        updateCardCitizensInZone(parseInt(zoneData.citizens));
         // Updates the distance to the city displayed under the movement paddle
         updateCityDistance(zoneData.coordx, zoneData.coordy);     
         // Displays the button to enter if there is a city in the zone

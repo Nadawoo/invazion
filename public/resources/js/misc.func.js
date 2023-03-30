@@ -514,8 +514,24 @@ async function moveCitizen(direction) {
     updateCityDistance(json.datas.new_coord_x, json.datas.new_coord_y);
     updateEnterBuildingButton(myZone.dataset.citytypeid);
     updateMoveCost(parseInt(myZone.dataset.zombies));
+    updateCardCitizensInZone(myZone.dataset.citizens);
     
     setTimeout(centerMapOnMe, 1000);
+}
+
+
+/**
+ * Shows/hides the card under the movement paddle notifying the presence 
+ * of other humans in the player's zone
+ * 
+ * @param {int} nbrCitizensInZone The number of citizens in the zone
+ *                                (including the current player)
+ * @returns {undefined}
+ */
+function updateCardCitizensInZone(nbrCitizensInZone) {
+    
+    let display = (nbrCitizensInZone > 1) ? "flex" : "none";    
+    document.querySelector("#card_citizens").style.display = display;
 }
 
 
