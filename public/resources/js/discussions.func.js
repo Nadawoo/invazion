@@ -194,10 +194,10 @@ async function updateDiscussionsList() {
     
     for (let i=0; i<length; i++) {        
         let topic            = jsonTopics.datas[i],
-            nbrOtherMessages = topic.nbr_messages-1;
+            nbrReplies       = topic.nbr_messages-1;
 
         discussions += htmlDiscussion(topic.topic_id, topic.topic_type, topic.title, 
-                                      topic.first_message, topic.last_message, nbrOtherMessages);
+                                      topic.first_message, topic.last_message, nbrReplies);
     }
     
     document.getElementById("wallDiscuss").innerHTML = htmlNewDiscussionForm(citizenPseudo)

@@ -18,25 +18,30 @@ function htmlDiscussionNotif(topicTitle, date, url, authorId, authorPseudo, last
 }
 
 
-function htmlDiscussion(topicId, topicType, topicTitle, firstMessage, lastMessage, nbrOtherMessages) {
+function htmlDiscussion(topicId, topicType, topicTitle, firstMessage, lastMessage, nbrReplies) {
     
     var url = urlDiscussion(topicId, lastMessage.message_id);
-    var otherMessagesLink = (nbrOtherMessages>1) ? '<a id="loadDiscussion'+topicId+'" class="link_other_messages" onclick="loadDiscussion('+topicId+')">··· voir les '+(nbrOtherMessages-1)+' autres réponses ···</a>' : '';
+    var otherMessagesLink = (nbrReplies>1) ? '<a id="loadDiscussion'+topicId+'" class="link_other_messages" onclick="loadDiscussion('+topicId+')">··· voir les '+(nbrReplies-1)+' autres réponses ···</a>' : '';
+    // If there is no reply, the last message is the same as the first one, 
+    // so don't display it two times.
+    htmlLastMessage = (nbrReplies === 0) ? "" : htmlDiscussionMessage(lastMessage.message, lastMessage.is_json, 
+                                                                      lastMessage.author_pseudo, lastMessage.datetime_utc, 
+                                                                      nbrReplies+1);
     
     return '<div class="topic '+topicType+'">\
                 <h3 onclick="toggle(\'replies'+topicId+'\')">\
                     <span style="font-weight:normal">&#x1F4AC;</span> '+topicTitle+'\
                 </h3>\
                 <div id="replies'+topicId+'">\
-                    '+htmlDiscussionMessage(firstMessage.message, firstMessage.is_json, firstMessage.author_pseudo, firstMessage.datetime_utc, nbrOtherMessages+1)+'\
+                    '+htmlDiscussionMessage(firstMessage.message, firstMessage.is_json, firstMessage.author_pseudo, firstMessage.datetime_utc, nbrReplies+1)+'\
                     '+otherMessagesLink+'\
-                    '+htmlDiscussionMessage(lastMessage.message, lastMessage.is_json, lastMessage.author_pseudo, lastMessage.datetime_utc, nbrOtherMessages+1)+'\
+                    '+htmlLastMessage+'\
                 </div>\
                 <div class="reply_button">\
                     <a id="replyButton'+topicId+'" href="#" onclick="display(\'sendform'+topicId+'\');this.style.display=\'none\';return false">\
                         Commenter\
                     </a>\
-                    <form id="sendform'+topicId+'" method="post" action="" onsubmit="replyDiscussion('+topicId+', '+(nbrOtherMessages+1)+'); return false;">\
+                    <form id="sendform'+topicId+'" method="post" action="" onsubmit="replyDiscussion('+topicId+', '+(nbrReplies+1)+'); return false;">\
                         <div id="replyError'+topicId+'"></div>\
                         <textarea id="message'+topicId+'" placeholder="Écrivez votre réponse ici"></textarea>\
                         <input type="submit" value="Envoyer">\
