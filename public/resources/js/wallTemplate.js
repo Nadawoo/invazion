@@ -29,7 +29,7 @@ function htmlDiscussion(topicId, topicTitle, lastMessage, nbrOtherMessages) {
                 </h3>\
                 <div id="replies'+topicId+'">\
                     '+otherMessagesLink+'\
-                    '+htmlDiscussionMessage(lastMessage.message, lastMessage.author_pseudo, lastMessage.datetime_utc, nbrOtherMessages+1)+'\
+                    '+htmlDiscussionMessage(lastMessage.message, lastMessage.is_json, lastMessage.author_pseudo, lastMessage.datetime_utc, nbrOtherMessages+1)+'\
                 </div>\
                 <div class="reply_button">\
                     <a id="replyButton'+topicId+'" href="#" onclick="display(\'sendform'+topicId+'\');this.style.display=\'none\';return false">\
@@ -48,19 +48,41 @@ function htmlDiscussion(topicId, topicTitle, lastMessage, nbrOtherMessages) {
 /**
  * 
  * @param {string} message
+ * @param {string} isJson If "true", the message must be treated as a JSON string
+ *                        storing the data of a game event (ex: an agression).
+ *                        If "false", it's an ordinary textual message posted by a player.
  * @param {string} pseudo
  * @param {string} utcDate The date when the message was posted, in the ISO format
  * @param {int} replyNum The number of order of the message in the discussion (1, 2, 3...)
  * @returns {String}
  */
-function htmlDiscussionMessage(message, pseudo, utcDate, replyNum) {
+function htmlDiscussionMessage(message, isJson, pseudo, utcDate, replyNum) {
     
-    return '<div class="message">\
+    let formattedMessage = "";
+    
+    if(isJson === 1) {
+        // If the message is JSON-formatted (raw data of an event: agression...)
+        let apiDatas = JSON.parse(message).datas;
+        formattedMessage = "&#x1F489; <strong>"+apiDatas.author.citizen_pseudo+"</strong> a soigné la blessure \
+                         de <strong>"+apiDatas.target.citizen_pseudo+"</strong> en zone "+apiDatas.coord_x+":"+apiDatas.coord_y;
+        
+        return '<div class="message">\
+            <div class="reply_num">#'+replyNum+'</div>\
+            <div class="time" title="Fuseau horaire de Paris">'+dateIsoToString(utcDate)+'</div>\
+            <div class="text">'+formattedMessage+'</div>\
+        </div>';        
+    }
+    else {
+        // If the message is an ordinary textual message (written by a player)
+        formattedMessage = nl2br(message);
+        
+        return '<div class="message">\
             <div class="reply_num">#'+replyNum+'</div>\
             <div class="pseudo">&#x1F464; <strong>'+pseudo+'</strong></div>\
             <div class="time" title="Fuseau horaire de Paris">'+dateIsoToString(utcDate)+'</div>\
-            <div class="text">'+nl2br(message)+'</div>\
+            <div class="text">'+formattedMessage+'</div>\
         </div>';
+    }
 }
 
 

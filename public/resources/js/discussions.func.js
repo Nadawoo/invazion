@@ -87,7 +87,7 @@ async function loadDiscussion(topicId) {
     
     for(let msg in messages) {
         i++;
-        htmlMessages += htmlDiscussionMessage(messages[msg]["message"], messages[msg]["author_pseudo"], messages[msg]["datetime_utc"], i);
+        htmlMessages += htmlDiscussionMessage(messages[msg]["message"], messages[msg]["is_json"], messages[msg]["author_pseudo"], messages[msg]["datetime_utc"], i);
     }
     document.getElementById("replies"+topicId).innerHTML = htmlMessages;
 }
@@ -143,7 +143,7 @@ async function replyDiscussion(topicId, nbrMessages) {
         // Unhides the "Reply" button
         display("replyButton"+topicId);
         // Appends the text of the posted reply at the bottom of the discussion
-        document.getElementById("replies"+topicId).innerHTML += htmlDiscussionMessage(message, citizenPseudo, new Date().toISOString(), nbrMessages+1);
+        document.getElementById("replies"+topicId).innerHTML += htmlDiscussionMessage(message, false, citizenPseudo, new Date().toISOString(), nbrMessages+1);
         // Clears the eventual error message (obsolete after sending)
         document.getElementById("replyError"+topicId).innerHTML = "";
     }
