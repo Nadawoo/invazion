@@ -104,7 +104,7 @@
     letter-spacing:0.04em;
 }
 #wall input[type="submit"]:hover,
-#wall .reply_button a:hover {
+#wall .discuss .reply_button a:hover {
     background:#b03a2e;
 }
 
@@ -126,6 +126,7 @@
     font-size:0.7em;
     color:grey;
     cursor:help;
+    text-align:right;
 }
 #wall .text {
     font-size:0.9em;
@@ -141,7 +142,6 @@
     margin:0.2rem;
     text-align:center;
     font-size:0.8em;
-    color:lightgrey;
 }
 #wall .link_other_messages:hover {
     color:#e74c3c;
@@ -173,8 +173,12 @@
 #wall .discuss .time {
     margin-left:2.1em;
 }
-#wall .discuss form {
+#wall .discuss form,
+#wall .event form {
     display:none;
+}
+#wall .discuss .link_other_messages {
+    color:lightgrey;
 }
 #wall #send {
     padding:0.1em;
@@ -192,13 +196,15 @@
     margin-right: 0.1rem;
     margin-top:-0.2rem;
     padding:0.2rem 0em;
-    text-align:center;    
     font-size:0.8em;
-    font-weight:bold;
+    text-align:center;
+}
+#wall .discuss .reply_button a {
     border-radius:0.3rem;
     border-top-left-radius:0;
     border-top-right-radius:0;
     background:darkred;
+    font-weight:bold;
     color:white;
 }
 
@@ -206,21 +212,24 @@
  * Specific presentation for the events
  */
 #wall .event  {
-    margin:0.7em 0;
-    padding:0.7em 0;
-    border-radius:0;
-    border-top: 1px solid grey;
+    border-left:0.3em solid lightgrey;
 }
 #wall .event h3 {
-    font-size:1em;
-    color:black;
     margin:0;
+    display:none;
 }
-#wall .event .message {
-    margin-left:1.6em;
-    margin-top:0.2em;
-    padding:0;
+#wall .event .reply_num {
+    display:none;
+}
+#wall .event :nth-child(1) .pseudo { /* Only for the first message of the thread */
+    display:none;
+}
+#wall .event  .message:first-of-type {
+    padding-left:0.5em;
     background:none;
+}
+#wall .event  .message:not(:first-of-type) { /* Only for the comments under the event */
+    margin-left:2em;
 }
 #wall .comment .text {
     padding:0.2em;

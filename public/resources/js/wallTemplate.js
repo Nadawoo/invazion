@@ -18,26 +18,27 @@ function htmlDiscussionNotif(topicTitle, date, url, authorId, authorPseudo, last
 }
 
 
-function htmlDiscussion(topicId, topicTitle, lastMessage, nbrOtherMessages) {
+function htmlDiscussion(topicId, topicType, topicTitle, firstMessage, lastMessage, nbrOtherMessages) {
     
     var url = urlDiscussion(topicId, lastMessage.message_id);
-    var otherMessagesLink = (nbrOtherMessages>0) ? '<a id="loadDiscussion'+topicId+'" class="link_other_messages" onclick="loadDiscussion('+topicId+')">··· voir '+nbrOtherMessages+' réponses ···</a>' : '';
+    var otherMessagesLink = (nbrOtherMessages>1) ? '<a id="loadDiscussion'+topicId+'" class="link_other_messages" onclick="loadDiscussion('+topicId+')">··· voir les '+(nbrOtherMessages-1)+' autres réponses ···</a>' : '';
     
-    return '<div class="topic discuss">\
+    return '<div class="topic '+topicType+'">\
                 <h3 onclick="toggle(\'replies'+topicId+'\')">\
                     <span style="font-weight:normal">&#x1F4AC;</span> '+topicTitle+'\
                 </h3>\
                 <div id="replies'+topicId+'">\
+                    '+htmlDiscussionMessage(firstMessage.message, firstMessage.is_json, firstMessage.author_pseudo, firstMessage.datetime_utc, nbrOtherMessages+1)+'\
                     '+otherMessagesLink+'\
                     '+htmlDiscussionMessage(lastMessage.message, lastMessage.is_json, lastMessage.author_pseudo, lastMessage.datetime_utc, nbrOtherMessages+1)+'\
                 </div>\
                 <div class="reply_button">\
                     <a id="replyButton'+topicId+'" href="#" onclick="display(\'sendform'+topicId+'\');this.style.display=\'none\';return false">\
-                        Répondre...\
+                        Commenter\
                     </a>\
                     <form id="sendform'+topicId+'" method="post" action="" onsubmit="replyDiscussion('+topicId+', '+(nbrOtherMessages+1)+'); return false;">\
                         <div id="replyError'+topicId+'"></div>\
-                        <textarea id="message'+topicId+'" placeholder="D\'accord ? Pas d\'accord ? Votre réponse ici..."></textarea>\
+                        <textarea id="message'+topicId+'" placeholder="Écrivez votre réponse ici"></textarea>\
                         <input type="submit" value="Envoyer">\
                     </form>\
                 </div>\
@@ -64,25 +65,21 @@ function htmlDiscussionMessage(message, isJson, pseudo, utcDate, replyNum) {
         // If the message is JSON-formatted (raw data of an event: agression...)
         let apiDatas = JSON.parse(message).datas;
         formattedMessage = "&#x1F489; <strong>"+apiDatas.author.citizen_pseudo+"</strong> a soigné la blessure \
-                         de <strong>"+apiDatas.target.citizen_pseudo+"</strong> en zone "+apiDatas.coord_x+":"+apiDatas.coord_y;
-        
-        return '<div class="message">\
-            <div class="reply_num">#'+replyNum+'</div>\
-            <div class="time" title="Fuseau horaire de Paris">'+dateIsoToString(utcDate)+'</div>\
-            <div class="text">'+formattedMessage+'</div>\
-        </div>';        
+                         de <strong>"+apiDatas.target.citizen_pseudo+"</strong> en zone "+apiDatas.coord_x+":"+apiDatas.coord_y;       
     }
     else {
         // If the message is an ordinary textual message (written by a player)
         formattedMessage = nl2br(message);
         
-        return '<div class="message">\
+
+    }
+    
+    return '<div class="message">\
             <div class="reply_num">#'+replyNum+'</div>\
             <div class="pseudo">&#x1F464; <strong>'+pseudo+'</strong></div>\
             <div class="time" title="Fuseau horaire de Paris">'+dateIsoToString(utcDate)+'</div>\
             <div class="text">'+formattedMessage+'</div>\
         </div>';
-    }
 }
 
 

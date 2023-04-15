@@ -111,7 +111,8 @@ async function createDiscussion() {
         json.datas.message = message;
         json.datas.author_pseudo = author_pseudo;
         // Display the new discussion thread
-        document.getElementById("newDiscussion").innerHTML += htmlDiscussion(json.datas.topic_id, title, json.datas, 0);
+        document.getElementById("newDiscussion").innerHTML += htmlDiscussion(json.datas.topic_id, json.datas.topic_type,
+                                                                             title, json.datas, null, 0);
         hide("send");
         // Clear the form for the eventual next thread to send
         document.getElementById("sendform").reset();
@@ -195,7 +196,8 @@ async function updateDiscussionsList() {
         let topic            = jsonTopics.datas[i],
             nbrOtherMessages = topic.nbr_messages-1;
 
-        discussions += htmlDiscussion(topic.topic_id, topic.title, topic.last_message, nbrOtherMessages);
+        discussions += htmlDiscussion(topic.topic_id, topic.topic_type, topic.title, 
+                                      topic.first_message, topic.last_message, nbrOtherMessages);
     }
     
     document.getElementById("wallDiscuss").innerHTML = htmlNewDiscussionForm(citizenPseudo)
