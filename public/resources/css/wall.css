@@ -213,7 +213,10 @@
  * Specific presentation for the events
  */
 #wall .event  {
-    border-left:0.3em solid lightgrey;
+    margin:1em 0;
+    padding-right:0.1em;
+    border:1px solid lightgrey;
+    background: #eceff1;
 }
 #wall .event h3 {
     margin:0;
@@ -231,6 +234,8 @@
 }
 #wall .event  .message:not(:first-of-type) { /* Only for the comments under the event */
     margin-left:2em;
+    border-left:3px solid #34495e;
+    border-bottom:1px solid #34495e;
 }
 #wall .event ul {
     margin:0 auto;
