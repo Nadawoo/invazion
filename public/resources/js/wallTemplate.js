@@ -33,7 +33,7 @@ function htmlDiscussion(topicId, topicType, topicTitle, firstMessage, lastMessag
                     <span style="font-weight:normal">&#x1F4AC;</span> '+topicTitle+'\
                 </h3>\
                 <div id="replies'+topicId+'">\
-                    '+htmlDiscussionMessage(firstMessage.message, firstMessage.is_json, firstMessage.author_pseudo, firstMessage.datetime_utc, nbrReplies+1)+'\
+                    '+htmlDiscussionMessage(firstMessage.message, firstMessage.is_json, firstMessage.author_pseudo, firstMessage.datetime_utc, 1)+'\
                     '+otherMessagesLink+'\
                     '+htmlLastMessage+'\
                 </div>\

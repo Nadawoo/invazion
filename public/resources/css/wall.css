@@ -120,6 +120,7 @@
     margin-top:0.2em;    
     padding:0.3em 0.2em;
     background: #f6ddcc ;
+    border-radius:0.2em;
     word-wrap:break-word;
 }
 #wall .time {
@@ -218,7 +219,7 @@
     margin:0;
     display:none;
 }
-#wall .event .reply_num {
+#wall .event :nth-child(1) .reply_num {
     display:none;
 }
 #wall .event :nth-child(1) .pseudo { /* Only for the first message of the thread */
@@ -230,12 +231,6 @@
 }
 #wall .event  .message:not(:first-of-type) { /* Only for the comments under the event */
     margin-left:2em;
-}
-#wall .comment .text {
-    padding:0.2em;
-    background:#f6ddcc;
-    border-radius:0.3em;
-    font-size:0.8em;
 }
 #wall .event ul {
     margin:0 auto;
