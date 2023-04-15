@@ -38,7 +38,7 @@ function htmlDiscussion(topicId, topicType, topicTitle, firstMessage, lastMessag
                     '+htmlLastMessage+'\
                 </div>\
                 <div class="reply_button">\
-                    <a id="replyButton'+topicId+'" href="#" onclick="display(\'sendform'+topicId+'\');this.style.display=\'none\';return false">\
+                    <a id="replyButton'+topicId+'" href="#" onclick="display(\'sendform'+topicId+'\');this.style.display=\'none\';document.querySelector(\'#message'+topicId+'\').focus()">\
                         Commenter\
                     </a>\
                     <form id="sendform'+topicId+'" method="post" action="" onsubmit="replyDiscussion('+topicId+', '+(nbrReplies+1)+'); return false;">\

@@ -163,6 +163,8 @@ function toggleSendform(event) {
     toggle("buttonNewTopic");
     // Desactivate the normal form
     event.preventDefault();
+    // Put the cursor in the text area to allow direct typing
+    document.querySelector("#messageNew").focus();
 }
 
 
