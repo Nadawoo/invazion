@@ -39,10 +39,10 @@ function activateDiscussionTab(activatedTab) {
  *                         even if the result of a previous call is already stored in memory.
  * @return jsonDiscussionApi JSON list of the discussions returned by the API
  */
-async function callDiscussionApiOnce(refresh=false) {
+async function callDiscussionApiOnce(topicType, refresh=false) {
     
     if (_jsonDiscussionApi === null || refresh === true) {        
-        _jsonDiscussionApi = await callApi("GET", "discuss/threads", "action=get&sort=last_message_date&fullmsg=1");
+        _jsonDiscussionApi = await callApi("GET", "discuss/threads", "action=get&sort=last_message_date&fullmsg=1&type="+topicType);
     }
     return _jsonDiscussionApi;
 }
@@ -184,11 +184,15 @@ function urlDiscussion(discussionId, messageId="") {
 
 /**
  * Displays the discussions on the constructions page in the city.
+ * 
+ * @param {string} topicType Set to "event" to display only the game events
+ *                           Set to "discuss" to display only the threads written by players
+ *                           Any other value will display everything (events + discussions)
  */
-async function updateDiscussionsList() {
+async function updateDiscussionsList(topicType) {
     
     // Gets the titles of the discussions, by calling the InvaZion's API
-    var jsonTopics = await callDiscussionApiOnce();
+    var jsonTopics = await callDiscussionApiOnce(topicType, refresh=true);
     
     var citizenPseudo = document.getElementById("citizenPseudo").innerHTML;
     var length = jsonTopics.datas.length;
@@ -216,7 +220,7 @@ function switchToDiscussTab() {
     display("wallDiscuss");
     hide(["wallNotifications", "wallEvents", "wallAttacks"]);
     activateDiscussionTab("tabWallDiscuss");
-    updateDiscussionsList();
+    updateDiscussionsList("all");
     // Add the listener on the form to create a topic.
     // TODO: make a cleaner code with async
     setTimeout(listenToSendform, 100);

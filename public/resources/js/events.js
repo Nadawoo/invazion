@@ -74,10 +74,13 @@ if (document.getElementById('map') !== null) {
         nbrExecutionsGetCyclicAttacks++;
     });
     document.getElementById("tabWallEvents").addEventListener("click", function() {
-        display("wallEvents");
-        hide(["wallDiscuss", "wallNotifications", "wallAttacks"]);
+        display("wallDiscuss");
+        hide(["wallEvents", "wallNotifications", "wallAttacks"]);
         activateDiscussionTab("tabWallEvents");
-        getLogEvents("wallEvents");
+        updateDiscussionsList("event");
+        // Add the listener on the form to create a topic.
+        // TODO: make a cleaner code with async
+        setTimeout(listenToSendform, 100);
     });
 //    document.getElementById("tabWallNotifications").addEventListener("click", function() {
 //        display("notifications");

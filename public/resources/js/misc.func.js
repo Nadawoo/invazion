@@ -425,7 +425,7 @@ async function createItem() {
 async function updateDiscussionsNotifs() {
     
     // Gets the titles of the discussions, by calling the InvaZion's API
-    var jsonTopics = await callDiscussionApiOnce(refresh=true);
+    var jsonTopics = await callDiscussionApiOnce("all", refresh=true);
     
     var length = jsonTopics.datas.length;
     var titles = "";
@@ -786,9 +786,9 @@ async function getCyclicAttacks(nbrExecutions) {
  */
 async function getLogEvents(htmlContainerId) {
     
-    var json = await callApi("GET", "events", "action=get&type=map"),
+    var json = await callApi("GET", "discuss/threads", "action=get&type=event"),
         html = "";
-
+        
     for (let i in json.datas) {
         html += htmlEventTemplate(json.datas[i]);
     }
