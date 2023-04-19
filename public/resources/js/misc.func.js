@@ -790,7 +790,7 @@ async function getLogEvents(htmlContainerId) {
         html = "";
 
     for (let i in json.datas) {
-        html += htmlLogEvents(json.datas[i]);
+        html += htmlEventTemplate(json.datas[i]);
     }
     
     document.getElementById(htmlContainerId).innerHTML = html;

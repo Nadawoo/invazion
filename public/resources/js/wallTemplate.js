@@ -68,9 +68,7 @@ function htmlDiscussionMessage(message, isJson, pseudo, utcDate, replyNum) {
     
     if(isJson === 1) {
         // If the message is JSON-formatted (raw data of an event: agression...)
-        let apiDatas = JSON.parse(message).datas;
-        formattedMessage = "&#x1F489; <strong>"+apiDatas.author.citizen_pseudo+"</strong> a soigné la blessure \
-                         de <strong>"+apiDatas.target.citizen_pseudo+"</strong> en zone "+apiDatas.coord_x+":"+apiDatas.coord_y;       
+        formattedMessage = htmlEventTemplate(JSON.parse(message));
     }
     else {
         // If the message is an ordinary textual message (written by a player)
@@ -106,26 +104,23 @@ function htmlEvent(title, message, dateString, iAmInvolved) {
 }
 
 
-function htmlLogEvents(apiData) {
+function htmlEventTemplate(apiDatas) {
     
-    var coords = apiData.coord_x+":"+apiData.coord_y,
-        dateString = dateIsoToString(apiData.datetime_utc),
-        citizen_id = getCitizenId(),    
-        iAmInvolved = (citizen_id === apiData.author.citizen_id || citizen_id === apiData.target.citizen_id) ? true : false;
+    var coords = apiDatas.datas.coord_x+":"+apiDatas.datas.coord_y;
     
-    if (apiData.event_type === "heal_citizen") {
-        return htmlEvent("&#x1F489; <strong>"+apiData.author.citizen_pseudo+"</strong> a soigné la blessure \n\
-                         de <strong>"+apiData.target.citizen_pseudo+"</strong>", 
-                         "en zone "+coords, dateString, iAmInvolved);
+    if (apiDatas.event_alias === "heal_citizen") {
+        return ("&#x1F489; <strong>"+apiDatas.datas.author.citizen_pseudo+"</strong> a soigné la blessure\
+                         de <strong>"+apiDatas.datas.target.citizen_pseudo+"</strong>\
+                         en zone "+coords+".");
     }
-    else if (apiData.event_type === "attack_citizen") {
-        return htmlEvent("&#x1F44A;&#x1F3FC; <strong>"+apiData.author.citizen_pseudo+"</strong> \n\
-                         a agressé <strong>"+apiData.target.citizen_pseudo+"</strong> !", 
-                         "en zone "+coords, dateString, iAmInvolved);
+    else if (apiDatas.event_alias === "attack_citizen") {
+        return ("&#x1F44A;&#x1F3FC; <strong>"+apiDatas.datas.author.citizen_pseudo+"</strong>\
+                         a agressé <strong>"+apiDatas.datas.target.citizen_pseudo+"</strong>\
+                         en zone "+coords+" !");
     }
     else {
-        return htmlEvent("<strong class=\"red\">[BUG] Evénement non prévu - Signalez-le au développeur du jeu...</strong>", 
-                         "", dateString, iAmInvolved);
+        return ("<strong class=\"red\">[BUG] Evénement non prévu - Signalez-le \
+                au développeur du jeu...</strong>");
     }
 }
 
