@@ -4,7 +4,7 @@
  * pour récupérer ou/et écrire des données sur le serveur
  * http://invazion.nadazone.fr
  * 
- * Version 5.0
+ * Version 5.1
  */
 class ZombLib
 {
@@ -540,13 +540,13 @@ class ZombLib
     /**
      * Investir des points d'action dans un chantier
      * 
-     * @param  int $construction_id L'ID du chantier à construire
+     * @param  int $building_id L'ID du chantier à construire
      * @return array  Le résultat retourné par l'API
      */
-    public function construct($construction_id)
+    public function construct($building_id)
     {
         
-        return $this->call_api('buildings', 'build', ['construction_id'=>$construction_id, 'token'=>$this->get_token()]);
+        return $this->call_api('buildings', 'build', ['building_id'=>$building_id, 'token'=>$this->get_token()]);
     }
     
     

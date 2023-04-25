@@ -659,10 +659,10 @@ class HtmlButtons
     /**
      * Retourne le bouton pour investir des points d'action dans un chantier
      * 
-     * @param  int $construction_id L'ID du chantier à construire
+     * @param  int $building_id L'ID du chantier à construire
      * @return string
      */
-    function construct($construction_id, $notify, $button_label='Participer au chantier [1pa]')
+    function construct($building_id, $notify, $button_label='Participer au chantier [1pa]')
     {
         
         // Hide the round notifiction chip over the button
@@ -672,7 +672,7 @@ class HtmlButtons
         '<form method="post" action="#popsuccess">
             <input type="hidden" name="api_name" value="buildings">
             <input type="hidden" name="action" value="build">
-            <input type="hidden" name="params[construction_id]" value="'.$construction_id.'">
+            <input type="hidden" name="params[building_id]" value="'.$building_id.'">
             <button type="submit" class="redbutton" style="position:relative">
                 <div class="dot_number '.$hide_notif.'">&nbsp;</div>
                 &#x1F6E0;&#xFE0F; '.$button_label.'
