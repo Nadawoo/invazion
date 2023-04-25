@@ -211,6 +211,11 @@ echo $popup->customised('popsuccess', '', $msg_popup, $is_custom_popup_visible);
     // (well, storage, constructions...)
     if ($citizen['inside_city_id'] !== NULL) {
         
+        // Keep only the game's buildings related to the city (ID #12)
+        $city_buildings_caracs = $sort->filter_buildings_by_parent($configs['buildings'], 12);
+        // Idem for the personal house (ID #13)
+        $home_buildings_caracs = $sort->filter_buildings_by_parent($configs['buildings'], 13);
+        
         echo '
             <div id="city_container">
                 <nav id="city_menu">
@@ -230,7 +235,7 @@ echo $popup->customised('popsuccess', '', $msg_popup, $is_custom_popup_visible);
                         '. $enclosure->block_bag($html['bag_items']) .'
                     </div>
                     <div id="home_build" class="city_row">
-                        '. $enclosure->block_constructions($configs['constructions_home'], $configs['items'], 
+                        '. $enclosure->block_constructions($home_buildings_caracs, $configs['buildings_components'], $configs['items'], 
                                                            $city_data['constructions'], $zone['items']) .'
                     </div>
                     <div id="city_fellows" class="city_row">
@@ -257,12 +262,14 @@ echo $popup->customised('popsuccess', '', $msg_popup, $is_custom_popup_visible);
                     <div id="city_constructions">
                         <div class="city_row">
                         '. $constructionCards->all_cards($configs['items'], $zone['items'], 
-                                                         $configs['constructions'], $city_data['constructions']) .'
+                                                         $city_buildings_caracs, $configs['buildings_components'],
+                                                         $city_data['constructions']) .'
                         '. $enclosure->button_close_block().'
                         </div>
                         <div class="city_row">
-                        '. $enclosure->block_constructions($configs['constructions'], $configs['items'], $city_data['constructions'], 
-                                                           $city_data['total_defenses'], $zombies_next_attack, $zone['items']) .'
+                        '. $enclosure->block_constructions($city_buildings_caracs, $configs['buildings_components'], $configs['items'], 
+                                                           $city_data['constructions'], $city_data['total_defenses'], 
+                                                           $zombies_next_attack, $zone['items']) .'
                         </div>
                     </div>
                     <div id="city_door" class="city_row">

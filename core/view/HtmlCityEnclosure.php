@@ -415,13 +415,14 @@ class HtmlCityEnclosure
      * liste des chantiers construits ou constructibles en ville
      * 
      * @param array $constructions_caracs Les caractéristiques statiques des chantiers (nom...)
+     * @param array $constructions_components 
      * @param array $items_caracs         Les caractéristiques statiques des objets
      * @param array $city_constructions   L'état des chantiers de la ville (avancement...)
      * @param array $zone_items           Les objets disponibles dans le dépôt de la ville
      *                                    (qui sont, à ce jour, les objets au sol)
      * @return string
      */
-    function block_constructions($constructions_caracs, $items_caracs,  
+    function block_constructions($constructions_caracs, $constructions_components, $items_caracs,  
                                   $city_constructions, $zone_items)
     {
         
@@ -442,19 +443,13 @@ class HtmlCityEnclosure
             }
             
             // Jauge des ressources requises/disponibles pour la construction
-            foreach ($constr['resources'] as $item_id=>$required_amount) {
-
+            foreach ($constructions_components[$id] as $item_id=>$required_amount) {
+                
                 $html_resources .= $this->html_progressbar( $item_id, $items_caracs[$item_id]['name'],
                                                             $this->item_amount($zone_items, $item_id),
                                                             $required_amount,
                                                             'constructions');
             }
-
-            // Jauge des points d'action déjà investis dans le chantier
-            $html_AP_invested = $this->html_progressbar('pa', 'Points d\'action',
-                                                        $city_constructions[$id]['AP_invested'],
-                                                        $constr['action_points'],
-                                                        'action_points');
             
             if ($city_constructions[$id]['is_completed'] === 1) { 
                 
@@ -495,7 +490,6 @@ class HtmlCityEnclosure
                         <td id="'.$css_id.'" class="folded">
                             <ul class="items_list">
                                 ' . $html_resources . '
-                                ' . $html_AP_invested . '<br>
                                 ' . $buttons->construct($id, 'no_notif') . '
                             </ul>
                         </td>

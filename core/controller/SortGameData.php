@@ -103,4 +103,28 @@ class SortGameData
 
         return $filtered_items;
     }
+    
+    
+    /**
+     * From a list of buildings characteristics, keeps only the ones who are related 
+     * to a given parent building.
+     * Useful to get the buildable constructions of a city.
+     * 
+     * @param array $buildings_caracs The characteristics of the game buildings 
+     *                                (name, description...), as returned by 
+     *                                the "configs" API
+     * @param int $parent_building_id The ID of the parent building to use as a filter.
+     *                                E.g.: 12 to keep the buildings related to the "City"
+     * @return array
+     */
+    function filter_buildings_by_parent($buildings_caracs, $parent_building_id) {
+
+        $city_buildings = [];
+        foreach($buildings_caracs as $building_id=>$caracs) {
+            if($caracs['parent_building_id'] === $parent_building_id) {
+                $city_buildings[$building_id] = $caracs;
+            }
+        }
+        return $city_buildings;
+    }
 }

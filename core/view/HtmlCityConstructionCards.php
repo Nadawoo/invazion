@@ -18,28 +18,31 @@ class HtmlCityConstructionCards
      *                  by the game's API "configs[items]"
      * @param array $items_in_storage The items stored in the city storage, as returned 
      *                                by the game's API "city"
-     * @param array $constructions_caracs The characteristics of the constructions 
+     * @param array $city_buildings_caracs The characteristics of the constructions 
      *                  existing in the game (name, icon, defenses...), as returned 
      *                  by the game's API "configs[constructions]"
+     * @param array $city_buildings_components All the items required to build the buildings,
+     *                  as returned by the game's API "configs[buildings_components]"
      * @param array $city_constructions The constructions built in the current city,
      *                  as returned by the game's API "city"
      * @return array HTML displaying all the contruction cards
      */
     function all_cards($items_caracs, $items_in_storage,
-                       $constructions_caracs, $city_constructions) {
+                       $city_buildings_caracs, $city_buildings_components, $city_constructions) {
         
         $result = '';
         
         // For each possible construction...
-        foreach($constructions_caracs as $construction_id=>$construction_caracs) {
-            // ... if not already build
+        foreach($city_buildings_caracs as $construction_id=>$construction_caracs) {
+            // ... if not already built
             // TODO: we could avoid this naive condition by removing first
             //  the useless constructions from $constructions_caracs
             if(!isset($city_constructions[$construction_id]) or $city_constructions[$construction_id]['is_completed'] !== 1) {
                 //... display a card
                 $AP_invested_in_construction = isset($city_constructions[$construction_id]) ? $city_constructions[$construction_id]['AP_invested'] : 0;
                 $result .= $this->card($items_caracs, $items_in_storage, 
-                                       $construction_caracs, $construction_id, $AP_invested_in_construction);
+                                       $construction_caracs, $city_buildings_components[$construction_id],
+                                       $construction_id, $AP_invested_in_construction);
             }
         }
         
@@ -57,25 +60,31 @@ class HtmlCityConstructionCards
      *                                by the game's API "city"
      * @param array $construction_caracs The characteristics of the concerned construction,
      *                  as returned by the game's API "configs[constructions][id]"
+     * @param array $construction_components All the items required to build the building,
+     *                  as a list of pairs [item_id => item_amount]
      * @param int $construction_id The ID of the concerned construction
      * @param int $AP_invested_in_construction The amount of action points already invested 
      *                                         for building the construction
      * @return string HTML
      */
     private function card($items_caracs, $items_in_storage,
-                          $construction_caracs, $construction_id, $AP_invested_in_construction) {
+                          $construction_caracs, $construction_components,
+                          $construction_id, $AP_invested_in_construction) {
         
         $construction_name = $construction_caracs['name'];
-        $items_needed = $construction_caracs['resources'];
+        // ID #23 = the ID of the action points (treated as an ordinary resource)
+        $action_points_needed = $construction_components[23];
+        // Keep only the "real" resources, excluding action points (wood, metal...)
+        unset($construction_components[23]);
         
         // From all the resources available in the city storage, keep only the ones 
         // useful for the construction
-        $items_available = array_intersect_key($items_in_storage, $items_needed);
-        $items_missing = get_missing_items($items_needed, $items_available);
+        $items_available = array_intersect_key($items_in_storage, $construction_components);
+        $items_missing = get_missing_items($construction_components, $items_available);
         
         // Total amount of missing items
         $total_items_missing = array_sum($items_missing);
-        $total_AP_missing = $construction_caracs['action_points'] - $AP_invested_in_construction;
+        $total_AP_missing = $action_points_needed - $AP_invested_in_construction;
         
         $card_contents = ($total_items_missing === 0)
             ? $this->missing_actionpoints($total_AP_missing, $construction_id)
