@@ -32,17 +32,17 @@ class HtmlCityConstructionCards
         
         $result = '';
         
-        // For each possible construction...
-        foreach($city_buildings_caracs as $construction_id=>$construction_caracs) {
+        // For each possible building...
+        foreach($city_buildings_caracs as $building_id=>$building_caracs) {
             // ... if not already built
             // TODO: we could avoid this naive condition by removing first
-            //  the useless constructions from $constructions_caracs
-            if(!isset($city_constructions[$construction_id]) or $city_constructions[$construction_id]['is_completed'] !== 1) {
+            //  the useless constructions from $building_caracs
+            if(!isset($city_constructions[$building_id]) or $city_constructions[$building_id]['is_completed'] !== 1) {
                 //... display a card
-                $AP_invested_in_construction = isset($city_constructions[$construction_id]) ? $city_constructions[$construction_id]['AP_invested'] : 0;
+                $AP_invested_in_construction = isset($city_constructions[$building_id]) ? $city_constructions[$building_id]['AP_invested'] : 0;
                 $result .= $this->card($items_caracs, $items_in_storage, 
-                                       $construction_caracs, $city_buildings_components[$construction_id],
-                                       $construction_id, $AP_invested_in_construction);
+                                       $building_caracs, $city_buildings_components[$building_id],
+                                       $building_id, $AP_invested_in_construction);
             }
         }
         
@@ -62,14 +62,14 @@ class HtmlCityConstructionCards
      *                  as returned by the game's API "configs[constructions][id]"
      * @param array $construction_components All the items required to build the building,
      *                  as a list of pairs [item_id => item_amount]
-     * @param int $construction_id The ID of the concerned construction
+     * @param int $building_id The ID of the concerned construction
      * @param int $AP_invested_in_construction The amount of action points already invested 
      *                                         for building the construction
      * @return string HTML
      */
     private function card($items_caracs, $items_in_storage,
                           $construction_caracs, $construction_components,
-                          $construction_id, $AP_invested_in_construction) {
+                          $building_id, $AP_invested_in_construction) {
         
         $construction_name = $construction_caracs['name'];
         // ID #23 = the ID of the action points (treated as an ordinary resource)
@@ -87,7 +87,7 @@ class HtmlCityConstructionCards
         $total_AP_missing = $action_points_needed - $AP_invested_in_construction;
         
         $card_contents = ($total_items_missing === 0)
-            ? $this->missing_actionpoints($total_AP_missing, $construction_id)
+            ? $this->missing_actionpoints($total_AP_missing, $building_id)
             : $card_contents = $this->missing_resources($items_missing, $total_items_missing, $items_caracs);
         
         return '
@@ -95,7 +95,7 @@ class HtmlCityConstructionCards
                 <h2>Chantier</h2>
                 <div class="contents">
                     <h3 style="height:2.2em;color:black;text-align:center;font-size:1.3em;letter-spacing:normal;">
-                        <img src="resources/img/copyrighted/buildings/'.$construction_id.'.png"
+                        <img src="resources/img/copyrighted/buildings/'.$building_id.'.png"
                              height="32" width="32" alt="icon">
                         '.$construction_name.'
                     </h3>
@@ -139,17 +139,17 @@ class HtmlCityConstructionCards
      * 
      * @param int $total_AP_missing the number of action points required to achieve 
      *                              the construction
-     * @param int $construction_id
+     * @param int $building_id
      * @return string HTML
      */
-    private function missing_actionpoints($total_AP_missing, $construction_id) {
+    private function missing_actionpoints($total_AP_missing, $building_id) {
         
         $buttons = new HtmlButtons();
         
         return '
             <p>&#128296; Il manque <strong>'.$total_AP_missing.' points d\'action</strong>
                 pour terminer le chantier :
-            '.$buttons->construct($construction_id, 'notify', 'Participer [1 PA]').'
+            '.$buttons->construct($building_id, 'notify', 'Participer [1 PA]').'
             </p>';
     }
 }
