@@ -123,8 +123,8 @@ class HtmlCityEnclosure
                 <br>
                 <br>
                 <br>
-                '.$buttons->pickup_well($well_construction_id).'
-                '.$buttons->button('well_add').'
+                '.$buttons->well_pickup($well_construction_id).'
+                '.$buttons->well_drop($well_construction_id).'
             </div>';
     }
     

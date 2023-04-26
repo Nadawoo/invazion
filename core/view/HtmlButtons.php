@@ -339,13 +339,14 @@ class HtmlButtons
                     'action'        => 'validate_death',
                     ],
                 ],
-            'well_add' => [
+            'well_drop' => [
                 'icon'  => '',
                 'name'  => 'Ajouter 1 ration d\'eau',
                 'title' => "",
                 'fields' => [
-                    'api_name'      => 'well',
-                    'action'        => 'add',
+                    'api_name'      => 'items',
+                    'action'        => 'drop',
+                    'params[item_id]' => 9 // ID of the water ration
                     ],
                 ],
             'well_pickup' => [
@@ -665,10 +666,35 @@ class HtmlButtons
      * @param boolean $show_icon
      * @return string HTML
      */
-    function pickup_well($construction_id, $show_icon=true)
+    function well_pickup($construction_id, $show_icon=true)
     {
         
         $button = $this->buttons['well_pickup'];
+        $icon = ($show_icon === 'no_icon') ? '' : $button['icon'].' ';
+        
+        return'
+        <form name=attack method="post" action="#popsuccess" style="display:inline">
+            <input type="hidden" name="api_name" value="'.$button['fields']['api_name'].'">
+            <input type="hidden" name="action" value="'.$button['fields']['action'].'">
+            <input type="hidden" name="params[item_id]" value="'.$button['fields']['params[item_id]'].'">
+            <input type="hidden" name="params[construction_id]" value="'.$construction_id.'">
+            <input type="submit" value="'.$icon.$button['name'].'" class="redbutton" title="'.$button['title'].'" style="min-width:auto">
+        </form>';
+    }
+    
+    
+    /**
+     * Returns the button to add water in the the well
+     * 
+     * @param int $construction_id The ID of the well constructed in the city
+     *                             (not the ID of the building type "well")
+     * @param boolean $show_icon
+     * @return string HTML
+     */
+    function well_drop($construction_id, $show_icon=true)
+    {
+        
+        $button = $this->buttons['well_drop'];
         $icon = ($show_icon === 'no_icon') ? '' : $button['icon'].' ';
         
         return'
