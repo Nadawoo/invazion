@@ -423,7 +423,7 @@ class HtmlCityEnclosure
      * @return string
      */
     function block_constructions($constructions_caracs, $constructions_components, $items_caracs,  
-                                  $city_constructions, $zone_items)
+                                  $city_constructions, $completed_buildings_ids, $zone_items)
     {
         
         $buttons = new HtmlButtons;
@@ -451,7 +451,7 @@ class HtmlCityEnclosure
                                                             'constructions');
             }
             
-            if ($city_constructions[$id]['is_completed'] === 1) { 
+            if (in_array($id, $completed_buildings_ids)) { 
                 
                 $html_constructions .= '
                     <tr>

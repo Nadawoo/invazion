@@ -28,7 +28,8 @@ class HtmlCityConstructionCards
      * @return array HTML displaying all the contruction cards
      */
     function all_cards($items_caracs, $items_in_storage,
-                       $city_buildings_caracs, $city_buildings_components, $city_constructions) {
+                       $city_buildings_caracs, $city_buildings_components, 
+                       $city_constructions, $completed_buildings_ids) {
         
         $result = '';
         
@@ -37,7 +38,7 @@ class HtmlCityConstructionCards
             // ... if not already built
             // TODO: we could avoid this naive condition by removing first
             //  the useless constructions from $building_caracs
-            if(!isset($city_constructions[$building_id]) or $city_constructions[$building_id]['is_completed'] !== 1) {
+            if(!in_array($building_id, $completed_buildings_ids)) {
                 //... display a card
                 $AP_invested_in_construction = isset($city_constructions[$building_id]) ? $city_constructions[$building_id]['AP_invested'] : 0;
                 $result .= $this->card($items_caracs, $items_in_storage, 

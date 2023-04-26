@@ -127,4 +127,26 @@ class SortGameData
         }
         return $city_buildings;
     }
+    
+    
+    /**
+     * Returns the IDs of the buildings already built in the city.
+     * Note that it returns the building IDs (= the type of of building),
+     * not the construction IDs (= the unique identifier of each construction)
+     * 
+     * @param array $city_constructions The constructions of the city, as returned 
+     *                                  by the API "city"
+     * @return array
+     */
+    function get_completed_buildings_ids($city_constructions) {
+        
+        $completed_buildings_ids = [];
+        foreach($city_constructions as $construction) {
+            if($construction['is_completed'] === 1) {
+                $completed_buildings_ids[] = $construction['building_id'];
+            }
+        }
+        
+        return $completed_buildings_ids;
+    }
 }
