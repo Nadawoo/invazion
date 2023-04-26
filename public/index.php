@@ -103,6 +103,7 @@ if ($citizen['citizen_id'] !== NULL) {
     if ($citizen['inside_city_id'] !== NULL) {
         // Gets the characteristics of this city (well, storage...)
         $cities_data  = $api->call_api('cities', 'get', ['map_id'=>$citizen['map_id']])['datas'];
+        $items_inside_constructions = $api->call_api('items', 'get', [])['datas'];
         $city_data = $cities_data[$citizen['inside_city_id']];
         // Gets the citizens linked to this city
         $city_fellows = $sort->get_child_citizens($city_data['child_cities_ids'], $cities_data, $citizens);
@@ -117,6 +118,12 @@ if ($citizen['citizen_id'] !== NULL) {
         $completed_buildings_ids = $sort->get_completed_buildings_ids($city_data['constructions']);
         // Get the ID of the well (type #15) constructed in the city
         $well_construction_id = $sort->get_construction_id_from_type($city_data['constructions'], 15);
+        $well_current_water = $items_inside_constructions[$well_construction_id][9];
+        // Amount of items in the main city storage (bank)
+        $nbr_ground_items = array_sum($zone['items']);
+        
+        $cityIso->set_city_well($well_current_water);
+        $cityIso->set_city_storage($nbr_ground_items);
     }
     
     // Show the ending popup when the citizen is dead
@@ -255,7 +262,7 @@ echo $popup->customised('popsuccess', '', $msg_popup, $is_custom_popup_visible);
                         '. $enclosure->button_close_block() .'
                     </div>
                     <div id="city_well" class="city_row">
-                        '. $enclosure->block_well($well_construction_id, $city_data['well_current_water']) .'
+                        '. $enclosure->block_well($well_construction_id, $well_current_water) .'
                         '. $enclosure->block_bag($html['bag_items']) .'
                         '. $enclosure->button_close_block() .'
                     </div>
@@ -291,7 +298,7 @@ echo $popup->customised('popsuccess', '', $msg_popup, $is_custom_popup_visible);
                 
                 <!-- Isometric representation of the city -->
                 <section id="city_iso">
-                    '.$cityIso->resources_bar().'
+                    '.$cityIso->resources_bar($nbr_ground_items, $well_current_water).'
                     '.$cityIso->city().'
                 </section>
             </div>';

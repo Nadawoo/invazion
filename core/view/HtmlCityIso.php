@@ -116,6 +116,18 @@ class HtmlCityIso {
         $this->imagePositionLeft = self::IMAGE_POSITION_LEFT;
         $this->actionBlocks = '';
     }
+    
+    
+    public function set_city_well($well_current_water) {
+        // Set the real amount of rations in the well
+        $this->cityIsoBlocks['city_well']['action_blocks'][0]['amount'] = $well_current_water;
+    }
+    
+    
+    public function set_city_storage($nbr_city_storage_items) {
+        // Set the total amount of items stores in the city storage (bank)
+        $this->cityIsoBlocks['city_storage']['action_blocks'][0]['amount'] = $nbr_city_storage_items;
+    }
 
     
     /**
@@ -182,9 +194,10 @@ class HtmlCityIso {
     /**
      * The horizontal bar showing the main resources of the city
      * 
+     * @param int $well_current_water The amouunt of water rations in the well
      * @return string HTML
      */
-    public function resources_bar() {
+    public function resources_bar($nbr_city_storage_items, $well_current_water) {
         
         return '
             <ul class="resources_bar">
@@ -194,11 +207,11 @@ class HtmlCityIso {
                 </li>
                 <li onclick="switchCitySubmenu(\'city_storage\');hide(\'city_iso\')"
                     title="Objets dans le dépôt de la ville">
-                    <div class="icon" style="bottom:0.25rem">&#129520;</div> <div class="amount">?</div>
+                    <div class="icon" style="bottom:0.25rem">&#129520;</div> <div class="amount">'.$nbr_city_storage_items.'</div>
                 </li>
                 <li onclick="switchCitySubmenu(\'city_well\');hide(\'city_iso\')"
                     title="Rations d\'eau dans le puits de la ville">
-                    <div class="icon">&#128167;</div> <div class="amount">?</div>
+                    <div class="icon">&#128167;</div> <div class="amount">'.$well_current_water.'</div>
                 </li>
                 <li onclick="switchCitySubmenu(\'explore\');hide(\'city_iso\')">
                     <div style="font-size:1.5rem">&#10060;</div>
