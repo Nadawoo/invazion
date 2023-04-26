@@ -3,6 +3,7 @@ require_once '../core/controller/autoload.php';
 safely_require('/core/model/set_default_variables.php');
 safely_require('/core/controller/official_server_root.php');
 safely_require('/core/controller/get_game_day.php');
+safely_require('/core/controller/get_well_current_water.php');
 safely_require('/core/controller/SortGameData.php');
 safely_require('/core/ZombLib.php');
 
@@ -118,7 +119,7 @@ if ($citizen['citizen_id'] !== NULL) {
         $completed_buildings_ids = $sort->get_completed_buildings_ids($city_data['constructions']);
         // Get the ID of the well (type #15) constructed in the city
         $well_construction_id = $sort->get_construction_id_from_type($city_data['constructions'], 15);
-        $well_current_water = $items_inside_constructions[$well_construction_id][9];
+        $well_current_water = get_well_current_water($items_inside_constructions, $well_construction_id);
         // Amount of items in the main city storage (bank)
         $nbr_ground_items = array_sum($zone['items']);
         
