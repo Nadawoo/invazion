@@ -109,7 +109,7 @@ class HtmlCityEnclosure
      * @param int $well_current_water le nombre de rations d'eau actuellement dans le puits
      * @return string
      */
-    function block_well($well_current_water)
+    function block_well($well_construction_id, $well_current_water)
     {
         
         $buttons = new HtmlButtons;
@@ -123,7 +123,7 @@ class HtmlCityEnclosure
                 <br>
                 <br>
                 <br>
-                '.$buttons->button('well_pickup').'
+                '.$buttons->pickup_well($well_construction_id).'
                 '.$buttons->button('well_add').'
             </div>';
     }

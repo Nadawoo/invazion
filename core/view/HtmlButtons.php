@@ -353,8 +353,9 @@ class HtmlButtons
                 'name'  => 'Prendre 1 ration d\'eau',
                 'title' => "",
                 'fields' => [
-                    'api_name'      => 'well',
+                    'api_name'      => 'items',
                     'action'        => 'pickup',
+                    'params[item_id]' => 9 // ID of the water ration
                     ],
                 ],
             'win_game' => [
@@ -652,6 +653,31 @@ class HtmlButtons
             <input type="hidden" name="action" value="craft">
             <input type="hidden" name="params[item_id]" value="'.$item_id.'">
             &#128295;<input type="submit" class="redbutton" value="Assembler l\'objet">	
+        </form>';
+    }
+    
+    
+    /**
+     * Returns the button to pick up water from the well
+     * 
+     * @param int $construction_id The ID of the well constructed in the city
+     *                             (not the ID of the building type "well")
+     * @param boolean $show_icon
+     * @return string HTML
+     */
+    function pickup_well($construction_id, $show_icon=true)
+    {
+        
+        $button = $this->buttons['well_pickup'];
+        $icon = ($show_icon === 'no_icon') ? '' : $button['icon'].' ';
+        
+        return'
+        <form name=attack method="post" action="#popsuccess" style="display:inline">
+            <input type="hidden" name="api_name" value="'.$button['fields']['api_name'].'">
+            <input type="hidden" name="action" value="'.$button['fields']['action'].'">
+            <input type="hidden" name="params[item_id]" value="'.$button['fields']['params[item_id]'].'">
+            <input type="hidden" name="params[construction_id]" value="'.$construction_id.'">
+            <input type="submit" value="'.$icon.$button['name'].'" class="redbutton" title="'.$button['title'].'" style="min-width:auto">
         </form>';
     }
     

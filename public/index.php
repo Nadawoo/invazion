@@ -217,6 +217,8 @@ echo $popup->customised('popsuccess', '', $msg_popup, $is_custom_popup_visible);
         $home_buildings_caracs = $sort->filter_buildings_by_parent($configs['buildings'], 13);
         // Get the ID of the buildings already terminated (not in progress)
         $completed_buildings_ids = $sort->get_completed_buildings_ids($city_data['constructions']);
+        // Get the ID of the well (type #15) constructed in the city
+        $well_construction_id = $sort->get_construction_id_from_type($city_data['constructions'], 15);
         
         echo '
             <div id="city_container">
@@ -253,7 +255,7 @@ echo $popup->customised('popsuccess', '', $msg_popup, $is_custom_popup_visible);
                         '. $enclosure->button_close_block() .'
                     </div>
                     <div id="city_well" class="city_row">
-                        '. $enclosure->block_well($city_data['well_current_water']) .'
+                        '. $enclosure->block_well($well_construction_id, $city_data['well_current_water']) .'
                         '. $enclosure->block_bag($html['bag_items']) .'
                         '. $enclosure->button_close_block() .'
                     </div>

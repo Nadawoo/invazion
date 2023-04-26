@@ -149,4 +149,30 @@ class SortGameData
         
         return $completed_buildings_ids;
     }
+    
+    
+    /**
+     * From a type of building (e.g: well = building #9), returns the ID of 
+     * the construction really built in the city.
+     * Beware that if the same type of building has been constructed several times 
+     * in the city, the method will pick randomly one of the construction IDs.
+     * 
+     * @param array $city_constructions The constructions of the city, as returned 
+     *                                  by the "cities" API
+     * @param int $building_id The ID of the type of building you want. 
+     *                         E.g: for the well, it will be 15 (see the "configs" API)
+     * @return type
+     */
+    function get_construction_id_from_type($city_constructions, $building_id) {
+        
+        $construction_id = null;
+        foreach($city_constructions as $construction) {
+            if($construction['building_id'] === $building_id) {
+                $construction_id = $construction['construction_id'];
+                break;
+            }
+        }
+        
+        return $construction_id;
+    }
 }
