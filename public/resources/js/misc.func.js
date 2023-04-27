@@ -156,10 +156,8 @@ function updateUrlParam(name, value) {
 function toggleMapMarker(objectToMark) {
     
     // Here are listed the DOM selectors to mark the zones you want (e.g. class name...)
-    // Example: the zone which contains items are currently identified by 
-    // a class named "hasItems"
     var markableObjects = {
-        "items":    ".hasItems",
+        "items":    ".square_container:not([data-items='0'])",
         "citizens": ".square_container:not([data-citizens='0'])"
         };
 

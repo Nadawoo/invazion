@@ -222,14 +222,12 @@ class HtmlMap
         
         // Variable grounds (sand, peebles...)
         $ground = $this->ground_css_class($cell);
-        // Put a marker with javascript if the zone contains items
-        $has_items = (empty($cell['items'])) ? '' : ' hasItems';
         
         
         // - La classe "hexagon" sert à tracer le fond hexgonal
         // - La classe "square_container" est un conteneur carré pour assurer la symétrie du contenu
         // (un hexagone ne peut pas, par définition, être inscrit dans un carré)
-        return '<div id="zone'.$col.'_'.$row.'" class="hexagon '.$has_items.' '.$ground.' '.$elevate.'" style="opacity:'.$opacity.'">
+        return '<div id="zone'.$col.'_'.$row.'" class="hexagon '.$ground.' '.$elevate.'" style="opacity:'.$opacity.'">
                     <div class="square_container"
                         data-coordx="'.$col.'"
                         data-coordy="'.$row.'"
