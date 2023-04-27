@@ -92,15 +92,15 @@ function activateMapRadarView() {
         let controlpoints_zombies = squareContainer.dataset.controlpointszombies;
         
         let color = 'grey';
-        if(controlpoints_zombies <= 5) {
-            color = 'green';  // Safe with 1 citizen (5 CP)
-        } else if(controlpoints_zombies > 5 && controlpoints_zombies <=10) {
-            color = 'orange';//'#ffc302'; // Safe with 2 citizens (10 CP)
-        } else if(controlpoints_zombies > 10 && controlpoints_zombies <= 15) {
-            color = 'red';// '#ff5b00'; // Safe with 3 citizens (15 CP)
-        } else if(controlpoints_zombies > 15) {
+        if(controlpoints_zombies > 15) {
             color = 'darkred';//'#ff0505'; // Needs 4 citizens (20 CP) or more
-        }
+        } else if(controlpoints_zombies > 10) {
+            color = 'red';// '#ff5b00'; // Safe with 3 citizens (15 CP)
+        } else if(controlpoints_zombies > 5) {
+            color = 'orange';//'#ffc302'; // Safe with 2 citizens (10 CP)
+        } else if(controlpoints_zombies <= 5) {
+            color = 'green';  // Safe with 1 citizen (5 CP)
+        } 
         
         // Color the zones depending on the number of zombies
         squareContainer.style.background = color;        
@@ -155,16 +155,16 @@ function activateMapItemsView() {
         let nbrItems = squareContainer.dataset.items;
         
         let color = 'grey';
-        if(nbrItems === 0) {
-            color = 'grey'; 
-        } else if(nbrItems <= 5) {
-            color = 'green';
-        } else if(nbrItems > 5 && nbrItems <=10) {
-            color = 'orange';
-        } else if(nbrItems > 10 && nbrItems <= 15) {
-            color = 'red';
-        } else if(nbrItems > 15) {
+        if(nbrItems > 15) {
             color = 'darkred';
+        } else if(nbrItems > 10) {
+            color = 'red';
+        } else if(nbrItems > 5) {
+            color = 'orange';
+        } else if(nbrItems <= 5 && nbrItems > 0) {
+            color = 'green';
+        } else if(nbrItems === 0) {
+            color = 'grey'; 
         }
         
         // Color the zones depending on the number of items
