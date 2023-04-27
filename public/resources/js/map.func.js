@@ -138,3 +138,69 @@ function toggleMapRadarView() {
         window.isMapRadarViewActive = true;
     }
 }
+
+
+/**
+ * Displays colors above map zones to show the amount of items on the ground
+ * 
+ * @returns {undefined}
+ */
+function activateMapItemsView() {
+    
+    let hexagons = document.querySelectorAll("#map_body .hexagon");
+    
+    for(let i=0; i<hexagons.length; i++) {
+        
+        let squareContainer = hexagons[i].querySelector(".square_container");
+        let nbrItems = squareContainer.dataset.items;
+        
+        let color = 'grey';
+        if(nbrItems === 0) {
+            color = 'grey'; 
+        } else if(nbrItems <= 5) {
+            color = 'green';
+        } else if(nbrItems > 5 && nbrItems <=10) {
+            color = 'orange';
+        } else if(nbrItems > 10 && nbrItems <= 15) {
+            color = 'red';
+        } else if(nbrItems > 15) {
+            color = 'darkred';
+        }
+        
+        // Color the zones depending on the number of items
+        squareContainer.style.background = color;        
+        // Reveal all the zones, regardless their date of last visit
+//        hexagons[i].style.opacity = 1;
+        
+        // Hides the zombies, because they are above the colored background
+        hideClasses(["zombies"]);
+    }
+}
+
+
+function desactivateMapItemsView() {
+    
+    let hexagons = document.querySelectorAll("#map_body .hexagon");
+    
+    for(let i=0; i<hexagons.length; i++) {
+        
+        let squareContainer = hexagons[i].querySelector(".square_container");
+        // Remove the colors on the zones
+        squareContainer.style.background = "none";        
+        // Display the zombies again
+        unhideClass("zombies");
+    }
+}
+
+
+function toggleMapItemsView() {
+    
+    if (window.isMapItemsViewActive === true) {   
+        desactivateMapItemsView();
+        window.isMapItemsViewActive = false;
+    } else {
+        activateMapItemsView();
+        window.isMapItemsViewActive = true;
+    }
+}
+
