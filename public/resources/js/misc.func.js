@@ -633,9 +633,10 @@ function addMeOnMap() {
 
     let htmlMe = '<div class="map_citizen" id="me"><img src="resources/img/free/human.png"></div>\
                   <div class="halo">&nbsp;</div>',
-        htmlBubble = 'Vous êtes ici&nbsp;! Utilisez le volet \
-                    à droite de la carte pour vous déplacer, fouiller le sol, \
-                    attaquer des zombies, ramasser des objets...</div>';
+        htmlBubble = '<h5 class="name">Vous êtes ici&nbsp;!</h5>\
+                    <hr>\
+                    Utilisez les boutons rouges pour vous déplacer, fouiller le sol,\
+                    attaquer des zombies, ramasser des objets...';
     
     // Don't show the other citizens under the player's silhouette
     if(myZone.querySelector(".map_citizen") !==  null) {
