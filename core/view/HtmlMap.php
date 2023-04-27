@@ -174,6 +174,7 @@ class HtmlMap
         $cell_content   = '<span class="empty">&nbsp;</span>';
         $cell_zombies   = '';
         $elevate        = '';
+        $opacity        = '';
         $bubble_roleplay = '';
         $bubble_zombies = '';
         $bubble_items   = '';
@@ -332,7 +333,7 @@ class HtmlMap
         
         // On limite à X jours d'écart. Plus X est élevé, moins 
         // la différence d'opacité entre deux jours sera perceptible.
-        $max_days_diff = 5;
+        $max_days_diff = 60;
 
         // On calcule le nombre de jours depuis la dernière visite
         $seconds_diff = time() - strtotime($date_last_visit);
