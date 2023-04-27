@@ -75,3 +75,66 @@ function updateLineBetweenZones(origHtmlId, destinHtmlId) {
     line.setAttribute("y2", destin.y);
     document.querySelector("#mapSvg").append(line);
 }
+
+
+/**
+ * Displays colors above map zones to show the repartition of the zombies
+ * 
+ * @returns {undefined}
+ */
+function activateMapRadarView() {
+    
+    let hexagons = document.querySelectorAll("#map_body .hexagon");
+    
+    for(let i=0; i<hexagons.length; i++) {
+        
+        let squareContainer = hexagons[i].querySelector(".square_container");
+        let controlpoints_zombies = squareContainer.dataset.controlpointszombies;
+        
+        let color = 'grey';
+        if(controlpoints_zombies <= 5) {
+            color = 'green';  // Safe with 1 citizen (5 CP)
+        } else if(controlpoints_zombies > 5 && controlpoints_zombies <=10) {
+            color = 'orange';//'#ffc302'; // Safe with 2 citizens (10 CP)
+        } else if(controlpoints_zombies > 10 && controlpoints_zombies <= 15) {
+            color = 'red';// '#ff5b00'; // Safe with 3 citizens (15 CP)
+        } else if(controlpoints_zombies > 15) {
+            color = 'darkred';//'#ff0505'; // Needs 4 citizens (20 CP) or more
+        }
+        
+        // Color the zones depending on the number of zombies
+        squareContainer.style.background = color;        
+        // Reveal all the zones, regardless their date of last visit
+//        hexagons[i].style.opacity = 1;
+        
+        // Hides the zombies, because they are above the colored background
+        hideClasses(["zombies"]);
+    }
+}
+
+
+function desactivateMapRadarView() {
+    
+    let hexagons = document.querySelectorAll("#map_body .hexagon");
+    
+    for(let i=0; i<hexagons.length; i++) {
+        
+        let squareContainer = hexagons[i].querySelector(".square_container");
+        // Remove the colors on the zones
+        squareContainer.style.background = "none";        
+        // Display the zombies again
+        unhideClass("zombies");
+    }
+}
+
+
+function toggleMapRadarView() {
+    
+    if (window.isMapRadarViewActive === true) {   
+        desactivateMapRadarView();
+        window.isMapRadarViewActive = false;
+    } else {
+        activateMapRadarView();
+        window.isMapRadarViewActive = true;
+    }
+}

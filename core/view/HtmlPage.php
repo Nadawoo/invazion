@@ -79,7 +79,7 @@ class HtmlPage
                 <link rel="manifest" href="manifest.json" />
                 <link rel="stylesheet" type="text/css" href="resources/css/sitelayout.css?v4.5">
                 <link rel="stylesheet" type="text/css" href="resources/css/gamelayout.css?v9.0">
-                <link rel="stylesheet" type="text/css" href="resources/css/map.css?v4.3">
+                <link rel="stylesheet" type="text/css" href="resources/css/map.css?v4.4">
                 <link rel="stylesheet" type="text/css" href="resources/css/smartphone.css?v1.6">
                 <link rel="stylesheet" type="text/css" href="resources/css/city.css?v3.5">
                 <link rel="stylesheet" type="text/css" href="resources/css/cityiso.css?v1.3">
@@ -153,7 +153,7 @@ class HtmlPage
                     </script>
 
                     <script type="text/javascript" src="resources/js/ZombLib.js?v1.3"></script>
-                    <script type="text/javascript" src="resources/js/map.func.js?v1.0"></script>
+                    <script type="text/javascript" src="resources/js/map.func.js?v1.1"></script>
                     <script type="text/javascript" src="resources/js/wallTemplate.js?v4.5"></script>
                     <script type="text/javascript" src="resources/js/actionBlocks.func.js?v1.5"></script>
                     <script type="text/javascript" src="resources/js/cityEnclosure.func.js?v1.0"></script>
