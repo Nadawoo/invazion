@@ -338,9 +338,13 @@ echo $popup->customised('popsuccess', '', $msg_popup, $is_custom_popup_visible);
                 <button onclick="zoomMapIn()" title="Zoomer la carte"><span style="font-size:75%;margin-top:-0.1em;">+</span></button>
                 <button onclick="zoomMapOut()" title="Dézoomer la carte"><span style="margin-top:-0.1em;">-</span></button>
                 <button onclick="centerMapOnMe()" title="Centrer sur ma zone""><img src="resources/img/icons8/mylocation-48.png" height="28" alt="Cible ma position"></button>
-                <button onclick="toggleMapRadarView()" title="Vue satellite des zombies"><span style="font-size:50%;margin-top:-0.3em;">&#x1F6F0;&#xFE0F;</span></button>
-                <button onclick="toggleMapItemsView()" title="Voir les objets au sol sur la carte"><img src="resources/img/copyrighted/items/scrap.png" height="38" alt="Objets"></button>
-                <button onclick="toggleMapMarker('citizens')" title="Voir les joueurs sur la carte"><span style="font-size:50%;margin-top:-0.3em;">&#x1F465;</span></button>
+                <button onclick="toggle('mapRadarMenu')" title="Vue satellite"><span style="font-size:50%;margin-top:-0.3em;">&#x1F6F0;&#xFE0F;</span></button>
+                <ul id="mapRadarMenu">
+                    <li onclick="resetMapView()">&#x1F5FA;&#xFE0F; Carte réelle</li>
+                    <li onclick="resetMapView();toggleMapZombiesView()"  title="Voir les zombies sur la carte">&#x1F9DF; Zombies</li>
+                    <li onclick="resetMapView();toggleMapItemsView()" title="Voir les objets au sol sur la carte">&#x1F392; Objets</li>
+                    <li onclick="toggleMapMarker('citizens')" title="Voir les joueurs sur la carte"> &#x1F9CD;&#x200D;&#x2642;&#xFE0F; &nbsp;Humains</li>
+                </ul>
                 <button><a href="#popsmartphone" style="font-size:55%">&#128241;</a></button>
             </div>
         </div>

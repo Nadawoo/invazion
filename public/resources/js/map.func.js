@@ -82,7 +82,7 @@ function updateLineBetweenZones(origHtmlId, destinHtmlId) {
  * 
  * @returns {undefined}
  */
-function activateMapRadarView() {
+function activateMapZombiesView() {
     
     let hexagons = document.querySelectorAll("#map_body .hexagon");
     
@@ -113,7 +113,7 @@ function activateMapRadarView() {
 }
 
 
-function desactivateMapRadarView() {
+function desactivateMapZombiesView() {
     
     let hexagons = document.querySelectorAll("#map_body .hexagon");
     
@@ -128,14 +128,14 @@ function desactivateMapRadarView() {
 }
 
 
-function toggleMapRadarView() {
+function toggleMapZombiesView() {
     
-    if (window.isMapRadarViewActive === true) {   
-        desactivateMapRadarView();
-        window.isMapRadarViewActive = false;
+    if (window.isMapZombiesViewActive === true) {   
+        desactivateMapZombiesView();
+        window.isMapZombiesViewActive = false;
     } else {
-        activateMapRadarView();
-        window.isMapRadarViewActive = true;
+        activateMapZombiesView();
+        window.isMapZombiesViewActive = true;
     }
 }
 
@@ -204,3 +204,16 @@ function toggleMapItemsView() {
     }
 }
 
+
+/**
+ * Cancels all the effects of satellite view (colors for the zombies...)
+ * 
+ * @returns {undefined}
+ */
+function resetMapView() {
+    
+    desactivateMapZombiesView();
+    window.isMapZombiesViewActive = false;
+    desactivateMapItemsView();
+    window.isMapItemsViewActive = false;
+}
