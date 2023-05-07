@@ -89,17 +89,19 @@ function activateMapZombiesView() {
     for(let i=0; i<hexagons.length; i++) {
         
         let squareContainer = hexagons[i].querySelector(".square_container");
-        let controlpoints_zombies = squareContainer.dataset.controlpointszombies;
+        let controlpoints_zombies = parseInt(squareContainer.dataset.controlpointszombies);
         
-        let color = 'grey';
+        let color = 'white';
         if(controlpoints_zombies > 15) {
             color = 'darkred';//'#ff0505'; // Needs 4 citizens (20 CP) or more
         } else if(controlpoints_zombies > 10) {
             color = 'red';// '#ff5b00'; // Safe with 3 citizens (15 CP)
         } else if(controlpoints_zombies > 5) {
-            color = 'orange';//'#ffc302'; // Safe with 2 citizens (10 CP)
-        } else if(controlpoints_zombies <= 5) {
-            color = 'green';  // Safe with 1 citizen (5 CP)
+            color = '#fb8c00';//'#ffc302'; // Safe with 2 citizens (10 CP)
+        } else if(controlpoints_zombies > 0) {
+            color = '#d4ac0d'; // Safe with 1 citizen (5 CP)
+        } else if(controlpoints_zombies === 0) {
+            color = 'green';  // No zombies
         } 
         
         // Color the zones depending on the number of zombies
@@ -152,16 +154,16 @@ function activateMapItemsView() {
     for(let i=0; i<hexagons.length; i++) {
         
         let squareContainer = hexagons[i].querySelector(".square_container");
-        let nbrItems = squareContainer.dataset.items;
+        let nbrItems = parseInt(squareContainer.dataset.items);
         
-        let color = 'grey';
+        let color = 'white';
         if(nbrItems > 15) {
             color = 'darkred';
         } else if(nbrItems > 10) {
             color = 'red';
         } else if(nbrItems > 5) {
             color = 'orange';
-        } else if(nbrItems <= 5 && nbrItems > 0) {
+        } else if(nbrItems > 0) {
             color = 'green';
         } else if(nbrItems === 0) {
             color = 'grey'; 
