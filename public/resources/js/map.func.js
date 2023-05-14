@@ -97,11 +97,11 @@ function activateMapZombiesView() {
         } else if(controlpoints_zombies > 10) {
             color = 'red';// '#ff5b00'; // Safe with 3 citizens (15 CP)
         } else if(controlpoints_zombies > 5) {
-            color = '#fb8c00';//'#ffc302'; // Safe with 2 citizens (10 CP)
+            color = 'orange';//'#fb8c00'; // Safe with 2 citizens (10 CP)
         } else if(controlpoints_zombies > 0) {
-            color = '#d4ac0d'; // Safe with 1 citizen (5 CP)
+            color = 'green'; //'#d4ac0d'; Safe with 1 citizen (5 CP)
         } else if(controlpoints_zombies === 0) {
-            color = 'green';  // No zombies
+            color = 'grey';  // No zombies
         } 
         
         // Color the zones depending on the number of zombies
