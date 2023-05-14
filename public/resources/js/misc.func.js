@@ -767,6 +767,21 @@ async function getMapCitizensOnce(mapId) {
 
 
 /*
+ * Get the cities of the map by calling the Invazion's API
+ */
+async function getMapCitiesOnce(mapId) {
+    
+    // If the API has already be called before, don't re-call it
+    if(_cities === null) {
+        let json = await callApi("GET", "cities", `action=get&map_id=${mapId}`);    
+        _cities = json.datas;
+    }
+    
+    return _cities;
+}
+
+
+/*
  * Get the data about the player's zone by calling the Invazion's API
  */
 async function getMyZoneOnce(mapId, coordX, coordY) {

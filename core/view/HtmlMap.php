@@ -186,12 +186,12 @@ class HtmlMap
             // à chacune des condition suivantes.
             // TODO : revoir l'organisation de l'affichage afin d'éviter ce bricolage.
         }
-        elseif ($cell['city_type_id'] !== null) {
-            // The appropriate icon will be added by javascript
-            $cell_content = $this->html_icon_building($cell['city_type_id']);
-            $bubble_roleplay = $this->html_bubble_building($cell['city_type_id']);
-            $elevate      = 'elevate';
-        }
+//        elseif ($cell['city_type_id'] !== null) {
+//            // The appropriate icon will be added by javascript
+//            $cell_content = $this->html_icon_building($cell['city_type_id']);
+//            $bubble_roleplay = $this->html_bubble_building($cell['city_type_id']);
+//            $elevate      = 'elevate';
+//        }
         
 
         if ($cell['zombies'] > 0) {
@@ -218,7 +218,6 @@ class HtmlMap
         else {
             $opacity = $this->opacity_coeff($cell['date_last_visit']);
         }
-
         
         // Variable grounds (sand, peebles...)
         $ground = $this->ground_css_class($cell);
@@ -237,7 +236,7 @@ class HtmlMap
                         data-controlPointsZombies="'.$cell['controlpoints_zombies'].'"
                         data-controlPointsCitizens="'.$cell['controlpoints_citizens'].'"
                         data-cityid="'.$cell['city_id'].'"
-                        data-citytypeid="'.$cell['city_type_id'].'"
+                        data-citytypeid=""
                         >'
                         . $cell_zombies . $cell_content . '
                         <div class="bubble">
@@ -263,10 +262,10 @@ class HtmlMap
             $ground = 'ground_zombies';
         }
         // City = ID #12 in the DB
-        elseif ($cell['city_type_id'] === 12 or $cell['connected_city_id'] !== null) {
-            // City build by the players
-            $ground = 'ground_city';
-        }
+//        elseif ($cell['city_type_id'] === 12 or $cell['connected_city_id'] !== null) {
+//            // City build by the players
+//            $ground = 'ground_city';
+//        }
         else {
             // Simple visual tiles (grass, sand...)
             $ground = 'ground_'.$cell['land'];

@@ -5,6 +5,7 @@
 
 // Permanently stores the results returned by the Invazion's APIs.
 var _citizens = null;
+var _cities = null;
 var _myZone = null;
 // Get the unvariable data of the game (building names...) stored in the HTML
 var _configsBuildings = JSON.parse(document.querySelector("#configs .buildings").innerHTML);
@@ -61,12 +62,11 @@ if (document.getElementById('map') !== null) {
         showFightingZombiesButtons(zoneData.zombies);
     }
     
-    // Place the citizens on the appropriate zones of the map
-    addCitizensOnMap(mapId);  
-    
     // Place on the map the buildings and cities
-    replaceBuildingsPlaceholders();    
+    addCitiesOnMap(mapId);  
     
+    // Place the citizens on the appropriate zones of the map
+    addCitizensOnMap(mapId);    
     
     // Restore the display of the action button before the page was refreshed
 //    toggleActionBlock(getCookieConfig("round_button"));
@@ -90,7 +90,7 @@ if (document.getElementById('map') !== null) {
         // NB: keep the ".php" extension, otherwise it will give a "CORS error" with the local API version
         let evtSource = new EventSource(getOfficialServerRoot()+"/api/sse.php");
         evtSource.onmessage = async function(event) { 
-            timestamp = await UpdateMapRealtime(event, timestamp);
+            timestamp = await updateMapRealtime(event, timestamp);
         };
     }, 1000);
 }

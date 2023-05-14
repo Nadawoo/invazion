@@ -9,7 +9,7 @@
  * param {array} event The event given by an EventSource() object
  *                     Doc : https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events
  */
-async function UpdateMapRealtime(event, timestamp) {
+async function updateMapRealtime(event, timestamp) {
     let citizenPseudo = document.getElementById("citizenPseudo").innerHTML,
         citizenId     = document.getElementById("citizenId").innerHTML,
         mapId         = document.getElementById("mapId").innerHTML;
@@ -25,7 +25,7 @@ async function UpdateMapRealtime(event, timestamp) {
         document.getElementById("zone"+coords).outerHTML = htmlZones[coords];
     }
     
-    replaceBuildingsPlaceholders();
+    addCitiesOnMap();
     
     // Place the player on his new zone
     addMeOnMap();
@@ -149,6 +149,59 @@ async function addCitizensOnMap(mapId) {
                 zone.querySelector(".empty").remove();
             }
         }
+    }
+}
+
+
+/**
+ * Place the cities and buildings on the map. They are not loaded by the PHP 
+ * to speed up the loading of the map.
+ * 
+ * @param {int} mapId
+ */
+async function addCitiesOnMap(mapId) {
+    
+    // Get the cities of the map by calling the Invazion's API
+    _cities = await getMapCitiesOnce(mapId);
+    
+    // Place the cities on the appropriate zones
+    for(let cityId in _cities) {
+        
+        let city = _cities[cityId],
+            htmlCoords = city.coord_x+"_"+city.coord_y,
+            zone = document.querySelector("#zone"+htmlCoords+" .square_container");
+        
+        let buildingCarcs = _configsBuildings[city.city_type_id],
+            buildingIconHtml = buildingCarcs["icon_html"],
+            buildingIconPath = "resources/img/"+buildingCarcs["icon_path"],
+            buildingName = buildingCarcs["name"],
+            buildingDescr = buildingCarcs["descr_ambiance"];
+
+        if(buildingCarcs["icon_path"] !== null && zone.dataset.citytypeid == "") {
+            if(buildingCarcs["is_icon_tiled"] === 1) {
+                // Displays the building with the tile included in its image
+                zone.closest(".hexagon").style.backgroundImage = `url(${buildingIconPath})`;                 
+            } else {
+                // Displays the image (PNG) of the building (without tile)
+                zone.insertAdjacentHTML("afterbegin", `<div class="icon_placeholder"><img src="${buildingIconPath}" alt="${buildingIconHtml}" width="24" height="24"></div>`);
+                // Delete the "&nbsp;" required on the empty zones 
+                if(zone.querySelector(".empty") !== null) {
+                    zone.querySelector(".empty").remove();
+                }
+            }
+        }
+//        else {
+//            // If no image file for this building, displays an emoji for the building
+//            building.outerHTML = `<div class="icon_html">${icon_html}</div>`;
+//        }
+        
+        // Adds the building description in the bubble of the zone
+        zone.querySelector(".roleplay").innerHTML = `<h5 class="name">${buildingName}</h5><hr><div class="descr_ambiance">${buildingDescr}</div>`;
+        // Put the tile higher than its neighbors
+        zone.closest(".hexagon").classList.add("ground_city", "elevate");
+        // Used to memorize the type of building in HTML
+        // TODO: we could remove this attribute by using the attribute data-cityid
+        zone.dataset.citytypeid = city.city_type_id;
     }
 }
 
