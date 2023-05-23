@@ -21,7 +21,9 @@ if (document.getElementById('map') !== null) {
         // Desactivate the classic submission button (avoids reloading the page)
         event.preventDefault();
         moveCitizen(event.submitter.value);
-        setTimeout(function() {updateLineBetweenZones("#me", "#"+myCityZoneId);}, 1000);
+        if(myCityZoneId !== null) {
+            setTimeout(function() {updateLineBetweenZones("#me", "#"+myCityZoneId);}, 1000);
+        }
     });
     
     // Digs a zone to find items
