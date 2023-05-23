@@ -199,6 +199,8 @@ async function addCitiesOnMap(mapId) {
         zone.querySelector(".roleplay").innerHTML = `<h5 class="name">${buildingName}</h5><hr><div class="descr_ambiance">${buildingDescr}</div>`;
         // Put the tile higher than its neighbors
         zone.closest(".hexagon").classList.add("ground_city", "elevate");
+        // Make the building's zone always visible, even when never visited
+        zone.closest(".hexagon").style.opacity = 1;
         // Used to memorize the type of building in HTML
         // TODO: we could remove this attribute by using the attribute data-cityid
         zone.dataset.citytypeid = city.city_type_id;
