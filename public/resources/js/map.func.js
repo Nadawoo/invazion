@@ -190,10 +190,14 @@ async function addCitiesOnMap(mapId) {
                 }
             }
         }
-//        else {
-//            // If no image file for this building, displays an emoji for the building
-//            building.outerHTML = `<div class="icon_html">${icon_html}</div>`;
-//        }
+        else {
+            // If no image file for this building, displays an emoji for the building
+            zone.insertAdjacentHTML("afterbegin", `<div class="icon_html">${buildingIconHtml}</div>`);
+            // Delete the "&nbsp;" required on the empty zones 
+            if(zone.querySelector(".empty") !== null) {
+                zone.querySelector(".empty").remove();
+            }
+        }
         
         // Adds the building description in the bubble of the zone
         zone.querySelector(".roleplay").innerHTML = `<h5 class="name">${buildingName}</h5><hr><div class="descr_ambiance">${buildingDescr}</div>`;
