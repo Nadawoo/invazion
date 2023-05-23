@@ -19,12 +19,12 @@ var _jsonDiscussionApi = null;
 if (document.getElementById('map') !== null) {
     
     // Default map to show if the visitor is not connected
-    let mapId = 1;
+    var mapId = 1;
     
     // Only if the visitor is connected
     if(document.querySelector("#citizenId").innerHTML !== "") {
     
-        let mapId = document.querySelector("#gameData #mapId").innerHTML,
+        var mapId = document.querySelector("#gameData #mapId").innerHTML,
             myCityZoneId = getMyCityZoneId();
         // Place the current player on the appropriate zone of the map
         addMeOnMap();
