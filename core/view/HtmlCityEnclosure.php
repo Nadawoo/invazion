@@ -429,13 +429,15 @@ class HtmlCityEnclosure
         $buttons = new HtmlButtons;
         $html_constructions = '';
         
-        foreach ($buildings_caracs as $id=>$building) {
+        foreach ($buildings_caracs as $building_id=>$building) {
             
             $html_resources = '';
-            $css_id = 'building'.$id;
+            $css_id = 'building'.$building_id;
+            // If no components have been defined for this building
+            $components = (isset($buildings_components[$building_id])) ? $buildings_components[$building_id] : [];
             
             // Jauge des ressources requises/disponibles pour la construction
-            foreach ($buildings_components[$id] as $item_id=>$required_amount) {
+            foreach ($components as $item_id=>$required_amount) {
                 
                 $html_resources .= $this->html_progressbar( $item_id, $items_caracs[$item_id]['name'],
                                                             $this->item_amount($zone_items, $item_id),
@@ -443,13 +445,13 @@ class HtmlCityEnclosure
                                                             'constructions');
             }
             
-            if (in_array($id, $completed_buildings_ids)) { 
+            if (in_array($building_id, $completed_buildings_ids)) { 
                 
                 $html_constructions .= '
                     <tr>
                         <td onclick="toggle(\''.$css_id.'\')" class="foldable" style="background:darkgreen">
                             <h3 style="color:lightgreen">
-                                <img src="../resources/img/copyrighted/buildings/'.$id.'.png" alt="icon_'.$id.'">&nbsp;'.$building['name'].'
+                                <img src="../resources/img/copyrighted/buildings/'.$building_id.'.png" alt="icon_'.$building_id.'">&nbsp;'.$building['name'].'
                             </h3>
                             <div class="unfold_button" style="color:lightgreen">&check; Fini ! &nbsp;</div>
                         </td>
@@ -469,7 +471,7 @@ class HtmlCityEnclosure
                     <tr>
                         <td onclick="toggle(\''.$css_id.'\')" class="foldable">
                             <h3 style="color:grey">
-                                <img src="../resources/img/copyrighted/buildings/'.$id.'.png" alt="icon_'.$id.'">&nbsp;'.$building['name'].'
+                                <img src="../resources/img/copyrighted/buildings/'.$building_id.'.png" alt="icon_'.$building_id.'">&nbsp;'.$building['name'].'
                             </h3>
                             <div class="unfold_button">bâtir&nbsp;<div class="arrow">&#65088;</div></div>
                         </td>
@@ -482,7 +484,7 @@ class HtmlCityEnclosure
                         <td id="'.$css_id.'" class="folded">
                             <ul class="items_list">
                                 ' . $html_resources . '
-                                ' . $buttons->construct($id, 'no_notif') . '
+                                ' . $buttons->construct($building_id, 'no_notif') . '
                             </ul>
                         </td>
                     </tr>';

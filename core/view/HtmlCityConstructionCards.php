@@ -41,8 +41,9 @@ class HtmlCityConstructionCards
             if(!in_array($building_id, $completed_buildings_ids)) {
                 //... display a card
                 $AP_invested_in_construction = isset($city_constructions[$building_id]) ? $city_constructions[$building_id]['AP_invested'] : 0;
+                $building_components = (isset($city_buildings_components[$building_id])) ? $city_buildings_components[$building_id] : [];
                 $result .= $this->card($items_caracs, $items_in_storage, 
-                                       $building_caracs, $city_buildings_components[$building_id],
+                                       $building_caracs, $building_components,
                                        $building_id, $AP_invested_in_construction);
             }
         }
@@ -74,9 +75,10 @@ class HtmlCityConstructionCards
         
         $construction_name = $construction_caracs['name'];
         // ID #23 = the ID of the action points (treated as an ordinary resource)
-        $action_points_needed = $construction_components[23];
+        $ap_item_id = 23;
+        $action_points_needed = (isset($construction_components[$ap_item_id])) ? $construction_components[$ap_item_id] : 0;
         // Keep only the "real" resources, excluding action points (wood, metal...)
-        unset($construction_components[23]);
+        unset($construction_components[$ap_item_id]);
         
         // From all the resources available in the city storage, keep only the ones 
         // useful for the construction
