@@ -414,36 +414,28 @@ class HtmlCityEnclosure
      * Bloc à l'intérieur de la ville :
      * liste des chantiers construits ou constructibles en ville
      * 
-     * @param array $constructions_caracs Les caractéristiques statiques des chantiers (nom...)
-     * @param array $constructions_components 
+     * @param array $buildings_caracs Les caractéristiques statiques des chantiers (nom...)
+     * @param array $buildings_components 
      * @param array $items_caracs         Les caractéristiques statiques des objets
      * @param array $city_constructions   L'état des chantiers de la ville (avancement...)
      * @param array $zone_items           Les objets disponibles dans le dépôt de la ville
      *                                    (qui sont, à ce jour, les objets au sol)
      * @return string
      */
-    function block_constructions($constructions_caracs, $constructions_components, $items_caracs,  
-                                  $city_constructions, $completed_buildings_ids, $zone_items)
+    function block_constructions($buildings_caracs, $buildings_components, $items_caracs,  
+                                  $completed_buildings_ids, $zone_items)
     {
         
         $buttons = new HtmlButtons;
         $html_constructions = '';
         
-        foreach ($constructions_caracs as $id=>$constr) {
+        foreach ($buildings_caracs as $id=>$building) {
             
             $html_resources = '';
             $css_id = 'building'.$id;
             
-            // Valeurs par défaut si le chantier n'est pas du tout commencé
-            if (!isset($city_constructions[$id])) {
-                
-                $city_constructions[$id] = ['AP_invested'   => 0,
-                                            'is_completed'  => 0,
-                                            ];
-            }
-            
             // Jauge des ressources requises/disponibles pour la construction
-            foreach ($constructions_components[$id] as $item_id=>$required_amount) {
+            foreach ($buildings_components[$id] as $item_id=>$required_amount) {
                 
                 $html_resources .= $this->html_progressbar( $item_id, $items_caracs[$item_id]['name'],
                                                             $this->item_amount($zone_items, $item_id),
@@ -457,13 +449,13 @@ class HtmlCityEnclosure
                     <tr>
                         <td onclick="toggle(\''.$css_id.'\')" class="foldable" style="background:darkgreen">
                             <h3 style="color:lightgreen">
-                                <img src="../resources/img/copyrighted/buildings/'.$id.'.png" alt="icon_'.$id.'">&nbsp;'.$constr['name'].'
+                                <img src="../resources/img/copyrighted/buildings/'.$id.'.png" alt="icon_'.$id.'">&nbsp;'.$building['name'].'
                             </h3>
                             <div class="unfold_button" style="color:lightgreen">&check; Fini ! &nbsp;</div>
                         </td>
                         <td style="cursor:help" 
-                            title="Ce chantier augmente de '.$constr['defenses'].' points les défenses de la ville !">
-                            <strong style="color:darkgreen">+&nbsp;'.$constr['defenses'].'</strong>
+                            title="Ce chantier augmente de '.$building['defenses'].' points les défenses de la ville !">
+                            <strong style="color:darkgreen">+&nbsp;'.$building['defenses'].'</strong>
                         </td>
                     </tr>
                     <tr id="'.$css_id.'" class="folded">
@@ -477,13 +469,13 @@ class HtmlCityEnclosure
                     <tr>
                         <td onclick="toggle(\''.$css_id.'\')" class="foldable">
                             <h3 style="color:grey">
-                                <img src="../resources/img/copyrighted/buildings/'.$id.'.png" alt="icon_'.$id.'">&nbsp;'.$constr['name'].'
+                                <img src="../resources/img/copyrighted/buildings/'.$id.'.png" alt="icon_'.$id.'">&nbsp;'.$building['name'].'
                             </h3>
                             <div class="unfold_button">bâtir&nbsp;<div class="arrow">&#65088;</div></div>
                         </td>
                         <td style="color:grey;cursor:help"
-                            title="Si vous le construisez, ce chantier augmentera de '.$constr['defenses'].' points les défenses de la ville.">
-                            <strong>+&nbsp;'.$constr['defenses'].'</strong>
+                            title="Si vous le construisez, ce chantier augmentera de '.$building['defenses'].' points les défenses de la ville.">
+                            <strong>+&nbsp;'.$building['defenses'].'</strong>
                         </td>
                     </tr>
                     <tr>

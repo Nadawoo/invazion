@@ -248,7 +248,7 @@ echo $popup->customised('popsuccess', '', $msg_popup, $is_custom_popup_visible);
                     </div>
                     <div id="home_build" class="city_row">
                         '. $enclosure->block_constructions($home_buildings_caracs, $configs['buildings_components'], $configs['items'], 
-                                                           $city_data['constructions'], $completed_buildings_ids, $zone['items']) .'
+                                                           $completed_buildings_ids, $zone['items']) .'
                     </div>
                     <div id="city_fellows" class="city_row">
                         '. $enclosure->block_fellows_list($city_fellows, $specialities) .'
@@ -280,7 +280,7 @@ echo $popup->customised('popsuccess', '', $msg_popup, $is_custom_popup_visible);
                         </div>
                         <div class="city_row">
                         '. $enclosure->block_constructions($city_buildings_caracs, $configs['buildings_components'], $configs['items'], 
-                                                           $city_data['constructions'], $completed_buildings_ids, $zone['items']) .'
+                                                           $completed_buildings_ids, $zone['items']) .'
                         </div>
                     </div>
                     <div id="city_door" class="city_row">
