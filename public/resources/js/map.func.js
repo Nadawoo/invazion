@@ -25,7 +25,7 @@ async function updateMapRealtime(event, timestamp) {
         document.getElementById("zone"+coords).outerHTML = htmlZones[coords];
     }
     
-    addCitiesOnMap();
+    addCitiesOnMap(mapId);
     
     // Place the player on his new zone
     addMeOnMap();
@@ -179,9 +179,9 @@ async function addCitiesOnMap(mapId) {
         
         // If the city is already placed in the zone, don't add it twice
         if(zone.dataset.citytypeid != "") {
-            break;
+            continue;
         }
-            
+        
         if(buildingCarcs["icon_path"] !== null && zone.dataset.citytypeid == "") {
             if(buildingCarcs["is_icon_tiled"] === 1) {
                 // Displays the building with the tile included in its image
