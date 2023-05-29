@@ -245,7 +245,7 @@ async function updateBlockActionDig(mapId, coordX, coordY) {
             for(let [itemId, itemAmount] of Object.entries(_myZone.items)) {
                 // Adds the item in the items list
                 let item = _configsItems[itemId];
-                htmlAddGroundItem(itemId, item.icon_symbol, item.name, itemAmount);
+                htmlAddGroundItem(itemId, item.icon_path, item.icon_symbol, item.name, itemAmount);
             }
         }
         
@@ -260,11 +260,12 @@ async function updateBlockActionDig(mapId, coordX, coordY) {
  * Adds an HTML entry in the ground items list
  * 
  * @param {int} itemId The ID of the item in the game (can't be your homemade ID)
+ * @param {string} itemImagePath The path to the image of the item
  * @param {string} itemIconSymbol An HTML entity if there is no real image for the item
  * @param {string} itemName
  * @param {int} itemAmount The number of occurrences of this item in the zone
  */
-function htmlAddGroundItem(itemId, itemIconSymbol, itemName, itemAmount) {
+function htmlAddGroundItem(itemId, itemImagePath, itemIconSymbol, itemName, itemAmount) {
     
     // Gets a blank HTML template of an item entry
     let template = document.querySelector("#tplActionBlockItem").content.cloneNode(true),
@@ -272,7 +273,7 @@ function htmlAddGroundItem(itemId, itemIconSymbol, itemName, itemAmount) {
 
     // Populates the blank template with the item data
     template.querySelector('button[name="params[item_id]"]').value = itemId;
-    template.querySelector('img').src = `../resources/img/copyrighted/items/${itemId}.png`;
+    template.querySelector('img').src = `../resources/img/${itemImagePath}`;
     template.querySelector('img').alt = itemIconSymbol;
     template.querySelector('.item_name').innerHTML = itemName;
     template.querySelector('.item_amount').innerHTML = itemAmount;

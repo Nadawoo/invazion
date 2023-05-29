@@ -731,7 +731,7 @@ class HtmlLayout extends HtmlPage
                         </form>
                         <div style="margin-left:0.1em;margin-bottom:0.3em;background:#d3d3d3;border-radius:0.3em">
                             <var onclick="toggle(\'detailsItem'.$item_id.'\')">
-                                <img src="../resources/img/copyrighted/items/'.$item_id.'.png" alt="'.$items_caracs[$item_id]['icon_symbol'].'"> 
+                                <img src="../resources/img/'.$items_caracs[$item_id]['icon_path'].'" alt="'.$items_caracs[$item_id]['icon_symbol'].'"> 
                                 &nbsp;' . $items_caracs[$item_id]['name'] .'
                             </var>
                             <div id="detailsItem'.$item_id.'" class="details">
