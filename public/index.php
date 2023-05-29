@@ -112,9 +112,9 @@ if ($citizen['citizen_id'] !== NULL) {
         $is_citizen_home_connected = in_array($citizen['city_id'], $city_data['child_cities_ids']) ? true : false;
         
         // Keep only the game's buildings related to the city (ID #12)
-        $city_buildings_caracs = $sort->filter_buildings_by_parent($configs['buildings'], 12);
+        $city_buildings_caracs = $sort->filter_buildings_by_parent($configs['buildings'], $configs['map']['city_buildings_set_id']);
         // Idem for the personal house (ID #13)
-        $home_buildings_caracs = $sort->filter_buildings_by_parent($configs['buildings'], 13);
+        $home_buildings_caracs = $sort->filter_buildings_by_parent($configs['buildings'], $configs['map']['home_buildings_set_id']);
         // Get the ID of the buildings already terminated (not in progress)
         $completed_buildings_ids = $sort->get_completed_buildings_ids($city_data['constructions']);
         // Get the ID of the well (type #15) constructed in the city
