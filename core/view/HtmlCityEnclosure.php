@@ -445,13 +445,17 @@ class HtmlCityEnclosure
                                                             'constructions');
             }
             
+            // Set default building image if not defined
+            $building_image = '../resources/img/copyrighted/buildings/'.$building_id.'.png';
+            $building_image = is_file($building_image) ? $building_image : '../resources/img/copyrighted/buildings/104.png';
+                        
             if (in_array($building_id, $completed_buildings_ids)) { 
                 
                 $html_constructions .= '
                     <tr>
                         <td onclick="toggle(\''.$css_id.'\')" class="foldable" style="background:darkgreen">
                             <h3 style="color:lightgreen">
-                                <img src="../resources/img/copyrighted/buildings/'.$building_id.'.png" alt="icon_'.$building_id.'">&nbsp;'.$building['name'].'
+                                <img src="'.$building_image.'" alt="icon_'.$building_id.'">&nbsp;'.$building['name'].'
                             </h3>
                             <div class="unfold_button" style="color:lightgreen">&check; Fini ! &nbsp;</div>
                         </td>
@@ -467,11 +471,12 @@ class HtmlCityEnclosure
             }
             else {
                 
+                
                 $html_constructions .= '
                     <tr>
                         <td onclick="toggle(\''.$css_id.'\')" class="foldable">
                             <h3 style="color:grey">
-                                <img src="../resources/img/copyrighted/buildings/'.$building_id.'.png" alt="icon_'.$building_id.'">&nbsp;'.$building['name'].'
+                                <img src="'.$building_image.'" alt="icon_'.$building_id.'">&nbsp;'.$building['name'].'
                             </h3>
                             <div class="unfold_button">bâtir&nbsp;<div class="arrow">&#65088;</div></div>
                         </td>

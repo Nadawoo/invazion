@@ -93,12 +93,16 @@ class HtmlCityConstructionCards
             ? $this->missing_actionpoints($total_AP_missing, $building_id)
             : $card_contents = $this->missing_resources($items_missing, $total_items_missing, $items_caracs);
         
+        // Set default building image if not defined
+        $building_image = '../resources/img/copyrighted/buildings/'.$building_id.'.png';
+        $building_image = is_file($building_image) ? $building_image : '../resources/img/copyrighted/buildings/104.png';
+
         return '
             <div class="city_block">
                 <h2>Chantier</h2>
                 <div class="contents">
                     <h3 style="height:2.2em;color:black;text-align:center;font-size:1.3em;letter-spacing:normal;">
-                        <img src="resources/img/copyrighted/buildings/'.$building_id.'.png"
+                        <img src="'.$building_image.'"
                              height="32" width="32" alt="icon">
                         '.$construction_name.'
                     </h3>
