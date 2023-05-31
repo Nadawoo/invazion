@@ -455,17 +455,19 @@ echo $popup->customised('popsuccess', '', $msg_popup, $is_custom_popup_visible);
                 ?>
                 <hr>
                 
-                &#x1F4BC; <strong>Déposer un objet de mon sac :</strong>
+                &#x1F4BC; <strong>Objets dans mon sac</strong>
                     <?php echo $html['bag_items'] ?>
                     
-                &#x270B;&#x1F3FC; <strong>Ramasser un objet au sol :</strong>
+                &#x270B;&#x1F3FC; <strong>Objets au sol</strong>
                     <?php echo $html['zone_items_template'] ?>
-                    <form name="items_ground" method="post" action="#Outside">
+                    <div id="items_ground">
                         <p class="greytext">
                             Aucun objet au sol pour l'instant. Vous allez devoir fouiller...
                         </p>
+                        <!--
                         <input type="hidden" name="api_name" value="zone">
                         <input type="hidden" name="action" value="pickup">
+                        -->
                         <ul class="items_list" style="margin-left:1.5rem;"
                             data-coordx="" data-coordy=""></ul>
                     </form>

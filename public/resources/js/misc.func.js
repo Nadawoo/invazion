@@ -827,7 +827,7 @@ async function dig() {
     
     if(json.metas.error_code === "success") {
         // Hides the message "There are no items on the ground..."
-        document.querySelector('form[name="items_ground"] .greytext').style.display = "none";
+        document.querySelector('#items_ground .greytext').style.display = "none";
         // Adds an HTML entry in the ground items list
         let itemsFound = json.datas.items_found,
             itemId     = Object.keys(itemsFound)[0],
@@ -888,18 +888,20 @@ async function dropItem(eventSubmitter) {
     if(json.metas.error_code === "success") {
         // HTML: moves the item from the ground list to the bag list
         let itemNode = eventSubmitter.closest("li");
-        document.querySelector('form[name="items_ground"] ul').prepend(itemNode);
+        document.querySelector('#items_ground ul').prepend(itemNode);
         // Adds 1 empty slot in the bag
         let tplEmptySlot = document.querySelector('#tplEmptySlot').content.cloneNode(true);
         document.querySelector('#items_bag').appendChild(tplEmptySlot);
         // Replaces the "drop" icon by the "pick-up" icon for this item
-        itemNode.querySelector('button').innerHTML = "&wedgeq;";
+        itemNode.querySelector('.form_drop').style.display = "none";
+        itemNode.querySelector('.form_pickup').style.display = "block";
         // Hides the message "There are no items on the ground..."
-        document.querySelector('form[name="items_ground"] .greytext').style.display = "none";
+        document.querySelector('#items_ground .greytext').style.display = "none";
         // Increases the counter for the ground items
         let myZone = document.querySelector("#me").parentNode.dataset;
         myZone.items = parseInt(myZone.items, 10) + 1;
         document.querySelector("#round_dig .dot_number").innerHTML = myZone.items;
+        
     } else {
         // Displays the eventual error message in a pop-up
         document.querySelector("#popsuccess").classList.add("force_visibility");

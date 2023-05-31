@@ -32,21 +32,21 @@ if (document.getElementById('map') !== null) {
         event.preventDefault();
         dig();
     });
-    // Picks up an item on the ground and puts it in the bag
-    document.querySelector('#block_dig form[name="items_ground"]').addEventListener("submit", function() {
-        // Desactivate the classic submission button (avoids reloading the page)
-        event.preventDefault();
-        pickupItem(event.submitter);
-    });
-    // Drops an item from the player's bag and puts it on the ground
+    // Drops or pick up an item from the player's bag
     document.querySelector('#block_dig').addEventListener("submit", function() {
         let formType = event.target.closest("form").className;
         // NB: this condition avoids interferences with the other forms in the block
         // (actions specific to the item, e.g. to eat a burger)
+        console.log(formType);
+        
         if(formType === "form_drop") {
             // Desactivate the classic submission button (avoids reloading the page)
             event.preventDefault();
             dropItem(event.submitter);
+        }
+        else if(formType === "form_pickup") {
+            event.preventDefault();
+            pickupItem(event.submitter);
         }
     });
     

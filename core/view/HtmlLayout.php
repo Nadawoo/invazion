@@ -622,7 +622,7 @@ class HtmlLayout extends HtmlPage
         
         return '
             <template id="tplEmptySlot">
-                <li class="empty_slot"><var>-vide-</var></li>
+                <li class="empty_slot"></li>
             </template>
             <ul id="items_bag" class="items_list">
                 ' . $this->bag_filled_slots($bag_items, $items_caracs, $citizen_id) . '
@@ -693,7 +693,7 @@ class HtmlLayout extends HtmlPage
         
         for ($i=0; $i<$nbr_free_slots; $i++) {
             
-            $result.= "\n<li class=\"empty_slot\"><var>-vide-</var></li>\n";
+            $result.= "\n<li class=\"empty_slot\"></li>\n";
         }
         
         return $result;
@@ -720,25 +720,24 @@ class HtmlLayout extends HtmlPage
             while ($item_amount > 0) {
                 
                 $button_alias = get_item_action($items_caracs[$item_id]);
+                $item_icon = '<img src="../resources/img/'.$items_caracs[$item_id]['icon_path'].'" alt="'.$items_caracs[$item_id]['icon_symbol'].'">';
+                $button_drop = $buttons->drop_item($item_id, $citizen_id);
+                $button_pickup = $buttons->pickup_item($item_id, $citizen_id);
+                $button_use = $buttons->use_item($button_alias, $item_id, $items_caracs[$item_id]['name']);
                 
                 $result .= '
                     <li class="item_label">
-                        <form class="form_drop" method="post" action="#Outside">
-                            <input type="hidden" name="api_name" value="zone">
-                            <input type="hidden" name="action" value="drop">
-                            <input type="hidden" name="params[citizen_id]" value="'.$citizen_id.'">
-                            <button type="submit" name="params[item_id]" value="'.$item_id.'" class="drop_button">&veeeq;</button>
-                        </form>
-                        <div style="margin-left:0.1em;margin-bottom:0.3em;background:#d3d3d3;border-radius:0.3em">
-                            <var onclick="toggle(\'detailsItem'.$item_id.'\')">
-                                <img src="../resources/img/'.$items_caracs[$item_id]['icon_path'].'" alt="'.$items_caracs[$item_id]['icon_symbol'].'"> 
-                                &nbsp;' . $items_caracs[$item_id]['name'] .'
-                            </var>
-                            <div id="detailsItem'.$item_id.'" class="details">
-                                <p class="descr_ambiance">'. $items_caracs[$item_id]['descr_ambiance'] .'</p>
-                                <p class="descr_purpose">'. $items_caracs[$item_id]['descr_purpose'] .'</p>
-                                '.$buttons->use_item($button_alias, $item_id, $items_caracs[$item_id]['name']).'
-                            </div>
+                        <var id="iconItem'.$item_id.'"
+                            style="height:3em;width:3em;justify-content:center;"
+                             onclick="display(\'detailsItem'.$item_id.'\')">
+                            '.$item_icon.'
+                        </var>
+                        <div id="detailsItem'.$item_id.'" class="details">
+                            <span class="close" onclick="hide(\'detailsItem'.$item_id.'\')">&#x274C;</span>
+                            <var style="font-weight:bold">'.$item_icon.'&nbsp;'.$items_caracs[$item_id]['name'].'</var>
+                            <p class="descr_ambiance">'. $items_caracs[$item_id]['descr_ambiance'] .'</p>
+                            <p class="descr_purpose">'. $items_caracs[$item_id]['descr_purpose'] .'</p>
+                            '.$button_use . $button_drop . $button_pickup.'
                         </div>
                     </li>';
                 

@@ -526,6 +526,32 @@ class HtmlButtons
     }
     
     
+    function drop_item($item_id, $citizen_id)
+    {
+        
+        return '
+            <form class="form_drop" method="post" action="#Outside">
+                <input type="hidden" name="api_name" value="zone">
+                <input type="hidden" name="action" value="drop">
+                <input type="hidden" name="params[citizen_id]" value="'.$citizen_id.'">
+                <button type="submit" name="params[item_id]" value="'.$item_id.'" class="redbutton">&veeeq; Déposer</button>
+            </form>';
+    }
+    
+    
+    function pickup_item($item_id, $citizen_id)
+    {
+        
+        return '
+            <form class="form_pickup" method="post" action="#Outside">
+                <input type="hidden" name="api_name" value="zone">
+                <input type="hidden" name="action" value="pickup">
+                <input type="hidden" name="params[citizen_id]" value="'.$citizen_id.'">
+                <button type="submit" name="params[item_id]" value="'.$item_id.'" class="redbutton">&wedgeq; Prendre</button>
+            </form>';
+    }
+    
+    
     /**
      * Retourne le bouton pour contruire une ville
      * 

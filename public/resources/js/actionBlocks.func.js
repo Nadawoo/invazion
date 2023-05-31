@@ -221,12 +221,12 @@ async function updateBlockActionCitizens(coordX, coordY) {
  */
 async function updateBlockActionDig(mapId, coordX, coordY) {
     
-    let block = document.querySelector('#block_dig form[name="items_ground"] .items_list');
+    let block = document.querySelector('#items_ground .items_list');
     
     // Update the data only one time per zone
     if(block.dataset.coordx !== coordX || block.dataset.coordy !== coordY) {
     
-        let noItemsText = document.querySelector('#block_dig form[name="items_ground"] .greytext');
+        let noItemsText = document.querySelector('#items_ground .greytext');
         // Clear the obsolete items list from the previous zone
         block.innerHTML = "";        
         // Get the items in the zone by calling the Invazion's API
@@ -269,7 +269,7 @@ function htmlAddGroundItem(itemId, itemImagePath, itemIconSymbol, itemName, item
     
     // Gets a blank HTML template of an item entry
     let template = document.querySelector("#tplActionBlockItem").content.cloneNode(true),
-        block = document.querySelector('#block_dig form[name="items_ground"] .items_list');
+        block = document.querySelector('#items_ground .items_list');
 
     // Populates the blank template with the item data
     template.querySelector('button[name="params[item_id]"]').value = itemId;
