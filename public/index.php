@@ -161,7 +161,7 @@ $html = [
     'edit_land'         => $layout->block_edit_land($citizen['coord_x'], $citizen['coord_y']),
     'zone_items'        => $layout->block_zone_items($configs['items'], $zone),
     'zone_items_template' => $layout->block_zone_item_template(),
-    'bag_items'         => $layout->block_bag_items($configs['items'], $citizen['citizen_id'], $citizen['bag_items'], $citizen['bag_size']),
+    'bag_items'         => $layout->block_bag_items($configs['items'], $citizen['bag_items'], $citizen['bag_size']),
     'zone_fellows_template' => $layout->block_zone_fellow_template(),
     // Smartphone at the right of the map
     'smartphone'        => $phone->smartphone($maps['map_width'], $maps['map_height'], $citizen, $speciality_caracs, $zone),
@@ -456,6 +456,9 @@ echo $popup->customised('popsuccess', '', $msg_popup, $is_custom_popup_visible);
                 <hr>
                 
                 &#x1F4BC; <strong>Objets dans mon sac</strong>
+                    <template id="tplEmptySlot">
+                        <li class="empty_slot"></li>
+                    </template>
                     <?php echo $html['bag_items'] ?>
                     
                 &#x270B;&#x1F3FC; <strong>Objets au sol</strong>

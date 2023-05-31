@@ -2,7 +2,7 @@
 /**
  * Determines if the item is usable (can be eaten, can heal a wound...)
  * 
- * @param array $item_caracs All the charactéristics of the item, as returned by
+ * @param array $item_caracs All the characteristics of the item, as returned by
  *                           the API "configs"
  * @return string The name of the action (if one is found). Must have been defined
  *                in the class HtmlButtons.

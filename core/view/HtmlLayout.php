@@ -615,18 +615,16 @@ class HtmlLayout extends HtmlPage
      * 
      * @return string   La liste des objets sous forme de liste HTML
      */
-    function block_bag_items($items_caracs, $citizen_id, $bag_items, $max_bag_slots)
+    function block_bag_items($items_caracs, $bag_items, $max_bag_slots)
     {
         
+        $htmlItem = new HtmlItem();
         $nbr_free_slots = $max_bag_slots - array_sum(array_values($bag_items));
         
         return '
-            <template id="tplEmptySlot">
-                <li class="empty_slot"></li>
-            </template>
             <ul id="items_bag" class="items_list">
-                ' . $this->bag_filled_slots($bag_items, $items_caracs, $citizen_id) . '
-                ' . $this->bag_free_slots($nbr_free_slots) . '
+                ' . $htmlItem->items($bag_items, $items_caracs) . '
+                ' . $htmlItem->empty_slots($nbr_free_slots) . '
             </ul>';
     }
     
@@ -680,73 +678,7 @@ class HtmlLayout extends HtmlPage
     }
     
     
-    /**
-     * Emplacements vides du sac
-     * 
-     * @param type $nbr_free_slots Nombre d'emplacements libres dans le sac
-     * @return string
-     */
-    private function bag_free_slots($nbr_free_slots)
-    {
-        
-        $result = '';
-        
-        for ($i=0; $i<$nbr_free_slots; $i++) {
-            
-            $result.= "\n<li class=\"empty_slot\"></li>\n";
-        }
-        
-        return $result;
-    }
-    
-    
-    /**
-     * Emplacements occupés du sac
-     * 
-     * @param array $bag_items      Liste des id des objets dans le sac
-     * @param array $items_caracs   Les caractéristiques de tous les items exitants dans le jeu
-     * @return string
-     */
-    private function bag_filled_slots($bag_items, $items_caracs, $citizen_id)
-    {
-        
-        $buttons = new HtmlButtons();
-        $result = '';
-        
-        foreach ($bag_items as $item_id=>$item_amount) {
-            
-            // Si le citoyen possède un objet en plusieurs exemplaires, on le fait 
-            // apparaître autant de fois dans le sac.
-            while ($item_amount > 0) {
-                
-                $button_alias = get_item_action($items_caracs[$item_id]);
-                $item_icon = '<img src="../resources/img/'.$items_caracs[$item_id]['icon_path'].'" alt="'.$items_caracs[$item_id]['icon_symbol'].'">';
-                $button_drop = $buttons->drop_item($item_id, $citizen_id);
-                $button_pickup = $buttons->pickup_item($item_id, $citizen_id);
-                $button_use = $buttons->use_item($button_alias, $item_id, $items_caracs[$item_id]['name']);
-                
-                $result .= '
-                    <li class="item_label">
-                        <var id="iconItem'.$item_id.'"
-                            style="height:3em;width:3em;justify-content:center;"
-                             onclick="display(\'detailsItem'.$item_id.'\')">
-                            '.$item_icon.'
-                        </var>
-                        <div id="detailsItem'.$item_id.'" class="details">
-                            <span class="close" onclick="hide(\'detailsItem'.$item_id.'\')">&#x274C;</span>
-                            <var style="font-weight:bold">'.$item_icon.'&nbsp;'.$items_caracs[$item_id]['name'].'</var>
-                            <p class="descr_ambiance">'. $items_caracs[$item_id]['descr_ambiance'] .'</p>
-                            <p class="descr_purpose">'. $items_caracs[$item_id]['descr_purpose'] .'</p>
-                            '.$button_use . $button_drop . $button_pickup.'
-                        </div>
-                    </li>';
-                
-                $item_amount--;
-            }
-        }
-        
-        return $result;
-    }
+
     
     
     /**
