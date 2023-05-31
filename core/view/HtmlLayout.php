@@ -622,10 +622,37 @@ class HtmlLayout extends HtmlPage
         $nbr_free_slots = $max_bag_slots - array_sum(array_values($bag_items));
         
         return '
-            <ul id="items_bag" class="items_list">
-                ' . $htmlItem->items($bag_items, $items_caracs) . '
-                ' . $htmlItem->empty_slots($nbr_free_slots) . '
-            </ul>';
+            <div id="items_bag">
+                <ul class="items_list">
+                    ' . $htmlItem->items($bag_items, $items_caracs) . '
+                    ' . $htmlItem->empty_slots($nbr_free_slots) . '
+                </ul>
+            </div>';
+    }
+    
+    
+    /**
+     * List of the items on the ground of the citizen's zone 
+     * 
+     * @param array $items_caracs   Les caractéristiques de tous les items existants dans le jeu
+     * @param array $ground_items   The items on the ground, structured as pairs
+     *                              "item id => item amount"
+     * @return string HTML
+     */
+    function block_ground_items($items_caracs, $ground_items, $coord_x, $coord_y)
+    {
+        
+        $htmlItem = new HtmlItem();
+        
+        return '
+            <div id="items_ground">
+                <p class="greytext">
+                    Aucun objet au sol pour l\'instant. Vous allez devoir fouiller...
+                </p>
+                <ul class="items_list" data-coordx="'.$coord_x.'" data-coordy="'.$coord_y.'">
+                    ' . $htmlItem->items($ground_items, $items_caracs) . '
+                </ul>
+            </div>';
     }
     
     

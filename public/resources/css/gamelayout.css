@@ -535,12 +535,11 @@ legend {
 }
 
 /* The player's bag */
-#items_bag {
-    display:flex;
-    margin-left:1.5rem;
-}
 #items_bag .form_pickup {
-    display:none; /* Hide the "pick up" button if item already in bag" */
+    display:none; /* Hide the "pick up" button if item already in bag */
+}
+#items_ground .form_drop {
+    display:none; /* Hide the "drop" button if item already on the ground */
 }
 .empty_slot {
     height:3em;
@@ -553,7 +552,9 @@ legend {
 
 /* Listes d'objets */
 .items_list {
-    text-align:left;
+    display:flex;
+    margin-left:1.5rem;
+    flex-wrap:wrap;
     margin-top:0.2rem;
     padding-left:0;
     list-style-type:none;
@@ -601,14 +602,25 @@ var {
     height:32px;
     width:32px;
 }
-.item_label var { 
+.item_label>var { /* The simple icon of the item, without text */
+    height:3em;
+    width:3em;
     display:flex;
     align-items: center;
-    padding-left:0;
+    justify-content: center;
+}
+.item_label var { /* The icon unfolded, with the name of the item */
+    display:flex;
+    align-items: center;
+    font-weight:bold;
     cursor:pointer;
 }
 .item_label var::selection {
     background:none;
+}
+.item_label hr {
+    margin:0.3em 0 !important;
+    padding:0;
 }
 .item_label .drop_button {
     height:1.8em;
@@ -622,7 +634,7 @@ var {
 }
 .item_label .descr_ambiance {
     font-size:0.75em;
-    margin:0;
+    margin:1.2em 0 0.5em 0;
     font-style:italic;
 }
 .item_label .descr_purpose {

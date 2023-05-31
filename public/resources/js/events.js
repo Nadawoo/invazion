@@ -37,8 +37,6 @@ if (document.getElementById('map') !== null) {
         let formType = event.target.closest("form").className;
         // NB: this condition avoids interferences with the other forms in the block
         // (actions specific to the item, e.g. to eat a burger)
-        console.log(formType);
-        
         if(formType === "form_drop") {
             // Desactivate the classic submission button (avoids reloading the page)
             event.preventDefault();

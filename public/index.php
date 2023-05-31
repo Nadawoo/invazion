@@ -159,8 +159,9 @@ $html = [
     'actions_bag'       => $layout->block_actions_bag($configs['items'], $citizen['bag_items']),
     'actions_zombies'   => $layout->block_actions_zombies($zone['zombies'], $configs['map']['killing_zombie_cost']),
     'edit_land'         => $layout->block_edit_land($citizen['coord_x'], $citizen['coord_y']),
-    'zone_items'        => $layout->block_zone_items($configs['items'], $zone),
-    'zone_items_template' => $layout->block_zone_item_template(),
+//    'zone_items'        => $layout->block_zone_items($configs['items'], $zone),
+//    'zone_items_template' => $layout->block_zone_item_template(),
+    'ground_items'      => $layout->block_ground_items($configs['items'], $zone['items'], $citizen['coord_x'], $citizen['coord_y']),
     'bag_items'         => $layout->block_bag_items($configs['items'], $citizen['bag_items'], $citizen['bag_size']),
     'zone_fellows_template' => $layout->block_zone_fellow_template(),
     // Smartphone at the right of the map
@@ -462,18 +463,25 @@ echo $popup->customised('popsuccess', '', $msg_popup, $is_custom_popup_visible);
                     <?php echo $html['bag_items'] ?>
                     
                 &#x270B;&#x1F3FC; <strong>Objets au sol</strong>
-                    <?php echo $html['zone_items_template'] ?>
+                    <?php echo $html['ground_items'] ?>
+                
+                    
+                    <?php 
+                    // echo $html['zone_items_template'] 
+                    ?>
+                    <!--
                     <div id="items_ground">
                         <p class="greytext">
                             Aucun objet au sol pour l'instant. Vous allez devoir fouiller...
                         </p>
-                        <!--
+                        
                         <input type="hidden" name="api_name" value="zone">
                         <input type="hidden" name="action" value="pickup">
-                        -->
+                        
                         <ul class="items_list" style="margin-left:1.5rem;"
                             data-coordx="" data-coordy=""></ul>
-                    </form>
+                    </div>
+                    -->
             </fieldset>
 
             <fieldset id="block_zombies">

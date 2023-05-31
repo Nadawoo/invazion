@@ -855,11 +855,9 @@ async function pickupItem(eventSubmitter) {
     if(json.metas.error_code === "success") {
         // HTML: moves the item from the ground list to the bag list
         let itemNode = eventSubmitter.closest("li");
-        document.querySelector('#items_bag').prepend(itemNode);
+        document.querySelector('#items_bag .items_list').prepend(itemNode);
         // Removes 1 empty slot in the bag
         document.querySelector('#items_bag .empty_slot').remove();
-        // Replaces the "pick-up" icon by the "drop" icon for this item
-        itemNode.querySelector('button').innerHTML = "&veeeq;";
         // Decreases the counter for the ground items
         let myZone = document.querySelector("#me").parentNode.dataset;
         myZone.items = parseInt(myZone.items, 10) - 1;
@@ -891,7 +889,7 @@ async function dropItem(eventSubmitter) {
         document.querySelector('#items_ground ul').prepend(itemNode);
         // Adds 1 empty slot in the bag
         let tplEmptySlot = document.querySelector('#tplEmptySlot').content.cloneNode(true);
-        document.querySelector('#items_bag').appendChild(tplEmptySlot);
+        document.querySelector('#items_bag .items_list').appendChild(tplEmptySlot);
         // Replaces the "drop" icon by the "pick-up" icon for this item
         itemNode.querySelector('.form_drop').style.display = "none";
         itemNode.querySelector('.form_pickup').style.display = "block";

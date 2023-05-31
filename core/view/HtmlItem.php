@@ -60,14 +60,13 @@ class HtmlItem {
         
         return '
             <li class="item_label">
-                <var id="iconItem'.$item_id.'"
-                    style="height:3em;width:3em;justify-content:center;"
-                     onclick="display(\'detailsItem'.$item_id.'\')">
+                <var onclick="event.target.closest(\'.item_label\').querySelector(\'.details\').style.display=\'block\'">
                     '.$item_image.'
                 </var>
-                <div id="detailsItem'.$item_id.'" class="details">
-                    <span class="close" onclick="hide(\'detailsItem'.$item_id.'\')">&#x274C;</span>
-                    <var style="font-weight:bold">'.$item_image.'&nbsp;'.$item_caracs['name'].'</var>
+                <div class="details">
+                    <span class="close" onclick="event.target.parentElement.style.display=\'none\'">&#x274C;</span>
+                    <var>'.$item_image.'&nbsp;'.$item_caracs['name'].'</var>
+                    <hr class="line">
                     <p class="descr_ambiance">'.$item_caracs['descr_ambiance'].'</p>
                     <p class="descr_purpose">'.$item_caracs['descr_purpose'].'</p>
                     '.$button_use . $button_drop . $button_pickup.'
