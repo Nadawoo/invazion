@@ -161,7 +161,7 @@ $html = [
     'edit_land'         => $layout->block_edit_land($citizen['coord_x'], $citizen['coord_y']),
 //    'zone_items'        => $layout->block_zone_items($configs['items'], $zone),
     'item_template'     => $layout->block_item_template(),
-    'ground_items'      => $layout->block_ground_items($configs['items'], $zone['items'], $citizen['coord_x'], $citizen['coord_y']),
+    'ground_items'      => $layout->block_ground_items($citizen['coord_x'], $citizen['coord_y']),
     'bag_items'         => $layout->block_bag_items($configs['items'], $citizen['bag_items'], $citizen['bag_size']),
     'zone_fellows_template' => $layout->block_zone_fellow_template(),
     // Smartphone at the right of the map

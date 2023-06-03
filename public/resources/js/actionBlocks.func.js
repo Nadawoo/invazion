@@ -224,7 +224,8 @@ async function updateBlockActionDig(mapId, coordX, coordY) {
     let block = document.querySelector('#items_ground .items_list');
     
     // Update the data only one time per zone
-    if(block.dataset.coordx !== coordX || block.dataset.coordy !== coordY) {
+    if(block.dataset.coordx !== coordX || block.dataset.coordy !== coordY
+       || block.innerHTML.length === 0) {
     
         let noItemsText = document.querySelector('#items_ground .greytext');
         // Clear the obsolete items list from the previous zone
