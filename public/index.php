@@ -160,7 +160,7 @@ $html = [
     'actions_zombies'   => $layout->block_actions_zombies($zone['zombies'], $configs['map']['killing_zombie_cost']),
     'edit_land'         => $layout->block_edit_land($citizen['coord_x'], $citizen['coord_y']),
 //    'zone_items'        => $layout->block_zone_items($configs['items'], $zone),
-//    'zone_items_template' => $layout->block_zone_item_template(),
+    'item_template'     => $layout->block_item_template(),
     'ground_items'      => $layout->block_ground_items($configs['items'], $zone['items'], $citizen['coord_x'], $citizen['coord_y']),
     'bag_items'         => $layout->block_bag_items($configs['items'], $citizen['bag_items'], $citizen['bag_size']),
     'zone_fellows_template' => $layout->block_zone_fellow_template(),
@@ -463,12 +463,9 @@ echo $popup->customised('popsuccess', '', $msg_popup, $is_custom_popup_visible);
                     <?php echo $html['bag_items'] ?>
                     
                 &#x270B;&#x1F3FC; <strong>Objets au sol</strong>
+                    <?php echo $html['item_template'] ?>
                     <?php echo $html['ground_items'] ?>
-                
                     
-                    <?php 
-                    // echo $html['zone_items_template'] 
-                    ?>
                     <!--
                     <div id="items_ground">
                         <p class="greytext">

@@ -831,8 +831,8 @@ async function dig() {
         // Adds an HTML entry in the ground items list
         let itemsFound = json.datas.items_found,
             itemId     = Object.keys(itemsFound)[0],
-            item       = itemsFound[itemId];
-        htmlAddGroundItem(itemId, item.icon_symbol, item.name, 1);
+            itemCaracs = itemsFound[itemId];
+        htmlAddGroundItem(itemId, itemCaracs, 1);
         // Makes the digging button inactive
         updateDigButtons(1);
     }

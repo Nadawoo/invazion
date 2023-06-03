@@ -244,8 +244,10 @@ async function updateBlockActionDig(mapId, coordX, coordY) {
             
             for(let [itemId, itemAmount] of Object.entries(_myZone.items)) {
                 // Adds the item in the items list
-                let item = _configsItems[itemId];
-                htmlAddGroundItem(itemId, item.icon_path, item.icon_symbol, item.name, itemAmount);
+                let item_caracs = _configsItems[itemId];
+                for(let i=0; i<itemAmount; i++) {
+                    htmlAddGroundItem(itemId, item_caracs, itemAmount);
+                }
             }
         }
         
@@ -260,23 +262,27 @@ async function updateBlockActionDig(mapId, coordX, coordY) {
  * Adds an HTML entry in the ground items list
  * 
  * @param {int} itemId The ID of the item in the game (can't be your homemade ID)
- * @param {string} itemImagePath The path to the image of the item
- * @param {string} itemIconSymbol An HTML entity if there is no real image for the item
- * @param {string} itemName
+ * @param {array} itemCaracs The caracteristics of the item, as return 
+ *                           by the "item" API (name, description...)
  * @param {int} itemAmount The number of occurrences of this item in the zone
  */
-function htmlAddGroundItem(itemId, itemImagePath, itemIconSymbol, itemName, itemAmount) {
+function htmlAddGroundItem(itemId, itemCaracs, itemAmount) {
     
     // Gets a blank HTML template of an item entry
-    let template = document.querySelector("#tplActionBlockItem").content.cloneNode(true),
+    let template = document.querySelector("#tplItem").content.cloneNode(true),
         block = document.querySelector('#items_ground .items_list');
 
     // Populates the blank template with the item data
-    template.querySelector('button[name="params[item_id]"]').value = itemId;
-    template.querySelector('img').src = `../resources/img/${itemImagePath}`;
-    template.querySelector('img').alt = itemIconSymbol;
-    template.querySelector('.item_name').innerHTML = itemName;
-    template.querySelector('.item_amount').innerHTML = itemAmount;
+    template.querySelector('.form_drop button[name="params[item_id]"]').value  = itemId;
+    template.querySelector('.form_pickup button[name="params[item_id]"]').value = itemId;
+    template.querySelector('img').src          = `../resources/img/${itemCaracs['icon_path']}`;
+    template.querySelector('.details img').src = `../resources/img/${itemCaracs['icon_path']}`;
+    template.querySelector('img').alt          = itemCaracs['icon_symbol'];
+    template.querySelector('.details img').alt = itemCaracs['icon_symbol'];
+    template.querySelector('.item_name').innerHTML = itemCaracs['name'];
+    template.querySelector('.descr_ambiance').innerHTML = itemCaracs['descr_ambiance'];
+    template.querySelector('.descr_purpose').innerHTML  = itemCaracs['descr_purpose'];
+//    template.querySelector('.item_amount').innerHTML = itemAmount;
     
     // Adds the new template to the list of items
     block.prepend(template);

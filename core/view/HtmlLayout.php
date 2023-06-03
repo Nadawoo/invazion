@@ -324,24 +324,33 @@ class HtmlLayout extends HtmlPage
     
     
     /**
-     * HTML blank template to display one item in the "Dig" action block
-     * next to the map (list of the items on the ground)
+     * HTML blank template to display an item (icon + tooltip with description, etc.)
      * The appropriate data are then fulfilled by the javascript.
      * 
-     * @return string
+     * @return string HTML
      */
-    function block_zone_item_template()
+    function block_item_template()
     {
-                
+        
+        $buttons = new HtmlButtons();
+        $button_drop = $buttons->drop_item(0);
+        $button_pickup = $buttons->pickup_item(0);
+        $button_use = $buttons->use_item('{item_alias}', 0, '{item_name}');
+        
         return '
-            <template id="tplActionBlockItem">
+            <template id="tplItem">
                 <li class="item_label">
-                    <button type="submit" name="params[item_id]" value="{item_id}" 
-                            class="drop_button" title="Ramasser cet objet">&wedgeq;</button> 
-                    <var>
-                        <img src="" alt="{icon_symbol}">
-                        &nbsp;<span class="item_name">{item_name}</span>
-                    </var> <span style="font-size:0.95em">×&nbsp;<span class="item_amount">{item_amount}</span><span>
+                    <var onclick="event.target.closest(\'.item_label\').querySelector(\'.details\').style.display=\'block\'">
+                        <img src="{icon_path}" alt="{icon_symbol}">
+                    </var>
+                    <div class="details">
+                        <span class="close" onclick="event.target.parentElement.style.display=\'none\'">&#x274C;</span>
+                        <var><img src="{icon_path}" alt="{icon_symbol}">&nbsp;<span class="item_name">{item_name}</span></var>
+                        <hr class="line">
+                        <p class="descr_ambiance">{descr_ambiance}</p>
+                        <p class="descr_purpose">{descr_purpose}</p>
+                        '.$button_use . $button_drop . $button_pickup.'
+                    </div>
                 </li>
             </template>';
     }
