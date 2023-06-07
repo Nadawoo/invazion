@@ -60,11 +60,11 @@ class HtmlItem {
         
         return '
             <li class="item_label">
-                <var onclick="event.target.closest(\'.item_label\').querySelector(\'.details\').style.display=\'block\'">
+                <var onclick="toggleItem(event)">
                     '.$item_image.'
                 </var>
                 <div class="details">
-                    <span class="close" onclick="event.target.parentElement.style.display=\'none\'">&#x274C;</span>
+                    <span class="close" onclick="toggleItem(event)">&#x274C;</span>
                     <var>'.$item_image.'&nbsp;'.$item_caracs['name'].'</var>
                     <hr class="line">
                     <p class="descr_ambiance">'.$item_caracs['descr_ambiance'].'</p>

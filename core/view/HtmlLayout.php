@@ -340,11 +340,11 @@ class HtmlLayout extends HtmlPage
         return '
             <template id="tplItem">
                 <li class="item_label">
-                    <var onclick="event.target.closest(\'.item_label\').querySelector(\'.details\').style.display=\'block\'">
+                    <var onclick="toggleItem(event)">
                         <img src="{icon_path}" alt="{icon_symbol}">
                     </var>
                     <div class="details">
-                        <span class="close" onclick="event.target.parentElement.style.display=\'none\'">&#x274C;</span>
+                        <span class="close" onclick="toggleItem(event)">&#x274C;</span>
                         <var><img src="{icon_path}" alt="{icon_symbol}">&nbsp;<span class="item_name">{item_name}</span></var>
                         <hr class="line">
                         <p class="descr_ambiance">{descr_ambiance}</p>

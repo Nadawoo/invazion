@@ -685,6 +685,19 @@ function toggleTooltip(hexagon) {
 
 
 /**
+ * Display/hide an item by clicking on its icom
+ * 
+ * @param {object} event
+ * @returns {undefined}
+ */
+function toggleItem(event) {
+    
+    let blockItem = event.target.closest(".item_label").querySelector(".details");    
+    blockItem.style.display = (blockItem.style.display === "block") ? "none" : "block";
+}
+
+
+/**
  * Converts a raw UTC date to a string text date
  * 
  * @param {string} utcDate  The date as returned by the Invazion's API (UTC time + ISO 8601 format)
