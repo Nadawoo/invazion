@@ -56,7 +56,7 @@ class HtmlItem {
         $item_image = '<img src="../resources/img/'.$item_caracs['icon_path'].'" alt="'.$item_caracs['icon_symbol'].'">';
         $button_drop = $buttons->drop_item($item_id);
         $button_pickup = $buttons->pickup_item($item_id);
-        $button_use = $buttons->use_item($button_alias, $item_id, $item_caracs['name']);
+        $button_use = $buttons->use_item($button_alias, $item_id, '');
         
         return '
             <li class="item_label">

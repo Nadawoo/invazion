@@ -516,11 +516,11 @@ class HtmlButtons
             $fields = $button['fields'];
 
             return
-            '<form method="post" action="#popsuccess" class="formredbutton">
+            '<form method="post" action="#popsuccess">
                 <input type="hidden" name="api_name" value="'.$fields['api_name'].'">
                 <input type="hidden" name="action" value="'.$fields['action'].'">
                 <input type="hidden" name="params[item_id]" value="'.$item_id.'">
-                <input type="submit" value="'.$button['name'].' '.$item_name.'" />
+                <button type="submit" class="redbutton">'.$button['name'].' '.$item_name.'</button>
             </form>';
         }
     }
