@@ -12,7 +12,7 @@ function get_item_action($item_caracs)
 
     $button_alias = null;
     
-    if ($item_caracs['ap_gain'] > 0) {
+    if (isset($item_caracs['triggers']) and in_array('eat', $item_caracs['triggers'])) {
         $button_alias = 'eat';
     }
     elseif ((bool)$item_caracs['is_weapon'] === true) {
