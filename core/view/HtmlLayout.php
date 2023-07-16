@@ -720,13 +720,16 @@ class HtmlLayout extends HtmlPage
      */
     function hidden_player_data($citizen, $max_action_points) {
         
+        // #23 = ID of the item "action points" in the citizen's bag
+        $citizen_action_points = isset($citizen['bag_items'][23]) ? $citizen['bag_items'][23] : 0;
+        
         return '
             <section id="gameData">
                 <div id="citizenId">'.$citizen['citizen_id'].'</div>
                 <div id="citizenPseudo">'.$citizen['citizen_pseudo'].'</div>
                 <div id="citizenCoordX">'.$citizen['coord_x'].'</div>
                 <div id="citizenCoordY">'.$citizen['coord_y'].'</div>
-                <div id="actionPoints">'.$citizen['action_points'].'</div>
+                <div id="actionPoints">'.$citizen_action_points.'</div>
                 <div id="maxActionPoints">'.$max_action_points.'</div>
                 <div id="mapId">'.$citizen['map_id'].'</div>
                 <div id="cityId">'.$citizen['city_id'].'</div>
