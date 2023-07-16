@@ -53,7 +53,9 @@ class HtmlItem {
         $buttons = new HtmlButtons();
         
         $button_alias = get_item_action($item_caracs);
-        $item_image = '<img src="../resources/img/'.$item_caracs['icon_path'].'" alt="'.$item_caracs['icon_symbol'].'">';
+        $item_image = ($item_caracs['icon_path'] !== null)
+                        ? '<img src="../resources/img/'.$item_caracs['icon_path'].'" alt="'.$item_caracs['icon_symbol'].'">'
+                        : $item_caracs['icon_symbol'];
         $button_drop = $buttons->drop_item($item_id);
         $button_pickup = $buttons->pickup_item($item_id);
         $button_use = $buttons->use_item($button_alias, $item_id, '');
