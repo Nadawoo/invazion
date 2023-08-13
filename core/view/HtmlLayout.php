@@ -419,7 +419,7 @@ class HtmlLayout extends HtmlPage
         
         $buttons = new HtmlButtons;
         $popup   = new HtmlPopup;
-        $table = '';
+        $table = '<p><strong>Construire</strong></p>';
         
 //        // If there is a TENT in the zone, display the button to enter.
 //        if ($city_size === 1) {
@@ -473,6 +473,23 @@ class HtmlLayout extends HtmlPage
         
         
         return '<table>'.$table.'</table>';
+    }
+    
+    
+    function block_zombie_powers() {
+        
+        return '<p><strong>Pouvoirs (joueur zombie)</strong></p>
+            <p><em>[Ces fonctions sont en cours de développement, pas encore actives]</em></p>
+            <img src="resources\img\copyrighted\wolf.png" alt="&#128200;" height="32" width="32"> Augmenter l\'attaque quotidienne <abbr title="Augmente le nombre de zombies qui attaqueront la ville lors de la prochaine attaque de fin de cycle.">[?]</abbr><br>
+            <img src="resources\img\motiontwin\zombie6.gif" alt="&#129503;" height="32" width="32"> Ajouter des zombies sur la carte <abbr title="Ajoute aléatoirement des zombies sur la carte du jeu.">[?]</abbr><br>
+            <img src="resources\img\motiontwin\zombie2.gif" alt="&#129503;" height="32" width="32"> Punir l\'extermination <abbr title="Chaque fois qu\'un humain tue un zombie sur une zone, deux nouveaux zombies apparaissent sur une zone voisine. L\'effet dure pendant 1 cycle.">[?]</abbr><br>
+            <img src="resources\img\copyrighted\chemistry.png" alt="&#9763;&#65039;" height="32" width="32"> Empoisonner l\'eau <abbr title="Les rations d\'eau consommées par les humains ne leur restaurent que la moitié des points d\'action normaux. L\'effet dure pendant 1 cycle.">[?]</abbr><br>
+            <img src="resources\img\copyrighted\city_well.png" alt="&#128167;" height="32" width="32"> Percer le puits <abbr title="Chaque fois qu\'un humain puise 1 ration d\'eau, 2 rations disparaissent du puits. L\'effet dure pendant 1 cycle.">[?]</abbr><br>
+            <img src="resources\img\copyrighted\wound.png" alt="&#129656;" height="32" width="32"> Blesser un humain <abbr title="50% de risque qu\'un humain, choisi aléatoirement, reçoive une blessure à la fin du cycle.">[?]</abbr><br>
+            <img src="resources\img\copyrighted\oracle.png" alt="&#128374;&#65039;" height="32" width="32"> Obscurcir la carte <abbr title="Masque temporairement toutes les zones de la carte, comme si elle n\'avait jamais été explorée. L\'effet dure pendant 1 cycle.">[?]</abbr><br>
+            <img src="resources\img\copyrighted\forging.png" alt="&#128295;" height="32" width="32"> Empêcher les assemblages <abbr title="Les humains ne peuvent plus fabriquer d\'objets à partir de composants. L\'effet dure pendant 1 cycle.">[?]</abbr><br>
+            <img src="resources\img\copyrighted\city_door.png" alt="" height="32" width="32"> Saboter la porte <abbr title="Manipuler la porte de la ville coûte 2 points d\'action au lieu d\'un seul.">[?]</abbr>
+            ';
     }
     
     
@@ -695,7 +712,7 @@ class HtmlLayout extends HtmlPage
         }
         
         return '
-            <p><strong>Changer le type de terrain :</strong></p>
+            <p><strong>Changer le type de terrain</strong></p>
             <form action="" method="GET" id="landform">
                 '.$html_lands.'
                 <br><br>

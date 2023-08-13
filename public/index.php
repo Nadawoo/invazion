@@ -159,6 +159,7 @@ $html = [
     'actions_bag'       => $layout->block_actions_bag($configs['items'], $citizen['bag_items']),
     'actions_zombies'   => $layout->block_actions_zombies($zone['zombies'], $configs['map']['killing_zombie_cost']),
     'edit_land'         => $layout->block_edit_land($citizen['coord_x'], $citizen['coord_y']),
+    'zombie_powers'     => $layout->block_zombie_powers(),
 //    'zone_items'        => $layout->block_zone_items($configs['items'], $zone),
     'item_template'     => $layout->block_item_template(),
     'ground_items'      => $layout->block_ground_items($citizen['coord_x'], $citizen['coord_y']),
@@ -425,24 +426,13 @@ echo $popup->customised('popsuccess', '', $msg_popup, $is_custom_popup_visible);
                    <span class="actionspoints_decrease"></span>
                 </a>';
                 
-                echo '<br><br><br>
-                    <strong>Pouvoirs (joueur zombie)</strong><br>
-                    <img src="resources\img\copyrighted\wolf.png" alt="&#128200;" height="32" width="32"> Augmenter l\'attaque quotidienne <abbr title="Augmente le nombre de zombies qui attaqueront la ville lors de la prochaine attaque de fin de cycle.">[?]</abbr><br>
-                    <img src="resources\img\motiontwin\zombie6.gif" alt="&#129503;" height="32" width="32"> Ajouter des zombies sur la carte <abbr title="Ajoute aléatoirement des zombies sur la carte du jeu.">[?]</abbr><br>
-                    <img src="resources\img\motiontwin\zombie2.gif" alt="&#129503;" height="32" width="32"> Punir l\'extermination <abbr title="Chaque fois qu\'un humain tue un zombie sur une zone, deux nouveaux zombies apparaissent sur une zone voisine. L\'effet dure pendant 1 cycle.">[?]</abbr><br>
-                    <img src="resources\img\copyrighted\chemistry.png" alt="&#9763;&#65039;" height="32" width="32"> Empoisonner l\'eau <abbr title="Les rations d\'eau consommées par les humains ne leur restaurent que la moitié des points d\'action normaux. L\'effet dure pendant 1 cycle.">[?]</abbr><br>
-                    <img src="resources\img\copyrighted\city_well.png" alt="&#128167;" height="32" width="32"> Percer le puits <abbr title="Chaque fois qu\'un humain puise 1 ration d\'eau, 2 rations disparaissent du puits. L\'effet dure pendant 1 cycle.">[?]</abbr><br>
-                    <img src="resources\img\copyrighted\wound.png" alt="&#129656;" height="32" width="32"> Blesser un humain <abbr title="50% de risque qu\'un humain, choisi aléatoirement, reçoive une blessure à la fin du cycle.">[?]</abbr><br>
-                    <img src="resources\img\copyrighted\oracle.png" alt="&#128374;&#65039;" height="32" width="32"> Obscurcir la carte <abbr title="Masque temporairement toutes les zones de la carte, comme si elle n\'avait jamais été explorée. L\'effet dure pendant 1 cycle.">[?]</abbr><br>
-                    <img src="resources\img\copyrighted\forging.png" alt="&#128295;" height="32" width="32"> Empêcher les assemblages <abbr title="Les humains ne peuvent plus fabriquer d\'objets à partir de composants. L\'effet dure pendant 1 cycle.">[?]</abbr><br>
-                    <img src="resources\img\copyrighted\city_door.png" alt="" height="32" width="32"> Saboter la porte <abbr title="Manipuler la porte de la ville coûte 2 points d\'action au lieu d\'un seul.">[?]</abbr>
-                    <br>
-                    <br>
-                    <strong>Mes caractéristiques</strong><br>
-                    Spécialité : '.$speciality_caracs['name'].'<br>
-                    Vision niv. '.$citizen['vision'].'<br>
-                    Camouflage niv. '.$citizen['camouflage'].'<br>
-                    Blessé : '.($citizen['is_wounded'] === 1 ? 'oui' : 'non');
+                echo '<hr>
+                    
+                    <p><strong>Mes caractéristiques</strong></p>
+                    &#128295; Spécialité : '.$speciality_caracs['name'].'<br>
+                    &#x1F453; Vision niv. '.$citizen['vision'].'<br>
+                    &#128374;&#65039; Camouflage niv. '.$citizen['camouflage'].'<br>
+                    &#129656; Blessé : '.($citizen['is_wounded'] === 1 ? 'oui' : 'non');
                 ?>
             </fieldset>
             
@@ -491,19 +481,21 @@ echo $popup->customised('popsuccess', '', $msg_popup, $is_custom_popup_visible);
             <fieldset id="block_build">
                 <?php 
                 echo $html['actions_build']
-                     .'<br>'
+                     .'<hr>'
                      . $html['edit_land']
+                     .'<hr>'
+                     . $html['zombie_powers']
                 ?>
             </fieldset>
 
             <fieldset id="block_citizens">                
                 <?php echo $html['zone_fellows_template'] ?>
-                <strong>Humains dans ma zone :</strong>
+                <strong>Humains dans ma zone</strong>
                 <p class="greytext"><br>Personne à proximité. Vous êtes seul au milieu 
                     de cette zone désertique...</p>
                 <ol id="citizensInMyZone" class="citizens" data-coordx="" data-coordy=""></ol>
                 <hr>
-                <strong>Autres humains sur la carte :</strong>
+                <strong>Autres humains sur la carte</strong>
                 <ol id="citizensInOtherZones" class="citizens" data-coordx="" data-coordy=""></ol>
             </fieldset>
         </section>
