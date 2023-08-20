@@ -7,6 +7,7 @@
 var _citizens = null;
 var _cities = null;
 var _myZone = null;
+var _jsonMap = null;
 // Get the unvariable data of the game (building names...) stored in the HTML
 var _configsBuildings = JSON.parse(document.querySelector("#configs .buildings").innerHTML);
 var _configsItems     = JSON.parse(document.querySelector("#configs .items").innerHTML);

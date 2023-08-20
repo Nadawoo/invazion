@@ -356,6 +356,49 @@ function toggleMapZombiesView() {
 
 
 /**
+ * Add/remove a location mark on the zones containing the given item
+ * 
+ * @param {int} itemId The ID of the item to mark
+ * @returns {undefined}
+ */
+async function toggleMapItemMarker(itemId) {
+    
+    let zombieCoresCoords = getItemCoords(itemId);
+    
+    for(let coords of Object.values(await zombieCoresCoords)) {
+        let zone = document.querySelector("#map #zone"+coords);
+        zone.style.opacity = 1;
+        zone.dataset.marker = 1;
+    }
+    
+    toggleMapMarker('generic');
+}
+
+
+/**
+ * Get the coordinates of all the zones containing an exemplary of the given item
+ * 
+ * @param {int} itemId The ID of the item your are looking for
+ * @returns {array} The coordinates of the zones containing the item
+ *                  Exemple: [0_3, 4_1, 5_8, ...]
+ */
+async function getItemCoords(itemId) {
+    
+    _jsonMap = await getMapZonesOnce(mapId);    
+    let itemCoords = [];
+    
+    for(let zone of Object.entries(_jsonMap)) {
+        // If the item ID is in the zone, memorize its coordinates
+        if(zone[1].items !== null && itemId in zone[1].items) {
+            itemCoords.push(zone[0]);
+        }
+    }
+    
+    return itemCoords;
+}
+
+
+/**
  * Displays colors above map zones to show the amount of items on the ground
  * 
  * @returns {undefined}

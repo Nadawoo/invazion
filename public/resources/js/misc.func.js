@@ -158,7 +158,8 @@ function toggleMapMarker(objectToMark) {
     // Here are listed the DOM selectors to mark the zones you want (e.g. class name...)
     var markableObjects = {
         "items":    ".square_container:not([data-items='0'])",
-        "citizens": ".square_container:not([data-citizens='0'])"
+        "citizens": ".square_container:not([data-citizens='0'])",
+        "generic":  "#map [data-marker='1']"
         };
 
     if (window.areMapMarkersActive !== true) {        
@@ -791,6 +792,20 @@ async function getMapCitiesOnce(mapId) {
     }
     
     return _cities;
+}
+
+
+/*
+ * Get all the zones of the map by calling the Invazion's API
+ */
+async function getMapZonesOnce(mapId) {
+    
+    if(_jsonMap === null) {
+        let json = await callApi("GET", "maps", "action=get&map_id="+mapId);
+        _jsonMap = json.datas.zones;
+    }
+    
+    return _jsonMap;
 }
 
 
