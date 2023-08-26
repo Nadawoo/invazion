@@ -85,7 +85,7 @@ class HtmlPage
                 
                 <link rel="stylesheet" type="text/css" href="resources/css/materialize.min.css" media="screen,projection"/>
                 <link rel="stylesheet" type="text/css" href="resources/css/sitelayout.css?v4.7">
-                <link rel="stylesheet" type="text/css" href="resources/css/gamelayout.css?v9.2">
+                <link rel="stylesheet" type="text/css" href="resources/css/gamelayout.css?v9.3">
                 <link rel="stylesheet" type="text/css" href="resources/css/map.css?v4.7">
                 <link rel="stylesheet" type="text/css" href="resources/css/smartphone.css?v1.6">
                 <link rel="stylesheet" type="text/css" href="resources/css/city.css?v3.5">

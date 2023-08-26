@@ -246,8 +246,12 @@
     background-position: center;
     font-weight:bold;
 }
+#movement_paddle tr {
+    border:none;
+}
 #movement_paddle td {
     padding:0;
+    text-align:center;
     /* Assure un écartement symétrique des flèches */
     width:2em;
     height:2.4em;
@@ -269,11 +273,12 @@
 #movement_paddle #central {
     position:relative;
     cursor:pointer;
+    line-height:1.4em;
 }
 #movement_paddle .me {
     position:absolute;
-    top:-1.5em; /* TODO: fix those artificial alignments */
-    left:28%;
+    top:-1.2em; /* TODO: fix those artificial alignments */
+    left:30%;
     height:2.6em;
 }
 /* Shows the distance to the city */
