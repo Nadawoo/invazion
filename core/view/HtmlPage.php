@@ -23,10 +23,12 @@ class HtmlPage
     /**
      * En-tête HTML des pages
      * 
+     * @param int $citizen_id
+     * @param string $citizen_pseudo
      * @param  string $css_path Le chemin vers la feuille CSS voulue.
      * @return string
      */
-    function page_header($css_path=NULL)
+    function page_header($citizen_id=null, $citizen_pseudo=null, $css_path=NULL)
     {
         
         $this->http_headers();
@@ -79,10 +81,10 @@ class HtmlPage
                 <link rel="manifest" href="manifest.json" />
                 
                 <!-- Import Google Icon Font for Materialize.css -->
-                <!-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> -->
+                <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
                 
                 <link rel="stylesheet" type="text/css" href="resources/css/materialize.min.css" media="screen,projection"/>
-                <link rel="stylesheet" type="text/css" href="resources/css/sitelayout.css?v4.6">
+                <link rel="stylesheet" type="text/css" href="resources/css/sitelayout.css?v4.7">
                 <link rel="stylesheet" type="text/css" href="resources/css/gamelayout.css?v9.2">
                 <link rel="stylesheet" type="text/css" href="resources/css/map.css?v4.7">
                 <link rel="stylesheet" type="text/css" href="resources/css/smartphone.css?v1.6">
@@ -99,35 +101,15 @@ class HtmlPage
             <div id="body_bg">
                 <div id="page_container">
                     <header>
+                        <a style="float:left;color:slategrey" href="#" data-target="slide-out" class="sidenav-trigger">
+                            <i class="material-icons" style="margin:0.3em;font-size:2.5em;border:1px solid grey;border-radius:10%">menu</i>
+                        </a>
                         <h1>InvaZion</h1>
                         <div id="slogan">Le projet de Hordes-like collaboratif</div>
-                        <nav id="sitemenu">
-                            <a href="index">Jouer</a>&nbsp;<span class="circle">&cir;</span>
-                            <a href="'.official_server_root().'/discuss">Discuter</a>&nbsp;<span class="circle">&cir;</span>
-                            <a href="'.official_server_root().'/project">Le projet</a>&nbsp;<span class="circle">&cir;</span>
-                            <a href="'.official_server_root().'/customise-the-game">Créez votre version du jeu</a>&nbsp;<span class="circle">&cir;</span>
-                            <a href="http://invazion.wikidot.com" target="_blank" rel="noopener">Wiki</a>
-                            <br>
-                            <a href="https://discord.gg/2GRPTyM" target="_blank" rel="noopener"
-                                title="Pour parler du jeu, faire des propositions... Ou tout simplement discuter :)">
-                                <img src="/resources/img/thirdparty/Discord-Logo-Black.png" alt="discord_logo" style="height:1.7em;margin-bottom:-0.6em;"> Discord
-                            </a>
-                            <a href="https://github.com/Nadawoo/invazion" target="_blank" rel="noopener"
-                                title="Le code source du jeu est disponible sur Github">
-                                <img src="/resources/img/thirdparty/GitHub-Mark-32px.png" alt="github_logo" style="height:1.4em;margin-bottom:-0.4em;"> Github
-                            </a>
-                            <a href="'.official_server_root().'/share" target="_blank" rel="noopener"
-                                title="Partager et soutenir le projet InvaZion">
-                                <img src="/resources/img/free/share.png" alt="share" style="height:1.4em;margin-bottom:-0.4em;"> Partager
-                            </a>
-                            <a href="'.official_server_root().'/apis-list" 
-                                title="Modifiez toute l\'interface du jeu grâce aux API">
-                                <img src="/resources/img/free/api.png" alt="api_logo" style="height:1.4em;margin-bottom:-0.4em;"> API
-                            </a>
-                        </nav>
+                        '.$this->site_menu($citizen_id, $citizen_pseudo).'
                     </header>';
     }
-    
+        
     
     /**
      * Pied HTML des pages
@@ -168,10 +150,73 @@ class HtmlPage
                     <script type="text/javascript" src="resources/js/discussions.func.js?v1.5"></script>
                     <script type="text/javascript" src="resources/js/events.func.js?v1.0"></script>
                     <script type="text/javascript" src="resources/js/misc.func.js?v10.5"></script>
-                    <script type="text/javascript" src="resources/js/onPageLoad.js?v2.3"></script>
+                    <script type="text/javascript" src="resources/js/onPageLoad.js?v2.4"></script>
                     <script type="text/javascript" src="resources/js/events.js?v5.7"></script>
                 </body>
             </html>';
     }
     
+    
+    /**
+     * Main menu of the game
+     * 
+     * @param int $citizen_id
+     * @param string $citizen_pseudo
+     * @return string HTML
+     */
+    function site_menu($citizen_id, $citizen_pseudo) {
+        
+        return '
+            <ul id="slide-out" class="sidenav">
+            
+                <li><div class="user-view">
+                    <div class="background">
+                      <img src="resources/img/motiontwin/mapBg.jpg">
+                    </div>
+                    <a href="#user"><img class="circle" src="resources/img/icons8/profile-96.png"></a>
+                    <a href="#name"><span class="white-text"><strong>'.$citizen_pseudo.'</strong> (citoyen #'.$citizen_id.')</span></a>
+                </div></li>'
+                
+                .$this->site_menu_subheader('Le jeu', 'no_divider')
+                .$this->site_menu_item('Jouer', 'index', 'gamepad').'
+                <li><a href="https://discord.gg/2GRPTyM" target="_blank" rel="noopener"
+                    title="Pour parler du jeu, faire des propositions... Ou tout simplement discuter :)">
+                    <i><img src="/resources/img/thirdparty/Discord-Logo-Black.png" alt="discord_logo" style="height:1.7em;margin-bottom:-0.6em;"></i>Discord
+                </a></li>'
+//                $this->site_menu_item('Forum', official_server_root().'/discuss', 'forum')
+                
+                .$this->site_menu_subheader('Développer')
+                .$this->site_menu_item('Le projet', official_server_root().'/project', 'help')
+                .$this->site_menu_item('Créez votre version du jeu', official_server_root().'/customise-the-game', 'build').'
+                <li><a href="https://github.com/Nadawoo/invazion" target="_blank" rel="noopener"
+                    title="Le code source du jeu est disponible sur Github">
+                    <i><img src="/resources/img/thirdparty/GitHub-Mark-32px.png" alt="github_logo" style="height:1.4em;margin-bottom:-0.4em;"></i>Github
+                </a></li>
+                <li><a href="'.official_server_root().'/apis-list" 
+                    title="Modifiez toute l\'interface du jeu grâce aux API">
+                    <i><img src="/resources/img/free/api.png" alt="api_logo" style="height:1.4em;margin-bottom:-0.4em;"></i>API
+                </a></li>'
+
+                .$this->site_menu_subheader('Contribuer')
+                .$this->site_menu_item('Partager', official_server_root().'/share', 'share',
+                                        'Partager et soutenir le projet InvaZion')
+                .$this->site_menu_item('Wiki', 'http://invazion.wikidot.com', 'edit').'
+            </ul>';
+    }
+    
+    
+    private function site_menu_subheader($name, $no_divider=null) {
+        
+        $divider = ($no_divider === null) ? '<li><div class="divider"></div></li>' : '';
+        
+        return $divider.'<li><a class="subheader">'.$name.'</a></li>';
+    }
+    
+    
+    private function site_menu_item($name, $href, $googlefont_icon, $title="") {
+        
+        return '<li>
+            <a href="'.$href.'" title="'.$title.'"><i class="material-icons black-text">'.$googlefont_icon.'</i>'.$name.'</a>
+            </li>';
+    }
 }

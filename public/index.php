@@ -180,7 +180,7 @@ unset($maps, $citizens, $citizens_by_coord);
 /**
  * Start of the HTML page
  */
-echo $layout->page_header();
+echo $layout->page_header($citizen['citizen_id'], $citizen['citizen_pseudo']);
 echo $html['hidden_player_data'];
 echo $html['json_configs'];
 

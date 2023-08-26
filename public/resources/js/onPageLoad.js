@@ -16,6 +16,16 @@ var _configsMap       = JSON.parse(document.querySelector("#configs .map").inner
 var _jsonDiscussionApi = null;
 
 
+// Main burger menu (uses Materialize.css)
+document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.sidenav');
+    var instances = M.Sidenav.init(elems);
+  });
+// Initialize collapsible (uncomment the lines below if you use the dropdown variation)
+// var collapsibleElem = document.querySelector('.collapsible');
+// var collapsibleInstance = M.Collapsible.init(collapsibleElem, options);
+
+
 // If we are on the main game page (those elements don't exist on the connection page)
 if (document.getElementById('map') !== null) {
     

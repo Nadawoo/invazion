@@ -69,7 +69,7 @@ header {
     background: #f0d5c7;
     margin-bottom:0.4rem;
     padding-bottom:0.5rem;
-    border-bottom:3px ridge black;
+    border-bottom:1px solid grey;
 }
 header h1 {
     text-align:center;
@@ -83,25 +83,6 @@ header h1 {
     font-weight:bold;
     letter-spacing:0.1em;
     color:grey;
-}
-
-/* Menu horizontal du site */
-#sitemenu {
-    padding:0.8em 0;
-    line-height:85%;
-    text-align:center;
-    font-weight:bold;
-}
-#sitemenu br {
-    margin:0.7em;
-}
-#sitemenu a {
-    padding:0.5em;
-    white-space:nowrap;
-}
-.circle {
-    /* Cercle de séparation dans les menus horizontaux */
-    font-size:130%;
 }
 
 h2 {
