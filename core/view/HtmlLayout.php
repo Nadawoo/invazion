@@ -386,7 +386,7 @@ class HtmlLayout extends HtmlPage
         
         $buttons = new HtmlButtons;
         $popup   = new HtmlPopup;
-        $table = '<p><strong>Construire</strong></p>';
+        $table = '<strong>Construire</strong>';
         
 //        // If there is a TENT in the zone, display the button to enter.
 //        if ($city_size === 1) {
@@ -682,7 +682,7 @@ class HtmlLayout extends HtmlPage
             <p><strong>Changer le type de terrain</strong></p>
             <form action="" method="GET" id="landform">
                 '.$html_lands.'
-                <br><br>
+                <br>
                 <label>X <input type="number" name="coord_x" min="0" style="width:3em"
                                 onClick="this.select()" value="{coordX}"></label>&nbsp;
                 <label>Y <input type="number" name="coord_y" min="0" style="width:3em" 

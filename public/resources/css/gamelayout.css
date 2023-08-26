@@ -682,7 +682,6 @@ input[type="submit"] {
     color:white;
     border:1px solid grey;
     box-shadow:3px 3px 5px black;
-    font-size:0.9em;
     font-variant:small-caps;
     min-width:11em;
     cursor:pointer;
