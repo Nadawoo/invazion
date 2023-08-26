@@ -272,14 +272,16 @@ function htmlAddGroundItem(itemId, itemCaracs, itemAmount) {
     // Gets a blank HTML template of an item entry
     let template = document.querySelector("#tplItem").content.cloneNode(true),
         block = document.querySelector('#items_ground .items_list');
-
+    
+    let icon = (itemCaracs['icon_path'] !== null)
+        ? `<img src="../resources/img/${itemCaracs['icon_path']}" alt="${itemCaracs['icon_symbol']}">`
+        : itemCaracs['icon_symbol'];
+    
     // Populates the blank template with the item data
     template.querySelector('.form_drop button[name="params[item_id]"]').value  = itemId;
     template.querySelector('.form_pickup button[name="params[item_id]"]').value = itemId;
-    template.querySelector('img').src          = `../resources/img/${itemCaracs['icon_path']}`;
-    template.querySelector('.details img').src = `../resources/img/${itemCaracs['icon_path']}`;
-    template.querySelector('img').alt          = itemCaracs['icon_symbol'];
-    template.querySelector('.details img').alt = itemCaracs['icon_symbol'];
+    template.querySelector('.icon').innerHTML = icon;
+    template.querySelector('.details .icon').innerHTML = icon;
     template.querySelector('.item_name').innerHTML = itemCaracs['name'];
     template.querySelector('.descr_ambiance').innerHTML = itemCaracs['descr_ambiance'];
     template.querySelector('.descr_purpose').innerHTML  = itemCaracs['descr_purpose'];

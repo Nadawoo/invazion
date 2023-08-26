@@ -25,11 +25,11 @@ class HtmlItem {
             <template id="tplItem">
                 <li class="item_label">
                     <var onclick="toggleItem(event)">
-                        <img src="{icon_path}" alt="{icon_symbol}">
+                        <span class="icon">{icon}</span>
                     </var>
                     <div class="details">
                         <span class="close" onclick="toggleItem(event)">&#x274C;</span>
-                        <var><img src="{icon_path}" alt="{icon_symbol}">&nbsp;<span class="item_name">{item_name}</span></var>
+                        <var><span class="icon">{icon}</span>&nbsp;<span class="item_name">{item_name}</span></var>
                         <hr class="line">
                         <p class="descr_ambiance">{descr_ambiance}</p>
                         <p class="descr_purpose">{descr_purpose}</p>
