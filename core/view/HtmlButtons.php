@@ -303,8 +303,8 @@ class HtmlButtons
                 ],
             'start_game' => [
                 'icon'  => '',
-                'name'  => "Commencer une partie",
-                'title' => "",
+                'name'  => "Nouvel essai (réincarnation)",
+                'title' => "Essayez à nouveau de survivre dans la même partie",
                 'fields' => [
                     'api_name'      => 'events',
                     'action'        => 'startgame',
@@ -332,8 +332,8 @@ class HtmlButtons
                 ],
             'validate_death' => [
                 'icon'  => '',
-                'name'  => 'Valider',
-                'title' => "",
+                'name'  => 'Mort sans réincarnation',
+                'title' => "Valide votre mort sans lancer de nouvelle partie",
                 'fields' => [
                     'api_name'      => 'me',
                     'action'        => 'validate_death',

@@ -105,7 +105,8 @@ class HtmlPopup
             $msg_popup .= '<p>[Bug: motif de mort inconnu]</p>';
         }
         
-        $msg_popup .= $buttons->button('validate_death', true, 'center');
+        $msg_popup .= $buttons->button('start_game', true, 'center') . '<br>'
+                    . $buttons->button('validate_death', true, 'center');
         
         return $msg_popup;
     }
