@@ -153,6 +153,7 @@ class HtmlPage
                     </script>
 
                     <script type="text/javascript" src="resources/js/ZombLib.js?v1.3"></script>
+                    <script type="text/javascript" src="resources/js/cookies.func.js?v1.0"></script>
                     <script type="text/javascript" src="resources/js/map.func.js?v1.8"></script>
                     <script type="text/javascript" src="resources/js/wallTemplate.js?v4.5"></script>
                     <script type="text/javascript" src="resources/js/actionBlocks.func.js?v1.8"></script>
