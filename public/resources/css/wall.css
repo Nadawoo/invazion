@@ -8,7 +8,7 @@
 #floating_wall {
     position:fixed;
     bottom:0;
-    height:2rem;
+    height:2.5rem;
     width:23.8rem;
     margin-left:27.5rem;
     border-top-left-radius:1rem;
@@ -23,6 +23,7 @@
     margin:0;
 }
 #floating_wall #enlarge_wall {
+    font-size:1.5em;
     background:#b71c1c;
     color:white;
     cursor:pointer;

@@ -402,8 +402,8 @@
     position:absolute;
     border: 3px solid green;
     border-radius: 50%;
-    height:85%;
-    width: 85%;
+    height:100%;
+    width: 100%;
 }
 
 #map .city img {
