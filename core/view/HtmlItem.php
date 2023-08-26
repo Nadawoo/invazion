@@ -8,6 +8,39 @@ class HtmlItem {
     
     
     /**
+     * HTML blank template to display an item (icon + tooltip with description, etc.)
+     * The appropriate data are then fulfilled by the javascript.
+     * 
+     * @return string HTML
+     */
+    function item_template()
+    {
+        
+        $buttons = new HtmlButtons();
+        $button_drop = $buttons->drop_item(0);
+        $button_pickup = $buttons->pickup_item(0);
+        $button_use = $buttons->use_item('{item_alias}', 0, '{item_name}');
+        
+        return '
+            <template id="tplItem">
+                <li class="item_label">
+                    <var onclick="toggleItem(event)">
+                        <img src="{icon_path}" alt="{icon_symbol}">
+                    </var>
+                    <div class="details">
+                        <span class="close" onclick="toggleItem(event)">&#x274C;</span>
+                        <var><img src="{icon_path}" alt="{icon_symbol}">&nbsp;<span class="item_name">{item_name}</span></var>
+                        <hr class="line">
+                        <p class="descr_ambiance">{descr_ambiance}</p>
+                        <p class="descr_purpose">{descr_purpose}</p>
+                        '.$button_use . $button_drop . $button_pickup.'
+                    </div>
+                </li>
+            </template>';
+    }
+    
+    
+    /**
      * Generates the HTML for the items in the bag, bank, ground
      * (icon, name, button to use it...)
      * 
