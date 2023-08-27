@@ -91,7 +91,8 @@ h2 {
 }
 h3 {
     color:navy;
-    margin-top:3em;
+    font-size:1.5em;
+    margin-top:2em;
 }
 strong {
     font-weight: bold;

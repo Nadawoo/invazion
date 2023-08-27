@@ -62,6 +62,39 @@ class HtmlPopup
     }
     
     
+    private function poppresentation() {   
+        
+        $msg_popup = "
+            <h3>Qu'est-ce qu'InvaZion ?</h3>
+            <p>InvaZion est un <strong>jeu de survie</strong> collaboratif.
+            Explorez le désert en solo ou en équipe, dénichez les précieuses ressources,
+            construisez des défenses et survivez à l'attaque quotidienne !</p>
+            <hr>
+            <h3>D'où vient le concept ?</h3>
+            <p>Invazion est un jeu indépendant inspiré de <strong>Hordes.fr</strong>,
+            un jeu original du studio <em>Motion Twin</em> (connu aujourd'hui 
+            pour son succès mondial <em>Dead Cells</em>). Motion Twin a autorisé
+            la réutilisation du concept et des éléments graphiques, mais InvaZion
+            n'est pas affilié à Motion Twin.<p>
+            <hr>
+            <h3>Pourquoi l'interface a-t-elle un aspect... rudimentaire ?</h3>
+            <p>L'interface est volontairement minimaliste pour le moment. La priorité du projet 
+            est de mettre à disposition le <strong>moteur central du jeu</strong>, à partir duquel 
+            toute personne sachant programmer pourra développer sa propre interface graphique.</p>
+            <hr>
+            <h3>Quand pourra-t-on y jouer ?</h3>
+            <p>Le jeu est en développement actif. Une première version
+            alpha jouable est prévue pour <strong>la rentrée 2023</strong>.
+            Rejoignez 
+            <strong><a href=\"https://discord.gg/2GRPTyM\">le Discord d'InvaZion</a></strong>
+            pour suivre son avancement !</p>";
+            
+            $button_close = '<p class="center"><a href="#" onclick="closePopup()">[Fermer]</a></p>';
+        
+        return $msg_popup.$button_close;
+    }
+    
+    
     /**
      * pop-up displayed when the citizen has been killed
      * 

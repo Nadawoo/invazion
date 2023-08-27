@@ -186,6 +186,7 @@ echo $html['json_configs'];
 
 // Textes des pop-up
 // TODO : ne pas charger toutes les textes dans le code, seulement celui utile
+echo $popup->predefined('poppresentation', '');        
 echo $popup->predefined('popvault',   '');
 echo $popup->predefined('popwounded', '', ['citizen_id'=>$citizen['citizen_id'], 'healing_items'=>$healing_items]);
 echo $popup->predefined('popcontrol', '&#8505;&#65039; Le contrôle de zone');
@@ -203,12 +204,6 @@ echo $popup->customised('popsuccess', '', $msg_popup, $is_custom_popup_visible);
     <section id="connectionbar">
         <?php echo $layout->connection_bar($citizen['user_id'], $citizen['citizen_id'], $citizen['citizen_pseudo']); ?>
     </section>
-    
-    <p id="GameDemo" class="aside">L'interface est volontairement minimaliste pour le moment. 
-        La priorité du projet est de mettre à disposition les API (le moteur du jeu) 
-        à partir desquelles toute personne  sachant coder peut développer 
-        sa propre interface graphique. <a href="https://invazion.nadazone.fr/project">[En savoir plus]</a>
-    </p>
     
     <?php
     // Asks for chosing a citizen speciality (builder, digger...)
@@ -549,7 +544,7 @@ echo $popup->customised('popsuccess', '', $msg_popup, $is_custom_popup_visible);
     <hr>
     
     <section>
-        <h2 id="Help">Mémo des règles</h2>
+        <h3 id="Help">Mémo des règles</h3>
         <strong>Se déplacer</strong>
         <ul class="expanded">
             <li>Le contrôle d'une zone dépend du nombre d'humains et de zombies présents
