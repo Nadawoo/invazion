@@ -78,6 +78,9 @@ header h1 {
     font-weight:bold;
     font-size:2em;
 }
+header h1 a, header h1 a:hover {
+    color:black;
+}
 #slogan {
     text-align:center;
     font-weight:bold;

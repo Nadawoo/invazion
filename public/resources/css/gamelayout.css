@@ -76,7 +76,7 @@
     display:flex;
     align-items:center;
     justify-content:space-between;
-    width:99%;
+    width:100%;
     margin-bottom:0.2rem;
     padding:0.2em;
     border-radius:0.2rem;
@@ -171,6 +171,7 @@
 /* Bloc invitant à se connecter ou à créer son 1er citoyen à droite de la carte */
 #identification_near_map {
     margin:auto;
+    margin:4.7em auto 0.5em auto;
     padding:2.5em 0;
     box-shadow: 0px 15px 20px black;
     border:3px outset darkred;
