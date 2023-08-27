@@ -8,10 +8,6 @@ var _citizens = null;
 var _cities = null;
 var _myZone = null;
 var _jsonMap = null;
-// Get the unvariable data of the game (building names...) stored in the HTML
-var _configsBuildings = JSON.parse(document.querySelector("#configs .buildings").innerHTML);
-var _configsItems     = JSON.parse(document.querySelector("#configs .items").innerHTML);
-var _configsMap       = JSON.parse(document.querySelector("#configs .map").innerHTML);
 // Permanently stores the result of the API whichs gives the discussions list 
 var _jsonDiscussionApi = null;
 
@@ -31,7 +27,11 @@ if (document.getElementById('map') !== null) {
     
     // Default map to show if the visitor is not connected
     var mapId = document.querySelector("#gameData #mapId").innerHTML;
-    
+    // Get the unvariable data of the game (building names...) stored in the HTML
+    var _configsBuildings = JSON.parse(document.querySelector("#configs .buildings").innerHTML);
+    var _configsItems     = JSON.parse(document.querySelector("#configs .items").innerHTML);
+    var _configsMap       = JSON.parse(document.querySelector("#configs .map").innerHTML);
+
     // Only if the visitor is connected
     if(document.querySelector("#citizenId").innerHTML !== "") {
     
