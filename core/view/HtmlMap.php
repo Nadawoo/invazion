@@ -219,6 +219,8 @@ class HtmlMap
             $opacity = $this->opacity_coeff($cell['date_last_visit']);
         }
         
+        $cell_name = ($cell['zone_name'] !== null) ? '<span class="zone_name">'.$cell['zone_name'].'</span>' : '';
+        
         // Variable grounds (sand, peebles...)
         $ground = $this->ground_css_class($cell);
         
@@ -238,7 +240,7 @@ class HtmlMap
                         data-cityid="'.$cell['city_id'].'"
                         data-citytypeid=""
                         >'
-                        . $cell_zombies . $cell_content . '
+                        . $cell_zombies . $cell_content . $cell_name . '
                         <div class="bubble">
                             <div class="coords">[Zone '.$col.':'.$row.']</div>
                             <div class="roleplay">'.$bubble_roleplay.'</div>'

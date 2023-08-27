@@ -342,6 +342,7 @@ echo $popup->customised('popsuccess', '', $msg_popup, $is_custom_popup_visible);
                     <li onclick="resetMapView();toggleMapZombiesView();toggleMapItemMarker(106)"  title="Voir les zombies sur la carte">&nbsp;<img src="resources/img/motiontwin/zombie.gif" alt="&#x1F9DF;">&nbsp; Zombies</li>
                     <li onclick="resetMapView();toggleMapItemsView();toggleMapMarker()" title="Voir les objets au sol sur la carte">&#x1F392; Objets</li>
                     <li onclick="resetMapView();toggleMapMarker('citizens')" title="Voir les joueurs sur la carte">&#x1F9CD;&#x200D;&#x2642;&#xFE0F; Humains</li>
+                    <li onclick="resetMapView();toggleMapNeighborhoodView()" title="Voir les secteurs de la carte">&#128739;&#65039; Secteurs</li>
                 </ul>
                 <button><a href="#popsmartphone" style="font-size:55%">&#128241;</a></button>
             </div>

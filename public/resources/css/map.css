@@ -233,6 +233,28 @@
     top:-0.3rem;
 }
 
+#map .zone_name {
+    display:none;
+    position:absolute;
+    opacity:0.8;
+    line-height:1em;
+    padding:0.4em;
+    background:#34495e;
+    color:white;
+    border-radius:0.3em;
+    box-shadow:6px 6px 6px black;
+}
+#map .city_name {
+    display:none;
+    position:absolute;
+    padding:0.1em 0.3em;
+    background:darkred;
+    color:white;
+    line-height:1em;
+    border-radius:0.3em;
+    box-shadow:6px 6px 6px black;
+}
+
 /*
  * An <svg> area covers the map to allow drawing on it (lines between zones...)
  */

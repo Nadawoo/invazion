@@ -204,6 +204,10 @@ async function addCitiesOnMap(mapId) {
             }
         }
         
+        // Adds the name of the building
+        cityName = (city["city_name"] === null) ? buildingName : city["city_name"];
+        zone.insertAdjacentHTML("afterbegin", `<span class="city_name" style="">${cityName}</span>`);
+        
         // Adds the building description in the bubble of the zone
         zone.querySelector(".roleplay").innerHTML = `<h5 class="name">${buildingName}</h5><hr><div class="descr_ambiance">${buildingDescr}</div>`;
         // Put the tile higher than its neighbors
@@ -372,6 +376,28 @@ async function toggleMapItemMarker(itemId) {
     }
     
     toggleMapMarker('generic');
+}
+
+
+function toggleMapNeighborhoodView() {
+    
+    if(window.isMapNeighborhoodViewActive === true) {
+        var display = "none";
+        window.isMapNeighborhoodViewActive = false;
+    } else {
+        var display = "block";
+        window.isMapNeighborhoodViewActive = true;
+    }
+    
+    let zones = document.querySelectorAll("#map .zone_name");
+    for(let zone of zones) {
+        zone.style.display = display;
+    }
+    
+    let cities = document.querySelectorAll("#map .city_name");
+    for(let city of cities) {
+        city.style.display = display;
+    }
 }
 
 
