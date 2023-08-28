@@ -333,8 +333,8 @@ echo $popup->customised('popsuccess', '', $msg_popup, $is_custom_popup_visible);
                 <?php echo $html['map']; ?>
             </div>
             <div id="map_navigation">
-                <button onclick="zoomMapIn()" title="Zoomer la carte"><span style="font-size:75%;margin-top:-0.1em;">+</span></button>
-                <button onclick="zoomMapOut()" title="Dézoomer la carte"><span style="margin-top:-0.1em;">-</span></button>
+                <button onclick="zoomMap('in')" title="Zoomer la carte"><span style="font-size:75%;margin-top:-0.1em;">+</span></button>
+                <button onclick="zoomMap('out')" title="Dézoomer la carte"><span style="margin-top:-0.1em;">-</span></button>
                 <button onclick="centerMapOnMe()" title="Centrer sur ma zone""><img src="resources/img/icons8/mylocation-48.png" height="28" alt="Cible ma position"></button>
                 <button onclick="toggle('mapRadarMenu')" title="Vue satellite"><span style="font-size:50%;margin-top:-0.3em;">&#x1F6F0;&#xFE0F;</span></button>
                 <ul id="mapRadarMenu">

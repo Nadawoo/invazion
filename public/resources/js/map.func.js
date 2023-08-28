@@ -522,24 +522,31 @@ function addCityLocationMarker(myCityZoneId) {
 
 
 /**
- * Zooms on the map
+ * Zooms in or out of the map
+ * 
+ * @param {string} direction Set to "in" to zoom in, "out" to zoom out.
  */
-function zoomMapIn() {
+function zoomMap(direction) {
+    
+    // Set here the percentages of zoom you allow
+    // <100 = zoom out, >100 = zoom in
+    let allowedZooms = [60, 70, 80, 100, 200, 400];
+    // Set here the key (not the value!) of the "allowedZooms" wich corresponds 
+    // to the default zoom level you want
+    let defaultZoomLevel = 3;
+    
+    if(window.currentZoomLevel === undefined) {        
+        window.currentZoomLevel = defaultZoomLevel;
+    }
+    
+    let zoomLevel = window.currentZoomLevel;
+    zoomLevel = (direction === "in") ? Math.min(zoomLevel+1, allowedZooms.length-1) : Math.max(zoomLevel-1, 0);
     
     document.querySelector("#map_body").classList.add("zoomedIn");
+    document.querySelector("#map_body").style.transform = `scale(${allowedZooms[zoomLevel]}%)`;
     setTimeout(centerMapOnMe, 300);
-    document.querySelector("#map_body").classList.remove("zoomedOut");
-}
-
-
-/**
- * Cancels the zoom on the map
- */
-function zoomMapOut() {
     
-    document.querySelector("#map_body").classList.add("zoomedOut");
-    centerMapOnMe();
-    document.querySelector("#map_body").classList.remove("zoomedIn");
+    window.currentZoomLevel = zoomLevel;
 }
 
 

@@ -32,22 +32,12 @@
     padding:1em;
 }
 #map_body.zoomedIn {
-    transform:scale(300%);
     transition: all .3s ease;
     /* Forces the zoom to start from the corner of the map. The default behavior
        (zoom on the center) would place the top and left parts out of the scrollbars. */
     transform-origin: top left;
 }
-#map_body.zoomedIn .bubble {
-    /* Avoids getting an enormous bubble when the map is zoomed */
-    transform:scale(33%);
-    bottom:1.5em;
-}
-#map_body.zoomedOut {
-    /* Cancels the zoom */
-    transform:scale(100%);
-    transition: all .4s ease;
-}
+
 
 /* 
  * Buttons +/- to zoom in/out on the map
