@@ -28,6 +28,7 @@ class HtmlCityIso {
         'city_fellows' => [
             'name'  => 'Habitants',
             'image' => 'copyrighted/buildings/Ho-042.png',
+            'is_pixelart'   => false,
             'action_blocks' => [['name'=>'En ville', 'amount'=>1],
                                 ['name'=>'Hors ville', 'amount'=>1],
                                 ['name'=>'Morts', 'amount'=>0]
@@ -36,6 +37,7 @@ class HtmlCityIso {
         'city_constructions' => [
             'name'  => 'Chantiers',
             'image' => 'copyrighted/buildings/Ho-026.png',
+            'is_pixelart'   => false,
             'action_blocks' => [['name'=>'Disponibles', 'amount'=>3],
                                 ['name'=>'Achevés', 'amount'=>0]
                                 ]
@@ -43,6 +45,7 @@ class HtmlCityIso {
         'city_defenses' => [
             'name'  => 'Défenses',
             'image' => 'copyrighted/buildings/Ho-163.png',
+            'is_pixelart'   => false,
             'image_size' => 380,
             'image_position_top'  => -10,
             'image_position_left' => -3.9,
@@ -53,11 +56,13 @@ class HtmlCityIso {
         'discuss' => [
             'name'  => 'Communications',
             'image' => 'copyrighted/buildings/Ho-052.png',
+            'is_pixelart'   => false,
             'action_blocks' => [['name'=>'À lire', 'amount'=>0]]
         ],
         'city_door' => [
             'name'  => 'Grande porte',
             'image' => 'copyrighted/buildings/Ho-164.png',
+            'is_pixelart'   => false,
             'image_size' => 300,
             'image_position_top'  => -5,
             'image_position_left' => -1,
@@ -66,6 +71,7 @@ class HtmlCityIso {
         'my_home' => [
             'name'  => 'Chez moi',
             'image' => 'copyrighted/buildings/Ho-161.png',
+            'is_pixelart'   => false,
             'action_blocks' => [['name'=>'Défenses', 'amount'=>0],
                                 ['name'=>'Décoration', 'amount'=>0]
                                 ]
@@ -73,6 +79,7 @@ class HtmlCityIso {
         'explore' => [
             'name'  => 'Ressources',
             'image' => 'copyrighted/items/scrap.png',
+            'is_pixelart'   => false,
             'image_size' => 200,
             'image_position_top'  => 0,
             'image_position_left' => 0,
@@ -84,21 +91,25 @@ class HtmlCityIso {
         'city_storage' => [
             'name'  => 'Dépôt',
             'image' => 'copyrighted/buildings/Ho-046.png',
+            'is_pixelart'   => false,
             'action_blocks' => [['name'=>'Objets', 'amount'=>0]]
         ],
         'city_well' => [
             'name'  => 'Puits',
             'image' => 'copyrighted/buildings/Ho-043.png',
+            'is_pixelart'   => false,
             'action_blocks' => [['name'=>'Eau', 'amount'=>0]]
         ],
         'city_workshop' => [
             'name'  => 'Atelier',
             'image' => 'copyrighted/buildings/Ho-231.png',
+            'is_pixelart'   => false,
             'action_blocks' => [['name'=>'Composants', 'amount'=>0]]
         ],
         'zombies' => [
             'name'  => 'La horde !',
             'image' => 'motiontwin/zombie9.gif',
+            'is_pixelart'   => true,
             'image_size' => 180,
             'image_position_top'  => 0,
             'image_position_left' => -4,
@@ -300,7 +311,7 @@ class HtmlCityIso {
             $this->setImagePosition($asset['image_position_top'], $asset['image_position_left']);
         }
         
-        return $this->asset($alias, $asset['name'], $asset['image']);
+        return $this->asset($alias, $asset['name'], $asset['image'], $asset['is_pixelart']);
     }
     
     
@@ -349,9 +360,13 @@ class HtmlCityIso {
      * 
      * @param string $name The name of the building for display (e.g. "Big door")
      * @param string $image_path The path to the image of the building
+     * @param boolean $is_pixelart Set to "true" (or any value other than false)
+     *                             if your image is drawn in pixel-art style.
+     *                             This will avoid blurring when resising them.
+     *                             Don't use it on non pixel-art images (bad rendering).
      * @return string HTML
      */
-    private function asset($alias, $name, $image_path) {
+    private function asset($alias, $name, $image_path, $is_pixelart=false) {
         
         $size = $this->imageSize;
         $top  = $this->imagePositionTop;
@@ -359,6 +374,9 @@ class HtmlCityIso {
         // Resets the values to default for the next call to the method
         $this->setImageSize(self::IMAGE_DEFAULT_SIZE);
         $this->setImagePosition(self::IMAGE_POSITION_TOP, self::IMAGE_POSITION_LEFT);
+        // CSS algorithm for resizing the pixel-art images without ugly blurring
+        // Don't use on non pixel-art images (bad rendering for them)
+        $image_rendering = ($is_pixelart !== false) ? 'style="image-rendering:pixelated"' : '';
         
         return '
             <div class="asset '.$alias.'" style="top:'.$top.'em;left:'.$left.'em;"
@@ -369,7 +387,7 @@ class HtmlCityIso {
                         '.$this->actionBlocks.'
                     </div>
                 </div>
-                <img src="resources/img/'.$image_path.'" height="'.$size.'" width="'.$size.'">
+                <img src="resources/img/'.$image_path.'" height="'.$size.'" width="'.$size.'" '.$image_rendering.'>
             </div>';
     }
 
