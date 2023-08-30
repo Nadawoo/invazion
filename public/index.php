@@ -161,9 +161,10 @@ $html = [
     'actions_zombies'   => $layout->block_actions_zombies($zone['zombies'], $configs['map']['killing_zombie_cost']),
     'edit_land'         => $layout->block_edit_land($citizen['coord_x'], $citizen['coord_y']),
     'zombie_powers'     => $layout->block_zombie_powers(),
-//    'zone_items'        => $layout->block_zone_items($configs['items'], $zone),
     'item_template'     => $htmlItem->item_template(),
     'ground_items'      => $layout->block_ground_items($citizen['coord_x'], $citizen['coord_y']),
+    // TODO: merge_zone_items with ground_items
+    'zone_items'        => $layout->block_zone_items($configs['items'], $zone),
     'bag_items'         => $layout->block_bag_items($configs['items'], $citizen['bag_items'], $citizen['bag_size']),
     'zone_fellows_template' => $layout->block_zone_fellow_template(),
     // Smartphone at the right of the map
