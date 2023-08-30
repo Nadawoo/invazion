@@ -239,7 +239,8 @@ class HtmlMap
                         data-controlPointsCitizens="'.$cell['controlpoints_citizens'].'"
                         data-cityid="'.$cell['city_id'].'"
                         data-citytypeid=""
-                        >'
+                        >
+                        <span class="zombies_amount hidden"></span>'
                         . $cell_zombies . $cell_content . $cell_name . '
                         <div class="bubble">
                             <div class="coords">[Zone '.$col.':'.$row.']</div>

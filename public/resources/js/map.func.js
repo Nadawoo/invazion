@@ -322,13 +322,19 @@ function activateMapZombiesView() {
         } 
         
         // Color the zones depending on the number of zombies
-        squareContainer.style.background = color;        
+        squareContainer.style.background = color;
         // Reveal all the zones, regardless their date of last visit
 //        hexagons[i].style.opacity = 1;
         
-        // Hides the zombies, because they are above the colored background
-        hideClasses(["zombies"]);
+        if(parseInt(squareContainer.dataset.zombies) !== 0) {
+            squareContainer.querySelector(".zombies_amount").innerHTML = squareContainer.dataset.zombies;
+        }
     }
+    
+    // Displays the number of zombies on each zone
+    unhideClass("zombies_amount");
+    // Hides the icons of zombies, because they are above the colored background
+    hideClasses(["zombies"]);
 }
 
 
@@ -341,9 +347,11 @@ function desactivateMapZombiesView() {
         let squareContainer = hexagons[i].querySelector(".square_container");
         // Remove the colors on the zones
         squareContainer.style.background = "none";        
-        // Display the zombies again
-        unhideClass("zombies");
     }
+    
+    hideClasses(["zombies_amount"]);
+    // Display the icons of zombies again
+    unhideClass("zombies");
 }
 
 

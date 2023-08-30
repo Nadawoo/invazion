@@ -217,6 +217,11 @@
     line-height:2.2em;
 }
 
+.square_container .zombies_amount {
+    position:absolute;
+    font-weight:bold;
+}
+
 /* Surelevate the zones with cities or buildings */
 #map .elevate {
     position:relative;
