@@ -354,7 +354,7 @@
     box-shadow:6px 6px 6px black;
 }
 #block_move #card_building {
-    height:6em;
+    height:8em;
 }
 #block_move #card_building .building_name {
     font-weight:bold;

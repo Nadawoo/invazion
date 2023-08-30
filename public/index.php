@@ -406,7 +406,7 @@ echo $popup->customised('popsuccess', '', $msg_popup, $is_custom_popup_visible);
                     <img src="resources/img/copyrighted/tiles/desert/10.png" height="96" width="73" alt="Bâtiment"
                          style="float:left;margin-right:1em;">
                     <strong>Bâtiment découvert :<br><span class="building_name"></span></strong>
-                    <br><br>'
+                    <br>'
                     .$buttons->button('enter_city', 'no_icon')
                     .$buttons->button('destroy_city', 'no_icon')
                     .$popup->link('popsuccess', 'Explorer', 'button_explore')
