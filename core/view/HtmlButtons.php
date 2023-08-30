@@ -572,7 +572,7 @@ class HtmlButtons
             '.$hidden_fields.'
             '.$icon.'<input type="submit" class="redbutton" value="'.$button['name'].'" title="'.$button['title'].'">
             de
-            <select name="params[city_size]">
+            <select name="params[city_size]" class="browser-default">
                 <option value="2">2</option>
                 <option value="3">3</option>
                 <option value="4">4</option>

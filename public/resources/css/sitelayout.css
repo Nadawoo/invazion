@@ -120,6 +120,11 @@ button {
     cursor:pointer;
 }
 
+select.browser-default { /* Fix for Materialiaze.css */
+    display:inline;
+    width:auto;
+}
+
 /* Centre les icônes verticalement par rapport à la ligne de texte */
 p img {
     vertical-align:middle;

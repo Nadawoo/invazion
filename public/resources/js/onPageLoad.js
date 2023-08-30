@@ -14,8 +14,12 @@ var _jsonDiscussionApi = null;
 
 // Main burger menu (uses Materialize.css)
 document.addEventListener('DOMContentLoaded', function() {
+    // Activate the lateral main menu of the site
     var elems = document.querySelectorAll('.sidenav');
     var instances = M.Sidenav.init(elems);
+    // Activate the <select> tags
+    var elems = document.querySelectorAll('select');
+    var instances = M.FormSelect.init(elems);
   });
 // Initialize collapsible (uncomment the lines below if you use the dropdown variation)
 // var collapsibleElem = document.querySelector('.collapsible');
