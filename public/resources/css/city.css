@@ -75,6 +75,7 @@
 }
 #city_submenus .label {
     background:ivory;
+    line-height:1.2em;
 }
 #city_submenus .row .item:hover,
 #city_submenus .row .item:hover .label {
