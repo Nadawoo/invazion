@@ -40,7 +40,7 @@
 
 
 /* 
- * Buttons +/- to zoom in/out on the map
+ * Buttons to change the map view (zoom, center on me, stalleite view...)
  */
 #map_navigation {
     display:flex;
@@ -55,16 +55,52 @@
     display:flex;
     justify-content: center;
     align-items: center;
-    height:1em;
-    width: 1em;
-    margin:0.05em 0;
-    border-radius:50%;
+    height:3rem;
+    width: 3rem;
+    margin:0.08em 0;
+    border-radius:0.2em;
     font-size:3em;
     border:none;
     background:lightgrey;
     opacity:0.8;
     box-shadow: 12px 12px 12px black;
 }
+/* Buttons for zooming on the map */
+#zoom_form {
+    display:flex;
+    flex-direction: column;
+    align-items:center;
+    width:3rem;
+    margin-bottom:0.25rem;
+    background:lightgrey;
+    opacity:0.8;
+    box-shadow: 12px 12px 12px black;
+    border-radius:0.5em;
+}
+#zoom_form button {
+    height:0.8em;
+    margin:0;
+    background:none;
+    box-shadow:none;
+    border-radius:0;
+}
+#zoom_form .range-field {
+    transform:rotate(-90deg);
+    margin-top:1.5rem;
+    margin-bottom:2rem;
+    display:none;
+}
+#zoom_form #zoom_range {
+    color:black;
+    width:4.6em;
+}
+#zoom_form hr {
+    margin:0;
+    width:85%;
+    height:2px;
+    cursor:row-resize;
+}
+
 /* Specific sub-menu to select the desired satellite view */
 #map_navigation #mapRadarMenu {
     display:none; /* The menu is hidden until we click on the satellite button */

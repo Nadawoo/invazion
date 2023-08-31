@@ -530,31 +530,50 @@ function addCityLocationMarker(myCityZoneId) {
 
 
 /**
- * Zooms in or out of the map
+ * Zooms in or out of the map with the "+/-" buttons
  * 
  * @param {string} direction Set to "in" to zoom in, "out" to zoom out.
  */
-function zoomMap(direction) {
-    
-    // Set here the percentages of zoom you allow
-    // <100 = zoom out, >100 = zoom in
-    let allowedZooms = [60, 70, 80, 100, 200, 400];
-    // Set here the key (not the value!) of the "allowedZooms" wich corresponds 
-    // to the default zoom level you want
-    let defaultZoomLevel = 3;
-    
-    if(window.currentZoomLevel === undefined) {        
-        window.currentZoomLevel = defaultZoomLevel;
+function zoomMapStep(direction) {
+    // Default zoom level = 100%
+    if(window.currentZoomPercent === undefined) {        
+        window.currentZoomPercent = 100;
     }
     
-    let zoomLevel = window.currentZoomLevel;
-    zoomLevel = (direction === "in") ? Math.min(zoomLevel+1, allowedZooms.length-1) : Math.max(zoomLevel-1, 0);
+    let currentZoomPercent = parseInt(window.currentZoomPercent);
+    let newZoomPercent = (direction === "in") ? currentZoomPercent+30 : currentZoomPercent-30;
+    // Move the cursor on the <range> selector
+    document.querySelector("#zoom_range").value = newZoomPercent;
+    // Exectutes the zoom/unzoom
+    zoomMapRange(newZoomPercent);
+}
+
+
+/**
+ * Zooms in or out of the map with an HTML <range> tag
+ * 
+ * @param {int} newZoomPercent
+ */
+function zoomMapRange(newZoomPercent) {
     
     document.querySelector("#map_body").classList.add("zoomedIn");
-    document.querySelector("#map_body").style.transform = `scale(${allowedZooms[zoomLevel]}%)`;
+    document.querySelector("#map_body").style.transform = `scale(${newZoomPercent}%)`;
     setTimeout(centerMapOnMe, 300);
     
-    window.currentZoomLevel = zoomLevel;
+    window.currentZoomPercent = newZoomPercent;
+}
+
+
+/**
+ * Show/hide the <range> selector to change the zoom level
+ * 
+ * @returns {undefined}
+ */
+function toggleZoomRange() {
+    
+    let display =(document.querySelector("#zoom_form .range-field").style.display === "block") ? "none" : "block";
+    
+    document.querySelector('#zoom_form .range-field').style.display = display;
 }
 
 
