@@ -143,9 +143,13 @@
 }
 #wall .link_other_messages { /* Link "show other message" in truncated discussions */
     display:block;
-    margin:0.2rem;
-    text-align:center;
+    width:15em;
+    margin:0.6em auto;
+    padding:0.2em 0;
+    border-top:   1px dashed grey;
+    border-bottom:1px dashed grey;
     font-size:0.8em;
+    text-align:center;
 }
 #wall .link_other_messages:hover {
     color:#e74c3c;
