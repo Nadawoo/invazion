@@ -165,6 +165,7 @@ function toggleSendform(event) {
     event.preventDefault();
     // Put the cursor in the text area to allow direct typing
     document.querySelector("#messageNew").focus();
+    document.getElementById("wallDiscuss").scrollIntoView(false);
 }
 
 
@@ -206,8 +207,8 @@ async function updateDiscussionsList(topicType) {
                                       topic.first_message, topic.last_message, nbrReplies);
     }
     
-    document.getElementById("wallDiscuss").innerHTML = htmlNewDiscussionForm(citizenPseudo)
-                                                       + discussions;
+    document.querySelector("#wallDiscuss").innerHTML = discussions + htmlNewDiscussionForm(citizenPseudo);
+    document.getElementById("wallDiscuss").scrollIntoView(false);
 }
 
 

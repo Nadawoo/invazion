@@ -72,7 +72,8 @@
 #buttonNewTopic {
     display:block;
     font-weight:bold;
-    font-size:0.9em;
+    font-size:1em;
+    padding:1em;
 }
 #hideSendform {
     display:block;
@@ -88,6 +89,7 @@
     margin-bottom:0.3em;
     border-radius:0.3em;
     border:1px solid grey;
+    background-color:whitesmoke;
 }
 #wall textarea {
     height:10em;
