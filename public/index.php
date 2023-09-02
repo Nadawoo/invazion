@@ -324,8 +324,7 @@ echo $popup->customised('popsuccess', '', $msg_popup, $is_custom_popup_visible);
                                         count($citizen['bag_items']),
                                         count($zone_fellows)-1);
             ?>
-        </div>
-        
+        </div>        
         <div id="map_body_wrapper">
             <div id="map_body">
                 <!-- Let the SVG *before* the map zones, otherwise the invisible
@@ -333,26 +332,9 @@ echo $popup->customised('popsuccess', '', $msg_popup, $is_custom_popup_visible);
                 <svg id="mapSvg"></svg>
                 <?php echo $html['map']; ?>
             </div>
-            <div id="map_navigation">
-                <form action="#" id="zoom_form">
-                    <button onclick="zoomMapStep('in')" title="Zoomer la carte"><i class="material-icons small">add</i></button>
-                    <p class="range-field">
-                        <input type="range" id="zoom_range" value="100" min="70" max="220" step="30" oninput="zoomMapRange(this.value)">
-                    </p>
-                    <hr onclick="toggleZoomRange()">
-                    <button onclick="zoomMapStep('out')" title="Dézoomer la carte"><i class="material-icons small">remove</i></button>
-                </form>
-                <button onclick="centerMapOnMe()" title="Centrer sur ma zone""><img src="resources/img/icons8/mylocation-48.png" height="28" alt="Cible ma position"></button>
-                <button onclick="toggle('mapRadarMenu')" title="Vue satellite"><span style="font-size:50%;margin-top:-0.3em;">&#x1F6F0;&#xFE0F;</span></button>
-                <ul id="mapRadarMenu">
-                    <li onclick="resetMapView();toggleMapMarker()">&#x1F5FA;&#xFE0F; Carte réelle</li>
-                    <li onclick="resetMapView();toggleMapZombiesView();toggleMapItemMarker(106)"  title="Voir les zombies sur la carte">&nbsp;<img src="resources/img/motiontwin/zombie.gif" alt="&#x1F9DF;">&nbsp; Zombies</li>
-                    <li onclick="resetMapView();toggleMapItemsView();toggleMapMarker()" title="Voir les objets au sol sur la carte">&#x1F392; Objets</li>
-                    <li onclick="resetMapView();toggleMapMarker('citizens')" title="Voir les joueurs sur la carte">&#x1F9CD;&#x200D;&#x2642;&#xFE0F; Humains</li>
-                    <li onclick="resetMapView();toggleMapNeighborhoodView()" title="Voir les secteurs de la carte">&#128739;&#65039; Secteurs</li>
-                </ul>
-                <button><a href="#popsmartphone" style="font-size:55%">&#128241;</a></button>
-            </div>
+        </div>
+        <div id="map_navigation">
+            <?php echo $layout->block_map_navigation() ?>
         </div>
         
     </section>

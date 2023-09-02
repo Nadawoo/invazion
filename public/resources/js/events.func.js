@@ -64,3 +64,36 @@ function listenToMapZones() {
         toggleTooltip(event.target.closest(".hexagon"));
     });
 }
+
+
+/**
+ * Allows to move the map by dragging it with the mouse
+ * 
+ * @returns {ScrollBooster|listenToMapDragging.sb}
+ */
+function listenToMapDragging() {
+
+    const viewport = document.querySelector('#map');
+    const content = document.querySelector('#map_body_wrapper');
+    const image = document.querySelector('#map_body');
+
+    const sb = new ScrollBooster({
+        viewport,
+        content,
+        scrollMode: 'transform',
+        bounce: false, // Set to true to allow dragging the map above its limits
+        emulateScroll: false // true = scroll inside the viewport, false = scroll the whole page
+    });
+
+    image.addEventListener('load', () => {
+        // Set viewport position to the center of an image
+        const offsetX = image.scrollWidth - viewport.offsetWidth;
+        const offsetY = image.scrollHeight - viewport.offsetHeight;
+        sb.setPosition({
+            x: offsetX / 2,
+            y: offsetY / 2
+        });
+    });
+    
+    return sb;
+}

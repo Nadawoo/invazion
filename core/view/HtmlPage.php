@@ -142,7 +142,8 @@ class HtmlPage
                     }
                     </script>
 
-                    <script type="text/javascript" src="resources/js/materialize.min.js"></script>
+                    <script type="text/javascript" src="resources/js/lib/materialize.min.js"></script>
+                    <script type="text/javascript" src="resources/js/lib/scrollbooster.min.js"></script>
                     <script type="text/javascript" src="resources/js/ZombLib.js?v1.3"></script>
                     <script type="text/javascript" src="resources/js/cookies.func.js?v1.0"></script>
                     <script type="text/javascript" src="resources/js/map.func.js?v1.8"></script>
@@ -151,10 +152,10 @@ class HtmlPage
                     <script type="text/javascript" src="resources/js/actionBlocks.func.js?v1.8"></script>
                     <script type="text/javascript" src="resources/js/cityEnclosure.func.js?v1.0"></script>
                     <script type="text/javascript" src="resources/js/discussions.func.js?v1.5"></script>
-                    <script type="text/javascript" src="resources/js/events.func.js?v1.0"></script>
+                    <script type="text/javascript" src="resources/js/events.func.js?v1.1"></script>
                     <script type="text/javascript" src="resources/js/misc.func.js?v10.5"></script>
                     <script type="text/javascript" src="resources/js/onPageLoad.js?v2.4"></script>
-                    <script type="text/javascript" src="resources/js/events.js?v5.7"></script>
+                    <script type="text/javascript" src="resources/js/events.js?v5.8"></script>
                 </body>
             </html>';
     }

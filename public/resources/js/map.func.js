@@ -558,7 +558,7 @@ function zoomMapRange(newZoomPercent) {
     
     document.querySelector("#map_body").classList.add("zoomedIn");
     document.querySelector("#map_body").style.transform = `scale(${newZoomPercent}%)`;
-    setTimeout(centerMapOnMe, 300);
+//    setTimeout(centerMapOnMe, 300);
     
     window.currentZoomPercent = newZoomPercent;
 }

@@ -16,6 +16,9 @@ if (document.getElementById('map') !== null) {
     // Displays/hides the tooltip of any zone when the mouse hovers one
     listenToMapZones();
     
+    // Allows to move the map by dragging it with the mouse
+    listenToMapDragging();
+    
     // Move the citizen on the map
     document.querySelector('#block_move [name="move"]').addEventListener("submit", function() {
         // Desactivate the classic submission button (avoids reloading the page)
