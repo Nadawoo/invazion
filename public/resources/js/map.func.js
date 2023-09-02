@@ -533,8 +533,9 @@ function addCityLocationMarker(myCityZoneId) {
  * Zooms in or out of the map with the "+/-" buttons
  * 
  * @param {string} direction Set to "in" to zoom in, "out" to zoom out.
+ * @param {object} scrollBoosterInstance An object created with the "Scrollbooster" library
  */
-function zoomMapStep(direction) {
+function zoomMapStep(direction, scrollBoosterInstance) {
     // Default zoom level = 100%
     if(window.currentZoomPercent === undefined) {        
         window.currentZoomPercent = 100;
@@ -544,8 +545,8 @@ function zoomMapStep(direction) {
     let newZoomPercent = (direction === "in") ? currentZoomPercent+30 : currentZoomPercent-30;
     // Move the cursor on the <range> selector
     document.querySelector("#zoom_range").value = newZoomPercent;
-    // Exectutes the zoom/unzoom
-    zoomMapRange(newZoomPercent);
+    // Executes the zoom/unzoom
+    zoomMapRange(newZoomPercent, scrollBoosterInstance);
 }
 
 
@@ -553,11 +554,15 @@ function zoomMapStep(direction) {
  * Zooms in or out of the map with an HTML <range> tag
  * 
  * @param {int} newZoomPercent
+ * @param {object} scrollBoosterInstance An object created with the "Scrollbooster" library
  */
-function zoomMapRange(newZoomPercent) {
+function zoomMapRange(newZoomPercent, scrollBoosterInstance) {
     
     document.querySelector("#map_body").classList.add("zoomedIn");
     document.querySelector("#map_body").style.transform = `scale(${newZoomPercent}%)`;
+    // Important: force ScroolBooster to recalculate the size of the map after zooming.
+    // Without this, impossible to drag the map after zooming.
+    scrollBoosterInstance.updateMetrics();
 //    setTimeout(centerMapOnMe, 300);
     
     window.currentZoomPercent = newZoomPercent;

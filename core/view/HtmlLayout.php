@@ -731,12 +731,12 @@ class HtmlLayout extends HtmlPage
         
         return '
             <form action="#" id="zoom_form">
-                <button onclick="zoomMapStep(\'in\')" title="Zoomer la carte"><i class="material-icons small">add</i></button>
+                <button id="zoomMapStepIn" title="Zoomer la carte"><i class="material-icons small">add</i></button>
                 <p class="range-field">
-                    <input type="range" id="zoom_range" value="100" min="70" max="220" step="30" oninput="zoomMapRange(this.value)">
+                    <input id="zoom_range" type="range" value="100" min="70" max="220" step="30">
                 </p>
                 <hr onclick="toggleZoomRange()">
-                <button onclick="zoomMapStep(\'out\')" title="Dézoomer la carte"><i class="material-icons small">remove</i></button>
+                <button id="zoomMapStepOut" title="Dézoomer la carte"><i class="material-icons small">remove</i></button>
             </form>
             <button onclick="centerMapOnMe()" title="Centrer sur ma zone""><img src="resources/img/icons8/mylocation-48.png" height="28" alt="Cible ma position"></button>
             <button onclick="toggle(\'mapRadarMenu\')" title="Vue satellite"><span style="font-size:50%;margin-top:-0.3em;">&#x1F6F0;&#xFE0F;</span></button>

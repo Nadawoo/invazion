@@ -17,7 +17,21 @@ if (document.getElementById('map') !== null) {
     listenToMapZones();
     
     // Allows to move the map by dragging it with the mouse
-    listenToMapDragging();
+    let scrollBoosterInstance = listenToMapDragging();
+    
+    // Zoom/unzoom on the map
+    let mapRange = document.querySelector("#zoom_range");    
+    mapRange.addEventListener("input", function() {
+        zoomMapRange(mapRange.value, scrollBoosterInstance);
+    });
+    document.querySelector("#zoomMapStepIn").addEventListener("click", function() {
+        event.preventDefault();
+        zoomMapStep("in", scrollBoosterInstance);
+    });
+    document.querySelector("#zoomMapStepOut").addEventListener("click", function() {
+        event.preventDefault();
+        zoomMapStep("out", scrollBoosterInstance);
+    });
     
     // Move the citizen on the map
     document.querySelector('#block_move [name="move"]').addEventListener("submit", function() {
