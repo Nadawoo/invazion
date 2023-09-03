@@ -8,6 +8,12 @@ safely_require('/core/controller/official_server_root.php');
 class HtmlPage
 {
     
+    // Increment those variables when you modify the CSS or JS files. This ensures
+    // that the users' browsers reload the up-to-date files, instead of using 
+    // the obsolete ones stored in their cache.
+    private $css_version = 20;
+    private $js_version  = 20;
+    
     /**
      * Sets HTTP headers to secure the website
      */
@@ -84,15 +90,15 @@ class HtmlPage
                 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
                 
                 <link rel="stylesheet" type="text/css" href="resources/css/materialize.min.css" media="screen,projection"/>
-                <link rel="stylesheet" type="text/css" href="resources/css/sitelayout.css?v4.7">
-                <link rel="stylesheet" type="text/css" href="resources/css/gamelayout.css?v9.3">
-                <link rel="stylesheet" type="text/css" href="resources/css/map.css?v4.7">
-                <link rel="stylesheet" type="text/css" href="resources/css/smartphone.css?v1.6">
-                <link rel="stylesheet" type="text/css" href="resources/css/city.css?v3.5">
-                <link rel="stylesheet" type="text/css" href="resources/css/cityiso.css?v1.3">
-                <link rel="stylesheet" type="text/css" href="resources/css/wall.css?v3.3">
-                <link rel="stylesheet" type="text/css" href="resources/css/popup.css?v2.0">
-                <link rel="stylesheet" type="text/css" href="resources/css/responsive.css?v2.4">
+                <link rel="stylesheet" type="text/css" href="resources/css/sitelayout.css?v'.$this->css_version.'">
+                <link rel="stylesheet" type="text/css" href="resources/css/gamelayout.css?v'.$this->css_version.'">
+                <link rel="stylesheet" type="text/css" href="resources/css/map.css?v'.$this->css_version.'">
+                <link rel="stylesheet" type="text/css" href="resources/css/smartphone.css?v'.$this->css_version.'">
+                <link rel="stylesheet" type="text/css" href="resources/css/city.css?v'.$this->css_version.'">
+                <link rel="stylesheet" type="text/css" href="resources/css/cityiso.css?v'.$this->css_version.'">
+                <link rel="stylesheet" type="text/css" href="resources/css/wall.css?v'.$this->css_version.'">
+                <link rel="stylesheet" type="text/css" href="resources/css/popup.css?v'.$this->css_version.'">
+                <link rel="stylesheet" type="text/css" href="resources/css/responsive.css?v'.$this->css_version.'">
                 ' . $css_link . '
                 <title>'.$metas['page_title'].'</title>
             </head>
@@ -144,18 +150,18 @@ class HtmlPage
 
                     <script type="text/javascript" src="resources/js/lib/materialize.min.js"></script>
                     <script type="text/javascript" src="resources/js/lib/scrollbooster.min.js"></script>
-                    <script type="text/javascript" src="resources/js/ZombLib.js?v1.3"></script>
-                    <script type="text/javascript" src="resources/js/cookies.func.js?v1.0"></script>
-                    <script type="text/javascript" src="resources/js/map.func.js?v1.8"></script>
-                    <script type="text/javascript" src="resources/js/tooltips.func.js?v1.0"></script>
-                    <script type="text/javascript" src="resources/js/wallTemplate.js?v4.5"></script>
-                    <script type="text/javascript" src="resources/js/actionBlocks.func.js?v1.8"></script>
-                    <script type="text/javascript" src="resources/js/cityEnclosure.func.js?v1.0"></script>
-                    <script type="text/javascript" src="resources/js/discussions.func.js?v1.5"></script>
-                    <script type="text/javascript" src="resources/js/events.func.js?v1.1"></script>
-                    <script type="text/javascript" src="resources/js/misc.func.js?v10.5"></script>
-                    <script type="text/javascript" src="resources/js/onPageLoad.js?v2.4"></script>
-                    <script type="text/javascript" src="resources/js/events.js?v5.8"></script>
+                    <script type="text/javascript" src="resources/js/ZombLib.js?v'.$this->js_version.'"></script>
+                    <script type="text/javascript" src="resources/js/cookies.func.js?v'.$this->js_version.'"></script>
+                    <script type="text/javascript" src="resources/js/map.func.js?v'.$this->js_version.'"></script>
+                    <script type="text/javascript" src="resources/js/tooltips.func.js?v'.$this->js_version.'"></script>
+                    <script type="text/javascript" src="resources/js/wallTemplate.js?v'.$this->js_version.'"></script>
+                    <script type="text/javascript" src="resources/js/actionBlocks.func.js?v'.$this->js_version.'"></script>
+                    <script type="text/javascript" src="resources/js/cityEnclosure.func.js?v'.$this->js_version.'"></script>
+                    <script type="text/javascript" src="resources/js/discussions.func.js?v'.$this->js_version.'"></script>
+                    <script type="text/javascript" src="resources/js/events.func.js?v'.$this->js_version.'"></script>
+                    <script type="text/javascript" src="resources/js/misc.func.js?v'.$this->js_version.'"></script>
+                    <script type="text/javascript" src="resources/js/onPageLoad.js?v'.$this->js_version.'"></script>
+                    <script type="text/javascript" src="resources/js/events.js?v'.$this->js_version.'"></script>
                 </body>
             </html>';
     }
