@@ -20,6 +20,9 @@ document.addEventListener('DOMContentLoaded', function() {
     // Activate the <select> tags
     var elems = document.querySelectorAll('select');
     var instances = M.FormSelect.init(elems);
+    // Activate the tabs
+    var elems = document.querySelectorAll('.tabs');
+    var instances = M.Tabs.init(elems);
   });
 // Initialize collapsible (uncomment the lines below if you use the dropdown variation)
 // var collapsibleElem = document.querySelector('.collapsible');

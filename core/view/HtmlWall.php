@@ -39,12 +39,12 @@ class HtmlWall
     private function tabs()
     {
         
-        return '<nav id="discussionTabs" style="margin-bottom:0.9em">
-                    <a id="tabWallDiscuss" class="active_tab">Discussions</a> 
-                    <!--<a id="tabWallNotifications">Notifications</a>-->
-                    <a id="tabWallEvents">Événements</a> 
-                    <a id="tabWallAttacks">Attaques</a> 
-                </nav>';
+        return '<ul class="tabs">
+                    <li class="tab col s3"><a href="#wallDiscuss">Discussions</a></li>
+                    <!--<li class="tab col s3"><a href="#wallNotifications">Notifications</a></li>-->
+                    <li class="tab col s3"><a href="#wallEvents">Événements</a></li>
+                    <li class="tab col s3"><a href="#wallAttacks">Attaques</a></li>
+                </ul>';
     }
     
     

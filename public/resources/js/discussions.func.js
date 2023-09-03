@@ -6,31 +6,6 @@
 
 
 /**
- * Highlights the active tab in the communication panel and inactivate the others
- * 
- * @param {type} activatedTab The tab to highlight
- * @return {undefined}
- */
-function activateDiscussionTab(activatedTab) {
-    
-    var allTabs = document.getElementById("discussionTabs").children,
-        allTabsIds = [];
-    // Automatically list the tabs IDs
-    for (let i = 0; i < allTabs.length; i++) {
-        allTabsIds.push(allTabs[i].getAttribute("id"));
-    }
-    
-    document.getElementById(activatedTab).className = "active_tab";
-    
-    for (let i = 0; i < allTabsIds.length; i++) {
-        if (allTabsIds[i] !== activatedTab) {
-            document.getElementById(allTabsIds[i]).className = "inactive_tab";
-        }
-    }
-}
-
-
-/**
  * Calls the API to get the list of the discussions, in the most performant way:
  * > By default, calls the API only once, then stores the result in memory (faster)
  * > If you need to update the results, you can force recalling the API (up-to-date but slower)
@@ -68,7 +43,19 @@ async function enlargeWall() {
     }
     
     // Loads the discussions tab by default
-    switchToDiscussTab();
+    initiateDiscussTab();
+}
+
+
+/**
+ * Gets the discussions and write them in the "discussions" tab.
+ * Note that this function doesn't display the tab: this task is handled by Materialize.css
+ */
+async function initiateDiscussTab() {
+    updateDiscussionsList("all");
+    // Add the listener on the form to create a topic.
+    // TODO: make a cleaner code with DOMContentLoaded
+    setTimeout(listenToSendform, 100);
 }
 
 
@@ -207,22 +194,16 @@ async function updateDiscussionsList(topicType) {
                                       topic.first_message, topic.last_message, nbrReplies);
     }
     
-    document.querySelector("#wallDiscuss").innerHTML = discussions + htmlNewDiscussionForm(citizenPseudo);
+    // Set in which wall to add the contents
+    // TODO: this doesn't handle a wall to display all the contents is one global tab 
+    // (discussions + events + attacks)
+    if(topicType === "event") {
+        var contentsId = "#wallEvents";
+    } else if(topicType === "discuss") {
+        var contentsId = "#wallDiscuss";
+    }  else if(topicType === "all") {
+        var contentsId = "#wallDiscuss";
+    }    
+    document.querySelector(contentsId).innerHTML = discussions + htmlNewDiscussionForm(citizenPseudo);
     document.getElementById("wallDiscuss").scrollIntoView(false);
-}
-
-
-/**
- * In the "communications" panel, activates the "Discussions" tab
- * @returns {undefined}
- */
-function switchToDiscussTab() {
-    
-    display("wallDiscuss");
-    hide(["wallNotifications", "wallEvents", "wallAttacks"]);
-    activateDiscussionTab("tabWallDiscuss");
-    updateDiscussionsList("all");
-    // Add the listener on the form to create a topic.
-    // TODO: make a cleaner code with async
-    setTimeout(listenToSendform, 100);
 }

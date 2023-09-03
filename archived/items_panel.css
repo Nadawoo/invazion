@@ -45,14 +45,6 @@
 #ground_panel var {
     color:black;
 }
-.inactive_tab { /* Onglet en arrière-plan */
-    z-index:1 !important;
-    opacity:0.6;
-}
-.active_tab { /* Onglet actif au premier plan */
-    z-index:3 !important;
-    opacity:1 !important;
-}
 
 /* Sac à dos du joueur */
 #bag_panel {

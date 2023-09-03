@@ -60,13 +60,6 @@
     overflow:auto;
     text-align:left;
 }
-#wall nav {
-    margin-top:0.6em;
-    font-size:0.8em;
-}
-#wall .active_tab {
-    border-bottom:0.3em solid #8b0000;
-}
 
 /* New topic */
 #buttonNewTopic {

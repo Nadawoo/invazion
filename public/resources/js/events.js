@@ -81,28 +81,19 @@ if (document.getElementById('map') !== null) {
     });
         
     // Switch tabs in the communications panel
-    document.getElementById("tabWallDiscuss").addEventListener("click", switchToDiscussTab);
-    document.getElementById("tabWallAttacks").addEventListener("click", function() {
-        display("wallAttacks");
-        hide(["wallDiscuss", "wallNotifications", "wallEvents"]);
-        activateDiscussionTab("tabWallAttacks");
+    document.querySelector("#wall .tabs a[href='#wallDiscuss']").addEventListener("click", initiateDiscussTab());
+    document.querySelector("#wall .tabs a[href='#wallAttacks']").addEventListener("click", function() {
         // Updates the log of attacks
         getCyclicAttacks(nbrExecutionsGetCyclicAttacks);
         nbrExecutionsGetCyclicAttacks++;
     });
-    document.getElementById("tabWallEvents").addEventListener("click", function() {
-        display("wallDiscuss");
-        hide(["wallEvents", "wallNotifications", "wallAttacks"]);
-        activateDiscussionTab("tabWallEvents");
+    document.querySelector("#wall .tabs a[href='#wallEvents']").addEventListener("click", function() {
         updateDiscussionsList("event");
         // Add the listener on the form to create a topic.
         // TODO: make a cleaner code with async
         setTimeout(listenToSendform, 100);
     });
-//    document.getElementById("tabWallNotifications").addEventListener("click", function() {
-//        display("notifications");
-//        hide(["discussions", "events", "attacks"]);
-//        activateDiscussionTab("tabWallNotifications");
+//    document.querySelector("#wall .tabs a[href='#wallNotifications']").addEventListener("click", function() {
 //        getLogEvents("notifications");
 //        hideClasses(["iAmNotInvolved"]);
 //    });
