@@ -952,3 +952,19 @@ function getHtmlActionBlockFellow(citizen, bigChips=false, displayActionButtons=
     
     return template;
 }
+
+
+/**
+ * Generates the image of an item
+ * 
+ * @param {int} itemId The ID of the item, as returned by the "items" API
+ * @param {int} height The dimensions to resize the image
+ * @returns {String} HTML
+ */
+function image(itemId, height) {
+    
+    let icon_path   = _configsItems[itemId]["icon_path"],
+        icon_symbol = _configsItems[itemId]["icon_symbol"];
+
+    return (icon_path !== null) ? `<img src="resources/img/${icon_path}" alt="icon_symbol" height="${height}"  width="${height}">` : icon_symbol;
+}

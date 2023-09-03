@@ -81,9 +81,10 @@ if (document.getElementById('map') !== null) {
     
     // Place on the map the buildings and cities
     addCitiesOnMap(mapId);  
-    
     // Place the citizens on the appropriate zones of the map
     addCitizensOnMap(mapId);    
+    // Display the zombie cores on the map (item ID #106)
+    displayItemOnMap(106);
     
     // Restore the display of the action button before the page was refreshed
 //    toggleActionBlock(getCookieConfig("round_button"));

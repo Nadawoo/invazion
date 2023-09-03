@@ -387,6 +387,23 @@ async function toggleMapItemMarker(itemId) {
 }
 
 
+/**
+ * Displays on the map the wanted item. Useful to show where are important items.
+ * 
+ * @param {int} itemId The ID of the item, as returned by the "items" API
+ * @returns {undefined}
+ */
+async function displayItemOnMap(itemId) {
+    
+    let itemCoords = getItemCoords(itemId);
+    
+    for(let coords of Object.values(await itemCoords)) {
+        let img = image(itemId, 38);
+        document.querySelector(`#map #zone${coords} .square_container`).insertAdjacentHTML('afterBegin', `<div style="position:absolute;top:-0.1rem;font-size:1.9em;">${img}</div>`);
+    }
+}
+
+
 function toggleMapNeighborhoodView() {
     
     if(window.isMapNeighborhoodViewActive === true) {
