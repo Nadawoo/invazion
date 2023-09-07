@@ -57,8 +57,11 @@
 }
 #wall .contents {
     height:100%;
-    overflow:auto;
     text-align:left;
+}
+#wall .body {
+    height:90%;
+    overflow:auto;
 }
 
 /* New topic */

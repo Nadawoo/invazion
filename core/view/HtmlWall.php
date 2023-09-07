@@ -21,12 +21,13 @@ class HtmlWall
                 </h2>
                 <div class="contents">
                     
-                    '.$this->tabs().'
-                    
-                    <div id="wallDiscuss"></div>
-                    <div id="wallNotifications"></div>
-                    <div id="wallAttacks"></div>
-                    <div id="wallEvents"></div>'
+                    <div class="header">'.$this->tabs().'</div>
+                    <div class="body">
+                        <div id="wallDiscuss"></div>
+                        <div id="wallNotifications"></div>
+                        <div id="wallAttacks"></div>
+                        <div id="wallEvents"></div>
+                    </div>'
                     
 //                    '.$this->event_construction_completed(date('c')).'                        
 //                    '.$this->event_AP_invested(date('c'), 'Nadawoo', 'Mur de renfort', 3).'
