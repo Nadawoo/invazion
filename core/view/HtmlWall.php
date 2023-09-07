@@ -27,8 +27,8 @@ class HtmlWall
                         <div id="wallNotifications"></div>
                         <div id="wallAttacks"></div>
                         <div id="wallEvents"></div>
-                    </div>'
-                    
+                    </div>
+                    <div class="footer"></div>'
 //                    '.$this->event_construction_completed(date('c')).'                        
 //                    '.$this->event_AP_invested(date('c'), 'Nadawoo', 'Mur de renfort', 3).'
                     

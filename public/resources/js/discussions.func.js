@@ -146,6 +146,7 @@ async function replyDiscussion(topicId, nbrMessages) {
  */
 function toggleSendform(event) {
     
+    toggle("send");
     toggle("sendform");
     toggle("buttonNewTopic");
     // Desactivate the normal form
@@ -204,6 +205,7 @@ async function updateDiscussionsList(topicType) {
     }  else if(topicType === "all") {
         var contentsId = "#wallDiscuss";
     }    
-    document.querySelector(contentsId).innerHTML = discussions + htmlNewDiscussionForm(citizenPseudo);
+    document.querySelector(contentsId).innerHTML = discussions;
+    document.querySelector("#wall .footer").innerHTML = htmlNewDiscussionForm(citizenPseudo);
     document.getElementById("wallDiscuss").scrollIntoView(false);
 }

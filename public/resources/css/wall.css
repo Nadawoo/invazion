@@ -56,20 +56,29 @@
     transition-duration: 1s;
 }
 #wall .contents {
+    display:flex;
+    flex-direction:column;
     height:100%;
     text-align:left;
 }
 #wall .body {
-    height:90%;
+    height:100%;
     overflow:auto;
+}
+#wall .footer {
+    padding:0.5rem 0 2rem 0;
+    border-top:1px solid grey;
+}
+#wall .footer .discuss {
+    margin:0;
 }
 
 /* New topic */
 #buttonNewTopic {
-    display:block;
-    font-weight:bold;
-    font-size:1em;
-    padding:1em;
+    padding:1em 0 1em 1em;
+    box-sizing: border-box;
+    border-width: 2px !important;
+    height:3em !important;
 }
 #hideSendform {
     display:block;
