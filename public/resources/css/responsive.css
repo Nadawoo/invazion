@@ -15,7 +15,7 @@
        width:100%;
        max-width:26rem;
        margin:0;
-       margin-top:3.4rem;
+       margin-top:3.95rem;
     }
     .box{
         width: 80%;
@@ -25,6 +25,9 @@
     }
     #map {
         margin-right:0.2em;
+    }
+    #map_header {
+        height:6.5rem; /* Let enough space above the map for the round action buttons */
     }
     /* Actions à droite de la carte */
     fieldset {
