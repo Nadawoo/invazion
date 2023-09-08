@@ -82,10 +82,9 @@
 }
 #hideSendform {
     display:block;
-    float:right;
-    margin:0.2em 0.1em 0 0;
-    text-align:right;
-    font-size:0.8em;
+    margin:0.5em 0;
+    text-align:center;
+    font-size:0.9em;
 }
 /* To send a message */
 #wall textarea, #wall input[type="text"] {
