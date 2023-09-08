@@ -55,7 +55,7 @@ async function initiateDiscussTab() {
     updateDiscussionsList("all");
     // Add the listener on the form to create a topic.
     // TODO: make a cleaner code with DOMContentLoaded
-    setTimeout(listenToSendform, 100);
+    setTimeout(listenToSendform, 500);
 }
 
 
@@ -98,9 +98,9 @@ async function createDiscussion() {
         json.datas.message = message;
         json.datas.author_pseudo = author_pseudo;
         // Display the new discussion thread
-        document.getElementById("newDiscussion").innerHTML += htmlDiscussion(json.datas.topic_id, json.datas.topic_type,
+        document.getElementById("wallDiscuss").innerHTML += htmlDiscussion(json.datas.topic_id, "discuss",
                                                                              title, json.datas, null, 0);
-        hide("send");
+        toggleSendform(null);
         // Clear the form for the eventual next thread to send
         document.getElementById("sendform").reset();
     }
@@ -149,11 +149,15 @@ function toggleSendform(event) {
     toggle("send");
     toggle("sendform");
     toggle("buttonNewTopic");
-    // Desactivate the normal form
-    event.preventDefault();
-    // Put the cursor in the text area to allow direct typing
-    document.querySelector("#messageNew").focus();
-    document.getElementById("wallDiscuss").scrollIntoView(false);
+    
+    // When we hide the form, event = null
+    if(event !== null) {
+        // Desactivate the normal form
+        event.preventDefault();
+        // Put the cursor in the text area to allow direct typing
+        document.querySelector("#messageNew").focus();
+        document.getElementById("wallDiscuss").scrollIntoView(false);
+    }
 }
 
 

@@ -20,7 +20,6 @@ function htmlDiscussionNotif(topicTitle, date, url, authorId, authorPseudo, last
 
 function htmlDiscussion(topicId, topicType, topicTitle, firstMessage, lastMessage, nbrReplies) {
     
-    var url = urlDiscussion(topicId, lastMessage.message_id);
     var otherMessagesLink = (nbrReplies>1) ? '<a id="loadDiscussion'+topicId+'" class="link_other_messages" onclick="loadDiscussion('+topicId+')">··· voir les '+(nbrReplies-1)+' autres réponses ···</a>' : '';
     // If there is no reply, the last message is the same as the first one, 
     // so don't display it two times.
