@@ -877,6 +877,8 @@ a.redbutton {
 .toast {
     width:15em;
     box-shadow:6px 6px 6px black;
+    margin-left:0.5em;
+    padding:0.8em;
 }
 
 /* Message d'erreur, ex : "Vous n'avez plus assez de PA"
@@ -888,7 +890,6 @@ a.redbutton {
     color: white;
     display: block;
     padding: 6px 12px;
-    text-align: justify;
 }
 .warning {
     background: #7d3c98 ;

@@ -420,16 +420,22 @@ async function updateLandType(landType, coordX, coordY) {
 async function moveCitizen(direction) {
     
     // Delete the informations about the previous zone (obsolete)
-    _myZone = null;
+    _myZone = null;    
     
-    let token = getCookie('token');
     // Ask the API for moving the player
+    let token = getCookie('token'); 
     let json = await callApi("GET", "zone", `action=move&to=${direction}&token=${token}`);
     
+    let current_AP = (document.querySelector("#actionPoints").innerHTML),
+        lost_AP    = json.datas.action_points_lost;
+        new_AP     = current_AP - lost_AP;
+        
     // Display the eventual error in a toast
-    if(json.metas.error_code !== "success") {
-        M.toast({html: json.metas.error_message, classes: json.metas.error_class,
-                displayLength: 2000, outDuration: 800});
+    if(lost_AP > 0 || json.metas.error_code !== "success") {
+        let error_message = (json.metas.error_code === "success")
+                    ? `-${lost_AP} point d'action consommé<br>${new_AP}&#9889; restants`
+                    : json.metas.error_message;
+        M.toast({html: error_message, classes: json.metas.error_class, displayLength: 2500, outDuration: 800});
     }
     
     // Update the stored coordinates of the player
