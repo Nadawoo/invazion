@@ -16,17 +16,18 @@ function connect($email)
         
         <fieldset>
             <legend>E-mail</legend>
-            <input type="email" name="email" id="email" value="'.$email.'" autofocus />
+            <input type="email" name="email" id="email" value="'.$email.'"
+                   autocomplete="username" aria-describedby="username_constraints" required autofocus />
         </fieldset>
-        <div class="aside">L\'adresse e-mail que vous avez indiquée lorsque
+        <div id="username_constraints" class="aside">L\'adresse e-mail que vous avez indiquée lorsque
                          vous avez créé votre compte.</div>
-        
         
         <fieldset>
             <legend>Mot de passe</legend>
-            <input type="password" name="password" id="password" />
+            <input type="password" name="password" id="password" 
+                   autocomplete="current-password" aria-describedby="password_constraints" />
         </fieldset>
-        <div class="aside">Si vous n\'avez pas défini de mot passe, laissez ce champ vide.</div>
+        <div id="password_constraints" class="aside">Si vous n\'avez pas défini de mot passe, laissez ce champ vide.</div>
         
         <div id="buttonsBlock">
             <a href="register.php" style="font-variant:small-caps">Créer un compte</a>

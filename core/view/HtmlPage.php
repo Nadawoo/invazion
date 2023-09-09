@@ -183,7 +183,7 @@ class HtmlPage
                     <div class="background">
                       <img src="resources/img/motiontwin/mapBg.jpg">
                     </div>
-                    <a href="#user"><img class="circle" src="resources/img/icons8/profile-96.png"></a>
+                    <a href="#user"><img class="circle" src="resources/img/icons8/profile-96.png" alt="Utilisateur"></a>
                     <a href="#name"><span class="white-text"><strong>'.$citizen_pseudo.'</strong> (citoyen #'.$citizen_id.')</span></a>
                 </div></li>'
                 

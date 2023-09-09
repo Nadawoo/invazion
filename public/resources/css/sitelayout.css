@@ -214,7 +214,8 @@ li {
     max-width:50%;
 }
 #connectionForm h2 {
-    margin-top:0.5em;
+    margin-top:0.3em;
+    font-size:2.5em;
     text-align:center
 }
 #connectionForm fieldset {
