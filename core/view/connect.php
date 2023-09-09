@@ -29,11 +29,11 @@ function connect($email)
         <div class="aside">Si vous n\'avez pas défini de mot passe, laissez ce champ vide.</div>
         
         <div id="buttonsBlock">
-            <a href="register.php">Créer un compte</a>
+            <a href="register.php" style="font-variant:small-caps">Créer un compte</a>
             <input type="submit" value="Me connecter" />
         </div>
         
-        <p class="right"><a href="index">Annuler</a></p>
+        <p style="text-align:right"><a href="index">Annuler</a></p>
         
     </form>';
 }

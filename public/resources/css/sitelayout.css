@@ -210,7 +210,7 @@ li {
     border:1px solid lightgrey;
     border-radius:0.2em;
     margin:auto;
-    padding:0 1rem;
+    padding:0 1rem 1rem 1rem;
     max-width:50%;
 }
 #connectionForm h2 {
@@ -220,7 +220,7 @@ li {
 #connectionForm fieldset {
     border-radius: 0.2em;
     margin-top:1em;
-    padding:0 0.4em 0.4em 0.2em;
+    padding:0 0.5em 0.2em 0.5em;
 }
 #connectionForm input[type="email"],
 #connectionForm input[type="password"] {
