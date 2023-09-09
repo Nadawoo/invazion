@@ -225,16 +225,17 @@ li {
 }
 #connectionForm input[type="email"],
 #connectionForm input[type="password"] {
-    width:100%;
+    width:95%;
     margin:auto;
+    padding:0 0.3em;
     font-size:1.1em;
-    border:none;
+    border:1px solid grey;
 }
 #connectionForm #buttonsBlock {
     display:flex;
     align-items:center;
     justify-content:space-between;
-    margin-top:1.5rem;
+    margin-top:2rem;
 }
 #connectionForm input[type="submit"] {
     padding:0.1em 0.5em 0.2em 0.5em;
