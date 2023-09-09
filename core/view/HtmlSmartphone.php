@@ -25,7 +25,7 @@ class HtmlSmartphone
         
         return '<div id="phone">
                 <div class="title">––</div>
-                <div class="container">
+                <div class="body">
                     <div class="sideicons">
                         '.$this->side_icons().'
                     </div>

@@ -22,10 +22,9 @@
     font-weight:bold;
     border-radius:0.5em 0.5em 0 0;
 }
-#phone .container {
+#phone .body {
     display:flex;
     height:13em; /* Le ratio hauteur/largeur fait ressembler à un smartphone */
-    border-top:1px solid black;
     overflow:hidden;
 }
 
