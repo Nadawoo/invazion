@@ -873,6 +873,11 @@ a.redbutton {
     font-size:2rem; /* Useful when the default avatar is an emoji (e.g. silhouette) */
 }
 
+/* Toasts */
+.toast {
+    width:15em;
+    box-shadow:6px 6px 6px black;
+}
 
 /* Message d'erreur, ex : "Vous n'avez plus assez de PA"
    Important : utiliser les alias retournés par les API 
@@ -884,8 +889,6 @@ a.redbutton {
     display: block;
     padding: 6px 12px;
     text-align: justify;
-    white-space: break-spaces;
-    word-break: break-all;
 }
 .warning {
     background: #7d3c98 ;

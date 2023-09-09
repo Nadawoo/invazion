@@ -423,20 +423,22 @@ async function moveCitizen(direction) {
     _myZone = null;
     
     let token = getCookie('token');
-    // Asks the API for moving the player
+    // Ask the API for moving the player
     let json = await callApi("GET", "zone", `action=move&to=${direction}&token=${token}`);
     
-    document.getElementById("message_move").innerHTML = (json.metas.error_code === "success") 
-        ? ''
-        : '<span class="'+json.metas.error_class+'">'+json.metas.error_message+'</span>';
+    // Display the eventual error in a toast
+    if(json.metas.error_code !== "success") {
+        M.toast({html: json.metas.error_message, classes: json.metas.error_class,
+                displayLength: 2000, outDuration: 800});
+    }
     
     // Update the stored coordinates of the player
     document.querySelector("#citizenCoordX").innerHTML = json.datas.new_coord_x;
     document.querySelector("#citizenCoordY").innerHTML = json.datas.new_coord_y;
     
-    // Updates the coordinates of the player in the movement paddle
+    // Update the coordinates of the player in the movement paddle
     updateMovementPaddle(json.datas.new_coord_x, json.datas.new_coord_y);
-    // Updates the coordinates of the player in the land editor
+    // Update the coordinates of the player in the land editor
     updateMapEditor(json.datas.new_coord_x, json.datas.new_coord_y);
     
     // Update the attribute "data-citizen" of the destination zone to add the player
