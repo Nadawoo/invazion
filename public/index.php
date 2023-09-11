@@ -333,9 +333,20 @@ echo $popup->customised('popsuccess', '', $msg_popup, $is_custom_popup_visible);
                 <?php echo $html['map']; ?>
             </div>
         </div>
+        
         <div id="map_navigation">
             <?php echo $layout->block_map_navigation() ?>
         </div>
+        
+        <fieldset id="map_legend">
+            <legend>Légende</legend>
+            <ul>
+                <li><span style="background:grey"></span> Zone sûre, aucun zombie</li>
+                <li><span style="background:green"></span> Zone sûre, peu de zombies</li>
+                <li><span style="background:orange"></span> 2 humains requis ou +</li>
+                <li><span style="background:red"></span> 3 humains requis ou +</li>
+            </ul>
+        </fieldset>
         
     </section>
     

@@ -321,6 +321,7 @@ function activateMapZombiesView() {
             color = 'grey';  // No zombies
         } 
         
+        display("map_legend");
         // Color the zones depending on the number of zombies
         squareContainer.style.background = color;
         // Reveal all the zones, regardless their date of last visit
@@ -349,6 +350,7 @@ function desactivateMapZombiesView() {
         squareContainer.style.background = "none";        
     }
     
+    hide("map_legend");
     hideClasses(["zombies_amount"]);
     // Display the icons of zombies again
     unhideClass("zombies");

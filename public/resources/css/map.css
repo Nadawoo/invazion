@@ -475,3 +475,24 @@
     margin-left:-1em;
     margin-top:-3.2em;
 }
+
+/* Legend for the view of the map (zombies...) */
+#map_legend {
+    display:none;
+    position:fixed;
+    bottom:0.5rem;
+    margin-left:0.5em;
+    font-size:0.9em;
+    border:2px solid grey;
+    border-radius:0.5em;
+    background:white;
+    opacity:0.8;
+}
+#map_legend ul {
+    margin:0;
+}
+#map_legend li span {
+    display:inline-block;
+    height:1em;
+    width: 1em;
+}
