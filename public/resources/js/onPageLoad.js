@@ -39,6 +39,13 @@ if (document.getElementById('map') !== null) {
     var _configsItems     = JSON.parse(document.querySelector("#configs .items").innerHTML);
     var _configsMap       = JSON.parse(document.querySelector("#configs .map").innerHTML);
 
+    // Place on the map the buildings and cities
+    addCitiesOnMap(mapId);  
+    // Place the citizens on the appropriate zones of the map
+    addCitizensOnMap(mapId);    
+    // Display the zombie cores on the map (item ID #106)
+    displayItemOnMap(106);
+
     // Only if the visitor is connected
     if(document.querySelector("#citizenId").innerHTML !== "") {
     
@@ -68,7 +75,7 @@ if (document.getElementById('map') !== null) {
         // Updates the distance to the city displayed under the movement paddle
         updateCityDistance(zoneData.coordx, zoneData.coordy);     
         // Displays the button to enter if there is a city in the zone
-        updateEnterBuildingButton(zoneData.citytypeid);
+        setTimeout(function() { updateEnterBuildingButton(zoneData.citytypeid); }, 1000);
         // Updates the coordinates of the player in the land editor
         updateMapEditor(zoneData.coordx, zoneData.coordy);
         // Update the numbers in the big buttons next to the map
@@ -78,13 +85,6 @@ if (document.getElementById('map') !== null) {
         // Display the actions for fighting against zombies
         showFightingZombiesButtons(zoneData.zombies);
     }
-    
-    // Place on the map the buildings and cities
-    addCitiesOnMap(mapId);  
-    // Place the citizens on the appropriate zones of the map
-    addCitizensOnMap(mapId);    
-    // Display the zombie cores on the map (item ID #106)
-    displayItemOnMap(106);
     
     // Restore the display of the action button before the page was refreshed
 //    toggleActionBlock(getCookieConfig("round_button"));
