@@ -254,14 +254,6 @@
     font-weight:bold;
 }
 
-.square_container .icon_placeholder img {
-    position:absolute;
-    bottom:0.5em;
-    left:0.25em;
-    height:32px;
-    width: 32px;
-}
-
 /* Surelevate the zones with cities or buildings */
 #map .elevate {
     position:relative;
