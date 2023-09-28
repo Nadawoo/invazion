@@ -43,6 +43,12 @@ if (document.getElementById('map') !== null) {
         }
     });
     
+    // Change cycle (trigger the midnight attack)
+    document.querySelector('form[name="end_cycle"]').addEventListener("submit", function() {
+        //event.preventDefault();
+        displayMessageEndCycle();
+    });
+    
     // Digs a zone to find items
     document.querySelector('#block_dig form[name="dig"]').addEventListener("submit", function() {
         // Desactivate the classic submission button (avoids reloading the page)

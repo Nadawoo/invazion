@@ -213,6 +213,7 @@ class HtmlLayout extends HtmlPage
                 Carte n° '.$map_id.'<br>
                 &#x1F551; Jour '.(int)$day.'
             </div>
+            <p id="messageEndCycle" style="display:none;margin:0"></p>
             <div id="timer">
                 '.$buttons->button('end_cycle').'
             </div>

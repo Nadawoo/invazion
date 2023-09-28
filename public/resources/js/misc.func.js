@@ -147,6 +147,20 @@ function updateUrlParam(name, value) {
 
 
 /**
+ * Wait for XX milliseconds before continuing the execution of the function
+ * Ex: await sleep(1000);
+ * Important: MUST be placed inside an "async" function to work
+ * 
+ * @param {int} milliseconds The duration of the pause, in milliseconds
+ * @returns {Promise}
+ */
+function sleep(milliseconds) {
+    
+    return new Promise(resolve => setTimeout(resolve, milliseconds));
+}
+
+
+/**
  *  Displays the location icon on every zone which contains the specified element
  *  
  *  @param {string} objectToMark The alias of the object to mark on the map.
@@ -975,4 +989,39 @@ function image(itemId, height) {
         icon_symbol = _configsItems[itemId]["icon_symbol"];
 
     return (icon_path !== null) ? `<img src="resources/img/${icon_path}" alt="icon_symbol" height="${height}"  width="${height}">` : icon_symbol;
+}
+
+
+/**
+ * Displays the stages constituting the midnight attack 
+ * (kill the citizens outside, etc.)
+ * 
+ * @returns {undefined}
+ */
+async function displayMessageEndCycle() {
+
+   let textZoneId = "messageEndCycle";
+   let stages = [  {"icon": '&#127751;',
+                    "descr": "Fin du cycle. Le soleil se couche..."},
+                   {"icon": '&#127964;&#65039;',
+                    "descr": "Mort des citoyens non-abrités..."},
+                   {"icon": '&#129440;',
+                    "descr": "Mort des citoyens blessés..."},
+                   {"icon": '<img src="resources/img/motiontwin/zombie4.gif" alt="&#129503;">',
+                            "descr": "Apparition de nouveaux zombies sur la carte..."},
+                   {"icon": '<img src="resources/img/thirdparty/notoemoji/sunrise-512.webp" alt="&#127748;" height="52">',
+                            "descr": "Une nouvelle journée commence ! Bonne chance..."}
+                   ];
+
+   hide("timer");
+   display(textZoneId);
+
+   for(let stage of stages) {
+       document.getElementById(textZoneId).innerHTML = `<span style="font-size:2.6em;">${stage.icon}</span>${stage.descr}`;
+       await sleep(1500);
+   }
+   await sleep(1500);
+
+   hide(textZoneId);
+   display("timer");
 }
