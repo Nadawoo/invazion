@@ -206,7 +206,7 @@ async function addCitiesOnMap(mapId) {
         
         // Adds the name of the building
         cityName = (city["city_name"] === null) ? buildingName : city["city_name"];
-        zone.insertAdjacentHTML("afterbegin", `<span class="city_name" style="">${cityName}</span>`);
+        zone.insertAdjacentHTML("beforeend", `<span class="city_name" style="">${cityName}</span>`);
         
         // Adds the building description in the bubble of the zone
         zone.querySelector(".roleplay").innerHTML = `<h5 class="name">${buildingName}</h5><hr><div class="descr_ambiance">${buildingDescr}</div>`;
