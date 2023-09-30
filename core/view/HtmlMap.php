@@ -101,12 +101,12 @@ class HtmlMap
      * @param int $building_id
      * @return string HTML
      */
-    private function html_icon_building($building_id)
-    {
-        
-        // Placeholder. The real icon will be placed by javascript.
-        return '<div class="icon_placeholder"><div class="buildingId">'.$building_id.'</div></div>';
-    }
+//    private function html_icon_building($building_id)
+//    {
+//        
+//        // Placeholder. The real icon will be placed by javascript.
+//        return '<div class="icon_placeholder"><div class="buildingId">'.$building_id.'</div></div>';
+//    }
     
     
     /**

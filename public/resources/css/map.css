@@ -281,6 +281,11 @@
     border-radius:0.3em;
     box-shadow:6px 6px 6px black;
 }
+#map .city_img {
+    display:block;
+    position:absolute;
+    bottom:8px;
+}
 
 /*
  * An <svg> area covers the map to allow drawing on it (lines between zones...)
