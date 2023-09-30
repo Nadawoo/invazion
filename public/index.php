@@ -10,6 +10,7 @@ safely_require('/core/ZombLib.php');
 $api                = new ZombLib(official_server_root().'/api');
 $layout             = new HtmlLayout();
 $actionBlocks       = new HtmlActionBlocks();
+$actionCards        = new HtmlActionCards();
 $map                = new HtmlMap();
 $statusbar          = new HtmlStatusBar();
 $enclosure          = new HtmlCityEnclosure();
@@ -395,33 +396,11 @@ echo $layout->block_zone_fellow_template();
                 
                 echo $layout->block_movement_AP($citizen['action_points'], $speciality_caracs['action_points']);
                 
-                echo '
-                <br>
-                <a id="card_citizens" class="card" style="border-width:2px"
-                    onclick="toggleActionBlock(\'citizens\'); updateBlockAction(\'citizens\')">
-                    D\'autres humains se trouvent dans la zone !
-                    <strong style="color:darkred">&#x1F465; Interagir &#9002;</strong>
-                </a>
-                <div id="card_building" class="card">
-                    <img src="resources/img/copyrighted/tiles/desert/10.png" height="96" width="73" alt="Bâtiment"
-                         style="float:left;margin-right:1em;">
-                    <strong>Bâtiment découvert :<br><span class="building_name"></span></strong>
-                    <br>'
-                    .$buttons->button('enter_city', 'no_icon')
-                    .$buttons->button('destroy_city', 'no_icon')
-                    .$popup->link('popsuccess', 'Explorer', 'button_explore')
-                    .$popup->link('popvault', 'Pouvoir cryptique', 'button_crypt').'
-                </div>
-                <a id="card_dig" class="card"
-                    onclick="toggleActionBlock(\'dig\'); updateBlockAction(\'dig\')">
-                    La zone peut être fouillée.
-                    <strong style="color:darkred">&#9935;&#65039; Fouiller &#9002;</strong>
-                </a>
-                <a href="#popmove" id="card_ap_cost" class="card"
-                   style="border:2px solid #e65100;color:inherit">
-                   <span>Quitter la zone vous coûtera <strong>1</strong>&#9889;</span>
-                   <span class="actionspoints_decrease"></span>
-                </a>';
+                echo '<br>'.
+                $actionCards->card_citizens().
+                $actionCards->card_building().
+                $actionCards->card_dig().
+                $actionCards->card_ap_cost();
                 
                 echo '<hr>
                     
