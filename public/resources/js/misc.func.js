@@ -546,7 +546,12 @@ async function killZombies(apiAction) {
     // Moves the citizen form the main city to his indivdual home
     json = await callApi("GET", "zone", "action="+apiAction+"&token="+getCookie('token'));
     
-    M.toast({html: json.metas.error_message, classes: json.metas.error_class, displayLength: 2500, outDuration: 800});
+    // Display the explosion effect on the zone
+    document.querySelector("#explosionMe").classList.add("scale-in");
+    setTimeout(function() {
+        document.querySelector("#explosionMe").classList.remove("scale-in");
+        M.toast({html: json.metas.error_message, classes: json.metas.error_class, displayLength: 2500, outDuration: 800});
+    }, 1500);
     
     if(json.metas.error_code === "success") {  
         // The main container of the zone where the player is

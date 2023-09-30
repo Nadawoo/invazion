@@ -95,7 +95,8 @@ function addMeOnMap() {
         myCoordY = document.querySelector("#citizenCoordY").innerHTML,    
         myZone = document.querySelector(`#zone${myCoordX}_${myCoordY} .square_container`);
 
-    let htmlMe = '<div class="map_citizen" id="me"><img src="resources/img/free/human.png"></div>\
+    let htmlMe = '<img id="explosionMe" class="scale-transition scale-out" src="resources/img/thirdparty/notoemoji/collision-512.webp" width="38">\
+                  <div class="map_citizen" id="me"><img src="resources/img/free/human.png"></div>\
                   <div class="halo">&nbsp;</div>',
         htmlBubble = '<h5 class="name">Vous êtes ici&nbsp;!</h5>\
                     <hr>\
