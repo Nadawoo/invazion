@@ -9,6 +9,7 @@ safely_require('/core/ZombLib.php');
 
 $api                = new ZombLib(official_server_root().'/api');
 $layout             = new HtmlLayout();
+$actionBlocks       = new HtmlActionBlocks();
 $map                = new HtmlMap();
 $statusbar          = new HtmlStatusBar();
 $enclosure          = new HtmlCityEnclosure();
@@ -156,17 +157,10 @@ $html = [
     'map_citizens'      => $layout->map_citizens($citizens),
     'attack_bar'        => $layout->attack_bar($citizen['map_id'], get_game_day($citizen['last_death'])),
     // Contents of the round action buttons at the right of the map
-    'actions_build'     => $layout->block_actions_build(),
-    'actions_bag'       => $layout->block_actions_bag($configs['items'], $citizen['bag_items']),
-    'actions_zombies'   => $layout->block_actions_zombies($zone['zombies'], $configs['map']['killing_zombie_cost']),
-    'edit_land'         => $layout->block_edit_land($citizen['coord_x'], $citizen['coord_y']),
-    'zombie_powers'     => $layout->block_zombie_powers(),
-    'item_template'     => $htmlItem->item_template(),
     'ground_items'      => $layout->block_ground_items($citizen['coord_x'], $citizen['coord_y']),
     // TODO: merge_zone_items with ground_items
     'zone_items'        => $layout->block_zone_items($configs['items'], $zone),
     'bag_items'         => $layout->block_bag_items($configs['items'], $citizen['bag_items'], $citizen['bag_size']),
-    'zone_fellows_template' => $layout->block_zone_fellow_template(),
     // Smartphone at the right of the map
     'smartphone'        => $phone->smartphone($maps['map_width'], $maps['map_height'], $citizen, $speciality_caracs, $zone),
     ];
@@ -200,6 +194,10 @@ echo $popup->template_popbuilding($msg_popup);
 echo $popup->customised('popsmartphone', '', $html['smartphone']);
 // Generic pop-up describing the result of an action
 echo $popup->customised('popsuccess', '', $msg_popup, $is_custom_popup_visible);
+
+// HTML <templates>
+echo $htmlItem->item_template();
+echo $layout->block_zone_fellow_template();
 ?>
     
     <section id="connectionbar">
@@ -435,68 +433,13 @@ echo $popup->customised('popsuccess', '', $msg_popup, $is_custom_popup_visible);
                 ?>
             </fieldset>
             
-            <fieldset id="block_dig">
-                <p class="center" style="margin:0 0 1.5em 0">
-                    <em>En fouillant le désert, vous collectez les objets indispensables 
-                    à votre survie.</em>
-                </p>
-                <?php 
-                echo $buttons->button('dig', false, '', (bool)$citizen['can_dig']).'<br>';
-                ?>
-                <hr>
-                
-                &#x1F4BC; <strong>Objets dans mon sac</strong>
-                    <template id="tplEmptySlot">
-                        <li class="empty_slot"></li>
-                    </template>
-                    <?php echo $html['bag_items'] ?>
-                    
-                &#x270B;&#x1F3FC; <strong>Objets au sol</strong>
-                    <?php echo $html['item_template'] ?>
-                    <?php echo $html['ground_items'] ?>
-                    
-                    <!--
-                    <div id="items_ground">
-                        <p class="greytext">
-                            Aucun objet au sol pour l'instant. Vous allez devoir fouiller...
-                        </p>
-                        
-                        <input type="hidden" name="api_name" value="zone">
-                        <input type="hidden" name="action" value="pickup">
-                        
-                        <ul class="items_list" style="margin-left:1.5rem;"
-                            data-coordx="" data-coordy=""></ul>
-                    </div>
-                    -->
-            </fieldset>
-
-            <fieldset id="block_zombies">
-                <?php
-                echo $html['actions_zombies'];
-                echo '<br>'.$html['actions_bag'];
-                ?>                
-            </fieldset>
-
-            <fieldset id="block_build">
-                <?php 
-                echo $html['actions_build']
-                     .'<hr>'
-                     . $html['edit_land']
-                     .'<hr>'
-                     . $html['zombie_powers']
-                ?>
-            </fieldset>
-
-            <fieldset id="block_citizens">                
-                <?php echo $html['zone_fellows_template'] ?>
-                <strong>Humains dans ma zone</strong>
-                <p class="greytext"><br>Personne à proximité. Vous êtes seul au milieu 
-                    de cette zone désertique...</p>
-                <ol id="citizensInMyZone" class="citizens" data-coordx="" data-coordy=""></ol>
-                <hr>
-                <strong>Autres humains sur la carte</strong>
-                <ol id="citizensInOtherZones" class="citizens" data-coordx="" data-coordy=""></ol>
-            </fieldset>
+            <?php
+            echo $actionBlocks->block_dig($html['bag_items'], $html['ground_items'], (bool)$citizen['can_dig']);
+            echo $actionBlocks->block_zombies($zone['zombies'], $citizen['bag_items'], $configs['items'], $configs['map']['killing_zombie_cost']);
+            echo $actionBlocks->block_citizens();
+            echo $actionBlocks->block_build($citizen['coord_x'], $citizen['coord_y']);
+            ?>
+            
         </section>
         
         <div id="message_move"><?php echo $msg_move ?></div>
