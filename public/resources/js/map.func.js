@@ -174,6 +174,7 @@ async function addCitiesOnMap(mapId) {
         let buildingCarcs = _configsBuildings[city.city_type_id],
             buildingIconHtml = buildingCarcs["icon_html"],
             buildingIconPath = "resources/img/"+buildingCarcs["icon_path"],
+            buildingIconWidth = Math.round(buildingCarcs["icon_size_ratio"] * 32),
             buildingName = buildingCarcs["name"],
             buildingDescr = buildingCarcs["descr_ambiance"];
         
@@ -188,7 +189,7 @@ async function addCitiesOnMap(mapId) {
                 zone.closest(".hexagon").style.backgroundImage = `url(${buildingIconPath})`;                 
             } else {
                 // Displays the image (PNG) of the building (without tile)
-                zone.insertAdjacentHTML("afterbegin", `<img class="city_img" src="${buildingIconPath}" alt="${buildingIconHtml}" width="32">`);
+                zone.insertAdjacentHTML("afterbegin", `<img class="city_img" src="${buildingIconPath}" alt="${buildingIconHtml}" width="${buildingIconWidth}">`);
                 // Delete the "&nbsp;" required on the empty zones 
 //                if(zone.querySelector(".empty") !== null) {
 //                    zone.querySelector(".empty").remove();
