@@ -4,8 +4,9 @@
 #map {
     float:left;
     margin:0 0.2em 3em 0;
-    max-width:95%;
-    overflow:hidden;
+    width:100%;
+    overflow-x:hidden;
+    overflow-y:scroll;
     font-size:1.05em;
     border-radius:0.5em;
     background:repeating-linear-gradient(0.38turn, black, black 2px, #17202a 2px, #17202a 4px);
@@ -134,7 +135,10 @@
  * Map header
  */
 #map_header {
+    display:flex;
+    justify-content:space-between;
     position:relative;
+    height:7rem;
     margin-bottom:0.5em;
     text-align:center;
     font-size:0.9em;
@@ -145,7 +149,7 @@
     display:flex;
     justify-content:space-around;
     width:17rem;
-    margin:0.5em auto 0.5em auto;
+    /*margin:0.5em auto 0.5em auto;*/
     padding:0.4em;
     padding-bottom:0.3em;
 }

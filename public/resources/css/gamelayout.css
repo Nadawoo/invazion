@@ -377,16 +377,14 @@
     align-items:flex-start;
     justify-content:space-between;
     position:relative;
-    width:100%;
     margin:0.1rem 0 0 0;
-    text-align:center;
     white-space:nowrap;
     z-index:21;
 }
 .round_action_block {
     position:relative;
     display:inline-block;
-    margin-right:0.1rem;
+    /*margin-right:0.1rem;*/
     background:#34495e;
     border-radius:0.2rem;
 }
@@ -420,7 +418,7 @@
     opacity:0.7;
 }
 .active .round_action, .active .round_action:hover {
-    margin-bottom:2rem;
+    margin-bottom:2.25rem;
     background:#d6eaf8;
     border:3px inset white; /*#808b96*/
     box-shadow:1px 1px 2px white;
@@ -463,10 +461,11 @@
 #actions fieldset {
     display:none;
     position:relative;
-    top:-1.25rem;
-    margin-left:0;
+    top:-1.5rem;
+    margin:0;
     padding-top:3rem;
     padding-bottom:2rem;
+    text-align:left;
     border:1px solid #34495e;
     border-radius: 0 0 0.3rem 0.3rem;
     box-shadow:5px 5px 8px black;
@@ -510,6 +509,7 @@ legend {
 }
 #block_zombies #action_zombies {
     display:none;
+    text-align:center;
 }
 #block_zombies .nbr_zombies {
     font-size:1.3em;

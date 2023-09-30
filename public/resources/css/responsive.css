@@ -26,9 +26,6 @@
     #map {
         margin-right:0.2em;
     }
-    #map_header {
-        height:6.5rem; /* Let enough space above the map for the round action buttons */
-    }
     /* Actions à droite de la carte */
     fieldset {
         padding:0 0.5em 0.5em 0.5em;
