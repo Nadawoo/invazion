@@ -28,7 +28,7 @@ class HtmlButtons
                 'name'  => 'Consommer',
                 'title' => "",
                 'fields' => [
-                    'api_name'      => 'me',
+                    'api_name'      => 'items',
                     'action'        => 'eat'
                     ]
                 ],
