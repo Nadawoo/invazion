@@ -207,9 +207,19 @@ async function addCitiesOnMap(mapId) {
 //            }
         }
         
+        // Adds the number of zombies of the daily attack 
+        // (#230 = ID of the "zombie base" building)
+        if(city.city_type_id === 230) {
+            zone.insertAdjacentHTML("afterbegin", `<span class="nbr_defenses" style="background:red">${zone.dataset.zombies} zombies</span>`);
+        }        
+        // Adds the number of defenses above each city
+        // (#12 = ID of the "human city" building)
+        if(city.city_type_id === 12) {
+            zone.insertAdjacentHTML("afterbegin", `<span class="nbr_defenses">${city.total_defenses} défenses</span>`);
+        }        
         // Adds the name of the building
         cityName = (city["city_name"] === null) ? buildingName : city["city_name"];
-        zone.insertAdjacentHTML("afterbegin", `<span class="city_name" style="">${cityName}</span>`);
+        zone.insertAdjacentHTML("afterbegin", `<span class="city_name">${cityName}</span>`);
         
         // Adds the building description in the bubble of the zone
         zone.querySelector(".roleplay").innerHTML = `<h5 class="name">${buildingName}</h5><hr><div class="descr_ambiance">${buildingDescr}</div>`;
