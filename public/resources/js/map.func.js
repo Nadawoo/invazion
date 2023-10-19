@@ -176,6 +176,7 @@ async function addCitiesOnMap(mapId) {
             buildingIconHtml = buildingCarcs["icon_html"],
             buildingIconPath = "resources/img/"+buildingCarcs["icon_path"],
             buildingIconWidth = Math.round(buildingCarcs["icon_size_ratio"] * 32),
+            buildingEmojiSize = Math.round(buildingCarcs["icon_size_ratio"] * 1.5),
             buildingName = buildingCarcs["name"],
             buildingDescr = buildingCarcs["descr_ambiance"];
         
@@ -199,11 +200,11 @@ async function addCitiesOnMap(mapId) {
         }
         else {
             // If no image file for this building, displays an emoji for the building
-            zone.insertAdjacentHTML("afterbegin", `<div class="icon_html">${buildingIconHtml}</div>`);
+            zone.insertAdjacentHTML("afterbegin", `<div class="icon_html"  style="font-size:${buildingEmojiSize}em;">${buildingIconHtml}</div>`);
             // Delete the "&nbsp;" required on the empty zones 
-            if(zone.querySelector(".empty") !== null) {
-                zone.querySelector(".empty").remove();
-            }
+//            if(zone.querySelector(".empty") !== null) {
+//                zone.querySelector(".empty").remove();
+//            }
         }
         
         // Adds the name of the building
