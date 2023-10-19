@@ -201,9 +201,9 @@ async function addCitiesOnMap(mapId) {
             // If no image file for this building, displays an emoji for the building
             zone.insertAdjacentHTML("afterbegin", `<div class="icon_html">${buildingIconHtml}</div>`);
             // Delete the "&nbsp;" required on the empty zones 
-//            if(zone.querySelector(".empty") !== null) {
-//                zone.querySelector(".empty").remove();
-//            }
+            if(zone.querySelector(".empty") !== null) {
+                zone.querySelector(".empty").remove();
+            }
         }
         
         // Adds the name of the building
