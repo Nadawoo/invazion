@@ -346,9 +346,9 @@ class HtmlPopup
             en fonction du nombre de zombies dans la zone :
             </p>
             <ul>
-                <li class=\"orange\">&#x1F9DF; <strong>1 zombie ou davantage</strong> &#x2794;
+                <li class=\"orange-text\">&#x1F9DF; <strong>1 zombie ou davantage</strong> &#x2794;
                     coût <strong>".$params['moving_cost_zombies']."</strong>&#9889;<br><br></li>
-                <li class=\"green\">&#x2714;&#xFE0F; <strong>aucun zombie</strong> &#x2794; gratuit</li>
+                <li class=\"green-text\">&#x2714;&#xFE0F; <strong>aucun zombie</strong> &#x2794; gratuit</li>
                 </ul>
             <p>Surveillez vos points d'action ! Si vous restez bloqué dans le désert,
             une mort certaine vous attend cette nuit...</p>";

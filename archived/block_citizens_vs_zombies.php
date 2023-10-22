@@ -34,7 +34,7 @@ function block_citizens_vs_zombies($nbr_citizens, $nbr_zombies, $total_citizens_
    return 
      '<p>' . $control_summary . '</p>'
    . '<div style="display:flex;flex-direction:row;align-items:center;justify-content:center">'
-   .   '<div class="green" style="text-align:center;cursor:help" '
+   .   '<div class="green-text" style="text-align:center;cursor:help" '
            . 'title="Il y a '.plural($nbr_citizens, 'humain') . " sur cette case\n" 
            . '=> '.$total_citizens_pts.' points de contrôle pour les humains">'
            . '<span style="font-variant:small-caps">humains</span><br>'

@@ -173,11 +173,11 @@ li {
 .darkred {
     color:darkred;
 }
-.orange {
-    color:#e65100;
+.orange-text {
+    color:#e65100  !important;
 }
-.green {
-    color:green;
+.green-text {
+    color:green !important;
 }
 .grey {
     color:grey;

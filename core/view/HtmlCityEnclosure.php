@@ -558,7 +558,7 @@ class HtmlCityEnclosure
             $door_button = $buttons->button('open_door');
         }
         else {            
-            $door_status = 'Les portes de la ville sont <strong style="color:green">ouvertes</strong>';
+            $door_status = 'Les portes de la ville sont <strong class="green-text">ouvertes</strong>';
             $door_button = $buttons->button('close_door');
         }
         
