@@ -58,7 +58,7 @@ if (document.getElementById('map') !== null) {
         centerMapOnMe();
         // Draws a line between the player and his city
         if(myCityZoneId !== null) {
-            updateLineBetweenZones("#me", "#"+myCityZoneId);
+            updateLineBetweenZones("myCity", "#me", "#"+myCityZoneId);
         }
         
         // Get informations about the current zone through the "data-*" HTML attributes

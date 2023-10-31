@@ -39,7 +39,7 @@ if (document.getElementById('map') !== null) {
         event.preventDefault();
         moveCitizen(event.submitter.value);
         if(myCityZoneId !== null) {
-            setTimeout(function() {updateLineBetweenZones("#me", "#"+myCityZoneId);}, 1000);
+            setTimeout(function() {updateLineBetweenZones("myCity", "#me", "#"+myCityZoneId);}, 1000);
         }
     });
     

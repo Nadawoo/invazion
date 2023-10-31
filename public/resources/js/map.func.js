@@ -281,24 +281,30 @@ function getZonePositions(zoneHtmlId) {
 
 /**
  * Draws a line in the existing <svg> to replace the previous line.
- * The order of the zones given in parameters doesn't matter.
+ * NB: the order of the zones given in parameters (origin/destination) doesn't 
+ * really matter, as the result will be the same (a line between the 2 points).
  * 
+ * @param {string} lineName   The alias of the line to treat, stored in <line name="..."> 
  * @param {string} origHtmlId The HTML ID of the first zone to connect with the line.
  *                            Don't forget the hashtag (e.g. "#zone3_10")
  * @param {string} destinHtmlId The HTML ID of the second zone to connect with the line.
  *                            Don't forget the hashtag (e.g. "#zone8_2")
  * @returns {undefined}
  */
-function updateLineBetweenZones(origHtmlId, destinHtmlId) {
+function updateLineBetweenZones(lineName, origHtmlId, destinHtmlId) {
           
     let orig   = getZonePositions(origHtmlId);
     let destin = getZonePositions(destinHtmlId);
     
     // Erases the existing line in the <svg>
-    document.querySelector("#mapSvg").innerHTML = "";
+    let lineNode = document.querySelector(`#mapSvg line[name=${lineName}]`);
+    if(lineNode !== null) {
+        lineNode.remove();
+    }
     
     // Draws the new line in the same <svg>
     let line = document.createElementNS("http://www.w3.org/2000/svg", "line");
+    line.setAttribute("name", lineName);
     line.setAttribute("x1", orig.x);
     line.setAttribute("y1", orig.y);
     line.setAttribute("x2", destin.x);
