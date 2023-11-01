@@ -87,7 +87,7 @@ if (document.getElementById('map') !== null) {
     });
         
     // Switch tabs in the communications panel
-    document.querySelector("#wall .tabs a[href='#wallDiscuss']").addEventListener("click", initiateDiscussTab());
+    document.querySelector("#wall .tabs a[href='#wallDiscuss']").addEventListener("click", initiateDiscussTab);
     document.querySelector("#wall .tabs a[href='#wallAttacks']").addEventListener("click", function() {
         // Updates the log of attacks
         getCyclicAttacks(nbrExecutionsGetCyclicAttacks);
