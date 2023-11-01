@@ -68,7 +68,7 @@ function updateActionPointsBar(actionsPointsLost) {
         maxAP       = document.querySelector("#maxActionPoints").innerHTML;
     
     let htmlCurrentAP = '&#x26A1'.repeat(currentAP),
-        htmlConsumedAP  = '<span style="opacity:0.3">'+('&#x26A1;'.repeat(maxAP-currentAP))+'</span>';
+        htmlConsumedAP  = '<span style="opacity:0.3">'+('&#x26A1;'.repeat(Math.max(0, maxAP-currentAP)))+'</span>';
     
     // Update the HTML gauge displaying the number of action points
     document.querySelector("#apBar").innerHTML = htmlCurrentAP + htmlConsumedAP;
