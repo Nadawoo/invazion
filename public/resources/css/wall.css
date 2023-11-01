@@ -38,6 +38,10 @@
 /*
  * Common styles for the wall (lateral panel or inside city interface)
  */
+#wall .tabs .tab a {
+    /* Fix for Materialize.css (prevents horizontal overflow on large screens) */
+    padding: 0 12px; 
+}
 #wall h2 {
     margin:0;
     padding:0.4rem 0;
