@@ -40,12 +40,14 @@ if (document.getElementById('map') !== null) {
     var _configsMap       = JSON.parse(document.querySelector("#configs .map").innerHTML);
 
     // Place on the map the buildings and cities
-    addCitiesOnMap(mapId);  
+    _cities = addCitiesOnMap(mapId);  
     // Place the citizens on the appropriate zones of the map
     addCitizensOnMap(mapId);    
     // Display the zombie cores on the map (item ID #106)
     displayItemOnMap(106);
-
+    
+    updateConnectedCitiesLines(mapId);
+    
     // Only if the visitor is connected
     if(document.querySelector("#citizenId").innerHTML !== "") {
     

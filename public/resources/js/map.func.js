@@ -231,6 +231,8 @@ async function addCitiesOnMap(mapId) {
         // TODO: we could remove this attribute by using the attribute data-cityid
         zone.dataset.citytypeid = city.city_type_id;
     }
+    
+    return _cities;
 }
 
 
@@ -291,7 +293,7 @@ function getZonePositions(zoneHtmlId) {
  *                            Don't forget the hashtag (e.g. "#zone8_2")
  * @returns {undefined}
  */
-function updateLineBetweenZones(lineName, origHtmlId, destinHtmlId) {
+function updateLineBetweenZones(lineName, origHtmlId, destinHtmlId, color="green") {
           
     let orig   = getZonePositions(origHtmlId);
     let destin = getZonePositions(destinHtmlId);
@@ -309,7 +311,30 @@ function updateLineBetweenZones(lineName, origHtmlId, destinHtmlId) {
     line.setAttribute("y1", orig.y);
     line.setAttribute("x2", destin.x);
     line.setAttribute("y2", destin.y);
+    line.setAttribute("style", `stroke:${color}`);
     document.querySelector("#mapSvg").append(line);
+}
+
+
+/**
+ * Draws a line between the cities connected over the map
+ * 
+ * @param {int} mapId
+ */
+async function updateConnectedCitiesLines(mapId) {
+
+   _cities = await getMapCitiesOnce(mapId);
+
+   for(let city of Object.entries(_cities)) {
+       let childCity = city[1];
+
+       if(childCity["connected_city_id"] !== null) {
+           let parentCity = _cities[childCity["connected_city_id"]],
+               childCityZoneId  = `zone${childCity["coord_x"]}_${childCity["coord_y"]}`,
+               parentCityZoneId = `zone${parentCity["coord_x"]}_${parentCity["coord_y"]}`;
+           updateLineBetweenZones(`${childCityZoneId}To${parentCityZoneId}`, `#${parentCityZoneId}`, `#${childCityZoneId}`, "#F4D03F");
+       }
+   }
 }
 
 
