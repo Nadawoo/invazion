@@ -57,7 +57,7 @@ if (document.getElementById('map') !== null) {
         // Add a location sign above the city of the player
         addCityLocationMarker(myCityZoneId);
         // Centers the map on the current player
-        centerMapOnMe();
+//        centerMapOnMe();
         // Draws a line between the player and his city
         if(myCityZoneId !== null) {
             updateLineBetweenZones("myCity", "#me", "#"+myCityZoneId);

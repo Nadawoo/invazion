@@ -473,7 +473,7 @@ async function moveCitizen(direction) {
     updateMoveCost(parseInt(myZone.dataset.zombies));
     updateCardCitizensInZone(myZone.dataset.citizens);
     
-    setTimeout(centerMapOnMe, 1000);
+//    setTimeout(centerMapOnMe, 1000);
 }
 
 
