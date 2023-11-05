@@ -48,31 +48,31 @@ class HtmlLayout extends HtmlPage
      * @param string $citizen_pseudo
      * @return string HTML
      */
-    function connection_bar($user_id, $citizen_id, $citizen_pseudo)
-    {
-        
-        $buttons = new HtmlButtons;
-        
-        // Si le joueur n'est pas connecté
-        if ($user_id === NULL) { 
-            
-            return $buttons->register() . $buttons->connect();
-        }
-        // Si le joueur est connecté mais n'a pas encore de créé de citoyen,
-        // on affiche son nom de joueur
-        elseif ($citizen_id === NULL) {
-            
-            return '<span class="bold">Connecté en tant que joueur n°' . $user_id . '</span>'
-                    . $buttons->disconnect();
-        }
-        // Si le joueur est connecté et a déjà créé son citoyen,
-        // on affiche le nom de ce citoyen
+//    function connection_bar($user_id, $citizen_id, $citizen_pseudo)
+//    {
+//        
+//        $buttons = new HtmlButtons;
+//        
+//        // Si le joueur n'est pas connecté
+//        if ($user_id === NULL) { 
+//            
+//            return $buttons->register() . $buttons->connect();
+//        }
+//        // Si le joueur est connecté mais n'a pas encore de créé de citoyen,
+//        // on affiche son nom de joueur
+//        elseif ($citizen_id === NULL) {
+//            
+//            return '<span class="bold">Connecté en tant que joueur n°' . $user_id . '</span>'
+//                    . $buttons->disconnect();
+//        }
+//        // Si le joueur est connecté et a déjà créé son citoyen,
+//        // on affiche le nom de ce citoyen
 //        else {
 //            
 //            return 'Vous êtes le citoyen <strong>'.$citizen_pseudo.'</strong>'
 //                   . $buttons->disconnect();
 //        } 
-    }
+//    }
     
     
     /**

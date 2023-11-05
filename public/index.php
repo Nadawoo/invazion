@@ -202,10 +202,6 @@ echo $htmlItem->item_template();
 echo $layout->block_zone_fellow_template();
 ?>
     
-    <section id="connectionbar">
-        <?php echo $layout->connection_bar($citizen['user_id'], $citizen['citizen_id'], $citizen['citizen_pseudo']); ?>
-    </section>
-    
     <?php
     // Asks for chosing a citizen speciality (builder, digger...)
     if ($citizen['can_change_speciality'] === 1) {

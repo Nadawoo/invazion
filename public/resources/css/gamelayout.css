@@ -36,7 +36,7 @@
 }
 
 /* La barre de connexion en haut de la page */
-#connectionbar {
+/*#connectionbar {
     text-align:center;
     border-top:1px solid lightgrey;
     border-bottom:1px solid lightgrey;
@@ -62,7 +62,7 @@
 #connectionbar form {
     display:inline;
     margin-left:1em;
-}
+}*/
 
 
 /* Bar above the map, showing the countdown before attack and the current day */
@@ -180,7 +180,6 @@
     border:3px outset darkred;
     color:white;
     text-align:center;
-    overflow:hidden;
     border-radius:0.5rem;
     background: linear-gradient(to bottom right, #3f51b5 30%, #17202a );
     z-index:30;
