@@ -109,9 +109,13 @@ if (document.getElementById('map') !== null) {
     setTimeout(function() {
         // NB: keep the ".php" extension, otherwise it will give a "CORS error" with the local API version
         let evtSource = new EventSource(getOfficialServerRoot()+"/api/sse.php");
-        evtSource.onmessage = async function(event) { 
+        // NB: common pitfall: the unamed SSE events (= no "event:" line in the SSE message)
+        // can be catched in javascript with "evtSource.onmessage". But when the events are named,
+        // like Invazion does, they *must* be catched with addEventListener(). 
+        // Onmessage *never* works with named events.
+        evtSource.addEventListener("updatezones", async function(event) { 
             timestamp = await updateMapRealtime(event, timestamp);
-        };
+        });
     }, 1000);
 }
 
