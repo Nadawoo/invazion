@@ -11,7 +11,7 @@ class HtmlPage
     // Increment those variables when you modify the CSS or JS files. This ensures
     // that the users' browsers reload the up-to-date files, instead of using 
     // the obsolete ones stored in their cache.
-    private $css_version = 20;
+    private $css_version = 20.1;
     private $js_version  = 20;
     
     /**

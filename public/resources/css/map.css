@@ -5,6 +5,7 @@
     float:left;
     margin:0 0.2em 3em 0;
     width:100%;
+    min-height:25em; /* Let enough height for the "connection" block when not logged in */
     overflow-x:hidden;
     overflow-y:scroll;
     font-size:1.05em;
