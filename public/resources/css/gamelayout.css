@@ -30,11 +30,6 @@
     display:none;
 }
 
-#column_right {
-    margin-bottom:1em;
-    margin-left:27rem;
-}
-
 /* Règles du jeu sous la carte */
 #rules {
     padding:0 1rem;
@@ -177,9 +172,10 @@
 
 /* Bloc invitant à se connecter ou à créer son 1er citoyen à droite de la carte */
 #identification_near_map {
-    margin:auto;
-    margin:4.7em auto 0.5em auto;
+    position:absolute;
+    width:100%;
     padding:2.5em 0;
+    box-sizing:border-box;
     box-shadow: 0px 15px 20px black;
     border:3px outset darkred;
     color:white;
@@ -187,9 +183,7 @@
     overflow:hidden;
     border-radius:0.5rem;
     background: linear-gradient(to bottom right, #3f51b5 30%, #17202a );
-    position:relative;
-    z-index:20;
-    box-sizing:border-box;
+    z-index:30;
 }
 #identification_near_map #register {
     display:block;

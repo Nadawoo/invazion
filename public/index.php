@@ -337,6 +337,17 @@ echo $layout->block_zone_fellow_template();
                     echo $layout->block_alert_wounded((bool)$citizen['is_wounded']);
                     ?>
                 </div>
+                <?php
+                if ($citizen['user_id'] === NULL) {        
+                    // If the player is not connected, display the connection panel
+                    echo $layout->block_connect();
+                }
+                elseif ($citizen['citizen_id'] === NULL) {         
+                    // If the player is connected but has not created his citizen yet,
+                    // display the panel for creating a citizen
+                    echo $layout->block_create_citizen();
+                }
+                ?>
                 <div id="actions">
                     <fieldset id="block_move">
                         <?php
@@ -405,30 +416,9 @@ echo $layout->block_zone_fellow_template();
             </a>
         </fieldset>
         
-    </section>
-    
-    <div id="column_right">
-        
-        <section>
-            <?php
-            if ($citizen['user_id'] === NULL) {        
-                // If the player is not connected, display the connection panel
-                echo $layout->block_connect();
-            }
-            elseif ($citizen['citizen_id'] === NULL) {         
-                // If the player is connected but has not created his citizen yet,
-                // display the panel for creating a citizen
-                echo $layout->block_create_citizen();
-            }
-            ?>
-        </section>
-        
-        
-        
         <div id="message_move"><?php echo $msg_move ?></div>
         
-    </div>
- 
+    </section>
     
     <section id="floating_wall">
         <?php echo $wall->wall() ?>

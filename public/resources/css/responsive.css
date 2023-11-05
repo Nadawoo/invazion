@@ -9,14 +9,6 @@
     #game_container {
         padding:0;
     }
-    #column_right {
-       position:absolute;
-       left:0;
-       width:100%;
-       max-width:26rem;
-       margin:0;
-       margin-top:3.95rem;
-    }
     .box{
         width: 80%;
     }
