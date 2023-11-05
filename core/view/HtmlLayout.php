@@ -209,10 +209,9 @@ class HtmlLayout extends HtmlPage
         $buttons = new HtmlButtons();
         
         return '
-            <div class="left">
-                Carte n° '.$map_id.'<br>
-                &#x1F551; Jour '.(int)$day.'
-            </div>
+            <a href="#popdayclock" id="dayclock">
+                Jour <span style="font-size:1.7em;font-weight:bold;">'.(int)$day.'</span>
+            </a>
             <p id="messageEndCycle" style="display:none;margin:0"></p>
             <div id="timer">
                 '.$buttons->button('end_cycle').'

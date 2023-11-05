@@ -90,11 +90,18 @@
 #attack_bar div {
     border-radius:0.2rem;
 }
-#attack_bar .left {
-    min-width:10%;
-    padding:0.2rem;
+#dayclock {
+    display:flex;
+    justify-content:center;
+    flex-direction:column;
     text-align:center;
-    border-right:1px solid #6c3483;
+    height:3.5rem;
+    width: 3.5rem;
+    line-height:1.4em;
+    margin:0.1em;
+    border:2px solid white;
+    border-radius:2em;
+    color:white;
 }
 #timer input {
     height:3em;

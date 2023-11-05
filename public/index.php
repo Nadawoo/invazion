@@ -183,6 +183,7 @@ echo $html['json_configs'];
 // Textes des pop-up
 // TODO : ne pas charger toutes les textes dans le code, seulement celui utile
 echo $popup->predefined('poppresentation', '');        
+echo $popup->predefined('popdayclock', '', ['map_id'=>$citizen['map_id'], 'current_cycle'=>$configs['map']['current_cycle']]);
 echo $popup->predefined('popvault',   '');
 echo $popup->predefined('popwounded', '', ['citizen_id'=>$citizen['citizen_id'], 'healing_items'=>$healing_items]);
 echo $popup->predefined('popcontrol', '&#8505;&#65039; Le contrôle de zone');

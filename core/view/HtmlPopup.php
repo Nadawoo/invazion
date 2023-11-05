@@ -372,6 +372,18 @@ class HtmlPopup
             </ul>";
     }
     
+    private function popdayclock($params) {
+        
+        return "<p>&#x1F5FA;&#xFE0F; Vous êtes incarné sur la <strong>carte n° ".$params['map_id']."</strong>.<p>
+                <p>&#x1F551; Vous y vivez actuellement votre <strong>".$params['current_cycle']."<sup>e</sup> jour</strong> de survie.</p>                
+                <br>
+                <fieldset><legend> Votre objectif </legend><br>
+                Les zombies vont attaquer la ville ce soir. 
+                Collectez des ressources et construisez des défenses afin de leur résister !<br>
+                <p class=\"center\"><a href=\"#popattack\">[En savoir plus...]</a></p>
+                </fieldset>";
+    }
+    
     
     /**
      * Displays the in-game smartphone (which shows action points, radar, etc.)
