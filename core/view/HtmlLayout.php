@@ -67,11 +67,11 @@ class HtmlLayout extends HtmlPage
         }
         // Si le joueur est connecté et a déjà créé son citoyen,
         // on affiche le nom de ce citoyen
-        else {
-            
-            return 'Vous êtes le citoyen <strong>'.$citizen_pseudo.'</strong>'
-                   . $buttons->disconnect();
-        } 
+//        else {
+//            
+//            return 'Vous êtes le citoyen <strong>'.$citizen_pseudo.'</strong>'
+//                   . $buttons->disconnect();
+//        } 
     }
     
     

@@ -176,6 +176,10 @@ class HtmlPage
      */
     function site_menu($citizen_id, $citizen_pseudo) {
         
+        $user_name = ($citizen_id === null)
+                    ? '<a href="register" class="#0d47a1 blue darken-4 white-text"> M\'inscrire </a> · <a href="connect" class="#0d47a1 blue darken-4 white-text"> Me connecter </a>'
+                    : '<a href="connect"><span class="white-text"><strong>'.$citizen_pseudo.'</strong> (citoyen #'.$citizen_id.')</span></a>';
+                    
         return '
             <ul id="slide-out" class="sidenav">
             
@@ -183,8 +187,8 @@ class HtmlPage
                     <div class="background">
                       <img src="resources/img/motiontwin/mapBg.jpg" alt="Fond">
                     </div>
-                    <a href="#user"><img class="circle" src="resources/img/icons8/profile-96.png" alt="Utilisateur"></a>
-                    <a href="#name"><span class="white-text"><strong>'.$citizen_pseudo.'</strong> (citoyen #'.$citizen_id.')</span></a>
+                    <a href="connect"><img class="circle" src="resources/img/icons8/profile-96.png" alt="Utilisateur"></a>
+                    '.$user_name.'
                 </div></li>'
                 
                 .$this->site_menu_subheader('Le jeu', 'no_divider')
