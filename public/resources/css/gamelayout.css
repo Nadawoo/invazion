@@ -6,15 +6,15 @@
 /* Bloc contenant la carte et les blocs d'action (nombre de zombies, sac...) */
 #game_container {
     position:relative;
-    background:url('../img/metal.jpg');
-    border:1px solid grey;
+    /*background:url('../img/metal.jpg');*/
+    /*border:1px solid grey;*/
     border-left:none;
     border-right:none;
     padding:0 0.2em;
     /* Garantit que les éléments sous la carte (liste des inscrits...) ne remontent
        pas dans la colonne à droite de la carte */
-    height:61rem;
-    margin-bottom:3rem;
+    /*height:61rem;*/
+    /*margin-bottom:3rem;*/
     /* Au cas où l'enceinte de la ville descendrait trop bas
       (notamment si liste des chantiers trop longue)
        Désactivé pour le moment car cache les infobulles en haut de la carte */
@@ -78,7 +78,7 @@
     justify-content:space-between;
     width:100%;
     margin-bottom:0.2rem;
-    padding:0.2em;
+    /*padding:0.2em;*/
     border-radius:0.2rem;
     box-shadow:3px 3px 8px black;
     background:#4a235a;
