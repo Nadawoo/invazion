@@ -60,13 +60,12 @@ class HtmlItem {
         $result = '';
         
         foreach ($bag_items as $item_id=>$item_amount) {
-            
+            // Handles the anormal case where an item ID is not among the list of items.
+            // Possible when an item on a map is not in the items set for this map.
+            $item_caracs = isset($items_caracs[$item_id]) ? $items_caracs[$item_id] : set_default_variables('item', $item_id);
             // Si le citoyen possède un objet en plusieurs exemplaires, on le fait 
             // apparaître autant de fois dans le sac.
-            while ($item_amount > 0) {                
-                $result .= $htmlItem->item($items_caracs[$item_id], $item_id);
-                $item_amount--;
-            }
+            $result .= str_repeat($htmlItem->item($item_caracs, $item_id), $item_amount);
         }
         
         return $result;
@@ -85,7 +84,7 @@ class HtmlItem {
         
         $buttons = new HtmlButtons();
         
-        $button_alias = get_item_action($item_caracs);
+        $button_alias = get_item_action($item_caracs);      
         $item_image = ($item_caracs['icon_path'] !== null)
                         ? '<img src="../resources/img/'.$item_caracs['icon_path'].'" alt="'.$item_caracs['icon_symbol'].'">'
                         : $item_caracs['icon_symbol'];

@@ -7,7 +7,7 @@
  *                          of the values set in the $default array.
  * @return array
  */
-function set_default_variables($variable) {
+function set_default_variables($variable, $item_id=null) {
     
     $default['citizen'] = [
         'speciality'        => 'weak',
@@ -39,6 +39,18 @@ function set_default_variables($variable) {
         'controlpoints_zombies'     => 0,
         'items'                     => [],
         'zombies'                   => 0,
+        ];
+    
+    $default['item'] = [
+            'icon_symbol'       => '&#x2753;',
+            'icon_path'         => null,
+            'name'              => '{Objet inconnu}',
+            'descr_ambiance'    => '',
+            'descr_purpose'     => "[Bug] L'objet #".$item_id." est inconnu sur cette carte. "
+                                 . "Signalez-le à l'administrateur.",
+            'is_weapon'         => '',
+            'healing_wound'     => '',
+            'items_inside_min'  => '',
         ];
     
     return $default[$variable];
