@@ -112,16 +112,30 @@ class HtmlCityConstructionCards
     }
     
     
+    /**
+     * HTML for the items missing to build a defense building
+     * 
+     * @param array $items_missing
+     * @param int $total_items_missing
+     * @param array $items_caracs
+     * @return string HTML
+     */
     private function missing_resources($items_missing, $total_items_missing, $items_caracs) {
         
-        // HTML for the icons of the missing items
+        
         $missing_items_icons = '';
-        foreach($items_missing as $item_id=>$missing_amount) {
+        
+        foreach($items_missing as $item_id=>$missing_amount) {            
+            // Handles the anormal case where the resource needed is not 
+            // in the list of items set for the current game 
+            $item_caracs = isset($items_caracs[$item_id]) ? $items_caracs[$item_id] : set_default_variables('item');
+            
+            $item_icon = ($item_caracs['icon_path'] === null)
+                        ? $item_caracs['icon_symbol']
+                        : '<img src="resources/img/'.$item_caracs['icon_path'].'" width="32" height="32" alt="icon">';
+            
             $missing_items_icons .= '
-                <span title="'.$items_caracs[$item_id]['name'].'">
-                    <img src="resources/img/copyrighted/items/'.$item_id.'.png"
-                         width="32" height="32" alt="icon">x'. $missing_amount.'
-                <span> ';
+                <span title="'.$item_caracs['name'].'">'.$item_icon.'x'.$missing_amount.'<span> ';
         }   
         
         return '

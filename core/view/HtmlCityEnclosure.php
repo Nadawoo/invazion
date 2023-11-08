@@ -159,9 +159,9 @@ class HtmlCityEnclosure
                     <a onclick="switchCityTab(\'city_constructions\')">construire la ville</a>... 
                     ou <a onclick="switchCityTab(\'city_perso\')">votre propre habitation</a>.
                 </div>
-                <div class="contents">
-                '. $html_storage_items .'
-                </div>';
+                <ul class="items_list">
+                    '. $html_storage_items .'
+                </ul>';
     }
     
     
@@ -438,8 +438,13 @@ class HtmlCityEnclosure
             
             // Jauge des ressources requises/disponibles pour la construction
             foreach ($components as $item_id=>$required_amount) {
+                // Handles the anormal case where the resource needed is not 
+                // in the list of items set for the current game 
+                if(!isset($items_caracs[$item_id])) {
+                    $items_caracs[$item_id] = set_default_variables('item');
+                }
                 
-                $html_resources .= $this->html_progressbar( $item_id, $items_caracs[$item_id]['name'],
+                $html_resources .= $this->html_progressbar( $items_caracs[$item_id],
                                                             $this->item_amount($zone_items, $item_id),
                                                             $required_amount,
                                                             'constructions');
@@ -639,7 +644,7 @@ class HtmlCityEnclosure
                 
                 foreach($caracs['craftable_from'] as $compo_id=>$required_amount) {
                     
-                    $compo_list .= $this->html_progressbar( $compo_id, $items_caracs[$compo_id]['name'],
+                    $compo_list .= $this->html_progressbar( $items_caracs[$compo_id],
                                                             $this->item_amount($zone_items, $compo_id),
                                                             $required_amount,
                                                             'workshop');
@@ -710,14 +715,15 @@ class HtmlCityEnclosure
      * Affiche la barre de progression du stock d'un objet nécessaire 
      * pour fabriquer un objet ou construire un chantier
      * 
-     * @param  string $item_name        Le nom de l'objet
+     * @param  array $item_caracs      La liste des caractéristiques de l'objet, 
+     *                                  telles que retournées par l'API
      * @param  int    $available_amount La quantité disponible dans le dépôt
      * @param  int    $required_amount  La quantité requise pour la fabrication
      * @param  string $comment_for      Code indiquant quels textes explicatifs devront 
      *                                  être affichés dans les infobulles
      * @return string
      */
-    private function html_progressbar($item_id, $item_name, $available_amount, $required_amount, $comment_for)
+    private function html_progressbar($item_caracs, $available_amount, $required_amount, $comment_for)
     {
         
         if ($comment_for === 'workshop') {
@@ -752,12 +758,17 @@ class HtmlCityEnclosure
         // Quick fix sale pour un meilleur alignement selon le nombre de chiffres
         $nbsp = str_repeat('&nbsp;', 3-strlen($available_amount));
         
+        $item_icon = ($item_caracs['icon_path'] === null)
+                    ? $item_caracs['icon_symbol']
+                    : '<img src="resources/img/'.$item_caracs['icon_path'].'" width="32" height="32" alt="icon">';
+            
+        
         return '
             <li class="item_label" style="cursor:help" title="'.$title.'">
                 ' . $this->html_check_sign($progress, $comment_for) . '
                 <var>
-                    <img src="../resources/img/copyrighted/items/'.$item_id.'.png" alt="icon_'.$item_id.'"> 
-                    <span class="progressbar_filling" style="width:'.$progress.'%;background:'.$bar_color.'">' . $item_name . '</span>
+                    '.$item_icon.'
+                    <span class="progressbar_filling" style="width:'.$progress.'%;background:'.$bar_color.'">'.$item_caracs['name'].'</span>
                 </var>
                 <span style="font-size:1.1em;color:'.$amount_color.'">'.$nbsp.$available_amount.'</span>&nbsp;<span style="color:grey;font-size:0.9em;">/&nbsp;'.$required_amount.'</span>
             </li>';

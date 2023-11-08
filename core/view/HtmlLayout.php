@@ -293,33 +293,15 @@ class HtmlLayout extends HtmlPage
     function block_zone_items($items_caracs, $zone)
     {
         
-        $html_items = '';
+        $htmlItem = new HtmlItem();
         
-        if (!empty($zone['items'])) {
-            
-            foreach ($zone['items'] as $item_id=>$item_amount) {
-                
-                $html_items .= '<li class="item_label">'
-                    . '<button type="submit" name="params[item_id]" value="'.$item_id.'" class="drop_button">&wedgeq;</button> '
-                    . '<var>
-                        <img src="../resources/img/copyrighted/items/'.$item_id.'.png" alt="'.$items_caracs[$item_id]['icon_symbol'].'">
-                        &nbsp;'. $items_caracs[$item_id]['name'] 
-                    . '</var> <span style="font-size:0.95em">×&nbsp;'.$item_amount.'<span>' 
-                    . '</li>';
-            }
-
-            return '<form method="post" action="#Outside">'
-                . '<input type="hidden" name="api_name" value="zone">'
-                . '<input type="hidden" name="action" value="pickup">'
-                . '<ul class="items_list">'.$html_items.'</ul>'
-                . '</form>';
-        }
-        else {
-            
-            return '<div class="greytext" style="margin-top:0.5rem">
-                    Aucun objet au sol pour l\'instant. Vous allez devoir fouiller...
-                    </div>';
-        }
+        $result = !empty($zone['items'])
+                    ? $htmlItem->items($zone['items'], $items_caracs)
+                    : '<div class="greytext" style="margin-top:0.5rem">
+                       Aucun objet au sol pour l\'instant. Vous allez devoir fouiller...
+                       </div>';
+        
+        return $result;
     }
     
     
