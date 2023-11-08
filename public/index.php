@@ -321,7 +321,7 @@ echo $layout->block_zone_fellow_template();
                                         count($zone_fellows)-1);
             ?>
             
-            <div style="width:24.6rem;position:absolute;right:0.5rem;">
+            <div id="actions_panel">
                 <div id="round_actions">
                     <?php
                     echo  $buttons->button_round('move', ($zone['controlpoints_zombies']-$zone['controlpoints_citizens']))

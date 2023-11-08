@@ -52,4 +52,7 @@
     #city_iso {
         display:none;
     }
+    #actions_panel {
+        left:0;
+    }
 }
