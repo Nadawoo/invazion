@@ -179,12 +179,20 @@
     padding:0.2em 0;
 }
 #constructions .items_list {
+    flex-direction: column;
     margin:0 0 1em 0.3em;
     padding:0.3em;
     padding-right:0;
     border-left:2px solid darkgrey;
     border-bottom:1px solid darkgrey;
     border-bottom-left-radius: 0.5em;
+}
+#constructions var {
+    justify-content: flex-start;
+    height:auto;
+    width:14em;
+    margin-left:0;
+    white-space: nowrap;
 }
 
 /* The two bars comparing the defenses and the zombies */
