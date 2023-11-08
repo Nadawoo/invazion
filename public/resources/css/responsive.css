@@ -4,7 +4,9 @@
 @media (max-width:850px) {
     /* Panneau de discussions */
     #floating_wall {
-        margin-left:1rem;
+        margin-left:0;
+        width:100%;
+        max-width:26.5rem;
     }
     #game_container {
         padding:0;
@@ -21,12 +23,6 @@
     /* Actions à droite de la carte */
     fieldset {
         padding:0 0.5em 0.5em 0.5em;
-    }
-    /* Panneau de discussions */
-    #floating_wall {
-        margin-left:0;
-        width:100%;
-        max-width:26.5rem;
     }
 }
 

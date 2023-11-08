@@ -9,11 +9,11 @@
     position:fixed;
     bottom:0;
     height:2.5rem;
-    width:23.8rem;
-    margin-left:27.5rem;
+    width:24.6rem;
+    margin-left:26.2rem;
     border-top-left-radius:1rem;
     border-top-right-radius:1rem;
-    box-shadow:-4px -4px 10px black;
+    box-shadow:4px -4px 10px black;
     z-index:40;
     transition-duration: 0.3s;
 }
