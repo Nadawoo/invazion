@@ -72,8 +72,10 @@ function listenToMapZones() {
  * @returns {ScrollBooster|listenToMapDragging.sb}
  */
 function listenToMapDragging() {
-
-    const viewport = document.querySelector('#map');
+    // Warning: don't set the "viewport" on #map, otherwise the floating blocks
+    // disposed inside #map (connection block, action blocks, navigation...)
+    // won't be tappable on mobile.
+    const viewport = document.querySelector('#map_viewport');
     const content = document.querySelector('#map_body_wrapper');
     const image = document.querySelector('#map_body');
 
