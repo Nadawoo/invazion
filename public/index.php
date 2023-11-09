@@ -308,10 +308,6 @@ echo $layout->block_zone_fellow_template();
          to go *below* the bar on small screens -->
     <div id="Outside" style="line-height:0"></div>
     
-    <section id="attack_bar">
-        <?php echo $html['attack_bar'] ?>
-    </section>    
-    
     <!-- The map -->
     <section id="map">
         
@@ -422,6 +418,10 @@ echo $layout->block_zone_fellow_template();
     <section id="floating_wall">
         <?php echo $wall->wall() ?>
     </section>
+    
+    <section id="attack_bar">
+        <?php echo $html['attack_bar'] ?>
+    </section>  
 
 </div>
     

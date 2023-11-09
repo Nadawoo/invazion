@@ -35,11 +35,13 @@ async function enlargeWall() {
         // Enlarges the panel
         document.querySelector("#floating_wall").style.height = maxBarHeight;
         document.querySelector("#wallHeader .arrow").style.transform = "rotate(+180deg)";
+        document.querySelector("#floating_wall").style.zIndex = 60;
     }
     else {
         // Reduces the panel
         document.querySelector("#floating_wall").style.height = minBarHeight;
         document.querySelector("#wallHeader .arrow").style.transform = "rotate(0)";
+        document.querySelector("#floating_wall").style.zIndex = 0;
     }
     
     // Loads the discussions tab by default
