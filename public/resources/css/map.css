@@ -21,6 +21,10 @@
     background:none;
 }
 
+map_body_wrapper {
+    height:50vh; /* Allows to scroll vertically with ScrollBooster */
+}
+
 /*
  * Zooming on the map
  */
