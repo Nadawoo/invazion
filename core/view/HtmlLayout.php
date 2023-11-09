@@ -219,7 +219,6 @@ class HtmlLayout extends HtmlPage
             <div class="right">
                 <a id="notifsButton" title="Notifications">&#x1F514;</a>
                 <a id="showWall" title="Communications" style="font-size:1.5rem">&#128172;</a>
-                '.$buttons->refresh().'
                 <div id="notifsBlock">
                     <a id="notifsClose">X</a>
                     <div id="notifsList"><div style="text-align:center;padding:0.8em;color:grey">Chargement en cours...</div></div>
@@ -712,6 +711,8 @@ class HtmlLayout extends HtmlPage
      */
     function block_map_navigation() {
         
+        $buttons = new HtmlButtons();
+        
         return '
             <form action="#" id="zoom_form">
                 <button id="zoomMapStepIn" title="Zoomer la carte"><i class="material-icons small">add</i></button>
@@ -721,8 +722,15 @@ class HtmlLayout extends HtmlPage
                 <hr onclick="toggleZoomRange()">
                 <button id="zoomMapStepOut" title="Dézoomer la carte"><i class="material-icons small">remove</i></button>
             </form>
-            <button onclick="centerMapOnMe()" title="Centrer sur ma zone""><img src="resources/img/icons8/mylocation-48.png" height="28" alt="Cible ma position"></button>
-            <button onclick="toggle(\'mapRadarMenu\')" title="Vue satellite"><span style="font-size:50%;margin-top:-0.3em;">&#x1F6F0;&#xFE0F;</span></button>
+            
+            <button onclick="centerMapOnMe()" title="Centrer sur ma zone">
+                <img src="resources/img/icons8/mylocation-48.png" height="28" alt="Cible ma position">
+            </button>
+            
+            <button onclick="toggle(\'mapRadarMenu\')" title="Vue satellite">
+                <span style="font-size:50%;margin-top:-0.2em;">&#x1F6F0;&#xFE0F;</span>
+            </button>
+            
             <ul id="mapRadarMenu">
                 <li onclick="resetMapView();toggleMapMarker()">&#x1F5FA;&#xFE0F; Carte réelle</li>
                 <li onclick="resetMapView();toggleMapZombiesView();toggleMapItemMarker(106)"  title="Voir les zombies sur la carte">&nbsp;<img src="resources/img/motiontwin/zombie.gif" alt="&#x1F9DF;">&nbsp; Zombies</li>
@@ -730,6 +738,9 @@ class HtmlLayout extends HtmlPage
                 <li onclick="resetMapView();toggleMapMarker(\'citizens\')" title="Voir les joueurs sur la carte">&#x1F9CD;&#x200D;&#x2642;&#xFE0F; Humains</li>
                 <li onclick="resetMapView();toggleMapNeighborhoodView()" title="Voir les secteurs de la carte">&#128739;&#65039; Secteurs</li>
             </ul>
-            <button><a href="#popsmartphone" style="font-size:55%">&#128241;</a></button>';
+            
+            <button><a href="#popsmartphone" style="font-size:55%">&#128241;</a></button>
+            
+            <button>'.$buttons->refresh().'</button>';
     }
 }
