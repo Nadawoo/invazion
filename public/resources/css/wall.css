@@ -22,16 +22,16 @@
     width: 100%;
     margin:0;
 }
-#floating_wall #enlarge_wall {
+#floating_wall #wallHeader {
     font-size:1.5em;
     background:#b71c1c;
     color:white;
     cursor:pointer;
 }
-#floating_wall #enlarge_wall:hover {
+#floating_wall #wallHeader:hover {
     background:#ff0000;
 }
-#floating_wall #enlarge_wall::selection {
+#floating_wall #wallHeader::selection {
     background:none;
 }
 

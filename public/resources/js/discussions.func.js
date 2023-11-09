@@ -34,12 +34,12 @@ async function enlargeWall() {
     if (document.querySelector("#floating_wall").style.height !== maxBarHeight) {
         // Enlarges the panel
         document.querySelector("#floating_wall").style.height = maxBarHeight;
-        document.querySelector("#enlarge_wall .arrow").style.transform = "rotate(+180deg)";
+        document.querySelector("#wallHeader .arrow").style.transform = "rotate(+180deg)";
     }
     else {
         // Reduces the panel
         document.querySelector("#floating_wall").style.height = minBarHeight;
-        document.querySelector("#enlarge_wall .arrow").style.transform = "rotate(0)";
+        document.querySelector("#wallHeader .arrow").style.transform = "rotate(0)";
     }
     
     // Loads the discussions tab by default

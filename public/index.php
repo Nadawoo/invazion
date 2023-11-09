@@ -306,7 +306,8 @@ echo $layout->block_zone_fellow_template();
     
     <!-- Let this bar *before* the round action buttons if you want them 
          to go *below* the bar on small screens -->
-    <div id="Outside" style="line-height:0.1rem">&nbsp;</div>
+    <div id="Outside" style="line-height:0"></div>
+    
     <section id="attack_bar">
         <?php echo $html['attack_bar'] ?>
     </section>    
@@ -421,7 +422,7 @@ echo $layout->block_zone_fellow_template();
     <section id="floating_wall">
         <?php echo $wall->wall() ?>
     </section>
-    
+
 </div>
     
 <div id="rules">

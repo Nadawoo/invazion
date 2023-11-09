@@ -218,6 +218,7 @@ class HtmlLayout extends HtmlPage
             </div>
             <div class="right">
                 <a id="notifsButton" title="Notifications">&#x1F514;</a>
+                <a id="showWall" title="Communications" style="font-size:1.5rem">&#128172;</a>
                 '.$buttons->refresh().'
                 <div id="notifsBlock">
                     <a id="notifsClose">X</a>

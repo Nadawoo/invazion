@@ -105,7 +105,8 @@ if (document.getElementById('map') !== null) {
 //    });
     
     // Show/hide the vertical panel for the discussions and events
-    document.getElementById("enlarge_wall").addEventListener("click", enlargeWall);
+    document.querySelector("#showWall").addEventListener("click", enlargeWall);
+    document.querySelector("#wallHeader").addEventListener("click", enlargeWall);
     // In the isometric view of the city, a building deploys the "communications"
     if(document.querySelector("#city_iso") !== null) {
         document.querySelector("#city_iso .discuss").addEventListener("click", enlargeWall);
