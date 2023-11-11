@@ -196,6 +196,8 @@ map_body_wrapper {
 #statusbar .empty {
     background:none; /* Useful when the content is text, not image */
     cursor:default;
+    background:#fafafa;
+    border:white;
 }
 
 

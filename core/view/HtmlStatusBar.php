@@ -31,7 +31,7 @@ class HtmlStatusBar {
                                                   "Vos points d'action restants. S'ils sont épuisés, &#10;vous ne pourrez plus vous déplacer dans le désert.",
                                                   "popmove");
         $status_bag = $this->status_image("&#127890;", null, $nbr_bag_items,
-                                         "Votre sac à dos permet de transporter les objets trouvés pendant vos explorations.");
+                                         "Votre sac à dos permet de transporter &#10;les objets trouvés pendant vos explorations.");
 
         return
         '<div id="statusbar">'.
@@ -40,6 +40,9 @@ class HtmlStatusBar {
             $status_defenses.
             $status_fellows.
             $status_wounded.
+            $this->status_empty().
+            $this->status_empty().
+            $this->status_empty().
         '</div>';
     }
     
