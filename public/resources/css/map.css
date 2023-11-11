@@ -185,8 +185,9 @@ map_body_wrapper {
     right:-0.3em;
     height:1.4em;
     width: 1.4em;
-    background:red;
+    background:#28b463;
     font-size:0.5em;
+    color:black;
     border-radius:0.1em;
     line-height:130%;
 }
