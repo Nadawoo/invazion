@@ -191,12 +191,16 @@ class HtmlPage
                     '.$user_name.'
                 </div></li>'
                 
-                .$this->site_menu_subheader('Le jeu', 'no_divider')
-                .$this->site_menu_item('Jouer', 'index', 'gamepad').'
+                .$this->site_menu_item('Jouer', 'index#Outside', 'gamepad').'
                 <li><a href="https://discord.gg/2GRPTyM" target="_blank" rel="noopener"
                     title="Pour parler du jeu, faire des propositions... Ou tout simplement discuter :)">
-                    <i><img src="/resources/img/thirdparty/Discord-Logo-Black.png" alt="discord_logo" style="height:1.7em;margin-bottom:-0.6em;"></i>Discord
+                    <i><img src="/resources/img/thirdparty/Discord-Logo-Black.png" alt="discord_logo"
+                        style="height:30px;width:30px;margin-left:-0.2em;margin-bottom:-0.6em;"></i>Discord
                 </a></li>'
+                .$this->site_menu_item('Wiki', 'http://invazion.wikidot.com', 'edit')
+                .$this->site_menu_item('Partager', official_server_root().'/share', 'share',
+                        'Partager et soutenir le projet InvaZion')
+                
 //                $this->site_menu_item('Forum', official_server_root().'/discuss', 'forum')
                 
                 .$this->site_menu_subheader('Développer')
@@ -209,12 +213,7 @@ class HtmlPage
                 <li><a href="'.official_server_root().'/apis-list" 
                     title="Modifiez toute l\'interface du jeu grâce aux API">
                     <i><img src="/resources/img/free/api.png" alt="api_logo" style="height:1.4em;margin-bottom:-0.4em;"></i>API
-                </a></li>'
-
-                .$this->site_menu_subheader('Contribuer')
-                .$this->site_menu_item('Partager', official_server_root().'/share', 'share',
-                                        'Partager et soutenir le projet InvaZion')
-                .$this->site_menu_item('Wiki', 'http://invazion.wikidot.com', 'edit').'
+                </a></li>
             </ul>';
     }
     
