@@ -506,7 +506,7 @@ map_body_wrapper {
 #map_legend {
     display:none;
     position:fixed;
-    bottom:0.5rem;
+    bottom:4.5rem;
     margin-left:0.5em;
     font-size:0.9em;
     border:2px solid grey;
