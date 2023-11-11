@@ -138,19 +138,8 @@ map_body_wrapper {
 }
 
 /*
- * Map header
+ * Status bar of the citizen
  */
-#map_header {
-    display:flex;
-    justify-content:space-between;
-    position:relative;
-    height:7rem;
-    margin-bottom:0.5em;
-    text-align:center;
-    font-size:0.9em;
-    z-index:10; /* Keeps the block over the zones when zoming on the map*/
-}
-
 #statusbar {
     display:flex;
     align-content:flex-start;

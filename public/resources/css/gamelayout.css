@@ -373,6 +373,8 @@
     position:absolute;
     right:0.5rem; /* Avoids shifting the buttons to the left when the scrollbar appears */
     width:24.6rem;
+    text-align:center;
+    font-size:0.9em;
 }
 /* The big round action buttons with icon */
 #round_actions {

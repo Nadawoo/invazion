@@ -311,75 +311,73 @@ echo $layout->block_zone_fellow_template();
     <!-- The map -->
     <section id="map">
         
-        <div id="map_header">
-            <div id="actions_panel">
-                <div id="round_actions">
-                    <?php
-                    echo  $buttons->button_round('move', ($zone['controlpoints_zombies']-$zone['controlpoints_citizens']))
-                        . $buttons->button_round('dig', array_sum((array)$zone['items']), (bool)$citizen['can_dig'])
-                        . $buttons->button_round('zombies', $zone['zombies'], (bool)$zone['zombies'])
-                        . $buttons->button_round('citizens', null, null)
-                        . $buttons->button_round('build');
-                    // Warn if wounded
-                    echo $layout->block_alert_wounded((bool)$citizen['is_wounded']);
-                    ?>
-                </div>
+        <div id="actions_panel">
+            <div id="round_actions">
                 <?php
-                if ($citizen['user_id'] === NULL) {        
-                    // If the player is not connected, display the connection panel
-                    echo $layout->block_connect();
-                }
-                elseif ($citizen['citizen_id'] === NULL) {         
-                    // If the player is connected but has not created his citizen yet,
-                    // display the panel for creating a citizen
-                    echo $layout->block_create_citizen();
-                }
+                echo  $buttons->button_round('move', ($zone['controlpoints_zombies']-$zone['controlpoints_citizens']))
+                    . $buttons->button_round('dig', array_sum((array)$zone['items']), (bool)$citizen['can_dig'])
+                    . $buttons->button_round('zombies', $zone['zombies'], (bool)$zone['zombies'])
+                    . $buttons->button_round('citizens', null, null)
+                    . $buttons->button_round('build');
+                // Warn if wounded
+                echo $layout->block_alert_wounded((bool)$citizen['is_wounded']);
                 ?>
-                <div id="actions">
-                    <fieldset id="block_move">
-                        <?php
-                        if ($zone['controlpoints_citizens'] < $zone['controlpoints_zombies'] and time() < strtotime($zone['date_control_end'])) {
-                            echo $layout->block_alert_escape(strtotime($zone['date_control_end']));
-                        }
-                        echo $layout->block_alert_tired($zone['zombies']);
-                        echo $layout->block_alert_control($zone['zombies']);
+            </div>
+            <?php
+            if ($citizen['user_id'] === NULL) {        
+                // If the player is not connected, display the connection panel
+                echo $layout->block_connect();
+            }
+            elseif ($citizen['citizen_id'] === NULL) {         
+                // If the player is connected but has not created his citizen yet,
+                // display the panel for creating a citizen
+                echo $layout->block_create_citizen();
+            }
+            ?>
+            <div id="actions">
+                <fieldset id="block_move">
+                    <?php
+                    if ($zone['controlpoints_citizens'] < $zone['controlpoints_zombies'] and time() < strtotime($zone['date_control_end'])) {
+                        echo $layout->block_alert_escape(strtotime($zone['date_control_end']));
+                    }
+                    echo $layout->block_alert_tired($zone['zombies']);
+                    echo $layout->block_alert_control($zone['zombies']);
 
-                        echo '
-                        <div class="main_block">'
-                            .'<div>'
-                                .$paddle->paddle($citizen['coord_x'], $citizen['coord_y'])
-                                .$layout->block_distance()
-                            .'</div>'
-                            .$statusbar->statusbar($citizen['action_points'], $citizen['city_id'], $citizen['is_wounded'],
-                                                    count($citizen['bag_items']),
-                                                    count($zone_fellows)-1).'
-                        </div>';
+                    echo '
+                    <div class="main_block">'
+                        .'<div>'
+                            .$paddle->paddle($citizen['coord_x'], $citizen['coord_y'])
+                            .$layout->block_distance()
+                        .'</div>'
+                        .$statusbar->statusbar($citizen['action_points'], $citizen['city_id'], $citizen['is_wounded'],
+                                                count($citizen['bag_items']),
+                                                count($zone_fellows)-1).'
+                    </div>';
 
 //                        echo $layout->block_movement_AP($citizen['action_points'], $speciality_caracs['action_points']);
 
-                        echo 
-                        $actionCards->card_citizens().
-                        $actionCards->card_building().
-                        $actionCards->card_dig().
-                        $actionCards->card_ap_cost();
+                    echo 
+                    $actionCards->card_citizens().
+                    $actionCards->card_building().
+                    $actionCards->card_dig().
+                    $actionCards->card_ap_cost();
 
-                        echo '<hr>
+                    echo '<hr>
 
-                            <p><strong>Mes caractéristiques</strong></p>
-                            &#128295; Spécialité : '.$speciality_caracs['name'].'<br>
-                            &#x1F453; Vision niv. '.$citizen['vision'].'<br>
-                            &#128374;&#65039; Camouflage niv. '.$citizen['camouflage'].'<br>
-                            &#129656; Blessé : '.($citizen['is_wounded'] === 1 ? 'oui' : 'non');
-                        ?>
-                    </fieldset>
-
-                    <?php
-                    echo $actionBlocks->block_dig($html['bag_items'], $html['ground_items'], (bool)$citizen['can_dig']);
-                    echo $actionBlocks->block_zombies($zone['zombies'], $citizen['bag_items'], $configs['items'], $configs['map']['killing_zombie_cost']);
-                    echo $actionBlocks->block_citizens();
-                    echo $actionBlocks->block_build($citizen['coord_x'], $citizen['coord_y']);
+                        <p><strong>Mes caractéristiques</strong></p>
+                        &#128295; Spécialité : '.$speciality_caracs['name'].'<br>
+                        &#x1F453; Vision niv. '.$citizen['vision'].'<br>
+                        &#128374;&#65039; Camouflage niv. '.$citizen['camouflage'].'<br>
+                        &#129656; Blessé : '.($citizen['is_wounded'] === 1 ? 'oui' : 'non');
                     ?>
-                </div>
+                </fieldset>
+
+                <?php
+                echo $actionBlocks->block_dig($html['bag_items'], $html['ground_items'], (bool)$citizen['can_dig']);
+                echo $actionBlocks->block_zombies($zone['zombies'], $citizen['bag_items'], $configs['items'], $configs['map']['killing_zombie_cost']);
+                echo $actionBlocks->block_citizens();
+                echo $actionBlocks->block_build($citizen['coord_x'], $citizen['coord_y']);
+                ?>
             </div>
         </div>
         
