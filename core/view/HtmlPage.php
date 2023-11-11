@@ -195,7 +195,7 @@ class HtmlPage
                 <li><a href="https://discord.gg/2GRPTyM" target="_blank" rel="noopener"
                     title="Pour parler du jeu, faire des propositions... Ou tout simplement discuter :)">
                     <i><img src="/resources/img/thirdparty/Discord-Logo-Black.png" alt="discord_logo"
-                        style="height:30px;width:30px;margin-left:-0.2em;margin-bottom:-0.6em;"></i>Discord
+                        height="32" width="32" style="margin-left:-0.2em;margin-bottom:-0.8em;"></i>Discord
                 </a></li>'
                 .$this->site_menu_item('Wiki', 'http://invazion.wikidot.com', 'edit')
                 .$this->site_menu_item('Partager', official_server_root().'/share', 'share',
@@ -208,11 +208,13 @@ class HtmlPage
                 .$this->site_menu_item('Créez votre version du jeu', official_server_root().'/customise-the-game', 'build').'
                 <li><a href="https://github.com/Nadawoo/invazion" target="_blank" rel="noopener"
                     title="Le code source du jeu est disponible sur Github">
-                    <i><img src="/resources/img/thirdparty/GitHub-Mark-32px.png" alt="github_logo" style="height:1.4em;margin-bottom:-0.4em;"></i>Github
+                    <i><img src="/resources/img/thirdparty/GitHub-Mark-32px.png" alt="github_logo"
+                    height="24" width="24" style="margin-bottom:-0.4em;"></i>Github
                 </a></li>
                 <li><a href="'.official_server_root().'/apis-list" 
                     title="Modifiez toute l\'interface du jeu grâce aux API">
-                    <i><img src="/resources/img/free/api.png" alt="api_logo" style="height:1.4em;margin-bottom:-0.4em;"></i>API
+                    <i><img src="/resources/img/free/api.png" alt="api_logo"
+                    height="24" width="24" style="margin-bottom:-0.4em;"></i>API
                 </a></li>
             </ul>';
     }
