@@ -312,12 +312,6 @@ echo $layout->block_zone_fellow_template();
     <section id="map">
         
         <div id="map_header">
-            <?php
-            echo $statusbar->statusbar($citizen['action_points'], $citizen['city_id'], $citizen['is_wounded'],
-                                        count($citizen['bag_items']),
-                                        count($zone_fellows)-1);
-            ?>
-            
             <div id="actions_panel">
                 <div id="round_actions">
                     <?php
@@ -351,14 +345,19 @@ echo $layout->block_zone_fellow_template();
                         echo $layout->block_alert_control($zone['zombies']);
 
                         echo '
-                        <div id="column_move">'
-                            .$paddle->paddle($citizen['coord_x'], $citizen['coord_y'])
-                            .$layout->block_distance().'
+                        <div class="main_block">'
+                            .'<div>'
+                                .$paddle->paddle($citizen['coord_x'], $citizen['coord_y'])
+                                .$layout->block_distance()
+                            .'</div>'
+                            .$statusbar->statusbar($citizen['action_points'], $citizen['city_id'], $citizen['is_wounded'],
+                                                    count($citizen['bag_items']),
+                                                    count($zone_fellows)-1).'
                         </div>';
 
-                        echo $layout->block_movement_AP($citizen['action_points'], $speciality_caracs['action_points']);
+//                        echo $layout->block_movement_AP($citizen['action_points'], $speciality_caracs['action_points']);
 
-                        echo '<br>'.
+                        echo 
                         $actionCards->card_citizens().
                         $actionCards->card_building().
                         $actionCards->card_dig().

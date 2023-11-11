@@ -68,7 +68,7 @@ class HtmlStatusBar {
         // Display or not the amount for this item
         $html_amount = ($amount !== null) ? '<span class="dot_number">'.$amount.'</span>' : '';
         
-        return '<a class="status" title="'.$title.'" '.$popup_link.' '.$cursor_style.'>
+        return '<a class="status z-depth-2" title="'.$title.'" '.$popup_link.' '.$cursor_style.'>
                     '.$html_icon . $html_amount.'
                     
                 </a>';

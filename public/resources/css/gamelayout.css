@@ -228,13 +228,11 @@
 }
 
 /* Boutons de déplacement du joueur */
-#column_move {
+#block_move .main_block {
     display:flex;
-    flex-direction:column;
-    float:left;
+    margin-bottom:1.5em;
 }
 #movement_paddle {
-    float:left;
     margin-top:-0.5em; /* TODO: fix this ugly artificial alignment */
     margin-left:8%; /* No margin:auto because Chrome centers the paddle over the floating text */
     width: 7.8rem; /* Fixed width to avoid crushing the paddle when downsizing the window */
