@@ -39,6 +39,9 @@ document.addEventListener('DOMContentLoaded', function() {
         // and modify its position to keep it inside the width of the page.
         if(elem.classList.contains("fix-position") === true) {
             elem.parentNode.style.left = 0;
+            // Remove the "abolute position", because it shifts the attack bar
+            // (normally fixed at the bottom) ou of the screen
+            elem.parentNode.style.position = "";
         }
     }
     

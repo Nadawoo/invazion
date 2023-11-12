@@ -1064,7 +1064,13 @@ function launchTutorial(elems, instances, step) {
     // go back to the .tap-target-wrapper parent (created on-the-fly by Materialize)
     // and modify its position to keep it inside the width of the page.
     if(elems[step].querySelector(".tap-target-origin").parentNode.parentNode.classList.contains("fix-position") === true) {
-        elems[step].querySelector(".tap-target-origin").parentNode.parentNode.parentNode.style.left = 0;
+        let tapTargetWrapper = elems[step].querySelector(".tap-target-origin").parentNode.parentNode.parentNode;
+        tapTargetWrapper.style.left = 0;
+        // Fix #3: the feature placed in absolute-positioned block shift the attack bar
+        // out of the screen
+        // Remove the "abolute position", because it shifts the attack bar
+        // (normally fixed at the bottom) ou of the screen
+        tapTargetWrapper.style.position = "";
     }
     
     //
