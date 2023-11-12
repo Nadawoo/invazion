@@ -181,7 +181,7 @@ echo $layout->page_header($citizen['citizen_id'], $citizen['citizen_pseudo']);
 echo $html['hidden_player_data'];
 echo $html['json_configs'];
 
-echo $tutorial->all_steps();
+//echo $tutorial->all_steps();
 
 // Textes des pop-up
 // TODO : ne pas charger toutes les textes dans le code, seulement celui utile

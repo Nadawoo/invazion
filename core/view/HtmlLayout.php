@@ -747,6 +747,8 @@ class HtmlLayout extends HtmlPage
             
             <button>'.$buttons->refresh().'</button>
         
-            <button id="launchTutorial"><i class="material-icons small grey-text text-darken-2">help</i></button>';
+            <!-- 
+            <button id="launchTutorial"><i class="material-icons small grey-text text-darken-2">help</i></button>
+            -->';        
     }
 }
