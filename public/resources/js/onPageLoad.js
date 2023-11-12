@@ -24,9 +24,24 @@ document.addEventListener('DOMContentLoaded', function() {
     var elems = document.querySelectorAll('.tabs');
     var instances = M.Tabs.init(elems);
     
-    // Launch the tutorial
+    // Load the tutorial
     var elems = document.querySelectorAll('.tap-target');
     var tutorialInstances = M.TapTarget.init(elems, []);    
+    
+    // Fix #2 (part 1/2): the features placed in absolute-positioned block enlarge the page
+    // If the element is in the #actions_block panel, the tutorial will create 
+    // an horizontal scrollbar, even when the tutorial is not displayed. 
+    // Cause: Materialize seems not to like placing tap-target inside blocks having 
+    // an absolute position.
+    for(let elem of elems) {
+        // For the features we have marked as needing the fix (marked by the homemade "fix-position" class),
+        // go back to the .tap-target-wrapper parent (created on-the-fly by Materialize)
+        // and modify its position to keep it inside the width of the page.
+        if(elem.classList.contains("fix-position") === true) {
+            elem.parentNode.style.left = 0;
+        }
+    }
+    
     document.querySelector("#launchTutorial").addEventListener("click", function() {
         launchTutorial(elems, tutorialInstances, 0);
     });

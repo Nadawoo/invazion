@@ -20,10 +20,12 @@ class HtmlTutorial {
                      'Votre but est de survivre le plus longtemps possible face à l\'attaque quotidienne des zombies.')
         .$this->step('tuto_button_move',
                      'Explorer',
-                     'Déplacez-vous le désert afin de récolter des ressources vitales.')
+                     'Déplacez-vous le désert afin de récolter des ressources vitales.',
+                     true)
         .$this->step('tuto_button_dig',
                      'Fouiller',
-                     'Vous trouverez les ressources en creusant chaque zone que vous traversez.')
+                     'Vous trouverez les ressources en creusant chaque zone que vous traversez.',
+                     true)
         .$this->step('tuto_discuss',
                      'Échanger',
                      'Discutez avec les autres joueurs afin de coordonner vos actions. L\'union fait la force !');
@@ -57,12 +59,17 @@ class HtmlTutorial {
      *                       of the tutorial.
      * @param string $title
      * @param string $description
+     * @param string $fix_position Set to "true" if your feature creates an horizontal
+     *                             scroll on the page. See the tutorial() 
+     *                             javascript function for the explanations.
      * @return string HTML
      */
-    private function step($target, $title, $description) {
+    private function step($target, $title, $description, $fix_position=false) {
+        
+        $class_fix_position = ($fix_position === true) ? 'fix-position' : '';
         
         return '
-            <div class="tap-target" data-target="'.$target.'">
+            <div class="tap-target '.$class_fix_position.'" data-target="'.$target.'">
                 <div class="tap-target-content">
                     <h5>'.$title.'</h5>
                     <p>'.$description.'</p>

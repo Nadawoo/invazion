@@ -1042,6 +1042,7 @@ function launchTutorial(elems, instances, step) {
 
     // ---- FIX FOR MATERIALIZE.CSS ----//
     // 
+    // Fix #1: missing image of the feature
     // The "Feature discovery" of Materialize seems to have a big bug: if more than
     // one feature is defined (with <div class="tap-target">), the image of the feature
     // is not displayed, excepted for the first feature. Cause: it seems like 
@@ -1057,6 +1058,14 @@ function launchTutorial(elems, instances, step) {
     elems[step].appendChild(tapTargetWaveNode);
     // Add the image of the feature inside the newly inserted HTML
     elems[step].querySelector(".tap-target-origin").appendChild(tapTargetNode);
+    
+    // Fix #2 (part 2/2): the features placed in absolute-positioned block enlarge the page
+    // For the features we have marked as needing the fix (marked by the homemade "fix-position" class),
+    // go back to the .tap-target-wrapper parent (created on-the-fly by Materialize)
+    // and modify its position to keep it inside the width of the page.
+    if(elems[step].querySelector(".tap-target-origin").parentNode.parentNode.classList.contains("fix-position") === true) {
+        elems[step].querySelector(".tap-target-origin").parentNode.parentNode.parentNode.style.left = 0;
+    }
     
     //
     // ---- END OF THE FIX ----//
