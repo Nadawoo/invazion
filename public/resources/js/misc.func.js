@@ -223,7 +223,7 @@ function toggleActionBlock(buttonAlias) {
         let actionBlocks = document.getElementById("actions").getElementsByTagName("fieldset");
         for (let i=0; i<actionBlocks.length; i++) {
             document.getElementById("actions").getElementsByTagName("fieldset")[i].style.display = "none";
-            document.getElementById("round_actions").getElementsByTagName("input")[i].parentNode.classList.remove("active");
+            document.getElementById("round_actions").getElementsByTagName("input")[i].parentNode.parentNode.classList.remove("active");
         }
         // ... Then displays the only action block we want
         document.getElementById(blockId).style.display = "block";
@@ -1029,4 +1029,52 @@ async function displayMessageEndCycle() {
 
    hide(textZoneId);
    display("timer");
+}
+
+
+/**
+ * Highlights the features of the game, by using the "feature discovery" function 
+ * of Materialize.css.
+ * See their documentation: https://materializecss.com/feature-discovery.html
+ * 
+ */
+function launchTutorial(elems, instances, step) {
+
+    // ---- FIX FOR MATERIALIZE.CSS ----//
+    // 
+    // The "Feature discovery" of Materialize seems to have a big bug: if more than
+    // one feature is defined (with <div class="tap-target">), the image of the feature
+    // is not displayed, excepted for the first feature. Cause: it seems like 
+    // Materialize fails to inject a required piece of HTML. The code below adds it. 
+    
+    // The missing bunch of HTML that contains the image of the feature, and that
+    // Materialize.css mysteriously doesn't insert.
+    let tapTargetWaveNode = document.querySelector("#tplTapTargetWave").content.cloneNode(true);
+    // Clones the HTML of image of the feature (ex: the round button for digging)
+    let tapTargetNode = document.querySelector(`#${elems[step].dataset.target}`).cloneNode(true);
+    // Add the missing bunch of HTML after the text of the feature 
+    // (= after the appropriate .tap-target)
+    elems[step].appendChild(tapTargetWaveNode);
+    // Add the image of the feature inside the newly inserted HTML
+    elems[step].querySelector(".tap-target-origin").appendChild(tapTargetNode);
+    
+    //
+    // ---- END OF THE FIX ----//
+
+    // Open the Materialize's feature highlighter
+    // NB: this condition ensures that the user can't open simultaneous occurrences
+    // of the tutorial
+    if((step === 0 && instances[0].isOpen === false) || step !== 0) {
+        instances[step].open();
+    }
+    // When the users closes a feature, open the next one
+    instances[step].options.onClose = function() {
+        // Remove the fix previously added, to avoid cumultating multiple occurrences of it
+        // if the user reloads tutorial later
+        elems[step].querySelector(".tap-target-origin").remove();
+        // Open the next step of the tutorial
+        if(step+1 < instances.length) {
+            launchTutorial(elems, instances, step+1);
+        }
+    };
 }

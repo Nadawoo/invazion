@@ -886,6 +886,12 @@ a.redbutton {
     padding:0.8em;
 }
 
+/* Tutorial ("feature discovery" by Materialize.css) */
+.tap-target-wave::before, .tap-target-wave::after {
+    /* Ensures that the white day clock won't be invisible on the default white backgound */
+    background:#f8bbd0;
+}
+
 /* Message d'erreur, ex : "Vous n'avez plus assez de PA"
    Important : utiliser les alias retournés par les API 
    (info, warning, critical) */

@@ -209,16 +209,20 @@ class HtmlLayout extends HtmlPage
         $buttons = new HtmlButtons();
         
         return '
-            <a href="#popdayclock" id="dayclock">
-                Jour <span style="font-size:1.7em;font-weight:bold;">'.(int)$day.'</span>
-            </a>
+            <div id="tuto_dayclock">
+                <a href="#popdayclock" id="dayclock">
+                    Jour <span style="font-size:1.7em;font-weight:bold;">'.(int)$day.'</span>
+                </a>
+            </div>
             <p id="messageEndCycle" style="display:none;margin:0"></p>
             <div id="timer">
                 '.$buttons->button('end_cycle').'
             </div>
             <div class="right">
                 <a id="notifsButton" title="Notifications">&#x1F514;</a>
-                <a id="showWall" title="Communications" style="font-size:1.5rem">&#128172;</a>
+                <div id="tuto_discuss" style="display:inline-block">
+                    <a id="showWall" title="Communications" style="font-size:1.5rem">&#128172;</a>
+                </div>
                 <div id="notifsBlock">
                     <a id="notifsClose">X</a>
                     <div id="notifsList"><div style="text-align:center;padding:0.8em;color:grey">Chargement en cours...</div></div>
@@ -741,6 +745,8 @@ class HtmlLayout extends HtmlPage
             
             <button><a href="#popsmartphone" style="font-size:55%">&#128241;</a></button>
             
-            <button>'.$buttons->refresh().'</button>';
+            <button>'.$buttons->refresh().'</button>
+        
+            <button id="launchTutorial"><i class="material-icons small grey-text text-darken-2">help</i></button>';
     }
 }

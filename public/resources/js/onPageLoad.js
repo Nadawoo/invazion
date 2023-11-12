@@ -23,6 +23,13 @@ document.addEventListener('DOMContentLoaded', function() {
     // Activate the tabs
     var elems = document.querySelectorAll('.tabs');
     var instances = M.Tabs.init(elems);
+    
+    // Launch the tutorial
+    var elems = document.querySelectorAll('.tap-target');
+    var tutorialInstances = M.TapTarget.init(elems, []);    
+    document.querySelector("#launchTutorial").addEventListener("click", function() {
+        launchTutorial(elems, tutorialInstances, 0);
+    });
   });
 // Initialize collapsible (uncomment the lines below if you use the dropdown variation)
 // var collapsibleElem = document.querySelector('.collapsible');
