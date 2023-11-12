@@ -1042,37 +1042,36 @@ function launchTutorial(elems, instances, step) {
 
     // ---- FIX FOR MATERIALIZE.CSS ----//
     // 
-    // Fix #1: missing image of the feature
-    // The "Feature discovery" of Materialize seems to have a big bug: if more than
-    // one feature is defined (with <div class="tap-target">), the image of the feature
-    // is not displayed, excepted for the first feature. Cause: it seems like 
-    // Materialize fails to inject a required piece of HTML. The code below adds it. 
-    
-    // The missing bunch of HTML that contains the image of the feature, and that
-    // Materialize.css mysteriously doesn't insert.
-    let tapTargetWaveNode = document.querySelector("#tplTapTargetWave").content.cloneNode(true);
-    // Clones the HTML of image of the feature (ex: the round button for digging)
-    let tapTargetNode = document.querySelector(`#${elems[step].dataset.target}`).cloneNode(true);
-    // Add the missing bunch of HTML after the text of the feature 
-    // (= after the appropriate .tap-target)
-    elems[step].appendChild(tapTargetWaveNode);
-    // Add the image of the feature inside the newly inserted HTML
-    elems[step].querySelector(".tap-target-origin").appendChild(tapTargetNode);
-    
-    // Fix #2 (part 2/2): the features placed in absolute-positioned block enlarge the page
-    // For the features we have marked as needing the fix (marked by the homemade "fix-position" class),
-    // go back to the .tap-target-wrapper parent (created on-the-fly by Materialize)
-    // and modify its position to keep it inside the width of the page.
-    if(elems[step].querySelector(".tap-target-origin").parentNode.parentNode.classList.contains("fix-position") === true) {
-        let tapTargetWrapper = elems[step].querySelector(".tap-target-origin").parentNode.parentNode.parentNode;
-        tapTargetWrapper.style.left = 0;
-        // Fix #3: the feature placed in absolute-positioned block shift the attack bar
-        // out of the screen
-        // Remove the "abolute position", because it shifts the attack bar
-        // (normally fixed at the bottom) ou of the screen
-        tapTargetWrapper.style.position = "";
-    }
-    
+//    // Fix #1: missing image of the feature
+//    // The "Feature discovery" of Materialize seems to have a big bug: if more than
+//    // one feature is defined (with <div class="tap-target">), the image of the feature
+//    // is not displayed, excepted for the first feature. Cause: it seems like 
+//    // Materialize fails to inject a required piece of HTML. The code below adds it. 
+//    
+//    // The missing bunch of HTML that contains the image of the feature, and that
+//    // Materialize.css mysteriously doesn't insert.
+//    let tapTargetWaveNode = document.querySelector("#tplTapTargetWave").content.cloneNode(true);
+//    // Clones the HTML of image of the feature (ex: the round button for digging)
+//    let tapTargetNode = document.querySelector(`#${elems[step].dataset.target}`).cloneNode(true);
+//    // Add the missing bunch of HTML after the text of the feature 
+//    // (= after the appropriate .tap-target)
+//    elems[step].appendChild(tapTargetWaveNode);
+//    // Add the image of the feature inside the newly inserted HTML
+//    elems[step].querySelector(".tap-target-origin").appendChild(tapTargetNode);
+//    
+//    // Fix #2 (part 2/2): the features placed in absolute-positioned block enlarge the page
+//    // For the features we have marked as needing the fix (marked by the homemade "fix-position" class),
+//    // go back to the .tap-target-wrapper parent (created on-the-fly by Materialize)
+//    // and modify its position to keep it inside the width of the page.
+//    if(elems[step].querySelector(".tap-target-origin").parentNode.parentNode.classList.contains("fix-position") === true) {
+//        let tapTargetWrapper = elems[step].querySelector(".tap-target-origin").parentNode.parentNode.parentNode;
+//        tapTargetWrapper.style.left = 0;
+//        // Fix #3: the feature placed in absolute-positioned block shift the attack bar
+//        // out of the screen
+//        // Remove the "abolute position", because it shifts the attack bar
+//        // (normally fixed at the bottom) ou of the screen
+//        tapTargetWrapper.style.position = "";
+//    }    
     //
     // ---- END OF THE FIX ----//
 
@@ -1086,7 +1085,7 @@ function launchTutorial(elems, instances, step) {
     instances[step].options.onClose = function() {
         // Remove the fix previously added, to avoid cumultating multiple occurrences of it
         // if the user reloads tutorial later
-        elems[step].querySelector(".tap-target-origin").remove();
+//        elems[step].querySelector(".tap-target-origin").remove();
         // Open the next step of the tutorial
         if(step+1 < instances.length) {
             launchTutorial(elems, instances, step+1);

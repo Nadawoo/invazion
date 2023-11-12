@@ -33,17 +33,17 @@ document.addEventListener('DOMContentLoaded', function() {
     // an horizontal scrollbar, even when the tutorial is not displayed. 
     // Cause: Materialize seems not to like placing tap-target inside blocks having 
     // an absolute position.
-    for(let elem of elems) {
-        // For the features we have marked as needing the fix (marked by the homemade "fix-position" class),
-        // go back to the .tap-target-wrapper parent (created on-the-fly by Materialize)
-        // and modify its position to keep it inside the width of the page.
-        if(elem.classList.contains("fix-position") === true) {
-            elem.parentNode.style.left = 0;
-            // Remove the "abolute position", because it shifts the attack bar
-            // (normally fixed at the bottom) ou of the screen
-            elem.parentNode.style.position = "";
-        }
-    }
+//    for(let elem of elems) {
+//        // For the features we have marked as needing the fix (marked by the homemade "fix-position" class),
+//        // go back to the .tap-target-wrapper parent (created on-the-fly by Materialize)
+//        // and modify its position to keep it inside the width of the page.
+//        if(elem.classList.contains("fix-position") === true) {
+//            elem.parentNode.style.left = 0;
+//            // Remove the "abolute position", because it shifts the attack bar
+//            // (normally fixed at the bottom) ou of the screen
+//            elem.parentNode.style.position = "";
+//        }
+//    }
     
     document.querySelector("#launchTutorial").addEventListener("click", function() {
         launchTutorial(elems, tutorialInstances, 0);
