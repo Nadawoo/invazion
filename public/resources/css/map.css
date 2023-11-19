@@ -21,6 +21,9 @@
     background:none;
 }
 
+#map_viewport {
+    margin-top:6.5em;
+}
 map_body_wrapper {
     height:50vh; /* Allows to scroll vertically with ScrollBooster */
 }
