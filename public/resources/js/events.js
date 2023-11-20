@@ -72,19 +72,19 @@ if (document.getElementById('map') !== null) {
     });
     
     // Displays/hides the notifications panel
-    document.getElementById("notifsButton").addEventListener("click", function(){
-
-        if (window.getComputedStyle(document.getElementById("notifsBlock")).display === 'none') {
-            display("notifsBlock");
-            updateDiscussionsNotifs();
-        }
-        else {
-            hide("notifsBlock");
-        }
-    });
-    document.getElementById("notifsClose").addEventListener("click", function(){
-        hide("notifsBlock");
-    });
+//    document.getElementById("notifsButton").addEventListener("click", function(){
+//
+//        if (window.getComputedStyle(document.getElementById("notifsBlock")).display === 'none') {
+//            display("notifsBlock");
+//            updateDiscussionsNotifs();
+//        }
+//        else {
+//            hide("notifsBlock");
+//        }
+//    });
+//    document.getElementById("notifsClose").addEventListener("click", function(){
+//        hide("notifsBlock");
+//    });
         
     // Switch tabs in the communications panel
     document.querySelector("#wall .tabs a[href='#wallDiscuss']").addEventListener("click", initiateDiscussTab);

@@ -83,9 +83,6 @@
 #attack_bar ::selection {
     background:none;
 }
-#attack_bar div {
-    border-radius:0.2rem;
-}
 #dayclock {
     display:flex;
     justify-content:center;
@@ -99,17 +96,26 @@
     border-radius:2em;
     color:white;
 }
+#showWall {
+    display:block;
+    height:3.2rem;
+    width: 3.2rem;
+    margin-right:0.3rem;
+    font-size:2em;
+    text-align:center;
+    background:darkred;
+    border:2px outset red;
+    border-radius:0.1em;
+    box-shadow: 3px 3px 5px black;
+}
 #timer input {
     height:3em;
     border-radius:0.3em;
-    border:1px solid red;
+    border:2px outset red;
 }
 #attackCountdown {
     font-size:1.3em;
     width:9rem; /* Fixed-width to avoid the temporary resizing while loading the timer */
-}
-#attack_bar .right {
-    padding:0.2rem;
 }
 
 #notifsButton {

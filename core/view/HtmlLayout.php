@@ -219,14 +219,16 @@ class HtmlLayout extends HtmlPage
                 '.$buttons->button('end_cycle').'
             </div>
             <div class="right">
+                <a id="showWall" title="Communications">&#128172;</a>
+                
+                <!--
                 <a id="notifsButton" title="Notifications">&#x1F514;</a>
-                <div id="tuto_discuss" style="display:inline-block">
-                    <a id="showWall" title="Communications" style="font-size:1.5rem">&#128172;</a>
-                </div>
                 <div id="notifsBlock">
                     <a id="notifsClose">X</a>
                     <div id="notifsList"><div style="text-align:center;padding:0.8em;color:grey">Chargement en cours...</div></div>
                 </div>
+                -->
+                
             </div>';
     }
     
