@@ -27,6 +27,9 @@
 }
 
 @media (max-width:575px) {
+    #page_container {
+        border:none;
+    }
     /* Met en colonne les blocs à l'intérieur de la ville */
     .city_row {
         flex-direction:column;

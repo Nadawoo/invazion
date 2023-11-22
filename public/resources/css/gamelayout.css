@@ -239,7 +239,6 @@
     margin-bottom:1.5em;
 }
 #movement_paddle {
-    margin-top:-0.5em; /* TODO: fix this ugly artificial alignment */
     margin-left:8%; /* No margin:auto because Chrome centers the paddle over the floating text */
     width: 7.8rem; /* Fixed width to avoid crushing the paddle when downsizing the window */
     height:7.8rem;
@@ -283,7 +282,7 @@
 #movement_paddle .me {
     position:absolute;
     top:-1.2em; /* TODO: fix those artificial alignments */
-    left:30%;
+    left:33%;
     height:2.6em;
 }
 /* Shows the distance to the city */
@@ -378,7 +377,7 @@
 #actions_panel {
     position:absolute;
     right:0.5rem; /* Avoids shifting the buttons to the left when the scrollbar appears */
-    width:24.6rem;
+    width:21.7rem;
     text-align:center;
     font-size:0.9em;
 }
@@ -401,8 +400,8 @@
 }
 .round_action {
     position:relative;
-    height:3.9rem;
-    width: 3.9rem;
+    height:3.3rem;
+    width: 3.3rem;
      /* Bigger margin at the right and bottom to compensate for the feeling 
         of asymetry caused by the shadow */
     margin:0.5rem 0.5rem 0.8rem 0.4rem;
@@ -448,6 +447,7 @@
 #round_actions .dot_number {
     position:absolute;
     right:0;
+    bottom:1.4em;
     min-width:1.2rem; /* Not simply "width" to avoid overflow with 3-digits numbers */
     height:   1.2rem;
     padding:0.1em;

@@ -465,18 +465,18 @@ class HtmlButtons
              $dot_number = '<div class="alert_icon">'.$button['alert'].'</div>';
         } 
         elseif ($amount >= 0) {
-            $dot_number = '<div class="dot_number">'.$amount.'</div>';
+            $dot_number = '<div class="dot_number z-depth-2">'.$amount.'</div>';
         }
         
         $class_inactive = ($is_active !== true) ? 'inactive' : '';
         
         return
         '<div class="round_action_block" id="round_'.$button_alias.'">'
-            . $dot_number 
             .'<div id="tuto_button_'.$button_alias.'">'
                 .'<input type="submit" class="round_action '.$class_inactive.'" value="'.$button['icon'].'" '
                     . 'onclick="toggleActionBlock(\''.$button_alias.'\'); updateBlockAction(\''.$button_alias.'\')">'
             .'</div>'
+            . $dot_number 
             . '<label>'.$button['label'].'</label>'
         . '</div>';
     }
