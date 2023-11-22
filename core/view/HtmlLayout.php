@@ -185,7 +185,10 @@ class HtmlLayout extends HtmlPage
                 '.$buttons->button('end_cycle').'
             </div>
             <div class="right">
-                <a id="showWall" title="Communications">&#128172;</a>
+                <a id="showWall" title="Communications">
+                    <span class="icon">&#128172;</span>
+                    <span class="text">Communications</span>
+                </a>
                 
                 <!--
                 <a id="notifsButton" title="Notifications">&#x1F514;</a>

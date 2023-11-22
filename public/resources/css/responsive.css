@@ -54,4 +54,13 @@
     #actions_panel {
         left:0;
     }
+    
+    /* Hide the text of the button which opens the "communications" panel, 
+    keep only the icon */
+    #showWall {
+        width: 3.1rem; /* Must be equal to the height */
+    }
+    #showWall .text {
+        display:none;
+    }
 }

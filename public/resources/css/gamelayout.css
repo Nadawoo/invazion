@@ -97,16 +97,23 @@
     color:white;
 }
 #showWall {
-    display:block;
+    display:flex;
+    align-items: center;
     height:3.1rem;
-    width: 3.1rem;
     margin-right:0.3rem;
-    font-size:2em;
     text-align:center;
     background:darkred;
+    color:white;
     border:2px outset red;
     border-radius:0.1em;
     box-shadow: 3px 3px 5px black;
+}
+#showWall .icon {
+    font-size:2em;
+}
+#showWall .text {
+    padding:0.3em;
+    font-variant: small-caps;
 }
 #timer input {
     height:3em;
