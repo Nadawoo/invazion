@@ -37,6 +37,7 @@ class SortGameData
      * Starting from a main city, gets of the citizens of all the habitations
      * linked to this city.
      * 
+     * @param int $main_city_id The ID of the main city from which you want the citizens
      * @param int $child_cities_ids The IDs of the habitations linked to the main city.
      * @param array $cities_data   The characteristics of the cities 
      *                             (coming from the API "cities")
@@ -44,10 +45,14 @@ class SortGameData
      *                             (coming from the API "citizens")
      * @return array
      */
-    function get_child_citizens($child_cities_ids, $cities_data, $citizens_data) {
+    function get_child_citizens($main_city_id, $child_cities_ids, $cities_data, $citizens_data) {
         
-        $city_fellows = [];
+        // Get the citizen from the main city
+        $city_fellows = array_filter($citizens_data, function($citizen) use($main_city_id) { 
+                                        return ($citizen['city_id'] === $main_city_id);
+                                    });
         
+        // Add the citizen living in tents linked to the main city
         foreach($child_cities_ids as $child_id) {
             $citizens_ids = $cities_data[$child_id]['citizens_ids'];
             if(!empty($citizens_ids)) {

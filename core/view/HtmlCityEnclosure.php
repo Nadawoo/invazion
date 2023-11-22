@@ -231,7 +231,7 @@ class HtmlCityEnclosure
                 ? 'en ville'
                 : '<span class="highlight">à&nbsp;'.$citizen['distance_to_city'].'&nbsp;km</span>';
             
-            $wound = ($citizen['is_wounded'] === 0) ? '' : '<li><strong class="red">est blessé</strong></li>';
+            $wound = ($citizen['is_wounded'] === 0) ? '' : '<li><strong class="red-text">est blessé !</strong></li>';
             
             $html_citizens .= '
                 <div class="city_block" onclick="toggleHouse(\'citizen'.$citizen['citizen_id'].'\')">

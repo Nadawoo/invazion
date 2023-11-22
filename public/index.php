@@ -111,7 +111,7 @@ if ($citizen['citizen_id'] !== NULL) {
         $items_inside_constructions = $api->call_api('items', 'get', [])['datas'];
         $city_data = $cities_data[$citizen['inside_city_id']];
         // Gets the citizens linked to this city
-        $city_fellows = $sort->get_child_citizens($city_data['child_cities_ids'], $cities_data, $citizens);
+        $city_fellows = $sort->get_child_citizens($citizen['city_id'], $city_data['child_cities_ids'], $cities_data, $citizens);
         // TRUE if the player has connected his habitation to this city
         $is_citizen_home_connected = in_array($citizen['city_id'], $city_data['child_cities_ids']) ? true : false;
         
