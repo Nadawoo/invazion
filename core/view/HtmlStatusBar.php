@@ -5,9 +5,18 @@ class HtmlStatusBar {
     /**
      * Displays the status bar at the top of the map (wound, etc.)
      * 
+     * @param array $bag_items The list of items in the citizen's bag,
+     *                         as returned by the Invazion's API
+     * @param int $city_id
+     * @param int $is_wounded Value "1" if the citizen is wounded
+     * @param int $nbr_zone_fellows The number of humans in the citizen's zone
      * @return string HTML
      */
-    public function statusbar($action_points, $city_id, $is_wounded, $bag_items, $nbr_zone_fellows) {
+    public function statusbar($bag_items, $city_id, $is_wounded, $nbr_zone_fellows) {
+        
+        // #23 = ID of the item "action points" in the database
+        $ap_item_id = 23;
+        $action_points = isset($bag_items[$ap_item_id]) ? $bag_items[$ap_item_id] : 0;
         
         $status_defenses = (is_int($city_id))
             ? $this->status_image("Attaque du soir", "resources/img/copyrighted/wolf.png", null,
