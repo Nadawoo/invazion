@@ -323,7 +323,7 @@ echo $layout->block_zone_fellow_template();
                     . $buttons->button_round('citizens', null, null)
                     . $buttons->button_round('build');
                 // Warn if wounded
-                echo $layout->block_alert_wounded((bool)$citizen['is_wounded']);
+//                echo $layout->block_alert_wounded((bool)$citizen['is_wounded']);
                 ?>
             </div>
             <?php
@@ -353,7 +353,7 @@ echo $layout->block_zone_fellow_template();
                             .$layout->block_distance()
                         .'</div>'
                         .$statusbar->statusbar($citizen['action_points'], $citizen['city_id'], $citizen['is_wounded'],
-                                                count($citizen['bag_items']),
+                                                $citizen['bag_items'],
                                                 count($zone_fellows)-1).'
                     </div>';
 
@@ -370,8 +370,8 @@ echo $layout->block_zone_fellow_template();
                         <p><strong>Mes caractéristiques</strong></p>
                         &#128295; Spécialité : '.$speciality_caracs['name'].'<br>
                         &#x1F453; Vision niv. '.$citizen['vision'].'<br>
-                        &#128374;&#65039; Camouflage niv. '.$citizen['camouflage'].'<br>
-                        &#129656; Blessé : '.($citizen['is_wounded'] === 1 ? 'oui' : 'non');
+                        &#128374;&#65039; Camouflage niv. '.$citizen['camouflage'].'
+                        </p>'
                     ?>
                 </fieldset>
 

@@ -164,40 +164,6 @@ class HtmlLayout extends HtmlPage
     
     
     /**
-     * Bloc contenant les caractéristiques du joueur (points d'action, temps de fouille...)
-     * INUTILISÉ depuis que ces données sont affichés dans le smartphone à droite de la carte
-     * 
-     * @param array $speciality_caracs Les caractéristiques de la spécialité du citoyen,
-     *                                 issues de l'API (points d'action, temps de fouille..)
-     * @param int   $current_action_points Le nombre de points d'action dont dispose 
-     *                                     actuellement le citoyen
-     * @param int   $is_wounded Vaut 1 si le joueur est blessé
-     * @return type
-     */
-    function block_health($speciality_caracs, $current_action_points, $is_wounded)
-    {
-        
-        $html_wounded = '';
-        
-        if ($is_wounded !== 0) {
-            
-            $html_wounded = '<p><a href="#popwounded">
-                    &#129656;<strong style="background:red;color:white">Vous êtes blessé !</strong>
-                    </a></p>';
-        }
-        
-        return '
-                <p><strong style="color:lightgrey">Spécialité&nbsp;:</strong>
-                    '.$speciality_caracs['name'].'</p>
-                <p><strong style="color:lightgrey">Points d\'action&nbsp;:</strong>
-                    '.$current_action_points.'&nbsp;/&nbsp;'.$speciality_caracs['action_points'].'</p>
-                <p><strong style="color:lightgrey">Temps de fouille&nbsp;:</strong>
-                    '.$speciality_caracs['digging_duration'].'&nbsp;mn</p>'
-                . $html_wounded;
-    }
-    
-    
-    /**
      * Bar above the map showing the countdown before the next attack, the current day...
      * @param  int $map_id The ID of the map on which the player is
      * @param  int $day The number of days since the game start

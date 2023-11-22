@@ -7,19 +7,20 @@ class HtmlStatusBar {
      * 
      * @return string HTML
      */
-    public function statusbar($action_points, $city_id, $is_wounded, $nbr_bag_items, $nbr_zone_fellows) {
+    public function statusbar($action_points, $city_id, $is_wounded, $bag_items, $nbr_zone_fellows) {
         
         $status_defenses = (is_int($city_id))
             ? $this->status_image("Attaque du soir", "resources/img/copyrighted/wolf.png", null,
                                 "Construisez des défenses dans votre ville &#10;pour contrer l'attaque zombie du soir !",
                                 "popattack")
-            : $this->status_image("Abri", "resources/img/copyrighted/home_house.png", "&#9888;&#65039;",
+            : $this->status_image("Abri", "resources/img/copyrighted/home_house.png", null,
                                   "Abritez-vous dans une ville ou une tente &#10;avant la prochaine attaque zombie, &#10;sinon vous mourrez !",
                                   "popattack");
                 
         $status_wounded = ($is_wounded >= 1)
-            ? $this->status_image("Blessure", "resources/img/copyrighted/wound.png", "&#9888;&#65039;",
-                                  "Vous êtes blessé ! Soignez-vous rapidement &#10;pour ne pas mourir d'infection...")
+            ? $this->status_image("Blessure", "resources/img/copyrighted/wound.png", null,
+                                  "Vous êtes blessé ! Soignez-vous rapidement &#10;pour ne pas mourir d'infection...",
+                                  "popwounded")
             : $this->status_empty();
         
         $status_fellows = ($nbr_zone_fellows >= 1)
@@ -30,7 +31,7 @@ class HtmlStatusBar {
         $status_actionpoints = $this->status_image("&#9889;", null, $action_points,
                                                   "Vos points d'action restants. S'ils sont épuisés, &#10;vous ne pourrez plus vous déplacer dans le désert.",
                                                   "popmove");
-        $status_bag = $this->status_image("&#127890;", null, $nbr_bag_items,
+        $status_bag = $this->status_image("&#127890;", null, count($bag_items),
                                          "Votre sac à dos permet de transporter &#10;les objets trouvés pendant vos explorations.");
 
         return
