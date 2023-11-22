@@ -31,7 +31,7 @@
     margin: 5% auto;
     padding: 1em 0.5em;
     background: #fff;
-    border-radius: 5px;
+    border-radius: 8px;
     position: relative;
     transition: all 250ms ease-in-out;
 }
@@ -49,16 +49,15 @@
 }
 .popup .close {
     position: absolute;
-    top:   0.1em;
-    right: 0.1em;
+    top:   0;
+    right: 0;
     height:     0.9em;
     width:      0.9em;
     line-height:0.9em;
     text-align:center;
-    font-size: 30px;
+    font-size: 2.5em;
     text-decoration: none;
     background:darkred;
-    border-radius:1em;
     color:white;
     transition: all 200ms;
 }
