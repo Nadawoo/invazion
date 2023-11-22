@@ -467,7 +467,6 @@ async function moveCitizen(direction) {
     myZone.dataset.citizens = parseInt(myZone.dataset.citizens, 10) + 1;
        
     updateRoundActionButtons(json.datas.new_coord_x, json.datas.new_coord_y);
-    updateActionPointsBar(json.datas.action_points_lost);
     updateCityDistance(json.datas.new_coord_x, json.datas.new_coord_y);
     updateEnterBuildingButton(myZone.dataset.citytypeid);
     updateMoveCost(parseInt(myZone.dataset.zombies));

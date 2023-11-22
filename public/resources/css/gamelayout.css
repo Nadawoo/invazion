@@ -325,21 +325,6 @@
     height:9rem;
     text-align:right;
 }
-#actionpoints {
-    display:block;
-    padding:0.1em 0.5em 0.3em 0.5em;
-    box-shadow:4px 4px 6px black;
-    background:green;
-    color:white;
-    opacity:0.9;
-}
-#actionpoints p {
-    margin:0.2em 0;
-}
-#actionpoints #apBar {
-    font-size:1.5em;
-    word-break:break-all;
-}
 
 /*
  * The cards under the movement paddle, indicating the main actions

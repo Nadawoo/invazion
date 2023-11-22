@@ -355,9 +355,7 @@ echo $layout->block_zone_fellow_template();
                         .$statusbar->statusbar($citizen['bag_items'], $citizen['city_id'], $citizen['is_wounded'],
                                                 count($zone_fellows)-1).'
                     </div>';
-
-//                        echo $layout->block_movement_AP($citizen['action_points'], $speciality_caracs['action_points']);
-
+                    
                     echo 
                     $actionCards->card_citizens().
                     $actionCards->card_building().

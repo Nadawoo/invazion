@@ -299,28 +299,6 @@ class HtmlLayout extends HtmlPage
     
     
     /**
-     * Displays informations about the action points to the player
-     * 
-     * @param int $citizen_AP The amount of action points the player currently has
-     * @param int $total_AP   The maximumum amount of action points of his speciality
-     * @return string HTML
-     */
-    function block_movement_AP($citizen_AP, $total_AP) {
-        
-        // Draws the thunder icons to symbolize the action points
-        $ap_bar = str_repeat('&#x26A1;', $citizen_AP);
-        $ap_bar .= '<span style="opacity:0.3">'.str_repeat('&#x26A1;', $total_AP-$citizen_AP).'</span>';
-
-        return '<div id="movement_ap">
-                <a href="#popmove" id="actionpoints">
-                    <p style="opacity:0.7">Points d\'action</p>
-                    <p id="apBar">'.$ap_bar.'</p>
-                </a>
-            </div>';
-    }
-    
-    
-    /**
      * Displays the distance between the citizen and his city
      * 
      * @return string HTML

@@ -60,19 +60,19 @@ function updateMoveCost(newNbrZombies) {
  * 
  * @param {int} actionsPointsLost The amount of AP to decrease
  */
-function updateActionPointsBar(actionsPointsLost) {
-    // Update the number of AP in the hidden data storage
-    document.querySelector("#actionPoints").innerHTML -= actionsPointsLost;
-    
-    let currentAP   = document.querySelector("#actionPoints").innerHTML,
-        maxAP       = document.querySelector("#maxActionPoints").innerHTML;
-    
-    let htmlCurrentAP = '&#x26A1'.repeat(currentAP),
-        htmlConsumedAP  = '<span style="opacity:0.3">'+('&#x26A1;'.repeat(Math.max(0, maxAP-currentAP)))+'</span>';
-    
-    // Update the HTML gauge displaying the number of action points
-    document.querySelector("#apBar").innerHTML = htmlCurrentAP + htmlConsumedAP;
-}
+//function updateActionPointsBar(actionsPointsLost) {
+//    // Update the number of AP in the hidden data storage
+//    document.querySelector("#actionPoints").innerHTML -= actionsPointsLost;
+//    
+//    let currentAP   = document.querySelector("#actionPoints").innerHTML,
+//        maxAP       = document.querySelector("#maxActionPoints").innerHTML;
+//    
+//    let htmlCurrentAP = '&#x26A1'.repeat(currentAP),
+//        htmlConsumedAP  = '<span style="opacity:0.3">'+('&#x26A1;'.repeat(Math.max(0, maxAP-currentAP)))+'</span>';
+//    
+//    // Update the HTML gauge displaying the number of action points
+//    document.querySelector("#apBar").innerHTML = htmlCurrentAP + htmlConsumedAP;
+//}
 
 
 /**
