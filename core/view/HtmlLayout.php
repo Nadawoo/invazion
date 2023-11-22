@@ -237,7 +237,7 @@ class HtmlLayout extends HtmlPage
         $template = '
             <template id="tplActionBlockFellow">
                 <li class="userListItem">
-                    <div class="userLabel">
+                    <div class="userLabel z-depth-2">
                         <div class="avatar">&#x1F464;</div> 
                         <div class="pseudo">{{citizen_pseudo}}</div>
                     </div>
