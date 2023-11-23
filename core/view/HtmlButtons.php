@@ -310,6 +310,15 @@ class HtmlButtons
                     'action'        => 'startgame',
                     ],
                 ],
+            'switch_citizen' => [
+                'icon'  => '',
+                'name'  => "Contrôler ce citoyen",
+                'title' => "Vous pouvez prendre le contrôle de certains citoyens\npour mener des expéditions dans le désert.",
+                'fields' => [
+                    'api_name'          => 'me',
+                    'action'            => 'switch_citizen',
+                    ],
+                ],
             'upgrade_camouflage' => [
                 'icon'  => '',
                 'name'  => "Camouflage +1 niveau",
@@ -769,6 +778,29 @@ class HtmlButtons
     {
         
         return '<a href="#popsuccess" class="redbutton">Explorer : <br>'.$building_alias.'</a>';
+    }
+    
+    
+    /**
+     * Take the control of another citizen. Useful to control bot-citizens.
+     *  
+     * @param string $button_alias
+     * @param int $target_id The ID of the citizen (not the user!) you want to control
+     * @return string HTML
+     */
+    function switch_citizen($button_alias, $target_id)
+    {
+        
+        $button = $this->buttons[$button_alias];
+        $fields = $button['fields'];
+
+        return
+        '<form method="post" action="#popsuccess">
+            <input type="hidden" name="api_name" value="'.$fields['api_name'].'">
+            <input type="hidden" name="action" value="'.$fields['action'].'">
+            <input type="hidden" name="params[target_id]" value="'.$target_id.'">
+            <button type="submit" class="redbutton" title="'.$button['title'].'">'.$button['name'].'</button>
+        </form>';
     }
         
     

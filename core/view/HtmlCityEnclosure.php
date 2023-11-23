@@ -223,6 +223,7 @@ class HtmlCityEnclosure
     function block_fellows_list($fellows, $specialities)
     {
         
+        $buttons = new HtmlButtons();
         $html_citizens = '';
         
         foreach($fellows as $citizen) {
@@ -243,6 +244,7 @@ class HtmlCityEnclosure
                         <li>se trouve <span class="highlight">'.$localization.'</span></li>
                         '.$wound.'
                     </ul>
+                    '.$buttons->switch_citizen('switch_citizen', $citizen['citizen_id']).'
                     <div class="icons">
                         <img src="resources/img/copyrighted/waggon_45px.png">
                         <img src="resources/img/copyrighted/supplies_45px.png">

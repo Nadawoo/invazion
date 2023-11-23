@@ -63,6 +63,11 @@ if (!empty($_POST)) {
         // The result of all the other actions is displayed in a pop-up
         $msg_popup = '<p>'.nl2br($api_result['metas']['error_message']).'</p>';
     }
+    
+    // When we take control over a bot-citizen, update the cookie storing the token
+    if($action_post === 'switch_citizen' and $api_result['metas']['error_code'] === 'success') {
+        $api->update_cookie('token', $api_result['datas']['token']);
+    }
 }
 
 

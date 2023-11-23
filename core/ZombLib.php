@@ -4,7 +4,7 @@
  * pour récupérer ou/et écrire des données sur le serveur
  * http://invazion.nadazone.fr
  * 
- * Version 5.1
+ * Version 5.2
  */
 class ZombLib
 {
@@ -599,7 +599,7 @@ class ZombLib
      * @param string $name  The name of the cookie
      * @param string $value The content of the cookie
      */
-    private function update_cookie($name, $value)
+    public function update_cookie($name, $value)
     {
         // 1°) Sets or updates the value of the cookie in the browser
         // Set an explicit expiration time, otherwise the user will be disconnected 

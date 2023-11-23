@@ -267,6 +267,9 @@
     padding-left:1.3em;
     text-align:left;
 }
+#citizens_list .icons {
+    margin-top:1em;
+}
 #citizens_list .icons img {
     border-radius:0.4em;
     border:2px solid darkred;
