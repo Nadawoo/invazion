@@ -99,9 +99,9 @@
 #showWall {
     display:flex;
     align-items: center;
+    justify-content:center;
     height:3.1rem;
     margin-right:0.3rem;
-    text-align:center;
     background:darkred;
     color:white;
     border:2px outset red;
