@@ -51,6 +51,14 @@ footer {
     /* End of the hack */
 }
 
+.sidenav .user {
+    display:flex;
+    align-items:center;
+    color:white;
+    line-height:1.5em;
+    border-radius:0.3em;
+}
+
 nav::selection, nav ::selection {
     background:none;
 }

@@ -11,7 +11,7 @@ class HtmlPage
     // Increment those variables when you modify the CSS or JS files. This ensures
     // that the users' browsers reload the up-to-date files, instead of using 
     // the obsolete ones stored in their cache.
-    private $css_version = 23.1;
+    private $css_version = 23.2;
     private $js_version  = 23;
     
     /**
@@ -29,12 +29,13 @@ class HtmlPage
     /**
      * En-tête HTML des pages
      * 
+     * @param int $user_id
      * @param int $citizen_id
      * @param string $citizen_pseudo
      * @param  string $css_path Le chemin vers la feuille CSS voulue.
      * @return string
      */
-    function page_header($citizen_id=null, $citizen_pseudo=null, $css_path=NULL)
+    function page_header($user_id=null, $citizen_id=null, $citizen_pseudo=null, $css_path=NULL)
     {
         
         $this->http_headers();
@@ -115,7 +116,7 @@ class HtmlPage
                         </a>
                         <h1><a href="/">InvaZion</a></h1>
                         <div id="slogan">Le projet de Hordes-like collaboratif</div>
-                        '.$this->site_menu($citizen_id, $citizen_pseudo).'
+                        '.$this->site_menu($user_id, $citizen_id, $citizen_pseudo).'
                     </header>';
     }
         
@@ -170,25 +171,33 @@ class HtmlPage
     /**
      * Main menu of the game
      * 
+     * @param int $user_id
      * @param int $citizen_id
      * @param string $citizen_pseudo
      * @return string HTML
      */
-    function site_menu($citizen_id, $citizen_pseudo) {
+    function site_menu($user_id, $citizen_id, $citizen_pseudo) {
+        
+        $connection_buttons = ($citizen_id === null)
+                    ? '<a href="register" class="#0d47a1 blue darken-4 white-text"> M\'inscrire </a> · <a href="connect" class="#0d47a1 blue darken-4 white-text"> Me connecter </a>'
+                    : '<br>';
         
         $user_name = ($citizen_id === null)
-                    ? '<a href="register" class="#0d47a1 blue darken-4 white-text"> M\'inscrire </a> · <a href="connect" class="#0d47a1 blue darken-4 white-text"> Me connecter </a>'
-                    : '<a href="connect"><span class="white-text"><strong>'.$citizen_pseudo.'</strong> (citoyen #'.$citizen_id.')</span></a>';
+                    ? '[Non connecté]'
+                    : '<span title="Vous êtes connecté au compte #'.$user_id."\nVous contrôlez actuellement le citoyen #".$citizen_id.' « '.$citizen_pseudo.' »">Compte #'.$user_id.'<br>Citoyen #'.$citizen_id.'</span>';
                     
         return '
             <ul id="slide-out" class="sidenav">
             
                 <li><div class="user-view">
                     <div class="background">
-                      <img src="resources/img/motiontwin/mapBg.jpg" alt="Fond">
+                        <img src="resources/img/motiontwin/mapBg.jpg" alt="Fond">
                     </div>
-                    <a href="connect"><img class="circle" src="resources/img/icons8/profile-96.png" alt="Utilisateur"></a>
-                    '.$user_name.'
+                    <a href="connect" class="user blue darken-4">
+                        <img class="circle" src="resources/img/icons8/profile-96.png" alt="Utilisateur">
+                        '.$user_name.'
+                    </a>
+                    '.$connection_buttons.'
                 </div></li>'
                 
                 .$this->site_menu_item('Jouer', 'index#Outside', 'gamepad').'
