@@ -71,14 +71,17 @@ async function loadDiscussion(topicId) {
     
     var json = await callApi("GET", "discuss/threads", `action=get&topic_id=${topicId}`),
         messages = json["datas"]["messages"],
-        htmlMessages = "",
         i = 0;
     
+    // Remove the preview of the first & last message of the topic
+    document.getElementById("replies"+topicId).innerHTML = "";
+    // Insert all the messages of the topic
     for(let msg in messages) {
         i++;
-        htmlMessages += htmlDiscussionMessage(messages[msg]["message"], messages[msg]["is_json"], messages[msg]["author_pseudo"], messages[msg]["datetime_utc"], i);
+        htmlMessage = htmlDiscussionMessage(messages[msg]["message"], messages[msg]["is_json"], 
+                                            messages[msg]["author_pseudo"], messages[msg]["datetime_utc"], i);
+        document.getElementById("replies"+topicId).appendChild(htmlMessage);
     }
-    document.getElementById("replies"+topicId).innerHTML = htmlMessages;
 }
 
 
@@ -97,11 +100,10 @@ async function createDiscussion() {
     let json = await callApi("POST", "discuss/threads", `action=create&title=${title}&message=${message}&guest_pseudo=${guest_pseudo}&token=${token}`);
     
     if (json.metas.error_code === "success") {
-        json.datas.message = message;
-        json.datas.author_pseudo = author_pseudo;
         // Display the new discussion thread
-        document.getElementById("wallDiscuss").innerHTML += htmlDiscussion(json.datas.topic_id, "discuss",
-                                                                             title, json.datas, null, 0);
+        document.getElementById("wallDiscuss").innerHTML += htmlDiscussion(json.datas.topic_id, "discuss", title, 0);
+        document.querySelector("#replies"+json.datas.topic_id+"").appendChild( htmlDiscussionMessage(message, 0, author_pseudo, Date(), 1) );
+        // Hide the form to create a new thread
         toggleSendform(null);
         // Clear the form for the eventual next thread to send
         document.getElementById("sendform").reset();
@@ -133,7 +135,7 @@ async function replyDiscussion(topicId, nbrMessages) {
         // Unhides the "Reply" button
         display("replyButton"+topicId);
         // Appends the text of the posted reply at the bottom of the discussion
-        document.getElementById("replies"+topicId).innerHTML += htmlDiscussionMessage(message, false, citizenPseudo, new Date().toISOString(), nbrMessages+1);
+        document.getElementById("replies"+topicId).appendChild( htmlDiscussionMessage(message, false, citizenPseudo, new Date().toISOString(), nbrMessages+1) );
         // Clears the eventual error message (obsolete after sending)
         document.getElementById("replyError"+topicId).innerHTML = "";
     }
@@ -191,15 +193,6 @@ async function updateDiscussionsList(topicType) {
     
     var citizenPseudo = document.getElementById("citizenPseudo").innerHTML;
     var length = jsonTopics.datas.length;
-    var discussions = "";
-    
-    for (let i=0; i<length; i++) {        
-        let topic            = jsonTopics.datas[i],
-            nbrReplies       = topic.nbr_messages-1;
-
-        discussions += htmlDiscussion(topic.topic_id, topic.topic_type, topic.title, 
-                                      topic.first_message, topic.last_message, nbrReplies);
-    }
     
     // Set in which wall to add the contents
     // TODO: this doesn't handle a wall to display all the contents is one global tab 
@@ -210,8 +203,30 @@ async function updateDiscussionsList(topicType) {
         var contentsId = "#wallDiscuss";
     }  else if(topicType === "all") {
         var contentsId = "#wallDiscuss";
-    }    
-    document.querySelector(contentsId).innerHTML = discussions;
+    }
+    
+    for (let i=0; i<length; i++) {        
+        let topic            = jsonTopics.datas[i],
+            nbrReplies       = topic.nbr_messages-1;
+
+        document.querySelector(contentsId).innerHTML += htmlDiscussion(topic.topic_id, topic.topic_type, topic.title, nbrReplies);
+        // Preview of the first message of the topic
+        document.querySelector("#replies"+topic.topic_id).prepend( htmlDiscussionMessage(topic.first_message.message, 
+                                                                                                              topic.first_message.is_json,
+                                                                                                              topic.first_message.author_pseudo,
+                                                                                                              topic.first_message.datetime_utc,
+                                                                                                              1) );
+        // If there is no reply, the last message is the same as the first one, 
+        // so don't display it two times.
+        if(nbrReplies > 0) {
+            document.querySelector("#replies"+topic.topic_id).appendChild(  htmlDiscussionMessage(topic.last_message.message,
+                                                                                                                  topic.last_message.is_json,
+                                                                                                                  topic.last_message.author_pseudo,
+                                                                                                                  topic.last_message.datetime_utc,
+                                                                                                                  topic.nbr_messages) );
+        }
+    }
+    
     document.querySelector("#wall .footer").innerHTML = htmlNewDiscussionForm(citizenPseudo);
     document.getElementById("wallDiscuss").scrollIntoView(false);
 }

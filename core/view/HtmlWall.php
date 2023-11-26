@@ -14,7 +14,8 @@ class HtmlWall
     public function wall()
     {
         
-        return '<div id="wall" class="city_block">
+        return $this->message_template().
+            '<div id="wall" class="city_block">
                 <h2 id="wallHeader">
                     <div class="arrow">&#8963;</div>
                     Communications
@@ -78,6 +79,20 @@ class HtmlWall
                 </div>
                 '.$comments.'
             </div>';
+    }
+    
+    
+    public function message_template() {
+        
+        return '
+            <template id="tplMessage">
+                <div class="message">
+                    <div class="reply_num"></div>
+                    <div class="pseudo">&#x1F464; <strong></strong></div>
+                    <div class="time" title="Fuseau horaire de Paris"></div>
+                    <div class="text"></div>
+                </div>
+            </template>';
     }
     
     

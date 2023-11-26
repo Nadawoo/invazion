@@ -18,23 +18,16 @@ function htmlDiscussionNotif(topicTitle, date, url, authorId, authorPseudo, last
 }
 
 
-function htmlDiscussion(topicId, topicType, topicTitle, firstMessage, lastMessage, nbrReplies) {
+function htmlDiscussion(topicId, topicType, topicTitle, nbrReplies) {
     
     var otherMessagesLink = (nbrReplies>1) ? '<a id="loadDiscussion'+topicId+'" class="link_other_messages" onclick="loadDiscussion('+topicId+')">··· voir les '+(nbrReplies-1)+' autres réponses ···</a>' : '';
-    // If there is no reply, the last message is the same as the first one, 
-    // so don't display it two times.
-    htmlLastMessage = (nbrReplies === 0) ? "" : htmlDiscussionMessage(lastMessage.message, lastMessage.is_json, 
-                                                                      lastMessage.author_pseudo, lastMessage.datetime_utc, 
-                                                                      nbrReplies+1);
     
     return '<div class="topic '+topicType+'">\
                 <h3 onclick="toggle(\'replies'+topicId+'\')">\
                     <span style="font-weight:normal">&#x1F4AC;</span> '+topicTitle+'\
                 </h3>\
                 <div id="replies'+topicId+'">\
-                    '+htmlDiscussionMessage(firstMessage.message, firstMessage.is_json, firstMessage.author_pseudo, firstMessage.datetime_utc, 1)+'\
                     '+otherMessagesLink+'\
-                    '+htmlLastMessage+'\
                 </div>\
                 <div class="reply_button">\
                     <a id="replyButton'+topicId+'" href="#" onclick="display(\'sendform'+topicId+'\');this.style.display=\'none\';document.querySelector(\'#message'+topicId+'\').focus()">\
@@ -59,7 +52,7 @@ function htmlDiscussion(topicId, topicType, topicTitle, firstMessage, lastMessag
  * @param {string} pseudo
  * @param {string} utcDate The date when the message was posted, in the ISO format
  * @param {int} replyNum The number of order of the message in the discussion (1, 2, 3...)
- * @returns {String}
+ * @returns {Object}
  */
 function htmlDiscussionMessage(message, isJson, pseudo, utcDate, replyNum) {
     
@@ -72,16 +65,16 @@ function htmlDiscussionMessage(message, isJson, pseudo, utcDate, replyNum) {
     else {
         // If the message is an ordinary textual message (written by a player)
         formattedMessage = nl2br(message);
-        
-
     }
     
-    return '<div class="message">\
-            <div class="reply_num">#'+replyNum+'</div>\
-            <div class="pseudo">&#x1F464; <strong>'+pseudo+'</strong></div>\
-            <div class="time" title="Fuseau horaire de Paris">'+dateIsoToString(utcDate)+'</div>\
-            <div class="text">'+formattedMessage+'</div>\
-        </div>';
+    template = document.querySelector("#tplMessage").content.cloneNode(true);
+    
+    template.querySelector(".reply_num").innerText = "#"+replyNum;
+    template.querySelector(".pseudo strong").innerText = pseudo;
+    template.querySelector(".time").innerText = dateIsoToString(utcDate);
+    template.querySelector(".text").innerText = formattedMessage;
+    
+    return template;
 }
 
 
