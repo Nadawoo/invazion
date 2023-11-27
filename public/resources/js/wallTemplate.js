@@ -56,25 +56,29 @@ function htmlDiscussion(topicId, topicType, topicTitle, nbrReplies) {
  */
 function htmlDiscussionMessage(message, isJson, pseudo, utcDate, replyNum) {
     
-    let formattedMessage = "";
+    let tplMessage = document.querySelector("#tplMessage").content.cloneNode(true);
+    tplMessage.querySelector(".reply_num").innerText = "#"+replyNum;
+    tplMessage.querySelector(".pseudo strong").innerText = pseudo;
+    tplMessage.querySelector(".time").innerText = dateIsoToString(utcDate);
     
     if(isJson === 1) {
-        // If the message is JSON-formatted (raw data of an event: agression...)
-        formattedMessage = htmlEventTemplate(JSON.parse(message));
+        // If the message is JSON-formatted (raw data of an event: agression...),
+        // we hydrate the model of message
+        let api = JSON.parse(message),
+            coords = api.datas.coord_x+":"+api.datas.coord_y,
+            tplEvent = document.querySelector("#tplEvents ."+api.event_alias).content.cloneNode(true);
+        tplEvent.querySelector(".author_pseudo").innerText = api.datas.author.citizen_pseudo;
+        tplEvent.querySelector(".target_pseudo").innerText = api.datas.target.citizen_pseudo;
+        tplEvent.querySelector(".coords").innerText = coords;
+        tplMessage.querySelector(".text").appendChild(tplEvent);
     }
     else {
-        // If the message is an ordinary textual message (written by a player)
-        formattedMessage = nl2br(message);
+        // If the message is an ordinary textual message (written by a player),
+        // we simply display it.
+        tplMessage.querySelector(".text").innerText = nl2br(message);
     }
     
-    template = document.querySelector("#tplMessage").content.cloneNode(true);
-    
-    template.querySelector(".reply_num").innerText = "#"+replyNum;
-    template.querySelector(".pseudo strong").innerText = pseudo;
-    template.querySelector(".time").innerText = dateIsoToString(utcDate);
-    template.querySelector(".text").innerText = formattedMessage;
-    
-    return template;
+    return tplMessage;
 }
 
 
@@ -93,27 +97,6 @@ function htmlEvent(title, message, dateString, iAmInvolved) {
                 </div>\
             </div>\
         </div>';
-}
-
-
-function htmlEventTemplate(apiDatas) {
-    
-    var coords = apiDatas.datas.coord_x+":"+apiDatas.datas.coord_y;
-    
-    if (apiDatas.event_alias === "heal_citizen") {
-        return ("&#x1F489; <strong>"+apiDatas.datas.author.citizen_pseudo+"</strong> a soigné la blessure\
-                         de <strong>"+apiDatas.datas.target.citizen_pseudo+"</strong>\
-                         en zone "+coords+".");
-    }
-    else if (apiDatas.event_alias === "attack_citizen") {
-        return ("&#x1F44A;&#x1F3FC; <strong>"+apiDatas.datas.author.citizen_pseudo+"</strong>\
-                         a agressé <strong>"+apiDatas.datas.target.citizen_pseudo+"</strong>\
-                         en zone "+coords+" !");
-    }
-    else {
-        return ("<strong class=\"red\">[BUG] Evénement non prévu - Signalez-le \
-                au développeur du jeu...</strong>");
-    }
 }
 
 

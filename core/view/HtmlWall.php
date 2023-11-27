@@ -15,6 +15,7 @@ class HtmlWall
     {
         
         return $this->message_template().
+            $this->events_templates().
             '<div id="wall" class="city_block">
                 <h2 id="wallHeader">
                     <div class="arrow">&#8963;</div>
@@ -82,7 +83,13 @@ class HtmlWall
     }
     
     
-    public function message_template() {
+    /**
+     * The HTML template for a messsage in a wall thread 
+     * (first message of a discussion, or reply, or event message)
+     * 
+     * @return string
+     */
+    private function message_template() {
         
         return '
             <template id="tplMessage">
@@ -93,6 +100,30 @@ class HtmlWall
                     <div class="text"></div>
                 </div>
             </template>';
+    }
+    
+    
+    /**
+     * All the HTML templates for the events in game (ex: a citizen attacked an other one)
+     * 
+     * @return string HTML
+     */
+    private function events_templates() {
+        
+        return '
+            <div id="tplEvents">
+                <template class="attack_citizen">
+                    &#x1F44A;&#x1F3FC; <strong class="author_pseudo"></strong> a agressé
+                    <strong  class="target_pseudo"></strong>
+                    en zone <span class="coords"></span> !
+                </template>
+                
+                <template class="heal_citizen">
+                    &#x1F489; <strong class="author_pseudo"></strong> a soigné la blessure
+                    de <strong  class="target_pseudo"></strong>
+                    en zone <span class="coords"></span>.
+                </template>
+            </div>';
     }
     
     
