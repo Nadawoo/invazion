@@ -57,9 +57,9 @@ function htmlDiscussion(topicId, topicType, topicTitle, nbrReplies) {
 function htmlDiscussionMessage(message, isJson, pseudo, utcDate, replyNum) {
     
     let tplMessage = document.querySelector("#tplMessage").content.cloneNode(true);
-    tplMessage.querySelector(".reply_num").innerText = "#"+replyNum;
-    tplMessage.querySelector(".pseudo strong").innerText = pseudo;
-    tplMessage.querySelector(".time").innerText = dateIsoToString(utcDate);
+    tplMessage.querySelector(".reply_num").textContent = "#"+replyNum;
+    tplMessage.querySelector(".pseudo strong").textContent = pseudo;
+    tplMessage.querySelector(".time").textContent = dateIsoToString(utcDate);
     
     if(isJson === 1) {
         // If the message is JSON-formatted (raw data of an event: agression...),
@@ -67,15 +67,15 @@ function htmlDiscussionMessage(message, isJson, pseudo, utcDate, replyNum) {
         let api = JSON.parse(message),
             coords = api.datas.coord_x+":"+api.datas.coord_y,
             tplEvent = document.querySelector("#tplEvents ."+api.event_alias).content.cloneNode(true);
-        tplEvent.querySelector(".author_pseudo").innerText = api.datas.author.citizen_pseudo;
-        tplEvent.querySelector(".target_pseudo").innerText = api.datas.target.citizen_pseudo;
-        tplEvent.querySelector(".coords").innerText = coords;
+        tplEvent.querySelector(".author_pseudo").textContent = api.datas.author.citizen_pseudo;
+        tplEvent.querySelector(".target_pseudo").textContent = api.datas.target.citizen_pseudo;
+        tplEvent.querySelector(".coords").textContent = coords;
         tplMessage.querySelector(".text").appendChild(tplEvent);
     }
     else {
         // If the message is an ordinary textual message (written by a player),
         // we simply display it.
-        tplMessage.querySelector(".text").innerText = nl2br(message);
+        tplMessage.querySelector(".text").textContent = nl2br(message);
     }
     
     return tplMessage;
