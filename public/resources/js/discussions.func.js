@@ -217,6 +217,9 @@ async function updateDiscussionsList(topicType) {
         var contentsId = "#wallDiscuss";
     }
     
+    // Important: avoids adding the same threads multiple times after reloading
+    document.querySelector(contentsId).innerHTML = "";
+    
     for (let i=0; i<length; i++) {        
         let topic            = jsonTopics.datas[i],
             topicId          = topic.topic_id,
