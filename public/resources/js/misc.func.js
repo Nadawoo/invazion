@@ -147,6 +147,28 @@ function updateUrlParam(name, value) {
 
 
 /**
+ * Sanitize the HTML from a string by neutralizing critical characters
+ * (doesn't remove the tags)
+ * Source: https://stackoverflow.com/questions/1787322/what-is-the-htmlspecialchars-equivalent-in-javascript
+ * 
+ * @param {string} text
+ * @returns {unresolved}
+ */
+function sanitizeHtml(text) {
+    
+    var map = {
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#039;'
+    };
+    // NB: more complex than a succession of replace() but faster
+    return text.replace(/[&<>"']/g, function(m) { return map[m]; });
+}
+
+
+/**
  * Wait for XX milliseconds before continuing the execution of the function
  * Ex: await sleep(1000);
  * Important: MUST be placed inside an "async" function to work

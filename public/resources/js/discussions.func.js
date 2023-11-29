@@ -93,19 +93,23 @@ async function loadDiscussion(topicId) {
 async function createDiscussion() {
     
     let title         = document.getElementById("titleNew").value,
-        message       = document.getElementById("messageNew").value,
+        unsafeMessage = document.getElementById("messageNew").value,
         guest_pseudo  = document.getElementById("guestPseudo").value,
         author_pseudo = document.getElementById("citizenPseudo").innerHTML,
         token         = getCookie('token');
 
-    let json = await callApi("POST", "discuss/threads", `action=create&title=${title}&message=${message}&guest_pseudo=${guest_pseudo}&token=${token}`);
-    let topicId = json.datas.topic_id;
+    let json = await callApi("POST", "discuss/threads", `action=create&title=${title}&message=${unsafeMessage}&guest_pseudo=${guest_pseudo}&token=${token}`);
+    
+    let topicId = json.datas.topic_id;    
+    // We sanitize the user's message with javascipt, as it has not been 
+    // sanitized by the server in this specific case.
+    let safeMessage = sanitizeHtml(unsafeMessage);
     
     if (json.metas.error_code === "success") {
         // Display the new discussion thread
         document.getElementById("wallDiscuss").innerHTML += htmlDiscussion(topicId, "discuss", 0);
         document.querySelector(`#topic${topicId} .title`).textContent = title;
-        document.querySelector(`#topic${topicId} .replies`).appendChild( htmlDiscussionMessage(message, 0, author_pseudo, Date(), 1) );
+        document.querySelector(`#topic${topicId} .replies`).appendChild( htmlDiscussionMessage(safeMessage, 0, author_pseudo, Date(), 1) );
         // Hide the form to create a new thread
         toggleSendform(null);
         // Clear the form for the eventual next thread to send
@@ -134,26 +138,30 @@ function displayReplyForm(topicId) {
  */
 async function replyDiscussion(topicId, nbrMessages) {
     
-    let citizenPseudo = document.getElementById("citizenPseudo").innerHTML,
-        message  = document.querySelector(`#topic${topicId} textarea`).value,
+    let thread = document.querySelector(`#topic${topicId}`),
+        citizenPseudo = document.getElementById("citizenPseudo").innerHTML,
+        unsafeMessage  = document.querySelector(`#topic${topicId} textarea`).value,
         token    = getCookie('token');
         
-    let json = await callApi("POST", "discuss/threads", `action=reply&topic_id=${topicId}&message=${message}&token=${token}`);
+    let json = await callApi("POST", "discuss/threads", `action=reply&topic_id=${topicId}&message=${unsafeMessage}&token=${token}`);
+    
+    // We sanitize the user's message with javascipt, as it has not been 
+    // sanitized by the server in this specific case.
+    let safeMessage = sanitizeHtml(unsafeMessage);
     
     if (json.metas.error_code === "success") {
-        let thread = document.querySelector(`#topic${topicId}`);
         // Clears and hides the form after posting
         thread.querySelector('textarea').value = "";
         thread.querySelector('.sendform').style.display = "none";
         // Show the "Reply" button again
         thread.querySelector('.replyButton').style.display = "block";
         // Appends the text of the posted reply at the bottom of the discussion
-        thread.querySelector('.replies').appendChild( htmlDiscussionMessage(message, false, citizenPseudo, new Date().toISOString(), nbrMessages+1) );
+        thread.querySelector('.replies').appendChild( htmlDiscussionMessage(safeMessage, false, citizenPseudo, new Date().toISOString(), nbrMessages+1) );
         // Clears the eventual error message (obsolete after sending)
         thread.querySelector('.replyError').innerHTML = "";
     }
     else {
-        thread.querySelector('.replyError').innerHTML = '<span class="red">'+json.metas.error_message+'</span>';
+        thread.querySelector('.replyError').innerHTML = '<span class="red-text">'+json.metas.error_message+'</span>';
     }
 }
 

@@ -42,8 +42,10 @@ function htmlDiscussion(topicId, topicType, nbrReplies) {
 
 
 /**
+ * Displays one message in a discussion thread
  * 
- * @param {string} message
+ * @param {string} message The message. WARNING: it MUST have been sanitized 
+ *                        (by javascript or by the server) 
  * @param {string} isJson If "true", the message must be treated as a JSON string
  *                        storing the data of a game event (ex: an agression).
  *                        If "false", it's an ordinary textual message posted by a player.
@@ -73,7 +75,9 @@ function htmlDiscussionMessage(message, isJson, pseudo, utcDate, replyNum) {
     else {
         // If the message is an ordinary textual message (written by a player),
         // we simply display it.
-        tplMessage.querySelector(".text").textContent = nl2br(message);
+        // WARNING: the message MUST have been sanitized (by javascript or by the server) 
+        // We can't use textContent here, as it would break carriage rutrns, HTML links, etc.
+        tplMessage.querySelector(".text").innerHTML = nl2br(message);
     }
     
     return tplMessage;
