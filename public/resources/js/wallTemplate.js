@@ -18,13 +18,13 @@ function htmlDiscussionNotif(topicTitle, date, url, authorId, authorPseudo, last
 }
 
 
-function htmlDiscussion(topicId, topicType, topicTitle, nbrReplies) {
+function htmlDiscussion(topicId, topicType, nbrReplies) {
     
     var otherMessagesLink = (nbrReplies>1) ? '<a class="link_other_messages" onclick="loadDiscussion('+topicId+')">··· voir les '+(nbrReplies-1)+' autres réponses ···</a>' : '';
     
     return '<div id="topic'+topicId+'" class="topic '+topicType+'">\
                 <h3>\
-                    <span style="font-weight:normal">&#x1F4AC;</span> '+topicTitle+'\
+                    <span style="font-weight:normal">&#x1F4AC;</span> <span class="title"></span>\
                 </h3>\
                 <div class="replies">\
                     '+otherMessagesLink+'\

@@ -103,7 +103,8 @@ async function createDiscussion() {
     
     if (json.metas.error_code === "success") {
         // Display the new discussion thread
-        document.getElementById("wallDiscuss").innerHTML += htmlDiscussion(topicId, "discuss", title, 0);
+        document.getElementById("wallDiscuss").innerHTML += htmlDiscussion(topicId, "discuss", 0);
+        document.querySelector(`#topic${topicId} .title`).textContent = title;
         document.querySelector(`#topic${topicId} .replies`).appendChild( htmlDiscussionMessage(message, 0, author_pseudo, Date(), 1) );
         // Hide the form to create a new thread
         toggleSendform(null);
@@ -225,7 +226,9 @@ async function updateDiscussionsList(topicType) {
             topicId          = topic.topic_id,
             nbrReplies       = topic.nbr_messages-1;
         
-        document.querySelector(contentsId).innerHTML += htmlDiscussion(topicId, topic.topic_type, topic.title, nbrReplies);
+        document.querySelector(contentsId).innerHTML += htmlDiscussion(topicId, topic.topic_type, nbrReplies);
+        document.querySelector(`#topic${topicId} .title`).innerHTML = topic.title;
+        
         let replies = document.querySelector(`#topic${topicId} .replies`);
         // Preview of the first message of the topic
         replies.prepend( htmlDiscussionMessage(topic.first_message.message, 
