@@ -73,14 +73,15 @@ async function loadDiscussion(topicId) {
         messages = json["datas"]["messages"],
         i = 0;
     
+    let thread = document.querySelector(`#topic${topicId} .replies`);
     // Remove the preview of the first & last message of the topic
-    document.getElementById("replies"+topicId).innerHTML = "";
+    thread.innerHTML = "";
     // Insert all the messages of the topic
     for(let msg in messages) {
         i++;
         htmlMessage = htmlDiscussionMessage(messages[msg]["message"], messages[msg]["is_json"], 
                                             messages[msg]["author_pseudo"], messages[msg]["datetime_utc"], i);
-        document.getElementById("replies"+topicId).appendChild(htmlMessage);
+        thread.appendChild(htmlMessage);
     }
 }
 
@@ -98,11 +99,12 @@ async function createDiscussion() {
         token         = getCookie('token');
 
     let json = await callApi("POST", "discuss/threads", `action=create&title=${title}&message=${message}&guest_pseudo=${guest_pseudo}&token=${token}`);
+    let topicId = json.datas.topic_id;
     
     if (json.metas.error_code === "success") {
         // Display the new discussion thread
-        document.getElementById("wallDiscuss").innerHTML += htmlDiscussion(json.datas.topic_id, "discuss", title, 0);
-        document.querySelector("#replies"+json.datas.topic_id+"").appendChild( htmlDiscussionMessage(message, 0, author_pseudo, Date(), 1) );
+        document.getElementById("wallDiscuss").innerHTML += htmlDiscussion(topicId, "discuss", title, 0);
+        document.querySelector(`#topic${topicId} .replies`).appendChild( htmlDiscussionMessage(message, 0, author_pseudo, Date(), 1) );
         // Hide the form to create a new thread
         toggleSendform(null);
         // Clear the form for the eventual next thread to send
@@ -117,30 +119,40 @@ async function createDiscussion() {
 }
 
 
+function displayReplyForm(topicId) {
+    
+    let thread = document.querySelector(`#topic${topicId}`);
+    thread.querySelector('.replyButton').style.display = 'none';
+    thread.querySelector('.sendform').style.display = 'block';
+    thread.querySelector('textarea').focus();
+}
+
+
 /**
  * To send a reply in an existing discussion
  */
 async function replyDiscussion(topicId, nbrMessages) {
     
     let citizenPseudo = document.getElementById("citizenPseudo").innerHTML,
-        message  = document.getElementById("message"+topicId).value,
+        message  = document.querySelector(`#topic${topicId} textarea`).value,
         token    = getCookie('token');
         
     let json = await callApi("POST", "discuss/threads", `action=reply&topic_id=${topicId}&message=${message}&token=${token}`);
     
     if (json.metas.error_code === "success") {
+        let thread = document.querySelector(`#topic${topicId}`);
         // Clears and hides the form after posting
-        document.getElementById("message"+topicId).value = "";
-        hide("sendform"+topicId);
-        // Unhides the "Reply" button
-        display("replyButton"+topicId);
+        thread.querySelector('textarea').value = "";
+        thread.querySelector('.sendform').style.display = "none";
+        // Show the "Reply" button again
+        thread.querySelector('.replyButton').style.display = "block";
         // Appends the text of the posted reply at the bottom of the discussion
-        document.getElementById("replies"+topicId).appendChild( htmlDiscussionMessage(message, false, citizenPseudo, new Date().toISOString(), nbrMessages+1) );
+        thread.querySelector('.replies').appendChild( htmlDiscussionMessage(message, false, citizenPseudo, new Date().toISOString(), nbrMessages+1) );
         // Clears the eventual error message (obsolete after sending)
-        document.getElementById("replyError"+topicId).innerHTML = "";
+        thread.querySelector('.replyError').innerHTML = "";
     }
     else {
-        document.getElementById("replyError"+topicId).innerHTML = '<span class="red">'+json.metas.error_message+'</span>';
+        thread.querySelector('.replyError').innerHTML = '<span class="red">'+json.metas.error_message+'</span>';
     }
 }
 
@@ -207,23 +219,25 @@ async function updateDiscussionsList(topicType) {
     
     for (let i=0; i<length; i++) {        
         let topic            = jsonTopics.datas[i],
+            topicId          = topic.topic_id,
             nbrReplies       = topic.nbr_messages-1;
-
-        document.querySelector(contentsId).innerHTML += htmlDiscussion(topic.topic_id, topic.topic_type, topic.title, nbrReplies);
+        
+        document.querySelector(contentsId).innerHTML += htmlDiscussion(topicId, topic.topic_type, topic.title, nbrReplies);
+        let replies = document.querySelector(`#topic${topicId} .replies`);
         // Preview of the first message of the topic
-        document.querySelector("#replies"+topic.topic_id).prepend( htmlDiscussionMessage(topic.first_message.message, 
-                                                                                                              topic.first_message.is_json,
-                                                                                                              topic.first_message.author_pseudo,
-                                                                                                              topic.first_message.datetime_utc,
-                                                                                                              1) );
+        replies.prepend( htmlDiscussionMessage(topic.first_message.message, 
+                                               topic.first_message.is_json,
+                                               topic.first_message.author_pseudo,
+                                               topic.first_message.datetime_utc,
+                                               1) );
         // If there is no reply, the last message is the same as the first one, 
         // so don't display it two times.
         if(nbrReplies > 0) {
-            document.querySelector("#replies"+topic.topic_id).appendChild(  htmlDiscussionMessage(topic.last_message.message,
-                                                                                                                  topic.last_message.is_json,
-                                                                                                                  topic.last_message.author_pseudo,
-                                                                                                                  topic.last_message.datetime_utc,
-                                                                                                                  topic.nbr_messages) );
+            replies.appendChild(  htmlDiscussionMessage(topic.last_message.message,
+                                                        topic.last_message.is_json,
+                                                        topic.last_message.author_pseudo,
+                                                        topic.last_message.datetime_utc,
+                                                        topic.nbr_messages) );
         }
     }
     

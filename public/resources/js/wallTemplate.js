@@ -20,25 +20,23 @@ function htmlDiscussionNotif(topicTitle, date, url, authorId, authorPseudo, last
 
 function htmlDiscussion(topicId, topicType, topicTitle, nbrReplies) {
     
-    var otherMessagesLink = (nbrReplies>1) ? '<a id="loadDiscussion'+topicId+'" class="link_other_messages" onclick="loadDiscussion('+topicId+')">··· voir les '+(nbrReplies-1)+' autres réponses ···</a>' : '';
+    var otherMessagesLink = (nbrReplies>1) ? '<a class="link_other_messages" onclick="loadDiscussion('+topicId+')">··· voir les '+(nbrReplies-1)+' autres réponses ···</a>' : '';
     
-    return '<div class="topic '+topicType+'">\
-                <h3 onclick="toggle(\'replies'+topicId+'\')">\
+    return '<div id="topic'+topicId+'" class="topic '+topicType+'">\
+                <h3>\
                     <span style="font-weight:normal">&#x1F4AC;</span> '+topicTitle+'\
                 </h3>\
-                <div id="replies'+topicId+'">\
+                <div class="replies">\
                     '+otherMessagesLink+'\
                 </div>\
-                <div class="reply_button">\
-                    <a id="replyButton'+topicId+'" href="#" onclick="display(\'sendform'+topicId+'\');this.style.display=\'none\';document.querySelector(\'#message'+topicId+'\').focus()">\
-                        Commenter\
-                    </a>\
-                    <form id="sendform'+topicId+'" method="post" action="" onsubmit="replyDiscussion('+topicId+', '+(nbrReplies+1)+'); return false;">\
-                        <div id="replyError'+topicId+'"></div>\
-                        <textarea id="message'+topicId+'" placeholder="Écrivez votre réponse ici"></textarea>\
-                        <input type="submit" value="Envoyer">\
-                    </form>\
-                </div>\
+                <a class="replyButton" href="#" onclick="displayReplyForm('+topicId+')">\
+                    Commenter\
+                </a>\
+                <form class="sendform" method="post" action="" onsubmit="replyDiscussion('+topicId+', '+(nbrReplies+1)+'); return false;">\
+                    <div class="replyError"></div>\
+                    <textarea placeholder="Écrivez votre réponse ici"></textarea>\
+                    <input type="submit" value="Envoyer">\
+                </form>\
             </div>';
 }
 
