@@ -169,6 +169,28 @@ function sanitizeHtml(text) {
 
 
 /**
+ * Adds text formatting (links, bold...) on a raw string of text
+ * 
+ * @param {String} text
+ * @returns {String}
+ */
+function text2HTML(text) {
+    // **bold**
+    text = text.replace(/\*\*([^\*]+)\*\*/g, '<strong>$1</strong>');
+    // * list item
+    text = text.replace(/\n\*/g, '\n•');
+    // *italic*
+    text = text.replace(/\*([^\*]+)\*/g, '<em>$1</em>');
+    // Add links on the URLs
+    text = text.replace(/([a-z]{3,5}:\/\/[^\s]+)/i, '<a href="$1" target="_blank">$1</a>');
+    // Convert the textual newlines to HTML <br>
+    text = nl2br(text);     
+    
+    return text;
+}
+        
+
+/**
  * Wait for XX milliseconds before continuing the execution of the function
  * Ex: await sleep(1000);
  * Important: MUST be placed inside an "async" function to work

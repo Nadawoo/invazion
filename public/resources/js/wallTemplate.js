@@ -77,7 +77,7 @@ function htmlDiscussionMessage(message, isJson, pseudo, utcDate, replyNum) {
         // we simply display it.
         // WARNING: the message MUST have been sanitized (by javascript or by the server) 
         // We can't use textContent here, as it would break carriage rutrns, HTML links, etc.
-        tplMessage.querySelector(".text").innerHTML = nl2br(message);
+        tplMessage.querySelector(".text").innerHTML = text2HTML(message);
     }
     
     return tplMessage;
