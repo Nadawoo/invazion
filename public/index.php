@@ -409,6 +409,7 @@ echo $layout->block_zone_fellow_template();
                     <li><span style="background:green"></span> Zone sûre (peu de zombies)</li>
                     <li><span style="background:orange"></span> 2 humains requis ou +</li>
                     <li><span style="background:red"></span> 3 humains requis ou +</li>
+                    <li><span style="background:darkred"></span> 4 humains requis ou +</li>
                 </ul>
             </a>
         </fieldset>

@@ -359,16 +359,17 @@ function activateMapZombiesView() {
         
         let squareContainer = hexagons[i].querySelector(".square_container");
         let controlpoints_zombies = parseInt(squareContainer.dataset.controlpointszombies);
+        let controlpoints_one_citizen = 2;
         
         let color = 'white';
-        if(controlpoints_zombies > 15) {
-            color = 'darkred';//'#ff0505'; // Needs 4 citizens (20 CP) or more
-        } else if(controlpoints_zombies > 10) {
-            color = 'red';// '#ff5b00'; // Safe with 3 citizens (15 CP)
-        } else if(controlpoints_zombies > 5) {
-            color = 'orange';//'#fb8c00'; // Safe with 2 citizens (10 CP)
+        if(controlpoints_zombies > controlpoints_one_citizen*3) {
+            color = 'darkred';//'#ff0505'; // Needs 4 citizens (8 CP) or more
+        } else if(controlpoints_zombies > controlpoints_one_citizen*2) {
+            color = 'red';// '#ff5b00'; // Safe with 3 citizens (6 CP)
+        } else if(controlpoints_zombies > controlpoints_one_citizen*1) {
+            color = 'orange';//'#fb8c00'; // Safe with 2 citizens (4 CP)
         } else if(controlpoints_zombies > 0) {
-            color = 'green'; //'#d4ac0d'; Safe with 1 citizen (5 CP)
+            color = 'green'; //'#d4ac0d'; Safe with 1 citizen (2 CP)
         } else if(controlpoints_zombies === 0) {
             color = 'grey';  // No zombies
         } 

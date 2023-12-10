@@ -313,7 +313,7 @@ class HtmlPopup
                     Si la somme des points de contrôle des zombies devient supérieure 
                     à celle des humains, <strong>vous ne pouvez plus quitter la zone !</strong>
                     <ul>
-                        <li>• Chaque humain vaut 10 points</li>
+                        <li>• Chaque humain vaut 2 points</li>
                         <li>• Chaque zombie vaut 1 point.</li>
                     </ul>
                     <hr>
