@@ -952,7 +952,9 @@ async function updateCityDistance(citizenCoordX, citizenCoordY) {
             distance = getDistance(myCityZone.coordx, myCityZone.coordy, citizenCoordX, citizenCoordY);
     }
     // Reduces the image of the city as we move away
-    document.querySelector("#block_distance img").height = Math.max(16, 32-distance*2);
+    let biggestImageSize = 42,
+        smallestImageSize = 16;
+    document.querySelector("#block_distance img").height = Math.max(smallestImageSize, biggestImageSize-distance*2);
     // Updates the number of kilometers
     document.querySelector("#block_distance .distance").innerHTML = distance;
 }

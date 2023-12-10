@@ -255,6 +255,7 @@
     background-repeat:no-repeat;
     background-size:3em;
     background-position: center;
+    background-position-y: 1.9em;
     font-weight:bold;
 }
 #movement_paddle tr {
@@ -283,6 +284,7 @@
 /* L'hexagone central entre les flèches */
 #movement_paddle #central {
     position:relative;
+    top:-0.2em;
     cursor:pointer;
     line-height:1.4em;
 }
@@ -297,8 +299,9 @@
     display:flex;
     align-items:center;
     justify-content:center;
-    height:32px; /* Stabilize the block height when the city image is resized */
+    height:42px; /* Stabilize the block height when the city image is resized */
     width:10em;
+    margin-top:-0.7em;
     margin-bottom:0.5em;
     background:#d3d3d3;
     text-align:center;
@@ -309,8 +312,6 @@
     display:flex;
     align-items:center;
     justify-content:center;
-    height:32px;
-    width:32px;
 }
 #block_distance .distance {
     /* Stabilize the position of the number of kilometers when it is on 1 or 2 digits */
