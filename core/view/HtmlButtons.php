@@ -281,6 +281,16 @@ class HtmlButtons
                     'params[type]'  => 'weak',
                     ],
                 ],
+            'specialize_citizens_5' => [
+                'icon'  => '',
+                'name'  => 'Groupe de 5 citoyens',
+                'title' => "",
+                'fields' => [
+                    'api_name'      => 'me',
+                    'action'        => 'specialize',
+                    'params[type]'  => 'citizens_5',
+                    ],
+                ],
             'specialize_zombie_cryptic' => [
                 'icon'  => '',
                 'name'  => 'Zombie cryptique',

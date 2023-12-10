@@ -601,11 +601,12 @@ async function killZombies(apiAction) {
         let myZone = document.querySelector("#me").parentNode;
         let oldNbrZombies = myZone.dataset.zombies,
             newNbrZombies = Math.max(0, oldNbrZombies - json.datas.nbr_zombies_removed);
-            
+        let mapId = document.querySelector("#gameData #mapId").innerHTML;
+        
         // Update the action blocks (round buttons next to the map)
         updateBlockActionZombies(newNbrZombies);
         updateMoveCost(newNbrZombies);
-        updateBlockAlertControl(myZone.dataset.controlpointscitizens, myZone.dataset.controlpointszombies);
+        updateBlockAlertControl(myZone.dataset.controlpointszombies, mapId, myZone.dataset.coordx, myZone.dataset.coordy);
         
         // Update the zombie silhouettes on the map zone
         if(newNbrZombies > 0) {
@@ -1134,4 +1135,26 @@ function launchTutorial(elems, instances, step) {
             launchTutorial(elems, instances, step+1);
         }
     };
+}
+
+
+/**
+ * Calculate the number of action points of the citizens in a zone
+ * 
+ * @param {array} citizens The datas of the "citizens" API
+ * @param {int} mapId
+ * @param {int} coordX
+ * @param {int} coordY
+ */
+async function sumControlpoints(citizens, mapId, coordX, coordY) {
+    
+    var sumControlpoints = 0;
+    
+    for(let citizen of Object.values(citizens)) {
+        if(citizen.coord_x === parseInt(coordX) && citizen.coord_y === parseInt(coordY)) {
+            sumControlpoints += citizen.control_points;
+        }
+    }
+
+    return sumControlpoints;
 }

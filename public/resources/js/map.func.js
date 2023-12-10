@@ -19,7 +19,13 @@ async function updateMapRealtime(event, timestamp) {
                     headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
                     };
     let htmlZones = await fetch("/generators/zone.php?map_id="+mapId+"&newerthan="+timestamp+"&citizen_id="+citizenId+"&citizen_pseudo="+citizenPseudo, options).then(toJson);
-
+    // Get the citizens in the zone (not included in the main zone datas)
+    // TODO: don't call this when not needed:
+    //      => needed when a citizen moves to another zone
+    //      => NOT needed when a citizen kills a zombie
+    let json = await callApi("GET", "citizens", `action=get&map_id=${mapId}`);   
+    _citizens = json.datas;
+    
     // Updates the HTML for the modified zones
     for (let coords in htmlZones) {
         document.getElementById("zone"+coords).outerHTML = htmlZones[coords];
@@ -33,7 +39,7 @@ async function updateMapRealtime(event, timestamp) {
     // Get informations about the current zone through the "data-*" HTML attributes
     let zoneData = document.querySelector("#me").parentNode.dataset;
     // Display an alert over the movement paddle if the player is blocked
-    updateBlockAlertControl(zoneData.controlpointscitizens, zoneData.controlpointszombies);  
+    updateBlockAlertControl(zoneData.controlpointszombies, mapId, zoneData.coordx, zoneData.coordy);  
     
     // Refresh the timestamp to memorize that these actions have been treated
     return timestamp = await JSON.parse(event.data).zones;
@@ -151,6 +157,8 @@ async function addCitizensOnMap(mapId) {
             }
         }
     }
+    
+    return _citizens;
 }
 
 

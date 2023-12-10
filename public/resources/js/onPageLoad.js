@@ -67,7 +67,7 @@ if (document.getElementById('map') !== null) {
     // Place on the map the buildings and cities
     _cities = addCitiesOnMap(mapId);  
     // Place the citizens on the appropriate zones of the map
-    addCitizensOnMap(mapId);    
+    _citizens = addCitizensOnMap(mapId);    
     // Display the zombie cores on the map (item ID #106)
     displayItemOnMap(106);
     
@@ -108,7 +108,7 @@ if (document.getElementById('map') !== null) {
         // Update the numbers in the big buttons next to the map
         updateRoundActionButtons(zoneData.coordx, zoneData.coordy);
         // Display an alert over the movement paddle if the player is blocked
-        updateBlockAlertControl(zoneData.controlpointscitizens, zoneData.controlpointszombies);
+        updateBlockAlertControl(zoneData.controlpointszombies, mapId, zoneData.coordx, zoneData.coordy);
         // Display the actions for fighting against zombies
         showFightingZombiesButtons(zoneData.zombies);
     }

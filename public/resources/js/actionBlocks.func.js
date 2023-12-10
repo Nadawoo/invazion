@@ -78,12 +78,12 @@ function updateMoveCost(newNbrZombies) {
 /**
  * Display an alert over the movement paddle if the player is blocked
  * 
- * @param {int} controlpointsCitizens The sum of control points of the citizens in the zone
  * @param {int} controlpointsZombies  The sum of control points of the zombies in the zone
  */
-function updateBlockAlertControl(controlpointsCitizens, controlpointsZombies) {
+async function updateBlockAlertControl(controlpointsZombies, mapId, coordX, coordY) {
     
     let actionPoints = document.querySelector("#gameData #actionPoints").innerHTML;
+    let controlpointsCitizens = await sumControlpoints(await _citizens, mapId, coordX, coordY);
     
     // Displays an alert when the player has not enough action points to  move
     if ((   controlpointsZombies === 0 && actionPoints < _configsMap.moving_cost_no_zombies)
