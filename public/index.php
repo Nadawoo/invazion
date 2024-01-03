@@ -99,6 +99,7 @@ $maps               = $api->call_api('maps', 'get', ['map_id'=>$citizen['map_id'
 $configs            = $api->call_api('configs', 'get', ['map_id'=>$citizen['map_id']])['datas'];
 $specialities       = $configs['specialities'];
 $speciality_caracs  = $specialities[$citizen['speciality']];
+$current_cycle      = $maps['current_cycle'];
 $map->set_config_buildings($configs['buildings']);
 
 
@@ -212,7 +213,7 @@ echo $layout->block_zone_fellow_template();
     
     <?php
     // Asks for chosing a citizen speciality (builder, digger...)
-    if ($citizen['can_change_speciality'] === 1) {
+    if ($citizen['last_specialization_cycle'] < $current_cycle) {
         ?>
         
         <fieldset id="citizen_caracs">
