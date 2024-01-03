@@ -370,7 +370,10 @@ echo $layout->block_zone_fellow_template();
                     echo '<hr>
 
                         <p><strong>Mes caractéristiques</strong></p>
-                        &#128295; Spécialité : '.$speciality_caracs['name'].'<br>
+                        &#128295; Spécialité : <span title="'.$speciality_caracs['descr_purpose'].'" style="cursor:help">'.ucfirst($speciality_caracs['name']).'</span><br>
+                        &#9889; Points d\'action par cycle : '.$speciality_caracs['action_points'].'<br>
+                        &#127890; Places dans le sac : '.$speciality_caracs['bag_size'].'<br>
+                        &#128737;&#65039; Points de contrôle : '.$speciality_caracs['controlpoints_citizen'].' &nbsp;<a href="#popcontrol">[?]</a><br>
                         &#x1F453; Vision niv. '.$citizen['vision'].'<br>
                         &#128374;&#65039; Camouflage niv. '.$citizen['camouflage'].'
                         </p>'
