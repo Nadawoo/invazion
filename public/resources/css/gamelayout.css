@@ -551,11 +551,8 @@ legend {
     display:none; /* Hide the "drop" button if item already on the ground */
 }
 .empty_slot {
-    height:3em;
-    width:3em;
-    margin-left:0.2em;
+    background-color: transparent !important;
     border:1px solid lightgrey;
-    border-radius:0.3em;
     box-sizing: border-box;
 }
 
@@ -592,6 +589,8 @@ var {
     position:relative;
     display:flex;
     align-items:flex-start;
+    height:3em;
+    width:3em;
     margin-left:0.2em;
     margin-bottom:0.3em;
     background:#d3d3d3;

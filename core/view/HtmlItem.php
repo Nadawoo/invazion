@@ -122,7 +122,7 @@ class HtmlItem {
         $result = '';
         
         for ($i=0; $i<$nbr_empty_slots; $i++) {            
-            $result.= "\n<li class=\"empty_slot\"></li>\n";
+            $result.= "\n<li class=\"item_label empty_slot\"></li>\n";
         }
         
         return $result;
