@@ -591,18 +591,26 @@ class HtmlLayout extends HtmlPage
         // CSS class in map.css (.ground_xxxx), otherwise the default tile (sand)
         // will be displayed.
         $lands = [
-                'drywoods'  => ['name'  => 'Arbres morts',
-                                'image' => 'desert/5.png'],
-                'grass'     => ['name'  => 'Herbe',
-                                'image' => 'greenjungle/3.png'],
-                'lava'      => ['name'  => 'Lave',
-                                'image' => 'volcanic/7.png'],
-                'peeble'    => ['name'  => 'Cailloux',
-                                'image' => 'desert/2.png'],
                 'sand'      => ['name'  => 'Sable',
                                 'image' => 'desert/9.png'],
+                'peeble'    => ['name'  => 'Cailloux',
+                                'image' => 'desert/2.png'],
+                'bigpeeble' => ['name'  => 'Cailloux',
+                                'image' => 'desert/1.png'],
+                'desertpound' => ['name'  => 'Cailloux',
+                                'image' => 'desert/4.png'],
+                'drywoods'  => ['name'  => 'Arbres morts',
+                                'image' => 'desert/5.png'],
+                'desertmountains' => ['name'  => 'Montagnes',
+                                'image' => 'desert/8.png'],
+                'grass'     => ['name'  => 'Herbe',
+                                'image' => 'greenjungle/3.png'],
+                'greenwoods' => ['name'  => 'Arbres verts',
+                                 'image' => 'greenjungle/4.png'],
                 'water'     => ['name'  => 'Eau',
                                 'image' => 'greenjungle/6.png'],
+                'lava'      => ['name'  => 'Lave',
+                                'image' => 'volcanic/7.png'],
                 ];
         
         $html_lands = '';

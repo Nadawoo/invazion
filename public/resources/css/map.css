@@ -330,8 +330,23 @@ map_body_wrapper {
 .ground_grass {
     background-image:url("../img/copyrighted/tiles/greenjungle/3.png");
 }
+.ground_greenwoods {
+    background-image:url("../img/copyrighted/tiles/greenjungle/4.png");
+}
+.ground_bigpeeble {
+    background-image:url("../img/copyrighted/tiles/desert/1.png");
+}
 .ground_peeble {
     background-image:url("../img/copyrighted/tiles/desert/2.png");
+}
+.ground_desertpound {
+    background-image:url("../img/copyrighted/tiles/desert/4.png");
+}
+.ground_drywoods {
+    background-image:url("../img/copyrighted/tiles/desert/5.png");
+}
+.ground_desertmountains {
+    background-image:url("../img/copyrighted/tiles/desert/8.png");
 }
 .ground_sand {
     background-image:url("../img/copyrighted/tiles/desert/9.png");
@@ -343,9 +358,6 @@ map_body_wrapper {
 .ground_water {
     background-image:url("../img/copyrighted/tiles/greenjungle/6.png");
     background-position-y: 0.25em;
-}
-.ground_drywoods {
-    background-image:url("../img/copyrighted/tiles/desert/5.png");
 }
 
 .ground_zombies {
