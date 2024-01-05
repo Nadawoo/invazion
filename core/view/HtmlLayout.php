@@ -618,10 +618,14 @@ class HtmlLayout extends HtmlPage
             <form action="" method="GET" id="landform">
                 '.$html_lands.'
                 <br>
+                Zone à modifier :
                 <label>X <input type="number" name="coord_x" min="0" style="width:3em"
                                 onClick="this.select()" value="{coordX}"></label>&nbsp;
                 <label>Y <input type="number" name="coord_y" min="0" style="width:3em" 
                                 onClick="this.select()" value="{coordY}"></label>
+                <br>
+                et un rayon de <label><input type="number" name="radius" min="0" max="2" style="width:3em" 
+                                onClick="this.select()" value="0"></label> zones alentour
             </form>';
     }
     

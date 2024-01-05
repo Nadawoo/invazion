@@ -459,13 +459,13 @@ async function teleportToCity(mapId, cityId) {
 /**
  * Change the ground type of the zone (grass, peeble, lava...)
  */
-async function updateLandType(landType, coordX, coordY) {
+async function updateLandType(landType, coordX, coordY, radius) {
     
     let token = getCookie('token'),
         mapId = document.getElementById("mapId").innerHTML;
     
     // Sends the characteristics of the new item to the API
-    let json = await callApi("GET", "zone", `action=edit&stuff=${landType}&map_id=${mapId}&coord_x=${coordX}&coord_y=${coordY}&token=${token}`);
+    let json = await callApi("GET", "zone", `action=edit&stuff=${landType}&coord_x=${coordX}&coord_y=${coordY}&radius=${radius}&token=${token}`);
 }
 
 

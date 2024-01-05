@@ -42,9 +42,10 @@ async function listenToLandform() {
         let fields = document.getElementById("landform").elements,
             landType = event.submitter.value,
             x = fields["coord_x"].value,
-            y = fields["coord_y"].value;
+            y = fields["coord_y"].value,
+            radius = fields["radius"].value;
         
-        updateLandType(landType, x, y);
+        updateLandType(landType, x, y, radius);
     });
 }
 
