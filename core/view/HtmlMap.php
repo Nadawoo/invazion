@@ -239,6 +239,7 @@ class HtmlMap
                         data-controlPointsCitizens="'.$cell['controlpoints_citizens'].'"
                         data-cityid="'.$cell['city_id'].'"
                         data-citytypeid=""
+                        data-landtype="'.$cell['land'].'"
                         >
                         <span class="zombies_amount hidden"></span>'
                         . $cell_zombies . $cell_content . $cell_name . '

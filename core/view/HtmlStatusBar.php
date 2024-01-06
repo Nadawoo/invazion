@@ -54,6 +54,9 @@ class HtmlStatusBar {
             $this->status_empty().
             $this->status_empty().
             $this->status_empty().
+            $this->status_empty().
+            $this->status_empty().
+            $this->status_empty().
         '</div>';
     }
     

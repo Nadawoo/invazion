@@ -248,7 +248,7 @@
 #movement_paddle {
     margin-left:8%; /* No margin:auto because Chrome centers the paddle over the floating text */
     width: 7.8rem; /* Fixed width to avoid crushing the paddle when downsizing the window */
-    height:7.8rem;
+    height:7.1rem;
     border-collapse:collapse;
     text-align:center;
     background-image:url("../img/copyrighted/tiles/desert/9.png");
@@ -301,7 +301,6 @@
     justify-content:center;
     height:42px; /* Stabilize the block height when the city image is resized */
     width:10em;
-    margin-top:-0.7em;
     margin-bottom:0.5em;
     background:#d3d3d3;
     text-align:center;
@@ -318,6 +317,16 @@
     display:inline-block;
     width:1em;
     text-align:right;
+}
+
+#block_landtype {
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    height:42px;
+    margin-bottom:0.7em;
+    background:lightgrey;
+    cursor:help;
 }
 
 /* Message under the movement paddle */

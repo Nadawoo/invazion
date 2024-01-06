@@ -356,6 +356,7 @@ echo $layout->block_zone_fellow_template();
                     <div class="main_block">'
                         .'<div>'
                             .$paddle->paddle($citizen['coord_x'], $citizen['coord_y'])
+                            .$layout->block_landtype()
                             .$layout->block_distance()
                         .'</div>'
                         .$statusbar->statusbar($citizen['bag_items'], $citizen['city_id'], $citizen['is_wounded'],

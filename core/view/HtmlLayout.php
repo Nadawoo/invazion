@@ -316,6 +316,18 @@ class HtmlLayout extends HtmlPage
     }
     
     
+    /**
+     * Displays informations about the type of land of the current zone
+     * 
+     * @return string HTML
+     */
+    function block_landtype() {
+        
+        return '
+            <div id="block_landtype"></div>';
+    }
+    
+    
     function block_actions_build()
     {
         

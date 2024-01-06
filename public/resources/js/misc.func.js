@@ -512,6 +512,7 @@ async function moveCitizen(direction) {
        
     updateRoundActionButtons(json.datas.new_coord_x, json.datas.new_coord_y);
     updateCityDistance(json.datas.new_coord_x, json.datas.new_coord_y);
+    updateBlockLandType(myZone.dataset.landtype);
     updateEnterBuildingButton(myZone.dataset.citytypeid);
     updateMoveCost(parseInt(myZone.dataset.zombies));
     updateCardCitizensInZone(myZone.dataset.citizens);
@@ -1159,4 +1160,29 @@ async function sumControlpoints(citizens, mapId, coordX, coordY) {
     }
 
     return sumControlpoints;
+}
+
+
+/**
+ * Updates the content of the block descriptibing the type of land,
+ * under the movement paddle.
+ * 
+ * @param {string} landType The alias of the type of land (peeble, sand, water...)
+ * @returns {undefined}
+ */
+function updateBlockLandType(landType) {
+    
+    let lands = {
+        "peeble": {"name": "Cailloux épars",
+                   "descr": "La présence de ces cailloux indique qu'un bâtiment\n"
+                            +"se trouve non loin, dans un rayon de 2 zones.\n"
+                            +"Poursuivez vos recherches..."
+                   },
+        "bigpeeble": {"name": "Rocaille",
+                      "descr": "On trouve généralement un bâtiment dans une zone\n"
+                               +"adjacente à ce type de terrain. Encore un effort..."
+                      }
+        };
+
+    document.querySelector("#block_landtype").innerHTML = (lands[landType] !== undefined ? '<span title="'+lands[landType]["descr"]+'">&#128065;&#65039; '+lands[landType]["name"]+'</span>' : '');
 }

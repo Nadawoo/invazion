@@ -22,7 +22,10 @@ document.addEventListener('DOMContentLoaded', function() {
     var instances = M.FormSelect.init(elems);
     // Activate the tabs
     var elems = document.querySelectorAll('.tabs');
-    var instances = M.Tabs.init(elems);
+    var instances = M.Tabs.init(elems);    
+    // Activate the Materialize's tootips
+    var elems = document.querySelectorAll('.tooltipped');
+    var instances = M.Tooltip.init(elems);
     
     // Load the tutorial
     var elems = document.querySelectorAll('.tap-target');
@@ -111,6 +114,8 @@ if (document.getElementById('map') !== null) {
         updateBlockAlertControl(zoneData.controlpointszombies, mapId, zoneData.coordx, zoneData.coordy);
         // Display the actions for fighting against zombies
         showFightingZombiesButtons(zoneData.zombies);
+        // Displays help about the land type of the current zone
+        updateBlockLandType(zoneData.landtype);
     }
     
     // Restore the display of the action button before the page was refreshed
