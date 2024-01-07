@@ -406,7 +406,7 @@ echo $layout->block_zone_fellow_template();
             <?php echo $layout->block_map_navigation() ?>
         </div>
         
-        <fieldset id="map_legend">
+        <fieldset id="map_legend_zombies" class="map_legend">
             <legend>Légende</legend>
             <a href="#popcontrol" style="color:inherit">
                 <ul>
@@ -415,6 +415,19 @@ echo $layout->block_zone_fellow_template();
                     <li><span style="background:orange"></span> 2 humains requis ou +</li>
                     <li><span style="background:red"></span> 3 humains requis ou +</li>
                     <li><span style="background:darkred"></span> 4 humains requis ou +</li>
+                </ul>
+            </a>
+        </fieldset>
+        <fieldset id="map_legend_items" class="map_legend">
+            <legend>Légende</legend>
+            <a href="#Outside" style="color:inherit">
+                <ul>
+                    <li><span style="background:grey"></span> Aucun objet au sol</li>
+                    <li><span style="background:green"></span> 1-5 objets (1 sac)</li>
+                    <li><span style="background:orange"></span> 6-10 objets (2 sacs)</li>
+                    <li><span style="background:red"></span> 11-15 objets (3 sacs)</li>
+                    <li><span style="background:darkred"></span> 16 objets ou +</li>
+                    <li>&#x1F97E; Zone visitée aujourd'hui</li>
                 </ul>
             </a>
         </fieldset>

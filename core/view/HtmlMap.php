@@ -143,8 +143,9 @@ class HtmlMap
                 $cell   = (isset($cells[$coords])) ? $cells[$coords] : null;
                 // Définit si le joueur connecté se trouve dans cette zone
                 $is_player_in_zone = $this->is_player_in_zone([$col, $row], [$citizen['coord_x'], $citizen['coord_y']]);
+                $is_zone_visited_today = in_array($coords, $citizen['zones_visited_today']) ? 1 : 0;
                 
-                $result .=  $this->hexagonal_zone($col, $row, $cell, $is_player_in_zone);
+                $result .=  $this->hexagonal_zone($col, $row, $cell, $is_player_in_zone, $is_zone_visited_today);
             }
             
             $result .=  "</div>\n";
@@ -157,15 +158,18 @@ class HtmlMap
     /**
      * Génère une case de la carte
      * 
-     * @param int $col  La coordonnée X de la zone
-     * @param int $row  La coordonnée Y de la zone (le n° de la ligne)
-     *                  Ex : 3 si c'est la 3e ligne de la carte
-     * @param array $cell   Le contenu de la zone, tel que retourné par l'API maps
-     * @param bool  $is_player_in_zone Définit si le joueur connecté se trouve dans cette zone
+     * @param int $col  The X coordinate of the zone (abscissa)
+     * @param int $row  The Y coordinate of the zone (ordinate)
+     *                  Ex : 3 if it's the 3rd line of the map
+     * @param array $cell  The conntent of the zone, are returned by the "map" API
+     * @param bool  $is_player_in_zone  Value "1" if the current player is in the current zone.
+     * @param bool  $is_zone_visited_today Value "1" if the current player has already
+     *                                     visited the zone during the current cycle. 
+     *                                     Else, value "0".
      * 
      * @return string   Le HTML de la case
      */
-    public function hexagonal_zone($col, $row, $cell, $is_player_in_zone)
+    public function hexagonal_zone($col, $row, $cell, $is_player_in_zone, $is_zone_visited_today)
     {
         
         // Important : la cellule doit toujours avoir un contenu, même 
@@ -240,6 +244,7 @@ class HtmlMap
                         data-cityid="'.$cell['city_id'].'"
                         data-citytypeid=""
                         data-landtype="'.$cell['land'].'"
+                        data-visitedtoday="'.$is_zone_visited_today.'"
                         >
                         <span class="zombies_amount hidden"></span>'
                         . $cell_zombies . $cell_content . $cell_name . '

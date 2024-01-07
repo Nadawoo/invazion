@@ -34,7 +34,7 @@ if ($zones['metas']['error_code'] === 'success') {
         // Parse the string of coords list
         list($col, $row) = array_map('intval', explode('_', $coords));
         
-        $html_zones[$coords] = $map->hexagonal_zone($col, $row, $zone, null);
+        $html_zones[$coords] = $map->hexagonal_zone($col, $row, $zone, null, 1);
     }
 }
 else {

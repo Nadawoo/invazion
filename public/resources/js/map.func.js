@@ -374,7 +374,7 @@ function activateMapZombiesView() {
             color = 'grey';  // No zombies
         } 
         
-        display("map_legend");
+        display("map_legend_zombies");
         // Color the zones depending on the number of zombies
         squareContainer.style.background = color;
         // Reveal all the zones, regardless their date of last visit
@@ -403,7 +403,7 @@ function desactivateMapZombiesView() {
         squareContainer.style.background = "none";        
     }
     
-    hide("map_legend");
+    hide("map_legend_zombies");
     hideClasses(["zombies_amount"]);
     // Display the icons of zombies again
     unhideClass("zombies");
@@ -531,10 +531,15 @@ function activateMapItemsView() {
             color = 'grey'; 
         }
         
+        display("map_legend_items");
         // Color the zones depending on the number of items
         squareContainer.style.background = color;        
         // Reveal all the zones, regardless their date of last visit
 //        hexagons[i].style.opacity = 1;
+        // Mark the zones visited today
+        if(squareContainer.dataset.visitedtoday === "1") {
+            squareContainer.innerHTML += '<div class="items_amount">&#x1F97E;</div>';
+        }
         
         // Hides the zombies, because they are above the colored background
         hideClasses(["zombies"]);
@@ -549,8 +554,11 @@ function desactivateMapItemsView() {
     for(let i=0; i<hexagons.length; i++) {
         
         let squareContainer = hexagons[i].querySelector(".square_container");
+        // Hides the legend
+        hide("map_legend_items");
         // Remove the colors on the zones
         squareContainer.style.background = "none";        
+        hideClasses(["items_amount"]);
         // Display the zombies again
         unhideClass("zombies");
     }

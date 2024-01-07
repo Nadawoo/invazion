@@ -256,7 +256,8 @@ map_body_wrapper {
     line-height:2.2em;
 }
 
-.square_container .zombies_amount {
+.square_container .zombies_amount,
+.square_container .items_amount {
     position:absolute;
     font-weight:bold;
 }
@@ -518,7 +519,7 @@ map_body_wrapper {
 }
 
 /* Legend for the view of the map (zombies...) */
-#map_legend {
+.map_legend {
     display:none;
     position:fixed;
     bottom:4.5rem;
@@ -529,10 +530,10 @@ map_body_wrapper {
     background:white;
     opacity:0.8;
 }
-#map_legend ul {
+.map_legend ul {
     margin:0;
 }
-#map_legend li span {
+.map_legend li span {
     display:inline-block;
     height:1em;
     width: 1em;
