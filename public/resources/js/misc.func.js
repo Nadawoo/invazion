@@ -785,16 +785,15 @@ async function dig() {
     
     // Displays the result of the digging in pop-up
     document.querySelector("#popsuccess").classList.add("force_visibility");
-    document.querySelector("#popsuccess .content").innerHTML = json.metas.error_message;
+    document.querySelector("#popsuccess .content").innerHTML = nl2br(json.metas.error_message);
     
     if(json.metas.error_code === "success") {
         // Hides the message "There are no items on the ground..."
         document.querySelector('#items_ground .greytext').style.display = "none";
         // Adds an HTML entry in the ground items list
-        let itemsFound = json.datas.items_found,
-            itemId     = Object.keys(itemsFound)[0],
-            itemCaracs = itemsFound[itemId];
-        htmlAddGroundItem(itemId, itemCaracs, 1);
+        for(let itemId of Object.values(json.datas.found_items_ids)) {
+            htmlAddGroundItem(itemId, _configsItems[itemId], 1);
+        }
         // Makes the digging button inactive
         updateDigButtons(1);
     }
