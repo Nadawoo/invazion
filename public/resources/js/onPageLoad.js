@@ -66,7 +66,9 @@ if (document.getElementById('map') !== null) {
     var _configsBuildings = JSON.parse(document.querySelector("#configs .buildings").innerHTML);
     var _configsItems     = JSON.parse(document.querySelector("#configs .items").innerHTML);
     var _configsMap       = JSON.parse(document.querySelector("#configs .map").innerHTML);
-
+    
+    _jsonMap = getMapZonesOnce(mapId);
+    
     // Place on the map the buildings and cities
     _cities = addCitiesOnMap(mapId);  
     // Place the citizens on the appropriate zones of the map

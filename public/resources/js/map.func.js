@@ -180,6 +180,8 @@ async function addCitiesOnMap(mapId) {
             htmlCoords = city.coord_x+"_"+city.coord_y,
             zone = document.querySelector("#zone"+htmlCoords+" .square_container");
         
+        let zones = await _jsonMap;
+
         let buildingCarcs = _configsBuildings[city.city_type_id],
             buildingIconHtml = buildingCarcs["icon_html"],
             buildingIconPath = "resources/img/"+buildingCarcs["icon_path"],
@@ -222,9 +224,16 @@ async function addCitiesOnMap(mapId) {
         }        
         // Adds the number of defenses above each city
         // (#12 = ID of the "human city" building)
-        if(city.city_type_id === 12) {
+        else if(city.city_type_id === 12) {
             zone.insertAdjacentHTML("afterbegin", `<span class="nbr_defenses">${city.total_defenses} défenses</span>`);
-        }        
+        }
+        // Adds the number of items remaining inside the explorable building
+        else if(city.city_type_id !== "undefined") {
+            let maxExplorations = 100;
+            // NB: #108 = ID of the item "Counter of explorations"
+            let nbrExplorations = zones[htmlCoords]['items'][108] || 0;
+            zone.insertAdjacentHTML("afterbegin", `<span class="nbr_defenses">${maxExplorations-nbrExplorations}/${maxExplorations} objets</span>`);
+        }
         // Adds the name of the building
         cityName = (city["city_name"] === null) ? buildingName : city["city_name"];
         zone.insertAdjacentHTML("afterbegin", `<span class="city_name">${cityName}</span>`);

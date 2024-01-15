@@ -304,6 +304,7 @@ map_body_wrapper {
     color:white;
     border-radius:0.2em;
     opacity:0.8;
+    box-shadow: 6px 6px 6px black;
 }
 
 /*
