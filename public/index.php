@@ -159,6 +159,7 @@ $html = [
     // The unvariable data of the game (buildings names...)
     'json_configs'      => $layout->json_configs(json_encode($configs['map']),
                                                  json_encode($configs['buildings']),
+                                                 json_encode($configs['buildings_findable_items']),
                                                  json_encode($configs['items'])),
     // Assembling the HTML for the map
     'map' => $map->hexagonal_map($maps['map_width'], $maps['map_height'], $maps['zones'], $citizen, $maps['next_attack_hour']),

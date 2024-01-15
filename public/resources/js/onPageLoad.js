@@ -64,6 +64,7 @@ if (document.getElementById('map') !== null) {
     var mapId = document.querySelector("#gameData #mapId").innerHTML;
     // Get the unvariable data of the game (building names...) stored in the HTML
     var _configsBuildings = JSON.parse(document.querySelector("#configs .buildings").innerHTML);
+    var _configsBuildingsFindableItems = JSON.parse(document.querySelector("#configs .buildings_findable_items").innerHTML);
     var _configsItems     = JSON.parse(document.querySelector("#configs .items").innerHTML);
     var _configsMap       = JSON.parse(document.querySelector("#configs .map").innerHTML);
     

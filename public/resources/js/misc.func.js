@@ -566,8 +566,10 @@ function updateEnterBuildingButton(cityTypeId) {
     // Button to explore the building
     let buildingVisibility = (cityTypeId !== "" && _configsBuildings[cityTypeId]["is_explorable"]) ? "block" : "none";
     document.querySelector("#button_explore").style.display = buildingVisibility;
+    
     if(cityTypeId !== "") {
         let building = _configsBuildings[cityTypeId];
+        let findableItems = _configsBuildingsFindableItems[cityTypeId];
         
         // Update the content of the pop-up
         let tplPopupBuilding = document.querySelector('#tplPopupBuilding').content.cloneNode(true),
@@ -575,7 +577,11 @@ function updateEnterBuildingButton(cityTypeId) {
         popup.innerHTML = "";
         popup.appendChild(tplPopupBuilding);
         popup.querySelector(".building_name").innerHTML = building["name"];
-        popup.querySelector(".descr_ambiance").innerHTML = building["descr_ambiance"];;
+        popup.querySelector(".descr_ambiance").innerHTML = building["descr_ambiance"];
+        // Add the list of items findable in this building
+        for(let itemId of findableItems) {
+            popup.querySelector(".items_list").prepend(htmlItem(itemId, _configsItems[itemId]));
+        }
     }
 }
 

@@ -20,11 +20,13 @@ class HtmlLayout extends HtmlPage
      *                               of the map : cost of a move...
      * @param string $json_buildings The JSON string containing the informations
      *                               about the buildings, as returned by the "configs" API
+     * @param string $json_buildings_findable_items The JSON list of items findable in each building,
+     *                               as returned by the "configs" API
      * @param string $json_items     The JSON string containing the informations 
      *                               about the items, as returned by the "configs"  API
      * @return string HTML
      */
-    function json_configs($json_map, $json_buildings, $json_items) {
+    function json_configs($json_map, $json_buildings, $json_buildings_findable_items, $json_items) {
         
         return '<section id="configs">
                     <div class="map">
@@ -32,6 +34,9 @@ class HtmlLayout extends HtmlPage
                     </div>
                     <div class="buildings">
                     '.$json_buildings.'
+                    </div>
+                    <div class="buildings_findable_items">
+                    '.$json_buildings_findable_items.'
                     </div>
                     <div class="items">
                     '.$json_items.'
