@@ -353,6 +353,6 @@ class HtmlMap
         // Toute case doit rester un peu visible (pas d'opacité à 0)
 //            $opacity = max($opacity, 0.2);  
         
-        return $opacity;
+        return round($opacity, 2);
     }
 }
