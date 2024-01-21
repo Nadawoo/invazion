@@ -189,28 +189,19 @@ echo $html['hidden_player_data'];
 echo $html['json_configs'];
 
 //echo $tutorial->all_steps();
-
-// Textes des pop-up
-// TODO : ne pas charger toutes les textes dans le code, seulement celui utile
-echo $popup->predefined('poppresentation', '');        
-echo $popup->predefined('popdayclock', '', ['map_id'=>$citizen['map_id'], 'current_cycle'=>$configs['map']['current_cycle']]);
-echo $popup->predefined('popvault',   '');
-echo $popup->predefined('popwounded', '', ['citizen_id'=>$citizen['citizen_id'], 'healing_items'=>$healing_items]);
-echo $popup->predefined('popcontrol', '&#8505;&#65039; Le contrôle de zone');
-echo $popup->predefined('popmove', '&#8505;&#65039; Les déplacements', 
-                        ['moving_cost_no_zombies' => $configs['map']['moving_cost_no_zombies'], 
-                         'moving_cost_zombies'    => $configs['map']['moving_cost_zombies']
-                        ]);
-echo $popup->predefined('popattack', '&#8505;&#65039; L\'attaque zombie quotidienne');
-echo $popup->template_popbuilding($msg_popup);
-echo $popup->customised('popsmartphone', '', $html['smartphone']);
-// Generic pop-up describing the result of an action
-echo $popup->customised('popsuccess', '', $msg_popup, $is_custom_popup_visible);
-
-// HTML <templates>
-echo $htmlItem->item_template();
-echo $layout->block_zone_fellow_template();
 ?>
+
+<section id="popups">
+    <?php echo $popup->allPopups($msg_popup, $citizen['map_id'], $citizen['citizen_id'], $configs['map'], 
+                       $healing_items, $html['smartphone'], $is_custom_popup_visible) ?>
+</section>
+
+<section id="templates">
+    <?php
+    echo $htmlItem->item_template()
+       . $layout->block_zone_fellow_template();
+    ?>
+</section>
     
     <?php
     // Asks for chosing a citizen speciality (builder, digger...)

@@ -142,27 +142,29 @@ class HtmlPage
                         </div> <!-- End of #page_container -->
                     </div> <!-- End of #body_bg -->
                     
-                    <script>
-                    <!-- Registers the service workers to handle the website as a PWA -->
-                    if (typeof navigator.serviceWorker !== "undefined") {
-                        navigator.serviceWorker.register("/sw.js?v=1")
-                    }
-                    </script>
+                    <div id="scripts">
+                        <script>
+                        <!-- Registers the service workers to handle the website as a PWA -->
+                        if (typeof navigator.serviceWorker !== "undefined") {
+                            navigator.serviceWorker.register("/sw.js?v=1")
+                        }
+                        </script>
 
-                    <script type="text/javascript" src="resources/js/lib/materialize.min.js"></script>
-                    <script type="text/javascript" src="resources/js/lib/scrollbooster.min.js"></script>
-                    <script type="text/javascript" src="resources/js/ZombLib.js?v'.$this->js_version.'"></script>
-                    <script type="text/javascript" src="resources/js/cookies.func.js?v'.$this->js_version.'"></script>
-                    <script type="text/javascript" src="resources/js/map.func.js?v'.$this->js_version.'"></script>
-                    <script type="text/javascript" src="resources/js/tooltips.func.js?v'.$this->js_version.'"></script>
-                    <script type="text/javascript" src="resources/js/wallTemplate.js?v'.$this->js_version.'"></script>
-                    <script type="text/javascript" src="resources/js/actionBlocks.func.js?v'.$this->js_version.'"></script>
-                    <script type="text/javascript" src="resources/js/cityEnclosure.func.js?v'.$this->js_version.'"></script>
-                    <script type="text/javascript" src="resources/js/discussions.func.js?v'.$this->js_version.'"></script>
-                    <script type="text/javascript" src="resources/js/events.func.js?v'.$this->js_version.'"></script>
-                    <script type="text/javascript" src="resources/js/misc.func.js?v'.$this->js_version.'"></script>
-                    <script type="text/javascript" src="resources/js/onPageLoad.js?v'.$this->js_version.'"></script>
-                    <script type="text/javascript" src="resources/js/events.js?v'.$this->js_version.'"></script>
+                        <script type="text/javascript" src="resources/js/lib/materialize.min.js"></script>
+                        <script type="text/javascript" src="resources/js/lib/scrollbooster.min.js"></script>
+                        <script type="text/javascript" src="resources/js/ZombLib.js?v'.$this->js_version.'"></script>
+                        <script type="text/javascript" src="resources/js/cookies.func.js?v'.$this->js_version.'"></script>
+                        <script type="text/javascript" src="resources/js/map.func.js?v'.$this->js_version.'"></script>
+                        <script type="text/javascript" src="resources/js/tooltips.func.js?v'.$this->js_version.'"></script>
+                        <script type="text/javascript" src="resources/js/wallTemplate.js?v'.$this->js_version.'"></script>
+                        <script type="text/javascript" src="resources/js/actionBlocks.func.js?v'.$this->js_version.'"></script>
+                        <script type="text/javascript" src="resources/js/cityEnclosure.func.js?v'.$this->js_version.'"></script>
+                        <script type="text/javascript" src="resources/js/discussions.func.js?v'.$this->js_version.'"></script>
+                        <script type="text/javascript" src="resources/js/events.func.js?v'.$this->js_version.'"></script>
+                        <script type="text/javascript" src="resources/js/misc.func.js?v'.$this->js_version.'"></script>
+                        <script type="text/javascript" src="resources/js/onPageLoad.js?v'.$this->js_version.'"></script>
+                        <script type="text/javascript" src="resources/js/events.js?v'.$this->js_version.'"></script>
+                    </div>
                 </body>
             </html>';
     }
