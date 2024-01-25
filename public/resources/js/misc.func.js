@@ -569,7 +569,7 @@ function updateEnterBuildingButton(cityTypeId) {
     
     if(cityTypeId !== "") {
         let building = _configsBuildings[cityTypeId];
-        let findableItems = _configsBuildingsFindableItems[cityTypeId];
+        let findableItems = (_configsBuildingsFindableItems[cityTypeId] !== undefined) ? _configsBuildingsFindableItems[cityTypeId] : [];
         
         // Update the content of the pop-up
         let tplPopupBuilding = document.querySelector('#tplPopupBuilding').content.cloneNode(true),
