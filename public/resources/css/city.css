@@ -188,12 +188,33 @@
     border-bottom:1px solid darkgrey;
     border-bottom-left-radius: 0.5em;
 }
+#constructions .item_label {
+    align-items:center;
+    width:99.3%;
+    cursor:help;
+}
 #constructions var {
     justify-content: flex-start;
+    flex-wrap:wrap;
     height:auto;
-    width:14em;
+    width:15em;
     margin-left:0;
     white-space: nowrap;
+}
+
+#constructions .amounts {
+    justify-content:center;
+    width:3em;
+    height:100%;
+    text-align:center;
+    background:#f2f2f2;
+    border-radius:0.2em;
+}
+#constructions .amounts .available {
+    font-size:1.2em;
+}
+#constructions .amounts .required {
+    color:grey;
 }
 
 /* The two bars comparing the defenses and the zombies */

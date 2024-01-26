@@ -495,6 +495,7 @@ class HtmlCityEnclosure
                     <tr>
                         <td id="'.$css_id.'" class="folded">
                             <ul class="items_list">
+                                <li class="bold">Composants :</li>
                                 ' . $html_resources . '
                                 ' . $buttons->construct($building_id, 'no_notif') . '
                             </ul>
@@ -683,20 +684,26 @@ class HtmlCityEnclosure
     
     
     /**
-     * Affiche un ✓ ou ✘ devant une ressource pour montrer 
-     * si on en a suffisamment ou non
+     * Displays the amount of resources available to build the construction
      * 
-     * @param  int $progress Le pourcentage de progression par rapport à la quantité 
-     *                       nécessaire de ressources.
-     *                       Si vaut 100, le signe sera ✓, sinon sera ✘.
+     * @param  int $required_amount  The amount of this component required 
+     *                               to build the construction
+     * @param  int $available_amount The amount of this component available 
+     *                               in the city storage
      * @return string
      */
-    private function html_check_sign($progress)
+    private function html_component_amount($required_amount, $available_amount)
     {
         
-        return  ($progress >= 100) 
-                ? "<span style=\"font-size:1.1em;color:green;font-weight:bold;\">&check;</span>"
-                : "<span style=\"font-size:1.1em;color:orangered;cursor:help\">&#x2718;</span>";
+        return  ($available_amount >= $required_amount) 
+                ? '<div class="amounts valign-wrapper" style="background:#D5F5E3;border:1px solid #81C784">
+                        <span class="available" style="color:green">'.$available_amount.'</span>
+                        <span class="required">&#9989;</span>
+                    </div>'
+                : '<div class="amounts valign-wrapper" style="border:1px solid #FF8A65">
+                        <span class="available" style="color:orangered">'.$available_amount.'</span>&nbsp;
+                        <span class="required" style="font-size:0.9em">/'.$required_amount.'</span>
+                    </div>';
     }
     
     
@@ -752,27 +759,24 @@ class HtmlCityEnclosure
         
         // Calcule le taux de remplissage de la barre de progression
         $progress = round($available_amount/$required_amount * 100);
+        $missing_amount = $required_amount-$available_amount;
         
         $title        = ($progress >= 100) ? $enough : $not_enough;
         $bar_color    = ($progress >= 100) ? "lightgreen" : "sandybrown";
-        $amount_color = ($progress >= 100) ? "green" : "orangered";
-        
-        // Quick fix sale pour un meilleur alignement selon le nombre de chiffres
-        $nbsp = str_repeat('&nbsp;', 3-strlen($available_amount));
         
         $item_icon = ($item_caracs['icon_path'] === null)
                     ? $item_caracs['icon_symbol']
-                    : '<img src="resources/img/'.$item_caracs['icon_path'].'" width="32" height="32" alt="icon">';
+                    : '<img src="resources/img/'.$item_caracs['icon_path'].'" width="32" height="32" alt="'.$item_caracs['name'].'">';
             
         
         return '
-            <li class="item_label" style="cursor:help" title="'.$title.'">
-                ' . $this->html_check_sign($progress, $comment_for) . '
+            <li class="item_label z-depth-1" title="'.$title.'">
                 <var>
-                    '.$item_icon.'
-                    <span class="progressbar_filling" style="width:'.$progress.'%;background:'.$bar_color.'">'.$item_caracs['name'].'</span>
+                    '.str_repeat('<span>'.$item_icon.'</span>', $available_amount).'
+                    '.str_repeat('<span style="opacity:0.3">'.$item_icon.'</span>', $missing_amount).'
+                    <!-- <span class="progressbar_filling" style="width:'.$progress.'%;background:'.$bar_color.'">'.$item_caracs['name'].'</span> -->
                 </var>
-                <span style="font-size:1.1em;color:'.$amount_color.'">'.$nbsp.$available_amount.'</span>&nbsp;<span style="color:grey;font-size:0.9em;">/&nbsp;'.$required_amount.'</span>
+                '.$this->html_component_amount($required_amount, $available_amount).'
             </li>';
     }
 }
