@@ -433,10 +433,19 @@ class HtmlCityEnclosure
         
         foreach ($buildings_caracs as $building_id=>$building) {
             
+            $ap_item_id = 23;
             $html_resources = '';
             $css_id = 'building'.$building_id;
             // If no components have been defined for this building
             $components = (isset($buildings_components[$building_id])) ? $buildings_components[$building_id] : [];
+            $required_ap = (isset($buildings_components[$building_id][$ap_item_id])) ? $buildings_components[$building_id][$ap_item_id] : 0;
+            
+            // Put the action points apart of the other resources
+            $html_ap = $this->html_progressbar( $items_caracs[$ap_item_id],
+                                                $this->item_amount($zone_items, $ap_item_id),
+                                                $required_ap,
+                                                'constructions');
+            unset($components[$ap_item_id]);
             
             // Jauge des ressources requises/disponibles pour la construction
             foreach ($components as $item_id=>$required_amount) {
@@ -466,7 +475,7 @@ class HtmlCityEnclosure
                             </h3>
                             <div class="unfold_button" style="color:lightgreen">&check; Fini ! &nbsp;</div>
                         </td>
-                        <td style="cursor:help;text-align:center" 
+                        <td style="cursor:help;text-align:center;background:#A5D6A7" 
                             title="Ce chantier augmente de '.$building['defenses'].' points les défenses de la ville !">
                             <strong style="color:darkgreen">+&nbsp;'.$building['defenses'].'</strong>
                         </td>
@@ -478,6 +487,7 @@ class HtmlCityEnclosure
             }
             else {
                 
+                $descr_ambiance = ((string)$building['descr_ambiance'] !== '') ? $building['descr_ambiance'] : '<span class="grey-text">(Pas de description pour le moment)</span>';
                 
                 $html_constructions .= '
                     <tr>
@@ -494,9 +504,21 @@ class HtmlCityEnclosure
                     </tr>
                     <tr>
                         <td id="'.$css_id.'" class="folded">
-                            <ul class="items_list">
-                                <li class="bold">Composants :</li>
+                            <ul class="tabs">
+                                <li class="tab col s3"><a href="#tabDescr'.$building_id.'" class="active">Descr</a></li>
+                                <li class="tab col s3"><a href="#tabResources'.$building_id.'">Compo</a></li>
+                                <li class="tab col s3"><a href="#tabAP'.$building_id.'">Constr</a></li>
+                            </ul>
+                            <ul class="items_list col s12" id="tabDescr'.$building_id.'">
+                                <li class="aside">'.$descr_ambiance.'</li>
+                            </ul>
+                            <ul class="items_list col s12" id="tabResources'.$building_id.'">
+                                <li class="aside">Réunissez d\'abord ces composants dans le dépôt de la ville.</li>
                                 ' . $html_resources . '
+                            </ul>
+                            <ul class="items_list col s12" id="tabAP'.$building_id.'">
+                                <li class="aside">Investissez vos points d\'action dans la construction du chantier.</li>
+                                ' . $html_ap . '
                                 ' . $buttons->construct($building_id, 'no_notif') . '
                             </ul>
                         </td>
@@ -757,24 +779,18 @@ class HtmlCityEnclosure
                         . "pour achever sa construction et bénéficier de ses effets.";
         }
         
-        // Calcule le taux de remplissage de la barre de progression
-        $progress = round($available_amount/$required_amount * 100);
-        $missing_amount = $required_amount-$available_amount;
-        
-        $title        = ($progress >= 100) ? $enough : $not_enough;
-        $bar_color    = ($progress >= 100) ? "lightgreen" : "sandybrown";
+        $missing_amount = max(0, $required_amount-$available_amount);
+        $title = ($missing_amount <= 0) ? $enough : $not_enough;
         
         $item_icon = ($item_caracs['icon_path'] === null)
                     ? $item_caracs['icon_symbol']
                     : '<img src="resources/img/'.$item_caracs['icon_path'].'" width="32" height="32" alt="'.$item_caracs['name'].'">';
-            
         
         return '
             <li class="item_label z-depth-1" title="'.$title.'">
                 <var>
                     '.str_repeat('<span>'.$item_icon.'</span>', $available_amount).'
                     '.str_repeat('<span style="opacity:0.3">'.$item_icon.'</span>', $missing_amount).'
-                    <!-- <span class="progressbar_filling" style="width:'.$progress.'%;background:'.$bar_color.'">'.$item_caracs['name'].'</span> -->
                 </var>
                 '.$this->html_component_amount($required_amount, $available_amount).'
             </li>';

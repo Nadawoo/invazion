@@ -182,14 +182,21 @@
     margin:0.1em 0;
     padding:0 0;
 }
+#constructions .folded {
+    margin-left:0.5em;
+    padding-left:0.3em;
+    border-left: 2px solid darkgrey;
+    /*border-bottom: 1px solid darkgrey;*/
+    border-bottom-left-radius: 0.5em;
+}
+#constructions .folded .aside {
+    margin-left:0.3em;
+}
 #constructions .items_list {
     flex-direction: column;
-    margin:0 0 1em 0.3em;
-    padding:0.3em;
-    padding-right:0;
-    border-left:2px solid darkgrey;
-    border-bottom:1px solid darkgrey;
-    border-bottom-left-radius: 0.5em;
+    margin:0 0 1em 0em;
+    padding:0.3em 0;
+    max-width:85%
 }
 #constructions .item_label {
     align-items:center;
@@ -326,17 +333,17 @@
 }
 
 /* Remplissage coloré de la barre de progression */
-.progressbar_filling {
+/*.progressbar_filling {
     display:block;
     margin-left:0.3em;
-    padding:0 0.3em; /* Minimal padding to show the progress bar even when empty */
+    padding:0 0.3em;  Minimal padding to show the progress bar even when empty 
     box-sizing: border-box;
-    /* Même valeur que le fond vide de la barre */
+     Même valeur que le fond vide de la barre 
     border-radius:0.3em;
-    /* Emêche la barre de dépasser 100% s'il y a plus de ressources qu nécessaire.
-       La largeur réelle de la barre pour chaque ressource est calculée en PHP */
+     Empêche la barre de dépasser 100% s'il y a plus de ressources qu nécessaire.
+       La largeur réelle de la barre pour chaque ressource est calculée en PHP 
     max-width:80%;
-}
+}*/
 
 
 

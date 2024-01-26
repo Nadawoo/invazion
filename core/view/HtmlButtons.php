@@ -759,7 +759,7 @@ class HtmlButtons
      * @param  int $building_id L'ID du chantier à construire
      * @return string
      */
-    function construct($building_id, $notify, $button_label='Participer au chantier [1pa]')
+    function construct($building_id, $notify, $button_label='Participer au chantier [1&#9889;]')
     {
         
         // Hide the round notifiction chip over the button
@@ -772,7 +772,7 @@ class HtmlButtons
             <input type="hidden" name="params[building_id]" value="'.$building_id.'">
             <button type="submit" class="redbutton" style="position:relative;width:100%;height:3em;border-radius:0.2em">
                 <div class="dot_number '.$hide_notif.'">&nbsp;</div>
-                &#x1F528; '.$button_label.'
+                '.$button_label.'
             </button>
         </form>';
     }

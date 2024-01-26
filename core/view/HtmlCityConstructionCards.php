@@ -99,11 +99,10 @@ class HtmlCityConstructionCards
 
         return '
             <div class="city_block">
-                <h2>Chantier</h2>
                 <div class="contents">
-                    <h3 style="height:2.2em;color:black;text-align:center;font-size:1.3em;letter-spacing:normal;">
-                        <img src="'.$building_image.'"
-                             height="32" width="32" alt="icon">
+                    <h3 style="margin-top:0.5em;height:2.2em;color:black;text-align:center;font-size:1.3em;letter-spacing:normal;">
+                        <img src="'.$building_image.'" style="border-radius:50%"
+                             height="48" width="48" alt="icon">&nbsp;
                         '.$construction_name.'
                     </h3>
                     '.$card_contents.'
@@ -168,9 +167,9 @@ class HtmlCityConstructionCards
         $buttons = new HtmlButtons();
         
         return '
-            <p>&#128296; Il manque <strong>'.$total_AP_missing.' points d\'action</strong>
-                pour terminer le chantier :
-            '.$buttons->construct($building_id, 'notify', 'Participer [1 PA]').'
+            <p>Il manque seulement &#9889;<strong>'.plural($total_AP_missing, 'point').' d\'action</strong>
+               <br>pour finir ce chantier !
+            '.$buttons->construct($building_id, 'notify', 'Participer [1&#9889;]').'
             </p>';
     }
 }
