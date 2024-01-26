@@ -466,7 +466,7 @@ class HtmlCityEnclosure
                             </h3>
                             <div class="unfold_button" style="color:lightgreen">&check; Fini ! &nbsp;</div>
                         </td>
-                        <td style="cursor:help" 
+                        <td style="cursor:help;text-align:center" 
                             title="Ce chantier augmente de '.$building['defenses'].' points les défenses de la ville !">
                             <strong style="color:darkgreen">+&nbsp;'.$building['defenses'].'</strong>
                         </td>
@@ -487,7 +487,7 @@ class HtmlCityEnclosure
                             </h3>
                             <div class="unfold_button">bâtir&nbsp;<div class="arrow">&#65088;</div></div>
                         </td>
-                        <td style="color:grey;cursor:help"
+                        <td style="color:grey;cursor:help;text-align:center"
                             title="Si vous le construisez, ce chantier augmentera de '.$building['defenses'].' points les défenses de la ville.">
                             <strong>+&nbsp;'.$building['defenses'].'</strong>
                         </td>

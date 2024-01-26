@@ -770,9 +770,9 @@ class HtmlButtons
             <input type="hidden" name="api_name" value="buildings">
             <input type="hidden" name="action" value="build">
             <input type="hidden" name="params[building_id]" value="'.$building_id.'">
-            <button type="submit" class="redbutton" style="position:relative">
+            <button type="submit" class="redbutton" style="position:relative;width:100%;height:3em;border-radius:0.2em">
                 <div class="dot_number '.$hide_notif.'">&nbsp;</div>
-                &#x1F6E0;&#xFE0F; '.$button_label.'
+                &#x1F528; '.$button_label.'
             </button>
         </form>';
     }

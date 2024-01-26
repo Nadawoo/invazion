@@ -175,9 +175,12 @@
     width:98%;
     margin:0.2em;
 }
+#constructions tr {
+    border:none;
+}
 #constructions td {
-    margin:0;
-    padding:0.2em 0;
+    margin:0.1em 0;
+    padding:0 0;
 }
 #constructions .items_list {
     flex-direction: column;
@@ -238,6 +241,7 @@
     justify-content:space-between;
     margin:0;
     padding-right:0.3em;
+    border-radius:2em 0.3em 0.3em 2em;
     background:lightgrey;
     cursor:pointer;
     box-shadow:2px 2px 3px black;
@@ -252,8 +256,10 @@
     background:none;
 }
 .foldable img {
-    height:32px;
-    width: 32px;
+    height:48px;
+    width: 48px;
+    margin:0.1em 0 0 0.1em;
+    border-radius:50%;
 }
 .foldable .unfold_button {
     display:flex;
