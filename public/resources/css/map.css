@@ -297,9 +297,9 @@ map_body_wrapper {
 
 #map .nbr_defenses {
     position:absolute;
-    top:-1.1em;
-    line-height:1em;
-    padding:0.1em 0.3em;
+    top:-1.6em;
+    line-height:1.5em;
+    padding:0 0.3em;
     background:green;
     color:white;
     border-radius:0.2em;
