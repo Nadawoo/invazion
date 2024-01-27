@@ -206,9 +206,10 @@
 #constructions var {
     justify-content: flex-start;
     flex-wrap:wrap;
-    height:auto;
+    height:100%;
     width:15em;
-    margin-left:0;
+    margin:0;
+    padding:0;
     white-space: nowrap;
 }
 
@@ -333,17 +334,17 @@
 }
 
 /* Remplissage coloré de la barre de progression */
-/*.progressbar_filling {
-    display:block;
-    margin-left:0.3em;
-    padding:0 0.3em;  Minimal padding to show the progress bar even when empty 
+.progressbar_filling {
+    display:flex;
+    align-items: center;
+    height:100%;
+    /* Minimal width to show the progress bar even when empty */
+    min-width:0.5em;
+    margin:0;
     box-sizing: border-box;
-     Même valeur que le fond vide de la barre 
+    /* Same value as the container of the bar */
     border-radius:0.3em;
-     Empêche la barre de dépasser 100% s'il y a plus de ressources qu nécessaire.
-       La largeur réelle de la barre pour chaque ressource est calculée en PHP 
-    max-width:80%;
-}*/
+}
 
 
 

@@ -519,7 +519,7 @@ class HtmlCityEnclosure
                             <ul class="items_list col s12" id="tabAP'.$building_id.'">
                                 <li class="aside">Investissez vos points d\'action dans la construction du chantier.</li>
                                 ' . $html_ap . '
-                                ' . $buttons->construct($building_id, 'no_notif') . '
+                                <li>' . $buttons->construct($building_id, 'no_notif') . '</li>
                             </ul>
                         </td>
                     </tr>';
@@ -742,6 +742,7 @@ class HtmlCityEnclosure
         return  (isset($zone_items[$item_id])) ? ($zone_items[$item_id]) : 0;
     }
     
+    
     /**
      * Affiche la barre de progression du stock d'un objet nécessaire 
      * pour fabriquer un objet ou construire un chantier
@@ -781,6 +782,8 @@ class HtmlCityEnclosure
         
         $missing_amount = max(0, $required_amount-$available_amount);
         $title = ($missing_amount <= 0) ? $enough : $not_enough;
+        $progress = round($available_amount/max(1, $required_amount) * 100);
+        $progressbar_color = ($progress >= 100) ? "lightgreen" : "sandybrown";
         
         $item_icon = ($item_caracs['icon_path'] === null)
                     ? $item_caracs['icon_symbol']
@@ -789,11 +792,17 @@ class HtmlCityEnclosure
         return '
             <li class="item_label z-depth-1" title="'.$title.'">
                 <var>
-                    '.str_repeat('<span>'.$item_icon.'</span>', $available_amount).'
-                    '.str_repeat('<span style="opacity:0.3">'.$item_icon.'</span>', $missing_amount).'
+                    <span class="progressbar_filling" style="width:'.$progress.'%;background:'.$progressbar_color.'">
+                    &nbsp;'.$item_icon.'&nbsp;'.$item_caracs['name'].'
+                    </span>
                 </var>
                 '.$this->html_component_amount($required_amount, $available_amount).'
             </li>';
+        
+//                <var>
+//                    '.str_repeat('<span>'.$item_icon.'</span>', $available_amount).'
+//                    '.str_repeat('<span style="opacity:0.3">'.$item_icon.'</span>', $missing_amount).'
+//                </var>
     }
 }
 
