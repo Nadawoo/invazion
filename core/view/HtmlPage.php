@@ -45,6 +45,7 @@ class HtmlPage
                     : '';
         
         $metas = [
+            'site_name'     => "InvaZion",
             'canonical'     => "https://invaziongame.nadazone.fr",
             'page_title'    => "InvaZion, le jeu de zombies",
             'meta_title'    => "Jeu de survie collaboratif. Explorer, construire, résister",
@@ -68,6 +69,7 @@ class HtmlPage
                 <meta name="description" content="'.$metas['description'].'">
                 <meta name="keywords" content="Jeu, Hordes, collaboration, équipe, construction, défenses, zombies">
                 
+                <meta property="og:site_name" content="'.$metas['site_name'].'">
                 <meta property="og:url" content="'.$metas['canonical'].'">
                 <meta property="og:type" content="website">
                 <meta property="og:title" content="'.$metas['page_title'].'">
