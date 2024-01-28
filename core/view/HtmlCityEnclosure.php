@@ -476,8 +476,7 @@ class HtmlCityEnclosure
             if (in_array($building_id, $completed_buildings_ids)) { 
                 
                 $html_constructions .= $this->block_construction_foldable($building_id, $building['name'], $building['defenses'], $building_image, 
-                                                          '&check; Fini ! &nbsp;', 'darkgreen', 'lightgreen',
-                                                          $child_level);
+                                                          'achieved', $child_level);
                 $html_constructions .= '
                     <tr id="'.$css_id.'" class="folded">
                         <td style="font-size:0.85em;text-align:center">La construction de ce chantier est terminée !</td>
@@ -498,8 +497,7 @@ class HtmlCityEnclosure
             else {
                 
                 $html_constructions .= $this->block_construction_foldable($building_id, $building['name'], $building['defenses'], $building_image, 
-                                                          'bâtir&nbsp;<div class="arrow">&#65088;</div>', '', 'grey',
-                                                          $child_level);
+                                                          'in_progress', $child_level);
                 $html_constructions .= '
                     <tr id="'.$css_id.'" class="folded">
                         <td>
@@ -537,19 +535,25 @@ class HtmlCityEnclosure
      * @param string $building_name
      * @param int $building_defenses
      * @param string $building_image
-     * @param array $status Text describing the progress of the construction: 
-     *                      "Build" or "Achieved"
-     * @param string $bg_color The color of the background of the name (green 
-     *                         if the construction os achieved)
-     * @param string $text_color The color of the text of the name (lightgreen
-     *                           if the construction is achieved)
+     * @param array $status The progression of the construction: 
+     *                      "in_progress" or "achieved"
      * @param int $child_level The number of parent constructions above the given construction
      *                         in the dependency tree
      * @return string HTML
      */
     private function block_construction_foldable($building_id, $building_name, $building_defenses, 
-                                           $building_image, $status, $bg_color, $text_color,
-                                           $child_level) {
+                                                 $building_image, $status, $child_level) {
+        
+        if($status === 'achieved') {
+            $bg_color    = 'darkgreen';
+            $text_color  = 'lightgreen';
+            $html_status = '&check; Fini ! &nbsp;';
+        }
+        elseif($status === 'in_progress') {
+            $bg_color    = '';
+            $text_color  = 'grey';
+            $html_status = '<a>bâtir&nbsp;<div class="arrow">&#65088;</a>';
+        }
         
         return '
             <tr>
@@ -558,7 +562,7 @@ class HtmlCityEnclosure
                     <h3 style="color:'.$text_color.'">
                         <img src="'.$building_image.'" alt="icon_'.$building_id.'">&nbsp;'.$building_name.'
                     </h3>
-                    <div class="unfold_button" style="color:'.$text_color.'">'.$status.'</div>
+                    <div class="unfold_button" style="color:'.$text_color.'">'.$html_status.'</div>
                 </td>
                 <td style="cursor:help;text-align:center;background:'.$bg_color.';color:'.$text_color.'"
                     title="Ce chantier augmente les défenses de la ville lorsqu\'il est construit.">
