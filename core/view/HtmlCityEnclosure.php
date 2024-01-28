@@ -412,32 +412,58 @@ class HtmlCityEnclosure
     }
     
     
+    function block_constructions($config_buildings, $buildings_components, $items_caracs,  
+                                  $completed_buildings_ids, $zone_items, $root_building_id)
+    {
+        
+        $html_constructions = $this->block_constructions_list($config_buildings, $buildings_components, $items_caracs,  
+                                  $completed_buildings_ids, $zone_items, $root_building_id);
+        
+        return '
+            <div class="city_block" style="width:21.5em">
+                <h2>Tous les chantiers</h2>
+                <table id="constructions">
+                    <tr style="font-size:0.9em">
+                        <th></th>
+                        <th>Défenses</th>
+                    </tr>
+                    '.$html_constructions.'
+                </table>
+            </div>';
+    }
+    
+    
     /**
      * Bloc à l'intérieur de la ville :
      * liste des chantiers construits ou constructibles en ville
      * 
-     * @param array $buildings_caracs Les caractéristiques statiques des chantiers (nom...)
-     * @param array $buildings_components 
+     * @param array $config_buildings The characteristics of all the buildings (name...), 
+     *                                as returned by the "configs" API
+     * @param array $buildings_components The resources needed to build each construction,
+     *                                    as returned by the "configs" API
+     * @param array $completed_buildings_ids The IDs of the constructions achieved in this city
      * @param array $items_caracs         Les caractéristiques statiques des objets
-     * @param array $city_constructions   L'état des chantiers de la ville (avancement...)
-     * @param array $zone_items           Les objets disponibles dans le dépôt de la ville
-     *                                    (qui sont, à ce jour, les objets au sol)
+     * @param array $zone_items The items available in the city storage (which are,
+     *                          at the moment, the items on the ground)
+     * @param int $root_building_id The ID of the parent building
      * @return string
      */
-    function block_constructions($buildings_caracs, $buildings_components, $items_caracs,  
-                                  $completed_buildings_ids, $zone_items)
-    {
+    public function block_constructions_list($config_buildings, $buildings_components, $items_caracs,  
+                                             $completed_buildings_ids, $zone_items, $root_building_id,
+                                             $child_level=0) {
         
+        $sort = new SortGameData();
         $buttons = new HtmlButtons;
         $html_constructions = '';
+        // Keep only the game's buildings related to the city (ID #12)
+        $buildings_caracs = $sort->filter_buildings_by_parent($config_buildings, $root_building_id);
         
         foreach ($buildings_caracs as $building_id=>$building) {
             // ID of the "Action points" item in the database
             $ap_item_id = 23;
             $css_id = 'building'.$building_id;
             // Set default building image if not defined
-            $building_image = '../resources/img/copyrighted/buildings/'.$building_id.'.png';
-            $building_image = is_file($building_image) ? $building_image : '../resources/img/copyrighted/buildings/104.png';
+            $building_image = ((string)$building['icon_path'] !== '') ? $building['icon_path'] : '../resources/img/copyrighted/buildings/104.png';
             $building_descr = ((string)$building['descr_ambiance'] !== '') ? $building['descr_ambiance'] : '<span class="grey-text">(Pas de description pour le moment)</span>';
             
             // Put the action points apart of the other resources
@@ -446,21 +472,34 @@ class HtmlCityEnclosure
             $html_resources = $this->block_construction_resources($building_id, $items_caracs, $buildings_components, 
                                                                   $zone_items, $ap_item_id);
             
-            
+            // If the construction is achieved
             if (in_array($building_id, $completed_buildings_ids)) { 
                 
                 $html_constructions .= $this->block_construction_foldable($building_id, $building['name'], $building['defenses'], $building_image, 
-                                                          '&check; Fini ! &nbsp;', 'darkgreen', 'lightgreen');
+                                                          '&check; Fini ! &nbsp;', 'darkgreen', 'lightgreen',
+                                                          $child_level);
                 $html_constructions .= '
                     <tr id="'.$css_id.'" class="folded">
                         <td style="font-size:0.85em;text-align:center">La construction de ce chantier est terminée !</td>
                     </tr>
                     ';
+                
+                // Call the method recrsively to display all the child constructions
+                $html_child_constructions = true;
+                if($html_child_constructions !== '') {
+                    $child_level++;
+                    $html_child_constructions = $this->block_constructions_list($config_buildings, $buildings_components, $items_caracs,  
+                                                                  $completed_buildings_ids, $zone_items, $building_id,
+                                                                  $child_level);
+                    $html_constructions .= $html_child_constructions;
+                }
+                $child_level--;
             }
             else {
                 
                 $html_constructions .= $this->block_construction_foldable($building_id, $building['name'], $building['defenses'], $building_image, 
-                                                          'bâtir&nbsp;<div class="arrow">&#65088;</div>', '', 'grey');
+                                                          'bâtir&nbsp;<div class="arrow">&#65088;</div>', '', 'grey',
+                                                          $child_level);
                 $html_constructions .= '
                     <tr id="'.$css_id.'" class="folded">
                         <td>
@@ -486,26 +525,36 @@ class HtmlCityEnclosure
             }
         }
         
-        return '
-            <div class="city_block" style="width:21.5em">
-                <h2>Tous les chantiers</h2>
-                <table id="constructions">
-                    <tr style="font-size:0.9em">
-                        <th></th>
-                        <th>Défenses</th>
-                    </tr>
-                    '.$html_constructions.'
-                </table>
-            </div>';
+        return $html_constructions;
     }
     
     
+    /**
+     * The name of one construction. Clicking on it will unfold informations  
+     * about the resources needed to build it.
+     * 
+     * @param int $building_id
+     * @param string $building_name
+     * @param int $building_defenses
+     * @param string $building_image
+     * @param array $status Text describing the progress of the construction: 
+     *                      "Build" or "Achieved"
+     * @param string $bg_color The color of the background of the name (green 
+     *                         if the construction os achieved)
+     * @param string $text_color The color of the text of the name (lightgreen
+     *                           if the construction is achieved)
+     * @param int $child_level The number of parent constructions above the given construction
+     *                         in the dependency tree
+     * @return string HTML
+     */
     private function block_construction_foldable($building_id, $building_name, $building_defenses, 
-                                           $building_image, $status, $bg_color, $text_color) {
+                                           $building_image, $status, $bg_color, $text_color,
+                                           $child_level) {
         
         return '
             <tr>
-                <td onclick="toggle(\'building'.$building_id.'\')" class="foldable" style="background:'.$bg_color.'">
+                <td onclick="toggle(\'building'.$building_id.'\')" class="foldable" style="margin-left:'.$child_level.'em;background:'.$bg_color.'">
+                    '.str_repeat('<span class="hierarchy">&#10551;</span>', $child_level).'
                     <h3 style="color:'.$text_color.'">
                         <img src="'.$building_image.'" alt="icon_'.$building_id.'">&nbsp;'.$building_name.'
                     </h3>

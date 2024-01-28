@@ -245,6 +245,7 @@
 
 /* Foldable sections for lighter interface (e.g to hide the components in the workshop)*/
 .city_block .foldable {
+    position:relative;
     display:flex;
     justify-content:space-between;
     margin:0;
@@ -256,7 +257,6 @@
 }
 .foldable:hover {
     box-shadow:1px 1px 1px black;
-    position:relative;
     top: 0.1em;
     left:0.1em;
 }
@@ -278,6 +278,11 @@
 .foldable .arrow {
     transform:rotate(-90deg);
     font-weight:bold;
+}
+.foldable .hierarchy {
+    position:absolute;top:
+    0.7em;
+    left:-0.7em
 }
 .city_block .folded {
     display:none;
