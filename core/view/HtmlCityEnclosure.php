@@ -432,54 +432,26 @@ class HtmlCityEnclosure
         $html_constructions = '';
         
         foreach ($buildings_caracs as $building_id=>$building) {
-            
+            // ID of the "Action points" item in the database
             $ap_item_id = 23;
-            $html_resources = '';
             $css_id = 'building'.$building_id;
-            // If no components have been defined for this building
-            $components = (isset($buildings_components[$building_id])) ? $buildings_components[$building_id] : [];
-            $required_ap = (isset($buildings_components[$building_id][$ap_item_id])) ? $buildings_components[$building_id][$ap_item_id] : 0;
-            
-            // Put the action points apart of the other resources
-            $html_ap = $this->html_progressbar( $items_caracs[$ap_item_id],
-                                                $this->item_amount($zone_items, $ap_item_id),
-                                                $required_ap,
-                                                'constructions');
-            unset($components[$ap_item_id]);
-            
-            // Jauge des ressources requises/disponibles pour la construction
-            foreach ($components as $item_id=>$required_amount) {
-                // Handles the anormal case where the resource needed is not 
-                // in the list of items set for the current game 
-                if(!isset($items_caracs[$item_id])) {
-                    $items_caracs[$item_id] = set_default_variables('item');
-                }
-                
-                $html_resources .= $this->html_progressbar( $items_caracs[$item_id],
-                                                            $this->item_amount($zone_items, $item_id),
-                                                            $required_amount,
-                                                            'constructions');
-            }
-            
             // Set default building image if not defined
             $building_image = '../resources/img/copyrighted/buildings/'.$building_id.'.png';
             $building_image = is_file($building_image) ? $building_image : '../resources/img/copyrighted/buildings/104.png';
-                        
+            $building_descr = ((string)$building['descr_ambiance'] !== '') ? $building['descr_ambiance'] : '<span class="grey-text">(Pas de description pour le moment)</span>';
+            
+            // Put the action points apart of the other resources
+            $html_ap = $this->block_construction_actionpoints($building_id, $items_caracs, $buildings_components,
+                                                              $zone_items, $ap_item_id);
+            $html_resources = $this->block_construction_resources($building_id, $items_caracs, $buildings_components, 
+                                                                  $zone_items, $ap_item_id);
+            
+            
             if (in_array($building_id, $completed_buildings_ids)) { 
                 
+                $html_constructions .= $this->block_construction_foldable($building_id, $building['name'], $building['defenses'], $building_image, 
+                                                          '&check; Fini ! &nbsp;', 'darkgreen', 'lightgreen');
                 $html_constructions .= '
-                    <tr>
-                        <td onclick="toggle(\''.$css_id.'\')" class="foldable" style="background:darkgreen">
-                            <h3 style="color:lightgreen">
-                                <img src="'.$building_image.'" alt="icon_'.$building_id.'">&nbsp;'.$building['name'].'
-                            </h3>
-                            <div class="unfold_button" style="color:lightgreen">&check; Fini ! &nbsp;</div>
-                        </td>
-                        <td style="cursor:help;text-align:center;background:#A5D6A7" 
-                            title="Ce chantier augmente de '.$building['defenses'].' points les défenses de la ville !">
-                            <strong style="color:darkgreen">+&nbsp;'.$building['defenses'].'</strong>
-                        </td>
-                    </tr>
                     <tr id="'.$css_id.'" class="folded">
                         <td style="font-size:0.85em;text-align:center">La construction de ce chantier est terminée !</td>
                     </tr>
@@ -487,30 +459,18 @@ class HtmlCityEnclosure
             }
             else {
                 
-                $descr_ambiance = ((string)$building['descr_ambiance'] !== '') ? $building['descr_ambiance'] : '<span class="grey-text">(Pas de description pour le moment)</span>';
-                
+                $html_constructions .= $this->block_construction_foldable($building_id, $building['name'], $building['defenses'], $building_image, 
+                                                          'bâtir&nbsp;<div class="arrow">&#65088;</div>', '', 'grey');
                 $html_constructions .= '
-                    <tr>
-                        <td onclick="toggle(\''.$css_id.'\')" class="foldable">
-                            <h3 style="color:grey">
-                                <img src="'.$building_image.'" alt="icon_'.$building_id.'">&nbsp;'.$building['name'].'
-                            </h3>
-                            <div class="unfold_button">bâtir&nbsp;<div class="arrow">&#65088;</div></div>
-                        </td>
-                        <td style="color:grey;cursor:help;text-align:center"
-                            title="Si vous le construisez, ce chantier augmentera de '.$building['defenses'].' points les défenses de la ville.">
-                            <strong>+&nbsp;'.$building['defenses'].'</strong>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td id="'.$css_id.'" class="folded">
+                    <tr id="'.$css_id.'" class="folded">
+                        <td>
                             <ul class="tabs">
                                 <li class="tab col s3"><a href="#tabDescr'.$building_id.'" class="active">Descr</a></li>
                                 <li class="tab col s3"><a href="#tabResources'.$building_id.'">Compo</a></li>
                                 <li class="tab col s3"><a href="#tabAP'.$building_id.'">Constr</a></li>
                             </ul>
                             <ul class="items_list col s12" id="tabDescr'.$building_id.'">
-                                <li class="aside">'.$descr_ambiance.'</li>
+                                <li class="aside">'.$building_descr.'</li>
                             </ul>
                             <ul class="items_list col s12" id="tabResources'.$building_id.'">
                                 <li class="aside">Réunissez d\'abord ces composants dans le dépôt de la ville.</li>
@@ -524,7 +484,6 @@ class HtmlCityEnclosure
                         </td>
                     </tr>';
             }
-
         }
         
         return '
@@ -538,6 +497,86 @@ class HtmlCityEnclosure
                     '.$html_constructions.'
                 </table>
             </div>';
+    }
+    
+    
+    private function block_construction_foldable($building_id, $building_name, $building_defenses, 
+                                           $building_image, $status, $bg_color, $text_color) {
+        
+        return '
+            <tr>
+                <td onclick="toggle(\'building'.$building_id.'\')" class="foldable" style="background:'.$bg_color.'">
+                    <h3 style="color:'.$text_color.'">
+                        <img src="'.$building_image.'" alt="icon_'.$building_id.'">&nbsp;'.$building_name.'
+                    </h3>
+                    <div class="unfold_button" style="color:'.$text_color.'">'.$status.'</div>
+                </td>
+                <td style="cursor:help;text-align:center;background:'.$bg_color.';color:'.$text_color.'"
+                    title="Ce chantier augmente les défenses de la ville lorsqu\'il est construit.">
+                    <strong style="color:'.$text_color.'">+&nbsp;'.$building_defenses.'</strong>
+                </td>
+            </tr>';
+    }
+    
+    
+    /**
+     * Jauge de chaque ressource requise/disponible pour la construction
+     * 
+     * @param int $building_id
+     * @param array $items_caracs
+     * @param array $buildings_components
+     * @param array $zone_items
+     * @param int $ap_item_id
+     * @return string HTML
+     */
+    private function block_construction_resources($building_id, $items_caracs, $buildings_components, $zone_items, $ap_item_id) {
+        
+        $html_resources = '';
+        // If no components have been defined for this building
+        $components = isset($buildings_components[$building_id])
+                      ? $buildings_components[$building_id]
+                      : [];
+        
+        // Remove the action points from the list of components
+        unset($components[$ap_item_id]);
+        
+        foreach ($components as $item_id=>$required_amount) {
+            // Handles the anormal case where the resource needed is not 
+            // in the list of items set for the current game 
+            if(!isset($items_caracs[$item_id])) {
+                $items_caracs[$item_id] = set_default_variables('item');
+            }
+
+            $html_resources .= $this->html_progressbar( $items_caracs[$item_id],
+                                                        $this->item_amount($zone_items, $item_id),
+                                                        $required_amount,
+                                                        'constructions');
+        }
+        
+        return  $html_resources;
+    }
+    
+    
+    /**
+     * Jauge des points d'actions investis dans la construction
+     * 
+     * @param int $building_id
+     * @param array $items_caracs
+     * @param array $buildings_components
+     * @param array $zone_items
+     * @param int $ap_item_id
+     * @return string HTML
+     */
+    private function block_construction_actionpoints($building_id, $items_caracs, $buildings_components, $zone_items, $ap_item_id) {
+        
+        $required_ap = isset($buildings_components[$building_id][$ap_item_id])
+                        ? $buildings_components[$building_id][$ap_item_id]
+                        : 0;
+        
+        return $this->html_progressbar( $items_caracs[$ap_item_id],
+                                        $this->item_amount($zone_items, $ap_item_id),
+                                        $required_ap,
+                                        'constructions');
     }
     
     
