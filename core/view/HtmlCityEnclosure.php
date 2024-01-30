@@ -557,8 +557,8 @@ class HtmlCityEnclosure
         
         return '
             <tr>
-                <td onclick="toggle(\'building'.$building_id.'\')" class="foldable" style="margin-left:'.$child_level.'em;background:'.$bg_color.'">
-                    '.str_repeat('<span class="hierarchy">&#10551;</span>', $child_level).'
+                <td onclick="toggle(\'building'.$building_id.'\')" class="foldable" style="margin-left:'.($child_level*1.4).'em;background:'.$bg_color.'">
+                    '.str_repeat('<span class="hierarchy">├</span>', $child_level).'
                     <h3 style="color:'.$text_color.'">
                         <img src="'.$building_image.'" alt="icon_'.$building_id.'">&nbsp;'.$building_name.'
                     </h3>

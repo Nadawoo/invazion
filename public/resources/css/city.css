@@ -279,9 +279,10 @@
     font-weight:bold;
 }
 .foldable .hierarchy {
-    position:absolute;top:
-    0.7em;
-    left:-0.7em
+    position:absolute;
+    left:-1.5rem;
+    font-size:2.1em;
+    color:#CACFD2;
 }
 .city_block .folded {
     display:none;
