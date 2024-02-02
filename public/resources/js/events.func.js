@@ -85,7 +85,7 @@ function listenToMapDragging() {
         content,
         scrollMode: 'transform',
         direction: 'all',
-        bounce: false, // Set to true to allow dragging the map above its limits
+        bounce: true, // Set to true to allow dragging the map above its limits
         emulateScroll: false // true = scroll inside the viewport, false = scroll the whole page
     });
 

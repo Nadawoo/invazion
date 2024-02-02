@@ -622,9 +622,8 @@ function addCityLocationMarker(myCityZoneId) {
  * Zooms in or out of the map with the "+/-" buttons
  * 
  * @param {string} direction Set to "in" to zoom in, "out" to zoom out.
- * @param {object} scrollBoosterInstance An object created with the "Scrollbooster" library
  */
-function zoomMapStep(direction, scrollBoosterInstance) {
+function zoomMapStep(direction) {
     // Default zoom level = 100%
     if(window.currentZoomPercent === undefined) {        
         window.currentZoomPercent = 100;
@@ -635,7 +634,7 @@ function zoomMapStep(direction, scrollBoosterInstance) {
     // Move the cursor on the <range> selector
     document.querySelector("#zoom_range").value = newZoomPercent;
     // Executes the zoom/unzoom
-    zoomMapRange(newZoomPercent, scrollBoosterInstance);
+    zoomMapRange(newZoomPercent);
 }
 
 
@@ -643,15 +642,14 @@ function zoomMapStep(direction, scrollBoosterInstance) {
  * Zooms in or out of the map with an HTML <range> tag
  * 
  * @param {int} newZoomPercent
- * @param {object} scrollBoosterInstance An object created with the "Scrollbooster" library
  */
-function zoomMapRange(newZoomPercent, scrollBoosterInstance) {
+function zoomMapRange(newZoomPercent) {
     
     document.querySelector("#map_body").classList.add("zoomedIn");
     document.querySelector("#map_body").style.transform = `scale(${newZoomPercent}%)`;
     // Important: force ScroolBooster to recalculate the size of the map after zooming.
     // Without this, impossible to drag the map after zooming.
-    scrollBoosterInstance.updateMetrics();
+    _scrollBoosterInstance.updateMetrics();
 //    setTimeout(centerMapOnMe, 300);
     
     window.currentZoomPercent = newZoomPercent;
@@ -676,5 +674,12 @@ function toggleZoomRange() {
  */
 function centerMapOnMe() {
     
-    document.querySelector("#me").scrollIntoView({behavior: "smooth", block: "center", inline: "center"});
+    let viewport = document.querySelector("#map_body_wrapper").getBoundingClientRect();
+    let me = document.querySelector("#me").getBoundingClientRect();
+    
+    let offsetX = (me.x - viewport.x + me.width/2 - viewport.width/2); 
+    let offsetY = (me.y - viewport.y + me.height/2 - viewport.height/4);
+    
+    _scrollBoosterInstance.scrollTo({ x: offsetX, y: offsetY });
+    _scrollBoosterInstance.updateMetrics();
 }

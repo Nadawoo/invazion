@@ -10,6 +10,7 @@ var _myZone = null;
 var _jsonMap = null;
 // Permanently stores the result of the API whichs gives the discussions list 
 var _jsonDiscussionApi = null;
+var _scrollBoosterInstance = null;
 
 
 // Main burger menu (uses Materialize.css)
@@ -79,6 +80,9 @@ if (document.getElementById('map') !== null) {
     
     updateConnectedCitiesLines(mapId);
     
+    // Allows to move the map by dragging it with the mouse
+    _scrollBoosterInstance = listenToMapDragging();
+    
     // Only if the visitor is connected
     if(document.querySelector("#citizenId").innerHTML !== "") {
     
@@ -88,7 +92,9 @@ if (document.getElementById('map') !== null) {
         // Add a location sign above the city of the player
         addCityLocationMarker(myCityZoneId);
         // Centers the map on the current player
-//        centerMapOnMe();
+        zoomMapRange(500);
+        setTimeout(() => centerMapOnMe(), 500);
+        
         // Draws a line between the player and his city
         if(myCityZoneId !== null) {
             updateLineBetweenZones("myCity", "#me", "#"+myCityZoneId);

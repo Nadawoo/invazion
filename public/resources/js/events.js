@@ -16,21 +16,18 @@ if (document.getElementById('map') !== null) {
     // Displays/hides the tooltip of any zone when the mouse hovers one
     listenToMapZones();
     
-    // Allows to move the map by dragging it with the mouse
-    let scrollBoosterInstance = listenToMapDragging();
-    
     // Zoom/unzoom on the map
     let mapRange = document.querySelector("#zoom_range");    
     mapRange.addEventListener("input", function() {
-        zoomMapRange(mapRange.value, scrollBoosterInstance);
+        zoomMapRange(mapRange.value);
     });
     document.querySelector("#zoomMapStepIn").addEventListener("click", function() {
         event.preventDefault();
-        zoomMapStep("in", scrollBoosterInstance);
+        zoomMapStep("in");
     });
     document.querySelector("#zoomMapStepOut").addEventListener("click", function() {
         event.preventDefault();
-        zoomMapStep("out", scrollBoosterInstance);
+        zoomMapStep("out");
     });
     
     // Move the citizen on the map
