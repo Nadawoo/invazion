@@ -377,6 +377,7 @@
  * Actions at the right of the map
  */
 #actions_panel {
+    display:none;
     position:fixed;
     /*right:0.5rem; /* Avoids shifting the buttons to the left when the scrollbar appears */
     top:60%;
@@ -486,7 +487,7 @@
     display:none;
     position:relative;
     top:-4.7rem;
-    height:19.1em;
+    height:23.1em;
     margin:0;
     padding-top:4rem;
     padding-bottom:2rem;

@@ -57,7 +57,8 @@ map_body_wrapper {
     top:  8rem;
     right:0.5em;
 }
-#map_navigation button {
+#map_navigation button,
+#resizeMap button {
     display:flex;
     justify-content: center;
     align-items: center;
@@ -138,6 +139,23 @@ map_body_wrapper {
 }
 #mapRadarMenu li:hover {
     background:#5d6d7e;
+}
+
+/*
+ * Switch between Large map mode / Action mode
+ */
+#resizeMap {
+    position:absolute;
+    top:3rem;
+    right:0.5em;
+}
+#resizeMap button {
+    background:darkred;
+    outline:2px solid lightgrey;
+}
+#resizeMap i {
+    font-size:0.9em;
+    color:white;
 }
 
 /*

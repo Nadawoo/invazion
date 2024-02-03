@@ -30,9 +30,31 @@ if (document.getElementById('map') !== null) {
         zoomMapStep("out");
     });
     
+    // Map: switch to the "action" mode
     document.querySelector(".halo").addEventListener("click", function() {
+        // Zoom the map on the player
         zoomMapRange(500);
         setTimeout(() => centerMapOnMe(), 500);
+        // Display the actions panel (dig...)
+        display(["actions_panel"]);
+        // Hide some elements of the GUI to make the interface look lighter
+        hide(["attack_bar", "map_navigation", "floating_wall"]);
+        // Enlarge the button which switches between Action mode/Map mode
+        document.querySelector("#resizeMap").style.transform = "scale(150%)";
+        document.querySelector("#resizeMap").style.right = "3em";
+    });
+    // Map: switch to the "large map" mode
+    document.querySelector("#resizeMap").addEventListener("click", function() {
+        // Display the large map (unzoom)
+        zoomMapRange(100);
+        setTimeout(() => centerMapOnMe(), 500);
+        // Hide the actions panel in large mode
+        hide(["actions_panel"]);
+        // Display again the general elements of the GUI
+        changeDisplayValue(["attack_bar", "map_navigation", "floating_wall"], "flex");
+        // Reduce the button which switches between Action mode/Map mode
+        document.querySelector("#resizeMap").style.transform = "scale(100%)";
+        document.querySelector("#resizeMap").style.right = null;
     });
     
     // Move the citizen on the map

@@ -323,6 +323,10 @@ echo $html['json_configs'];
             </div>
         </div>
         
+        <div id="resizeMap">
+            <button><i class="material-icons">fullscreen</i></button>
+        </div>
+        
         <div id="map_navigation">
             <?php echo $layout->block_map_navigation() ?>
         </div>
