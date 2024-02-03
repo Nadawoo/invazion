@@ -21,11 +21,9 @@ class HtmlActionBlocks {
         
         return '
             <fieldset id="block_dig">
-                <p class="center" style="margin:0 0 1.5em 0">
-                    <em>En fouillant le désert, vous collectez les objets indispensables 
-                    à votre survie.</em>
-                </p>
-                '.$this->buttons->button('dig', false, '', $citizen_can_dig).'<br>
+                <div style="display:flex;align-items:center">'.$this->buttons->button('dig', false, '', $citizen_can_dig).'
+                    <a href="#popitems" style="margin-left:0.8rem;font-size:1.2em">[?]</a>
+                </div>
                 <hr>
                 
                 &#x1F4BC; <strong>Objets dans mon sac</strong>

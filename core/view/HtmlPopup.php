@@ -31,6 +31,7 @@ class HtmlPopup
         return $this->predefined('poppresentation', '')
             . $this->predefined('popdayclock', '', ['map_id'=>$map_id, 'current_cycle'=>$configs_map['current_cycle']])
             . $this->predefined('popvault',   '')
+            . $this->predefined('popitems', '')
             . $this->predefined('popwounded', '', ['citizen_id'=>$citizen_id, 'healing_items'=>$healing_items])
             . $this->predefined('popcontrol', '&#8505;&#65039; Le contrôle de zone')
             . $this->predefined('popmove', '&#8505;&#65039; Les déplacements', 
@@ -259,6 +260,27 @@ class HtmlPopup
                 <div class="content">'.$text.'</div>
             </div>
         </div>';
+    }
+    
+    
+    /**
+     * Help for the "Dig" button
+     * 
+     * @return string HTML
+     */
+    private function popitems()
+    {
+        
+        return '
+            <p>En <strong>fouillant le désert</strong>, vous collectez des objets 
+                indispensables à votre survie :
+            </p>
+            <ul>
+                <li><img src="/resources/img/copyrighted/items/1.png" width="32"> <strong>Ressources</strong> pour construire les défenses de votre ville<br><br></li>
+                <li><img src="/resources/img/copyrighted/items/9.png" width="32"> <strong>Eau &amp; nourriture</strong> pour explorer les zones lointaines<br><br></li>
+                <li><img src="/resources/img/copyrighted/items/knife_2.png" width="32"> <strong>Armes</strong> pour vous frayer un chemin parmi les zombies<br><br></li>
+                <li>Et d\'autres encore...</li>
+            </ul>';
     }
     
     
