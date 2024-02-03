@@ -153,6 +153,11 @@ map_body_wrapper {
     background:darkred;
     outline:2px solid lightgrey;
 }
+#map_mode_button {
+    position:absolute;
+    right:0.3em;
+    transform:scale(150%);
+}
 #resizeMap i {
     font-size:0.9em;
     color:white;

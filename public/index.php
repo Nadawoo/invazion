@@ -324,7 +324,8 @@ echo $html['json_configs'];
         </div>
         
         <div id="resizeMap">
-            <button><i class="material-icons">fullscreen</i></button>
+            <button id="map_mode_button" style="display:none"><i class="material-icons">fullscreen</i></button>
+            <button id="action_mode_button"><i class="material-icons">zoom_in_map</i></button>
         </div>
         
         <div id="map_navigation">
