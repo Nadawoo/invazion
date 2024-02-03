@@ -377,27 +377,34 @@
  * Actions at the right of the map
  */
 #actions_panel {
-    position:absolute;
-    right:0.5rem; /* Avoids shifting the buttons to the left when the scrollbar appears */
-    width:21.7rem;
+    position:fixed;
+    /*right:0.5rem; /* Avoids shifting the buttons to the left when the scrollbar appears */
+    top:60%;
+    height:100%;
+    width:100%;
+    max-width: 51.25rem;
     text-align:center;
     font-size:0.9em;
+    background:#fbeee6;
+    border-radius:0.8em;
+    border:1px solid #34495e;
 }
 /* The big round action buttons with icon */
 #round_actions {
+    position:relative;
+    top:-1.8em;
     display:flex;
     align-items:flex-start;
-    justify-content:space-between;
-    position:relative;
-    margin:0.1rem 0 0 0;
+    justify-content:center;
     white-space:nowrap;
     z-index:21;
 }
 .round_action_block {
     position:relative;
     display:inline-block;
-    /*margin-right:0.1rem;*/
+    margin:0 0.08rem;
     background:#34495e;
+    border-top:1px solid white;
     border-radius:0.2rem;
 }
 .round_action {
@@ -471,20 +478,25 @@
     z-index:10;
 }
 /* The maskable frames which contain the actions buttons */
+#actions {
+    width:21.7rem;
+    margin:auto;
+}
 #actions fieldset {
     display:none;
     position:relative;
-    top:-1.5rem;
+    top:-4.7rem;
+    height:19.1em;
     margin:0;
-    padding-top:3rem;
+    padding-top:4rem;
     padding-bottom:2rem;
     text-align:left;
     border:1px solid #34495e;
-    border-radius: 0 0 0.3rem 0.3rem;
     box-shadow:5px 5px 8px black;
     background:#fbeee6;
     z-index:20;
     animation: switchAction 0.3s;
+    overflow:auto;
 }
 @keyframes switchAction {
     from { opacity: 0; }

@@ -30,6 +30,11 @@ if (document.getElementById('map') !== null) {
         zoomMapStep("out");
     });
     
+    document.querySelector(".halo").addEventListener("click", function() {
+        zoomMapRange(500);
+        setTimeout(() => centerMapOnMe(), 500);
+    });
+    
     // Move the citizen on the map
     document.querySelector('#block_move [name="move"]').addEventListener("submit", function() {
         // Desactivate the classic submission button (avoids reloading the page)
