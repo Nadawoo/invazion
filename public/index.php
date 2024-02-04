@@ -192,8 +192,10 @@ echo $html['json_configs'];
 ?>
 
 <section id="popups">
-    <?php echo $popup->allPopups($msg_popup, $citizen['map_id'], $citizen['citizen_id'], $configs['map'], 
-                       $healing_items, $html['smartphone'], $is_custom_popup_visible) ?>
+    <?php echo $popup->allPopups($msg_popup, $citizen['map_id'], $citizen['citizen_id'], 
+                       $configs['map'], $speciality_caracs,
+                       $healing_items, $html['smartphone'], $is_custom_popup_visible) 
+    ?>
 </section>
 
 <section id="templates">
@@ -410,17 +412,6 @@ echo $html['json_configs'];
                 $actionCards->card_building().
                 $actionCards->card_dig().
                 $actionCards->card_ap_cost();
-
-                echo '<hr>
-
-                    <p><strong>Mes caractéristiques</strong></p>
-                    &#128295; Spécialité : <span title="'.$speciality_caracs['descr_purpose'].'" style="cursor:help">'.ucfirst($speciality_caracs['name']).'</span><br>
-                    &#9889; Points d\'action par cycle : '.$speciality_caracs['action_points'].'<br>
-                    &#127890; Places dans le sac : '.$speciality_caracs['bag_size'].'<br>
-                    &#128737;&#65039; Points de contrôle : '.$speciality_caracs['controlpoints_citizen'].' &nbsp;<a href="#popcontrol">[?]</a><br>
-                    &#x1F453; Vision niv. '.$citizen['vision'].'<br>
-                    &#128374;&#65039; Camouflage niv. '.$citizen['camouflage'].'
-                    </p>'
                 ?>
             </fieldset>
 

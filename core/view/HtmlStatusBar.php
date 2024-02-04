@@ -18,6 +18,9 @@ class HtmlStatusBar {
         $ap_item_id = 23;
         $action_points = isset($bag_items[$ap_item_id]) ? $bag_items[$ap_item_id] : 0;
         
+        $status_my_caracs = $this->status_image("&#x1F464;", null, null,
+                                "Mes caractéristiques de base",
+                                "popmycaracs");
         $status_defenses = (is_int($city_id))
             ? $this->status_image("Attaque du soir", "resources/img/copyrighted/wolf.png", null,
                                 "Construisez des défenses dans votre ville &#10;pour contrer l'attaque zombie du soir !",
@@ -45,12 +48,12 @@ class HtmlStatusBar {
 
         return
         '<div id="statusbar">'.
+            $status_my_caracs.
             $status_actionpoints.
             $status_bag.
             $status_defenses.
             $status_fellows.
             $status_wounded.
-            $this->status_empty().
             $this->status_empty().
             $this->status_empty().
             $this->status_empty().

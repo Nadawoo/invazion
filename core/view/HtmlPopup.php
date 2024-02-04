@@ -16,22 +16,25 @@ class HtmlPopup
      * The texts of the pop-ups
      * TODO: don't load all the pop-ups in the HTML on page load, only the useful one
      * 
-     * @param type $msg_popup
-     * @param type $map_id
-     * @param type $citizen_id
-     * @param type $configs_map
-     * @param type $healing_items
-     * @param type $html_smartphone
-     * @param type $is_custom_popup_visible
+     * @param string $msg_popup
+     * @param int $map_id
+     * @param int $citizen_id
+     * @param array $configs_map
+     * @param array $speciality_caracs
+     * @param array $healing_items
+     * @param string $html_smartphone
+     * @param bool $is_custom_popup_visible
      * @return string HTML
      */
-    public function allPopups($msg_popup, $map_id, $citizen_id, $configs_map, 
+    public function allPopups($msg_popup, $map_id, $citizen_id, 
+                    $configs_map, $speciality_caracs,
                     $healing_items, $html_smartphone, $is_custom_popup_visible) {
         
         return $this->predefined('poppresentation', '')
             . $this->predefined('popdayclock', '', ['map_id'=>$map_id, 'current_cycle'=>$configs_map['current_cycle']])
             . $this->predefined('popvault',   '')
             . $this->predefined('popitems', '')
+            . $this->predefined('popmycaracs', 'Mes caractéristiques', $speciality_caracs)
             . $this->predefined('popwounded', '', ['citizen_id'=>$citizen_id, 'healing_items'=>$healing_items])
             . $this->predefined('popcontrol', '&#8505;&#65039; Le contrôle de zone')
             . $this->predefined('popmove', '&#8505;&#65039; Les déplacements', 
@@ -281,6 +284,25 @@ class HtmlPopup
                 <li><img src="/resources/img/copyrighted/items/knife_2.png" width="32"> <strong>Armes</strong> pour vous frayer un chemin parmi les zombies<br><br></li>
                 <li>Et d\'autres encore...</li>
             </ul>';
+    }
+    
+    
+    private function popmycaracs($speciality_caracs) {
+        
+        return '
+            <p>La <strong>spécialité</strong> de votre citoyen est :
+            <strong>'.ucfirst($speciality_caracs['name']).'</strong><br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<em>('.$speciality_caracs['descr_purpose'].')</em>
+            </p>
+            <p>Cette spécialité vous confère ces caractéristiques :</p>
+            <ul>
+                <li>&#9889; Points d\'action par cycle : <strong>'.$speciality_caracs['action_points'].'</strong> &nbsp;<a href="#popmove">[?]</a></li>
+                <li>&#127890; Places dans le sac : <strong>'.$speciality_caracs['bag_size'].'</strong></li>
+                <li>&#128737;&#65039; Points de contrôle : <strong>'.$speciality_caracs['controlpoints_citizen'].'</strong> &nbsp;<a href="#popcontrol">[?]</a></li>'
+//                &#x1F453; Vision niv. '.$citizen['vision'].'<br>
+//                &#128374;&#65039; Camouflage niv. '.$citizen['camouflage'].'
+            .'</ul>
+            <br>';
     }
     
     
