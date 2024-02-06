@@ -23,10 +23,8 @@ class HtmlItem {
         
         return '
             <template id="tplItem">
-                <li class="item_label">
-                    <var onclick="toggleItem(event)">
-                        <span class="icon">{icon}</span>
-                    </var>
+                <li class="item_label z-depth-1">
+                    <var onclick="toggleItem(event)" class="icon">{icon}</var>
                     <div class="details">
                         <span class="close" onclick="toggleItem(event)">&#x274C;</span>
                         <var><span class="icon">{icon}</span>&nbsp;<span class="item_name">{item_name}</span></var>
@@ -93,7 +91,7 @@ class HtmlItem {
         $button_use = $buttons->use_item($button_alias, $item_id, '');
         
         return '
-            <li class="item_label">
+            <li class="item_label z-depth-1">
                 <var onclick="toggleItem(event)">
                     '.$item_image.'
                 </var>

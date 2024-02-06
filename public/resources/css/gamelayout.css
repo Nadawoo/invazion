@@ -572,15 +572,11 @@ legend {
 #items_ground .form_drop {
     display:none; /* Hide the "drop" button if item already on the ground */
 }
-.empty_slot {
-    background-color: transparent !important;
-    border:1px solid lightgrey;
-    box-sizing: border-box;
-}
 
 /* Listes d'objets */
 .items_list {
     display:flex;
+    gap:0.4em;
     margin-left:1.5rem;
     flex-wrap:wrap;
     margin-top:0.2rem;
@@ -594,83 +590,84 @@ legend {
     margin:0;
 }
 
-/* Etiquette pour un nom d'objet */
-var {
-    display:inline-block;
-    width:14em;
-    font-size:0.9em;
-    margin: 0.1em;
-    padding:0 0.3em;
-    /*background:lightgrey;*/
-    font-style:normal;
-    border-radius:0.3em;
-    color:darkslategrey;
-    box-sizing: border-box;
-}
-.item_label { /* More advanced than <var> (has an icon) */
+/*
+ * Item (icon + tooltip)
+ */
+.item_label { /* Global container (icon + tooltip) */
     position:relative;
     display:flex;
-    align-items:flex-start;
+    justify-content: flex-start; /* The tooltip must start at the left of the icon (not centered)*/
+    align-items: center;
     height:3em;
     width:3em;
-    margin-left:0.2em;
-    margin-bottom:0.3em;
-    background:#d3d3d3;
-    border-radius:0.3em;
+    background:lightgrey;
+    border-radius:0.2em;
 }
+.item_label>var { /* The clickable icon of the item */
+    display:flex;
+    margin:auto;
+    font-style:normal;
+    cursor:pointer;
+}
+.item_label var::selection {
+    background:none;
+}
+.item_label img {
+    height:32px;
+    width: 32px;
+}
+.item_label .dot_number {
+    position:absolute;
+    top:  -0.35rem;
+    right:-0.35rem;
+    height:1rem;
+    width: 1rem;
+    font-size:0.7em;
+    line-height:120%;
+    font-weight:bold;
+    text-align:center;
+    background:#28b463;
+    color:black;
+    border-radius:0.1em;
+}
+.item_label.empty_slot {
+    background-color:#fafafa;
+}
+/* The tooltip for the item */
 .item_label .details {
+    display:none;
     position:absolute;
     top:3em;
+    width:14em;
+    padding:0.2em 0.2em 0.7em 0.5em;
     background:lightgrey;
     border:1px solid grey;
     border-radius:0.3em;
     box-shadow:5px 5px 10px black;
     z-index:2;
 }
-.item_label img {
-    height:32px;
-    width:32px;
-}
-.item_label>var { /* The simple icon of the item, without text */
-    height:3em;
-    width:3em;
+.item_label .details var { /* The icon & name inside the item's tooltip */
     display:flex;
-    align-items: center;
-    justify-content: center;
-}
-.item_label var { /* The icon unfolded, with the name of the item */
-    display:flex;
-    align-items: center;
+    margin:auto;
     font-weight:bold;
-    cursor:pointer;
+    font-style:normal;
 }
-.item_label var::selection {
-    background:none;
-}
-.item_label hr {
+.item_label .details hr {
     margin:0.3em 0 !important;
     padding:0;
 }
-.item_label .drop_button {
+.item_label .details .drop_button {
     height:1.8em;
 }
-
-.item_label .details {
-    display:none;
-    width:14em;
-    padding:0.2em 0.2em 0.7em 0.5em;
-    line-height:normal;
-}
-.item_label .descr_ambiance {
+.item_label .details .descr_ambiance {
     font-size:0.75em;
     margin:1.2em 0 0.5em 0;
     font-style:italic;
 }
-.item_label .descr_purpose {
+.item_label .details .descr_purpose {
     font-size:0.85em;
 }
-
-.item_label .close {
+.item_label .details .close {
     position:absolute;
     right:0.2em;
     top:0.2em;

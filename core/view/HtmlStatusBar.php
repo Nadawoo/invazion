@@ -47,20 +47,21 @@ class HtmlStatusBar {
                                          "Votre sac à dos permet de transporter &#10;les objets trouvés pendant vos explorations.");
 
         return
-        '<div id="statusbar">'.
-            $status_my_caracs.
-            $status_actionpoints.
-            $status_bag.
-            $status_defenses.
-            $status_fellows.
-            $status_wounded.
-            $this->status_empty().
-            $this->status_empty().
-            $this->status_empty().
-            $this->status_empty().
-            $this->status_empty().
-            $this->status_empty().
-        '</div>';
+        '<fieldset id="statusbar" class="z-depth-1">
+            <legend>Mes états</legend>
+            <ul class="items_list">'.
+                $status_my_caracs.
+                $status_actionpoints.
+                $status_bag.
+                $status_defenses.
+                $status_fellows.
+                $status_wounded.
+                $this->status_empty().
+                $this->status_empty().
+                $this->status_empty().
+                $this->status_empty().'
+            </ul>
+        </fieldset>';
     }
     
     
@@ -88,10 +89,11 @@ class HtmlStatusBar {
         // Display or not the amount for this item
         $html_amount = ($amount !== null) ? '<span class="dot_number">'.$amount.'</span>' : '';
         
-        return '<a class="status z-depth-2" title="'.$title.'" '.$popup_link.' '.$cursor_style.'>
+        return '<li class="item_label z-depth-1">
+                <a title="'.$title.'" '.$popup_link.' '.$cursor_style.'>
                     '.$html_icon . $html_amount.'
-                    
-                </a>';
+                </a>
+            </li>';
     }
     
     
@@ -102,6 +104,6 @@ class HtmlStatusBar {
      */
     private function status_empty() {
         
-        return '<div class="status empty"></div>';
+        return '<li class="item_label empty_slot"></li>';
     }
 }

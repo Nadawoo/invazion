@@ -576,6 +576,22 @@ class HtmlLayout extends HtmlPage
     }
     
     
+    function bagbar($items_caracs, $bag_items, $max_bag_slots) {
+        
+        $htmlItem = new HtmlItem();
+        $nbr_free_slots = $max_bag_slots - array_sum(array_values($bag_items));
+        
+        return '
+            <fieldset id="bagbar">
+                <legend>Mon sac</legend>
+                <ul class="items_list">
+                    ' . $htmlItem->items($bag_items, $items_caracs) . '
+                    ' . $htmlItem->empty_slots($nbr_free_slots) . '
+                </ul>
+            </fieldset>';
+    }
+    
+    
     /**
      * List of the items on the ground of the citizen's zone 
      * 

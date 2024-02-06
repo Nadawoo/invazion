@@ -146,17 +146,12 @@ map_body_wrapper {
  */
 #resizeMap {
     position:absolute;
-    top:3rem;
+    top:1.8rem;
     right:0.5em;
 }
 #resizeMap button {
     background:darkred;
     outline:2px solid lightgrey;
-}
-#map_mode_button {
-    position:absolute;
-    right:0.3em;
-    transform:scale(150%);
 }
 #resizeMap i {
     font-size:0.9em;
@@ -166,53 +161,53 @@ map_body_wrapper {
 /*
  * Status bar of the citizen
  */
-#statusbar {
-    display:flex;
-    align-content:flex-start;
-    flex-wrap: wrap;
-    gap:8px;
-    /*margin:0.5em auto 0.5em auto;*/
-    padding:0.4em;
-    padding-bottom:0.3em;
-}
-#statusbar .status {
-    position:relative;
-    height:2.8rem;
-    width: 2.8rem;
-    border:1px solid grey;
-    border-radius:0.4rem;
-    font-size:1.8em;
-    font-weight:bold;
+#personal_block_wrapper {
+    position:absolute;
+    top:1rem;
+    width:100%;
     display:flex;
     justify-content: center;
-    align-items: center;
-    background:lightgrey; /* Useful when the content is text, not image */
-    cursor:help;
 }
-#statusbar img {
-    height:100%;
-    width: 100%;
-    border-radius:0.3rem;
-    outline:3px solid red;
+#personal_block {
+    display:flex;
 }
-#statusbar .dot_number {
-    position:absolute;
-    top:  -0.3em;
-    right:-0.3em;
-    height:1.4em;
-    width: 1.4em;
-    background:#28b463;
+#personal_block legend {
+    width:100%;
+    padding:0;
     text-align:center;
-    font-size:0.5em;
-    color:black;
-    border-radius:0.1em;
-    line-height:130%;
+    border-bottom-left-radius:0;
+    border-bottom-right-radius:0;
+    font-weight:normal;
+    font-variant:normal;
 }
-#statusbar .empty {
-    background:none; /* Useful when the content is text, not image */
-    cursor:default;
-    background:#fafafa;
-    border:white;
+#statusbar,
+#bagbar {
+    display:flex;
+    justify-content:center;
+    flex-wrap: wrap;
+    width:15.3em;
+    height:4.3em;
+    margin:0 0.5em;
+    padding:0.4em 0 0.3em 0;
+    background:#fbeee6;
+    border:none; /*1px solid #34495e;*/
+    border-radius:0.3em;
+    box-shadow: 12px 12px 12px black;
+    overflow:auto;
+}
+#statusbar .item_label,
+#bagbar .item_label {
+    height:1.5em;
+    width: 1.5em;
+    font-size:1.2em;
+}
+#bagbar .item_label img {
+    height:1em;
+    width: 1em;
+}
+#statusbar .item_label img {
+    outline:3px solid red;
+    border-radius:0.2rem;
 }
 
 

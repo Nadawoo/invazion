@@ -203,6 +203,9 @@ echo $html['json_configs'];
     echo $htmlItem->item_template()
        . $layout->block_zone_fellow_template();
     ?>
+    <template id="tplEmptySlot">
+        <li class="empty_slot"></li>
+    </template>
 </section>
     
     <?php
@@ -325,6 +328,16 @@ echo $html['json_configs'];
             </div>
         </div>
         
+        <section id="personal_block_wrapper">
+            <div id="personal_block">
+                <?php
+                echo $statusbar->statusbar($citizen['bag_items'], $citizen['city_id'], $citizen['is_wounded'],
+                                           count($zone_fellows)-1);
+                echo $layout->bagbar($configs['items'], $citizen['bag_items'], $citizen['bag_size']);
+                ?>
+            </div>
+        </section>
+    
         <div id="resizeMap">
             <button id="map_mode_button" style="display:none"><i class="material-icons">fullscreen</i></button>
             <button id="action_mode_button"><i class="material-icons">zoom_in_map</i></button>
@@ -402,9 +415,7 @@ echo $html['json_configs'];
                         .$paddle->paddle($citizen['coord_x'], $citizen['coord_y'])
                         .$layout->block_landtype()
                         .$layout->block_distance()
-                    .'</div>'
-                    .$statusbar->statusbar($citizen['bag_items'], $citizen['city_id'], $citizen['is_wounded'],
-                                            count($zone_fellows)-1).'
+                    .'</div>
                 </div>';
 
                 echo 
@@ -416,13 +427,15 @@ echo $html['json_configs'];
             </fieldset>
 
             <?php
-            echo $actionBlocks->block_dig($html['bag_items'], $html['ground_items'], (bool)$citizen['can_dig']);
+            echo $actionBlocks->block_dig($html['ground_items'], (bool)$citizen['can_dig']);
             echo $actionBlocks->block_zombies($zone['zombies'], $citizen['bag_items'], $configs['items'], $configs['map']['killing_zombie_cost']);
             echo $actionBlocks->block_citizens();
             echo $actionBlocks->block_build($citizen['coord_x'], $citizen['coord_y']);
             ?>
         </div>
     </section>
+    
+
     
     <section id="floating_wall">
         <?php echo $wall->wall() ?>

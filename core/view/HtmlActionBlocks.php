@@ -17,7 +17,7 @@ class HtmlActionBlocks {
     }
     
     
-    function block_dig($html_bag_items, $html_ground_items, $citizen_can_dig) {
+    function block_dig($html_ground_items, $citizen_can_dig) {
         
         return '
             <fieldset id="block_dig">
@@ -26,12 +26,6 @@ class HtmlActionBlocks {
                 </div>
                 <hr>
                 
-                &#x1F4BC; <strong>Objets dans mon sac</strong>
-                    <template id="tplEmptySlot">
-                        <li class="empty_slot"></li>
-                    </template>
-                    '.$html_bag_items.'
-                    
                 &#x270B;&#x1F3FC; <strong>Objets au sol</strong>
                     '.$html_ground_items.'
                     
