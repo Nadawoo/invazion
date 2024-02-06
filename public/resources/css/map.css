@@ -146,7 +146,7 @@ map_body_wrapper {
  */
 #resizeMap {
     position:absolute;
-    top:1.8rem;
+    top:  0.2em;
     right:0.5em;
 }
 #resizeMap button {
@@ -164,12 +164,13 @@ map_body_wrapper {
 #personal_block_wrapper {
     display:none;
     position:absolute;
-    top:1rem;
+    top:0.2rem;
     width:100%;
     justify-content: center;
 }
 #personal_block {
     display:flex;
+    flex-direction:column;
 }
 #personal_block legend {
     width:100%;
@@ -185,15 +186,15 @@ map_body_wrapper {
     display:flex;
     justify-content:center;
     flex-wrap: wrap;
-    width:15.3em;
-    height:4.3em;
-    margin:0 0.5em;
-    padding:0.4em 0 0.3em 0;
+    width:20em /*15.3em*/;
+    /*height:4.3em;*/
+    margin:0.1em 0.5em;
+    padding:0.4em 0 0 0;
     background:#fbeee6;
     border:none; /*1px solid #34495e;*/
     border-radius:0.3em;
     box-shadow: 12px 12px 12px black;
-    overflow:auto;
+    /*overflow:auto;*/
 }
 #statusbar .item_label,
 #bagbar .item_label {
@@ -202,14 +203,27 @@ map_body_wrapper {
     font-size:1.2em;
 }
 #bagbar .item_label img {
-    height:1em;
-    width: 1em;
+    height:26px;
+    width: 26px;
+}
+#bagbar .details {
+    top:1.95rem;
+    font-size:0.70em;
+    line-height:150%;
+    width:13rem;
+}
+#bagbar .item_label .details img {
+    height:32px;
+    width: 32px;
+}
+#bagbar .descr_purpose {
+    font-size:1em;
+    line-height:130%;
 }
 #statusbar .item_label img {
     outline:3px solid red;
     border-radius:0.2rem;
 }
-
 
 #map .row {
     white-space:nowrap;
