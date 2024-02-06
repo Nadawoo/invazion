@@ -493,7 +493,6 @@
     padding-bottom:2rem;
     text-align:left;
     border:1px solid #34495e;
-    box-shadow:5px 5px 8px black;
     background:#fbeee6;
     z-index:20;
     animation: switchAction 0.3s;

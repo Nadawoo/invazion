@@ -401,7 +401,7 @@ echo $html['json_configs'];
         }
         ?>
         <div id="actions">
-            <fieldset id="block_move">
+            <fieldset id="block_move" class="z-depth-2">
                 <?php
                 if ($zone['controlpoints_citizens'] < $zone['controlpoints_zombies'] and time() < strtotime($zone['date_control_end'])) {
                     echo $layout->block_alert_escape(strtotime($zone['date_control_end']));
