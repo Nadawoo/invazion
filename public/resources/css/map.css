@@ -162,10 +162,10 @@ map_body_wrapper {
  * Status bar of the citizen
  */
 #personal_block_wrapper {
+    display:none;
     position:absolute;
     top:1rem;
     width:100%;
-    display:flex;
     justify-content: center;
 }
 #personal_block {

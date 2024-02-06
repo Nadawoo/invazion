@@ -37,6 +37,7 @@ if (document.getElementById('map') !== null) {
         setTimeout(() => centerMapOnMe(), 500);
         // Display the actions panel (dig...)
         display(["actions_panel"]);
+        changeDisplayValue("personal_block_wrapper", "flex");
         // Hide some elements of the GUI to make the interface look lighter
         hide(["attack_bar", "map_navigation", "floating_wall"]);
         // Display the button which switches to the Map mode
@@ -49,7 +50,7 @@ if (document.getElementById('map') !== null) {
         zoomMapRange(100);
         setTimeout(() => centerMapOnMe(), 500);
         // Hide the actions panel in large mode
-        hide(["actions_panel"]);
+        hide(["actions_panel", "personal_block_wrapper"]);
         // Display again the general elements of the GUI
         changeDisplayValue(["attack_bar", "map_navigation", "floating_wall"], "flex");
         // Display the button which switches to the Action mode
