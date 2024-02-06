@@ -187,7 +187,7 @@ class HtmlLayout extends HtmlPage
             </div>
             <p id="messageEndCycle" style="display:none;margin:0"></p>
             <div id="timer">
-                '.$buttons->button('end_cycle').'
+                '.$buttons->button('end_cycle', false).'
             </div>
             <div class="right">
                 <a id="showWall" title="Communications">
