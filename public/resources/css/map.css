@@ -172,7 +172,7 @@ map_body_wrapper {
     display:flex;
     flex-direction:column;
 }
-#personal_block legend {
+/*#personal_block legend {
     width:100%;
     padding:0;
     text-align:center;
@@ -180,7 +180,7 @@ map_body_wrapper {
     border-bottom-right-radius:0;
     font-weight:normal;
     font-variant:normal;
-}
+}*/
 #personal_block .block_icon {
     position:absolute;
     top:-0.15em;
@@ -191,6 +191,7 @@ map_body_wrapper {
     background:#fbeee6;
     border:3px outset #34495e;
     border-radius:50%;
+    box-shadow:2px 2px 8px black;
 }
 #personal_block .block_icon .icon {
     margin-top:-0.15em;
@@ -216,8 +217,7 @@ map_body_wrapper {
     display:flex;
     justify-content:center;
     flex-wrap: wrap;
-    width:20em /*15.3em*/;
-    /*height:4.3em;*/
+    width:18em;
     margin:0.15em 0.5em;
     padding:0.5em 0;
     background:#fbeee6;
@@ -226,7 +226,7 @@ map_body_wrapper {
     box-shadow: 12px 12px 12px black;
     /*overflow:auto;*/
 }
-#bagbar .items_list li:nth-child(n+9) { 
+#bagbar .items_list li:nth-child(n+8) { 
     /* By default, display only the X first items. Don't use overflow:hidden 
        because it would hide the item's tooltip too. */
     display:none;

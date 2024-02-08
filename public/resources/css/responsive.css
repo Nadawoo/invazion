@@ -63,4 +63,9 @@
     #showWall .text {
         display:none;
     }
+    
+    /* Avoid the "status" and "bag" icons to overflow at the left of the screen */
+    #statusbar, #bagbar {
+        margin-left:5%;
+    }
 }
