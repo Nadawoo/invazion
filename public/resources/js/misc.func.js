@@ -71,17 +71,19 @@ function hideClasses(classesNames, parentId=null) {
 
 
 /**
- * Supprime la classe .hidden sur la classe CSS demandée
+ * Supprime la classe .hidden sur les classes CSS demandées
  * 
- * @param   {string} className La nom de la classe à afficher
+ * @param   {array} classNames The names of the classes to display
  * @returns {undefined}
  */
-function unhideClass(className) {
+function unhideClasses(classesNames) {
     
-    var classes = document.getElementsByClassName(className);
-    
-    for (let i = 0; i < classes.length; i++) {
-        classes[i].classList.remove("hidden");
+    for (let i=0; i < classesNames.length; i++) { 
+        var classes = document.getElementsByClassName(classesNames[i]);
+
+        for (let i = 0; i < classes.length; i++) {
+            classes[i].classList.remove("hidden");
+        }
     }
 }
 

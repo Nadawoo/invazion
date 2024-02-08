@@ -103,11 +103,8 @@ function addMeOnMap() {
 
     let htmlMe = '<img id="explosionMe" class="scale-transition scale-out" src="resources/img/thirdparty/notoemoji/collision-512.webp" width="38">\
                   <div class="map_citizen" id="me"><img src="resources/img/free/human.png"></div>\
-                  <div class="halo">&nbsp;</div>',
-        htmlBubble = '<h5 class="name">Vous êtes ici&nbsp;!</h5>\
-                    <hr>\
-                    Utilisez les boutons rouges pour vous déplacer, fouiller le sol,\
-                    attaquer des zombies, ramasser des objets...';
+                  <div class="halo">&nbsp;</div>';
+    let htmlBubble = '<h5 class="name">Vous êtes ici&nbsp;!';
     
     // Don't show the other citizens under the player's silhouette
     if(myZone.querySelector(".map_citizen") !==  null) {
@@ -395,7 +392,7 @@ function activateMapZombiesView() {
     }
     
     // Displays the number of zombies on each zone
-    unhideClass("zombies_amount");
+    unhideClasses(["zombies_amount"]);
     // Hides the icons of zombies, because they are above the colored background
     hideClasses(["zombies"]);
 }
@@ -415,7 +412,7 @@ function desactivateMapZombiesView() {
     hide("map_legend_zombies");
     hideClasses(["zombies_amount"]);
     // Display the icons of zombies again
-    unhideClass("zombies");
+    unhideClasses(["zombies"]);
 }
 
 
@@ -569,7 +566,7 @@ function desactivateMapItemsView() {
         squareContainer.style.background = "none";        
         hideClasses(["items_amount"]);
         // Display the zombies again
-        unhideClass("zombies");
+        unhideClasses(["zombies"]);
     }
 }
 
@@ -697,6 +694,7 @@ function switchToActionView() {
     changeDisplayValue("personal_block_wrapper", "flex");
     // Hide some elements of the GUI to make the interface look lighter
     hide(["attack_bar", "map_navigation", "floating_wall"]);
+    hideClasses(["nbr_defenses", "bubble"]);
     // Display the button which switches to the Map mode
     hide(["action_mode_button"]);
     changeDisplayValue("map_mode_button", "flex");
@@ -714,6 +712,7 @@ function switchToMapView() {
     hide(["actions_panel", "personal_block_wrapper"]);
     // Display again the general elements of the GUI
     changeDisplayValue(["attack_bar", "map_navigation", "floating_wall"], "flex");
+    unhideClasses(["nbr_defenses", "bubble"]);
     // Display the button which switches to the Action mode
     hide(["map_mode_button"]);
     changeDisplayValue("action_mode_button", "flex");
