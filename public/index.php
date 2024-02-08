@@ -411,8 +411,8 @@ echo $html['json_configs'];
 
                 echo '
                 <div class="main_block">'
+                    .$paddle->paddle($citizen['coord_x'], $citizen['coord_y'])
                     .'<div>'
-                        .$paddle->paddle($citizen['coord_x'], $citizen['coord_y'])
                         .$layout->block_landtype()
                         .$layout->block_distance()
                     .'</div>

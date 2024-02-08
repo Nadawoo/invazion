@@ -246,7 +246,7 @@
     margin-bottom:1.5em;
 }
 #movement_paddle {
-    margin-left:8%; /* No margin:auto because Chrome centers the paddle over the floating text */
+    margin:0 4%;
     width: 7.8rem; /* Fixed width to avoid crushing the paddle when downsizing the window */
     height:7.1rem;
     border-collapse:collapse;
