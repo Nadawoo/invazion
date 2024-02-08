@@ -588,6 +588,7 @@ class HtmlLayout extends HtmlPage
                     ' . $htmlItem->items($bag_items, $items_caracs) . '
                     ' . $htmlItem->empty_slots($nbr_free_slots) . '
                 </ul>
+                <button title="Afficher/masquer les autres objets du sac" class="show_more" onclick="toggleBag()">+</button>
             </fieldset>';
     }
     

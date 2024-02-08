@@ -12,6 +12,8 @@ var _jsonMap = null;
 var _jsonDiscussionApi = null;
 var _scrollBoosterInstance = null;
 
+var _isBagVisible = false;
+
 
 // Main burger menu (uses Materialize.css)
 document.addEventListener('DOMContentLoaded', function() {

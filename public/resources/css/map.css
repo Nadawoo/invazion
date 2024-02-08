@@ -181,20 +181,29 @@ map_body_wrapper {
     font-weight:normal;
     font-variant:normal;
 }
+#personal_block .items_list {
+    margin:0 1.4em;
+}
 #statusbar,
 #bagbar {
+    position:relative;
     display:flex;
     justify-content:center;
     flex-wrap: wrap;
     width:20em /*15.3em*/;
     /*height:4.3em;*/
     margin:0.1em 0.5em;
-    padding:0.4em 0 0 0;
+    padding:0.5em 0;
     background:#fbeee6;
     border:none; /*1px solid #34495e;*/
     border-radius:0.3em;
     box-shadow: 12px 12px 12px black;
     /*overflow:auto;*/
+}
+#bagbar .items_list li:nth-child(n+9) { 
+    /* By default, display only the X first items. Don't use overflow:hidden 
+       because it would hide the item's tooltip too. */
+    display:none;
 }
 #statusbar .item_label,
 #bagbar .item_label {
@@ -205,6 +214,23 @@ map_body_wrapper {
 #bagbar .item_label img {
     height:26px;
     width: 26px;
+}
+#bagbar .show_more { /* Button to view the hidden items of the bag */
+    position:absolute;
+    top:0.25em;
+    right:-0.5em;
+    height:1em;
+    width:1em;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:2em;
+    font-weight:bold;
+    font-family:sans-serif; /* Avoids shifting with the default font for <button> */
+    background:darkred;
+    color:white;
+    border:1px solid lightgrey;
+    border-radius:0.2em;
 }
 #bagbar .details {
     top:1.95rem;

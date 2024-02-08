@@ -129,6 +129,33 @@ function displayClasses(classesNames) {
 }
 
 
+/*
+ * Button to enlarge/reduce the bag (hide the overflowing items)
+ * @returns {undefined}
+ */
+function toggleBag() {
+    
+    if(_isBagVisible === true) {
+        var newDisplayValue = null; // Back to the default defined in the CSS
+        var newButtonContent = "+";
+        _isBagVisible = false;
+    } else {
+        var newDisplayValue = "flex";
+        var newButtonContent = "–";
+        _isBagVisible = true;
+    }
+    
+    // Show/hode the overflowing items
+    var items = document.querySelectorAll("#bagbar .items_list li");
+    for(i=0; i<items.length; i++) {
+        items[i].style.display = newDisplayValue;
+    }
+    
+    // Update the button +/- according to the action (show/hide)
+    document.querySelector("#bagbar .show_more").innerText = newButtonContent;
+}
+
+
 /**
  * Modifie la valeur d'un paramètre dans l'url
  * 
