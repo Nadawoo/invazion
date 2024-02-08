@@ -243,7 +243,6 @@
 /* Boutons de déplacement du joueur */
 #block_move .main_block {
     display:flex;
-    margin-bottom:1.5em;
 }
 #movement_paddle {
     margin:0 4%;
@@ -352,7 +351,7 @@
     align-items:center;
     justify-content: space-between;
     height:4rem;
-    padding:1em;
+    padding:0.5em 1em 0.2em 1em;
     border:1px solid green;
     border-radius:0.3em;
     color:inherit; /* Keeps the text in bleck when the card is a <a> tag */

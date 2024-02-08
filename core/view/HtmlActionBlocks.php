@@ -24,7 +24,7 @@ class HtmlActionBlocks {
                 <div style="display:flex;align-items:center;justify-content:center">'.$this->buttons->button('dig', true, '', $citizen_can_dig).'
                     <a href="#popitems" style="margin-left:0.8rem;font-size:1.2em">[?]</a>
                 </div>
-                <hr>
+                <br>
                 
                 &#x270B;&#x1F3FC; <strong>Objets au sol</strong>
                     '.$html_ground_items.'
