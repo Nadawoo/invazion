@@ -43,8 +43,6 @@ class HtmlStatusBar {
         $status_actionpoints = $this->status_image("&#9889;", null, $action_points,
                                                   "Vos points d'action restants. S'ils sont épuisés, &#10;vous ne pourrez plus vous déplacer dans le désert.",
                                                   "popmove");
-        $status_bag = $this->status_image("&#127890;", null, count($bag_items),
-                                         "Votre sac à dos permet de transporter &#10;les objets trouvés pendant vos explorations.");
 
         return
         '<fieldset id="statusbar" class="z-depth-1">
@@ -52,10 +50,10 @@ class HtmlStatusBar {
             <ul class="items_list">'.
                 $status_my_caracs.
                 $status_actionpoints.
-                $status_bag.
                 $status_defenses.
                 $status_fellows.
                 $status_wounded.
+                $this->status_empty().
                 $this->status_empty().
                 $this->status_empty().'
             </ul>
