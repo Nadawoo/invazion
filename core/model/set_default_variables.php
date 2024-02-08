@@ -28,6 +28,7 @@ function set_default_variables($variable, $item_id=null) {
         'is_inside_city'        => false,
         'is_wounded'            => false,
         'last_death'            => null,
+        'zones_visited_today'   => [],
         // If player not connected, by default display the map #1
         'map_id'            => 1,
         ];

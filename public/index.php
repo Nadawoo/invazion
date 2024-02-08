@@ -210,14 +210,12 @@ echo $html['json_configs'];
     
     <?php
     // Asks for chosing a citizen speciality (builder, digger...)
-    if ($citizen['last_specialization_cycle'] < $current_cycle) {
+    if ($citizen['citizen_id'] !== null and $citizen['last_specialization_cycle'] < $current_cycle) {
         ?>
-        
         <fieldset id="citizen_caracs">
             <legend>Action du jour</legend>
             <?php echo $layout->block_speciality_choice($specialities) ?>
         </fieldset>
-        
         <?php
     } ?>
     
@@ -338,10 +336,15 @@ echo $html['json_configs'];
             </div>
         </section>
     
-        <div id="resizeMap">
-            <button id="map_mode_button" style="display:none"><i class="material-icons">fullscreen</i></button>
-            <button id="action_mode_button"><i class="material-icons">zoom_in_map</i></button>
-        </div>
+        <?php
+        if($citizen['citizen_id'] !== null) {
+            ?>
+            <div id="resizeMap">
+                <button id="map_mode_button" style="display:none"><i class="material-icons">fullscreen</i></button>
+                <button id="action_mode_button"><i class="material-icons">zoom_in_map</i></button>
+            </div>
+            <?php
+        } ?>
         
         <div id="map_navigation">
             <?php echo $layout->block_map_navigation() ?>

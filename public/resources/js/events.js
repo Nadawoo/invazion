@@ -30,11 +30,6 @@ if (document.getElementById('map') !== null) {
         zoomMapStep("out");
     });
     
-    // Map: switch to the "action" mode
-    document.querySelector("#action_mode_button").addEventListener("click", switchToActionView);
-    // Map: switch to the "large map" mode
-    document.querySelector("#map_mode_button").addEventListener("click", switchToMapView);
-    
     // Move the citizen on the map
     document.querySelector('#block_move [name="move"]').addEventListener("submit", function() {
         // Desactivate the classic submission button (avoids reloading the page)
@@ -117,6 +112,11 @@ if (document.getElementById('map') !== null) {
 
 // If the player is connected
 if (document.getElementById("me") !== null) {
+    
+    // Map: switch to the "action" mode
+    document.querySelector("#action_mode_button").addEventListener("click", switchToActionView);
+    // Map: switch to the "large map" mode
+    document.querySelector("#map_mode_button").addEventListener("click", switchToMapView);
     
     let myHexagon = document.getElementById("me").closest(".hexagon");
     
