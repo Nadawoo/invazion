@@ -583,7 +583,10 @@ class HtmlLayout extends HtmlPage
         
         return '
             <fieldset id="bagbar">
-                <legend>Mon sac</legend>
+                <div class="block_icon">
+                    <div class="icon">&#x1F392;</div>
+                    <div class="name">Sac</div>
+                </div>
                 <ul class="items_list">
                     ' . $htmlItem->items($bag_items, $items_caracs) . '
                     ' . $htmlItem->empty_slots($nbr_free_slots) . '

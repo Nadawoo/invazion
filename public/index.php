@@ -436,18 +436,6 @@ echo $html['json_configs'];
             echo $actionBlocks->block_build($citizen['coord_x'], $citizen['coord_y']);
             ?>
         </div>
-        
-        <!-- Experimentation for a floating bag button -->
-        <!--
-        <div id="bag_block_wrapper" style="position:fixed;bottom:15.5em;right:0.5em;width:100%;z-index:20">
-            <div style="width:21.7rem;margin:auto;display:flex;justify-content:flex-end">
-                <div style="background:white;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;border-radius:50%;width:4.5em;height:4.5em;line-height:270%;box-shadow:6px 6px 6px black;border:2px outset darkred;cursor:pointer">
-                    <div style="font-size:2.5em;">&#x1F392;</div>
-                    <div style="width:92%;line-height:140%;background:darkred;color:white;border-radius:0 0 20em 20em">Sac</div>
-                </div>
-            </div>
-        </div>
-        -->
     </section>
     
 

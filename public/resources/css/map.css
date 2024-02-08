@@ -181,6 +181,32 @@ map_body_wrapper {
     font-weight:normal;
     font-variant:normal;
 }
+#personal_block .block_icon {
+    position:absolute;
+    top:-0.15em;
+    left:-2em;
+    height:3.1em;
+    width: 3.1em;
+    text-align:center;
+    background:#fbeee6;
+    border:3px outset #34495e;
+    border-radius:50%;
+}
+#personal_block .block_icon .icon {
+    margin-top:-0.15em;
+    font-size:1.7em;
+}
+#personal_block .block_icon .name {
+    position:absolute;
+    bottom:0;
+    width:98%;
+    line-height:120%;
+    font-size:0.9em;
+    text-align:center;
+    background:#34495e;
+    color:white;
+    border-radius:0 0 40em 40em;
+}
 #personal_block .items_list {
     margin:0 1.4em;
 }
@@ -192,7 +218,7 @@ map_body_wrapper {
     flex-wrap: wrap;
     width:20em /*15.3em*/;
     /*height:4.3em;*/
-    margin:0.1em 0.5em;
+    margin:0.15em 0.5em;
     padding:0.5em 0;
     background:#fbeee6;
     border:none; /*1px solid #34495e;*/

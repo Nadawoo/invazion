@@ -46,7 +46,10 @@ class HtmlStatusBar {
 
         return
         '<fieldset id="statusbar" class="z-depth-1">
-            <legend>Mes états</legend>
+            <div class="block_icon">
+                <div class="icon">&#9877;&#65039;</div>
+                <div class="name">États</div>
+            </div>
             <ul class="items_list">'.
                 $status_my_caracs.
                 $status_actionpoints.
