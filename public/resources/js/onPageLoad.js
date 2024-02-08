@@ -93,9 +93,8 @@ if (document.getElementById('map') !== null) {
         addMeOnMap();
         // Add a location sign above the city of the player
         addCityLocationMarker(myCityZoneId);
-        // Centers the map on the current player
-//        zoomMapRange(500);
-//        setTimeout(() => centerMapOnMe(), 500);
+        // Start in the "action" mode (centered on the current player)
+        switchToActionView();
         
         // Draws a line between the player and his city
         if(myCityZoneId !== null) {

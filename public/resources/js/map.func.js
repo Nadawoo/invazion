@@ -683,3 +683,38 @@ function centerMapOnMe() {
     _scrollBoosterInstance.scrollTo({ x: offsetX, y: offsetY });
     _scrollBoosterInstance.updateMetrics();
 }
+
+
+/*
+ * Zoom on the player to show the "action" buttons
+ */
+function switchToActionView() {
+    // Zoom the map on the player
+    zoomMapRange(500);
+    setTimeout(() => centerMapOnMe(), 500);
+    // Display the actions panel (dig...)
+    display(["actions_panel"]);
+    changeDisplayValue("personal_block_wrapper", "flex");
+    // Hide some elements of the GUI to make the interface look lighter
+    hide(["attack_bar", "map_navigation", "floating_wall"]);
+    // Display the button which switches to the Map mode
+    hide(["action_mode_button"]);
+    changeDisplayValue("map_mode_button", "flex");
+}
+
+
+/*
+ * Unzoom todisplay the large map
+ */
+function switchToMapView() {
+    // Display the large map (unzoom)
+    zoomMapRange(100);
+    setTimeout(() => centerMapOnMe(), 500);
+    // Hide the actions panel in large mode
+    hide(["actions_panel", "personal_block_wrapper"]);
+    // Display again the general elements of the GUI
+    changeDisplayValue(["attack_bar", "map_navigation", "floating_wall"], "flex");
+    // Display the button which switches to the Action mode
+    hide(["map_mode_button"]);
+    changeDisplayValue("action_mode_button", "flex");
+}

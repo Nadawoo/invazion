@@ -1218,3 +1218,5 @@ function updateBlockLandType(landType) {
 
     document.querySelector("#block_landtype").innerHTML = (lands[landType] !== undefined ? '<span title="'+lands[landType]["descr"]+'">&#128065;&#65039; '+lands[landType]["name"]+'</span>' : '');
 }
+
+

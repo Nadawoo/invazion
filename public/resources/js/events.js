@@ -31,32 +31,9 @@ if (document.getElementById('map') !== null) {
     });
     
     // Map: switch to the "action" mode
-    document.querySelector("#action_mode_button").addEventListener("click", function() {
-        // Zoom the map on the player
-        zoomMapRange(500);
-        setTimeout(() => centerMapOnMe(), 500);
-        // Display the actions panel (dig...)
-        display(["actions_panel"]);
-        changeDisplayValue("personal_block_wrapper", "flex");
-        // Hide some elements of the GUI to make the interface look lighter
-        hide(["attack_bar", "map_navigation", "floating_wall"]);
-        // Display the button which switches to the Map mode
-        hide(["action_mode_button"]);
-        changeDisplayValue("map_mode_button", "flex");
-    });
+    document.querySelector("#action_mode_button").addEventListener("click", switchToActionView);
     // Map: switch to the "large map" mode
-    document.querySelector("#map_mode_button").addEventListener("click", function() {
-        // Display the large map (unzoom)
-        zoomMapRange(100);
-        setTimeout(() => centerMapOnMe(), 500);
-        // Hide the actions panel in large mode
-        hide(["actions_panel", "personal_block_wrapper"]);
-        // Display again the general elements of the GUI
-        changeDisplayValue(["attack_bar", "map_navigation", "floating_wall"], "flex");
-        // Display the button which switches to the Action mode
-        hide(["map_mode_button"]);
-        changeDisplayValue("action_mode_button", "flex");
-    });
+    document.querySelector("#map_mode_button").addEventListener("click", switchToMapView);
     
     // Move the citizen on the map
     document.querySelector('#block_move [name="move"]').addEventListener("submit", function() {
