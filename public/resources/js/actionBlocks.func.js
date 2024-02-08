@@ -285,6 +285,19 @@ function htmlAddGroundItem(itemId, itemCaracs) {
  */
 function htmlItem(itemId, itemCaracs) {
     
+    // Default values for the items. Useful if an item existing in the database
+    // but is not in the list of the items of the current game.
+    if(itemCaracs === undefined) {
+        itemCaracs = {
+            "name":"(Objet inconnu)",
+            "icon_path":null,
+            "icon_symbol":"&#10067;",
+            "descr_ambiance":"",
+            "descr_purpose":"[Bug] Cet objet est inconnu.\
+                             Signalez-le au repsonsable du site."
+        };
+    }
+    
     // Gets a blank HTML template of an item entry
     let template = document.querySelector("#tplItem").content.cloneNode(true);
     
