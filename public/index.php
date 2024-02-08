@@ -380,6 +380,17 @@ echo $html['json_configs'];
         
     </section>
     
+    <?php
+    if ($citizen['user_id'] === NULL) {        
+        // If the player is not connected, display the connection panel
+        echo $layout->block_connect();
+    }
+    elseif ($citizen['citizen_id'] === NULL) {         
+        // If the player is connected but has not created his citizen yet,
+        // display the panel for creating a citizen
+        echo $layout->block_create_citizen();
+    } ?>
+    
     <section id="actions_panel">
         <div id="round_actions">
             <?php
@@ -392,17 +403,6 @@ echo $html['json_configs'];
 //                echo $layout->block_alert_wounded((bool)$citizen['is_wounded']);
             ?>
         </div>
-        <?php
-        if ($citizen['user_id'] === NULL) {        
-            // If the player is not connected, display the connection panel
-            echo $layout->block_connect();
-        }
-        elseif ($citizen['citizen_id'] === NULL) {         
-            // If the player is connected but has not created his citizen yet,
-            // display the panel for creating a citizen
-            echo $layout->block_create_citizen();
-        }
-        ?>
         <div id="actions">
             <fieldset id="block_move" class="z-depth-2">
                 <?php
