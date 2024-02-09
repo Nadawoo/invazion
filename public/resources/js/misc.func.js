@@ -655,15 +655,29 @@ async function killZombies(apiAction) {
 
 
 /**
- * Display/hide an item by clicking on its icom
+ * Display/hide the tootip of an item by clicking on its icon
  * 
  * @param {object} event
  * @returns {undefined}
  */
 function toggleItem(event) {
     
-    let blockItem = event.target.closest(".item_label").querySelector(".details");    
-    blockItem.style.display = (blockItem.style.display === "block") ? "none" : "block";
+    var blockItem = event.target.closest(".item_label").querySelector(".details");
+    // If the item's tooltip is already opened, we just hide it
+    if(blockItem.style.display === "block") {
+        blockItem.style.display = "none";
+    }
+    else {
+        // If we want to open a new tooltip, first close all the other tooltips.
+        // TODO: we should only treat the one previously opened, not checking 
+        // all the tooltips each time
+        let classes = document.querySelectorAll(".item_label .details");
+        for (let i=0; i < classes.length; i++) {
+            classes[i].style.display = "none";
+        }
+        // Then, display the intended tooltip
+        blockItem.style.display = "block";
+    }
 }
 
 
