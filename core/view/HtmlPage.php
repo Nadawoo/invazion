@@ -12,7 +12,7 @@ class HtmlPage
     // that the users' browsers reload the up-to-date files, instead of using 
     // the obsolete ones stored in their cache.
     private $css_version = 30.1;
-    private $js_version  = 28;
+    private $js_version  = 29;
     
     /**
      * Sets HTTP headers to secure the website

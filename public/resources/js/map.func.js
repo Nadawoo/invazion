@@ -675,7 +675,7 @@ function centerMapOnMe() {
     let me = document.querySelector("#me").getBoundingClientRect();
     
     let offsetX = (me.x - viewport.x + me.width/2 - viewport.width/2); 
-    let offsetY = (me.y - viewport.y + me.height/2 - viewport.height/4);
+    let offsetY = (me.y - viewport.y + me.height/2 - viewport.height/7);
     
     _scrollBoosterInstance.scrollTo({ x: offsetX, y: offsetY });
     _scrollBoosterInstance.updateMetrics();
@@ -687,7 +687,7 @@ function centerMapOnMe() {
  */
 function switchToActionView() {
     // Zoom the map on the player
-    zoomMapRange(500);
+    zoomMapRange(400);
     setTimeout(() => centerMapOnMe(), 500);
     // Display the actions panel (dig...)
     display(["actions_panel"]);
