@@ -119,6 +119,7 @@
     height:3em;
     border-radius:0.3em;
     border:2px outset red;
+    font-variant:small-caps;
 }
 #attackCountdown {
     font-size:1.3em;
