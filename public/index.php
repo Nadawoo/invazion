@@ -340,7 +340,7 @@ echo $html['json_configs'];
         if($citizen['citizen_id'] !== null) {
             ?>
             <div id="resizeMap">
-                <button id="map_mode_button" style="display:none"><i class="material-icons">fullscreen</i></button>
+                <button id="map_mode_button" style="display:none"><i class="material-icons">zoom_out_map</i></button>
                 <button id="action_mode_button"><i class="material-icons">zoom_in_map</i></button>
             </div>
             <?php

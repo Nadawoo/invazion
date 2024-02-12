@@ -56,6 +56,7 @@ class HtmlStatusBar {
                 $status_defenses.
                 $status_fellows.
                 $status_wounded.
+                $this->status_empty().
                 $this->status_empty().'
             </ul>
         </fieldset>';
