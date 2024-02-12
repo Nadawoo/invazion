@@ -146,12 +146,12 @@ function toggleBag() {
     if(_isBagVisible === true) {
         var newDisplayValue = null; // Back to the default defined in the CSS
         var newWidth = null;
-        var newButtonContent = "&gt;";
+        var newButtonContent = "chevron_right";
         _isBagVisible = false;
     } else {
         var newDisplayValue = "flex";
         var newWidth = "18em";
-        var newButtonContent = "&lt;";
+        var newButtonContent = "chevron_left";
         _isBagVisible = true;
     }
     
@@ -162,7 +162,7 @@ function toggleBag() {
     }
     
     // Update the button +/- according to the action (show/hide)
-    document.querySelector("#bagbar .show_more").innerHTML = newButtonContent;
+    document.querySelector("#bagbar .show_more .material-icons").innerHTML = newButtonContent;
     document.querySelector("#bagbar").style.width = newWidth;
 }
 

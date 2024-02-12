@@ -248,19 +248,20 @@ map_body_wrapper {
 #bagbar .show_more { /* Button to view the hidden items of the bag */
     position:absolute;
     top:0;
-    right:-0.4em;
-    height:1.50em;
-    width:0.9em;
-    line-height:220%;
+    right:-0.8em;
+    height:2.7em;
+    width:1.6em;
     display:flex;
     justify-content:center;
     align-items:center;
-    font-size:1.8em;
     font-family:sans-serif; /* Avoids shifting with the default font for <button> */
     background:darkred;
     color:white;
     border:1px solid lightgrey;
-    border-radius:0 0.2em 0.2em 0;
+    border-radius:0 0.3em 0.3em 0;
+}
+#bagbar .show_more .material-icons {
+    font-size:1.8em;
 }
 #bagbar .details {
     top:1.95rem;
