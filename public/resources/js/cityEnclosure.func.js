@@ -65,6 +65,6 @@ function toggleHouse(idName) {
     
     // Masque la liste de citoyens si elle est affichée et affiche la maison du citoyen
     // OU : affiche la liste de citoyens si elle est masquée et masque la maison du citoyen
-    toggle('citizens_list');
-    toggle(idName);
+    toggle('#citizens_list');
+    toggle('#'+idName);
 }

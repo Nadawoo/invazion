@@ -8,16 +8,22 @@
 /**
  * Afficher/masquer l'élement indiqué en cliquant sur un lien
  * 
- * @param {string} element_name     L'id HTML de l'élément à afficher/masquer
+ * @param {string} elementName  L'id ou la classe HTML de l'élément à afficher/masquer
+ * @param {string} visibleValue (Optional) The CSS type of the block when visible: 
+ *                              "block", "inline-block", "flex"...
  */
-function toggle(element_name) {
+function toggle(elementName, visibleValue="block") {
+    
+    var elements = document.querySelectorAll(elementName);
+    // If the element is a class and not an ID, we need a loop to treat all the ocurrencies
+    for(i=0;i<elements.length;i++) {
+        // getComputedStyle(...) récupère la propriété en tenant compte de la CSS.
+        // Un simple getElementById(...).style ne tiendrait compte que des
+        // styles en ligne dans le HTML.
+        var current_display = window.getComputedStyle(elements[i]).display;
 
-    // getComputedStyle(...) récupère la propriété en tenant compte de la CSS.
-    // Un simple getElementById(...).style ne tiendrait compte que des
-    // styles en ligne dans le HTML.
-    var current_display = window.getComputedStyle(document.getElementById(element_name)).display;
-        
-    document.getElementById(element_name).style.display = (current_display === "none") ? "block" : "none";
+        elements[i].style.display = (current_display === "none") ? visibleValue : "none";
+    }
 }
 
 

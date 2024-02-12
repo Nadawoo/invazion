@@ -425,7 +425,7 @@ class HtmlCityEnclosure
                 <table id="constructions">
                     <tr style="font-size:0.9em">
                         <th></th>
-                        <th>Défenses</th>
+                        <th class="defenses">Défenses</th>
                     </tr>
                     '.$html_constructions.'
                 </table>
@@ -501,13 +501,10 @@ class HtmlCityEnclosure
                 $html_constructions .= '
                     <tr id="'.$css_id.'" class="folded">
                         <td>
+                        <p class="aside descr">'.$building_descr.'</p>
                             <ul class="tabs">
-                                <li class="tab col s3"><a href="#tabDescr'.$building_id.'" class="active">Descr</a></li>
-                                <li class="tab col s3"><a href="#tabResources'.$building_id.'">Compo</a></li>
-                                <li class="tab col s3"><a href="#tabAP'.$building_id.'">Constr</a></li>
-                            </ul>
-                            <ul class="items_list col s12" id="tabDescr'.$building_id.'">
-                                <li class="aside">'.$building_descr.'</li>
+                                <li class="tab col s3"><a href="#tabResources'.$building_id.'" class="active">1. Composants</a></li>
+                                <li class="tab col s3"><a href="#tabAP'.$building_id.'">2. Construire</a></li>
                             </ul>
                             <ul class="items_list col s12" id="tabResources'.$building_id.'">
                                 <li class="aside">Réunissez d\'abord ces composants dans le dépôt de la ville.</li>
@@ -557,14 +554,14 @@ class HtmlCityEnclosure
         
         return '
             <tr>
-                <td onclick="toggle(\'building'.$building_id.'\')" class="foldable" style="margin-left:'.($child_level*1.4).'em;background:'.$bg_color.'">
+                <td onclick="toggle(\'#building'.$building_id.'\');toggle(\'.defenses\', null)" class="foldable" style="margin-left:'.($child_level*1.4).'em;background:'.$bg_color.'">
                     '.str_repeat('<span class="hierarchy">├</span>', $child_level).'
                     <h3 style="color:'.$text_color.'">
                         <img src="'.$building_image.'" alt="icon_'.$building_id.'">&nbsp;'.$building_name.'
                     </h3>
                     <div class="unfold_button" style="color:'.$text_color.'">'.$html_status.'</div>
                 </td>
-                <td style="cursor:help;text-align:center;background:'.$bg_color.';color:'.$text_color.'"
+                <td class="defenses" style="cursor:help;text-align:center;background:'.$bg_color.';color:'.$text_color.'"
                     title="Ce chantier augmente les défenses de la ville lorsqu\'il est construit.">
                     <strong style="color:'.$text_color.'">+&nbsp;'.$building_defenses.'</strong>
                 </td>
@@ -814,7 +811,7 @@ class HtmlCityEnclosure
                         <span class="available" style="color:green">'.$available_amount.'</span>
                         <span class="required">&#9989;</span>
                     </div>'
-                : '<div class="amounts valign-wrapper" style="border:1px solid #FF8A65">
+                : '<div class="amounts valign-wrapper" style="border:1px solid #FF8A65;position:absolute;right:0;">
                         <span class="available" style="color:orangered">'.$available_amount.'</span>&nbsp;
                         <span class="required" style="font-size:0.9em">/'.$required_amount.'</span>
                     </div>';

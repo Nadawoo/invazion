@@ -190,13 +190,20 @@
     border-bottom-left-radius: 0.5em;
 }
 #constructions .folded .aside {
-    margin-left:0.3em;
+    margin:0 0 0 0.2em;
+    padding:0;
+}
+#constructions .folded .descr {
+    padding:0.4em 0.4em;
+    font-size:0.9em;
+    background:lightgrey;
+    border:none;
+    border-radius: 0 0 0.2em 0.4em;
 }
 #constructions .items_list {
     flex-direction: column;
-    margin:0 0 1em 0em;
     padding:0.3em 0;
-    max-width:85%
+    background:#fbeee6;
 }
 #constructions .item_label {
     align-items:center;
@@ -207,7 +214,7 @@
     justify-content: flex-start;
     flex-wrap:wrap;
     height:100%;
-    width:15em;
+    width:17em;
     margin:0;
     padding:0;
     white-space: nowrap;
@@ -286,7 +293,7 @@
 }
 .city_block .folded {
     display:none;
-    margin:0.8em 0 1.5em 0;
+    margin:0 0.2em 1.5em 0;
 }
 
 /* Liste des habitants de la ville */

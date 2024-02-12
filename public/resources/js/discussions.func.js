@@ -171,9 +171,9 @@ async function replyDiscussion(topicId, nbrMessages) {
  */
 function toggleSendform(event) {
     
-    toggle("send");
-    toggle("sendform");
-    toggle("buttonNewTopic");
+    toggle("#send");
+    toggle("#sendform");
+    toggle("#buttonNewTopic");
     
     // When we hide the form, event = null
     if(event !== null) {
