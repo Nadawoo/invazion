@@ -583,7 +583,7 @@ class HtmlLayout extends HtmlPage
         
         return '
             <fieldset id="bagbar">
-                <div class="block_icon">
+                <div class="block_icon" onclick="toggleBag()">
                     <div class="icon">&#x1F392;</div>
                     <div class="name">Sac</div>
                 </div>
@@ -591,7 +591,7 @@ class HtmlLayout extends HtmlPage
                     ' . $htmlItem->items($bag_items, $items_caracs) . '
                     ' . $htmlItem->empty_slots($nbr_free_slots) . '
                 </ul>
-                <button title="Afficher/masquer les autres objets du sac" class="show_more" onclick="toggleBag()">+</button>
+                <button title="Afficher/masquer les autres objets du sac" class="show_more" onclick="toggleBag()">&gt;</button>
             </fieldset>';
     }
     

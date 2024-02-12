@@ -420,7 +420,7 @@
     width: 3.3rem;
      /* Bigger margin at the right and bottom to compensate for the feeling 
         of asymetry caused by the shadow */
-    margin:0.5rem 0.5rem 0.8rem 0.4rem;
+    margin:0.3rem 0.5rem 0.8rem 0.4rem;
     padding:0;
     font-size:1.7em;
     background:#c0392b;

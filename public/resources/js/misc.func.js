@@ -139,22 +139,25 @@ function toggleBag() {
     
     if(_isBagVisible === true) {
         var newDisplayValue = null; // Back to the default defined in the CSS
-        var newButtonContent = "+";
+        var newWidth = null;
+        var newButtonContent = "&gt;";
         _isBagVisible = false;
     } else {
         var newDisplayValue = "flex";
-        var newButtonContent = "–";
+        var newWidth = "18em";
+        var newButtonContent = "&lt;";
         _isBagVisible = true;
     }
     
-    // Show/hode the overflowing items
+    // Show/hide the overflowing items
     var items = document.querySelectorAll("#bagbar .items_list li");
     for(i=0; i<items.length; i++) {
         items[i].style.display = newDisplayValue;
     }
     
     // Update the button +/- according to the action (show/hide)
-    document.querySelector("#bagbar .show_more").innerText = newButtonContent;
+    document.querySelector("#bagbar .show_more").innerHTML = newButtonContent;
+    document.querySelector("#bagbar").style.width = newWidth;
 }
 
 
