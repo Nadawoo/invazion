@@ -60,7 +60,7 @@ class HtmlMovementPaddle
             </tr>
             <tr>
                 <td>'.$this->arrow('west').'</td>
-                <td colspan="2" id="central" title="Cliquez sur une flèche pour vous déplacer...">
+                <td colspan="2" id="central" onclick="centerMapOnMe()" title="Cliquez sur une flèche pour vous déplacer...">
                     <br>
                     <img src="resources/img/free/human.png" class="me">
                     <span class="coords"></span>
