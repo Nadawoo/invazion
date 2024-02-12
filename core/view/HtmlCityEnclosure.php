@@ -764,7 +764,7 @@ class HtmlCityEnclosure
                                                             'workshop');
                 }
                 
-                $css_id = 'workshop'.$item_id;
+                $css_id = '#workshop'.$item_id;
                 $html_craftable_items  .= '
                     <div onclick="toggle(\''.$css_id.'\')" class="foldable">
                         <h3>

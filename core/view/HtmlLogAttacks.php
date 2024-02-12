@@ -59,18 +59,18 @@ class HtmlLogAttacks extends HtmlWall
         }
         
         return '<div class="visual_attack_log">
-                    <div class="block '.$class_zombies_size.'" onclick="toggle(\'logDetailsHurd'.$event_id.'\')">
+                    <div class="block '.$class_zombies_size.'" onclick="toggle(\'#logDetailsHurd'.$event_id.'\')">
                         <img src="resources/img/motiontwin/zombie9.gif"><br>
                         '.$attack_data['zombies'].' zombies
                     </div>
                     <div class="arrow">►</div>
                     <div class="block '.$class_city_size.' '.$class_city_color.'" 
-                        onclick="toggle(\'logDetailsDefenses'.$event_id.'\')">
+                        onclick="toggle(\'#logDetailsDefenses'.$event_id.'\')">
                         <img src="resources/img/free/city.svg" style="height:2em"><br>
                         '.$text_defenses.'
                     </div>
                     <div class="arrow">►</div>
-                    <div class="block miniblock" onclick="toggle(\'logDetailsDead'.$event_id.'\')">
+                    <div class="block miniblock" onclick="toggle(\'#logDetailsDead'.$event_id.'\')">
                         <span style="font-size:1.5em">'.$icon_dead.'</span><br>
                         '.$text_dead.'
                     </div>
@@ -98,7 +98,7 @@ class HtmlLogAttacks extends HtmlWall
         $frieze_alive = str_repeat('&#129485;&#8205;&#9794;&#65039;', $nbr_alive);
         $frieze_dead  = str_repeat('&#x26B0;&#xFE0F;', $nbr_dead);
         
-        return '<div class="survivors_frieze" onclick="toggle(\'logDetailsFrieze'.$event_id.'\')">
+        return '<div class="survivors_frieze" onclick="toggle(\'#logDetailsFrieze'.$event_id.'\')">
                 '.$frieze_alive.
                 '<span style="font-size:0.9em">'.$frieze_dead.'</span>
             </div>';

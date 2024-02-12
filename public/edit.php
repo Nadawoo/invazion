@@ -142,7 +142,7 @@ echo $html->page_header();
         <legend>Où trouver l'objet</legend>
         
         <div>
-            <input type="checkbox" name="is_findable" id="is_findable" onchange="toggle('block_findable')">
+            <input type="checkbox" name="is_findable" id="is_findable" onchange="toggle('#block_findable')">
             <label for="is_findable">Peut être trouvé en fouillant le désert</label> 
         </div>
         <div style="margin-left:2em" id="block_findable">
@@ -155,7 +155,7 @@ echo $html->page_header();
             </div>
             -->
             <div style="margin-bottom:0.3em;font-size:0.8em">
-                <a onclick="toggle('block_findable_advanced')">► Réglages avancés...</a>
+                <a onclick="toggle('#block_findable_advanced')">► Réglages avancés...</a>
             </div>
             <div id="block_findable_advanced">
                 [fonctionnalité à venir]
@@ -177,7 +177,7 @@ echo $html->page_header();
         </div>
         
         <div>
-            <input type="checkbox" name="item_characs[is_craftable]" id="is_craftable" onchange="toggle('block_compo')" disabled>
+            <input type="checkbox" name="item_characs[is_craftable]" id="is_craftable" onchange="toggle('#block_compo')" disabled>
             <label for="is_craftable">Peut être fabriqué en assemblant d'autres objets</label>
         </div>
         <div style="margin-left:2em" id="block_compo">
@@ -194,7 +194,7 @@ echo $html->page_header();
         <legend>Utilité de l'objet</legend>
         <strong>Effets sur le joueur :</strong>
         <div>
-            <input type="checkbox" name="is_boost" id="is_boost" onchange="toggle('block_apgain')">
+            <input type="checkbox" name="is_boost" id="is_boost" onchange="toggle('#block_apgain')">
             <label for="is_boost">Donne des points d'action après utilisation</label>
         </div>
         <div style="margin-left:2em" id="block_apgain">
@@ -208,7 +208,7 @@ echo $html->page_header();
         </div>
         
         <div>
-            <input type="checkbox" name="item_characs[is_malus]" id="is_malus" onchange="toggle('block_malus')" disabled>
+            <input type="checkbox" name="item_characs[is_malus]" id="is_malus" onchange="toggle('#block_malus')" disabled>
             <label for="is_malus">Dégrade la santé après utilisation</label>
         </div>
         <div style="margin-left:2em" id="block_malus">
@@ -223,7 +223,7 @@ echo $html->page_header();
         </div>
         
         <div>
-            <input type="checkbox" id="is_healing" onchange="toggle('block_healing')">
+            <input type="checkbox" id="is_healing" onchange="toggle('#block_healing')">
             <label for="is_healing">Améliore la santé après utilisation</label>
         </div>
         <div style="margin-left:2em" id="block_healing">
@@ -238,7 +238,7 @@ echo $html->page_header();
         </div>
                 
         <div>
-            <input type="checkbox" name="bag_extensions" id="bag_extensions" onchange="toggle('block_bag')" disabled>
+            <input type="checkbox" name="bag_extensions" id="bag_extensions" onchange="toggle('#block_bag')" disabled>
             <label for="bag_extensions">Augmente la capacité du sac à dos</label>
         </div>
         <div style="margin-left:2em" id="block_bag">
@@ -255,7 +255,7 @@ echo $html->page_header();
         <br>
         <strong>Effets en tant qu'objet :</strong>
         <div>
-            <input type="checkbox" name="item_characs[killing_rate]" value="100" id="is_weapon" onchange="toggle('block_weapon')">
+            <input type="checkbox" name="item_characs[killing_rate]" value="100" id="is_weapon" onchange="toggle('#block_weapon')">
             <label for="is_weapon">Est une arme contre les zombies</label>
         </div>
         <div style="margin-left:2em" id="block_weapon">
@@ -280,7 +280,7 @@ echo $html->page_header();
         <br>
         
         <div>
-            <input type="checkbox" name="item_characs[is_dropper]" id="is_dropper" onchange="toggle('block_drop')" disabled>
+            <input type="checkbox" name="item_characs[is_dropper]" id="is_dropper" onchange="toggle('#block_drop')" disabled>
             <label for="is_dropper">Fait apparaître un nouvel objet après utilisation</label>
         </div>
         <div style="margin-left:2em" id="block_drop">
@@ -300,7 +300,7 @@ echo $html->page_header();
         <legend>Conditions d'utilisation</legend>
         
         <div>
-            <input type="checkbox" name="item_characs[is_loadable]" id="is_loadable" onchange="toggle('block_loads')" disabled>
+            <input type="checkbox" name="item_characs[is_loadable]" id="is_loadable" onchange="toggle('#block_loads')" disabled>
             <label for="is_loadable">Doit être chargé pour être utilisable (munition, énergie...)</label>
         </div>
         <div style="margin-left:2em" id="block_loads">
@@ -326,7 +326,7 @@ echo $html->page_header();
         <label for="is_broken">L'objet est cassé (réparable)</label><br>
         <input type="radio" name="item_characs[destruction_rate]" value="0" id="is_intact" onchange="hide('block_solidity_custom')">
         <label for="is_intact">L'objet reste intact</label><br>
-        <input type="radio" name="item_characs[destruction_rate]" value="custom" id="solidity_custom" onchange="toggle('block_solidity_custom')" disabled>
+        <input type="radio" name="item_characs[destruction_rate]" value="custom" id="solidity_custom" onchange="toggle('#block_solidity_custom')" disabled>
         <label for="solidity_custom">Personnaliser...</label><br>
         <div style="margin-left:2em" id="block_solidity_custom">
             <label for="break_rate">Cassé :</label>

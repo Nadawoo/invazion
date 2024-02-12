@@ -149,8 +149,8 @@ class HtmlLayout extends HtmlPage
         
         return '
                 <p class="center">
-                    <button class="redbutton" onclick="toggle(\'specialities\');hide(\'capacities\');return false">Changer ma spécialité</button>
-                    <button class="redbutton" onclick="toggle(\'capacities\');hide(\'specialities\');return false">Améliorer une capacité</button>
+                    <button class="redbutton" onclick="toggle(\'#specialities\');hide(\'capacities\');return false">Changer ma spécialité</button>
+                    <button class="redbutton" onclick="toggle(\'#capacities\');hide(\'specialities\');return false">Améliorer une capacité</button>
                 </p>
 
                 <ul id="specialities">
@@ -729,7 +729,7 @@ class HtmlLayout extends HtmlPage
                 <img src="resources/img/icons8/mylocation-48.png" height="28" alt="Cible ma position">
             </button>
             
-            <button onclick="toggle(\'mapRadarMenu\')" title="Vue satellite">
+            <button onclick="toggle(\'#mapRadarMenu\')" title="Vue satellite">
                 <span style="font-size:50%;margin-top:-0.2em;">&#x1F6F0;&#xFE0F;</span>
             </button>
             
