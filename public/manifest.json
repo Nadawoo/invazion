@@ -2,7 +2,7 @@
   "background_color": "#c0392b",
   "description": "Jeu de survie collaboratif inspiré de Hordes.fr. Explorez le désert en équipe ou en solo, dénichez les précieuses ressources, construisez des défenses et survivez à l'attaque quotidienne !",
   "dir": "ltr",
-  "display_override": ["standalone", "minimal-ui"],
+  "display_override": ["fullscreen", "standalone", "minimal-ui"],
   "display": "browser",
   "name": "InvaZion, le jeu de zombies",
   "orientation": "any",
