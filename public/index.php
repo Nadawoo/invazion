@@ -376,6 +376,54 @@ echo $html['json_configs'];
             </a>
         </fieldset>
         
+        <div id="actions_panel">
+            <div id="round_actions">
+                <?php
+                echo  $buttons->button_round('move', ($zone['controlpoints_zombies']-$zone['controlpoints_citizens']))
+                    . $buttons->button_round('dig', array_sum((array)$zone['items']), (bool)$citizen['can_dig'])
+                    . $buttons->button_round('zombies', $zone['zombies'], (bool)$zone['zombies'])
+                    . $buttons->button_round('citizens', null, null)
+                    . $buttons->button_round('build');
+                // Warn if wounded
+    //                echo $layout->block_alert_wounded((bool)$citizen['is_wounded']);
+                ?>
+            </div>
+            
+            <div id="actions">
+                <fieldset id="block_move" class="z-depth-2">
+                    <?php
+                    if ($zone['controlpoints_citizens'] < $zone['controlpoints_zombies'] and time() < strtotime($zone['date_control_end'])) {
+                        echo $layout->block_alert_escape(strtotime($zone['date_control_end']));
+                    }
+                    echo $layout->block_alert_tired($zone['zombies']);
+                    echo $layout->block_alert_control($zone['zombies']);
+
+                    echo '
+                    <div class="main_block">'
+                        .$paddle->paddle($citizen['coord_x'], $citizen['coord_y'])
+                        .'<div>'
+                            .$layout->block_landtype()
+                            .$layout->block_distance()
+                        .'</div>
+                    </div>';
+
+                    echo 
+                    $actionCards->card_citizens().
+                    $actionCards->card_building().
+                    $actionCards->card_dig().
+                    $actionCards->card_ap_cost();
+                    ?>
+                </fieldset>
+
+                <?php
+                echo $actionBlocks->block_dig($html['ground_items'], (bool)$citizen['can_dig']);
+                echo $actionBlocks->block_zombies($zone['zombies'], $citizen['bag_items'], $configs['items'], $configs['map']['killing_zombie_cost']);
+                echo $actionBlocks->block_citizens();
+                echo $actionBlocks->block_build($citizen['coord_x'], $citizen['coord_y']);
+                ?>
+            </div>
+        </div>
+        
         <div id="message_move"><?php echo $msg_move ?></div>
         
     </section>
@@ -391,52 +439,7 @@ echo $html['json_configs'];
         echo $layout->block_create_citizen();
     } ?>
     
-    <section id="actions_panel">
-        <div id="round_actions">
-            <?php
-            echo  $buttons->button_round('move', ($zone['controlpoints_zombies']-$zone['controlpoints_citizens']))
-                . $buttons->button_round('dig', array_sum((array)$zone['items']), (bool)$citizen['can_dig'])
-                . $buttons->button_round('zombies', $zone['zombies'], (bool)$zone['zombies'])
-                . $buttons->button_round('citizens', null, null)
-                . $buttons->button_round('build');
-            // Warn if wounded
-//                echo $layout->block_alert_wounded((bool)$citizen['is_wounded']);
-            ?>
-        </div>
-        <div id="actions">
-            <fieldset id="block_move" class="z-depth-2">
-                <?php
-                if ($zone['controlpoints_citizens'] < $zone['controlpoints_zombies'] and time() < strtotime($zone['date_control_end'])) {
-                    echo $layout->block_alert_escape(strtotime($zone['date_control_end']));
-                }
-                echo $layout->block_alert_tired($zone['zombies']);
-                echo $layout->block_alert_control($zone['zombies']);
-
-                echo '
-                <div class="main_block">'
-                    .$paddle->paddle($citizen['coord_x'], $citizen['coord_y'])
-                    .'<div>'
-                        .$layout->block_landtype()
-                        .$layout->block_distance()
-                    .'</div>
-                </div>';
-
-                echo 
-                $actionCards->card_citizens().
-                $actionCards->card_building().
-                $actionCards->card_dig().
-                $actionCards->card_ap_cost();
-                ?>
-            </fieldset>
-
-            <?php
-            echo $actionBlocks->block_dig($html['ground_items'], (bool)$citizen['can_dig']);
-            echo $actionBlocks->block_zombies($zone['zombies'], $citizen['bag_items'], $configs['items'], $configs['map']['killing_zombie_cost']);
-            echo $actionBlocks->block_citizens();
-            echo $actionBlocks->block_build($citizen['coord_x'], $citizen['coord_y']);
-            ?>
-        </div>
-    </section>
+    
     
 
     

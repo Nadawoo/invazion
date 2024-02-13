@@ -385,7 +385,7 @@
  */
 #actions_panel {
     display:none;
-    position:fixed;
+    position:sticky;
     /*right:0.5rem; /* Avoids shifting the buttons to the left when the scrollbar appears */
     bottom:0;
     height:40%;
@@ -394,7 +394,7 @@
     text-align:center;
     font-size:0.9em;
     background:#fbeee6;
-    border-radius:0.8em;
+    border-radius:0.6em;
     border:1px solid #34495e;
 }
 /* The big round action buttons with icon */
@@ -494,7 +494,7 @@
     display:none;
     position:relative;
     top:-1.8rem;
-    height:22em;
+    height:11.5em;
     margin:0;
     padding-top:1.3rem;
     padding-bottom:2rem;
