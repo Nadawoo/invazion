@@ -388,7 +388,7 @@
     position:sticky;
     /*right:0.5rem; /* Avoids shifting the buttons to the left when the scrollbar appears */
     bottom:0;
-    height:40%;
+    height:50%;
     width:100%;
     max-width: 51.25rem;
     text-align:center;
@@ -487,16 +487,17 @@
 }
 /* The maskable frames which contain the actions buttons */
 #actions {
+    height:100%;
     width:21.7rem;
     margin:auto;
 }
 #actions fieldset {
     display:none;
     position:relative;
-    top:-1.8rem;
-    height:11.5em;
+    top:-6rem; /* Make the block start at the top of the parent block */
+    height:100%;
     margin:0;
-    padding-top:1.3rem;
+    padding-top:5.5rem; /* Let space for the action buttons, which are over the block */
     padding-bottom:2rem;
     text-align:left;
     border:1px solid #34495e;
