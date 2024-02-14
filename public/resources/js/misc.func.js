@@ -671,10 +671,12 @@ async function killZombies(apiAction) {
  */
 function toggleItem(event) {
     
-    var blockItem = event.target.closest(".item_label").querySelector(".details");
+    let itemLabel = event.target.closest(".item_label");
+    var tooltip = itemLabel.querySelector(".details");
     // If the item's tooltip is already opened, we just hide it
-    if(blockItem.style.display === "block") {
-        blockItem.style.display = "none";
+    if(tooltip.style.display === "block") {
+        tooltip.style.display = "none";
+        itemLabel.style.border = null;
     }
     else {
         // If we want to open a new tooltip, first close all the other tooltips.
@@ -683,9 +685,26 @@ function toggleItem(event) {
         let classes = document.querySelectorAll(".item_label .details");
         for (let i=0; i < classes.length; i++) {
             classes[i].style.display = "none";
+            classes[i].closest(".item_label").style.border = null;
         }
         // Then, display the intended tooltip
-        blockItem.style.display = "block";
+        tooltip.style.display = "block";
+        itemLabel.style.border = "2px solid darkred";
+        
+        // Avoid the item's tooltip to overflow the parent container
+        let parentList = tooltip.closest(".items_list");
+        let tooltipRect = tooltip.getBoundingClientRect();
+        let parentListRect = parentList.getBoundingClientRect();
+        // Avoid overflowing on the right
+        let rightGap = parentListRect.right - tooltipRect.right;
+        if(rightGap < 0) {
+            tooltip.style.marginLeft = `${rightGap}px`;
+        }
+        // Avoid overflowing at the bottom
+        let bottomGap = parentListRect.bottom - tooltipRect.bottom;
+        if(bottomGap < 0) {
+            tooltip.style.marginTop = `${bottomGap}px`;
+        }
     }
 }
 
