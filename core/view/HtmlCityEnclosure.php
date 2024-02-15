@@ -501,19 +501,16 @@ class HtmlCityEnclosure
                 $html_constructions .= '
                     <tr id="'.$css_id.'" class="folded">
                         <td>
-                        <p class="aside descr">'.$building_descr.'</p>
                             <ul class="tabs">
-                                <li class="tab col s3"><a href="#tabResources'.$building_id.'" class="active">1. Composants</a></li>
-                                <li class="tab col s3"><a href="#tabAP'.$building_id.'">2. Construire</a></li>
+                                <li class="tab"><a href="#tabDescr'.$building_id.'" class="active">Description</a></li>
+                                <li class="tab"><a href="#tabResources'.$building_id.'">Composants</a></li>
                             </ul>
-                            <ul class="items_list col s12" id="tabResources'.$building_id.'">
-                                <li class="aside">Réunissez d\'abord ces composants dans le dépôt de la ville.</li>
+                            <ul class="items_list" id="tabDescr'.$building_id.'">
+                                <li>'.$building_descr.'</li>
+                            </ul>
+                            <ul class="items_list" id="tabResources'.$building_id.'">
                                 ' . $html_resources . '
-                            </ul>
-                            <ul class="items_list col s12" id="tabAP'.$building_id.'">
-                                <li class="aside">Investissez vos points d\'action dans la construction du chantier.</li>
                                 ' . $html_ap . '
-                                <li>' . $buttons->construct($building_id, 'no_notif') . '</li>
                             </ul>
                         </td>
                     </tr>';
@@ -625,8 +622,8 @@ class HtmlCityEnclosure
         
         return $this->html_progressbar( $items_caracs[$ap_item_id],
                                         $this->item_amount($zone_items, $ap_item_id),
-                                        $required_ap,
-                                        'constructions');
+                                        $required_ap, 
+                                        'constructions', $building_id);
     }
     
     
@@ -807,11 +804,11 @@ class HtmlCityEnclosure
     {
         
         return  ($available_amount >= $required_amount) 
-                ? '<div class="amounts valign-wrapper" style="background:#D5F5E3;border:1px solid #81C784">
+                ? '<div class="amounts valign-wrapper" style="background:#D5F5E3;border-color:#81C784">
                         <span class="available" style="color:green">'.$available_amount.'</span>
                         <span class="required">&#9989;</span>
                     </div>'
-                : '<div class="amounts valign-wrapper" style="border:1px solid #FF8A65;position:absolute;right:0;">
+                : '<div class="amounts valign-wrapper">
                         <span class="available" style="color:orangered">'.$available_amount.'</span>&nbsp;
                         <span class="required" style="font-size:0.9em">/'.$required_amount.'</span>
                     </div>';
@@ -842,10 +839,25 @@ class HtmlCityEnclosure
      * @param  int    $required_amount  La quantité requise pour la fabrication
      * @param  string $comment_for      Code indiquant quels textes explicatifs devront 
      *                                  être affichés dans les infobulles
+     * @param  int    $building_id
      * @return string
      */
-    private function html_progressbar($item_caracs, $available_amount, $required_amount, $comment_for)
+    private function html_progressbar($item_caracs, $available_amount, $required_amount, 
+                                      $comment_for, $building_id=null)
     {
+        
+        $button_name = $item_caracs['name'];
+        $disabled = 'disabled';
+        $redbutton = '';
+        $progressbar_unfilled_color = 'sandybrown';
+        // If the resource is a clickable button (useful to invest action points 
+        // in the construction)
+        if($building_id !== null) {
+            $button_name = 'Participer au chantier [1&#9889;]';
+            $disabled = '';
+            $redbutton = 'redbutton';
+            $progressbar_unfilled_color = '#CC0000';
+        }
         
         if ($comment_for === 'workshop') {
             
@@ -872,19 +884,24 @@ class HtmlCityEnclosure
         $missing_amount = max(0, $required_amount-$available_amount);
         $title = ($missing_amount <= 0) ? $enough : $not_enough;
         $progress = round($available_amount/max(1, $required_amount) * 100);
-        $progressbar_color = ($progress >= 100) ? "lightgreen" : "sandybrown";
+        $progressbar_color = ($progress >= 100) ? "lightgreen" : $progressbar_unfilled_color;
         
         $item_icon = ($item_caracs['icon_path'] === null)
                     ? $item_caracs['icon_symbol']
                     : '<img src="resources/img/'.$item_caracs['icon_path'].'" width="32" height="32" alt="'.$item_caracs['name'].'">';
         
         return '
-            <li class="item_label z-depth-1" title="'.$title.'">
-                <var>
-                    <span class="progressbar_filling" style="width:'.$progress.'%;background:'.$progressbar_color.'">
-                    &nbsp;'.$item_icon.'&nbsp;'.$item_caracs['name'].'
-                    </span>
-                </var>
+            <li style="display:flex;position:relative;height:3em" title="'.$title.'">
+                <form method="post" action="#popsuccess">
+                    <input type="hidden" name="api_name" value="buildings">
+                    <input type="hidden" name="action" value="build">
+                    <input type="hidden" name="params[building_id]" value="'.$building_id.'">
+                    <button type="submit" class="item_label z-depth-1 '.$redbutton.'" '.$disabled.'>
+                        <span class="progressbar_filling" style="width:'.$progress.'%;background:'.$progressbar_color.'">
+                        &nbsp;'.$item_icon.'&nbsp;'.$button_name.'
+                        </span>
+                    </button>
+                </form>
                 '.$this->html_component_amount($required_amount, $available_amount).'
             </li>';
         

@@ -202,22 +202,29 @@
 }
 #constructions .items_list {
     flex-direction: column;
+    gap:4px;
     padding:0.3em 0;
-    background:#fbeee6;
+    /*background:#fbeee6;*/
 }
 #constructions .item_label {
     align-items:center;
-    width:99.3%;
-    cursor:help;
 }
-#constructions var {
+#constructions button {
     justify-content: flex-start;
     flex-wrap:wrap;
-    height:100%;
+    height:96%;
     width:17em;
     margin:0;
     padding:0;
     white-space: nowrap;
+    border:none;
+    color:black;
+    cursor:help;
+}
+/* Button combining progressbar + clickable (ex: button to give action points) */ 
+#constructions .redbutton {
+    color:white;
+    cursor:pointer;
 }
 
 #constructions .amounts {
@@ -226,6 +233,7 @@
     height:100%;
     text-align:center;
     background:#f2f2f2;
+    border:1px solid #FF8A65;
     border-radius:0.2em;
 }
 #constructions .amounts .available {
