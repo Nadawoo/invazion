@@ -453,7 +453,6 @@ class HtmlCityEnclosure
                                              $child_level=0) {
         
         $sort = new SortGameData();
-        $buttons = new HtmlButtons;
         $html_constructions = '';
         // Keep only the game's buildings related to the city (ID #12)
         $buildings_caracs = $sort->filter_buildings_by_parent($config_buildings, $root_building_id);
@@ -461,29 +460,45 @@ class HtmlCityEnclosure
         foreach ($buildings_caracs as $building_id=>$building) {
             // ID of the "Action points" item in the database
             $ap_item_id = 23;
-            $css_id = 'building'.$building_id;
             // Set default building image if not defined
             $building_image = ((string)$building['icon_path'] !== '') ? $building['icon_path'] : '../resources/img/copyrighted/buildings/104.png';
             $building_descr = ((string)$building['descr_ambiance'] !== '') ? $building['descr_ambiance'] : '<span class="grey-text">(Pas de description pour le moment)</span>';
-            
-            // Put the action points apart of the other resources
-            $html_ap = $this->block_construction_actionpoints($building_id, $items_caracs, $buildings_components,
-                                                              $zone_items, $ap_item_id);
-            $html_resources = $this->block_construction_resources($building_id, $items_caracs, $buildings_components, 
-                                                                  $zone_items, $ap_item_id);
+            // Determine if the construction is completed
+            $status = in_array($building_id, $completed_buildings_ids) ? 'achieved' : 'in_progress';
             
             // If the construction is achieved
-            if (in_array($building_id, $completed_buildings_ids)) { 
-                
-                $html_constructions .= $this->block_construction_foldable($building_id, $building['name'], $building['defenses'], $building_image, 
-                                                          'achieved', $child_level);
-                $html_constructions .= '
-                    <tr id="'.$css_id.'" class="folded">
-                        <td style="font-size:0.85em;text-align:center">La construction de ce chantier est terminée !</td>
-                    </tr>
-                    ';
-                
-                // Call the method recrsively to display all the child constructions
+            if($status === 'achieved') { 
+                $html_components = '<em style="font-size:0.9em">Ce chantier est déjà construit !</em>';
+            }
+            else {
+                // Put the action points apart of the other resources
+                $html_ap = $this->block_construction_actionpoints($building_id, $items_caracs, $buildings_components,
+                                                                  $zone_items, $ap_item_id);
+                $html_resources = $this->block_construction_resources($building_id, $items_caracs, $buildings_components, 
+                                                                  $zone_items, $ap_item_id);
+                $html_components = $html_resources . $html_ap;
+            }
+            
+            $html_constructions .= 
+                $this->block_construction_foldable($building_id, $building['name'], $building['defenses'], $building_image, 
+                                                   $status, $child_level).'
+                <tr id="building'.$building_id.'" class="folded">
+                    <td>
+                        <ul class="tabs">
+                            <li class="tab"><a href="#tabDescr'.$building_id.'" class="active">Description</a></li>
+                            <li class="tab"><a href="#tabResources'.$building_id.'">Composants</a></li>
+                        </ul>
+                        <ul class="items_list" id="tabDescr'.$building_id.'">
+                            <li>'.$building_descr.'</li>
+                        </ul>
+                        <ul class="items_list" id="tabResources'.$building_id.'">
+                            ' . $html_components . '
+                        </ul>
+                    </td>
+                </tr>';
+            
+            // Call the method recursively to display all the child constructions
+            if($status === 'achieved') { 
                 $html_child_constructions = true;
                 if($html_child_constructions !== '') {
                     $child_level++;
@@ -493,27 +508,6 @@ class HtmlCityEnclosure
                     $html_constructions .= $html_child_constructions;
                 }
                 $child_level--;
-            }
-            else {
-                
-                $html_constructions .= $this->block_construction_foldable($building_id, $building['name'], $building['defenses'], $building_image, 
-                                                          'in_progress', $child_level);
-                $html_constructions .= '
-                    <tr id="'.$css_id.'" class="folded">
-                        <td>
-                            <ul class="tabs">
-                                <li class="tab"><a href="#tabDescr'.$building_id.'" class="active">Description</a></li>
-                                <li class="tab"><a href="#tabResources'.$building_id.'">Composants</a></li>
-                            </ul>
-                            <ul class="items_list" id="tabDescr'.$building_id.'">
-                                <li>'.$building_descr.'</li>
-                            </ul>
-                            <ul class="items_list" id="tabResources'.$building_id.'">
-                                ' . $html_resources . '
-                                ' . $html_ap . '
-                            </ul>
-                        </td>
-                    </tr>';
             }
         }
         
