@@ -554,7 +554,7 @@ class HtmlCityEnclosure
                 </td>
                 <td class="defenses" style="cursor:help;text-align:center;background:'.$bg_color.';color:'.$text_color.'"
                     title="Ce chantier augmente les défenses de la ville lorsqu\'il est construit.">
-                    <strong style="color:'.$text_color.'">+&nbsp;'.$building_defenses.'</strong>
+                    <strong style="color:'.$text_color.'">+'.$building_defenses.'&#x1F6E1;&#xFE0F;</strong>
                 </td>
             </tr>';
     }
