@@ -538,43 +538,23 @@ class HtmlCityEnclosure
                                                  $building_image, $status, $child_level, 
                                                  $buildings_components, $items_caracs) {
         
-        $htmlItem = new HtmlItem();
+        $components = isset($buildings_components[$building_id]) ? $buildings_components[$building_id] : [];
+        arsort($components);
         
         if($status === 'achieved') {
             $bg_color    = 'darkgreen';
             $text_color  = 'lightgreen';
             $html_status = '&check; Fini ! &nbsp;';
+            $html_resources = '<span class="components" style="display:none;justify-content:center">.</span>';
         }
         elseif($status === 'in_progress') {
             $bg_color    = '';
             $text_color  = 'grey';
             $html_status = '<a>bâtir&nbsp;<div class="arrow">&#65088;</a>';
+            $html_resources = $this->block_construction_resources_column($components, $items_caracs);
         }
         
-        $components = isset($buildings_components[$building_id]) ? $buildings_components[$building_id] : [];
-        arsort($components);
-        
-        $html_resources = '';
-        foreach($components as $item_id=>$required_amount) {
-            // Handles the anormal case where the resource needed is not 
-            // in the list of items set for the current game 
-            if(!isset($items_caracs[$item_id])) {
-                $items_caracs[$item_id] = set_default_variables('item');
-            }
-            
-            $html_resources .= '<li class="item_label">
-                    '.$htmlItem->icon($items_caracs[$item_id]).'<span class="dot_number">'.$required_amount.'</span>
-                </li>';
-        }
-        
-        $html_resources = '<ul class="items_list components" style="display:none">
-                            '.$html_resources.'
-                        </ul>';
-        
-        $html_defenses = '';
-        if($building_defenses > 0) {
-            $html_defenses = '+'.$building_defenses.'&#x1F6E1;&#xFE0F;';
-        }
+        $html_defenses = ($building_defenses > 0) ? '+'.$building_defenses.'&#x1F6E1;&#xFE0F;' : '.';
         
         return '
             <tr>
@@ -594,6 +574,37 @@ class HtmlCityEnclosure
                     </strong>
                 </td>
             </tr>';
+    }
+    
+    
+    /**
+     * HTML for the components in the constructions tree (not to be confused with 
+     * the components displayed inside the foldable details of the constructions)
+     * 
+     * @param array $building_components
+     * @param array $items_caracs
+     * @return string HTML
+     */
+    private function block_construction_resources_column($building_components, $items_caracs) {
+        
+        $htmlItem = new HtmlItem();
+        
+        $html_resources = '';
+        foreach($building_components as $item_id=>$required_amount) {
+            // Handles the anormal case where the resource needed is not 
+            // in the list of items set for the current game 
+            if(!isset($items_caracs[$item_id])) {
+                $items_caracs[$item_id] = set_default_variables('item');
+            }
+            
+            $html_resources .= '<li class="item_label">
+                    '.$htmlItem->icon($items_caracs[$item_id]).'<span class="dot_number">'.$required_amount.'</span>
+                </li>';
+        }
+        
+        return '<ul class="items_list components" style="display:none">
+                    '.$html_resources.'
+                </ul>';
     }
     
     
