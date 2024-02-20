@@ -571,6 +571,11 @@ class HtmlCityEnclosure
                             '.$html_resources.'
                         </ul>';
         
+        $html_defenses = '';
+        if($building_defenses > 0) {
+            $html_defenses = '+'.$building_defenses.'&#x1F6E1;&#xFE0F;';
+        }
+        
         return '
             <tr>
                 <td onclick="toggle(\'#building'.$building_id.'\');toggle(\'.defenses\', null)" class="foldable" style="margin-left:'.($child_level*1.4).'em;background:'.$bg_color.'">
@@ -585,7 +590,7 @@ class HtmlCityEnclosure
                     '.$html_resources.'
                     <strong class="construction_defenses" style="color:'.$text_color.'"
                         title="Ce chantier augmente les défenses de la ville lorsqu\'il est construit.">
-                        +'.$building_defenses.'&#x1F6E1;&#xFE0F;
+                        '.$html_defenses.'
                     </strong>
                 </td>
             </tr>';
