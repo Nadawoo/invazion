@@ -485,7 +485,7 @@ class HtmlCityEnclosure
             
             $html_constructions .= 
                 $this->block_construction_foldable($building_id, $building['name'], $building['defenses'], $building_image, 
-                                                   $status, $child_level, $buildings_components, $items_caracs).'
+                                                   $status, $child_level, $buildings_components, $items_caracs, $zone_items).'
                 <tr id="building'.$building_id.'" class="folded">
                     <td>
                         <ul class="tabs">
@@ -536,7 +536,7 @@ class HtmlCityEnclosure
      */
     private function block_construction_foldable($building_id, $building_name, $building_defenses, 
                                                  $building_image, $status, $child_level, 
-                                                 $buildings_components, $items_caracs) {
+                                                 $buildings_components, $items_caracs, $zone_items) {
         
         $components = isset($buildings_components[$building_id]) ? $buildings_components[$building_id] : [];
         arsort($components);
@@ -551,7 +551,7 @@ class HtmlCityEnclosure
             $bg_color    = '';
             $text_color  = 'grey';
             $html_status = '<a>bâtir&nbsp;<div class="arrow">&#65088;</a>';
-            $html_resources = $this->block_construction_resources_column($components, $items_caracs);
+            $html_resources = $this->block_construction_resources_column($components, $zone_items, $items_caracs);
         }
         
         $html_defenses = ($building_defenses > 0) ? '+'.$building_defenses.'&#x1F6E1;&#xFE0F;' : '.';
@@ -582,10 +582,11 @@ class HtmlCityEnclosure
      * the components displayed inside the foldable details of the constructions)
      * 
      * @param array $building_components
+     * @param array $zone_items
      * @param array $items_caracs
      * @return string HTML
      */
-    private function block_construction_resources_column($building_components, $items_caracs) {
+    private function block_construction_resources_column($building_components, $zone_items, $items_caracs) {
         
         $htmlItem = new HtmlItem();
         
@@ -597,8 +598,18 @@ class HtmlCityEnclosure
                 $items_caracs[$item_id] = set_default_variables('item');
             }
             
-            $html_resources .= '<li class="item_label">
-                    '.$htmlItem->icon($items_caracs[$item_id]).'<span class="dot_number">'.$required_amount.'</span>
+            $zone_item_amount = isset($zone_items[$item_id]) ? $zone_items[$item_id] : 0;
+            $missing_item_amount = $required_amount - $zone_item_amount;
+            
+            $html_missing_amount = $missing_item_amount;
+            $background = '';
+            if($missing_item_amount <= 0) {
+                $html_missing_amount = '&#x2705;';
+                $background = 'lightgreen';
+            }
+            
+            $html_resources .= '<li class="item_label" style="background:'.$background.'">
+                    '.$htmlItem->icon($items_caracs[$item_id]).'<span class="dot_number">'.$html_missing_amount.'</span>
                 </li>';
         }
         
