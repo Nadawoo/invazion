@@ -423,9 +423,13 @@ class HtmlCityEnclosure
             <div class="city_block" style="width:21.5em">
                 <h2>Tous les chantiers</h2>
                 <table id="constructions">
-                    <tr style="font-size:0.9em">
+                    <tr>
                         <th></th>
-                        <th class="defenses">Défenses</th>
+                        <th class="defenses">
+                            <select onchange="toggle(\'.construction_defenses\', \'block\');toggle(\'.components\', \'flex\')">
+                                <option selected>Défenses</option>
+                                <option>Composants</option>
+                        </th>
                     </tr>
                     '.$html_constructions.'
                 </table>
@@ -481,7 +485,7 @@ class HtmlCityEnclosure
             
             $html_constructions .= 
                 $this->block_construction_foldable($building_id, $building['name'], $building['defenses'], $building_image, 
-                                                   $status, $child_level).'
+                                                   $status, $child_level, $buildings_components, $items_caracs).'
                 <tr id="building'.$building_id.'" class="folded">
                     <td>
                         <ul class="tabs">
@@ -527,10 +531,14 @@ class HtmlCityEnclosure
      *                      "in_progress" or "achieved"
      * @param int $child_level The number of parent constructions above the given construction
      *                         in the dependency tree
+     * @param array $buildings_components
      * @return string HTML
      */
     private function block_construction_foldable($building_id, $building_name, $building_defenses, 
-                                                 $building_image, $status, $child_level) {
+                                                 $building_image, $status, $child_level, 
+                                                 $buildings_components, $items_caracs) {
+        
+        $htmlItem = new HtmlItem();
         
         if($status === 'achieved') {
             $bg_color    = 'darkgreen';
@@ -543,6 +551,26 @@ class HtmlCityEnclosure
             $html_status = '<a>bâtir&nbsp;<div class="arrow">&#65088;</a>';
         }
         
+        $components = isset($buildings_components[$building_id]) ? $buildings_components[$building_id] : [];
+        arsort($components);
+        
+        $html_resources = '';
+        foreach($components as $item_id=>$required_amount) {
+            // Handles the anormal case where the resource needed is not 
+            // in the list of items set for the current game 
+            if(!isset($items_caracs[$item_id])) {
+                $items_caracs[$item_id] = set_default_variables('item');
+            }
+            
+            $html_resources .= '<li class="item_label">
+                    '.$htmlItem->icon($items_caracs[$item_id]).'<span class="dot_number">'.$required_amount.'</span>
+                </li>';
+        }
+        
+        $html_resources = '<ul class="items_list components" style="display:none">
+                            '.$html_resources.'
+                        </ul>';
+        
         return '
             <tr>
                 <td onclick="toggle(\'#building'.$building_id.'\');toggle(\'.defenses\', null)" class="foldable" style="margin-left:'.($child_level*1.4).'em;background:'.$bg_color.'">
@@ -552,9 +580,13 @@ class HtmlCityEnclosure
                     </h3>
                     <div class="unfold_button" style="color:'.$text_color.'">'.$html_status.'</div>
                 </td>
-                <td class="defenses" style="cursor:help;text-align:center;background:'.$bg_color.';color:'.$text_color.'"
-                    title="Ce chantier augmente les défenses de la ville lorsqu\'il est construit.">
-                    <strong style="color:'.$text_color.'">+'.$building_defenses.'&#x1F6E1;&#xFE0F;</strong>
+                <td class="defenses" style="text-align:center;cursor:pointer;background:'.$bg_color.';color:'.$text_color.'"
+                    onclick="toggle(\'#building'.$building_id.'\');toggle(\'.defenses\', null)">
+                    '.$html_resources.'
+                    <strong class="construction_defenses" style="color:'.$text_color.'"
+                        title="Ce chantier augmente les défenses de la ville lorsqu\'il est construit.">
+                        +'.$building_defenses.'&#x1F6E1;&#xFE0F;
+                    </strong>
                 </td>
             </tr>';
     }

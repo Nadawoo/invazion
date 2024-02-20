@@ -39,6 +39,21 @@ class HtmlItem {
     
     
     /**
+     * Display the available icon for an item (image, or emoji if no image set)
+     * 
+     * @param array $item_caracs
+     * @param int $size The dimension of the image (only one number because height = width)
+     * @return string HTML
+     */
+    public function icon($item_caracs, $size=32) {
+        
+        return ($item_caracs['icon_path'] !== null)
+                ? '<img src="../resources/img/'.$item_caracs['icon_path'].'" height="'.$size.'" width="'.$size.'" alt="'.$item_caracs['icon_symbol'].'">'
+                : $item_caracs['icon_symbol'];
+    }
+    
+    
+    /**
      * Generates the HTML for the items in the bag, bank, ground
      * (icon, name, button to use it...)
      * 

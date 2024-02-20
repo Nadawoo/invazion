@@ -243,6 +243,30 @@
     color:grey;
 }
 
+/* Column showing the buildings components in the constructions tree */
+#constructions .select-wrapper ul { /* Fix for Materialize (horizontal scroll) */
+    width:8em !important;
+}
+#constructions .components {
+    flex-direction: row;
+    gap:2px;
+    margin-left:0.3em;
+}
+#constructions .components .item_label {
+    height:1.8em;
+    width:1.8em;
+    /*background:none;*/
+}
+#constructions .components img {
+    height:24px;
+    width: 24px;
+}
+#constructions .components .dot_number {
+    background:none;
+    top:  -0.05rem;
+    right:-0.1rem;
+}
+
 /* The two bars comparing the defenses and the zombies */
 #defenses_bar {
     height:1.7em;
@@ -253,9 +277,6 @@
     font-weight:bold;
     font-variant:small-caps;
     color:white;
-}
-#defenses_bar {
-    
 }
 
 /* Foldable sections for lighter interface (e.g to hide the components in the workshop)*/
@@ -279,8 +300,8 @@
     background:none;
 }
 .foldable img {
-    height:48px;
-    width: 48px;
+    height:52px;
+    width: 52px;
     margin:0.1em 0 0 0.1em;
     border-radius:50%;
 }
