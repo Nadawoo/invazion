@@ -589,6 +589,9 @@ class HtmlCityEnclosure
     private function block_construction_resources_column($building_components, $zone_items, $items_caracs) {
         
         $htmlItem = new HtmlItem();
+        // The action points got the item ID #23 in the database
+        $ap_item_id = 23;
+        $are_all_components_stored = true;
         
         $html_resources = '';
         foreach($building_components as $item_id=>$required_amount) {
@@ -601,6 +604,10 @@ class HtmlCityEnclosure
             $zone_item_amount = isset($zone_items[$item_id]) ? $zone_items[$item_id] : 0;
             $missing_item_amount = $required_amount - $zone_item_amount;
             
+            if($missing_item_amount > 0 and $item_id !== $ap_item_id) {
+                $are_all_components_stored = false;
+            }
+            
             $html_missing_amount = $missing_item_amount;
             $background = '';
             if($missing_item_amount <= 0) {
@@ -611,6 +618,12 @@ class HtmlCityEnclosure
             $html_resources .= '<li class="item_label" style="background:'.$background.'">
                     '.$htmlItem->icon($items_caracs[$item_id]).'<span class="dot_number">'.$html_missing_amount.'</span>
                 </li>';
+        }
+        
+        if($are_all_components_stored === true) {
+            return '<div class="components" style="display:none">
+                    <button class="redbutton" style="min-width:auto">Construire...</button>
+                </div>'; 
         }
         
         return '<ul class="items_list components" style="display:none">

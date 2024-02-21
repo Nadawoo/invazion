@@ -209,7 +209,7 @@
 #constructions .item_label {
     align-items:center;
 }
-#constructions button {
+#constructions .items_list button {
     justify-content: flex-start;
     flex-wrap:wrap;
     height:96%;
@@ -222,7 +222,7 @@
     cursor:help;
 }
 /* Button combining progressbar + clickable (ex: button to give action points) */ 
-#constructions .redbutton {
+#constructions .items_list .redbutton {
     color:white;
     cursor:pointer;
 }
