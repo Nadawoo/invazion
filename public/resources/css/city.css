@@ -168,12 +168,15 @@
 }
 /* Button to hide all the city blocks */
 .close_city_blocks {
-    height:1.5em;
-    width: 1.5em;
-    font-size:1.4em;
+    position:absolute;
+    top:2.5em;
+    right:5%;
+    height:1.3em;
+    width: 1.3em;
+    font-size:2em;
     font-weight:bold;
     border:none;
-    border-radius:2em;
+    border-radius:50%;
     background:darkred;
     color:white;
 }
