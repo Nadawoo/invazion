@@ -553,19 +553,24 @@ class HtmlCityEnclosure
                                                  $building_image, $status, $child_level, 
                                                  $buildings_components, $items_caracs, $zone_items) {
         
+        // The action points got the item ID #23 in the database
+        $ap_item_id = 23;
         $components = isset($buildings_components[$building_id]) ? $buildings_components[$building_id] : [];
         arsort($components);
+        $nbr_actionpoints_needed = isset($components[$ap_item_id]) ? $components[$ap_item_id] : 0;
+        $nbr_components_needed = array_sum($components) - $nbr_actionpoints_needed;
+        $nbr_components_available = array_sum(array_intersect_key($zone_items, $components));
         
         if($status === 'achieved') {
             $bg_color    = 'darkgreen';
             $text_color  = 'lightgreen';
-            $html_status = '&check; Fini ! &nbsp;';
+            $html_status = '&check; Construit ! &nbsp;';
             $html_resources = '<span class="components" style="display:none;justify-content:center">.</span>';
         }
         elseif($status === 'in_progress') {
             $bg_color    = '';
             $text_color  = 'grey';
-            $html_status = '<a>bâtir&nbsp;<span class="arrow">&#65088;</span></a>';
+            $html_status = '<a>'.$nbr_components_available.'/'.$nbr_components_needed.' composants&nbsp;<span class="arrow">&#65088;</span></a>';
             $html_resources = $this->block_construction_resources_column($components, $zone_items, $items_caracs);
         }
         
