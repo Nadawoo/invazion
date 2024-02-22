@@ -106,6 +106,7 @@
 }
 /* 1 block for the storage, 1 for the well, etc. */
 .city_block {
+    position:relative;
     background:white;
     border-radius:0.4em;    
     margin:1em;
@@ -113,6 +114,14 @@
     width:15em;
     min-height:12em;
     box-sizing:border-box;
+}
+.city_block .icon {
+    position:absolute;
+    top: -1em;
+    left:-1em;
+    border:3px outset lightgrey;
+    border-radius:50%;
+    height:64px;
 }
 .city_block h2 {
     margin:0 0 0.5em 0;

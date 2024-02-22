@@ -124,7 +124,9 @@ class HtmlCityEnclosure
         
         return '
             <div class="city_block">
-                <h2>Réserves d\'eau</h2>
+                <img class="icon z-depth-1" src="resources/img/copyrighted/city_well.png">
+                <h2>Puits</h2>
+                <div class="descr">Buvez régulièrement de l\'eau pour ne pas mourir de soif.</div>
                 <br>
                 <br>
                 <strong style="font-size:1.8em;color:navy;">'.$well_current_water.'&nbsp;rations&nbsp;/&nbsp;50</strong>
@@ -161,6 +163,7 @@ class HtmlCityEnclosure
         }
         
         return '
+                <img class="icon z-depth-1" src="resources/img/copyrighted/city_storage.png">
                 <h2>Dépôt</h2>
                 <div class="descr">Les joueurs déposent ici les objets trouvés 
                     lors de leurs <a onclick="switchCityTab(\'city_door\')">expéditions</a>. Utilisez-les pour 
@@ -429,7 +432,11 @@ class HtmlCityEnclosure
         
         return '
             <div class="city_block" style="width:21.5em">
+                <img class="icon z-depth-1" src="resources/img/copyrighted/city_constructions.png">
                 <h2>Tous les chantiers</h2>
+                <p class="descr">Construisez les chantiers pour améliorer les défenses ou d\'autres équipements de la ville.<br>
+                    <a href="#popattack">[En savoir plus...]</a>
+                </p>
                 <table id="constructions">
                     <tr>
                         <th></th>
@@ -755,9 +762,10 @@ class HtmlCityEnclosure
         
         return '
             <div class="city_block">
-                <h2>Porte de la ville</h2>
-                <p><em>Fermez la porte le soir pour activer les défenses de la ville,
-                    mais n\'oubliez personne dehors...</em></p>
+                <img class="icon z-depth-1" src="resources/img/copyrighted/city_door.png">
+                <h2>Grande porte</h2>
+                <p class="descr">Fermez la porte de la ville chaque soir pour activer les défenses.
+                    N\'oubliez personne dehors...</p>
                 <p>' . $door_status . '</p>
                 <p>' . $door_button . '</p>
             </div>';
@@ -777,9 +785,12 @@ class HtmlCityEnclosure
         
         return '
             <div class="city_block">
+                <img class="icon z-depth-1" src="resources/img/copyrighted/city_defenses.png">
                 <h2>Défenses</h2>
                 <p class="descr">Objectif : construire suffisamment de défenses  
-                    pour repousser l\'attaque zombie de ce soir.</p>
+                    pour repousser l\'attaque zombie de ce soir.<br>
+                    <a href="#popattack">[En savoir plus...]</a>
+                </p>
                 '.$this->defenses_bar($total_defenses, $zombies_next_attack).'
                 <hr>
                 <p style="font-size:0.9em"><em>Pour augmenter les défenses, 
@@ -801,9 +812,12 @@ class HtmlCityEnclosure
         
         return '
             <div class="city_block">
-                <h2>Sortir</h2>
-                <p>Partez en exploration pour récupérer les ressources
-                    indispensables à la survie de la ville...</p>
+                <img class="icon z-depth-1" src="resources/img/copyrighted/explore.png">
+                <h2>Exploration</h2>
+                <p class="descr">Les ressources indispensables à la survie se trouvent 
+                    à l\'extérieur de la ville. Équipez-vous en eau, nourriture 
+                    et armes avant de sortir...
+                </p>
                 <p>' . $buttons->button('get_out_home') . '</p>
             </div>';
     }
@@ -854,6 +868,7 @@ class HtmlCityEnclosure
         
         return '
             <div class="city_block" style="width:21.5em">
+                <img class="icon z-depth-1" src="resources/img/copyrighted/city_workshop.png">
                 <h2>Atelier</h2>
                 <div class="descr">En assemblant des objets à l\'atelier, vous  
                     augmentez les défenses de la ville ou créez des ressources utiles 
