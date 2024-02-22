@@ -244,13 +244,18 @@
 }
 
 /* Column showing the buildings components in the constructions tree */
+#constructions .defenses {
+    width:30%;
+    text-align:center;
+    cursor:pointer;
+}
 #constructions .select-wrapper ul { /* Fix for Materialize (horizontal scroll) */
     width:8em !important;
 }
 #constructions .components {
     flex-direction: row;
     gap:2px;
-    margin-left:0.3em;
+    margin-left:0.5em;
 }
 #constructions .components .item_label {
     height:1.8em;
@@ -283,7 +288,6 @@
 .city_block .foldable {
     position:relative;
     display:flex;
-    justify-content:space-between;
     margin:0;
     padding-right:0.3em;
     border-radius:2em 0.3em 0.3em 2em;
@@ -306,12 +310,14 @@
     border-radius:50%;
 }
 .foldable .unfold_button {
+    position:absolute;
+    right:0;
+    bottom:0;
     display:flex;
     align-items:center;
     font-size:0.8em;
 }
 .foldable .arrow {
-    transform:rotate(-90deg);
     font-weight:bold;
 }
 .foldable .hierarchy {

@@ -550,7 +550,7 @@ class HtmlCityEnclosure
         elseif($status === 'in_progress') {
             $bg_color    = '';
             $text_color  = 'grey';
-            $html_status = '<a>bâtir&nbsp;<div class="arrow">&#65088;</a>';
+            $html_status = '<a>bâtir&nbsp;<span class="arrow">&#65088;</span></a>';
             $html_resources = $this->block_construction_resources_column($components, $zone_items, $items_caracs);
         }
         
@@ -560,12 +560,13 @@ class HtmlCityEnclosure
             <tr>
                 <td onclick="toggle(\'#building'.$building_id.'\');toggle(\'.defenses\', null)" class="foldable" style="margin-left:'.($child_level*1.4).'em;background:'.$bg_color.'">
                     '.str_repeat('<span class="hierarchy">├</span>', $child_level).'
-                    <h3 style="color:'.$text_color.'">
-                        <img src="'.$building_image.'" alt="icon_'.$building_id.'">&nbsp;'.$building_name.'
-                    </h3>
-                    <div class="unfold_button" style="color:'.$text_color.'">'.$html_status.'</div>
+                    <img src="'.$building_image.'" alt="icon_'.$building_id.'">
+                    <div style="display:flex;flex-direction:column;justify-content:center;">
+                        <h3 style="color:'.$text_color.'">&nbsp;'.$building_name.'</h3>
+                        <div class="unfold_button" style="color:'.$text_color.'">'.$html_status.'</div>
+                    </div>
                 </td>
-                <td class="defenses" style="text-align:center;cursor:pointer;background:'.$bg_color.';color:'.$text_color.'"
+                <td class="defenses" style="background:'.$bg_color.';color:'.$text_color.'"
                     onclick="toggle(\'#building'.$building_id.'\');toggle(\'.defenses\', null)">
                     '.$html_resources.'
                     <strong class="construction_defenses" style="color:'.$text_color.'"
