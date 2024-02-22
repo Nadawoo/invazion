@@ -53,7 +53,7 @@
 }
 #city_submenus .row {
     display:flex;
-    justify-content:flex-start;
+    justify-content:center;
 }
 #city_submenus .row .item {
     display:flex;
@@ -62,7 +62,7 @@
     overflow:hidden;
     width: 5em;
     height:5em;
-    margin:0 0.2em 0.4em 0.2em;
+    /*margin:0 0.2em 0.4em 0.2em;*/
     font-weight:bold;
     background:#ffebeb;
     background-size:contain;

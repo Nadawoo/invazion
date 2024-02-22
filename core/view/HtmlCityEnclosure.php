@@ -59,17 +59,19 @@ class HtmlCityEnclosure
         }
         else {
             $city_menu = '
-                <div class="row">
-                    '.$this->city_submenu_item('city_defenses', 'Défenses').'
+                <div class="row" style="gap:0.3em">
+                    '.$this->city_submenu_item('city_storage', 'Dépôt').'
                     '.$this->city_submenu_item('city_constructions', 'Chantiers').'
                     '.$this->city_submenu_item('city_fellows', 'Habitants').'
-                    '.$this->city_submenu_item('explore', 'Sortir<br>Explorer').'
+                    '.$this->city_submenu_item('explore', 'Explorer').'
                 </div>
-                <div class="row">
-                    '.$this->city_submenu_item('city_storage', 'Dépôt').'
+                <div class="row" style="font-size:0.7em">
+                    '.$this->city_submenu_item('city_defenses', 'Défenses').'
                     '.$this->city_submenu_item('city_well', 'Puits').'
                     '.$this->city_submenu_item('city_workshop', 'Atelier').'
-                    '.$this->city_submenu_item('city_door', 'Grande porte').'
+                    '.$this->city_submenu_item('city_door', 'Porte').'
+                    '.$this->city_submenu_item('empty', '').'
+                    '.$this->city_submenu_item('empty', '').'
                 </div>';
         }
         
@@ -88,8 +90,14 @@ class HtmlCityEnclosure
     
     private function city_submenu_item($item_alias, $item_name) {
         
-        return '<div class="item" '
-                  . 'style="background-image:url(\'resources/img/copyrighted/'.$item_alias.'.png\')" '
+        // Special images
+        if($item_alias === 'empty') {
+            return '<div class="item" style="background:none;cursor:default"></div>';
+        }
+        
+        $icon_path = ($item_alias === 'explore') ? 'free/map.png' : 'copyrighted/'.$item_alias.'.png';
+        
+        return '<div class="item" style="background-image:url(\'resources/img/'.$icon_path.'\')" '
                   . 'onclick="switchCitySubmenu(\''.$item_alias.'\')">'
                   .'<span class="label">'. $item_name .'</span>'
                 .'</div>';
