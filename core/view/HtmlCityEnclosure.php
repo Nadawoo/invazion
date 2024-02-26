@@ -437,15 +437,16 @@ class HtmlCityEnclosure
                 <p class="descr">Construisez les chantiers pour améliorer les défenses ou d\'autres équipements de la ville.<br>
                     <a href="#popattack">[En savoir plus...]</a>
                 </p>
+                
+                <p style="margin-left:0.5em;text-align:left"><strong>Filtre :</strong>
+                    <select id="constructionFilter" style="width:7em">
+                        <option value="none" selected>Aucun</option>
+                        <option value="effects">Effets du chantier</option>
+                        <option value="components">Composants manquants</option>
+                    </select>
+                </p>
+
                 <table id="constructions">
-                    <tr>
-                        <th></th>
-                        <th class="defenses">
-                            <select onchange="toggle(\'.construction_defenses\', \'block\');toggle(\'.components\', \'flex\')">
-                                <option selected>Défenses</option>
-                                <option>Composants</option>
-                        </th>
-                    </tr>
                     '.$html_constructions.'
                 </table>
             </div>';
@@ -565,7 +566,7 @@ class HtmlCityEnclosure
             $bg_color    = 'darkgreen';
             $text_color  = 'lightgreen';
             $html_status = '&check; Construit ! &nbsp;';
-            $html_resources = '<span class="components" style="display:none;justify-content:center">.</span>';
+            $html_resources = '<span class="components hidden" style="justify-content:center">.</span>';
         }
         elseif($status === 'in_progress') {
             $bg_color    = '';
@@ -578,7 +579,7 @@ class HtmlCityEnclosure
         
         return '
             <tr>
-                <td onclick="toggle(\'#building'.$building_id.'\');toggle(\'.defenses\', null)" class="foldable" style="margin-left:'.($child_level*1.4).'em;background:'.$bg_color.'">
+                <td onclick="toggle(\'#building'.$building_id.'\');hideClasses([\'defenses\'])" class="foldable" style="margin-left:'.($child_level*1.4).'em;background:'.$bg_color.'">
                     '.str_repeat('<span class="hierarchy">├</span>', $child_level).'
                     <img src="'.$building_image.'" alt="icon_'.$building_id.'">
                     <div style="display:flex;flex-direction:column;justify-content:center;">
@@ -586,10 +587,10 @@ class HtmlCityEnclosure
                         <div class="unfold_button" style="color:'.$text_color.'">'.$html_status.'</div>
                     </div>
                 </td>
-                <td class="defenses" style="background:'.$bg_color.';color:'.$text_color.'"
-                    onclick="toggle(\'#building'.$building_id.'\');toggle(\'.defenses\', null)">
+                <td class="defenses hidden" style="background:'.$bg_color.';color:'.$text_color.'"
+                    onclick="toggle(\'#building'.$building_id.'\');hideClasses([\'defenses\'])">
                     '.$html_resources.'
-                    <strong class="construction_defenses" style="color:'.$text_color.'"
+                    <strong class="construction_defenses hidden" style="color:'.$text_color.'"
                         title="Ce chantier augmente les défenses de la ville lorsqu\'il est construit.">
                         '.$html_defenses.'
                     </strong>
@@ -642,12 +643,12 @@ class HtmlCityEnclosure
         }
         
         if($are_all_components_stored === true) {
-            return '<div class="components" style="display:none">
+            return '<div class="components">
                     <button class="redbutton" style="min-width:auto">Construire...</button>
                 </div>'; 
         }
         
-        return '<ul class="items_list components" style="display:none">
+        return '<ul class="items_list components">
                     '.$html_resources.'
                 </ul>';
     }

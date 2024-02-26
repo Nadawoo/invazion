@@ -108,6 +108,27 @@ if (document.getElementById('map') !== null) {
     if(document.querySelector("#city_iso") !== null) {
         document.querySelector("#city_iso .discuss").addEventListener("click", enlargeWall);
     }
+    
+    // Filter the list of constructions inside the city (by defenses, by resources, etc.)
+    // NB: don't use an HTML ID on <select> because Materialize.css would overwrite it.
+    // See https://stackoverflow.com/questions/35786433/how-to-listen-on-select-change-events-in-materialize-css
+    var elem = document.querySelector("#city_constructions select");
+    elem.addEventListener("change", function() {
+        let selectedValue = elem.value;
+        if(selectedValue === "none") {
+            hideClasses(["defenses"], "constructions");
+        } else if(selectedValue === "effects") {
+            unhideClasses(["defenses"], "constructions");
+            unhideClasses(["construction_defenses"]);
+            hideClasses(["components"]);
+        } else if(selectedValue === "components") {
+            unhideClasses(["defenses"], "constructions");
+            unhideClasses(["components"]);
+            hideClasses(["construction_defenses"]);
+        } else {
+            console.log("Error: unknown option value ('"+selectedValue+"') in #city_constructions <select>");
+        }
+    });
 }
 
 // If the player is connected

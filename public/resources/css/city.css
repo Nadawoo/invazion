@@ -261,8 +261,9 @@
     text-align:center;
     cursor:pointer;
 }
-#constructions .select-wrapper ul { /* Fix for Materialize (horizontal scroll) */
-    width:8em !important;
+#city_constructions .select-wrapper {
+    display:inline-block;
+    width:65%;
 }
 #constructions .components {
     flex-direction: row;
