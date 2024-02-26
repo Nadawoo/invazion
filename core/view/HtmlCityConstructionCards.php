@@ -94,14 +94,15 @@ class HtmlCityConstructionCards
             : $card_contents = $this->missing_resources($items_missing, $total_items_missing, $items_caracs);
         
         // Set default building image if not defined
-        $building_image = '../resources/img/copyrighted/buildings/'.$building_id.'.png';
-        $building_image = is_file($building_image) ? $building_image : '../resources/img/copyrighted/buildings/104.png';
+        $building_image = ((string)$construction_caracs['icon_path'] !== '')
+                            ? $construction_caracs['icon_path']
+                            : 'copyrighted/buildings/104.png';
 
         return '
             <div class="city_block">
                 <div class="contents">
                     <h3 style="margin-top:0.5em;height:2.2em;color:black;text-align:center;font-size:1.3em;letter-spacing:normal;">
-                        <img src="'.$building_image.'" style="border-radius:50%"
+                        <img src="../resources/img/'.$building_image.'" style="border-radius:50%"
                              height="48" width="48" alt="icon">&nbsp;
                         '.$construction_name.'
                     </h3>

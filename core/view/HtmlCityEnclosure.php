@@ -481,7 +481,7 @@ class HtmlCityEnclosure
             // ID of the "Action points" item in the database
             $ap_item_id = 23;
             // Set default building image if not defined
-            $building_image = ((string)$building['icon_path'] !== '') ? $building['icon_path'] : '../resources/img/copyrighted/buildings/104.png';
+            $building_image = ((string)$building['icon_path'] !== '') ? $building['icon_path'] : 'copyrighted/buildings/104.png';
             $building_descr = ((string)$building['descr_ambiance'] !== '') ? $building['descr_ambiance'] : '<span class="grey-text">(Pas de description pour le moment)</span>';
             // Determine if the construction is completed
             $status = in_array($building_id, $completed_buildings_ids) ? 'achieved' : 'in_progress';
@@ -581,7 +581,7 @@ class HtmlCityEnclosure
             <tr>
                 <td onclick="toggle(\'#building'.$building_id.'\');hideClasses([\'defenses\'])" class="foldable" style="margin-left:'.($child_level*1.4).'em;background:'.$bg_color.'">
                     '.str_repeat('<span class="hierarchy">├</span>', $child_level).'
-                    <img src="'.$building_image.'" alt="icon_'.$building_id.'">
+                    <img src="../resources/img/'.$building_image.'" alt="icon_'.$building_id.'">
                     <div style="display:flex;flex-direction:column;justify-content:center;">
                         <h3 style="color:'.$text_color.'">&nbsp;'.$building_name.'</h3>
                         <div class="unfold_button" style="color:'.$text_color.'">'.$html_status.'</div>
