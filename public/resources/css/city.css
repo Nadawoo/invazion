@@ -301,6 +301,7 @@
 .city_block .foldable {
     position:relative;
     display:flex;
+    height:4em;
     margin:0;
     padding-right:0.3em;
     border-radius:2em 0.3em 0.3em 2em;
@@ -317,9 +318,9 @@
     background:none;
 }
 .foldable img {
-    height:52px;
-    width: 52px;
-    margin:0.1em 0 0 0.1em;
+    height:48px;
+    width: 48px;
+    margin:0.5em 0 0 0.1em;
     border-radius:50%;
 }
 .foldable .unfold_button {
