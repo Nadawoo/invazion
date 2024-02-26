@@ -101,3 +101,27 @@ function listenToMapDragging() {
     
     return sb;
 }
+
+
+/**
+ * Filter the list of constructions inside the city (by defenses, by resources, etc.)
+ * 
+ * @param {string} selectedValue The HTML value of the <option> selected 
+ *                               in the <select> menu
+ * @returns {undefined}
+ */
+function filterConstructions(selectedValue) {
+    if(selectedValue === "none") {
+        hideClasses(["defenses"], "constructions");
+    } else if(selectedValue === "effects") {
+        unhideClasses(["defenses"], "constructions");
+        unhideClasses(["construction_defenses"]);
+        hideClasses(["components"]);
+    } else if(selectedValue === "components") {
+        unhideClasses(["defenses"], "constructions");
+        unhideClasses(["components"]);
+        hideClasses(["construction_defenses"]);
+    } else {
+        console.log("Error: unknown option value ('"+selectedValue+"') in #city_constructions <select>");
+    }
+}
