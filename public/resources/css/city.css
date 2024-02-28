@@ -220,7 +220,7 @@
 #constructions .items_list {
     flex-direction: column;
     gap:4px;
-    padding:0.3em 0;
+    padding:1em 0;
     /*background:#fbeee6;*/
 }
 #constructions .item_label {
@@ -288,6 +288,10 @@
     background:none;
     top:  -0.05rem;
     right:-0.1rem;
+}
+
+#constructions ul ul li {
+    margin:0.5em 0 0.5em 1em;
 }
 
 /* The two bars comparing the defenses and the zombies */

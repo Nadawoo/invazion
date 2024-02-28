@@ -486,6 +486,10 @@ class HtmlCityEnclosure
             // Determine if the construction is completed
             $status = in_array($building_id, $completed_buildings_ids) ? 'achieved' : 'in_progress';
             
+            $building_effects = ($building['defenses'] > 0)
+                                ? '<ul><li>&#x1F6E1;&#xFE0F; Ce chantier apporte <strong>'.$building['defenses'].' défenses</strong> à la ville une fois construit.</li></ul>'
+                                : '';
+            
             // If the construction is achieved
             if($status === 'achieved') { 
                 $html_components = '&#9989; <em>Ce chantier est déjà construit !</em>';
@@ -509,7 +513,8 @@ class HtmlCityEnclosure
                             <li class="tab"><a href="#tabResources'.$building_id.'">Composants</a></li>
                         </ul>
                         <ul class="items_list" id="tabDescr'.$building_id.'">
-                            <li>'.$building_descr.'</li>
+                            <li><em>'.$building_descr.'</em></li>
+                            '.$building_effects.'
                         </ul>
                         <ul class="items_list" id="tabResources'.$building_id.'">
                             ' . $html_components . '
