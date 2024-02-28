@@ -287,8 +287,9 @@
 }
 #constructions .components .dot_number {
     background:none;
-    top:  -0.05rem;
-    right:-0.1rem;
+    top:  0rem;
+    right:1px;
+    text-align: right;
 }
 
 #constructions ul ul li {
