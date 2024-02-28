@@ -441,8 +441,8 @@ class HtmlCityEnclosure
                 <p style="margin-left:0.5em;text-align:left"><strong>Filtre :</strong>
                     <select id="constructionFilter" style="width:7em">
                         <option value="none" selected>Aucun</option>
-                        <option value="effects">Effets du chantier</option>
                         <option value="components">Composants manquants</option>
+                        <option value="effects">Effets du chantier</option>
                     </select>
                 </p>
 
@@ -488,7 +488,7 @@ class HtmlCityEnclosure
             
             // If the construction is achieved
             if($status === 'achieved') { 
-                $html_components = '<em style="font-size:0.9em">Ce chantier est déjà construit !</em>';
+                $html_components = '&#9989; <em>Ce chantier est déjà construit !</em>';
             }
             else {
                 // Put the action points apart of the other resources
@@ -563,14 +563,14 @@ class HtmlCityEnclosure
         $nbr_components_available = array_sum(array_intersect_key($zone_items, $components));
         
         if($status === 'achieved') {
-            $bg_color    = 'darkgreen';
+            $bg_color    = 'green';
             $text_color  = 'lightgreen';
-            $html_status = '&check; Construit ! &nbsp;';
+            $html_status = '&check; Construit !';
             $html_resources = '<span class="components hidden" style="justify-content:center">.</span>';
         }
         elseif($status === 'in_progress') {
             $bg_color    = '';
-            $text_color  = 'grey';
+            $text_color  = '#263238';
             $html_status = '<a>'.$nbr_components_available.'/'.$nbr_components_needed.' composants&nbsp;<span class="arrow">&#65088;</span></a>';
             $html_resources = $this->block_construction_resources_column($components, $zone_items, $items_caracs);
         }
@@ -584,7 +584,7 @@ class HtmlCityEnclosure
                     <img src="../resources/img/'.$building_image.'" alt="icon_'.$building_id.'">
                     <div style="display:flex;flex-direction:column;justify-content:center;">
                         <h3 style="color:'.$text_color.'">&nbsp;'.$building_name.'</h3>
-                        <div class="unfold_button" style="color:'.$text_color.'">'.$html_status.'</div>
+                        <div class="unfold_button" style="color:'.$text_color.'">'.$html_status.' &nbsp;</div>
                     </div>
                 </td>
                 <td class="defenses hidden" style="background:'.$bg_color.';color:'.$text_color.'"

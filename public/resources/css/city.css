@@ -162,7 +162,8 @@
     color:navy;
     font-size:1em;
     text-align:left;
-    letter-spacing: 0.02em;  
+    letter-spacing: 0.02em;
+    font-weight:bold;
 }
 .city_block table {
     margin:0 0.1em;
@@ -309,7 +310,7 @@
     margin:0;
     padding-right:0.3em;
     border-radius:2em 0.3em 0.3em 2em;
-    background:lightgrey;
+    background:sandybrown;
     cursor:pointer;
     box-shadow:2px 2px 3px black;
 }
