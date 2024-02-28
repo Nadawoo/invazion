@@ -124,21 +124,25 @@
     height:64px;
 }
 .city_block h2 {
-    margin:0 0 0.5em 0;
-    padding:0.2em;
-    border-bottom:1px solid grey;
+    margin:0;
+    padding:0.3em 0.2em;
+    border-top:1px solid lightgrey;
     border-radius:0.3em 0.3em 0 0; 
     font-size:1.5em;
-    color:grey;
-    background:lightgrey;   
+    background:#34495e;
+    color:white;
     font-variant:small-caps;
+    box-shadow:4px 4px 8px black;
 }
 .city_block .descr {
-    margin:0 0.2em 1em 0.2em;
-    padding-bottom:0.5em;
+    margin: 0.8em 0.3em 1.5em 0.3em;
+    padding:0.5em 0.2em;
     font-size:0.85em;
     font-style:italic;
-    border-bottom:1px solid grey;
+    /*border-bottom:1px solid grey;*/
+    border-radius: 0.8em 0.8em;
+    background:#fbeee6;
+    box-shadow:4px 4px 8px black;
 }
 /* Contenu du bloc, sous le titre du bloc */
 .city_block .contents {
