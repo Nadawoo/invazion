@@ -693,7 +693,7 @@ function switchToActionView() {
     display(["actions_panel"]);
     changeDisplayValue("personal_block_wrapper", "flex");
     // Hide some elements of the GUI to make the interface look lighter
-    hide(["attack_bar", "map_navigation", "floating_wall"]);
+    hide(["map_navigation", "game_footer"]);
     hideClasses(["nbr_defenses", "bubble"]);
     // Display the button which switches to the Map mode
     hide(["action_mode_button"]);
@@ -711,7 +711,7 @@ function switchToMapView() {
     // Hide the actions panel in large mode
     hide(["actions_panel", "personal_block_wrapper"]);
     // Display again the general elements of the GUI
-    changeDisplayValue(["attack_bar", "map_navigation", "floating_wall"], "flex");
+    changeDisplayValue(["map_navigation", "game_footer"], "flex");
     unhideClasses(["nbr_defenses", "bubble"]);
     // Display the button which switches to the Action mode
     hide(["map_mode_button"]);

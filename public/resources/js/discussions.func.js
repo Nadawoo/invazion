@@ -29,7 +29,7 @@ async function callDiscussionApiOnce(topicType, refresh=false) {
 async function enlargeWall() {
     
     let minBarHeight = "2.5rem",
-        maxBarHeight = "100%";
+        maxBarHeight = "100vh";
 
     if (document.querySelector("#floating_wall").style.height !== maxBarHeight) {
         // Enlarges the panel

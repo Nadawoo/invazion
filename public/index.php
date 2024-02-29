@@ -439,17 +439,14 @@ echo $html['json_configs'];
         echo $layout->block_create_citizen();
     } ?>
     
-    
-    
-
-    
-    <section id="floating_wall">
-        <?php echo $wall->wall() ?>
+    <section id="game_footer">
+        <div id="floating_wall">
+            <?php echo $wall->wall() ?>
+        </div>
+        <div id="attack_bar">
+            <?php echo $html['attack_bar'] ?>
+        </div>
     </section>
-    
-    <section id="attack_bar">
-        <?php echo $html['attack_bar'] ?>
-    </section>  
 
 </div>
     

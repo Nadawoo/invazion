@@ -6,9 +6,10 @@
  * For the wall displayed on the global interface (not in the city interface)
  */
 #floating_wall {
-    position:fixed;
+    position:absolute;
     bottom:0;
-    height:2.5rem;
+    height:0;
+    overflow:auto;
     width:24.6rem;
     margin-left:26.2rem;
     border-top-left-radius:1rem;
@@ -62,7 +63,7 @@
 #wall .contents {
     display:flex;
     flex-direction:column;
-    height:100%;
+    height:97%; /* Not 100% because the "Communications" header needs space too. Ugly fix. */
     text-align:left;
 }
 #wall .body {
@@ -70,7 +71,7 @@
     overflow:auto;
 }
 #wall .footer {
-    padding:0.5rem 0 2rem 0;
+    padding:0.5rem 0 0 0;
     border-top:1px solid grey;
 }
 #wall .footer .discuss {
@@ -82,7 +83,11 @@
     padding:1em 0 1em 1em;
     box-sizing: border-box;
     border-width: 2px !important;
+    border-color: darkred !important;
     height:3em !important;
+}
+#buttonNewTopic::placeholder {
+  color: darkred;
 }
 #hideSendform {
     display:block;
