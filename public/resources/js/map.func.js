@@ -687,8 +687,8 @@ function centerMapOnMe() {
  */
 function switchToActionView() {
     // Zoom the map on the player
-    zoomMapRange(400);
-    setTimeout(() => centerMapOnMe(), 500);
+    zoomMapRange(220);
+    setTimeout(() => centerMapOnMe(), 2000);
     // Display the actions panel (dig...)
     display(["actions_panel"]);
     changeDisplayValue("personal_block_wrapper", "flex");

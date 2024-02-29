@@ -11,7 +11,7 @@ class HtmlPage
     // Increment those variables when you modify the CSS or JS files. This ensures
     // that the users' browsers reload the up-to-date files, instead of using 
     // the obsolete ones stored in their cache.
-    private $css_version = 33.7;
+    private $css_js_version = 34;
     private $js_version  = 33;
     
     /**
@@ -93,15 +93,15 @@ class HtmlPage
                 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
                 
                 <link rel="stylesheet" type="text/css" href="resources/css/materialize.min.css" media="screen,projection"/>
-                <link rel="stylesheet" type="text/css" href="resources/css/sitelayout.css?v'.$this->css_version.'">
-                <link rel="stylesheet" type="text/css" href="resources/css/gamelayout.css?v'.$this->css_version.'">
-                <link rel="stylesheet" type="text/css" href="resources/css/map.css?v'.$this->css_version.'">
-                <link rel="stylesheet" type="text/css" href="resources/css/smartphone.css?v'.$this->css_version.'">
-                <link rel="stylesheet" type="text/css" href="resources/css/city.css?v'.$this->css_version.'">
-                <link rel="stylesheet" type="text/css" href="resources/css/cityiso.css?v'.$this->css_version.'">
-                <link rel="stylesheet" type="text/css" href="resources/css/wall.css?v'.$this->css_version.'">
-                <link rel="stylesheet" type="text/css" href="resources/css/popup.css?v'.$this->css_version.'">
-                <link rel="stylesheet" type="text/css" href="resources/css/responsive.css?v'.$this->css_version.'">
+                <link rel="stylesheet" type="text/css" href="resources/css/sitelayout.css?v'.$this->css_js_version.'">
+                <link rel="stylesheet" type="text/css" href="resources/css/gamelayout.css?v'.$this->css_js_version.'">
+                <link rel="stylesheet" type="text/css" href="resources/css/map.css?v'.$this->css_js_version.'">
+                <link rel="stylesheet" type="text/css" href="resources/css/smartphone.css?v'.$this->css_js_version.'">
+                <link rel="stylesheet" type="text/css" href="resources/css/city.css?v'.$this->css_js_version.'">
+                <link rel="stylesheet" type="text/css" href="resources/css/cityiso.css?v'.$this->css_js_version.'">
+                <link rel="stylesheet" type="text/css" href="resources/css/wall.css?v'.$this->css_js_version.'">
+                <link rel="stylesheet" type="text/css" href="resources/css/popup.css?v'.$this->css_js_version.'">
+                <link rel="stylesheet" type="text/css" href="resources/css/responsive.css?v'.$this->css_js_version.'">
                 ' . $css_link . '
                 <title>'.$metas['page_title'].'</title>
             </head>
@@ -154,18 +154,18 @@ class HtmlPage
 
                         <script type="text/javascript" src="resources/js/lib/materialize.min.js"></script>
                         <script type="text/javascript" src="resources/js/lib/scrollbooster.min.js"></script>
-                        <script type="text/javascript" src="resources/js/ZombLib.js?v'.$this->js_version.'"></script>
-                        <script type="text/javascript" src="resources/js/cookies.func.js?v'.$this->js_version.'"></script>
-                        <script type="text/javascript" src="resources/js/map.func.js?v'.$this->js_version.'"></script>
-                        <script type="text/javascript" src="resources/js/tooltips.func.js?v'.$this->js_version.'"></script>
-                        <script type="text/javascript" src="resources/js/wallTemplate.js?v'.$this->js_version.'"></script>
-                        <script type="text/javascript" src="resources/js/actionBlocks.func.js?v'.$this->js_version.'"></script>
-                        <script type="text/javascript" src="resources/js/cityEnclosure.func.js?v'.$this->js_version.'"></script>
-                        <script type="text/javascript" src="resources/js/discussions.func.js?v'.$this->js_version.'"></script>
-                        <script type="text/javascript" src="resources/js/events.func.js?v'.$this->js_version.'"></script>
-                        <script type="text/javascript" src="resources/js/misc.func.js?v'.$this->js_version.'"></script>
-                        <script type="text/javascript" src="resources/js/onPageLoad.js?v'.$this->js_version.'"></script>
-                        <script type="text/javascript" src="resources/js/events.js?v'.$this->js_version.'"></script>
+                        <script type="text/javascript" src="resources/js/ZombLib.js?v'.$this->css_js_version.'"></script>
+                        <script type="text/javascript" src="resources/js/cookies.func.js?v'.$this->css_js_version.'"></script>
+                        <script type="text/javascript" src="resources/js/map.func.js?v'.$this->css_js_version.'"></script>
+                        <script type="text/javascript" src="resources/js/tooltips.func.js?v'.$this->css_js_version.'"></script>
+                        <script type="text/javascript" src="resources/js/wallTemplate.js?v'.$this->css_js_version.'"></script>
+                        <script type="text/javascript" src="resources/js/actionBlocks.func.js?v'.$this->css_js_version.'"></script>
+                        <script type="text/javascript" src="resources/js/cityEnclosure.func.js?v'.$this->css_js_version.'"></script>
+                        <script type="text/javascript" src="resources/js/discussions.func.js?v'.$this->css_js_version.'"></script>
+                        <script type="text/javascript" src="resources/js/events.func.js?v'.$this->css_js_version.'"></script>
+                        <script type="text/javascript" src="resources/js/misc.func.js?v'.$this->css_js_version.'"></script>
+                        <script type="text/javascript" src="resources/js/onPageLoad.js?v'.$this->css_js_version.'"></script>
+                        <script type="text/javascript" src="resources/js/events.js?v'.$this->css_js_version.'"></script>
                     </div>
                 </body>
             </html>';
