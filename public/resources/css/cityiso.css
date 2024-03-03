@@ -45,6 +45,8 @@
 #city_iso table {
     /* Rotates the map to make it isometric */
     transform: rotateX(55deg) rotateZ(45deg);
+    /* Avoid compressing the city on thin screens */
+    width: 50em;
     border-collapse: collapse;
     background-image:url('http://invaziongame.localhost/resources/img/motiontwin/mapBg.jpg');
     background-repeat: no-repeat;
