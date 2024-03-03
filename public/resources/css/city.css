@@ -328,11 +328,15 @@
 .foldable ::selection {
     background:none;
 }
-.foldable img {
+.foldable .item_icon {
     height:48px;
     width: 48px;
-    margin:0.5em 0 0 0.1em;
+    margin:0.5rem 0 0 0.1rem;
+    background:#fbeee6;
     border-radius:50%;
+    /* For textual icons (HTML entity) */
+    text-align:center;
+    font-size:2em;
 }
 .foldable .unfold_button {
     position:absolute;

@@ -24,6 +24,6 @@ function get_item_icon($icon_path, $icon_html, $icon_size=null) {
     }
     else {
         // The "?" emoji
-        return '&#10067;';
+        return '<span class="item_icon">&#10067;</span>';
     }
 }

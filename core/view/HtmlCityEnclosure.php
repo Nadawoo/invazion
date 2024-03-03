@@ -1,4 +1,7 @@
 <?php
+safely_require('/core/controller/get_item_icon.php');
+
+
 /**
  * Génère les éléments de l'intérieur de la ville
  */
@@ -480,8 +483,7 @@ class HtmlCityEnclosure
         foreach ($buildings_caracs as $building_id=>$building) {
             // ID of the "Action points" item in the database
             $ap_item_id = 23;
-            // Set default building image if not defined
-            $building_image = ((string)$building['icon_path'] !== '') ? $building['icon_path'] : 'copyrighted/buildings/104.png';
+            // Set default building description if not defined
             $building_descr = ((string)$building['descr_ambiance'] !== '') ? $building['descr_ambiance'] : '<span class="grey-text">(Pas de description pour le moment)</span>';
             // Determine if the construction is completed
             $status = in_array($building_id, $completed_buildings_ids) ? 'achieved' : 'in_progress';
@@ -504,7 +506,8 @@ class HtmlCityEnclosure
             }
             
             $html_constructions .= 
-                $this->block_construction_foldable($building_id, $building['name'], $building['defenses'], $building_image, 
+                $this->block_construction_foldable($building_id, $building['name'], $building['defenses'],
+                                                   $building['icon_path'], $building['icon_html'], 
                                                    $status, $child_level, $buildings_components, $items_caracs, $zone_items).'
                 <tr id="building'.$building_id.'" class="folded">
                     <td>
@@ -547,7 +550,8 @@ class HtmlCityEnclosure
      * @param int $building_id
      * @param string $building_name
      * @param int $building_defenses
-     * @param string $building_image
+     * @param string $building_icon_path
+     * @param string $building_icon_html
      * @param array $status The progression of the construction: 
      *                      "in_progress" or "achieved"
      * @param int $child_level The number of parent constructions above the given construction
@@ -556,7 +560,8 @@ class HtmlCityEnclosure
      * @return string HTML
      */
     private function block_construction_foldable($building_id, $building_name, $building_defenses, 
-                                                 $building_image, $status, $child_level, 
+                                                 $building_icon_path, $building_icon_html, 
+                                                 $status, $child_level, 
                                                  $buildings_components, $items_caracs, $zone_items) {
         
         // The action points got the item ID #23 in the database
@@ -581,12 +586,13 @@ class HtmlCityEnclosure
         }
         
         $html_defenses = ($building_defenses > 0) ? '+'.$building_defenses.'&#x1F6E1;&#xFE0F;' : '.';
+        $building_image = get_item_icon($building_icon_path, $building_icon_html);
         
         return '
             <tr>
                 <td onclick="toggle(\'#building'.$building_id.'\');hideClasses([\'defenses\'])" class="foldable" style="margin-left:'.($child_level*1.4).'em;background:'.$bg_color.'">
                     '.str_repeat('<span class="hierarchy">├</span>', $child_level).'
-                    <img src="../resources/img/'.$building_image.'" alt="icon_'.$building_id.'">
+                    '.$building_image.'
                     <div style="display:flex;flex-direction:column;justify-content:center;">
                         <h3 style="color:'.$text_color.'">&nbsp;'.$building_name.'</h3>
                         <div class="unfold_button" style="color:'.$text_color.'">'.$html_status.' &nbsp;</div>
@@ -987,9 +993,7 @@ class HtmlCityEnclosure
         $progress = round($available_amount/max(1, $required_amount) * 100);
         $progressbar_color = ($progress >= 100) ? "lightgreen" : $progressbar_unfilled_color;
         
-        $item_icon = ($item_caracs['icon_path'] === null)
-                    ? $item_caracs['icon_symbol']
-                    : '<img src="resources/img/'.$item_caracs['icon_path'].'" width="32" height="32" alt="'.$item_caracs['name'].'">';
+        $item_icon = get_item_icon($item_caracs['icon_path'], $item_caracs['icon_symbol'], 32);
         
         return '
             <li style="display:flex;position:relative;height:3em" title="'.$title.'">
