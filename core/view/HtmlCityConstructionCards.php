@@ -1,5 +1,6 @@
 <?php
 safely_require('/core/controller/get_missing_items.php');
+safely_require('/core/controller/get_item_icon.php');
 
 
 /**
@@ -80,32 +81,20 @@ class HtmlCityConstructionCards
         // Keep only the "real" resources, excluding action points (wood, metal...)
         unset($construction_components[$ap_item_id]);
         
-        // From all the resources available in the city storage, keep only the ones 
-        // useful for the construction
-        $items_available = array_intersect_key($items_in_storage, $construction_components);
-        $items_missing = get_missing_items($construction_components, $items_available);
-        
-        // Total amount of missing items
-        $total_items_missing = array_sum($items_missing);
+        // Missing resources and action points
+        $items_missing = get_missing_items($construction_components, $items_in_storage);
         $total_AP_missing = $action_points_needed - $AP_invested_in_construction;
         
-        $card_contents = ($total_items_missing === 0)
+        $card_contents = (array_sum($items_missing) === 0)
             ? $this->missing_actionpoints($total_AP_missing, $building_id)
-            : $card_contents = $this->missing_resources($items_missing, $total_items_missing, $items_caracs);
+            : $card_contents = $this->missing_resources($items_missing, $items_caracs);
         
-        // Set default building image if not defined
-        $building_image = ((string)$construction_caracs['icon_path'] !== '')
-                            ? $construction_caracs['icon_path']
-                            : 'copyrighted/buildings/104.png';
-
+        $building_image = get_item_icon($construction_caracs['icon_path'], $construction_caracs['icon_html']);
+        
         return '
-            <div class="city_block">
+            <div class="city_block construction_card">
                 <div class="contents">
-                    <h3 style="margin-top:0.5em;height:2.2em;color:black;text-align:center;font-size:1.3em;letter-spacing:normal;">
-                        <img src="../resources/img/'.$building_image.'" style="border-radius:50%"
-                             height="48" width="48" alt="icon">&nbsp;
-                        '.$construction_name.'
-                    </h3>
+                    <h3>'.$building_image.'&nbsp; '.$construction_name.'</h3>
                     '.$card_contents.'
                 </div>
             </div>';
@@ -116,23 +105,19 @@ class HtmlCityConstructionCards
      * HTML for the items missing to build a defense building
      * 
      * @param array $items_missing
-     * @param int $total_items_missing
      * @param array $items_caracs
      * @return string HTML
      */
-    private function missing_resources($items_missing, $total_items_missing, $items_caracs) {
+    private function missing_resources($items_missing, $items_caracs) {
         
-        
+        $nbr_items_missing = array_sum($items_missing);
         $missing_items_icons = '';
         
         foreach($items_missing as $item_id=>$missing_amount) {            
             // Handles the anormal case where the resource needed is not 
             // in the list of items set for the current game 
             $item_caracs = isset($items_caracs[$item_id]) ? $items_caracs[$item_id] : set_default_variables('item');
-            
-            $item_icon = ($item_caracs['icon_path'] === null)
-                        ? $item_caracs['icon_symbol']
-                        : '<img src="resources/img/'.$item_caracs['icon_path'].'" width="32" height="32" alt="icon">';
+            $item_icon = get_item_icon($item_caracs['icon_path'], $item_caracs['icon_symbol'], 32);
             
             $missing_items_icons .= '
                 <span title="'.$item_caracs['name'].'">'.$item_icon.'x'.$missing_amount.'<span> ';
@@ -140,7 +125,7 @@ class HtmlCityConstructionCards
         
         return '
             <p>&#10060; Pour construire ce chantier, ajoutez 
-                <strong>'.$total_items_missing.' objets</strong> 
+                <strong>'.$nbr_items_missing.' objets</strong> 
                 <a href="#" onclick="switchCitySubmenu(\'city_storage\')">au dépôt</a> :</p>
             <p style="font-weight:bold;color:red">'.$missing_items_icons.'</p>';
     }

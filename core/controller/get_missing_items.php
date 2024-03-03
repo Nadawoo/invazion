@@ -14,8 +14,11 @@
 *               The amount is 0 when all the required amount is available.
 */
 function get_missing_items($items_needed, $items_available) {
-
-   $items_missing = [];
+    
+    // From all the resources available in the zone, keep only the ones 
+    // useful for the construction
+    $items_available = array_intersect_key($items_available, $items_needed);
+    $items_missing = [];
 
    // TODO: this naive foreach could be avoided by using array_map(), but 
    // array_map() doesn't preserves the keys (item ID). Try to improve this:

@@ -356,6 +356,19 @@
     margin:0 0.2em 1.5em 0;
 }
 
+/* Suggestions of constructions */
+.construction_card h3 {
+    margin-top:0.5em;
+    height:2.2em;
+    color:black;
+    text-align:center;
+    font-size:1.3em;
+    letter-spacing:normal;
+}
+.construction_card h3 .item_icon {
+    border-radius:50%;
+}
+
 /* Liste des habitants de la ville */
 #citizens_list {
     display:flex;
