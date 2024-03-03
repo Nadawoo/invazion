@@ -1,7 +1,4 @@
 <?php
-safely_require('/core/controller/get_item_icon.php');
-
-
 /**
  * Génère les éléments de l'intérieur de la ville
  */
@@ -564,6 +561,7 @@ class HtmlCityEnclosure
                                                  $status, $child_level, 
                                                  $buildings_components, $items_caracs, $zone_items) {
         
+        $htmlItem = new HtmlItem();
         // The action points got the item ID #23 in the database
         $ap_item_id = 23;
         $components = isset($buildings_components[$building_id]) ? $buildings_components[$building_id] : [];
@@ -586,7 +584,7 @@ class HtmlCityEnclosure
         }
         
         $html_defenses = ($building_defenses > 0) ? '+'.$building_defenses.'&#x1F6E1;&#xFE0F;' : '.';
-        $building_image = get_item_icon($building_icon_path, $building_icon_html);
+        $building_image = $htmlItem->icon($building_icon_path, $building_icon_html);
         
         return '
             <tr>
@@ -648,8 +646,10 @@ class HtmlCityEnclosure
                 $background = 'lightgreen';
             }
             
+            $item_icon = $htmlItem->icon($items_caracs[$item_id]['icon_path'], $items_caracs[$item_id]['icon_symbol']);
+            
             $html_resources .= '<li class="item_label" style="background:'.$background.'">
-                    '.$htmlItem->icon($items_caracs[$item_id]).'<span class="dot_number">'.$html_missing_amount.'</span>
+                    '.$item_icon.'<span class="dot_number">'.$html_missing_amount.'</span>
                 </li>';
         }
         
@@ -953,6 +953,7 @@ class HtmlCityEnclosure
                                       $comment_for, $building_id=null)
     {
         
+        $htmlItem = new HtmlItem();
         $button_name = $item_caracs['name'];
         $disabled = 'disabled';
         $redbutton = '';
@@ -993,7 +994,7 @@ class HtmlCityEnclosure
         $progress = round($available_amount/max(1, $required_amount) * 100);
         $progressbar_color = ($progress >= 100) ? "lightgreen" : $progressbar_unfilled_color;
         
-        $item_icon = get_item_icon($item_caracs['icon_path'], $item_caracs['icon_symbol'], 32);
+        $item_icon = $htmlItem->icon($item_caracs['icon_path'], $item_caracs['icon_symbol'], 32);
         
         return '
             <li style="display:flex;position:relative;height:3em" title="'.$title.'">

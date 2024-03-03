@@ -1,6 +1,5 @@
 <?php
 safely_require('/core/controller/get_missing_items.php');
-safely_require('/core/controller/get_item_icon.php');
 
 
 /**
@@ -74,6 +73,7 @@ class HtmlCityConstructionCards
                           $construction_caracs, $construction_components,
                           $building_id, $AP_invested_in_construction) {
         
+        $htmlItem = new HtmlItem();
         $construction_name = $construction_caracs['name'];
         // ID #23 = the ID of the action points (treated as an ordinary resource)
         $ap_item_id = 23;
@@ -89,7 +89,7 @@ class HtmlCityConstructionCards
             ? $this->missing_actionpoints($total_AP_missing, $building_id)
             : $card_contents = $this->missing_resources($items_missing, $items_caracs);
         
-        $building_image = get_item_icon($construction_caracs['icon_path'], $construction_caracs['icon_html']);
+        $building_image = $htmlItem->icon($construction_caracs['icon_path'], $construction_caracs['icon_html'], 48);
         
         return '
             <div class="city_block construction_card">
@@ -110,6 +110,7 @@ class HtmlCityConstructionCards
      */
     private function missing_resources($items_missing, $items_caracs) {
         
+        $htmlItem = new HtmlItem();
         $nbr_items_missing = array_sum($items_missing);
         $missing_items_icons = '';
         
@@ -117,7 +118,7 @@ class HtmlCityConstructionCards
             // Handles the anormal case where the resource needed is not 
             // in the list of items set for the current game 
             $item_caracs = isset($items_caracs[$item_id]) ? $items_caracs[$item_id] : set_default_variables('item');
-            $item_icon = get_item_icon($item_caracs['icon_path'], $item_caracs['icon_symbol'], 32);
+            $item_icon = $htmlItem->icon($item_caracs['icon_path'], $item_caracs['icon_symbol'], 32);
             
             $missing_items_icons .= '
                 <span title="'.$item_caracs['name'].'">'.$item_icon.'x'.$missing_amount.'<span> ';

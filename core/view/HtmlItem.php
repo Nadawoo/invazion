@@ -39,17 +39,32 @@ class HtmlItem {
     
     
     /**
-     * Display the available icon for an item (image, or emoji if no image set)
+     * Gives the image (PNG, JPG...) of an item or construction, or its textual icon 
+     * (HTML entity or emoji), or a default icon.
      * 
-     * @param array $item_caracs
-     * @param int $size The dimension of the image (only one number because height = width)
-     * @return string HTML
+     * @param string $icon_path The path to the image icon, from /resources/img/
+     *                          Ex: "copyrighted/buildings/104.png"
+     * @param string $icon_html The HTML entity or emoji of the icon
+     *                          Ex : "&#127751;"
+     * @param int $icon_size The dimension of the image in px, ex: "32"
+     *                       Only one number because height = width.
+     * @return string
      */
-    public function icon($item_caracs, $size=32) {
+    public function icon($icon_path, $icon_html, $icon_size=32) {
         
-        return ($item_caracs['icon_path'] !== null)
-                ? '<img src="../resources/img/'.$item_caracs['icon_path'].'" height="'.$size.'" width="'.$size.'" alt="'.$item_caracs['icon_symbol'].'">'
-                : $item_caracs['icon_symbol'];
+        $size = ($icon_size !== null) ? $icon_size : 48;
+    
+        if($icon_path !== null and $icon_path !== '') {
+            return  '<img src="../resources/img/'.$icon_path.'" class="item_icon" '
+                    . 'height="'.$size.'" width="'.$size.'" alt="">';
+        }
+        elseif($icon_html !== null and $icon_html !== '') {
+            return '<span class="item_icon">'.$icon_html.'</span>';
+        }
+        else {
+            // The "?" emoji
+            return '<span class="item_icon">&#10067;</span>';
+        }
     }
     
     
