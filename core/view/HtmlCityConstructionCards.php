@@ -9,6 +9,9 @@ safely_require('/core/controller/get_missing_items.php');
 class HtmlCityConstructionCards
 {
     
+    // ID #23 = the ID of the action points (treated as an ordinary resource)
+    private $ap_item_id = 23;
+    
     
     /**
      * Generates the HTML for all the construction cards
@@ -31,7 +34,9 @@ class HtmlCityConstructionCards
                        $city_buildings_caracs, $city_buildings_components, 
                        $city_constructions, $completed_buildings_ids) {
         
-        $result = '';
+        $htmlItem = new HtmlItem();
+        $result_resources = '';
+        $result_buildable = '';
         
         // For each possible building...
         foreach($city_buildings_caracs as $building_id=>$building_caracs) {
@@ -42,18 +47,50 @@ class HtmlCityConstructionCards
                 //... display a card
                 $AP_invested_in_construction = isset($city_constructions[$building_id]) ? $city_constructions[$building_id]['AP_invested'] : 0;
                 $building_components = (isset($city_buildings_components[$building_id])) ? $city_buildings_components[$building_id] : [];
-                $result .= $this->card($items_caracs, $items_in_storage, 
-                                       $building_caracs, $building_components,
-                                       $building_id, $AP_invested_in_construction);
+                
+                // Keep only the "real" resources, excluding action points (wood, metal...)
+                $building_components_resources = $building_components;
+                unset($building_components_resources[$this->ap_item_id]);
+                $items_missing = get_missing_items($building_components_resources, $items_in_storage);
+                
+                if(array_sum($items_missing) === 0) {
+                    $result_buildable   .= $this->card_buildable($building_caracs, $building_components,
+                                           $building_id, $AP_invested_in_construction)
+                                        . '<hr>';
+                }
+                else {
+                    $result_resources   .= $this->card_resources($items_caracs, $items_in_storage, 
+                                           $building_caracs, $building_components_resources)
+                                        . '<hr>';
+                }
             }
         }
         
-        return $result;
+        $card_icon = $building_image = $htmlItem->icon(null, "&#x1F4A1;", 48);
+        
+        return '
+            <div class="city_block construction_card">
+                <h2>'.$card_icon.'&nbsp;Chantiers constructibles</h2>
+                <p class="descr">Vous pouvez construire ces chantiers car 
+                    les ressources requises sont réunies 
+                    <a href="#" onclick="switchCitySubmenu(\'city_storage\')">au dépôt</a> !
+                </p>
+                <div class="contents">'.$result_buildable.'</div>
+            </div>
+            <div class="city_block construction_card">
+                <h2>'.$card_icon.'&nbsp;Ressources prioritaires</h2>
+                <p class="descr">Rapportez ces objets lors de 
+                    <a href="#" onclick="switchCitySubmenu(\'explore\')">vos explorations</a>
+                    afin de construire de nouveaux chantiers.
+                </p>
+                <div class="contents">'.$result_resources.'</div>
+            </div>';
     }
     
     
     /**
-     * HTML for a single construction card
+     * HTML to list one suggestion of resources to bring back from the desert
+     * ("item 1 + item 2 + item 3... will unlock the construction X")
      * 
      * @param array $items_caracs The characteristics of the items 
      *                  existing in the game (name, icon...), as returned 
@@ -62,42 +99,51 @@ class HtmlCityConstructionCards
      *                                by the game's API "city"
      * @param array $construction_caracs The characteristics of the concerned construction,
      *                  as returned by the game's API "configs[constructions][id]"
-     * @param array $construction_components All the items required to build the building,
-     *                  as a list of pairs [item_id => item_amount]
-     * @param int $building_id The ID of the concerned construction
-     * @param int $AP_invested_in_construction The amount of action points already invested 
-     *                                         for building the construction
+     * @param array $construction_components_resources All the items required to build the building,
+     *                  excepted the action points. Structured as a list of pairs 
+     *                  [item_id => item_amount]
      * @return string HTML
      */
-    private function card($items_caracs, $items_in_storage,
-                          $construction_caracs, $construction_components,
-                          $building_id, $AP_invested_in_construction) {
+    private function card_resources($items_caracs, $items_in_storage,
+                          $construction_caracs, $construction_components_resources) {
+        
+        $construction_name = $construction_caracs['name'];
+        // Missing resources (action points excepted)
+        $items_missing = get_missing_items($construction_components_resources, $items_in_storage);
+        $missing_resources = $this->missing_resources($items_missing, $items_caracs);
+        
+        return $missing_resources.'
+            <p>&#x27A1;&#xFE0F; Débloquera le chantier <strong>'.$construction_name.'</strong></p>';
+    }
+    
+    
+    /**
+     * HTML to list one buildable construction (= all the components are gathered
+     * in the city storage, only action points miss)
+     * 
+     * @param array $construction_caracs The characteristics of the concerned construction,
+     *                  as returned by the game's API "configs[constructions][id]"
+     * @param array $construction_components All the items required to build the building,
+     *                  including the action points. Structured as a list of pairs 
+     *                  [item_id => item_amount]
+     * @param int $building_id
+     * @param int $AP_invested_in_construction
+     * @return string HTML
+     * 
+     */
+    private function card_buildable($construction_caracs, $construction_components,
+                                    $building_id, $AP_invested_in_construction) {
         
         $htmlItem = new HtmlItem();
-        $construction_name = $construction_caracs['name'];
-        // ID #23 = the ID of the action points (treated as an ordinary resource)
-        $ap_item_id = 23;
-        $action_points_needed = (isset($construction_components[$ap_item_id])) ? $construction_components[$ap_item_id] : 0;
-        // Keep only the "real" resources, excluding action points (wood, metal...)
-        unset($construction_components[$ap_item_id]);
-        
-        // Missing resources and action points
-        $items_missing = get_missing_items($construction_components, $items_in_storage);
-        $total_AP_missing = $action_points_needed - $AP_invested_in_construction;
-        
-        $card_contents = (array_sum($items_missing) === 0)
-            ? $this->missing_actionpoints($total_AP_missing, $building_id)
-            : $card_contents = $this->missing_resources($items_missing, $items_caracs);
-        
         $building_image = $htmlItem->icon($construction_caracs['icon_path'], $construction_caracs['icon_html'], 48);
         
-        return '
-            <div class="city_block construction_card">
-                <div class="contents">
-                    <h3>'.$building_image.'&nbsp; '.$construction_name.'</h3>
-                    '.$card_contents.'
-                </div>
-            </div>';
+        // Missing action points
+        $action_points_needed = (isset($construction_components[$this->ap_item_id])) ? $construction_components[$this->ap_item_id] : 0;
+        $total_AP_missing = $action_points_needed - $AP_invested_in_construction;
+        $card_contents = $this->missing_actionpoints($total_AP_missing, $building_id);
+        
+        return '<h3>'.$building_image.'&nbsp; '.$construction_caracs['name'].'</h3>
+                    '.$card_contents;
     }
     
     
@@ -111,7 +157,6 @@ class HtmlCityConstructionCards
     private function missing_resources($items_missing, $items_caracs) {
         
         $htmlItem = new HtmlItem();
-        $nbr_items_missing = array_sum($items_missing);
         $missing_items_icons = '';
         
         foreach($items_missing as $item_id=>$missing_amount) {            
@@ -121,14 +166,15 @@ class HtmlCityConstructionCards
             $item_icon = $htmlItem->icon($item_caracs['icon_path'], $item_caracs['icon_symbol'], 32);
             
             $missing_items_icons .= '
-                <span title="'.$item_caracs['name'].'">'.$item_icon.'x'.$missing_amount.'<span> ';
-        }   
+                <li class="item_label" style="height:2.5em;width:2.5em" title="'.$item_caracs['name'].'">
+                    <span class="item_icon">'.$item_icon.'</span>
+                    <span class="dot_number">'.$missing_amount.'</span>
+                </li>';
+        }
         
-        return '
-            <p>&#10060; Pour construire ce chantier, ajoutez 
-                <strong>'.$nbr_items_missing.' objets</strong> 
-                <a href="#" onclick="switchCitySubmenu(\'city_storage\')">au dépôt</a> :</p>
-            <p style="font-weight:bold;color:red">'.$missing_items_icons.'</p>';
+        return '<ul class="items_list components" style="justify-content:center">
+                '.$missing_items_icons.'
+            </ul>';
     }
     
     
@@ -154,9 +200,9 @@ class HtmlCityConstructionCards
         $buttons = new HtmlButtons();
         
         return '
-            <p>Il manque seulement &#9889;<strong>'.plural($total_AP_missing, 'point').' d\'action</strong>
-               <br>pour finir ce chantier !
-            '.$buttons->construct($building_id, 'notify', 'Participer [1&#9889;]').'
+            <p>Il manque seulement<br>&#9889;<strong>'.plural($total_AP_missing, 'point').' d\'action</strong>
+                <br>pour finir ce chantier !
+                '.$buttons->construct($building_id, 'no_notif', 'Participer [1&#9889;]').'
             </p>';
     }
 }
