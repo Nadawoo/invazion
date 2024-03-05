@@ -106,12 +106,12 @@ class ItemsController {
             // Keep only the "real" resources, excluding action points (wood, metal...)
             $resources_needed = $this->filter($buildings_components[$building_id], 'resources');
             $resources_missing = $this->get_missing_items($resources_needed, $resources_available, false);
-            $nbr_types_resources_missing = count($resources_missing);
-//            $nbr_resources_missing = array_sum($resources_missing);
+//            $nbr_types_resources_missing = count($resources_missing);
+            $nbr_resources_missing = array_sum($resources_missing);
             
             // Indexing the buildings by number of missing type resources will 
             // allow the sorting
-            $suggested_resources[$nbr_types_resources_missing][] = $building_id;
+            $suggested_resources[$nbr_resources_missing][] = $building_id;
         }
         
         // Place first the constructions that need the few *types* of resources
