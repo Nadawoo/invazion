@@ -54,7 +54,7 @@ class HtmlCityConstructionCards
                 
                 // Keep only the "real" resources, excluding action points (wood, metal...)
                 $building_components_resources = $itemsController->filter($building_components, 'resources');
-                $items_missing = get_missing_items($building_components_resources, $items_in_storage);
+                $items_missing = get_missing_items($building_components_resources, $items_in_storage, false);
                 
                 if(array_sum($items_missing) === 0) {
                     $result_buildable   .= $this->card_buildable($building_caracs, $building_components,
