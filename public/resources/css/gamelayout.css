@@ -705,12 +705,15 @@ legend {
 }
 
 /*
- * Boutons
+ * Buttons
+ * > .redbutton is for the main actions (to use an item...)
+ * > .bluebutton is for the secondary buttons (giving a tip...)
  */
 input[type="submit"] {
     cursor:pointer;
 }
-.redbutton {
+.redbutton,
+.bluebutton {
     height:2.3em;
     width:98%;
     min-width:11em;
@@ -728,15 +731,18 @@ input[type="submit"] {
     background:#CC0000;
     color:white;
 }
-.redbutton.inactive {
+.redbutton.inactive,
+.bluebutton.inactive{
     background:grey;
     text-decoration:line-through;
 }
-a.redbutton {
+a.redbutton,
+a.bluebutton {
     display:block;
     padding:0.3em 0 0.7em 0;
 }
-.redbutton .dot_number {
+.redbutton .dot_number,
+.bluebutton .dot_number {
     position:absolute;
     top:-1em;
     right:-0.5em;
@@ -744,6 +750,13 @@ a.redbutton {
     width: 1.5em;
     background:green;
     border-radius:2em;
+}
+.bluebutton {
+    background:#34495e;
+}
+.bluebutton:hover {
+    background:#546E7A;
+    color:white;
 }
 
 /* Bouton de dépôt d'objet avec un aspect moderne et non le défaut HTML en relief */

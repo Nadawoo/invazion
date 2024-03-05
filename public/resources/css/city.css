@@ -435,6 +435,18 @@
     border-radius:0.3em;
 }
 
+/* Recommandations on the constructions page */
+#tip_buildable,
+#tip_resources,
+#to_constructions {
+    display:none;
+}
+#to_constructions {
+    min-width:auto;
+    width:2.2em;
+    margin-top:1em;
+    font-weight:bold;
+}
 
 
 /*

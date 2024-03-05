@@ -431,11 +431,16 @@ class HtmlCityEnclosure
                                   $completed_buildings_ids, $zone_items, $root_building_id);
         
         return '
-            <div class="city_block" style="width:21.5em">
+            <div id="constructions_block" class="city_block" style="width:21.5em">
                 <img class="icon z-depth-1" src="resources/img/copyrighted/city_constructions.png">
                 <h2>Tous les chantiers</h2>
                 <p class="descr">Construisez les chantiers pour améliorer les défenses ou d\'autres équipements de la ville.<br>
                     <a href="#popattack">[En savoir plus...]</a>
+                </p>
+                
+                <p>
+                    <a class="bluebutton" onclick="display(\'tip_buildable\');display(\'to_constructions\');toggle(\'#constructions_block\')">&#x1F4A1; Conseil : Chantiers constructibles</a>
+                    <a class="bluebutton" onclick="display(\'tip_resources\');display(\'to_constructions\');toggle(\'#constructions_block\')">&#x1F4A1; Conseil : Ressources à compléter</a>
                 </p>
                 
                 <p style="margin-left:0.5em;text-align:left"><strong>Filtre :</strong>
