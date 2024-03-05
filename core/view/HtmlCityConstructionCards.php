@@ -1,5 +1,6 @@
 <?php
 safely_require('/core/controller/get_missing_items.php');
+safely_require('/core/controller/ItemsController.php');
 
 
 /**
@@ -8,9 +9,6 @@ safely_require('/core/controller/get_missing_items.php');
  */
 class HtmlCityConstructionCards
 {
-    
-    // ID #23 = the ID of the action points (treated as an ordinary resource)
-    private $ap_item_id = 23;
     
     
     /**
@@ -35,11 +33,17 @@ class HtmlCityConstructionCards
                        $city_constructions, $completed_buildings_ids) {
         
         $htmlItem = new HtmlItem();
+        $itemsController = new ItemsController();
         $result_resources = '';
         $result_buildable = '';
         
+        $sorted_buildings_caracs = $itemsController->sort_buildings_by_missing_components(
+                                                        $city_buildings_caracs,
+                                                        $city_buildings_components,
+                                                        $items_in_storage);
+    
         // For each possible building...
-        foreach($city_buildings_caracs as $building_id=>$building_caracs) {
+        foreach($sorted_buildings_caracs as $building_id=>$building_caracs) {
             // ... if not already built
             // TODO: we could avoid this naive condition by removing first
             //  the useless constructions from $building_caracs
@@ -49,8 +53,7 @@ class HtmlCityConstructionCards
                 $building_components = (isset($city_buildings_components[$building_id])) ? $city_buildings_components[$building_id] : [];
                 
                 // Keep only the "real" resources, excluding action points (wood, metal...)
-                $building_components_resources = $building_components;
-                unset($building_components_resources[$this->ap_item_id]);
+                $building_components_resources = $itemsController->filter($building_components, 'resources');
                 $items_missing = get_missing_items($building_components_resources, $items_in_storage);
                 
                 if(array_sum($items_missing) === 0) {
@@ -59,14 +62,14 @@ class HtmlCityConstructionCards
                                         . '<hr>';
                 }
                 else {
-                    $result_resources   .= $this->card_resources($items_caracs, $items_in_storage, 
-                                           $building_caracs, $building_components_resources)
+                    $result_resources   .= $this->card_resources($items_caracs, 
+                                                $building_caracs, $items_missing)
                                         . '<hr>';
                 }
             }
         }
         
-        $card_icon = $building_image = $htmlItem->icon(null, "&#x1F4A1;", 48);
+        $card_icon = $htmlItem->icon(null, "&#x1F4A1;", 48);
         
         return '
             <div class="city_block construction_card">
@@ -95,21 +98,15 @@ class HtmlCityConstructionCards
      * @param array $items_caracs The characteristics of the items 
      *                  existing in the game (name, icon...), as returned 
      *                  by the game's API "configs[items]"
-     * @param array $items_in_storage The items stored in the city storage, as returned 
-     *                                by the game's API "city"
      * @param array $construction_caracs The characteristics of the concerned construction,
      *                  as returned by the game's API "configs[constructions][id]"
-     * @param array $construction_components_resources All the items required to build the building,
-     *                  excepted the action points. Structured as a list of pairs 
-     *                  [item_id => item_amount]
+     * @param array $items_missing List of the items not available (ex: not in the city storage)
+     *                  to build the construction
      * @return string HTML
      */
-    private function card_resources($items_caracs, $items_in_storage,
-                          $construction_caracs, $construction_components_resources) {
+    private function card_resources($items_caracs, $construction_caracs, $items_missing) {
         
         $construction_name = $construction_caracs['name'];
-        // Missing resources (action points excepted)
-        $items_missing = get_missing_items($construction_components_resources, $items_in_storage);
         $missing_resources = $this->missing_resources($items_missing, $items_caracs);
         
         return $missing_resources.'
@@ -135,10 +132,11 @@ class HtmlCityConstructionCards
                                     $building_id, $AP_invested_in_construction) {
         
         $htmlItem = new HtmlItem();
+        $itemsController = new ItemsController();
         $building_image = $htmlItem->icon($construction_caracs['icon_path'], $construction_caracs['icon_html'], 48);
         
         // Missing action points
-        $action_points_needed = (isset($construction_components[$this->ap_item_id])) ? $construction_components[$this->ap_item_id] : 0;
+        $action_points_needed = $itemsController->filter($construction_components, 'action_points');
         $total_AP_missing = $action_points_needed - $AP_invested_in_construction;
         $card_contents = $this->missing_actionpoints($total_AP_missing, $building_id);
         
