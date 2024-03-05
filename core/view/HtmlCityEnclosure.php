@@ -574,6 +574,7 @@ class HtmlCityEnclosure
         $nbr_actionpoints_needed = isset($components[$ap_item_id]) ? $components[$ap_item_id] : 0;
         $nbr_components_needed = array_sum($components) - $nbr_actionpoints_needed;
         $nbr_components_available = array_sum(array_intersect_key($zone_items, $components));
+        $nbr_components_gathered = min($nbr_components_needed, $nbr_components_available);
         
         if($status === 'achieved') {
             $bg_color    = 'green';
@@ -584,7 +585,7 @@ class HtmlCityEnclosure
         elseif($status === 'in_progress') {
             $bg_color    = '';
             $text_color  = '#263238';
-            $html_status = '<a>'.$nbr_components_available.'/'.$nbr_components_needed.' composants&nbsp;<span class="arrow">&#65088;</span></a>';
+            $html_status = '<a>'.$nbr_components_gathered.'/'.$nbr_components_needed.' composants&nbsp;<span class="arrow">&#65088;</span></a>';
             $html_resources = $this->block_construction_resources_column($components, $zone_items, $items_caracs);
         }
         
