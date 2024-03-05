@@ -575,20 +575,27 @@ class HtmlCityEnclosure
         $nbr_components_needed = array_sum($components) - $nbr_actionpoints_needed;
         $nbr_components_available = array_sum(array_intersect_key($zone_items, $components));
         $nbr_components_gathered = min($nbr_components_needed, $nbr_components_available);
+        $components_percent = $nbr_components_gathered/max(1,$nbr_components_needed)*100;
+        // Quick fix: force minimal components amount to avoid progressbar overflow 
+        // on the left when 0 component gathered
+        $components_percent = max(10, $components_percent);
         
         if($status === 'achieved') {
+            $progressbar_bg = '';
             $bg_color    = 'green';
             $text_color  = 'lightgreen';
             $html_status = '&check; Construit !';
             $html_resources = '<span class="components hidden" style="justify-content:center">.</span>';
         }
         elseif($nbr_components_gathered >= $nbr_components_needed) {
+            $progressbar_bg = '';
             $bg_color    = 'darkred';
             $text_color  = 'white';
             $html_status = '<a style="font-size:1.3em;color:white">&#9889;Constructible&nbsp;<span class="arrow">&#65088;</span></a>';
             $html_resources = $this->block_construction_resources_column($components, $zone_items, $items_caracs);
         }
         else { // Status "in progress"
+            $progressbar_bg = '#E67E22';
             $bg_color    = '';
             $text_color  = '#263238';
             $html_status = '<a>'.$nbr_components_gathered.'/'.$nbr_components_needed.' composants&nbsp;<span class="arrow">&#65088;</span></a>';
@@ -600,13 +607,14 @@ class HtmlCityEnclosure
         
         return '
             <tr>
-                <td onclick="toggle(\'#building'.$building_id.'\');hideClasses([\'defenses\'])" class="foldable" style="margin-left:'.($child_level*1.4).'em;background:'.$bg_color.'">
+                <td onclick="toggle(\'#building'.$building_id.'\');hideClasses([\'defenses\'])" class="foldable '.$status.'" style="margin-left:'.($child_level*1.4).'em;background:'.$bg_color.'">
                     '.str_repeat('<span class="hierarchy">├</span>', $child_level).'
                     '.$building_image.'
-                    <div style="display:flex;flex-direction:column;justify-content:center;">
+                    <div class="label">
                         <h3 style="color:'.$text_color.'">&nbsp;'.$building_name.'</h3>
                         <div class="unfold_button" style="color:'.$text_color.'">'.$html_status.' &nbsp;</div>
                     </div>
+                    <div class="progressbar_filling" style="background-color:'.$progressbar_bg.';width:'.$components_percent.'%"></div>
                 </td>
                 <td class="defenses hidden" style="background:'.$bg_color.';color:'.$text_color.'"
                     onclick="toggle(\'#building'.$building_id.'\');hideClasses([\'defenses\'])">
@@ -969,7 +977,7 @@ class HtmlCityEnclosure
         $button_name = $item_caracs['name'];
         $disabled = 'disabled';
         $redbutton = '';
-        $progressbar_unfilled_color = 'sandybrown';
+        $progressbar_unfilled_color = '#E67E22';
         // If the resource is a clickable button (useful to invest action points 
         // in the construction)
         if($building_id !== null) {

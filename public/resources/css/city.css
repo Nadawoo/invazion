@@ -337,6 +337,13 @@
     /* For textual icons (HTML entity) */
     text-align:center;
     font-size:2em;
+    z-index:1;
+}
+.foldable .label {
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    z-index:1;
 }
 .foldable .unfold_button {
     position:absolute;
@@ -355,6 +362,13 @@
     font-size:2.5em;
     color:#CACFD2;
 }
+
+.foldable .progressbar_filling {
+    position:absolute;
+    border-top-left-radius:   2em;
+    border-bottom-left-radius:2em;
+}
+
 .city_block .folded {
     display:none;
     margin:0 0.2em 1.5em 0;
