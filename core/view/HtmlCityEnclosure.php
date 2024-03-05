@@ -924,7 +924,7 @@ class HtmlCityEnclosure
         
         return  ($available_amount >= $required_amount) 
                 ? '<div class="amounts valign-wrapper" style="background:#D5F5E3;border-color:#81C784">
-                        <span class="available" style="color:green">'.$available_amount.'</span>
+                        <span class="available" style="color:green">'.$required_amount.'</span>
                         <span class="required">&#9989;</span>
                     </div>'
                 : '<div class="amounts valign-wrapper">
