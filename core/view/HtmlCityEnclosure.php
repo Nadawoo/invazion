@@ -582,7 +582,13 @@ class HtmlCityEnclosure
             $html_status = '&check; Construit !';
             $html_resources = '<span class="components hidden" style="justify-content:center">.</span>';
         }
-        elseif($status === 'in_progress') {
+        elseif($nbr_components_gathered >= $nbr_components_needed) {
+            $bg_color    = 'darkred';
+            $text_color  = 'white';
+            $html_status = '<a style="font-size:1.3em;color:white">&#9889;Constructible&nbsp;<span class="arrow">&#65088;</span></a>';
+            $html_resources = $this->block_construction_resources_column($components, $zone_items, $items_caracs);
+        }
+        else { // Status "in progress"
             $bg_color    = '';
             $text_color  = '#263238';
             $html_status = '<a>'.$nbr_components_gathered.'/'.$nbr_components_needed.' composants&nbsp;<span class="arrow">&#65088;</span></a>';
