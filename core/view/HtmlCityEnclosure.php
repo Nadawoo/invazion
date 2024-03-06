@@ -782,25 +782,45 @@ class HtmlCityEnclosure
     function block_city_door($is_door_closed)
     {
         
-        $buttons = new HtmlButtons();
-        
-        if ((bool)$is_door_closed === true) {            
-            $door_status = 'Les portes de la ville sont <strong style="color:red">fermées</strong>';
-            $door_button = $buttons->button('open_door');
+        if ((bool)$is_door_closed === true) {
+            $door_status = 'door_closed';
+            $checked     = '';
         }
-        else {            
-            $door_status = 'Les portes de la ville sont <strong class="green-text">ouvertes</strong>';
-            $door_button = $buttons->button('close_door');
+        else {
+            $door_status = 'door_open';
+            $checked     = 'checked';
         }
         
         return '
-            <div class="city_block">
+            <div class="city_block '.$door_status.'">
                 <img class="icon z-depth-1" src="resources/img/copyrighted/city_door.png">
                 <h2>Grande porte</h2>
                 <p class="descr">Fermez la porte de la ville chaque soir pour activer les défenses.
-                    N\'oubliez personne dehors...</p>
-                <p>' . $door_status . '</p>
-                <p>' . $door_button . '</p>
+                    N\'oubliez personne dehors...
+                </p>
+                <p class="status">La porte de la ville est<br>
+                    <strong class="open">◄ ouverte ►</strong>
+                    <strong class="closed">► fermée ◄</strong>
+                </p>
+                <ul class="open">
+                    <li>&#x274C; Défenses de la ville désactivées</li>
+                    <li>&#10004;&#65039; Sortie de la ville possible</li>
+                </ul>
+                <ul class="closed">
+                    <li>&#10004;&#65039; Défenses de la ville activées</li>
+                    <li>&#x274C; Sortie de la ville impossible</li>
+                </ul>
+                <hr>
+                <form action="" class="switch">
+                    <input type="hidden" name="api_name" value="city">
+                    <input type="hidden" name="action" value="close_door">
+                    <label>
+                        <span style="color:darkred">Fermée</span>
+                        <input type="checkbox" '.$checked.' class="change_city_door">
+                        <span class="lever"></span>
+                        <span style="color:green">Ouverte</span>
+                    </label>
+                </from>
             </div>';
     }
     

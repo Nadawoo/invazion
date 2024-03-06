@@ -68,3 +68,27 @@ function toggleHouse(idName) {
     toggle('#citizens_list');
     toggle('#'+idName);
 }
+
+
+/**
+ * Open or close the city door
+ * 
+ * @param {boolean} value Value of the switch button: true to open the door,
+ *                        false to close the door
+ * @returns {undefined}
+ */
+async function changeCityDoor(value) {
+    
+    let action = (value === true) ? "open_door" : "close_door";    
+    let token = getCookie('token');
+    // Execute the action of opening or closing
+    let json = await callApi("GET", "city", `action=${action}&token=${token}`);
+    // Update the GUI after the openng or closing
+    if(json.metas.error_code === "success") {
+        let oldDoorStatus = (value === true) ? "door_closed" : "door_open";
+        let newDoorStatus = (value === true) ? "door_open" : "door_closed";
+        let doorBlock = document.querySelector("#city_door .city_block");
+        doorBlock.classList.remove(oldDoorStatus);
+        doorBlock.classList.add(newDoorStatus);
+    }
+}

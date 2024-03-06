@@ -116,6 +116,10 @@ if (document.getElementById('map') !== null) {
         // See https://stackoverflow.com/questions/35786433/how-to-listen-on-select-change-events-in-materialize-css
         var elem = document.querySelector("#city_constructions select");
         elem.addEventListener("change", function() { filterConstructions(elem.value); });
+        
+        // Open or close the city door
+        var elem = document.querySelector("#city_door .change_city_door");
+        elem.addEventListener("change", function() { changeCityDoor(event.target.checked); });
     }
 }
 

@@ -612,3 +612,46 @@
     border-radius:0 0 0.4em 0.4em;
     background:lightblue;
 }
+
+/*
+ * Door of the city
+ */
+/* Default: the door is considered as open */
+#city_door .status {
+    padding-top:0.1em;
+    background:green;
+    color:white;
+    box-shadow: 4px 4px 8px black;
+}
+#city_door .status strong {
+    font-size:1.2em;
+}
+#city_door li {
+    padding-left:0.2em;
+    line-height:1.5em;
+    text-align:left;
+    font-size:0.9em;
+    color:grey;
+}
+#city_door .closed {
+    display:none;
+}
+#city_door label {
+    display:block;
+    margin:1em 0 0.2em 0;
+    font-size:1.1em;
+    font-weight:bold;
+}
+#city_door hr {
+    margin:1em 0;
+}
+/* When the door is closed */
+#city_door .door_closed .status {
+    background:darkred;
+}
+#city_door .door_closed .open {
+    display:none;
+}
+#city_door .door_closed .closed {
+    display:inline;
+}
