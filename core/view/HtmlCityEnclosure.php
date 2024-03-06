@@ -443,13 +443,14 @@ class HtmlCityEnclosure
                     <a class="bluebutton" onclick="display(\'tip_resources\');display(\'to_constructions\');toggle(\'#constructions_block\')">&#x1F4A1; Conseil : Ressources à compléter</a>
                 </p>
                 
-                <p style="margin-left:0.5em;text-align:left"><strong>Filtre :</strong>
+                <form style="margin:0 0 1em 0.5em;text-align:left">
+                    <strong>Filtre :</strong>
                     <select id="constructionFilter" style="width:7em">
                         <option value="none" selected>Aucun</option>
                         <option value="components">Composants manquants</option>
                         <option value="effects">Effets du chantier</option>
                     </select>
-                </p>
+                </form>
 
                 <table id="constructions">
                     '.$html_constructions.'
@@ -591,7 +592,7 @@ class HtmlCityEnclosure
             $progressbar_bg = '';
             $bg_color    = 'darkred';
             $text_color  = 'white';
-            $html_status = '<a style="font-size:1.3em;color:white">&#9889;Constructible&nbsp;<span class="arrow">&#65088;</span></a>';
+            $html_status = '<a style="font-size:1.2em;color:white">&#9889;Constructible&nbsp;<span class="arrow">&#65088;</span></a>';
             $html_resources = $this->block_construction_resources_column($components, $zone_items, $items_caracs);
         }
         else { // Status "in progress"

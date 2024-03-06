@@ -115,7 +115,7 @@ if (document.getElementById('map') !== null) {
         // NB: don't use an HTML ID on <select> because Materialize.css would overwrite it.
         // See https://stackoverflow.com/questions/35786433/how-to-listen-on-select-change-events-in-materialize-css
         var elem = document.querySelector("#city_constructions select");
-        elem.addEventListener("change", function() { filterConstructions(elem.value); });
+        elem.addEventListener("change", function() { filterConstructions(event.target.value); });
         
         // Open or close the city door
         var elem = document.querySelector("#city_door .change_city_door");
