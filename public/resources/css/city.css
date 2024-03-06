@@ -171,6 +171,11 @@
 .city_block td {
     border:none;
 }
+.city_block .pulse {
+    /* Fix for Materialize.css: the pulse must not be hidden by 
+    the background of the block */
+    z-index:1;
+}
 /* Button to hide all the city blocks */
 .close_city_blocks {
     position:absolute;
@@ -462,6 +467,61 @@
     font-weight:bold;
 }
 
+/*
+ * Overview of the defenses of the city
+ */
+/* Default view (alert zombies > defenses) */
+#city_defenses .shield {
+    position:relative;
+    display:flex;
+    justify-content:center;
+    margin:1rem 0 1rem 0;
+}
+#city_defenses .shield_icon {
+    display:block;
+    height:1.5em;
+    width: 1.5em;
+    font-size:4em;
+    background:#EF5350;
+    border-radius:50%;
+}
+#city_defenses .alert_icon {
+    position:absolute;
+    top:25%;
+    left:6.3rem;
+    font-size:1.8em;
+    z-index:1;
+}
+#city_defenses .alert_icon::before {
+    content:"❗";
+}
+#city_defenses .defenses_missing,
+#city_defenses .defenses_ok {
+    font-size:1.1em;
+    font-weight:bold;
+    color:red;
+}
+#city_defenses .defenses_ok {
+    display:none;
+}
+#city_defenses .goto {
+    margin-bottom:0.5em;
+}
+
+/* View for a safe city (zombies < defenses)*/
+#city_defenses .safe .shield_icon {
+    background:green;
+}
+#city_defenses .safe .defenses_missing {
+    display:none;
+}
+#city_defenses .safe .defenses_ok {
+    display:block;
+    color:green;
+}
+#city_defenses .safe .alert_icon::before {
+    content:"✅";
+}
 
 /*
  * Visual interface for the city (with big icons)

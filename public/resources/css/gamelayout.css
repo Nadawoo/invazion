@@ -738,7 +738,8 @@ input[type="submit"] {
 }
 a.redbutton,
 a.bluebutton {
-    display:block;
+    display:flex;
+    justify-content:center;
     padding:0.3em 0 0.7em 0;
 }
 .redbutton .dot_number,

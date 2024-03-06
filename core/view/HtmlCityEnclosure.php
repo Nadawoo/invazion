@@ -751,7 +751,6 @@ class HtmlCityEnclosure
      */
     function defenses_bar($total_defenses, $zombies_next_attack) {
         
-        $zombies_overflow = max(0, $zombies_next_attack - $total_defenses);
         $total = ($total_defenses + $zombies_next_attack);
         
         $defense_percent = $total_defenses / $total * 100;
@@ -769,9 +768,6 @@ class HtmlCityEnclosure
                         Zombies attendus '.$zombies_next_attack.'
                     </div>
                 </div>
-            </div>
-            <div style="color:red;font-weight:bold;padding:0.3em 0 1em 0;">
-                &#9888;&#65039; '.$zombies_overflow.' défenses manquantes !
             </div>';
     }
     
@@ -820,19 +816,34 @@ class HtmlCityEnclosure
     function block_defenses($total_defenses, $zombies_next_attack)
     {
         
+        $zombies_overflow = $zombies_next_attack - $total_defenses;
+        $class = 'unsafe';
+        $pulse = 'pulse';
+        
+        if($zombies_overflow <= 0) {
+            $class = 'safe';
+            $pulse = '';
+        }
+        
         return '
-            <div class="city_block">
-                <img class="icon z-depth-1" src="resources/img/copyrighted/city_defenses.png">
-                <h2>Défenses</h2>
-                <p class="descr">Objectif : construire suffisamment de défenses  
-                    pour repousser l\'attaque zombie de ce soir.<br>
-                    <a href="#popattack">[En savoir plus...]</a>
+            <div class="city_block '.$class.'">
+                <a href="#popattack" class="shield">
+                    <span class="shield_icon z-depth-1 '.$pulse.'">&#x1F6E1;&#xFE0F;</span>
+                    <span class="alert_icon"></span>
+                </a>
+                <a href="#popattack" class="defenses_missing">
+                    '.$zombies_overflow.' défenses manquantes
+                </a>
+                <p class="defenses_ok">
+                    Ville sécurisée<br/>
+                    <span style="font-size:0.9em;font-weight:normal">(+'.abs($zombies_overflow).' défenses)</span>
                 </p>
+                <hr style="margin:1em 0 1.5em 0">
                 '.$this->defenses_bar($total_defenses, $zombies_next_attack).'
-                <hr>
-                <p style="font-size:0.9em"><em>Pour augmenter les défenses, 
-                    construisez de nouveaux chantiers.</em></p>
-                <strong><a onclick="switchCitySubmenu(\'city_constructions\')">Améliorer les défenses</a></strong>
+                <hr style="margin:3.2em 0 1.5em 0">
+                <a class="goto bluebutton" onclick="switchCitySubmenu(\'city_constructions\')">
+                    Construire des défenses <i class="material-icons">chevron_right</i>
+                </a>
             </div>';
     }
     
