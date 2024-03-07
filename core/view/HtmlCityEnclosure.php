@@ -751,8 +751,7 @@ class HtmlCityEnclosure
         
         $total = ($total_defenses + $zombies_next_attack);
         
-        $defense_percent = $total_defenses / $total * 100;
-//        $zombies_percent = $zombies_next_attack / $total * 100;        
+        $defense_percent = round($total_defenses / $total * 100);        
         $zombies_percent = 100 - $defense_percent;
         
         return '
@@ -762,20 +761,18 @@ class HtmlCityEnclosure
                     <div class="bar_icon">
                         <img src="resources/img/free/city.png" height="24">
                     </div>
-                    <div class="bar_background">
-                        <div style="background:darkgreen;width:'.$defense_percent.'%">
+                    
+                    <div style="width:100%">
+                        <div class="bar_background" style="width:'.$defense_percent.'%;">
                             <span class="number">'.$total_defenses.'</span>
+                        </div>'
+                        .'<div class="bar_background bar_background_zombies" style="width:'.$zombies_percent.'%">
+                            <span class="number">'.$zombies_next_attack.'</span>
                         </div>
                     </div>
-                </div>
-                <div class="bar_wrapper">
-                    <div class="bar_icon" style="right:0;background:darkred">
+                    
+                    <div class="bar_icon bar_icon_zombies">
                         <img src="resources/img/motiontwin/zombie.gif" height="24">
-                    </div>
-                    <div class="bar_background" style="justify-content:flex-end;text-align:right">                        
-                        <div style="background:darkred;width:'.$zombies_percent.'%">
-                            <span class="number" style="background:salmon;border-color:darkred">'.$zombies_next_attack.'</span>
-                        </div>
                     </div>
                 </div>
                 <label style="justify-content:flex-end">Zombies attendus ┘</label>
@@ -869,9 +866,9 @@ class HtmlCityEnclosure
                     Ville sécurisée<br/>
                     <span style="font-size:0.9em;font-weight:normal">(+'.abs($zombies_overflow).' défenses)</span>
                 </p>
-                <hr style="margin:1em 0 1.5em 0">
+                <hr style="margin-top:1em">
                 '.$this->defenses_bar($total_defenses, $zombies_next_attack).'
-                <hr style="margin:3.2em 0 1.5em 0">
+                <!-- <hr style="margin:0 0 1em 0"> -->
                 <a class="goto bluebutton" onclick="switchCitySubmenu(\'city_constructions\')">
                     Construire des défenses <i class="material-icons">chevron_right</i>
                 </a>

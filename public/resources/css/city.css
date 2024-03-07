@@ -304,22 +304,23 @@
 /* The two bars comparing the defenses and the zombies */
 #defenses_bar {
     position:relative;
-    height:1.7em;
-    margin-bottom:5.5em;
+    margin:2em 0;
     text-align:left;
     white-space:nowrap;
     font-weight:bold;
 }
 #defenses_bar .bar_wrapper {
-    position:relative;
+    display:flex;
+    align-items:center;
 }
 #defenses_bar .bar_icon {
-    position:absolute;
     display:flex;
     justify-content:center;
     align-items:center;
+    height:2em;
     width:2.5em;
     background:darkgreen;
+    border-radius:0 0.3em 0.3em 0;
 }
 #defenses_bar label {
     display:flex;
@@ -327,14 +328,31 @@
     color:black;
 }
 #defenses_bar .bar_background {
-    display:flex;
-    margin:0 2.5em;
+    display:inline-block;
+    background:darkgreen;
+    text-align:center;
 }
 #defenses_bar .number {
+    position:relative;
     padding:0 0.2em;
     width:2em;
     background:lightgreen;
     border:1px solid green;
+    border-radius:0.2em;
+    z-index:1; /* Avoid being covered by the other bar when the bar is very thin */
+}
+/* Specificities for the red zombies bar */
+#defenses_bar .bar_background_zombies {
+    background:darkred;
+    border-left:1px solid white;
+}
+#defenses_bar .bar_background_zombies .number {
+    background:salmon;
+    border-color:darkred;
+}
+#defenses_bar .bar_icon_zombies {
+    background:darkred;
+    border-radius:0.3em 0 0 0.3em;
 }
 
 /* Foldable sections for lighter interface (e.g to hide the components in the workshop)*/
