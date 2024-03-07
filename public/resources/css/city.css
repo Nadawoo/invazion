@@ -370,8 +370,11 @@
 
 .foldable .progressbar_filling {
     position:absolute;
-    border-top-left-radius:   2em;
-    border-bottom-left-radius:2em;
+    /* Quick fix: force minimal components amount to avoid progressbar overflow 
+       on the left when 0 component gathered */
+    min-width:1.8em;
+    border-top-left-radius:   8em;
+    border-bottom-left-radius:8em;
 }
 
 .city_block .folded {

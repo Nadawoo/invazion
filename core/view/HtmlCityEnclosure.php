@@ -577,9 +577,6 @@ class HtmlCityEnclosure
         $nbr_components_available = array_sum(array_intersect_key($zone_items, $components));
         $nbr_components_gathered = min($nbr_components_needed, $nbr_components_available);
         $components_percent = $nbr_components_gathered/max(1,$nbr_components_needed)*100;
-        // Quick fix: force minimal components amount to avoid progressbar overflow 
-        // on the left when 0 component gathered
-        $components_percent = max(10, $components_percent);
         
         if($status === 'achieved') {
             $progressbar_bg = '';
