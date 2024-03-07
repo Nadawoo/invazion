@@ -855,6 +855,8 @@ class HtmlCityEnclosure
         
         return '
             <div class="city_block '.$class.'">
+                '.$this->defenses_bar($total_defenses, $zombies_next_attack).'
+                
                 <a href="#popattack" class="shield">
                     <span class="shield_icon z-depth-1 '.$pulse.'">&#x1F6E1;&#xFE0F;</span>
                     <span class="alert_icon"></span>
@@ -866,9 +868,7 @@ class HtmlCityEnclosure
                     Ville sécurisée<br/>
                     <span style="font-size:0.9em;font-weight:normal">(+'.abs($zombies_overflow).' défenses)</span>
                 </p>
-                <hr style="margin-top:1em">
-                '.$this->defenses_bar($total_defenses, $zombies_next_attack).'
-                <!-- <hr style="margin:0 0 1em 0"> -->
+                
                 <a class="goto bluebutton" onclick="switchCitySubmenu(\'city_constructions\')">
                     Construire des défenses <i class="material-icons">chevron_right</i>
                 </a>

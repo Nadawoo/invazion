@@ -304,7 +304,7 @@
 /* The two bars comparing the defenses and the zombies */
 #defenses_bar {
     position:relative;
-    margin:2em 0;
+    margin:0.5em 1px 2em 1px;
     text-align:left;
     white-space:nowrap;
     font-weight:bold;
@@ -559,6 +559,7 @@
     display:none;
 }
 #city_defenses .goto {
+    margin-top:2em;
     margin-bottom:0.5em;
 }
 
