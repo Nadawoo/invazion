@@ -752,20 +752,33 @@ class HtmlCityEnclosure
         $total = ($total_defenses + $zombies_next_attack);
         
         $defense_percent = $total_defenses / $total * 100;
-        $zombies_percent = $zombies_next_attack / $total * 100;
+//        $zombies_percent = $zombies_next_attack / $total * 100;        
+        $zombies_percent = 100 - $defense_percent;
         
         return '
             <div id="defenses_bar">
-                <div style="background:lightgreen">
-                    <div style="padding-left:0.2em;background:darkgreen;width:'.$defense_percent.'%">
-                        Nos défenses '.$total_defenses.'
+                <label>┌ Défenses de la ville</label>
+                <div class="bar_wrapper">
+                    <div class="bar_icon">
+                        <img src="resources/img/free/city.png" height="24">
+                    </div>
+                    <div class="bar_background">
+                        <div style="background:darkgreen;width:'.$defense_percent.'%">
+                            <span class="number">'.$total_defenses.'</span>
+                        </div>
                     </div>
                 </div>
-                <div style="background:salmon">                        
-                    <div style="padding-left:0.2em;background:darkred;width:'.$zombies_percent.'%;">
-                        Zombies attendus '.$zombies_next_attack.'
+                <div class="bar_wrapper">
+                    <div class="bar_icon" style="right:0;background:darkred">
+                        <img src="resources/img/motiontwin/zombie.gif" height="24">
+                    </div>
+                    <div class="bar_background" style="justify-content:flex-end;text-align:right">                        
+                        <div style="background:darkred;width:'.$zombies_percent.'%">
+                            <span class="number" style="background:salmon;border-color:darkred">'.$zombies_next_attack.'</span>
+                        </div>
                     </div>
                 </div>
+                <label style="justify-content:flex-end">Zombies attendus ┘</label>
             </div>';
     }
     

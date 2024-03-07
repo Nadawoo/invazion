@@ -303,14 +303,38 @@
 
 /* The two bars comparing the defenses and the zombies */
 #defenses_bar {
+    position:relative;
     height:1.7em;
-    margin-bottom:2em;
-    line-height:170%;
+    margin-bottom:5.5em;
     text-align:left;
     white-space:nowrap;
     font-weight:bold;
-    font-variant:small-caps;
-    color:white;
+}
+#defenses_bar .bar_wrapper {
+    position:relative;
+}
+#defenses_bar .bar_icon {
+    position:absolute;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    width:2.5em;
+    background:darkgreen;
+}
+#defenses_bar label {
+    display:flex;
+    font-size:0.9em;
+    color:black;
+}
+#defenses_bar .bar_background {
+    display:flex;
+    margin:0 2.5em;
+}
+#defenses_bar .number {
+    padding:0 0.2em;
+    width:2em;
+    background:lightgreen;
+    border:1px solid green;
 }
 
 /* Foldable sections for lighter interface (e.g to hide the components in the workshop)*/
