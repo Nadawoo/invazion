@@ -339,6 +339,7 @@
     background:lightgreen;
     border:1px solid green;
     border-radius:0.2em;
+    color:black;
     z-index:1; /* Avoid being covered by the other bar when the bar is very thin */
 }
 /* Specificities for the red zombies bar */
@@ -516,6 +517,13 @@
  * Overview of the defenses of the city
  */
 /* Default view (alert zombies > defenses) */
+#city_defenses {
+    line-height: 150%;
+}
+#city_defenses .material-icons {
+    /* Fix for Materialize.css (style on "nav i")*/
+    line-height:normal;
+}
 #city_defenses .shield {
     position:relative;
     display:flex;
@@ -523,7 +531,9 @@
     margin:1rem 0 1rem 0;
 }
 #city_defenses .shield_icon {
-    display:block;
+    display:flex;
+    justify-content:center;
+    align-items:center;
     height:1.5em;
     width: 1.5em;
     font-size:4em;
@@ -532,8 +542,7 @@
 }
 #city_defenses .alert_icon {
     position:absolute;
-    top:25%;
-    left:6.3rem;
+    top:35%;
     font-size:1.8em;
     z-index:1;
 }

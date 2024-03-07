@@ -232,6 +232,9 @@ echo $html['json_configs'];
                 <nav id="city_menu">
                     '.$enclosure->city_menu($citizen['map_id'], $city_data['connected_city_id'], $citizen['city_id']).'
                     '.$enclosure->city_submenu($city_data['city_type_id'], $city_data['connected_city_id'], $is_citizen_home_connected).'
+                    <div id="city_defenses" class="city_row">
+                        '.$enclosure->block_defenses($city_data['total_defenses'], $zombies_next_attack).'
+                    </div>
                 </nav>
                 
                 <!-- Textual representation of the city -->
@@ -288,10 +291,6 @@ echo $html['json_configs'];
                     </div>
                     <div id="explore" class="city_row">
                         '. $enclosure->block_explore() .'
-                        '. $enclosure->button_close_block().'
-                    </div>
-                    <div id="city_defenses" class="city_row">
-                        '. $enclosure->block_defenses($city_data['total_defenses'], $zombies_next_attack) .'
                         '. $enclosure->button_close_block().'
                     </div>
                 </section>

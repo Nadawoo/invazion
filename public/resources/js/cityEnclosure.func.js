@@ -52,6 +52,8 @@ function switchCitySubmenu(cityContentsId) {
     unhideId(cityContentsId);
     // Modifie l'url pour mémoriser dans quel onglet de la ville on se trouve.    
     updateUrlParam('tab', cityContentsId);
+    
+    toggle("#city_defenses", "flex");
 }
 
 
