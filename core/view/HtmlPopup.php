@@ -31,7 +31,7 @@ class HtmlPopup
                     $healing_items, $html_smartphone, $is_custom_popup_visible) {
         
         return $this->predefined('poppresentation', '')
-            . $this->predefined('popdoor', '')
+            . $this->predefined('popdoor', '&#8505;&#65039; La porte de la ville')
             . $this->predefined('popdayclock', '', ['map_id'=>$map_id, 'current_cycle'=>$configs_map['current_cycle']])
             . $this->predefined('popvault',   '')
             . $this->predefined('popitems', '')
@@ -187,8 +187,7 @@ class HtmlPopup
     {
         
         $msg_popup = 
-            '<h2>&#8505;&#65039; La porte de la ville</h2>
-            <p>La <strong>porte de la ville</strong> est un élément crucial du système 
+            '<p>La <strong>porte de la ville</strong> est un élément crucial du système 
             de défense. Si elle n\'est pas fermée au moment de l\'attaque zombie de minuit, 
             la ville sera <strong>sans défense</strong> !
             <ul class="expanded">
