@@ -444,9 +444,9 @@ class HtmlCityEnclosure
                 </p>
                 
                 <form style="margin:0 0 1em 0.5em;text-align:left">
-                    <strong>Filtre :</strong>
+                    <strong>Afficher :</strong>
                     <select id="constructionFilter" style="width:7em">
-                        <option value="none" selected>Aucun</option>
+                        <option value="none" selected>Vue simple</option>
                         <option value="components">Composants manquants</option>
                         <option value="effects">Effets du chantier</option>
                     </select>
