@@ -661,7 +661,8 @@ legend {
 }
 .item_label .details var { /* The icon & name inside the item's tooltip */
     display:flex;
-    margin:auto;
+    margin:0.3em auto auto auto;
+    font-size:1.2em;
     font-weight:bold;
     font-style:normal;
 }
