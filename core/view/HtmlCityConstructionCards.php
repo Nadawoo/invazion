@@ -89,6 +89,9 @@ class HtmlCityConstructionCards
                     afin de construire de nouveaux chantiers.
                 </p>
                 <div class="contents">'.$result_resources.'</div>
+                <a class="goto redbutton" onclick="switchCitySubmenu(\'explore\')">
+                    Trouver les ressources <i class="material-icons">chevron_right</i>
+                </a>
             </div>';
     }
     
