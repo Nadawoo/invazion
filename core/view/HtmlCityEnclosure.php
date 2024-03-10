@@ -66,10 +66,10 @@ class HtmlCityEnclosure
                     '.$this->city_submenu_item('explore', 'Explorer').'
                 </div>
                 <div class="row" style="font-size:0.7em">
-                    '.$this->city_submenu_item('city_defenses', 'Défenses').'
                     '.$this->city_submenu_item('city_well', 'Puits').'
                     '.$this->city_submenu_item('city_workshop', 'Atelier').'
                     '.$this->city_submenu_item('city_door', 'Porte').'
+                    '.$this->city_submenu_item('empty', '').'
                     '.$this->city_submenu_item('empty', '').'
                     '.$this->city_submenu_item('empty', '').'
                 </div>';
