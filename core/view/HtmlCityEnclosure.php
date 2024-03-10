@@ -806,10 +806,10 @@ class HtmlCityEnclosure
                 <p class="descr">Fermez la porte de la ville chaque soir pour activer les défenses.
                     N\'oubliez personne dehors...
                 </p>
-                <p class="status">La porte de la ville est<br>
+                <a href="#popdoor" class="status">La porte de la ville est<br>
                     <strong class="open">◄ ouverte ►</strong>
                     <strong class="closed">► fermée ◄</strong>
-                </p>
+                </a>                
                 <ul class="open">
                     <li>&#x274C; Défenses de la ville désactivées</li>
                     <li>&#10004;&#65039; Sortie de la ville possible</li>

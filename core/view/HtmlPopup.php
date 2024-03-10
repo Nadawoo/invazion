@@ -31,6 +31,7 @@ class HtmlPopup
                     $healing_items, $html_smartphone, $is_custom_popup_visible) {
         
         return $this->predefined('poppresentation', '')
+            . $this->predefined('popdoor', '')
             . $this->predefined('popdayclock', '', ['map_id'=>$map_id, 'current_cycle'=>$configs_map['current_cycle']])
             . $this->predefined('popvault',   '')
             . $this->predefined('popitems', '')
@@ -177,6 +178,26 @@ class HtmlPopup
         
         $msg_popup .= $buttons->button('start_game', true, 'center') . '<br>'
                     . $buttons->button('validate_death', true, 'center');
+        
+        return $msg_popup;
+    }
+    
+    
+    public function popdoor()
+    {
+        
+        $msg_popup = 
+            '<h2>&#8505;&#65039; La porte de la ville</h2>
+            <p>La <strong>porte de la ville</strong> est un élément crucial du système 
+            de défense. Si elle n\'est pas fermée au moment de l\'attaque zombie de minuit, 
+            la ville sera <strong>sans défense</strong> !
+            <ul class="expanded">
+                <li><strong class="green-text">◄ Ouvrez ►</strong> la porte le matin, 
+                    sortez explorer le désert et revenez en ville avec des ressources.</li>
+                <li><strong class="darkred">►Fermez◄</strong> la porte le soir 
+                    pour activer les défenses de la ville avant l\'attaque de minuit.
+                    <a href="#popattack">[?]</a></li>
+            </ul>';
         
         return $msg_popup;
     }
