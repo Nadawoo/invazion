@@ -433,7 +433,7 @@ class HtmlCityEnclosure
         return '
             <div id="constructions_block" class="city_block" style="width:21.5em">
                 <img class="icon z-depth-1" src="resources/img/copyrighted/city_constructions.png">
-                <h2>Tous les chantiers</h2>
+                <h2>Chantiers</h2>
                 <p class="descr">Construisez les chantiers pour améliorer les défenses ou d\'autres équipements de la ville.<br>
                     <a href="#popattack">[En savoir plus...]</a>
                 </p>

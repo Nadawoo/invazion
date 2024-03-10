@@ -11,7 +11,8 @@ class HtmlCityConstructionCards
     
     
     /**
-     * Generates the HTML for all the construction cards
+     * HTML for the cards giving tips for the constructions
+     * (list of resources to unlock constructions, etc.)
      * 
      * @param array $items_caracs The characteristics of the items 
      *                  existing in the game (name, icon...), as returned 
@@ -27,7 +28,7 @@ class HtmlCityConstructionCards
      *                  as returned by the game's API "city"
      * @return array HTML displaying all the contruction cards
      */
-    function all_cards($items_caracs, $items_in_storage,
+    function tip_cards($items_caracs, $items_in_storage,
                        $city_buildings_caracs, $city_buildings_components, 
                        $city_constructions, $completed_buildings_ids) {
         

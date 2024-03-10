@@ -273,17 +273,13 @@ echo $html['json_configs'];
                         '. $enclosure->block_workshop($zone['items'], $configs['items']) .'
                         '. $enclosure->button_close_block().'
                     </div>
-                    <div id="city_constructions">
-                        <div class="city_row">
-                        '. $constructionCards->all_cards($configs['items'], $zone['items'], 
+                    <div id="city_constructions" class="city_row">
+                        '. $constructionCards->tip_cards($configs['items'], $zone['items'], 
                                                          $city_buildings_caracs, $configs['buildings_components'],
                                                          $city_data['constructions'], $completed_buildings_ids) .'
-                        '. $enclosure->button_close_block().'
-                        </div>
-                        <div class="city_row">
                         '. $enclosure->block_constructions($configs['buildings'], $configs['buildings_components'], $configs['items'], 
                                                            $completed_buildings_ids, $zone['items'], $configs['map']['city_buildings_set_id']) .'
-                        </div>
+                        '. $enclosure->button_close_block().'
                     </div>
                     <div id="city_door" class="city_row">
                         '. $enclosure->block_city_door($city_data['is_door_closed']) .'
