@@ -755,7 +755,7 @@ class HtmlCityEnclosure
         $zombies_percent = 100 - $defense_percent;
         
         return '
-            <div id="defenses_bar">
+            <a href="#popattack" id="defenses_bar">
                 <label>┌ Défenses de la ville</label>
                 <div class="bar_wrapper">
                     <div class="bar_icon">
@@ -776,7 +776,7 @@ class HtmlCityEnclosure
                     </div>
                 </div>
                 <label style="justify-content:flex-end">Zombies attendus ┘</label>
-            </div>';
+            </a>';
     }
     
     

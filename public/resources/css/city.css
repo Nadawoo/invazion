@@ -297,6 +297,7 @@
 
 /* The two bars comparing the defenses and the zombies */
 #defenses_bar {
+    display:block;
     position:relative;
     margin:0.5em 1px 2em 1px;
     text-align:left;
