@@ -65,7 +65,7 @@ class HtmlCityEnclosure
                     '.$this->city_submenu_item('city_fellows', 'Habitants').'
                     '.$this->city_submenu_item('explore', 'Explorer').'
                 </div>
-                <div class="row" style="font-size:0.7em">
+                <div class="row" style="font-size:0.7em;margin-bottom:1em">
                     '.$this->city_submenu_item('city_well', 'Puits').'
                     '.$this->city_submenu_item('city_workshop', 'Atelier').'
                     '.$this->city_submenu_item('city_door', 'Porte').'
