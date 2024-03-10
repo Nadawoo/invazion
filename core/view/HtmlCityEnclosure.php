@@ -819,7 +819,7 @@ class HtmlCityEnclosure
                     <li>&#x274C; Sortie de la ville impossible</li>
                 </ul>
                 <hr>
-                <form action="" class="switch">
+                <div action="" class="switch">
                     <input type="hidden" name="api_name" value="city">
                     <input type="hidden" name="action" value="close_door">
                     <label>
@@ -828,7 +828,7 @@ class HtmlCityEnclosure
                         <span class="lever"></span>
                         <span style="color:green">Ouverte</span>
                     </label>
-                </from>
+                </div>
             </div>';
     }
     
