@@ -81,7 +81,7 @@ class HtmlCityEnclosure
                 <div class="row hidden" id="cityMenuMyHome">
                     '.$home_menu.'
                 </div>
-                <div class="hidden" id="cityMenuCity">
+                <div id="cityMenuCity">
                     '.$city_menu.'
                 </div>
             </div>';
@@ -106,7 +106,7 @@ class HtmlCityEnclosure
     
     function button_close_block() {
         
-        return '<button class="close_city_blocks" onclick="hideCityBlocks();display(\'city_iso\')">&times;</button>';
+        return '<button class="close_city_blocks" onclick="hideCityBlocks();display([\'city_defenses\', \'city_submenus\'], \'flex\');updateUrlParam(\'tab\', null);">&times;</button>';
     } 
     
     

@@ -47,8 +47,8 @@ function changeDisplayValue(htmlIds, newDisplayValue) {
 }
 
 
-function display(htmlIds) {    
-    changeDisplayValue(htmlIds, "block");
+function display(htmlIds, visibleValue="block") {    
+    changeDisplayValue(htmlIds, visibleValue);
 }
 
 
@@ -168,17 +168,20 @@ function toggleBag() {
 
 
 /**
- * Modifie la valeur d'un paramètre dans l'url
+ * Update the value of a paramter in the URL (ex: ?tab=constructions)
  * 
- * @param {string} name  Le nom du paramètre
- * @param {string} value La nouvelle valeur voulue pour le paramètre
+ * @param {string} name  The name of the parameter
+ * @param {string} value The new value of the parameter. Set it to NULL if you want 
+ *                       to simply remove the parameter frome the URL
  * @returns {undefined}
  */
 function updateUrlParam(name, value) {
 
     var search_params = new URLSearchParams(window.location.search);
     search_params.delete(name);
-    search_params.append(name, value);
+    if(value !== null) {
+        search_params.append(name, value);
+    }
     // Met l'url à jour avec le nouveau paramètre
     window.history.pushState('', 'InvaZion - En ville', '?'+search_params);
 }

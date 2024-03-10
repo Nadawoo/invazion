@@ -35,6 +35,11 @@ function switchCityMenu(cityMenuId) {
     unhideId(cityMenuId);
     // On masque tous les blocs de la ville sans exception...
     hideCityBlocks();
+    
+    // Display the global container (Home + City) of the submenus too
+    display("city_submenus");
+    display("city_defenses", "flex");
+    updateUrlParam("tab", null);
 }
 
 
@@ -53,7 +58,7 @@ function switchCitySubmenu(cityContentsId) {
     // Modifie l'url pour mémoriser dans quel onglet de la ville on se trouve.    
     updateUrlParam('tab', cityContentsId);
     
-    toggle("#city_defenses", "flex");
+    hide(["city_submenus", "city_defenses"]);
 }
 
 

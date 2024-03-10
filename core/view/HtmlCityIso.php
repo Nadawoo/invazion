@@ -212,19 +212,19 @@ class HtmlCityIso {
         
         return '
             <ul class="resources_bar">
-                <li onclick="switchCitySubmenu(\'city_defenses\');hide(\'city_iso\')"
+                <li onclick="switchCitySubmenu(\'city_defenses\')"
                     title="Défenses de la ville contre l\'attaque du soir">
                     <div class="icon">&#128737;&#65039;</div> <div class="amount">?</div>
                 </li>
-                <li onclick="switchCitySubmenu(\'city_storage\');hide(\'city_iso\')"
+                <li onclick="switchCitySubmenu(\'city_storage\')"
                     title="Objets dans le dépôt de la ville">
                     <div class="icon" style="bottom:0.25rem">&#129520;</div> <div class="amount">'.$nbr_city_storage_items.'</div>
                 </li>
-                <li onclick="switchCitySubmenu(\'city_well\');hide(\'city_iso\')"
+                <li onclick="switchCitySubmenu(\'city_well\')"
                     title="Rations d\'eau dans le puits de la ville">
                     <div class="icon">&#128167;</div> <div class="amount">'.$well_current_water.'</div>
                 </li>
-                <li onclick="switchCitySubmenu(\'explore\');hide(\'city_iso\')">
+                <li onclick="switchCitySubmenu(\'explore\')">
                     <div style="font-size:1.5rem">&#10060;</div>
                 </li>
             </ul>';

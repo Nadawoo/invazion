@@ -164,7 +164,15 @@ if (document.getElementById('map') !== null) {
 if (document.getElementById('city_container') !== null) {    
     // By default, loads the first tab of the city
     var search_params = new URLSearchParams(window.location.search);
-    switchCitySubmenu(search_params.get('tab'));
+    var urlTabId = search_params.get('tab');
+    var cityMenuId = (urlTabId !== null) ? urlTabId : "cityMenuCity";
+    switchCitySubmenu(cityMenuId);
+    
+    // If we are on the landing page of the city (= no city block open)
+    if(cityMenuId === "cityMenuCity" ) {
+        display("city_submenus");
+        display("city_defenses", "flex");
+    }
 }
 
 
