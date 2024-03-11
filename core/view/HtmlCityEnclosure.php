@@ -894,7 +894,11 @@ class HtmlCityEnclosure
                     à l\'extérieur de la ville. Équipez-vous en eau, nourriture 
                     et armes avant de sortir...
                 </p>
-                <p>' . $buttons->button('get_out_home') . '</p>
+                '.$buttons->button('get_out_home').'
+                <br>
+                <a class="goto bluebutton" style="font-size:0.9em" onclick="switchCitySubmenu(\'city_storage\')">
+                    <i class="material-icons">chevron_left</i>M\'équiper au dépôt &nbsp;&nbsp;&nbsp;&nbsp;
+                </a>
             </div>';
     }
     
