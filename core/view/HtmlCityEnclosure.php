@@ -439,8 +439,8 @@ class HtmlCityEnclosure
                 </p>
                 
                 <p>
-                    <a class="bluebutton" onclick="display(\'tip_buildable\');display(\'to_constructions\');toggle(\'#constructions_block\')">&#x1F4A1; Conseil : Chantiers constructibles</a>
-                    <a class="bluebutton" onclick="display(\'tip_resources\');display(\'to_constructions\');toggle(\'#constructions_block\')">&#x1F4A1; Conseil : Ressources à compléter</a>
+                    <a class="bluebutton" onclick="display(\'tip_buildable\');display(\'to_constructions\', \'flex\');toggle(\'#constructions_block\')">&#x1F4A1; Conseil : Chantiers constructibles</a>
+                    <a class="bluebutton" onclick="display(\'tip_resources\');display(\'to_constructions\', \'flex\');toggle(\'#constructions_block\')">&#x1F4A1; Conseil : Ressources à compléter</a>
                 </p>
                 
                 <form style="margin:0 0 1em 0.5em;text-align:left">
