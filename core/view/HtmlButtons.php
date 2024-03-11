@@ -92,7 +92,7 @@ class HtmlButtons
                 ],
             'end_cycle' => [
                 'icon'  => '',
-                'name'  => 'Passer au jour suivant',
+                'name'  => 'Passer au jour suivant &gt;&gt;',
                 'title' => "Met fin au cycle en cours et déclenche l'attaque zombie quotidienne.",
                 'fields' => [
                     'api_name'           => 'events',
