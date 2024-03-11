@@ -119,11 +119,13 @@
     padding:0.3em;
     font-variant: small-caps;
 }
-#timer input {
-    height:3em;
-    border-radius:0.3em;
+#timer button {
+    height:3.1em;
+    width:12em;
+    font-size: 1.1em;
+    border-radius:0.2em;
     border:2px outset red;
-    font-variant:small-caps;
+    /*font-variant:small-caps;*/
 }
 #attackCountdown {
     font-size:1.3em;
