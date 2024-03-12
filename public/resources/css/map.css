@@ -593,14 +593,6 @@ map_body_wrapper {
     width: 24px;
 }
 
-.city_nbr_def {
-    position:absolute;
-    bottom:-0.8em;
-    color:white;
-    font-weight:bold;
-    font-size:0.8em;
-}
-
 /* Puce de localisation sur la carte */
 .location {
     height:2em;
