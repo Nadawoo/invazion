@@ -370,12 +370,14 @@ map_body_wrapper {
 #map .city_name {
     display:none;
     position:absolute;
+    top:0.8em;
     padding:0.1em 0.3em;
+    font-size:0.9em;
     background:darkred;
     color:white;
     line-height:1em;
     border-radius:0.3em;
-    box-shadow:6px 6px 6px black;
+    box-shadow:4px 4px 6px black;
     z-index: 1;
 }
 #map .city_img {
@@ -385,16 +387,17 @@ map_body_wrapper {
 }
 
 #map .nbr_defenses {
-    display:none;
+    /*display:none;*/
     position:absolute;
-    top:-1.6em;
+    top:-1.4em;
     line-height:1.5em;
     padding:0 0.3em;
+    font-size:0.8em;
     background:green;
     color:white;
-    border-radius:0.2em;
-    opacity:0.8;
-    box-shadow: 6px 6px 6px black;
+    border-radius:0.4em;
+    box-shadow: 4px 4px 6px black;
+    z-index:1;
 }
 
 /*

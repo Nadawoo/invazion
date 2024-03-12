@@ -229,7 +229,7 @@ async function addCitiesOnMap(mapId) {
             let maxExplorations = 100;
             // NB: #108 = ID of the item "Counter of explorations"
             let nbrExplorations = zones[htmlCoords]['items'][108] || 0;
-            zone.insertAdjacentHTML("afterbegin", `<span class="nbr_defenses">${maxExplorations-nbrExplorations}/${maxExplorations}</span>`);
+            zone.insertAdjacentHTML("afterbegin", `<span class="nbr_defenses">${maxExplorations-nbrExplorations}&#x26CF;&#xFE0F;</span>`);
         }
         // Adds the name of the building
         cityName = (city["city_name"] === null) ? buildingName : city["city_name"];
@@ -485,10 +485,10 @@ function toggleMapNeighborhoodView() {
         city.style.display = display;
     }
     
-    let defenses = document.querySelectorAll("#map .nbr_defenses");
-    for(let defense of defenses) {
-        defense.style.display = display;
-    }
+//    let defenses = document.querySelectorAll("#map .nbr_defenses");
+//    for(let defense of defenses) {
+//        defense.style.display = display;
+//    }
 }
 
 
