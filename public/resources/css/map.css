@@ -607,8 +607,9 @@ map_body_wrapper {
 /* Legend for the view of the map (zombies...) */
 .map_legend {
     display:none;
-    position:fixed;
+    position:sticky;
     bottom:4.5rem;
+    width:16em;
     margin-left:0.5em;
     font-size:0.9em;
     border:2px solid grey;
