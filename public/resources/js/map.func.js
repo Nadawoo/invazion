@@ -484,6 +484,11 @@ function toggleMapNeighborhoodView() {
     for(let city of cities) {
         city.style.display = display;
     }
+    
+    let defenses = document.querySelectorAll("#map .nbr_defenses");
+    for(let defense of defenses) {
+        defense.style.display = display;
+    }
 }
 
 
@@ -594,6 +599,9 @@ function resetMapView() {
     window.isMapZombiesViewActive = false;
     desactivateMapItemsView();
     window.isMapItemsViewActive = false;
+    
+    window.isMapNeighborhoodViewActive = true;
+    toggleMapNeighborhoodView();
 }
 
 

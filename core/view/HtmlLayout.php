@@ -737,9 +737,9 @@ class HtmlLayout extends HtmlPage
             
             <ul id="mapRadarMenu">
                 <li onclick="resetMapView();toggleMapMarker()">&#x1F5FA;&#xFE0F; Carte réelle</li>
+                <li onclick="toggleMapNeighborhoodView()" title="Afficher des informations sur les bâtiments">&#x1F3E2; Bâtiments</li>
                 <li onclick="resetMapView();toggleMapZombiesView();toggleMapItemMarker(106)"  title="Voir les zombies sur la carte">&nbsp;<img src="resources/img/motiontwin/zombie.gif" alt="&#x1F9DF;">&nbsp; Zombies</li>
                 <li onclick="resetMapView();toggleMapItemsView();toggleMapMarker()" title="Voir les objets au sol sur la carte">&#x1F392; Objets</li>
-                <li onclick="resetMapView();toggleMapNeighborhoodView()" title="Voir les secteurs de la carte">&#128739;&#65039; Secteurs</li>
             </ul>
             
             <button><a href="#popsmartphone" style="font-size:55%">&#128241;</a></button>

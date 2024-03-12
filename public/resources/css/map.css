@@ -376,6 +376,7 @@ map_body_wrapper {
     line-height:1em;
     border-radius:0.3em;
     box-shadow:6px 6px 6px black;
+    z-index: 1;
 }
 #map .city_img {
     display:block;
@@ -384,6 +385,7 @@ map_body_wrapper {
 }
 
 #map .nbr_defenses {
+    display:none;
     position:absolute;
     top:-1.6em;
     line-height:1.5em;
