@@ -40,9 +40,18 @@ function hideTooltip(hexagon) {
  */
 function toggleTooltip(hexagon) {
     
-    if (hexagon !== null) {
-        hexagon.querySelector(".bubble").classList.toggle("block");
-        handleTooltipOverflow(hexagon);
+    if(hexagon !== null) {
+        let activeTooltip = document.querySelector("#map .bubble.block"),
+            newTooltip = hexagon.querySelector(".bubble");
+        // Hide the eventual currently displayed tooltip
+        if(activeTooltip !== null) {
+            hideTooltip(activeTooltip.closest(".hexagon"));
+        }
+        // Display the new tooltip
+        if(newTooltip !== activeTooltip) {
+            newTooltip.classList.toggle("block");
+            handleTooltipOverflow(hexagon);
+        }
     }
 }
 

@@ -60,8 +60,8 @@ function listenToMapZones() {
     document.getElementById("map").addEventListener("mouseout",  function(){
         hideTooltip(event.target.closest(".hexagon"));
     });
-    // The onclick event is required for the mobile devices (no notion of "hover" there)
-    document.getElementById("map").addEventListener("click", function(){
+    // The touchstart event is required for the mobile devices (no notion of "hover" there)
+    document.getElementById("map").addEventListener("touchstart", function(){
         toggleTooltip(event.target.closest(".hexagon"));
     });
 }
