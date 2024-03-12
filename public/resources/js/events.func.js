@@ -64,6 +64,9 @@ function listenToMapZones() {
     document.getElementById("map").addEventListener("touchstart", function(){
         toggleTooltip(event.target.closest(".hexagon"));
     });
+    document.getElementById("map").addEventListener("touchend", function(){
+        toggleTooltip(event.target.closest(".hexagon"));
+    });
 }
 
 
