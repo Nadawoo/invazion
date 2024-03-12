@@ -752,6 +752,11 @@ input[type="submit"] {
     background:green;
     border-radius:2em;
 }
+.redbutton .material-icons,
+.bluebutton .material-icons {
+    /* Fix for Materialize.css (icon not vertically aligned) */
+    height:auto;
+}
 .bluebutton {
     background:#34495e;
 }
