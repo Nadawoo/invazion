@@ -67,8 +67,8 @@ class HtmlMap
         
         $templates = [
             'citizen_alone' => 'Le citoyen '.$string1.' est ici.',
-            'items'         => '<br>Il y a des objets dans cette zone... Mais lesquels&nbsp;?',
-            'zombies'       => '<br>Il y a '.plural($string1, 'zombie').' dans cette zone&nbsp;!',
+            'items'         => '<br>• '.plural($string1, 'objet').' au sol',
+            'zombies'       => '<br>• '.plural($string1, 'zombie').' dans la zone',
         ];
         
         return (isset($templates[$bubble_alias])) ? "    ".$templates[$bubble_alias]."\n" : null;
@@ -179,7 +179,7 @@ class HtmlMap
         $cell_zombies   = '';
         $elevate        = '';
         $opacity        = '';
-        $bubble_roleplay = '';
+        $bubble_roleplay = 'Zone explorable';
         $bubble_zombies = '';
         $bubble_items   = '';
         $player_city_marker = '';
@@ -204,7 +204,7 @@ class HtmlMap
         }
 
         if (!empty($cell['items'])) {
-            $bubble_items = $this->html_bubble('items');
+            $bubble_items = $this->html_bubble('items', count($cell['items']));
         }        
 
 
@@ -249,10 +249,10 @@ class HtmlMap
                         <span class="zombies_amount hidden"></span>'
                         . $cell_zombies . $cell_content . $cell_name . '
                         <div class="bubble">
-                            <div class="coords">[Zone '.$col.':'.$row.']</div>
+                            <div class="coords">['.$col.':'.$row.']</div>
                             <div class="roleplay">'.$bubble_roleplay.'</div>'
-                            . $bubble_zombies 
-                            . $bubble_items . '
+                            . $bubble_items
+                            . $bubble_zombies . '
                             <div class="triangle_down"></div>
                         </div>
                     </div>

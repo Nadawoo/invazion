@@ -510,8 +510,11 @@ map_body_wrapper {
     bottom:-1em;
     z-index:2;
 }
+.bubble .coords {
+    text-align:right;
+}
 .bubble .roleplay {
-    margin-top:0.7rem;
+    margin-top:0.3rem;
     padding:0.3em 0.2em;
     font-size:1.1em;
     line-height:110%;
