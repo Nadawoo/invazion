@@ -92,7 +92,21 @@ class HtmlButtons
                 ],
             'end_cycle' => [
                 'icon'  => '',
-                'name'  => 'Passer au jour suivant &gt;&gt;',
+                'name'  => 'Déclencher l\'attaque !
+                            <span style="display:flex;align-items:center;color:lightgrey">
+                                &#x1F9DF; <span class="material-icons">chevron_right</span>
+                                <span class="material-icons">chevron_right</span>
+                                <span class="material-icons">chevron_right</span>
+                                <span class="material-icons">chevron_right</span>
+                                <span class="material-icons">chevron_right</span>
+                                &#x1F307;
+                                <!--
+                                &#x1F304; <span class="material-icons">chevron_right</span>
+                                &#x2600;&#xFE0F; <span class="material-icons">chevron_right</span>
+                                &#x1F307; <span class="material-icons">chevron_right</span>
+                                &#x1F9DF;
+                                -->
+                            </span>',
                 'title' => "Met fin au cycle en cours et déclenche l'attaque zombie quotidienne.",
                 'fields' => [
                     'api_name'           => 'events',

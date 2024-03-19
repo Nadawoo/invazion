@@ -120,7 +120,7 @@
     font-variant: small-caps;
 }
 #timer button {
-    display:block;
+    flex-direction:column;
     height:3.1em;
     font-size: 1.1em;
     border:2px outset red;
