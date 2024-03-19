@@ -39,6 +39,9 @@
 /*
  * Common styles for the wall (lateral panel or inside city interface)
  */
+#wall .tabs {
+    border-bottom:1px solid grey;
+}
 #wall .tabs .tab a {
     /* Fix for Materialize.css (prevents horizontal overflow on large screens) */
     padding: 0 12px; 
@@ -63,6 +66,7 @@
 #wall .contents {
     display:flex;
     flex-direction:column;
+    padding: 0 0.1em;
     height:97%; /* Not 100% because the "Communications" header needs space too. Ugly fix. */
     text-align:left;
 }
@@ -157,15 +161,17 @@
 #wall .link_other_messages { /* Link "show other message" in truncated discussions */
     display:block;
     width:15em;
-    margin:0.6em auto;
-    padding:0.2em 0;
-    border-top:   1px dashed grey;
-    border-bottom:1px dashed grey;
+    margin:1em auto;
+    padding:0.5em 0;
+    border-top:   2px solid darkgrey;
+    border-bottom:2px solid darkgrey;
     font-size:0.8em;
     text-align:center;
+    color:lightgrey;
 }
 #wall .link_other_messages:hover {
     color:#e74c3c;
+    border-color:#e74c3c;
 }
 
 /*
@@ -197,9 +203,6 @@
 #wall .discuss form,
 #wall .event form {
     display:none;
-}
-#wall .discuss .link_other_messages {
-    color:lightgrey;
 }
 #wall #send {
     padding:0.1em;

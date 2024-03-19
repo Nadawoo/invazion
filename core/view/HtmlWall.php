@@ -42,7 +42,7 @@ class HtmlWall
     private function tabs()
     {
         
-        return '<ul class="tabs">
+        return '<ul class="tabs z-depth-3">
                     <li class="tab col s3"><a href="#wallDiscuss">Discussions</a></li>
                     <!--<li class="tab col s3"><a href="#wallNotifications">Notifications</a></li>-->
                     <li class="tab col s3"><a href="#wallEvents">Événements</a></li>
