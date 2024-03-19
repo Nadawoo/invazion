@@ -191,7 +191,7 @@ class HtmlLayout extends HtmlPage
             </div>
             <div class="right">
                 <a id="showWall" title="Communications">
-                    <span class="icon">&#128172;</span>
+                    <span class="icon"><i class="material-icons">sms</i></span>
                     <span class="text">Communications</span>
                 </a>
                 

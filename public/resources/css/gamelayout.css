@@ -87,43 +87,42 @@
 #attack_bar ::selection {
     background:none;
 }
-#dayclock {
-    display:flex;
-    justify-content:center;
-    flex-direction:column;
-    text-align:center;
-    height:3.5rem;
-    width: 3.5rem;
-    line-height:1.4em;
-    margin:0.1em;
-    border:2px solid white;
-    border-radius:2em;
-    color:white;
-}
+#dayclock,
 #showWall {
     display:flex;
-    align-items: center;
     justify-content:center;
-    height:3.1rem;
-    margin-right:0.3rem;
-    background:darkred;
+    align-items: center;
+    height:3.5rem;
+    margin:0.1rem;
+    border:2px outset white;
     color:white;
-    border:2px outset red;
-    border-radius:0.1em;
     box-shadow: 3px 3px 5px black;
+}
+#dayclock {
+    flex-direction:column;
+    width: 3.5rem; /* Same as the height */
+    line-height:1.4em;
+    border-radius:2em;
+}
+#showWall {
+    padding:0 0.3rem;
+    border-radius:0.3em;
 }
 #showWall .icon {
     font-size:2em;
+}
+#showWall .icon .material-icons {
+    font-size:1em;
+    line-height:2em;
 }
 #showWall .text {
     padding:0.3em;
     font-variant: small-caps;
 }
 #timer button {
+    display:block;
     height:3.1em;
-    width:12em;
     font-size: 1.1em;
-    border-radius:0.2em;
     border:2px outset red;
     /*font-variant:small-caps;*/
 }

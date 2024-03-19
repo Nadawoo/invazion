@@ -150,7 +150,7 @@ map_body_wrapper {
 }
 #resizeMap button {
     background:darkred;
-    outline:2px solid lightgrey;
+    outline:2px outset white;
 }
 #resizeMap i {
     font-size:0.9em;
