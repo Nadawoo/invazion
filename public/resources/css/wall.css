@@ -77,21 +77,31 @@
 #wall .footer {
     padding:0.5rem 0 0 0;
     border-top:1px solid grey;
+    background: #F2F3F4;
 }
 #wall .footer .discuss {
     margin:0;
 }
 
 /* New topic */
-#buttonNewTopic {
+#buttonNewTopic input[type=text] {
+    height:4em;
     padding:1em 0 1em 1em;
     box-sizing: border-box;
     border-width: 2px !important;
     border-color: darkred !important;
-    height:3em !important;
+    background:#F2D7D5 !important;
 }
-#buttonNewTopic::placeholder {
+#buttonNewTopic input::placeholder {
   color: darkred;
+}
+#buttonNewTopic .material-icons {
+    position:absolute;
+    right:1rem;
+    margin-top:1.7rem;
+    font-size:1.6em;
+    color:darkred;
+    opacity:0.8;
 }
 #hideSendform {
     display:block;

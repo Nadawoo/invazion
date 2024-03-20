@@ -108,7 +108,10 @@ function htmlNewDiscussionForm(citizenPseudo)
     var fieldPseudoStyle = (citizenPseudo === "") ? '' : 'display:none';
 
     return '<div id="newDiscussion"></div>\
-        <input id="buttonNewTopic" type="text" placeholder="Envoyer un message...">\
+        <div id="buttonNewTopic">\
+            <span class="material-icons icon2">send</span>\
+            <input type="text" placeholder="Envoyer un message...">\
+        </div>\
         <div id="send" class="topic discuss" style="display:none">\
             <div class="message">\
                 <form id="sendform">\

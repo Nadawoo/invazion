@@ -10,7 +10,7 @@
  */
 function listenToSendform() {
     // Create a new discussion thread
-    document.getElementById("buttonNewTopic").addEventListener("focus", function() {
+    document.getElementById("buttonNewTopic").addEventListener("click", function() {
         toggleSendform(event);
     });
     document.getElementById("hideSendform").addEventListener("click", function() {
