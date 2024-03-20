@@ -35,7 +35,7 @@ function htmlDiscussion(topicId, topicType, nbrReplies) {
                 <form class="sendform" method="post" action="" onsubmit="replyDiscussion('+topicId+', '+(nbrReplies+1)+'); return false;">\
                     <div class="replyError"></div>\
                     <textarea placeholder="Écrivez votre réponse ici"></textarea>\
-                    <input type="submit" value="Envoyer">\
+                    <input type="submit" value="Envoyer la réponse" class="redbutton">\
                 </form>\
             </div>';
 }
@@ -119,8 +119,8 @@ function htmlNewDiscussionForm(citizenPseudo)
                     <div id="errorNewTopicMessage" class="red"></div>\
                     <input type="text" id="titleNew" placeholder="Titre de la discussion (facultatif)">\
                     <textarea id="messageNew" placeholder="Donnez votre avis sur les stratégies ou demandez de l\'aide..."></textarea>\
-                    <input type="submit" value="Envoyer"><br>\
-                    <a href="#" id="hideSendform">Annuler</a>\
+                    <input type="submit" value="Envoyer" class="redbutton">\
+                    <a href="#" id="hideSendform">&#x274C; Annuler</a>\
                 </form>\
             </div>\
         </div>';

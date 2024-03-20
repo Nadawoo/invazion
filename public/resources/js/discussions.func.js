@@ -174,6 +174,7 @@ function toggleSendform(event) {
     toggle("#send");
     toggle("#sendform");
     toggle("#buttonNewTopic");
+    toggle("#wall .body");
     
     // When we hide the form, event = null
     if(event !== null) {
