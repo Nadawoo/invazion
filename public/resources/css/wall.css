@@ -210,13 +210,17 @@
 #wall .event form {
     display:none;
 }
-#wall #send {
+#send {
     padding:0.1em;
 }
-#wall #send h3 {
-    text-align:center;
+#send h3 {
+    font-size:1.3em;
 }
-#wall #send .message {
+#send h3 input {
+    display:none;
+    margin:0;
+}
+#send .message {
     margin:0;
 }
 

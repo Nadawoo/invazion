@@ -113,7 +113,9 @@ function htmlNewDiscussionForm(citizenPseudo)
             <input type="text" placeholder="Envoyer un message...">\
         </div>\
         <div id="send" class="topic discuss" style="display:none">\
-            <h3>Nouvelle discussion</h3>\
+            <h3><span onclick="toggle([\'#titleNew\', \'#send h3 span\']);document.querySelector(\'#titleNew\').focus()">Nouvelle discussion &#x270F;&#xFE0F;</span>\
+                <input type="text" id="titleNew" placeholder="Titre de la discussion (facultatif)">\
+            </h3>\
             <div class="message">\
                 <form id="sendform">\
                     <div>\
@@ -121,8 +123,7 @@ function htmlNewDiscussionForm(citizenPseudo)
                         <input id="guestPseudo" type="text" name="guest_pseudo" placeholder="Votre pseudo" style="'+fieldPseudoStyle+'">\
                     </div>\
                     <div id="errorNewTopicMessage" class="red"></div>\
-                    <input type="text" id="titleNew" placeholder="Titre de la discussion (facultatif)">\
-                    <textarea id="messageNew" placeholder="Donnez votre avis sur les stratégies ou demandez de l\'aide..."></textarea>\
+                    <textarea id="messageNew" placeholder="Votre message ici. Donnez votre avis sur les stratégies ou demandez de l\'aide..."></textarea>\
                     <input type="submit" value="Envoyer" class="redbutton">\
                     <a href="#" id="hideSendform" class="bluebutton">\
                         <i class="material-icons">chevron_left</i> Retour aux discussions\
