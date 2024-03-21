@@ -222,8 +222,8 @@ li {
     max-width:50%;
 }
 #connectionForm h2 {
-    margin-top:0.3em;
-    font-size:2.5em;
+    margin:0.3em;
+    font-size:1.8em;
     text-align:center
 }
 #connectionForm fieldset {
@@ -243,15 +243,10 @@ li {
     display:flex;
     align-items:center;
     justify-content:space-between;
-    margin-top:2rem;
+    margin-top:1.5rem;
 }
 #connectionForm input[type="submit"] {
-    padding:0.1em 0.5em 0.2em 0.5em;
     font-size:1.2em;
-    background:darkred;
-    border-radius:1em;
-    color:white;
-    border:none;
 }
 #connectionForm .aside {
     margin-left:0.3em;
