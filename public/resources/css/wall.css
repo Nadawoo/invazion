@@ -161,15 +161,20 @@
     color:#566573;
 }
 #wall .link_other_messages { /* Link "show other message" in truncated discussions */
-    display:block;
+    display:flex;
+    justify-content:space-between;
     width:15em;
     margin:1em auto;
     padding:0.5em 0;
-    border-top:   2px solid darkgrey;
-    border-bottom:2px solid darkgrey;
+    border-top:   2px solid darkred;
+    border-bottom:2px solid darkred;
     font-size:0.8em;
     text-align:center;
+}
+#wall .discuss .link_other_messages {
+    /* Don't apply this in the comments of game events (grey on grey) */
     color:lightgrey;
+    border-color:darkgrey;
 }
 #wall .link_other_messages:hover {
     color:#e74c3c;
