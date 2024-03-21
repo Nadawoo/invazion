@@ -11,7 +11,7 @@ class HtmlPage
     // Increment those variables when you modify the CSS or JS files. This ensures
     // that the users' browsers reload the up-to-date files, instead of using 
     // the obsolete ones stored in their cache.
-    private $css_js_version = 47.2;
+    private $css_js_version = 47.3;
     
     /**
      * Sets HTTP headers to secure the website
@@ -182,7 +182,7 @@ class HtmlPage
     function site_menu($user_id, $citizen_id, $citizen_pseudo) {
         
         $connection_buttons = ($citizen_id === null)
-                    ? '<a href="register" class="#0d47a1 blue darken-4 white-text"> M\'inscrire </a> · <a href="connect" class="#0d47a1 blue darken-4 white-text"> Me connecter </a>'
+                    ? '<a href="register" class="#0d47a1 blue darken-4 white-text"> M\'inscrire </a> · <a href="connect#connectionForm" class="#0d47a1 blue darken-4 white-text"> Me connecter </a>'
                     : '<br>';
         
         $user_name = ($citizen_id === null)
@@ -196,7 +196,7 @@ class HtmlPage
                     <div class="background">
                         <img src="resources/img/motiontwin/mapBg.jpg" alt="Fond">
                     </div>
-                    <a href="connect" class="user blue darken-4">
+                    <a href="connect#connectionForm" class="user blue darken-4">
                         <img class="circle" src="resources/img/icons8/profile-96.png" alt="Utilisateur">
                         '.$user_name.'
                     </a>
