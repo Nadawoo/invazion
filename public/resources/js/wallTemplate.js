@@ -109,10 +109,11 @@ function htmlNewDiscussionForm(citizenPseudo)
 
     return '<div id="newDiscussion"></div>\
         <div id="buttonNewTopic">\
-            <span class="material-icons icon2">send</span>\
+            <span class="material-icons">send</span>\
             <input type="text" placeholder="Envoyer un message...">\
         </div>\
         <div id="send" class="topic discuss" style="display:none">\
+            <h3>Nouvelle discussion</h3>\
             <div class="message">\
                 <form id="sendform">\
                     <div>\
@@ -123,7 +124,9 @@ function htmlNewDiscussionForm(citizenPseudo)
                     <input type="text" id="titleNew" placeholder="Titre de la discussion (facultatif)">\
                     <textarea id="messageNew" placeholder="Donnez votre avis sur les stratégies ou demandez de l\'aide..."></textarea>\
                     <input type="submit" value="Envoyer" class="redbutton">\
-                    <a href="#" id="hideSendform">&#x274C; Annuler</a>\
+                    <a href="#" id="hideSendform" class="bluebutton">\
+                        <i class="material-icons">chevron_left</i> Retour aux discussions\
+                    </a>\
                 </form>\
             </div>\
         </div>';

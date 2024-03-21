@@ -98,32 +98,31 @@
 #buttonNewTopic .material-icons {
     position:absolute;
     right:1rem;
-    margin-top:1.7rem;
+    margin-top:1.4rem;
     font-size:1.6em;
     color:darkred;
     opacity:0.8;
 }
 #hideSendform {
-    display:block;
     margin:0.5em 0;
-    text-align:center;
     font-size:0.9em;
 }
 /* To send a message */
 #wall textarea,
 #wall input[type="text"] {
     width:99%;
-    margin:0.5em 0;
+    /*margin:0.5em 0;*/
     border-radius:0.3em;
     border:1px solid grey;
     background-color:whitesmoke;
 }
 #wall textarea {
-    height:15em;
+    height:8em;
 }
 #wall input[type="submit"] {
     width:99%;
     margin-bottom:1em;
+    font-size:1.1em;
 }
 #wall input[type="submit"]:hover,
 #wall .discuss .replyButton:hover {
@@ -213,6 +212,9 @@
 }
 #wall #send {
     padding:0.1em;
+}
+#wall #send h3 {
+    text-align:center;
 }
 #wall #send .message {
     margin:0;

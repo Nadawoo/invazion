@@ -171,9 +171,12 @@ async function replyDiscussion(topicId, nbrMessages) {
  */
 function toggleSendform(event) {
     
+    // Display the form for writing a new thread
     toggle("#send");
     toggle("#sendform");
     toggle("#buttonNewTopic");
+    // Hide other elements to keep the view clear
+    toggle("#wall .tabs");
     toggle("#wall .body");
     
     // When we hide the form, event = null
