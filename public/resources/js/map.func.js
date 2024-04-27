@@ -576,6 +576,40 @@ function desactivateMapItemsView() {
 }
 
 
+/**
+ * Displays the expeditions on the map
+ * 
+ * @returns {undefined}
+ */
+async function activateMapPathsView() {
+    
+    // Get the datas about the expeditions
+    let mapId = await document.querySelector("#mapId").innerText;
+    let json = await callApi("GET", "paths", "action=get&map_id="+mapId);
+    
+    // Draw the course of each expedition on the map
+    drawPathsOnMap(json.datas.courses);
+    
+    // Populate the list of expeditions (lateral panel)    
+    populatePathsPanel(json.datas.courses, json.datas.members);
+    unhideId("paths_panel");
+}
+
+
+function desactivateMapPathsView() {
+    
+    let hexagons = document.querySelectorAll("#map_body .hexagon");
+    
+    for(let i=0; i<hexagons.length; i++) {
+        // Remove the stages of expeditions drawn on the map
+        document.querySelectorAll(".path_stage").forEach(el => el.remove());
+        // Hides the list of expeditions
+        hideIds("paths_panel");
+        document.querySelectorAll("#paths_panel .card").forEach(el => el.remove());
+    }
+}
+
+
 function toggleMapItemsView() {
     
     if (window.isMapItemsViewActive === true) {   
@@ -584,6 +618,18 @@ function toggleMapItemsView() {
     } else {
         activateMapItemsView();
         window.isMapItemsViewActive = true;
+    }
+}
+
+
+function toggleMapPathsView() {
+    
+    if (window.isMapPathsViewActive === true) {   
+        desactivateMapPathsView();
+        window.isMapPathsViewActive = false;
+    } else {
+        activateMapPathsView();
+        window.isMapPathsViewActive = true;
     }
 }
 
@@ -599,6 +645,8 @@ function resetMapView() {
     window.isMapZombiesViewActive = false;
     desactivateMapItemsView();
     window.isMapItemsViewActive = false;
+    desactivateMapPathsView();
+    window.isMapPathsViewActive = false;
     
     window.isMapNeighborhoodViewActive = true;
     toggleMapNeighborhoodView();
@@ -679,8 +727,20 @@ function toggleZoomRange() {
  */
 function centerMapOnMe() {
     
+    centerMapOnZone(document.querySelector("#me").closest(".hexagon").id);
+}
+
+
+/**
+ * Centers the map on a zone
+ * 
+ * @param {string} zoneHtmlId The HTML ID of the concerned zone, ex: "zone10_2"
+ * @returns {undefined}
+ */
+function centerMapOnZone(zoneHtmlId) {
+    
     let viewport = document.querySelector("#map_body_wrapper").getBoundingClientRect();
-    let me = document.querySelector("#me").getBoundingClientRect();
+    let me = document.querySelector(`#${zoneHtmlId}`).getBoundingClientRect();
     
     let offsetX = (me.x - viewport.x + me.width/2 - viewport.width/2); 
     let offsetY = (me.y - viewport.y + me.height/2 - viewport.height/7);

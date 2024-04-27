@@ -228,6 +228,15 @@ class HtmlButtons
                     'action'        => 'go_inout'
                     ],
                 ],
+            'move_path' => [
+                'icon'  => '',
+                'name'  => "Avancer vers<br>l'étape suivante",
+                'title' => "",
+                'fields' => [
+                    'api_name'      => 'paths',
+                    'action'        => 'move'
+                    ],
+                ],
             'open_door' => [
                 'icon'  => '',
                 'name'  => 'Ouvrir les portes !',
@@ -823,6 +832,28 @@ class HtmlButtons
             <input type="hidden" name="api_name" value="'.$fields['api_name'].'">
             <input type="hidden" name="action" value="'.$fields['action'].'">
             <input type="hidden" name="params[target_id]" value="'.$target_id.'">
+            <button type="submit" class="redbutton" title="'.$button['title'].'">'.$button['name'].'</button>
+        </form>';
+    }
+    
+    
+    /**
+     * Button to move the members of an expedition on the map
+     * 
+     * @param int $path_id The ID of the expedition to move
+     * @return string HTML
+     */
+    function move_path($path_id)
+    {
+        
+        $button = $this->buttons['move_path'];
+        $fields = $button['fields'];
+        
+        return
+        '<form method="post" action="#Outside" class="form_path">
+            <input type="hidden" name="api_name" value="'.$fields['api_name'].'">
+            <input type="hidden" name="action" value="'.$fields['action'].'">
+            <input type="hidden" name="params[path_id]" value="'.$path_id.'">
             <button type="submit" class="redbutton" title="'.$button['title'].'">'.$button['name'].'</button>
         </form>';
     }

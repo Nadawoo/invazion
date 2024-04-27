@@ -1,0 +1,69 @@
+/*
+ * Styles relative to the expeditions drawn on the map
+ */
+
+/*
+ * Display the panel for handling the expeditions
+ */
+#paths_panel {
+    position:absolute;
+    top:0;
+    height:100%;
+    padding:0 0.5em;
+    background:#fbeee6;
+    border:1px solid black;
+    border-right:2px outset white;
+    overflow:auto;
+}
+#paths_panel .card {
+    width: 16em;
+    padding-bottom:1em;
+    border-bottom:1px solid grey;
+}
+#paths_panel h2 {
+    margin:auto 0;
+    padding:0.5em 0;
+    font-size:1.1em;
+    font-weight:bold;
+    background:#34495e;
+    color:white;
+    text-align:center;
+    border-radius: 0.3em 0.3em 0 0;
+    box-shadow: 0px 4px 6px black;
+}
+#paths_panel var {
+    position:absolute;
+    right:0.2em;
+    padding:0 0.2em;
+    font-size:0.8em;
+    font-style:normal;
+    font-weight:normal;
+    border-radius:0.3em;
+    background:darkgrey;
+    color:black;    
+}
+#paths_panel .card-content {
+    padding:0.2em;
+    font-size:0.9em;
+}
+#paths_panel .card-action {
+    padding: 0.8em 0.2em 0.2em 0.2em;
+}
+
+/*
+ * Draw the stages of the paths on the map
+ */
+#map .path_stage {
+    position:absolute;
+    height:1.7em;
+    width: 1.7em;
+    line-height:180%;
+    background:#4a235a;
+    border:1px solid white;
+    border-radius:50%;
+    font-weight:bold;
+    color:white;
+    box-sizing:content-box;
+    box-shadow: 3px 3px 4px black;
+    /*z-index:4;*/
+}

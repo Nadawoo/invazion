@@ -107,6 +107,25 @@ function listenToMapDragging() {
 
 
 /**
+ * Add event listeners on the buttons which center the map on a zone
+ * 
+ * @param {object} node The HTML node containing the buttons
+ *                      ex: document.querySelectorAll("#paths_panel .localize");
+ * @returns {undefined}
+ */
+function listenToLocationButtons(node) {
+
+    for (var i=0; i<node.length; i++) {
+        node[i].addEventListener("click", function() {
+            let htmlCoords = event.target.parentNode.dataset.coords;
+            centerMapOnZone(`zone${htmlCoords}`);
+            toggleTooltip(document.querySelector(`#zone${htmlCoords}`));
+        });
+    }
+}
+
+
+/**
  * Filter the list of constructions inside the city (by defenses, by resources, etc.)
  * 
  * @param {string} selectedValue The HTML value of the <option> selected 

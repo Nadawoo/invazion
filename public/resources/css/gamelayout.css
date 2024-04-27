@@ -955,6 +955,21 @@ input[type="submit"] {
     color:grey;
 }
 
+/* Buttons to center the map on a given zone */
+a.localize {
+    position:relative;
+    top:0.4em;
+    margin-left: 0.2em;
+    color:darkred;
+/*    padding:0em 0.2em 0.1em 0.1em;
+    border:1px solid #784212;
+    border-radius:0.3em;
+    */
+    
+}
+a.localize .material-icons {
+    font-size:1.5em;
+}
 
 /*
  * Page to edit the configuration of the game (list of items...))

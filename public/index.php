@@ -23,6 +23,7 @@ $wall               = new HtmlWall();
 $popup              = new HtmlPopup();
 $tutorial           = new HtmlTutorial();
 $htmlItem           = new HtmlItem();
+$htmlPaths          = new HtmlPaths();
 $sort               = new SortGameData();
 $zone               = set_default_variables('zone');
 $citizen            = set_default_variables('citizen');
@@ -201,6 +202,7 @@ echo $html['json_configs'];
 <section id="templates">
     <?php
     echo $htmlItem->item_template()
+       . $htmlPaths->path_template()
        . $layout->block_zone_fellow_template();
     ?>
     <template id="tplEmptySlot">
@@ -320,6 +322,8 @@ echo $html['json_configs'];
                 </div>
             </div>
         </div>
+        
+        <section id="paths_panel" class="hidden"></section>
         
         <section id="personal_block_wrapper">
             <div id="personal_block">

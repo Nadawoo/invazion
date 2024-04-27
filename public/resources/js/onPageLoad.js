@@ -94,7 +94,7 @@ if (document.getElementById('map') !== null) {
         // Add a location sign above the city of the player
         addCityLocationMarker(myCityZoneId);
         // Start in the "action" mode (centered on the current player)
-        setTimeout(switchToActionView, 500);
+//        setTimeout(switchToActionView, 500);
         
         // Draws a line between the player and his city
         if(myCityZoneId !== null) {
