@@ -33,14 +33,22 @@ async function populatePathsPanel(pathsCourses, pathsMembers) {
         let htmlMembers = "",
             htmlHumansIcons = "";
         for(let member of Object.values(members)) {
-            let htmlCoords = `${member.coord_x}_${member.coord_y}`;
-            htmlMembers += `<li>&#x1F464; <strong>${member.citizen_pseudo}</strong> <a class="localize" data-coords="${htmlCoords}"><i class="material-icons">my_location</i></a></li>`;
+            let citizen = _citizens[member.citizen_id];
+            let htmlCoords = `${citizen.coord_x}_${citizen.coord_y}`;
+            
+            htmlMembers += `<li class="citizen${citizen.citizen_id}">
+                                <strong style="font-size:1.1em">&#x1F464; ${citizen.citizen_pseudo}</strong>
+                                <a class="localize" data-coords="${htmlCoords}"><i class="material-icons">my_location</i></a>
+                                <div style="display:flex;margin-left:0.3em">└ Sac :
+                                    <ul class="items_list"></ul>
+                                </div>
+                            </li>`;
             htmlHumansIcons += `<img src="/resources/img/free/human.png" height="24">`;
         }
         
         // Populates the HTML template for the current expedition
         template.querySelector(".card").id = htmlId;
-        template.querySelector(`#${htmlId} h2`).innerHTML = `Expédition ${pathId} <var style="">${nbrKilometers} km</var>`;
+        template.querySelector(`#${htmlId} h2`).innerHTML = `Expédition ${pathId} <var class="tag">${nbrKilometers} km</var>`;
         template.querySelectorAll(`#${htmlId} .tab a`)[0].href = `#${htmlId}_path`;
         template.querySelectorAll(`#${htmlId} .tab a`)[1].href = `#${htmlId}_members`;
         template.querySelector(`#${htmlId} .nbr_members`).innerText = members.length;
@@ -56,6 +64,14 @@ async function populatePathsPanel(pathsCourses, pathsMembers) {
         template.querySelector(`#${htmlId} input[name="params[path_id]"]`).value = pathId;
         
         document.querySelector(`#paths_panel`).append(template);
+        
+        // Display the content of the bag of each member of the expedition
+        for(let member of Object.values(members)) {
+            let citizen = _citizens[member.citizen_id];
+            for(let bagItem of Object.entries(citizen.bag_items)) {
+                document.querySelector(`#paths_panel .citizen${citizen.citizen_id} .items_list`).prepend( htmlItem(bagItem[0], _configsItems[bagItem[0]]) );
+            }
+        }
     }
     
     // Activate the tabs of the card (not active on page load because 

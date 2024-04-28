@@ -31,7 +31,7 @@
     border-radius: 0.3em 0.3em 0 0;
     box-shadow: 0px 4px 6px black;
 }
-#paths_panel var {
+#paths_panel h2 .tag {
     position:absolute;
     right:0.2em;
     padding:0 0.2em;
@@ -45,6 +45,13 @@
 #paths_panel .card-content {
     padding:0.2em;
     font-size:0.9em;
+}
+#paths_panel .items_list {
+    margin-left:0.4rem;
+}
+#paths_panel .item_label {
+    height:2.3em;
+    width: 2.3em;
 }
 #paths_panel .card-action {
     padding: 0.8em 0.2em 0.2em 0.2em;
