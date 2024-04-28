@@ -763,6 +763,7 @@ function switchToActionView() {
     // Hide some elements of the GUI to make the interface look lighter
     hide(["map_navigation", "game_footer"]);
     hideClasses(["nbr_defenses", "bubble"]);
+    desactivateMapPathsView();
     // Display the button which switches to the Map mode
     hide(["action_mode_button"]);
     changeDisplayValue("map_mode_button", "flex");

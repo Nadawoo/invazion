@@ -26,9 +26,11 @@ class HtmlPaths {
                             <a class="localize"><i class="material-icons">my_location</i></a>
                         </li>
                         <li class="grey-text">&nbsp;&nbsp;|</li>
-                        <li style="display:flex">
+                        <li class="current_stage" style="display:flex;align-items:center">
                             &nbsp;<span class="humans"></span>
-                            &nbsp;<span class="nbr_kilometers"></span> km à parcourir</li>
+                            &nbsp;<span class="nbr_kilometers"></span> km à parcourir
+                            <a class="localize"><i class="material-icons">my_location</i></a>
+                        </li>
                         <li class="grey-text">&nbsp;&nbsp;|</li>
                         <li class="last_stage">
                             &#x1F3C1;&nbsp;&nbsp;Arrivée zone [<span class="coords"></span>]

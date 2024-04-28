@@ -1267,3 +1267,20 @@ function updateBlockLandType(landType) {
 }
 
 
+/**
+ * To control a bot citizen
+ * 
+ * @param {int} targetCitizenId the ID of the citizen you want to take control over.
+ * @returns {undefined}
+ */
+async function switchToCitizen(targetCitizenId) {
+    
+    let token = getCookie('token');
+    let json = await callApi("GET", "me", `action=switch_citizen&target_id=${targetCitizenId}&token=${token}`);
+    
+    // Update the cookie to write the token corresponding to the now-controlled citizen 
+    if(json.metas.error_code === "success") {
+        setCookie("token", json.datas.token);
+    }
+}
+

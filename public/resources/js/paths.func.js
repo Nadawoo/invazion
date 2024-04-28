@@ -38,7 +38,10 @@ async function populatePathsPanel(pathsCourses, pathsMembers) {
             
             htmlMembers += `<li class="citizen${citizen.citizen_id}">
                                 <strong style="font-size:1.1em">&#x1F464; ${citizen.citizen_pseudo}</strong>
-                                <a class="localize" data-coords="${htmlCoords}"><i class="material-icons">my_location</i></a>
+                                <a class="action_mode_button" data-coords="${htmlCoords}"
+                                   onclick="switchToCitizen('${citizen.citizen_id}');switchToActionView()"
+                                   title="Prendre le contrôle de ce citoyen">
+                                   <i class="material-icons">zoom_in_map</i></a>
                                 <div style="display:flex;margin-left:0.3em">└ Sac :
                                     <ul class="items_list"></ul>
                                 </div>
@@ -63,6 +66,11 @@ async function populatePathsPanel(pathsCourses, pathsMembers) {
         template.querySelector(`#${htmlId} .last_stage .localize`).setAttribute("data-coords", `${lastStage.coord_x}_${lastStage.coord_y}`);
         template.querySelector(`#${htmlId} input[name="params[path_id]"]`).value = pathId;
         
+        if(pathsMembers[pathId] !== undefined) {
+            let currentStageCoords = `${members[0]["coord_x"]}_${members[0]["coord_y"]}`;
+            template.querySelector(`#${htmlId} .current_stage .localize`).setAttribute("data-coords", currentStageCoords);
+        }
+        
         document.querySelector(`#paths_panel`).append(template);
         
         // Display the content of the bag of each member of the expedition
@@ -80,6 +88,8 @@ async function populatePathsPanel(pathsCourses, pathsMembers) {
     
     // Add event listeners on the buttons which center the map on a zone
     listenToLocationButtons(document.querySelectorAll("#paths_panel .localize"));
+    // Centers + zoom on the map
+    document.querySelector("#paths_panel .action_mode_button").addEventListener("click", switchToActionView);
 }
 
 
