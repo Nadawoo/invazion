@@ -36,13 +36,15 @@ async function populatePathsPanel(pathsCourses, pathsMembers) {
             let citizen = _citizens[member.citizen_id];
             let htmlCoords = `${citizen.coord_x}_${citizen.coord_y}`;
             
-            htmlMembers += `<li class="citizen${citizen.citizen_id}">
-                                <strong style="font-size:1.1em">&#x1F464; ${citizen.citizen_pseudo}</strong>
-                                <a class="action_mode_button" data-coords="${htmlCoords}"
-                                   onclick="switchToCitizen('${citizen.citizen_id}');switchToActionView()"
-                                   title="Prendre le contrôle de ce citoyen">
-                                   <i class="material-icons">zoom_in_map</i></a>
-                                <div style="display:flex;margin-left:0.3em">└ Sac :
+            htmlMembers += `<li class="card citizen${citizen.citizen_id}">
+                                <h2 class="action_mode_button" data-coords="${htmlCoords}"
+                                    title="Cliquez pour prendre le contrôle de ce citoyen"
+                                    onclick="switchToCitizen('${citizen.citizen_id}')">
+                                    <span class="avatar">&#x1F464;</span>
+                                    ${citizen.citizen_pseudo}
+                                    <i class="material-icons" style="position:absolute;right:0.1em">zoom_in_map</i>
+                                </h2>
+                                <div style="display:flex;margin-left:0.3em">└ Sac :
                                     <ul class="items_list"></ul>
                                 </div>
                             </li>`;

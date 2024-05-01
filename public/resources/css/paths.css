@@ -56,6 +56,29 @@
 #paths_panel .card-action {
     padding: 0.8em 0.2em 0.2em 0.2em;
 }
+/* Card for each member of the expedition*/
+#paths_panel .card .card {
+    width:99%;
+    padding-top:0;
+}
+#paths_panel .card .card h2 {
+    width:100%;
+    margin-bottom: 0.5em;
+    padding:0.3em;
+    background:darkred;
+    outline: 1px solid grey;
+    text-align: left;
+    box-shadow: none;
+    cursor:pointer;
+}
+#paths_panel .card .card .avatar {
+    display:inline-block;
+    height:1.6rem;
+    width:1.6rem;
+    font-size:1.1em;
+    background:white;
+    border-radius:50%;
+}
 
 /*
  * Display the horizontal bar for the expeditions
