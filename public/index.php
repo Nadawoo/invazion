@@ -323,6 +323,8 @@ echo $html['json_configs'];
             </div>
         </div>
         
+        <?php echo $htmlPaths->paths_bar() ?>
+        
         <section id="paths_panel" class="hidden"></section>
         
         <section id="personal_block_wrapper">

@@ -228,10 +228,19 @@ class HtmlButtons
                     'action'        => 'go_inout'
                     ],
                 ],
+            'dig_path' => [
+                'icon'  => '',
+                'name'  => "&#x26CF;&#xFE0F; Fouiller",
+                'title' => "Fouiller la zone où se trouve l'expédition (FONCTION A PROGRAMMER)",
+                'fields' => [
+                    'api_name'      => 'paths',
+                    'action'        => ''
+                    ],
+                ],
             'move_path' => [
                 'icon'  => '',
-                'name'  => "Avancer vers<br>l'étape suivante",
-                'title' => "",
+                'name'  => "&#x25B6;&#xFE0F; Avancer",
+                'title' => "Faire avancer l'expédition vers l'étape suivante",
                 'fields' => [
                     'api_name'      => 'paths',
                     'action'        => 'move'
@@ -854,7 +863,29 @@ class HtmlButtons
             <input type="hidden" name="api_name" value="'.$fields['api_name'].'">
             <input type="hidden" name="action" value="'.$fields['action'].'">
             <input type="hidden" name="params[path_id]" value="'.$path_id.'">
-            <button type="submit" class="redbutton" title="'.$button['title'].'">'.$button['name'].'</button>
+            <button type="submit" title="'.$button['title'].'">'.$button['name'].'</button>
+        </form>';
+    }
+    
+    
+    /**
+     * Button to dig the zone where the expeiditon is
+     * 
+     * @param int $path_id The ID of the expedition
+     * @return string HTML
+     */
+    function dig_path($path_id)
+    {
+        
+        $button = $this->buttons['dig_path'];
+        $fields = $button['fields'];
+        
+        return
+        '<form method="post" action="#Outside" class="form_path">
+            <input type="hidden" name="api_name" value="'.$fields['api_name'].'">
+            <input type="hidden" name="action" value="'.$fields['action'].'">
+            <input type="hidden" name="params[path_id]" value="'.$path_id.'">
+            <button disabled type="submit" title="'.$button['title'].'">'.$button['name'].'</button>
         </form>';
     }
         
