@@ -393,7 +393,7 @@ map_body_wrapper {
     line-height:1.5em;
     padding:0 0.3em;
     font-size:0.8em;
-    background:green;
+    background:darkgreen;
     color:white;
     border-radius:0.4em;
     box-shadow: 4px 4px 6px black;
@@ -543,21 +543,29 @@ map_body_wrapper {
     /*width:100%;*/
     z-index:1;
 }
-.map_citizen .nbr_defenses { /* Pseudo of the player on the map */
+#map .map_citizen .nbr_defenses { /* Pseudo of the player on the map */
     width:6em;
     margin-top:-3em;
     margin-left:-2em;
-    background:darkred !important;
     border:1px solid white;
     overflow:hidden;
 }
 #me {
     position:absolute;
-    top:0.8em;
-    height:52%;
+    top:0.85em;
+    height:50%;
     width: 130%;
     background:lightgreen;
     cursor:pointer;
+}
+#me.alert {
+    width:150%;
+    background:darkred;
+    z-index:-1; /* Put the player behind the zombies */
+}
+#me.alert .nbr_defenses {
+    background:darkred;
+    border-color: red;
 }
 @keyframes citizen_blinker {
     50% {
@@ -565,6 +573,14 @@ map_body_wrapper {
     }
     80% {
         border-color:lightgreen;
+    }
+}
+@keyframes citizen_blinker_alert {
+    50% {
+        opacity: 0.5;
+    }
+    80% {
+        border-color:red;
     }
 }
 #me img {
@@ -609,6 +625,12 @@ map_body_wrapper {
     height:65%;
     width: 155%;
     animation: citizen_blinker 1s linear infinite;
+}
+.halo.alert {
+    border-width:0.8em;
+    width:180%;
+    animation-name: citizen_blinker_alert;
+    z-index:-2; /* Put the halo behind the zombies */
 }
 
 #map .city img {

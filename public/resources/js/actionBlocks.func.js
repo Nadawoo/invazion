@@ -90,9 +90,15 @@ async function updateBlockAlertControl(controlpointsZombies, mapId, coordX, coor
         || (controlpointsZombies === 0 && actionPoints === 0 && _configsMap.moving_cost_no_zombies > 0)
         || (controlpointsZombies   > 0 && actionPoints < _configsMap.moving_cost_zombies)
         ) { 
+        // Display the alert text above the movement paddle
         display("alert_tired");
+        // Turn to red the halo under the player on the map
+        document.querySelector("#me").classList.add("alert");
+        document.querySelector(".halo").classList.add("alert");
     } else {
         hide("alert_tired");
+        document.querySelector("#me").classList.remove("alert");
+        document.querySelector(".halo").classList.remove("alert");
     }
     
     // Displays an alert when the citizens have less control points than the zombies on the zone
