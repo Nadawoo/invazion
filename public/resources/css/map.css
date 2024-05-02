@@ -540,22 +540,29 @@ map_body_wrapper {
     border-radius:50%;
     font-weight:bold;
     background:lightsteelblue;
-    height:100%;
-    width:100%;
+    /*height:100%;*/
+    /*width:100%;*/
+    z-index:1;
 }
 #me {
     position:absolute;
+    top:0.8em;
+    height:52%;
+    width: 130%;
     background:lightgreen;
-    animation: blinker 2s linear infinite;
 }
-@keyframes blinker {
+@keyframes citizen_blinker {
     50% {
-        opacity: 0;
+        opacity: 0.5;
+    }
+    80% {
+        border-color:lightgreen;
     }
 }
 #me img {
-    height:1.7em;
-    margin-top:0.2em;
+    position:relative;
+    top:-2.1em;
+    height:48px;
 }
 #explosionMe {
     position:absolute;
@@ -588,10 +595,12 @@ map_body_wrapper {
 
 .halo {
     position:absolute;
-    border: 3px solid green;
+    top:0.7em;
+    border: 5px solid green;
     border-radius: 50%;
-    height:100%;
-    width: 100%;
+    height:65%;
+    width: 155%;
+    animation: citizen_blinker 1s linear infinite;
 }
 
 #map .city img {

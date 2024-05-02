@@ -137,9 +137,10 @@ async function addCitizensOnMap(mapId) {
         // Don't add the citizen if an other citizen is already placed in the zone
         if(zone.querySelector(".map_citizen") === null && zone.dataset.zombies < 1 && zone.dataset.cityid < 1) {
             
-            if(zone.dataset.citizens > 1)  {
-                var content = "&#10010;",
-                    bubble = "Plusieurs citoyens se sont rassemblés ici... \
+            let nbrCitizens = zone.dataset.citizens;
+            if(nbrCitizens > 1)  {
+                var content = htmlCitizensImages(nbrCitizens);
+                var bubble = "Plusieurs citoyens se sont rassemblés ici... \
                               Complotent-ils quelque chose&nbsp;?";
             } else {
                 var content = citizen.citizen_pseudo.slice(0, 2),
@@ -156,6 +157,58 @@ async function addCitizensOnMap(mapId) {
     }
     
     return _citizens;
+}
+
+
+/**
+ * Generates the HTML images for X citizens in a zone of a map
+ * with natural positions (not just in one line) and avoids overlaps.
+ * 
+ * @param {int} nbrCitizens
+ * @returns {String} HTML
+ */
+function htmlCitizensImages(nbrCitizens) {
+    
+    // Set of predefined positions for the images of the citizens 
+    // in a zone, to avoid overlaps.
+    // - First key = the number of citizens in the zone
+    // - Subkeys = citizen 1, citizen 2, citizen 3...
+    var positions = {
+        1: { 1:{"top":"1em", "left":"1em"} },
+        2: { 1:{"top":"-1.3em", "left":"-0.2em"},
+             2:{"top":"-0.8em", "left":"0.7em"}
+            },
+        3: { 1:{"top":"-1.5em", "left":"-0.3em"},
+             2:{"top":"-1.3em", "left":"1.1em"},
+             3:{"top":"-0.8em", "left":"0.5em"}
+            },
+        4: { 1:{"top":"-1.7em", "left":"-0.3em"},
+             2:{"top":"-1.3em", "left":"1.1em"},
+             3:{"top":"-0.8em", "left":"-0.2em"},
+             4:{"top":"-0.7em", "left":"0.8em"}
+            },
+        5: { 1:{"top":"-1.7em", "left":"-0.3em"},
+             2:{"top":"-1.4em", "left":"0.4em"},
+             3:{"top":"-1.7em", "left":"1.3em"},
+             4:{"top":"-0.8em", "left":"-0.3em"},
+             5:{"top":"-0.7em", "left":"1em"}
+            },
+        };
+        
+    // If there are too many citziens for the cases set, assume that
+    // we use the maximal number of citizens.
+    let maxCitizens = Object.keys(positions).length;
+    nbrCitizens = (nbrCitizens > maxCitizens) ? maxCitizens : nbrCitizens;
+    
+    var content = "";
+    for(let i=0; i<nbrCitizens; i++) {
+        let top  = positions[nbrCitizens][i+1]["top"],
+            left = positions[nbrCitizens][i+1]["left"];
+        content += `<img src="/resources/img/free/human.png" height="48"
+                     style="position:absolute;top:${top};left:${left}">`;
+    }
+    
+    return content;
 }
 
 
