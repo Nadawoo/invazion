@@ -13,7 +13,22 @@
     padding:0 0.3em 0 0.2em;
     background:#fbeee6;
     border-right:2px outset white;
-    overflow:auto;
+}
+#paths_panel .close {
+    position: absolute;
+    top:   0;
+    right: -2.6rem;
+    height:     3rem;
+    width:      2.6rem;
+    background:darkred;
+    color:white;
+    border:1px solid white;
+    border-left:none;
+    border-radius:0 0.3rem 0.3rem 0;
+}
+#paths_panel .close .material-icons {
+    font-size: 2.5em;
+    line-height:1.1em;
 }
 #paths_panel .card {
     width: 16em;

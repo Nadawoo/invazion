@@ -605,6 +605,8 @@ function desactivateMapPathsView() {
         document.querySelectorAll(".path_stage").forEach(el => el.remove());
         // Hides the list of expeditions
         hideIds("paths_panel");
+        hideIds("paths_bar");
+        hideIds("attack_bar");
         document.querySelectorAll("#paths_panel .card").forEach(el => el.remove());
     }
 }
