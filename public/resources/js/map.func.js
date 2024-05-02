@@ -593,6 +593,9 @@ async function activateMapPathsView() {
     // Populate the list of expeditions (lateral panel)    
     populatePathsPanel(json.datas.courses, json.datas.members);
     unhideId("paths_panel");
+    
+    // TODO: move this to onPageLoad.js
+    populatePathsBar(json.datas.courses, json.datas.members);
 }
 
 

@@ -203,6 +203,8 @@ echo $html['json_configs'];
     <?php
     echo $htmlItem->item_template()
        . $htmlPaths->path_template()
+       . $htmlPaths->pathsbar_inactive_path_template()
+       . $htmlPaths->pathsbar_active_path_template()
        . $layout->block_zone_fellow_template();
     ?>
     <template id="tplEmptySlot">

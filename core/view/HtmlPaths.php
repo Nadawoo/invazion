@@ -63,36 +63,11 @@ class HtmlPaths {
      */
     function paths_bar() {
         
-        // TODO: temporary for the tests
-        $path_id = 1;
-        
-        $buttons = new HtmlButtons();
-        
         return '
         <div id="paths_bar">
-            <div class="path active">
-                <h2 onclick="resetMapView();toggleMapPathsView()">
-                    Expédition '.$path_id.' <a>&#x2699;&#xFE0F;</a>
-                </h2>
-                <div class="body">                    
-                    '.$buttons->dig_path($path_id).'
-                    '.$buttons->move_path($path_id).'
-                </div>
-            </div>
-            <div class="path">
-                <h2>Expéd. '.$path_id.'</h2>
-                <div class="body">
-                    12 km<br>
-                    2 membres
-                </div>
-            </div>
-            <div class="path">
-                <h2>Expéd. 2</h2>
-                <div class="body">
-                    12 km<br>
-                    2 membres
-                </div>
-            </div>
+
+            <div class="paths"></div>
+            
             <div class="path">
                 <div class="body">
                     <a style="display:block;padding-top:0.5em" title="Créer une nouvelle expédition pour explorer la carte (FONCTION A PROGRAMMER)">
@@ -102,5 +77,51 @@ class HtmlPaths {
                 </div>
             </div>
         </div>';
+    }
+    
+    
+    /**
+     * HTML template for an inactive card in the paths bar
+     * (default view for a path card)
+     * 
+     * @return string HTML
+     */
+    function pathsbar_inactive_path_template() {
+        
+        return '
+        <template id="tplPathsBarInactivePath">
+            <div class="path">
+                <h2>Expéd. <span class="path_id"></span></h2>
+                <div class="body">
+                    <span class="nbr_kilometers"></span> km<br>
+                    <span class="nbr_members"></span> membres
+                </div>
+            </div>
+        </template>';
+    }
+    
+    
+    /**
+     * HTML template for the active card in the paths bar
+     * (= the exepedtion that is currently manipulated by the player)
+     * 
+     * @return string HTML
+     */
+    function pathsbar_active_path_template() {
+        
+        $buttons = new HtmlButtons();
+        
+        return '
+        <template id="tplPathsBarActivePath">
+            <div class="path active">
+                <h2 onclick="resetMapView();toggleMapPathsView()">
+                    Expédition <span class="path_id"></span> <a>&#x2699;&#xFE0F;</a>
+                </h2>
+                <div class="body">                    
+                    '.$buttons->dig_path(null).'
+                    '.$buttons->move_path(null).'
+                </div>
+            </div>
+        </template>';
     }
 }

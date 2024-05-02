@@ -111,6 +111,10 @@
     max-width:100%;
     overflow:auto;
 }
+#paths_bar .paths {
+    display:flex;
+    gap:0.5em;
+}
 #paths_bar .path {
     position:relative;
     min-width:5em;

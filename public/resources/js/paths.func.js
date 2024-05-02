@@ -7,7 +7,10 @@
 /**
  * Create a card for each expedition in the list of expeditions (lateral panel)
  * 
- * @param {object} pathsCourses The coordinates of all the zones constituting the path.
+ * @param {object} pathsCourses The coordinates of all the zones constituting the path,
+ *                               as returned by the Invazion's API
+ * @param {object} pathsMembers The members of the expeditions, 
+ *                              as returned by the Invazion's API
  * @returns {undefined}
  */
 async function populatePathsPanel(pathsCourses, pathsMembers) {
@@ -92,6 +95,57 @@ async function populatePathsPanel(pathsCourses, pathsMembers) {
     listenToLocationButtons(document.querySelectorAll("#paths_panel .localize"));
     // Centers + zoom on the map
     document.querySelector("#paths_panel .action_mode_button").addEventListener("click", switchToActionView);
+}
+
+
+/**
+ * Create a card for each expedition in the list of expeditions (lateral panel)
+ * 
+ * @param {object} pathsCourses The coordinates of all the zones constituting the paths, 
+ *                              as returned by the Invazion's API
+ * @param {object} pathsMembers The members of the expeditions, 
+ *                              as returned by the Invazion's API
+ * @returns {undefined}
+ */
+async function populatePathsBar(pathsCourses, pathsMembers) {
+    
+    // For each expedition
+    for(let path of Object.entries(pathsCourses)) {
+        // Gets a blank HTML template of an expedition card
+        let template = await document.querySelector("#tplPathsBarInactivePath").content.cloneNode(true);
+        let pathId = path[0],
+            htmlId = `barPath${pathId}`,
+            members = pathsMembers[pathId],
+            nbrKilometers = pathsCourses[pathId].length - 1;
+        
+        // Default if the exepdition is drawn but has no member yet
+        if(members === undefined) {
+            members = [];
+        }
+        
+        template.querySelector(".path").id = htmlId;
+        template.querySelector(`#${htmlId} .path_id`).innerHTML = pathId;
+        template.querySelector(`#${htmlId} .nbr_kilometers`).innerHTML = nbrKilometers;
+        template.querySelector(`#${htmlId} .nbr_members`).innerHTML = members.length;
+        
+        document.querySelector("#paths_bar .paths").append(template);
+    }
+    
+    
+    // Activate the current expedition card
+    let template = await document.querySelector("#tplPathsBarActivePath").content.cloneNode(true);
+    
+    // TODO: temporary ID for the tests
+    let pathId = 1;
+    
+    let path = pathsCourses[pathId],
+        htmlId = `barPath${pathId}`;
+        
+    template.querySelector("h2 .path_id").innerHTML = pathId;
+    template.querySelector(`.form_dig_path input[name="params[path_id]"]`).value = pathId;
+    template.querySelector(`.form_move_path input[name="params[path_id]"]`).value = pathId;
+    
+    document.querySelector(`#${htmlId}`).replaceWith(template);
 }
 
 

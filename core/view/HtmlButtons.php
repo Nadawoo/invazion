@@ -859,7 +859,7 @@ class HtmlButtons
         $fields = $button['fields'];
         
         return
-        '<form method="post" action="#Outside" class="form_path">
+        '<form method="post" action="#Outside" class="form_move_path">
             <input type="hidden" name="api_name" value="'.$fields['api_name'].'">
             <input type="hidden" name="action" value="'.$fields['action'].'">
             <input type="hidden" name="params[path_id]" value="'.$path_id.'">
@@ -881,7 +881,7 @@ class HtmlButtons
         $fields = $button['fields'];
         
         return
-        '<form method="post" action="#Outside" class="form_path">
+        '<form method="post" action="#Outside" class="form_dig_path">
             <input type="hidden" name="api_name" value="'.$fields['api_name'].'">
             <input type="hidden" name="action" value="'.$fields['action'].'">
             <input type="hidden" name="params[path_id]" value="'.$path_id.'">
