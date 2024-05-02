@@ -659,8 +659,11 @@ function desactivateMapPathsView() {
     let hexagons = document.querySelectorAll("#map_body .hexagon");
     
     for(let i=0; i<hexagons.length; i++) {
-        // Remove the stages of expeditions drawn on the map
-        document.querySelectorAll(".path_stage").forEach(el => el.remove());
+        // Hide the stages of expeditions drawn on the map
+        hideClasses(["path_stage"]);
+        // Resets the active expedition in the paths bar
+        hideClasses(["active"], "paths_bar");
+        unhideClasses(["inactive"], "paths_bar");
         // Hides the list of expeditions
         hideIds("paths_panel");
         hideIds("paths_bar");
