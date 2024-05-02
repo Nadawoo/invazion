@@ -192,11 +192,15 @@ async function activatePathsBarPath(event) {
     // Display the activated block
     hideIds(inactiveHtmlId);
     unhideId(activeHtmlId);
+    // Display the path stages on the map for the selected expedition
+    hideClasses([`path_stage`]);
+    unhideClasses([`path_stage[data-pathid="${pathId}"]`]);
 }
 
 
 /**
  * Draw the course of each expedition on the map
+ * (hidden by default)
  * 
  * @param {object} pathsCourses The coordinates of all the zones constituting the path.
  * @returns {undefined}
@@ -215,7 +219,7 @@ function drawPathsOnMap(pathsCourses) {
                 htmlCoords = stageCoords.coord_x+"_"+stageCoords.coord_y,
                 zone = document.querySelector("#zone"+htmlCoords+" .square_container");
                 
-            zone.insertAdjacentHTML("afterbegin", `<div class="path_stage">${stageId}</div>`);
+            zone.insertAdjacentHTML("afterbegin", `<div class="path_stage hidden" data-pathid="${pathId}">${stageId}</div>`);
         }
     }
 }

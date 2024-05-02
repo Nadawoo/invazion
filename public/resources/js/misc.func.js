@@ -85,7 +85,7 @@ function hideClasses(classesNames, parentId=null) {
 function unhideClasses(classesNames) {
     
     for (let i=0; i < classesNames.length; i++) { 
-        var classes = document.getElementsByClassName(classesNames[i]);
+        var classes = document.querySelectorAll(`.${classesNames[i]}`);
 
         for (let i = 0; i < classes.length; i++) {
             classes[i].classList.remove("hidden");
