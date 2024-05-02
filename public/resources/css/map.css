@@ -538,11 +538,18 @@ map_body_wrapper {
 /* Symbole d'un citoyen sur la carte hexagonale */
 .map_citizen {
     border-radius:50%;
-    font-weight:bold;
     background:lightsteelblue;
     /*height:100%;*/
     /*width:100%;*/
     z-index:1;
+}
+.map_citizen .nbr_defenses { /* Pseudo of the player on the map */
+    width:6em;
+    margin-top:-3em;
+    margin-left:-2em;
+    background:darkred !important;
+    border:1px solid white;
+    overflow:hidden;
 }
 #me {
     position:absolute;

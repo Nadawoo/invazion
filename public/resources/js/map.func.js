@@ -99,11 +99,16 @@ function addMeOnMap() {
     
     let myCoordX = document.querySelector("#citizenCoordX").innerHTML,
         myCoordY = document.querySelector("#citizenCoordY").innerHTML,    
+        myPseudo = document.querySelector("#citizenPseudo").innerHTML,
         myZone = document.querySelector(`#zone${myCoordX}_${myCoordY} .square_container`);
 
-    let htmlMe = '<img id="explosionMe" class="scale-transition scale-out" src="resources/img/thirdparty/notoemoji/collision-512.webp" width="38">\
-                  <div class="map_citizen" id="me"><img src="resources/img/free/human.png"></div>\
-                  <div class="halo">&nbsp;</div>';
+    let htmlMe = '\
+                <img id="explosionMe" class="scale-transition scale-out" src="resources/img/thirdparty/notoemoji/collision-512.webp" width="38">\
+                <div class="map_citizen" id="me">\
+                    <span class="nbr_defenses">'+myPseudo+'</span>\
+                    <img src="resources/img/free/human.png"></div>\
+                <div class="halo">&nbsp;</div>';
+    
     let htmlBubble = '<h5 class="name">Vous êtes ici&nbsp;!';
     
     // Don't show the other citizens under the player's silhouette
