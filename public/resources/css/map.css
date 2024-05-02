@@ -557,6 +557,7 @@ map_body_wrapper {
     height:52%;
     width: 130%;
     background:lightgreen;
+    cursor:pointer;
 }
 @keyframes citizen_blinker {
     50% {
