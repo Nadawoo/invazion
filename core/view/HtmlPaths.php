@@ -114,7 +114,7 @@ class HtmlPaths {
         return '
         <template id="tplPathsBarActivePath">
             <div class="path active">
-                <h2 onclick="resetMapView();toggleMapPathsView()">
+                <h2 onclick="hideIds(\'paths_bar\');hideIds(\'attack_bar\');unhideId(\'paths_panel\')">
                     Expédition <span class="path_id"></span> <a>&#x2699;&#xFE0F;</a>
                 </h2>
                 <div class="body">                    

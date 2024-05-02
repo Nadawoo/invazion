@@ -740,7 +740,6 @@ class HtmlLayout extends HtmlPage
                 <li onclick="toggleMapNeighborhoodView()" title="Afficher des informations sur les bâtiments">&#x1F3E2; Bâtiments</li>
                 <li onclick="resetMapView();toggleMapZombiesView();toggleMapItemMarker(106)"  title="Voir les zombies sur la carte">&nbsp;<img src="resources/img/motiontwin/zombie.gif" alt="&#x1F9DF;">&nbsp; Zombies</li>
                 <li onclick="resetMapView();toggleMapItemsView();toggleMapMarker()" title="Voir les objets au sol sur la carte">&#x1F392; Objets</li>
-                <li onclick="resetMapView();toggleMapPathsView()">&#x1F97E; Expéditions</li>
             </ul>
             
             <button><a href="#popsmartphone" style="font-size:55%">&#128241;</a></button>

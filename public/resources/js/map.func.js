@@ -589,13 +589,10 @@ async function activateMapPathsView() {
     
     // Draw the course of each expedition on the map
     drawPathsOnMap(json.datas.courses);
-    
+    // Populate the list of expeditions (horizontal bar)  
+    populatePathsBar(json.datas.courses, json.datas.members);
     // Populate the list of expeditions (lateral panel)    
     populatePathsPanel(json.datas.courses, json.datas.members);
-    unhideId("paths_panel");
-    
-    // TODO: move this to onPageLoad.js
-    populatePathsBar(json.datas.courses, json.datas.members);
 }
 
 
@@ -610,7 +607,7 @@ function desactivateMapPathsView() {
         hideIds("paths_panel");
         hideIds("paths_bar");
         hideIds("attack_bar");
-        document.querySelectorAll("#paths_panel .card").forEach(el => el.remove());
+//        document.querySelectorAll("#paths_panel .card").forEach(el => el.remove());
     }
 }
 
@@ -789,5 +786,7 @@ function switchToMapView() {
     unhideClasses(["nbr_defenses", "bubble"]);
     // Display the button which switches to the Action mode
     hide(["map_mode_button"]);
+    unhideId("paths_bar");
+    unhideId("attack_bar");
     changeDisplayValue("action_mode_button", "flex");
 }
