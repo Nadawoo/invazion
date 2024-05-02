@@ -863,7 +863,7 @@ class HtmlButtons
             <input type="hidden" name="api_name" value="'.$fields['api_name'].'">
             <input type="hidden" name="action" value="'.$fields['action'].'">
             <input type="hidden" name="params[path_id]" value="'.$path_id.'">
-            <button type="submit" title="'.$button['title'].'">'.$button['name'].'</button>
+            <button class="z-depth-2" type="submit" title="'.$button['title'].'">'.$button['name'].'</button>
         </form>';
     }
     
@@ -885,7 +885,7 @@ class HtmlButtons
             <input type="hidden" name="api_name" value="'.$fields['api_name'].'">
             <input type="hidden" name="action" value="'.$fields['action'].'">
             <input type="hidden" name="params[path_id]" value="'.$path_id.'">
-            <button disabled type="submit" title="'.$button['title'].'">'.$button['name'].'</button>
+            <button disabled class="z-depth-2" type="submit" title="'.$button['title'].'">'.$button['name'].'</button>
         </form>';
     }
         
