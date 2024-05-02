@@ -195,6 +195,10 @@ async function activatePathsBarPath(event) {
     // Display the path stages on the map for the selected expedition
     hideClasses([`path_stage`]);
     unhideClasses([`path_stage[data-pathid="${pathId}"]`]);
+    
+    // Center the map on the first stage of the selected expedition
+    firstStageZoneHtmlId = document.querySelector(`#map .path_stage[data-pathid="${pathId}"]`).closest(".hexagon").id;
+    centerMapOnZone(firstStageZoneHtmlId);
 }
 
 
