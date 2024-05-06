@@ -266,15 +266,18 @@ class HtmlMap
      */
     function ground_css_class($cell) {
         
-        if ($cell['zombies'] > 0) {
+        if($cell === null) {
+            // Default ground for the never visited zones
+            $ground = '';
+        }
+        elseif ($cell['zombies'] > 0) {
             // If there are 1 zombies or more, the ground is always the same for map clarity
             $ground = 'ground_zombies';
         }
-        // City = ID #12 in the DB
-//        elseif ($cell['city_type_id'] === 12 or $cell['connected_city_id'] !== null) {
-//            // City build by the players
-//            $ground = 'ground_city';
-//        }
+        elseif($cell['land'] === null) {
+            // If the cell exists in the database but has no specific ground set
+            $ground = 'ground_default';
+        }
         else {
             // Simple visual tiles (grass, sand...)
             $ground = 'ground_'.$cell['land'];
@@ -350,8 +353,8 @@ class HtmlMap
         // le coefficient d'opacité soit PETIT. Puis on divise car
         // en CSS le coefficent d'opacité est en dixièmes (0.1, 0.2, etc.)
         $opacity = ($max_days_diff - $days_diff) / $max_days_diff;
-        // Toute case doit rester un peu visible (pas d'opacité à 0)
-//            $opacity = max($opacity, 0.2);  
+        // Every explored zone must remain at least visible (no opacity at 0)
+//        $opacity = max($opacity, 0.2);  
         
         return round($opacity, 2);
     }

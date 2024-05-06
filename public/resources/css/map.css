@@ -293,12 +293,11 @@ map_body_wrapper {
     padding-left:20px;
 }
 
-.hexagon, .not_visited {
+.hexagon {
     
     /* Pour le débogage : décommenter cette ligne pour afficher le conteneur*/
     /*border:1px solid red;*/
     
-    background-image:url("../img/copyrighted/tiles/desert/9.png");
     background-repeat:no-repeat;
     background-size:100%;
     text-align:center;
@@ -423,6 +422,10 @@ map_body_wrapper {
 /*.ground_stone, .ground_circus {
     background-image:url("../img/copyrighted/tiles/desert/1.png");
 }*/
+.ground_default {
+    /* If the cell exists in the database but has no specific ground set */
+    background-image:url("../img/copyrighted/tiles/desert/9.png");
+}
 .ground_grass {
     background-image:url("../img/copyrighted/tiles/greenjungle/3.png");
 }
