@@ -76,6 +76,12 @@ class HtmlPaths {
                     </a>
                 </div>
             </div>
+            
+            <form method="get" id="formPathDrawing">
+                <h2 class="center">Tracez votre expédition sur la carte</h2>
+                <button type="submit" class="redbutton" disabled>Enregistrer</button>
+            </form>
+
         </div>';
     }
     

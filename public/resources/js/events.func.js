@@ -147,3 +147,55 @@ function filterConstructions(selectedValue) {
         console.log("Error: unknown option value ('"+selectedValue+"') in #city_constructions <select>");
     }
 }
+
+
+/**
+ * Add a stage on a zone of the map. Useful when drawing the path of an expedition.
+ * 
+ * @param {Object} event
+ * @param {int} currentStageId The number (0, 1, 2...) of the last stage added 
+ *                             on the map
+ * @returns {int} The number of the new stage created, or the previous one if
+ *                we have deleted a stage
+ */
+function addMapPathStage(event, currentStageId) {
+    
+    let hexagon = event.target.closest(".hexagon"),
+        square = hexagon.querySelector(".square_container"),
+        coords = `${square.dataset.coordx}_${square.dataset.coordy}`;
+
+    let remove = false;
+    // If whe re-click on a zone with a stage previously added...
+    if(square.querySelector(`.path_stage[data-pathid="new"]`) !== null) {
+        // ... and only if this is the last stage of the path 
+        // (this condition avoids creating holes in the numbering)
+        let stagesInZone = square.querySelectorAll(`.path_stage[data-pathid="new"]`);
+        let clickedStage = stagesInZone[stagesInZone.length-1];
+        // NB: we take care about selecting the *last* stage inserted in the zone
+        if(parseInt(stagesInZone[stagesInZone.length-1].innerText) === currentStageId-1) {
+            // ... remove this stage from the hidden form
+            document.querySelector(`#formPathDrawing input[value="${coords}"]`).remove();
+            // ... revove the stage from the map
+            clickedStage.remove();
+            currentStageId--;
+            
+            remove = true;
+        }
+    }
+
+    // Else, if the player clicks on a stage that is not the last one 
+    // (legit when the player wants to pass several times through the same zone),
+    // or if he click on a zone with no stage
+    if(remove === false) {
+        // Add the stage in the HTML form which will create the expédition            
+        document.querySelector("#formPathDrawing").insertAdjacentHTML("beforeend",
+            `<input type="hidden" name="zones[]" value="${coords}">`);
+        // Display the stage on the map
+        hexagon.style.opacity = 1;
+        square.insertAdjacentHTML("beforeend",
+            `<div class="path_stage" data-pathid="new">${currentStageId}</div>`);
+        currentStageId++;
+    }
+    
+    return currentStageId;
+}

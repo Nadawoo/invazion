@@ -221,9 +221,10 @@ function drawPathsOnMap(pathsCourses) {
             let stageId = stages[0],
                 stageCoords = stages[1],
                 htmlCoords = stageCoords.coord_x+"_"+stageCoords.coord_y,
-                zone = document.querySelector("#zone"+htmlCoords+" .square_container");
+                zone = document.querySelector("#zone"+htmlCoords);
                 
-            zone.insertAdjacentHTML("afterbegin", `<div class="path_stage hidden" data-pathid="${pathId}">${stageId}</div>`);
+            zone.querySelector(".square_container").insertAdjacentHTML("afterbegin", `<div class="path_stage hidden" data-pathid="${pathId}">${stageId}</div>`);
+            zone.style.opacity = 1;
         }
     }
 }
