@@ -161,7 +161,8 @@
     background:darkred;
     color:white;
     border:none;
-    border-radius:0.2em;
+    border-radius:0.3em;
+    border:2px outset #c0392b;
     /*box-shadow:2px 2px 4px black;*/
 }
 /* Button to create a new expedition */
