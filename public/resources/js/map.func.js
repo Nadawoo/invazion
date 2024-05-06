@@ -526,9 +526,11 @@ async function displayItemOnMap(itemId) {
 function toggleMapNeighborhoodView() {
     
     if(window.isMapNeighborhoodViewActive === true) {
+        unhideClasses(["nbr_defenses"], "map");
         var display = "none";
         window.isMapNeighborhoodViewActive = false;
     } else {
+        hideClasses(["nbr_defenses"], "map");
         var display = "block";
         window.isMapNeighborhoodViewActive = true;
     }
