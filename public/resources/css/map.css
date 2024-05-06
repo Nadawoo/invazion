@@ -34,7 +34,7 @@ map_body_wrapper {
     position:relative;
     /* Avoids hiding zones under the borders when the map is unzoomed
        (due to the artificial horizontal shifting of the rows) */
-    padding:1em;
+    padding:2em;
 }
 #map_body.zoomedIn {
     transition: all .3s ease;
@@ -286,11 +286,11 @@ map_body_wrapper {
     /* On remonter l'hexagone pour l'emboîter dans la ligne du dessus.
        Mieux qu'une position relative "top:-1em", qui créerait un gros blanc 
        sous la carte. */
-    margin:-0.95em;
+    margin:-25px;
 }
 #map_body .row:nth-child(odd) {
     /* Shift 1 line of 2 to fit the hexagons staggered */
-    padding-left:1.2em;
+    padding-left:20px;
 }
 
 .hexagon, .not_visited {
@@ -305,10 +305,10 @@ map_body_wrapper {
     cursor:default;
     display:inline-block;
     /* La largeur détermine la taille de l'hexagone */
-    width:        2.4em;
-    /* La hauteur va dépendre de la largeur : une bordure devra arriver 
-    pile à la pointe du bas de l'hexagone */
-    height:       3.1em;
+    width:        41px; /*2.4em;*/
+    /* Let enough height to allow elevating (city zone) or lowering (water, lava)
+       the zone without cutting the top or low tip of the hexagon */
+    height:       60px;
     /* Assure que le conteneur intérieur ne déborde pas en bas
     (tracer une bordure sur square_container) )*/
     line-height:2.55em;
@@ -332,7 +332,7 @@ map_body_wrapper {
     margin:auto;
     /* Hack CSS pour centrer le conteneur verticalement */
     position: relative;
-    top: 45%; /* poussé de la moitié de hauteur du référent */
+    top: 37%; /* poussé de la moitié de hauteur du référent */
     transform: translateY(-50%); /* tiré de la moitié de sa propre hauteur */
     /* Centrage des éléments à l'intérieur de la case */
     display:flex;
@@ -643,7 +643,7 @@ map_body_wrapper {
     height:2em;
     position:absolute;
     margin-left:-1em;
-    margin-top:-3.2em;
+    margin-top:-2.2em;
 }
 
 /* Legend for the view of the map (zombies...) */
