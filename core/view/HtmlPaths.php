@@ -70,9 +70,9 @@ class HtmlPaths {
             
             <div class="path">
                 <div class="body">
-                    <a style="display:block;padding-top:0.5em" title="Créer une nouvelle expédition pour explorer la carte (FONCTION A PROGRAMMER)">
-                        <span style="font-size:3em;line-height:50%">+</span>
-                        <span style="display:block;line-height:100%">Créer une<br>expédition</span>
+                    <a class="new" title="Créer une nouvelle expédition pour explorer la carte (FONCTION A PROGRAMMER)">
+                        <span class="plus">+</span>
+                        <span class="label">Créer une<br>expédition</span>
                     </a>
                 </div>
             </div>

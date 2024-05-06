@@ -121,6 +121,7 @@
     background:white;
     text-align:center;
     border-radius:0.3em;
+    box-shadow: 4px 4px 8px black;
     opacity:0.7;
     cursor:pointer; /* The inactive expeditions are fully clickable to activate them */
 }
@@ -162,6 +163,27 @@
     border:none;
     border-radius:0.2em;
     /*box-shadow:2px 2px 4px black;*/
+}
+/* Button to create a new expedition */
+#paths_bar .new {
+    display:block;
+}
+#paths_bar .new .plus {
+    display:block;
+    height:2.1rem;
+    width: 2.1rem;
+    margin:0.1rem auto 0.2rem auto;
+    line-height:78%;
+    font-size:2.5em;
+    background:darkred;
+    border: 3px outset #c0392b;
+    border-radius:50%;
+    color:white;
+}
+#paths_bar .new .label {
+    display:block;
+    line-height:120%;
+    font-weight:bold;
 }
 
 /*
