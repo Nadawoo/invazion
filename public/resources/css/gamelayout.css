@@ -651,7 +651,7 @@ legend {
     display:none;
     position:absolute;
     top:3em;
-    width:14em;
+    width:14.5em;
     padding:0.2em 0.2em 0.7em 0.5em;
     text-align:left;
     background:lightgrey;
@@ -662,6 +662,7 @@ legend {
 }
 .item_label .details var { /* The icon & name inside the item's tooltip */
     display:flex;
+    align-items: center;
     margin:0.3em auto auto auto;
     font-size:1.2em;
     font-weight:bold;
@@ -675,13 +676,40 @@ legend {
     height:1.8em;
 }
 .item_label .details .descr_ambiance {
-    font-size:0.75em;
+    font-size:0.85em;
     margin:1.2em 0 0.5em 0;
+    line-height:140%;
     font-style:italic;
 }
 .item_label .details .descr_purpose {
-    font-size:0.85em;
+    padding:0.2em;
+    line-height: 130%;
 }
+
+.item_label .details ul {
+    margin-bottom:0.8em;
+}
+.item_label .details li {
+    display:flex;
+    align-items: center;
+    gap:0.4em;
+    margin-bottom:0.2em;
+    padding: 0.2em 0 0.2em 0.2em;
+    font-size:0.9em;
+    background:#34495e;
+    color:white;
+    border-radius:0.1em;
+}
+.item_label .details li .material-icons {
+    height:100%;
+    padding: 0.1em;
+    font-size:1.2em;
+    background:white;
+    border: 1px solid white;
+    border-radius:50%;
+    color:black;
+}
+
 .item_label .details .close {
     position:absolute;
     right:0.2em;

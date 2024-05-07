@@ -305,22 +305,22 @@ function htmlItem(itemId, itemCaracs) {
         ? `<img src="../resources/img/${itemCaracs['icon_path']}" alt="${itemCaracs['icon_symbol']}">`
         : itemCaracs['icon_symbol'];
     
-    let bgColor = "";
-    if(itemCaracs["item_type"] === "resource") {
+    let itemTypeClass = null,
+        bgColor = "";
+    
+    if(itemCaracs["item_type"] === "resource" || itemCaracs["item_type"] === "resource_rare") {
+        itemTypeClass = "type_resource";
         bgColor = "#7FB3D5";
     } else if(itemCaracs["item_type"] === "weapon") {
-        bgColor = "#EC7063"; 
-    } else if(itemCaracs["item_type"] === "food") {
+        itemTypeClass = "type_weapon";
+        bgColor = "#EC7063";
+    } else if(itemCaracs["item_type"] === "food" || itemCaracs["item_type"] === "water") {
+        itemTypeClass = "type_booster";
         bgColor = "orange";
     }
 //    else if(itemCaracs["item_type"] === "tool") {
 //        bgColor = "#27AE60"; 
 //    }
-    
-    // Additionally, if the item is rare (no matter its type) add a gold frame
-    if(itemCaracs["preciousness"] > 0) {
-        template.querySelector('.item_label').classList.add("precious");
-    }
     
     // Populates the blank template with the item data
     template.querySelector('.item_label').style.background = `radial-gradient(white 0%, ${bgColor} 100%)`;
@@ -333,6 +333,20 @@ function htmlItem(itemId, itemCaracs) {
     template.querySelector('.descr_purpose').innerHTML  = itemCaracs['descr_purpose'];
 //    template.querySelector('.item_amount').innerHTML = itemAmount;
 
+    // Additionally, if the item is rare (no matter its type), add a gold frame
+    if(itemCaracs["preciousness"] > 0) {
+        template.querySelector('.item_label').classList.add("precious");
+        template.querySelector('.item_label .preciousness').classList.remove("hidden");
+    }
+    // Display the type of item (resource, weapon...)
+    if(itemTypeClass !== null) {
+        template.querySelector(`.item_label .${itemTypeClass}`).classList.remove("hidden");
+    }
+    // Display if the item is heavy
+    if(itemCaracs["heaviness"] > 0) {
+        template.querySelector('.item_label .heaviness').classList.remove("hidden");
+    }
+    
     return template;
 }
 

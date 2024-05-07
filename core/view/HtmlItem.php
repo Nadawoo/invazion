@@ -30,7 +30,29 @@ class HtmlItem {
                         <var><span class="icon">{icon}</span>&nbsp;<span class="item_name">{item_name}</span></var>
                         <hr class="line">
                         <p class="descr_ambiance">{descr_ambiance}</p>
-                        <p class="descr_purpose">{descr_purpose}</p>
+                        <p class="descr_purpose z-depth-1">{descr_purpose}</p>
+                        <ul>
+                            <li class="hidden type_booster">
+                                <i class="material-icons" style="background:orange">bolt</i>
+                                Cet objet donne de l\'énergie
+                            </li>
+                            <li class="hidden type_resource">
+                                <i class="material-icons" style="background:#7FB3D5">construction</i>
+                                Cet objet est une ressource
+                            </li>
+                            <li class="hidden type_weapon">
+                                <i class="material-icons" style="background:#EC7063">sports_kabaddi</i>
+                                Cet objet est une arme
+                            </li>
+                            <li class="hidden preciousness">
+                                <i class="material-icons" style="color:#FFD700;-webkit-text-stroke: 1px darkslategrey;">star</i>
+                                Cet objet est précieux
+                            </li>
+                            <li class="hidden heaviness">
+                                <i class="material-icons">fitness_center</i>
+                                Cet objet est encombrant
+                            </li>
+                        </ul>
                         '.$button_use . $button_drop . $button_pickup.'
                     </div>
                 </li>
