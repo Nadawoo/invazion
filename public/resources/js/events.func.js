@@ -165,7 +165,7 @@ function addMapPathStage(event, currentStageId) {
     // Avoid JS error if we click in the #map but at a place with no zone
     // (can occur because #map is currently wider than the real zones)
     if(hexagon === null) {
-        return false;
+        return currentStageId;
     }
     
     let square = hexagon.querySelector(".square_container");
