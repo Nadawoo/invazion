@@ -203,7 +203,24 @@ async function activatePathsBarPath(event) {
 
 
 /**
- * Draw the course of each expedition on the map
+ * Create a new expedition
+ * 
+ * @returns {undefined}
+ */
+function startPathCreation() {
+    
+    // Hide the useless elements overloading the map
+    hideIds(['paths_bar', 'action_mode_button', 'attack_bar']);
+    hideClasses(['bubble']);
+    // Start the steps to create an expedition
+    unhideId('formPathDrawing');
+    
+    
+}
+
+
+/**
+ * Draw the course of each existing expedition on the map
  * (hidden by default)
  * 
  * @param {object} pathsCourses The coordinates of all the zones constituting the path.

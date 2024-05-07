@@ -70,7 +70,7 @@ class HtmlPaths {
             
             <div class="path">
                 <div class="body">
-                    <a class="new" onclick="hideIds([\'paths_bar\', \'action_mode_button\', \'attack_bar\']);hideClasses([\'bubble\']);unhideId(\'formPathDrawing\')"
+                    <a href="#poppath" class="new" 
                        title="Créer une nouvelle expédition pour explorer la carte">
                         <span class="plus">+</span>
                         <span class="label">Créer une<br>expédition</span>

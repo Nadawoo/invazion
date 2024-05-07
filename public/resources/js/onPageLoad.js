@@ -8,6 +8,7 @@ var _citizens = null;
 var _cities = null;
 var _myZone = null;
 var _jsonMap = null;
+var _isPathDrawingActive = false;
 // Permanently stores the result of the API whichs gives the discussions list 
 var _jsonDiscussionApi = null;
 var _scrollBoosterInstance = null;

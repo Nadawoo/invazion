@@ -13,11 +13,10 @@ if (document.getElementById('map') !== null) {
     // Change the ground type of a zone (lava, grass...)
     listenToLandform();
     
-    // TODO: temporary for the tests
-    var _isPathDrawingActive = true;
-    
     // If the player is drawing a path for an expedition on the map...
-    if(_isPathDrawingActive === true) {        
+    document.querySelector("#startPathCreation").addEventListener("click",  function(){
+        startPathCreation();
+        _isPathDrawingActive = true;
         var currentStageId = 0;
         // ... then clicking on a zone creates a stage for the expedition
         document.querySelector("#map_body").addEventListener("click",  function(){
@@ -27,8 +26,9 @@ if (document.getElementById('map') !== null) {
         document.querySelector("#map_body").addEventListener("touchstart", function(){
             currentStageId = addMapPathStage(event, currentStageId);
         });
-    }
-    else {
+    });
+    
+    if(_isPathDrawingActive === false) {
         // Displays/hides the tooltip of any zone when the mouse hovers one
         listenToMapZones();
     }
