@@ -245,3 +245,34 @@ function drawPathsOnMap(pathsCourses) {
         }
     }
 }
+
+
+/**
+ * Send to Invazion's API the form containing the stage of the new path to create
+ * 
+ * @param {Object} event
+ * @returns {undefined}
+ */
+async function submitNewPath(event) {
+    
+    let token = getCookie('token');
+    let formData = new FormData(event.target);
+    let zonesList = formData.getAll('zones[]');
+    let zonesString = zonesList.join(',');
+
+    // Send the data to the Invazion's API
+    let json = await callApi("GET", "paths", `action=add&zones=${zonesString}&token=${token}`);
+    
+    // Display the message of result (success or error) in a toast
+    M.toast({html: json.metas.error_message,
+            classes: json.metas.error_class,
+            displayLength: 5000,
+            outDuration: 800
+            });
+    
+    // If path successfully register, hide the bar for drawing a path
+    if(json.metas.error_code === "success") {
+        hideIds(["formPathDrawing"]);
+        unhideId("paths_bar");
+    }
+}

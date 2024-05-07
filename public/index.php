@@ -333,7 +333,9 @@ echo $html['json_configs'];
                 <li class="hidden place_second_stage">Bien ! Placez mainteant une seconde étape, sur une zone adjacente à la première.</li>
                 <li class="hidden place_other_stages">Ajoutez d'autres étapes pour tracer le chemin que vous souhaitez.</li>
                 <li class="hidden make_a_loop">Pour valider le tracé, formez une boucle jusqu'à revenir au point de départ.</li>
-                <li class="hidden save_stages"><button type="submit" class="redbutton" disabled>Enregistrer l'expédition</button></li>
+                <li class="hidden save_stages">
+                    <button type="submit" class="redbutton">Enregistrer l'expédition</button>
+                </li>
             </ul>
         </form>
         

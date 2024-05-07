@@ -33,6 +33,12 @@ if (document.getElementById('map') !== null) {
         listenToMapZones();
     }
     
+    // When submitting the form to save a new expedition on the map
+    document.querySelector("#formPathDrawing").addEventListener("submit",  function(){
+        event.preventDefault();
+        submitNewPath(event);
+    });
+    
     // Zoom/unzoom on the map
     let mapRange = document.querySelector("#zoom_range");    
     mapRange.addEventListener("input", function() {

@@ -212,7 +212,7 @@ function addMapPathStage(event, currentStageId) {
             hideClasses(["place_second_stage"], "formPathDrawing");
             unhideClasses(["place_other_stages"], "formPathDrawing");
         }
-        else if(currentStageId === 7) {
+        else if(currentStageId === 6) {
             hideClasses(["place_other_stages"], "formPathDrawing");
             unhideClasses(["make_a_loop"], "formPathDrawing");
         }
