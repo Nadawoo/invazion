@@ -680,6 +680,8 @@ function toggleItem(event) {
     if(tooltip.style.display === "block") {
         tooltip.style.display = "none";
         itemLabel.style.border = null;
+        // Avoids instant re-opening of the tooltip, as it is a click in .item_label too
+        event.stopPropagation();
     }
     else {
         // If we want to open a new tooltip, first close all the other tooltips.

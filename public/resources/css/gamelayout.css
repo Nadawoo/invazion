@@ -615,12 +615,12 @@ legend {
     width:3em;
     background:lightgrey;
     border-radius:0.2em;
+    cursor:pointer;
 }
 .item_label>var { /* The clickable icon of the item */
     display:flex;
     margin:auto;
     font-style:normal;
-    cursor:pointer;
 }
 .item_label var::selection {
     background:none;
@@ -658,6 +658,7 @@ legend {
     border:1px solid grey;
     border-radius:0.3em;
     box-shadow:5px 5px 10px black;
+    cursor:auto;
     z-index:2;
 }
 .item_label .details var { /* The icon & name inside the item's tooltip */

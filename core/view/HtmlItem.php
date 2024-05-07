@@ -23,8 +23,8 @@ class HtmlItem {
         
         return '
             <template id="tplItem">
-                <li class="item_label z-depth-1">
-                    <var onclick="toggleItem(event)" class="icon">{icon}</var>
+                <li class="item_label z-depth-1" onclick="toggleItem(event)">
+                    <var class="icon">{icon}</var>
                     <div class="details">
                         <span class="close" onclick="toggleItem(event)">&#x274C;</span>
                         <var><span class="icon">{icon}</span>&nbsp;<span class="item_name">{item_name}</span></var>

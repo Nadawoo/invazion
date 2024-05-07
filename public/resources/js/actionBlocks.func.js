@@ -291,7 +291,7 @@ function htmlItem(itemId, itemCaracs) {
         itemCaracs = {
             "name":"(Objet inconnu)",
             "icon_path":null,
-            "icon_symbol":"&#10067;",
+            "icon_symbol":"&#x2757;",
             "descr_ambiance":"",
             "descr_purpose":"[Bug] Cet objet est inconnu.\
                              Signalez-le au repsonsable du site."
@@ -300,12 +300,8 @@ function htmlItem(itemId, itemCaracs) {
     
     // Gets a blank HTML template of an item entry
     let template = document.querySelector("#tplItem").content.cloneNode(true);
-    
-    let icon = (itemCaracs['icon_path'] !== null)
-        ? `<img src="../resources/img/${itemCaracs['icon_path']}" alt="${itemCaracs['icon_symbol']}">`
-        : itemCaracs['icon_symbol'];
-    
-    let itemTypeClass = null,
+    let icon = getItemIcon(itemCaracs['icon_path'], itemCaracs['icon_symbol']),
+        itemTypeClass = null,
         bgColor = "";
     
     if(itemCaracs["item_type"] === "resource" || itemCaracs["item_type"] === "resource_rare") {
@@ -348,6 +344,32 @@ function htmlItem(itemId, itemCaracs) {
     }
     
     return template;
+}
+
+
+/**
+ * Generates the icon for an item
+ * 
+ * @param {string} iconPath The path to the image (PNG, GIF...), 
+ *                         as returned by the "configs" API of Invazion
+ * @param {string} iconSymbol The code for the HTML icon (&#...), 
+ *                          as returned by the "configs" API of Invazion
+ * @returns {string} HTML for the icon (<img> tag HTML symbol)
+ */
+function getItemIcon(iconPath, iconSymbol) {
+    
+    if(iconPath !== null) {
+        // If an image file is set (PNG, GIF, display it as icon
+        return `<img src="../resources/img/${iconPath}" alt="${iconSymbol}">`;
+    }
+    else if(iconSymbol !== null) {
+        // If there is no file but a HTML symbol, display it as icon
+        return iconSymbol;
+    }
+    else {
+        // If nothng is set, display a "?" as icon
+        return "&#10067;";
+    }
 }
 
 
