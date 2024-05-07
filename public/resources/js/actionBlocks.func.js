@@ -305,7 +305,25 @@ function htmlItem(itemId, itemCaracs) {
         ? `<img src="../resources/img/${itemCaracs['icon_path']}" alt="${itemCaracs['icon_symbol']}">`
         : itemCaracs['icon_symbol'];
     
+    let bgColor = "";
+    if(itemCaracs["item_type"] === "resource") {
+        bgColor = "#7FB3D5";
+    } else if(itemCaracs["item_type"] === "weapon") {
+        bgColor = "#EC7063"; 
+    } else if(itemCaracs["item_type"] === "food") {
+        bgColor = "orange";
+    }
+//    else if(itemCaracs["item_type"] === "tool") {
+//        bgColor = "#27AE60"; 
+//    }
+    
+    // Additionally, if the item is rare (no matter its type) add a gold frame
+    if(itemCaracs["preciousness"] > 0) {
+        template.querySelector('.item_label').classList.add("precious");
+    }
+    
     // Populates the blank template with the item data
+    template.querySelector('.item_label').style.background = `radial-gradient(white 0%, ${bgColor} 100%)`;
     template.querySelector('.form_drop button[name="params[item_id]"]').value  = itemId;
     template.querySelector('.form_pickup button[name="params[item_id]"]').value = itemId;
     template.querySelector('.icon').innerHTML = icon;

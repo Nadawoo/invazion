@@ -689,6 +689,20 @@ legend {
     cursor:pointer;
 }
 
+.item_label.precious {
+    border: 5px ridge #FFD700;
+    /*outline: 1px solid darkgrey;*/
+}
+.item_label.precious::after {
+    content: "★";
+    position:absolute;
+    bottom:-0.4em;
+    right: -0.2em;
+    font-size:1.2em;
+    color:#FFD700;
+    -webkit-text-stroke: 1px darkslategrey;
+}
+
 /*
  * Bloc "Utiliser un objet de mon sac"
  */
