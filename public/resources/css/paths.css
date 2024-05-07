@@ -204,3 +204,14 @@
     box-shadow: 3px 3px 4px black;
     /*z-index:4;*/
 }
+
+#formPathDrawing {
+    position:absolute;
+    top:0;
+    width:100%;
+}
+#formPathDrawing ul {
+    margin-top:0.5em;
+    font-size:1.2em;
+    color:white;
+}

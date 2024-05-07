@@ -160,8 +160,15 @@ function filterConstructions(selectedValue) {
  */
 function addMapPathStage(event, currentStageId) {
     
-    let hexagon = event.target.closest(".hexagon"),
-        square = hexagon.querySelector(".square_container"),
+    let hexagon = event.target.closest(".hexagon");
+    
+    // Avoid JS error if we click in the #map but at a place with no zone
+    // (can occur because #map is currently wider than the real zones)
+    if(hexagon === null) {
+        return false;
+    }
+    
+    let square = hexagon.querySelector(".square_container");
         coords = `${square.dataset.coordx}_${square.dataset.coordy}`;
 
     let remove = false;
@@ -195,6 +202,24 @@ function addMapPathStage(event, currentStageId) {
         square.insertAdjacentHTML("beforeend",
             `<div class="path_stage" data-pathid="new">${currentStageId}</div>`);
         currentStageId++;
+        
+        // Steps of the tutorial to help the player to trace his expedition
+        if(currentStageId === 1) {
+            hideClasses(["place_first_stage"], "formPathDrawing");
+            unhideClasses(["place_second_stage"], "formPathDrawing");
+        }
+        else if(currentStageId === 2) {
+            hideClasses(["place_second_stage"], "formPathDrawing");
+            unhideClasses(["place_other_stages"], "formPathDrawing");
+        }
+        else if(currentStageId === 7) {
+            hideClasses(["place_other_stages"], "formPathDrawing");
+            unhideClasses(["make_a_loop"], "formPathDrawing");
+        }
+        else if(parseInt(square.querySelector('.path_stage[data-pathid="new"]').innerText) === 0) {
+            hideClasses(["make_a_loop"], "formPathDrawing");
+            unhideClasses(["save_stages"], "formPathDrawing");
+        }
     }
     
     return currentStageId;

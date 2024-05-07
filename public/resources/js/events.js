@@ -20,11 +20,11 @@ if (document.getElementById('map') !== null) {
     if(_isPathDrawingActive === true) {        
         var currentStageId = 0;
         // ... then clicking on a zone creates a stage for the expedition
-        document.getElementById("map").addEventListener("click",  function(){
+        document.querySelector("#map_body").addEventListener("click",  function(){
             currentStageId = addMapPathStage(event, currentStageId);
         });
         // Same thing for the mobile devices
-        document.getElementById("map").addEventListener("touchstart", function(){
+        document.querySelector("#map_body").addEventListener("touchstart", function(){
             currentStageId = addMapPathStage(event, currentStageId);
         });
     }

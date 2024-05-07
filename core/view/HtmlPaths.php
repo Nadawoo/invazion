@@ -70,18 +70,13 @@ class HtmlPaths {
             
             <div class="path">
                 <div class="body">
-                    <a class="new" title="Créer une nouvelle expédition pour explorer la carte (FONCTION A PROGRAMMER)">
+                    <a class="new" onclick="hideIds([\'paths_bar\', \'action_mode_button\', \'attack_bar\']);hideClasses([\'bubble\']);unhideId(\'formPathDrawing\')"
+                       title="Créer une nouvelle expédition pour explorer la carte">
                         <span class="plus">+</span>
                         <span class="label">Créer une<br>expédition</span>
                     </a>
                 </div>
             </div>
-            
-            <form method="get" id="formPathDrawing">
-                <h2 class="center">Tracez votre expédition sur la carte</h2>
-                <button type="submit" class="redbutton" disabled>Enregistrer</button>
-            </form>
-
         </div>';
     }
     

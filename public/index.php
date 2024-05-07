@@ -327,6 +327,16 @@ echo $html['json_configs'];
         
         <?php echo $htmlPaths->paths_bar() ?>
         
+        <form method="get" id="formPathDrawing" class="hidden">
+            <ul class="center">
+                <li class="place_first_stage">Placez le point de départ de votre expédition en cliquant sur une zone de la carte.</li>
+                <li class="hidden place_second_stage">Bien ! Placez mainteant une seconde étape, sur une zone adjacente à la première.</li>
+                <li class="hidden place_other_stages">Ajoutez d'autres étapes pour tracer le chemin que vous souhaitez.</li>
+                <li class="hidden make_a_loop">Pour valider le tracé, formez une boucle jusqu'à revenir au point de départ.</li>
+                <li class="hidden save_stages"><button type="submit" class="redbutton" disabled>Enregistrer l'expédition</button></li>
+            </ul>
+        </form>
+        
         <section id="paths_panel" class="hidden"></section>
         
         <section id="personal_block_wrapper">
