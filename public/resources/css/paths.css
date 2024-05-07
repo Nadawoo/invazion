@@ -209,9 +209,17 @@
     position:absolute;
     top:0;
     width:100%;
+    padding-bottom:1em;
+    background:#4a235a;
+    border-bottom:1px solid grey;
 }
 #formPathDrawing ul {
+    max-width:27rem;
+    margin:auto;
     margin-top:0.5em;
     font-size:1.2em;
     color:white;
+}
+#formPathDrawing ul .redbutton {
+    width:100%;
 }

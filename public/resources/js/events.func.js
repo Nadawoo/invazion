@@ -200,7 +200,7 @@ function addMapPathStage(event, currentStageId) {
         // Display the stage on the map
         hexagon.style.opacity = 1;
         square.insertAdjacentHTML("beforeend",
-            `<div class="path_stage" data-pathid="new">${currentStageId}</div>`);
+            `<div class="path_stage pulse" data-pathid="new">${currentStageId}</div>`);
         currentStageId++;
         
         // Steps of the tutorial to help the player to trace his expedition
