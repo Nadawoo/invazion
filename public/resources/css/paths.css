@@ -165,6 +165,11 @@
     border:2px outset #c0392b;
     /*box-shadow:2px 2px 4px black;*/
 }
+#paths_bar button[disabled] {
+    background:lightgrey;
+    border:2px solid grey;
+    color:dimgrey;
+}
 /* Button to create a new expedition */
 #paths_bar .new {
     display:block;
