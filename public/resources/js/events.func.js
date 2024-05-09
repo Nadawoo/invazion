@@ -195,7 +195,7 @@ function addMapPathStage(event, currentStageId) {
     // or if he click on a zone with no stage
     if(remove === false) {
         // Add the stage in the HTML form which will create the expédition            
-        document.querySelector("#formPathDrawing").insertAdjacentHTML("beforeend",
+        document.querySelector("#formPathDrawing .fields").insertAdjacentHTML("beforeend",
             `<input type="hidden" name="zones[]" value="${coords}">`);
         // Display the stage on the map
         hexagon.style.opacity = 1;

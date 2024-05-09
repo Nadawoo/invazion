@@ -274,5 +274,7 @@ async function submitNewPath(event) {
     if(json.metas.error_code === "success") {
         hideIds(["formPathDrawing"]);
         unhideId("paths_bar");
+        // Reset the form with the list of stages
+        document.querySelector("#formPathDrawing .fields").innerText = "";
     }
 }

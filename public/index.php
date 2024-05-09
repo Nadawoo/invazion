@@ -337,6 +337,7 @@ echo $html['json_configs'];
                     <button type="submit" class="redbutton">Enregistrer l'expédition</button>
                 </li>
             </ul>
+            <div class="fields"></div>
         </form>
         
         <section id="paths_panel" class="hidden"></section>
