@@ -10,6 +10,17 @@ if (document.getElementById('map') !== null) {
     
     let myCityZoneId = getMyCityZoneId();
     
+    // Needed to unregister event listeners
+    const controller = new AbortController();
+    const { signal } = controller;
+    
+    // Function to add a path stage when clickong on a zone.
+    // Not put in a named fnction because we need to get the returned currentStageId
+    var currentStageId = 0;
+    var listenToAddMapPathStage = function(){
+        currentStageId = addMapPathStage(event, currentStageId);
+    };
+    
     // Change the ground type of a zone (lava, grass...)
     listenToLandform();
     
@@ -17,15 +28,12 @@ if (document.getElementById('map') !== null) {
     document.querySelector("#startPathCreation").addEventListener("click",  function(){
         startPathCreation();
         _isPathDrawingActive = true;
-        var currentStageId = 0;
+        
         // ... then clicking on a zone creates a stage for the expedition
-        document.querySelector("#map_body").addEventListener("click",  function(){
-            currentStageId = addMapPathStage(event, currentStageId);
-        });
-        // Same thing for the mobile devices
-        document.querySelector("#map_body").addEventListener("touchstart", function(){
-            currentStageId = addMapPathStage(event, currentStageId);
-        });
+        // (for PC and touchscreen)
+        // NB: the {signal} parameter will allow to unregister the listener with a abort()
+        document.querySelector("#map_body").addEventListener("click", listenToAddMapPathStage, { signal });
+        document.querySelector("#map_body").addEventListener("touchstart", listenToAddMapPathStage, { signal });
     });
     
     if(_isPathDrawingActive === false) {
@@ -36,7 +44,7 @@ if (document.getElementById('map') !== null) {
     // When submitting the form to save a new expedition on the map
     document.querySelector("#formPathDrawing").addEventListener("submit",  function(){
         event.preventDefault();
-        submitNewPath(event);
+        submitNewPath(event, controller);
     });
     
     // Zoom/unzoom on the map

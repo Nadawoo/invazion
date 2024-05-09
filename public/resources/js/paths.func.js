@@ -210,12 +210,10 @@ async function activatePathsBarPath(event) {
 function startPathCreation() {
     
     // Hide the useless elements overloading the map
-    hideIds(['paths_bar', 'action_mode_button', 'attack_bar']);
+    hideIds(['paths_bar', 'resizeMap', 'attack_bar']);
     hideClasses(['bubble']);
     // Start the steps to create an expedition
     unhideId('formPathDrawing');
-    
-    
 }
 
 
@@ -253,13 +251,13 @@ function drawPathsOnMap(pathsCourses) {
  * @param {Object} event
  * @returns {undefined}
  */
-async function submitNewPath(event) {
+async function submitNewPath(event, controller) {
     
     let token = getCookie('token');
     let formData = new FormData(event.target);
     let zonesList = formData.getAll('zones[]');
     let zonesString = zonesList.join(',');
-
+    
     // Send the data to the Invazion's API
     let json = await callApi("GET", "paths", `action=add&zones=${zonesString}&token=${token}`);
     
@@ -272,9 +270,18 @@ async function submitNewPath(event) {
     
     // If path successfully register, hide the bar for drawing a path
     if(json.metas.error_code === "success") {
+        // Display again the GUI elements previously masked
         hideIds(["formPathDrawing"]);
         unhideId("paths_bar");
+        unhideId("resizeMap");
+        unhideId("attack_bar");
+        unhideClasses(["bubble"], "#map");
+        
         // Reset the form with the list of stages
         document.querySelector("#formPathDrawing .fields").innerText = "";
+        
+        // Unregister the event listener on the zone which adds stages by clicking
+        // Details here: https://macarthur.me/posts/options-for-removing-event-listeners/
+        controller.abort();
     }
 }
