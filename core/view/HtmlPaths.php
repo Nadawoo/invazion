@@ -16,13 +16,10 @@ class HtmlPaths {
         
         return '
         <template id="tplPath">
-            <a class="close" onclick="hideIds(\'paths_panel\');unhideId(\'paths_bar\');unhideId(\'attack_bar\');">
-                <i class="material-icons">close</i>
-            </a>
             <div class="card">
                 <h2 class="card-title"></h2>
                 <div class="card-tabs">
-                    <ul class="tabs tabs-fixed-width">
+                    <ul class="tabs tabs-fixed-width z-depth-1">
                         <li class="tab"><a href="#path1_path" class="active">Trajet</a></li>
                         <li class="tab"><a href="#path1_members">Membres (<span class="nbr_members"></span>)</a></li>
                     </ul>

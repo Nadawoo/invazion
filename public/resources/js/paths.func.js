@@ -76,7 +76,7 @@ async function populatePathsPanel(pathsCourses, pathsMembers) {
             template.querySelector(`#${htmlId} .current_stage .localize`).setAttribute("data-coords", currentStageCoords);
         }
         
-        document.querySelector(`#paths_panel`).append(template);
+        document.querySelector(`#paths_panel .body`).append(template);
         
         // Display the content of the bag of each member of the expedition
         for(let member of Object.values(members)) {
