@@ -100,12 +100,20 @@ if (document.getElementById('map') !== null) {
     });
     
     // Move the members of an expedtion
-    document.querySelector('#paths_panel').addEventListener("submit", function() {
+    document.querySelector('#paths_bar').addEventListener("submit", function() {
         // Desactivate the classic submission button (avoids reloading the page)
         event.preventDefault();
         // Move the expedition to the next zone
         let pathId = event.target.querySelector('input[name="params[path_id]"]').value;
-        let json = callApi("GET", "paths", `action=move&path_id=${pathId}`);
+        callApi("GET", "paths", `action=move&path_id=${pathId}`).then(json => {
+                // Display the eventual error in a toast
+                if(json.metas.error_code !== "success") {
+                    M.toast({html: json.metas.error_message,
+                             classes: json.metas.error_class,
+                             displayLength: 2500,
+                             outDuration: 800});
+                }
+            });
     });
     
     // Displays/hides the notifications panel
