@@ -63,10 +63,6 @@ class HtmlPaths {
                     </div>
                     
                 </div>
-                <div class="card-action">
-                    '.$buttons->dig_path(null).'
-                    '.$buttons->move_path(null).'
-                </div>
             </div>
         </template>';
     }
