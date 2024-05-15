@@ -66,7 +66,7 @@ function hide(htmlIds) {
 function hideClasses(classesNames, parentId=null) {
     
     for (let i=0; i < classesNames.length; i++) {        
-        var classes = (parentId === null) ? document.getElementsByClassName(classesNames[i])
+        var classes = (parentId === null) ? document.querySelectorAll(`.${classesNames[i]}`)
                                           : document.querySelectorAll(`#${parentId} .${classesNames[i]}`);
         
         for (let i=0; i < classes.length; i++) {
@@ -85,9 +85,9 @@ function hideClasses(classesNames, parentId=null) {
 function unhideClasses(classesNames, parentId=null) {
     
     for (let i=0; i < classesNames.length; i++) { 
-        var classes = (parentId === null) ? document.getElementsByClassName(classesNames[i])
+        var classes = (parentId === null) ? document.querySelectorAll(`.${classesNames[i]}`)
                                           : document.querySelectorAll(`#${parentId} .${classesNames[i]}`);
-
+        
         for (let i = 0; i < classes.length; i++) {
             classes[i].classList.remove("hidden");
         }
