@@ -165,7 +165,7 @@
 }
 #paths_bar .path.active {
     min-width:10em;
-    width:10em;
+    width:11em;
     border:2px solid red;
     opacity:1;
     cursor:auto;
@@ -177,7 +177,7 @@
 }
 #paths_bar h2 {
     margin:0;
-    padding:0.4rem 0 0.4rem 0;
+    padding:0.4rem 0.2rem;
     font-size:1em;
     font-weight:bold;
     background:#4a235a;
@@ -185,6 +185,7 @@
     border:1px solid white;
     border-radius:0.2em 0.2em 0 0;
     cursor:pointer;
+    white-space: nowrap;
 }
 #paths_bar h2 a {
     position:absolute;

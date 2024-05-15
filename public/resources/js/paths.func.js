@@ -58,7 +58,7 @@ async function populatePathsPanel(pathsCourses, pathsMembers) {
            
         // Populates the HTML template for the current expedition
         template.querySelector(".card").id = htmlId;
-        template.querySelector(`#${htmlId} h2`).innerHTML = `Expédition ${pathId} <var class="tag">${nbrKilometers} km</var>`;
+        template.querySelector(`#${htmlId} h2`).innerHTML = `Expédition ${firstStage.coord_x}:${firstStage.coord_y} <var class="tag">${nbrKilometers} km</var>`;
         template.querySelectorAll(`#${htmlId} .tab a`)[0].href = `#${htmlId}_path`;
         template.querySelectorAll(`#${htmlId} .tab a`)[1].href = `#${htmlId}_members`;
         template.querySelector(`#${htmlId} .nbr_members`).innerText = members.length;
@@ -155,6 +155,7 @@ async function populatePathsBar(pathsCourses, pathsMembers) {
     for(let path of Object.entries(pathsCourses)) {
         let pathId = path[0],
             members = pathsMembers[pathId],
+            firstStage = pathsCourses[pathId][0],
             nbrKilometers = pathsCourses[pathId].length - 1;
         
         // Default if the exepdition is drawn but has no member yet
@@ -162,8 +163,8 @@ async function populatePathsBar(pathsCourses, pathsMembers) {
             members = [];
         }
         
-        addPathsBarInactivePath(pathId, nbrKilometers, members.length);
-        addPathsBarActivePath(pathId);
+        addPathsBarInactivePath(pathId, firstStage["coord_x"], firstStage["coord_y"], nbrKilometers, members.length);
+        addPathsBarActivePath(pathId, firstStage["coord_x"], firstStage["coord_y"]);
     }
 }
 
@@ -173,20 +174,23 @@ async function populatePathsBar(pathsCourses, pathsMembers) {
  * (= without the action buttons "move" and "dig")
  * 
  * @param {int} pathId
+ * @param {int} firstStageX
+ * @param {int} firstStageY
  * @param {int} nbrKilometers
  * @param {int} nbrMembers
  * @returns {undefined}
  */
-async function addPathsBarInactivePath(pathId, nbrKilometers, nbrMembers) {
+async function addPathsBarInactivePath(pathId, firstStageX, firstStageY, nbrKilometers, nbrMembers) {
     
     // Get a blank HTML template for an inactive expedition block
     let template = await document.querySelector("#tplPathsBarInactivePath").content.cloneNode(true);
     let htmlId = `barPath${pathId}`;
     
     template.querySelector(".path").id = htmlId;
-    template.querySelector(`#${htmlId} .path_id`).innerHTML = pathId;
-    template.querySelector(`#${htmlId} .nbr_kilometers`).innerHTML = nbrKilometers;
-    template.querySelector(`#${htmlId} .nbr_members`).innerHTML = nbrMembers;
+    template.querySelector(`#${htmlId}`).setAttribute("data-pathid", pathId);
+    template.querySelector(`#${htmlId} .path_name`).innerText = `${firstStageX}:${firstStageY}`;
+    template.querySelector(`#${htmlId} .nbr_kilometers`).innerText = nbrKilometers;
+    template.querySelector(`#${htmlId} .nbr_members`).innerText = nbrMembers;
 
     document.querySelector("#paths_bar .paths").append(template); 
 }
@@ -197,9 +201,11 @@ async function addPathsBarInactivePath(pathId, nbrKilometers, nbrMembers) {
  * (= with the action buttons "move" and "dig")
  * 
  * @param {int} pathId
+ * @param {int} firstStageX
+ * @param {int} firstStageY
  * @returns {undefined}
  */
-async function addPathsBarActivePath(pathId) {
+async function addPathsBarActivePath(pathId, firstStageX, firstStageY) {
     
     // Get a blank HTML template  for an active expedition block
     let template = await document.querySelector("#tplPathsBarActivePath").content.cloneNode(true);
@@ -207,7 +213,7 @@ async function addPathsBarActivePath(pathId) {
         activeHtmlId = `activeBarPath${pathId}`;
     
     template.querySelector(".path").id = activeHtmlId;
-    template.querySelector("h2 .path_id").innerHTML = pathId;
+    template.querySelector("h2 .path_name").innerText = `${firstStageX}:${firstStageY}`;
     template.querySelector(`.form_dig_path input[name="params[path_id]"]`).value = pathId;
     template.querySelector(`.form_move_path input[name="params[path_id]"]`).value = pathId;
     
@@ -224,7 +230,7 @@ async function addPathsBarActivePath(pathId) {
 async function activatePathsBarPath(event) {
     
     // Get the data from the inactive expedition card
-    let pathId = event.target.closest(".path").querySelector(".path_id").innerText;
+    let pathId = event.target.closest(".path").getAttribute("data-pathid");
     let inactiveHtmlId = `barPath${pathId}`,
         activeHtmlId = `activeBarPath${pathId}`;
     

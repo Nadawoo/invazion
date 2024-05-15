@@ -104,7 +104,7 @@ class HtmlPaths {
         return '
         <template id="tplPathsBarInactivePath">
             <div class="path inactive" onclick="activatePathsBarPath(event)">
-                <h2>Expéd. <span class="path_id"></span></h2>
+                <h2>Expéd. <span class="path_name"></span></h2>
                 <div class="body">
                     <span class="nbr_kilometers"></span> km<br>
                     <span class="nbr_members"></span> membres
@@ -128,7 +128,7 @@ class HtmlPaths {
         <template id="tplPathsBarActivePath">
             <div class="path active hidden">
                 <h2 onclick="hideIds(\'paths_bar\');hideIds(\'attack_bar\');unhideId(\'paths_panel\')">
-                    Expédition <span class="path_id"></span> <a>&#x2699;&#xFE0F;</a>
+                    Expédition <span class="path_name"></span> <a>&#x2699;&#xFE0F;</a>
                 </h2>
                 <div class="body">                    
                     '.$buttons->dig_path(null).'
