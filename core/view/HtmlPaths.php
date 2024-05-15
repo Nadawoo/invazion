@@ -42,7 +42,26 @@ class HtmlPaths {
                             <a class="localize"><i class="material-icons">my_location</i></a>
                         </li>
                     </ul>
-                    <ul class="members expanded"></ul>
+                    
+                    <div class="members">
+                        <ul class="current_members expanded"></ul>
+
+                        <form method="GET" action="" class="available_members">
+                            <!--
+                            <p class="hidden alert_no_member">
+                                <em class="greytext">Les membres de l\'expédition ne sont pas encore définis.</em>
+                                <button class="bluebutton" onclick="">Ajouter des membres &gt;</button>
+                            </p>
+                            -->
+                            <div class="hidden choose_members z-depth-1">
+                                <p class="header">Sélectionnez les citoyens 
+                                    qui participeront à l\'expédition</p>
+                                <ul class="body"></ul>
+                                <button type="submit" class="redbutton"><i class="material-icons">fact_check</i>&nbsp;Enregistrer</button>
+                            </div>
+                        </form>
+                    </div>
+                    
                 </div>
                 <div class="card-action">
                     '.$buttons->dig_path(null).'

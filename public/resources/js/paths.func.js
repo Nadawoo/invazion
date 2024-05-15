@@ -15,6 +15,8 @@
  */
 async function populatePathsPanel(pathsCourses, pathsMembers) {
     
+    let htmlAvailableCitizens = await htmlcitizensForExpedition();
+    
     // For each expedition
     for(let paths of Object.entries(pathsCourses)) {
         // Gets a blank HTML template of an expedition card
@@ -53,7 +55,7 @@ async function populatePathsPanel(pathsCourses, pathsMembers) {
                             </li>`;
             htmlHumansIcons += `<img src="/resources/img/free/human.png" height="24">`;
         }
-        
+           
         // Populates the HTML template for the current expedition
         template.querySelector(".card").id = htmlId;
         template.querySelector(`#${htmlId} h2`).innerHTML = `Expédition ${pathId} <var class="tag">${nbrKilometers} km</var>`;
@@ -63,13 +65,13 @@ async function populatePathsPanel(pathsCourses, pathsMembers) {
         template.querySelector(`#${htmlId} .course`).id = `${htmlId}_path`;
         template.querySelector(`#${htmlId} .course .humans`).innerHTML = htmlHumansIcons;
         template.querySelector(`#${htmlId} .members`).id = `${htmlId}_members`;
-        template.querySelector(`#${htmlId} .members`).innerHTML = htmlMembers;
+        template.querySelector(`#${htmlId} .current_members`).innerHTML = htmlMembers;
         template.querySelector(`#${htmlId} .nbr_kilometers`).innerText = nbrKilometers;
         template.querySelector(`#${htmlId} .first_stage .coords`).innerText = `${firstStage.coord_x}:${firstStage.coord_y}`;
         template.querySelector(`#${htmlId} .last_stage .coords`).innerText   = `${lastStage.coord_x}:${lastStage.coord_y}`;
         template.querySelector(`#${htmlId} .first_stage .localize`).setAttribute("data-coords", `${firstStage.coord_x}_${firstStage.coord_y}`);
         template.querySelector(`#${htmlId} .last_stage .localize`).setAttribute("data-coords", `${lastStage.coord_x}_${lastStage.coord_y}`);
-        template.querySelector(`#${htmlId} input[name="params[path_id]"]`).value = pathId;
+//        template.querySelector(`#${htmlId} input[name="params[path_id]"]`).value = pathId;
         
         if(pathsMembers[pathId] !== undefined) {
             let currentStageCoords = `${members[0]["coord_x"]}_${members[0]["coord_y"]}`;
@@ -85,6 +87,12 @@ async function populatePathsPanel(pathsCourses, pathsMembers) {
                 document.querySelector(`#paths_panel .citizen${citizen.citizen_id} .items_list`).prepend( htmlItem(bagItem[0], _configsItems[bagItem[0]]) );
             }
         }
+             
+        // List of citizens available to populate the expedition
+        if(members.length === 0) {
+            unhideClasses(["choose_members"], htmlId);            
+            document.querySelector(`#${htmlId} .available_members ul`).innerHTML = htmlAvailableCitizens;
+        }
     }
     
     // Activate the tabs of the card (not active on page load because 
@@ -95,6 +103,40 @@ async function populatePathsPanel(pathsCourses, pathsMembers) {
     listenToLocationButtons(document.querySelectorAll("#paths_panel .localize"));
     // Centers + zoom on the map
     document.querySelector("#paths_panel .action_mode_button").addEventListener("click", switchToActionView);
+}
+
+
+/**
+ * HTML list of the citizens that you can add as members of an expedition
+ * 
+ * @returns {string} HTML
+ */
+async function htmlcitizensForExpedition() {
+    
+    htmlAvailableCitizens = "";
+
+    for(let citizenId in await _citizens) {
+        let citizen = _citizens[citizenId];
+        let htmlCoords = `${citizen.coord_x}_${citizen.coord_y}`;
+
+        htmlAvailableCitizens += `<li class="card citizen${citizen.citizen_id}">
+                            <h2 class="action_mode_button" data-coords="${htmlCoords}"
+                                title="Cliquez pour prendre le contrôle de ce citoyen"
+                                onclick="switchToCitizen('${citizen.citizen_id}')"
+                                style="background:lightgrey">
+                                <label>
+                                    <input type="checkbox" class="filled-in">
+                                    <span>${citizen.citizen_pseudo}</span>
+                                </label>
+                                <i class="material-icons" style="position:absolute;right:0.1em">zoom_in_map</i>
+                            </h2>
+                            <div style="display:flex;margin-left:0.3em">└ Sac :
+                                <ul class="items_list"></ul>
+                            </div>
+                        </li>`;
+    }
+    
+    return htmlAvailableCitizens;
 }
 
 
