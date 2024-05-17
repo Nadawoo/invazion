@@ -20,8 +20,8 @@ class HtmlPaths {
                 <h2 class="card-title"></h2>
                 <div class="card-tabs">
                     <ul class="tabs tabs-fixed-width z-depth-1">
-                        <li class="tab"><a href="#path1_path" class="active">Trajet</a></li>
-                        <li class="tab"><a href="#path1_members">Membres (<span class="nbr_members"></span>)</a></li>
+                        <li class="tab"><a href="#path1_path">Trajet</a></li>
+                        <li class="tab"><a href="#path1_members" class="active">Membres (<span class="nbr_members"></span>)</a></li>
                     </ul>
                 </div>
                 <div class="card-content">
