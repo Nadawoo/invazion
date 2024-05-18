@@ -44,6 +44,7 @@ class HtmlPopup
                                     ])
             . $this->predefined('popattack', '&#8505;&#65039; L\'attaque zombie quotidienne')
             . $this->predefined('poppath', '')
+            . $this->predefined('poppopulatepath', '')
             . $this->template_popbuilding($msg_popup)
             . $this->customised('popsmartphone', '', $html_smartphone)
             // Generic pop-up describing the result of an action
@@ -147,6 +148,23 @@ class HtmlPopup
             . "suivront ce chemin et ramasseront les objets trouvés automatiquement.</p>";
         
             $button_start = '<a href="#Outside" id="startPathCreation" class="redbutton" onclick="closePopup();startPathCreation()">Tracer une expédition</a>';
+            
+            $button_close = '<p class="center"><a href="#Outside" onclick="closePopup()">[Annuler]</a></p>';
+        
+        return $msg_popup . $button_start . $button_close;
+    }
+    
+    
+    private function poppopulatepath() {   
+        
+        $msg_popup = 
+              "<p>Avant de pouvoir lancer cette expédition, vous devez désigner "
+            . "ses <strong>membres</strong>, c'est-à-dire les citoyens "
+            . "qui suivront le chemin tracé sur la carte.</p>";
+        
+            $button_start = '<a href="#Outside" class="redbutton" '
+                          . 'onclick="closePopup();hideIds(\'paths_bar\');hideIds(\'attack_bar\');unhideId(\'paths_panel\')"'
+                          . '>Choisir les membres de l\'expédition</a>';
             
             $button_close = '<p class="center"><a href="#Outside" onclick="closePopup()">[Annuler]</a></p>';
         

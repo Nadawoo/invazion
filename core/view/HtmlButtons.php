@@ -229,8 +229,8 @@ class HtmlButtons
                     ],
                 ],
             'dig_path' => [
-                'icon'  => '',
-                'name'  => "&#x26CF;&#xFE0F; Fouiller",
+                'icon'  => "&#x26CF;&#xFE0F;",
+                'name'  => "Fouiller",
                 'title' => "Fouiller la zone où se trouve l'expédition (FONCTION A PROGRAMMER)",
                 'fields' => [
                     'api_name'      => 'paths',
@@ -238,13 +238,19 @@ class HtmlButtons
                     ],
                 ],
             'move_path' => [
-                'icon'  => '',
-                'name'  => "&#x25B6;&#xFE0F; Avancer",
+                'icon'  => "&#x25B6;&#xFE0F;",
+                'name'  => "Avancer",
                 'title' => "Faire avancer l'expédition vers l'étape suivante",
                 'fields' => [
                     'api_name'      => 'paths',
                     'action'        => 'move'
                     ],
+                ],
+            'populate_path' => [
+                'icon'  => '&#x26A0;&#xFE0F;',
+                'name'  => "Ajouter membres",
+                'title' => "Choisir les membres des l'expédition",
+                'fields' => [],
                 ],
             'open_door' => [
                 'icon'  => '',
@@ -846,6 +852,18 @@ class HtmlButtons
     }
     
     
+    function populate_path()
+    {
+        
+        $button = $this->buttons['populate_path'];
+        
+        return '
+        <form name="populate_path" action="#poppopulatepath" class="hidden">
+            <button class="z-depth-2" type="submit" title="'.$button['title'].'">'.$button['icon'].'<br>'.$button['name'].'</button>
+        </form>';
+    }
+    
+    
     /**
      * Button to move the members of an expedition on the map
      * 
@@ -859,11 +877,11 @@ class HtmlButtons
         $fields = $button['fields'];
         
         return
-        '<form method="post" action="#Outside" class="form_move_path">
+        '<form name="move_path" method="post" action="#Outside">
             <input type="hidden" name="api_name" value="'.$fields['api_name'].'">
             <input type="hidden" name="action" value="'.$fields['action'].'">
             <input type="hidden" name="params[path_id]" value="'.$path_id.'">
-            <button class="z-depth-2" type="submit" title="'.$button['title'].'">'.$button['name'].'</button>
+            <button class="z-depth-2" type="submit" title="'.$button['title'].'">'.$button['icon'].' '.$button['name'].'</button>
         </form>';
     }
     
@@ -881,11 +899,11 @@ class HtmlButtons
         $fields = $button['fields'];
         
         return
-        '<form method="post" action="#Outside" class="form_dig_path">
+        '<form name="dig_path" method="post" action="#Outside">
             <input type="hidden" name="api_name" value="'.$fields['api_name'].'">
             <input type="hidden" name="action" value="'.$fields['action'].'">
             <input type="hidden" name="params[path_id]" value="'.$path_id.'">
-            <button disabled class="z-depth-2" type="submit" title="'.$button['title'].'">'.$button['name'].'</button>
+            <button disabled class="z-depth-2" type="submit" title="'.$button['title'].'">'.$button['icon'].' '.$button['name'].'</button>
         </form>';
     }
         

@@ -99,21 +99,25 @@ if (document.getElementById('map') !== null) {
         }
     });
     
-    // Move the members of an expedtion
+    // Actions in the horizontal bar of expeditions
     document.querySelector('#paths_bar').addEventListener("submit", function() {
         // Desactivate the classic submission button (avoids reloading the page)
         event.preventDefault();
-        // Move the expedition to the next zone
-        let pathId = event.target.querySelector('input[name="params[path_id]"]').value;
-        callApi("GET", "paths", `action=move&path_id=${pathId}`).then(json => {
-                // Display the eventual error in a toast
-                if(json.metas.error_code !== "success") {
-                    M.toast({html: json.metas.error_message,
-                             classes: json.metas.error_class,
-                             displayLength: 2500,
-                             outDuration: 800});
-                }
-            });
+        let formName = event.target.closest("form").getAttribute("name");
+        
+        if(formName === "move_path") {
+            movePath(event);
+        }
+        else if(formName === "populate_path") {
+            window.location.replace("#poppopulatepath");
+        }
+        else {
+            M.toast({html: "[Bug] Action inconnue dans la barre d'expéditions. "
+                         + "Signalez-le au responsable du site.",
+                 classes: "critical",
+                 displayLength: 2500,
+                 outDuration: 800});
+        }
     });
     
     // Displays/hides the notifications panel

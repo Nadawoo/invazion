@@ -107,7 +107,7 @@ class HtmlPaths {
                 <h2>Expéd. <span class="path_name"></span></h2>
                 <div class="body">
                     <span class="nbr_kilometers"></span> km<br>
-                    <span class="nbr_members"></span> membres
+                    <div class="nbr_members"></div>
                 </div>
             </div>
         </template>';
@@ -133,6 +133,7 @@ class HtmlPaths {
                 <div class="body">                    
                     '.$buttons->dig_path(null).'
                     '.$buttons->move_path(null).'
+                    '.$buttons->populate_path(null).'
                 </div>
             </div>
         </template>';

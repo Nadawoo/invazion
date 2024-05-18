@@ -164,7 +164,7 @@ async function populatePathsBar(pathsCourses, pathsMembers) {
         }
         
         addPathsBarInactivePath(pathId, firstStage["coord_x"], firstStage["coord_y"], nbrKilometers, members.length);
-        addPathsBarActivePath(pathId, firstStage["coord_x"], firstStage["coord_y"]);
+        addPathsBarActivePath(pathId, members.length, firstStage["coord_x"], firstStage["coord_y"]);
     }
 }
 
@@ -190,7 +190,12 @@ async function addPathsBarInactivePath(pathId, firstStageX, firstStageY, nbrKilo
     template.querySelector(`#${htmlId}`).setAttribute("data-pathid", pathId);
     template.querySelector(`#${htmlId} .path_name`).innerText = `${firstStageX}:${firstStageY}`;
     template.querySelector(`#${htmlId} .nbr_kilometers`).innerText = nbrKilometers;
-    template.querySelector(`#${htmlId} .nbr_members`).innerText = nbrMembers;
+    template.querySelector(`#${htmlId} .nbr_members`).innerHTML = nbrMembers+" membres";
+    
+    if(nbrMembers === 0) {
+        template.querySelector(`#${htmlId} .nbr_members`).innerHTML = "&#x26A0;&#xFE0F; 0 membre";
+        template.querySelector(`#${htmlId} .nbr_members`).classList.add("alert");
+    }
 
     document.querySelector("#paths_bar .paths").append(template); 
 }
@@ -201,11 +206,12 @@ async function addPathsBarInactivePath(pathId, firstStageX, firstStageY, nbrKilo
  * (= with the action buttons "move" and "dig")
  * 
  * @param {int} pathId
+ * @param {int} nbrMembers
  * @param {int} firstStageX
  * @param {int} firstStageY
  * @returns {undefined}
  */
-async function addPathsBarActivePath(pathId, firstStageX, firstStageY) {
+async function addPathsBarActivePath(pathId, nbrMembers, firstStageX, firstStageY) {
     
     // Get a blank HTML template  for an active expedition block
     let template = await document.querySelector("#tplPathsBarActivePath").content.cloneNode(true);
@@ -214,8 +220,14 @@ async function addPathsBarActivePath(pathId, firstStageX, firstStageY) {
     
     template.querySelector(".path").id = activeHtmlId;
     template.querySelector("h2 .path_name").innerText = `${firstStageX}:${firstStageY}`;
-    template.querySelector(`.form_dig_path input[name="params[path_id]"]`).value = pathId;
-    template.querySelector(`.form_move_path input[name="params[path_id]"]`).value = pathId;
+    template.querySelector('form[name="dig_path"] input[name="params[path_id]"]').value = pathId;
+    template.querySelector('form[name="move_path"] input[name="params[path_id]"]').value = pathId;
+    
+    if(nbrMembers === 0) {
+        template.querySelector('form[name="dig_path"]').classList.add("hidden");
+        template.querySelector('form[name="move_path"]').classList.add("hidden");
+        template.querySelector('form[name="populate_path"]').classList.remove("hidden");
+    }
     
     document.querySelector(`#${inactiveHtmlId}`).after(template);
 }
@@ -331,5 +343,20 @@ async function submitNewPath(event, controller) {
         // Unregister the event listener on the zone which adds stages by clicking
         // Details here: https://macarthur.me/posts/options-for-removing-event-listeners/
         controller.abort();
+    }
+}
+
+async function movePath(event) {
+    
+    let pathId = event.target.querySelector('input[name="params[path_id]"]').value;
+    
+    let json = await callApi("GET", "paths", `action=move&path_id=${pathId}`);
+
+    // Display the eventual error in a toast
+    if(json.metas.error_code !== "success") {
+        M.toast({html: json.metas.error_message,
+                 classes: json.metas.error_class,
+                 displayLength: 2500,
+                 outDuration: 800});
     }
 }
