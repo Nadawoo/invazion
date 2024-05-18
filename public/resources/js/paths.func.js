@@ -316,10 +316,10 @@ async function submitNewPath(event, controller) {
     let token = getCookie('token');
     let formData = new FormData(event.target);
     let zonesList = formData.getAll('zones[]');
-    let zonesString = zonesList.join(',');
+    let zonesString = zonesList.join('&zones[]=');
     
     // Send the data to the Invazion's API
-    let json = await callApi("GET", "paths", `action=add&zones=${zonesString}&token=${token}`);
+    let json = await callApi("GET", "paths", `action=add&zones[]=${zonesString}&token=${token}`);
     
     // Display the message of result (success or error) in a toast
     M.toast({html: json.metas.error_message,
@@ -335,7 +335,7 @@ async function submitNewPath(event, controller) {
         unhideId("paths_bar");
         unhideId("resizeMap");
         unhideId("attack_bar");
-        unhideClasses(["bubble"], "#map");
+        unhideClasses(["bubble"], "map");
         
         // Reset the form with the list of stages
         document.querySelector("#formPathDrawing .fields").innerText = "";
