@@ -249,7 +249,7 @@ class HtmlButtons
             'populate_path' => [
                 'icon'  => '&#x26A0;&#xFE0F;',
                 'name'  => "Ajouter membres",
-                'title' => "Choisir les membres des l'expédition",
+                'title' => "Choisir les membres de l'expédition",
                 'fields' => [],
                 ],
             'open_door' => [

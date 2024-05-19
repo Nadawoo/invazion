@@ -12,8 +12,6 @@ class HtmlPaths {
      */
     function path_template() {
         
-        $buttons = new HtmlButtons();
-        
         return '
         <template id="tplPath">
             <div class="card">
@@ -46,13 +44,14 @@ class HtmlPaths {
                     <div class="members">
                         <ul class="current_members expanded"></ul>
 
-                        <form method="GET" action="" class="available_members">
+                        <form name="available_members" method="GET" action="#">
                             <!--
                             <p class="hidden alert_no_member">
                                 <em class="greytext">Les membres de l\'expédition ne sont pas encore définis.</em>
                                 <button class="bluebutton" onclick="">Ajouter des membres &gt;</button>
                             </p>
                             -->
+                            <input type="hidden" name="path_id" value="">
                             <div class="hidden choose_members z-depth-1">
                                 <p class="header">Sélectionnez les citoyens 
                                     qui participeront à l\'expédition</p>

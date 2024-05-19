@@ -91,7 +91,8 @@ async function populatePathsPanel(pathsCourses, pathsMembers) {
         // List of citizens available to populate the expedition
         if(members.length === 0) {
             unhideClasses(["choose_members"], htmlId);            
-            document.querySelector(`#${htmlId} .available_members ul`).innerHTML = htmlAvailableCitizens;
+            document.querySelector(`#${htmlId} form[name="available_members"] ul`).innerHTML = htmlAvailableCitizens;
+            document.querySelector(`#${htmlId} form input[name="path_id"`).value = pathId;
         }
     }
     
@@ -120,15 +121,15 @@ async function htmlcitizensForExpedition() {
         let htmlCoords = `${citizen.coord_x}_${citizen.coord_y}`;
 
         htmlAvailableCitizens += `<li class="card citizen${citizen.citizen_id}">
-                            <h2 class="action_mode_button" data-coords="${htmlCoords}"
-                                title="Cliquez pour prendre le contrôle de ce citoyen"
-                                onclick="switchToCitizen('${citizen.citizen_id}')"
-                                style="background:lightgrey">
+                            <h2 data-coords="${htmlCoords}" style="background:lightgrey">
                                 <label>
-                                    <input type="checkbox" class="filled-in">
+                                    <input type="checkbox" class="filled-in" name="citizens_ids[]" value="${citizen.citizen_id}">
                                     <span>${citizen.citizen_pseudo}</span>
                                 </label>
-                                <i class="material-icons" style="position:absolute;right:0.1em">zoom_in_map</i>
+                                <i class="material-icons action_mode_button" 
+                                    title="Cliquez pour prendre le contrôle de ce citoyen"
+                                    onclick="switchToCitizen('${citizen.citizen_id}')"
+                                    style="position:absolute;right:0.1em">zoom_in_map</i>
                             </h2>
                             <div style="display:flex;margin-left:0.3em">└ Sac :
                                 <ul class="items_list"></ul>
@@ -345,6 +346,39 @@ async function submitNewPath(event, controller) {
         controller.abort();
     }
 }
+
+
+/**
+ * Attach citizens to a path
+ * 
+ * @param {object} event
+ * @returns {undefined}
+ */
+async function addPathMembers(event) {
+    
+    let token = getCookie('token'),
+        formData = new FormData(event.target),
+        pathId = formData.get('path_id'),
+        selectedCitizensIds = formData.getAll('citizens_ids[]'),
+        citizensString = selectedCitizensIds.join('&citizens_ids[]=');
+    
+    // Send the data to the Invazion's API
+    let json = await callApi("GET", "paths", `action=add_members&path_id=${pathId}&citizens_ids[]=${citizensString}&token=${token}`);
+    
+    // Display the message of result (success or error) in a toast
+    M.toast({html: json.metas.error_message,
+            classes: json.metas.error_class,
+            displayLength: 5000,
+            outDuration: 800
+            });
+    
+    // Removes the form to select members in the card of the path
+    if(json.metas.error_class) {
+        document.querySelector(`#path${pathId} .choose_members`).remove();
+        document.querySelector(`#path${pathId} .nbr_members`).innerText = selectedCitizensIds.length;
+    }
+}
+
 
 async function movePath(event) {
     
