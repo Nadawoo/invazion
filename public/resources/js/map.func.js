@@ -183,7 +183,7 @@ function htmlCitizensImages(nbrCitizens) {
     // - First key = the number of citizens in the zone
     // - Subkeys = citizen 1, citizen 2, citizen 3...
     var positions = {
-        1: { 1:{"top":"1em", "left":"1em"} },
+        1: { 1:{"top":"-2.1em", "left":"inherit"} },
         2: { 1:{"top":"-2.3em", "left":"0.3em"},
              2:{"top":"-1.8em", "left":"1em"}
             },
