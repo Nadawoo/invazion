@@ -144,15 +144,19 @@ async function addCitizensOnMap(mapId) {
             
             let nbrCitizens = zone.dataset.citizens;
             if(nbrCitizens > 1)  {
-                var content = htmlCitizensImages(nbrCitizens);
-                var bubble = "Plusieurs citoyens se sont rassemblés ici... \
-                              Complotent-ils quelque chose&nbsp;?";
+                var label = "[Groupe]";
+                    bubble = `${nbrCitizens} citoyens sont rassemblés ici.`;
             } else {
-                var content = citizen.citizen_pseudo.slice(0, 2),
+                var label = citizen.citizen_pseudo,
                     bubble = "Le citoyen "+citizen.citizen_pseudo+" est ici.";
             }
             
-            zone.insertAdjacentHTML("afterbegin", '<div class="map_citizen">'+content+'</div>');
+            zone.insertAdjacentHTML("afterbegin", 
+                                    `<div class="map_citizen">
+                                        <span class="nbr_defenses">${label}</span>
+                                        ${htmlCitizensImages(nbrCitizens)}
+                                    </div>
+                                    <div class="empty">&nbsp;</div>`);
             zone.querySelector(".roleplay").innerHTML = bubble;
             // Delete the "&nbsp;" required on the empty zones 
             if(zone.querySelector(".empty") !== null) {
@@ -180,23 +184,23 @@ function htmlCitizensImages(nbrCitizens) {
     // - Subkeys = citizen 1, citizen 2, citizen 3...
     var positions = {
         1: { 1:{"top":"1em", "left":"1em"} },
-        2: { 1:{"top":"-1.3em", "left":"-0.2em"},
-             2:{"top":"-0.8em", "left":"0.7em"}
+        2: { 1:{"top":"-2.3em", "left":"0.3em"},
+             2:{"top":"-1.8em", "left":"1em"}
             },
-        3: { 1:{"top":"-1.5em", "left":"-0.3em"},
-             2:{"top":"-1.3em", "left":"1.1em"},
-             3:{"top":"-0.8em", "left":"0.5em"}
+        3: { 1:{"top":"-2.5em", "left":"0.3em"},
+             2:{"top":"-2.3em", "left":"1.4em"},
+             3:{"top":"-1.8em", "left":"0.9em"}
             },
-        4: { 1:{"top":"-1.7em", "left":"-0.3em"},
-             2:{"top":"-1.3em", "left":"1.1em"},
-             3:{"top":"-0.8em", "left":"-0.2em"},
-             4:{"top":"-0.7em", "left":"0.8em"}
+        4: { 1:{"top":"-2.7em", "left":"0.3em"},
+             2:{"top":"-2.3em", "left":"1.4em"},
+             3:{"top":"-1.8em", "left":"0.3em"},
+             4:{"top":"-1.7em", "left":"1.3em"}
             },
-        5: { 1:{"top":"-1.7em", "left":"-0.3em"},
-             2:{"top":"-1.4em", "left":"0.4em"},
-             3:{"top":"-1.7em", "left":"1.3em"},
-             4:{"top":"-0.8em", "left":"-0.3em"},
-             5:{"top":"-0.7em", "left":"1em"}
+        5: { 1:{"top":"-2.7em", "left":"0.3em"},
+             2:{"top":"-2.4em", "left":"0.7em"},
+             3:{"top":"-2.7em", "left":"1.6em"},
+             4:{"top":"-1.8em", "left":"0.3em"},
+             5:{"top":"-1.7em", "left":"1.3em"}
             },
         };
         

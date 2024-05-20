@@ -541,24 +541,23 @@ map_body_wrapper {
 }
 /* Symbole d'un citoyen sur la carte hexagonale */
 .map_citizen {
+    position:absolute;
+    top:0.85em;
+    height:50%;
+    display:flex;
+    justify-content:center;
+    width: 130%;
     border-radius:50%;
     background:lightsteelblue;
-    /*height:100%;*/
-    /*width:100%;*/
     z-index:1;
 }
 #map .map_citizen .nbr_defenses { /* Pseudo of the player on the map */
     width:6em;
     margin-top:-3em;
-    margin-left:-2em;
     border:1px solid white;
     overflow:hidden;
 }
-#me {
-    position:absolute;
-    top:0.85em;
-    height:50%;
-    width: 130%;
+#me {  
     background:lightgreen;
     cursor:pointer;
 }
@@ -587,7 +586,7 @@ map_body_wrapper {
         border-color:red;
     }
 }
-#me img {
+.map_citizen img {
     position:relative;
     top:-2.1em;
     height:48px;

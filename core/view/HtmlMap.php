@@ -46,7 +46,10 @@ class HtmlMap
     {
         
         $templates = [
-            'citizen_alone' => '<div class="map_citizen">'.substr($string1, 0, 2).'</div>',
+            'citizen_alone' => '<div class="map_citizen">
+                                    <span class="nbr_defenses">'.$string1.'</span>
+                                    <img src="resources/img/free/human.png">
+                                </div>',
             'items'         => '&nbsp;',
             'zombies'       => '<div class="zombies"><img src="resources/img/motiontwin/zombie'.$string2.'.gif" alt="Zx'.$string1.'"></div>',
         ];
