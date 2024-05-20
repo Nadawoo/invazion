@@ -107,7 +107,8 @@ function listenToMapDragging() {
 
 
 /**
- * Add event listeners on the buttons which center the map on a zone
+ * Add event listeners on the buttons which center the map on a zone.
+ * For the buttons which center AND zoom the map, see listenToActionModeButtons().
  * 
  * @param {object} node The HTML node containing the buttons
  *                      ex: document.querySelectorAll("#paths_panel .localize");
@@ -120,6 +121,23 @@ function listenToLocationButtons(node) {
             let htmlCoords = event.target.parentNode.dataset.coords;
             centerMapOnZone(`zone${htmlCoords}`);
             toggleTooltip(document.querySelector(`#zone${htmlCoords}`));
+        });
+    }
+}
+
+
+/**
+ * Add event listeners on the buttons which center the map on a zone then zoom on it.
+ * For the buttons which just center the map, see listenToLocationButtons().
+ * 
+ * @param {type} node
+ * @returns {undefined}
+ */
+function listenToActionModeButtons(node) {
+
+    for(var i=0; i<node.length; i++) {
+        node[i].addEventListener("click", function() {
+            switchToActionView();
         });
     }
 }

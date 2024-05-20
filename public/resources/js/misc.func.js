@@ -1297,6 +1297,8 @@ async function switchToCitizen(targetCitizenId) {
     if(json.metas.error_code === "success") {
         setCookie("token", json.datas.token);
     }
+    
+    displayToast(json.metas.error_message, json.metas.error_class);
 }
 
 

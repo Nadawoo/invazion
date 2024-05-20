@@ -102,8 +102,8 @@ async function populatePathsPanel(pathsCourses, pathsMembers) {
     
     // Add event listeners on the buttons which center the map on a zone
     listenToLocationButtons(document.querySelectorAll("#paths_panel .localize"));
-    // Centers + zoom on the map
-    document.querySelector("#paths_panel .action_mode_button").addEventListener("click", switchToActionView);
+    // Center + zoom on the map
+    listenToActionModeButtons(document.querySelectorAll("#paths_panel .action_mode_button"));
 }
 
 
