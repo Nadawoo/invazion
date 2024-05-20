@@ -155,13 +155,13 @@ async function addCitizensOnMap(mapId) {
                                     `<div class="map_citizen">
                                         <span class="nbr_defenses">${label}</span>
                                         ${htmlCitizensImages(nbrCitizens)}
-                                    </div>
-                                    <div class="empty">&nbsp;</div>`);
+                                    </div>`);
             zone.querySelector(".roleplay").innerHTML = bubble;
+            
             // Delete the "&nbsp;" required on the empty zones 
-            if(zone.querySelector(".empty") !== null) {
-                zone.querySelector(".empty").remove();
-            }
+//            if(zone.querySelector(".empty") !== null) {
+//                zone.querySelector(".empty").remove();
+//            }
         }
     }
     
