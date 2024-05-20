@@ -112,11 +112,9 @@ if (document.getElementById('map') !== null) {
             window.location.replace("#poppopulatepath");
         }
         else {
-            M.toast({html: "[Bug] Action inconnue dans la barre d'expéditions. "
+            displayToast("[Bug] Action inconnue dans la barre d'expéditions. "
                          + "Signalez-le au responsable du site.",
-                 classes: "critical",
-                 displayLength: 2500,
-                 outDuration: 800});
+                         "critical");
         }
     });
     

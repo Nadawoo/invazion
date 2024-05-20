@@ -532,7 +532,7 @@ async function moveCitizen(direction) {
         let error_message = (json.metas.error_code === "success")
                     ? `-${lost_AP} point d'action consommé<br>${new_AP}&#9889; restants`
                     : json.metas.error_message;
-        M.toast({html: error_message, classes: json.metas.error_class, displayLength: 2500, outDuration: 800});
+        displayToast(error_message, json.metas.error_class);
     }
     
     updateMeAfterMoving(json.datas.new_coord_x, json.datas.new_coord_y);
@@ -656,7 +656,7 @@ async function killZombies(apiAction) {
     document.querySelector("#explosionMe").classList.add("scale-in");
     setTimeout(function() {
         document.querySelector("#explosionMe").classList.remove("scale-in");
-        M.toast({html: json.metas.error_message, classes: json.metas.error_class, displayLength: 2500, outDuration: 800});
+        displayToast(json.metas.error_message, json.metas.error_class);
     }, 1500);
     
     if(json.metas.error_code === "success") {  
@@ -1299,3 +1299,23 @@ async function switchToCitizen(targetCitizenId) {
     }
 }
 
+
+/**
+ * Short way to display a toast with Materialize.css
+ * 
+ * @param {string} message The text of the message to put in the toast
+ * @param {type} error_class One of the standardized class returned by the InvZion's API
+ *                           ("info", "warning", "critical"). This allow changing 
+ *                           the background of the toast according to the gravity 
+ *                           of the alert.
+ * @returns {undefined}
+ */
+function displayToast(message, error_class) {
+    
+    M.toast({
+        html: message,
+        classes: error_class,
+        displayLength: 2500,
+        outDuration: 800
+        });
+}

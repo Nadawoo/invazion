@@ -323,11 +323,7 @@ async function submitNewPath(event, controller) {
     let json = await callApi("GET", "paths", `action=add&zones[]=${zonesString}&token=${token}`);
     
     // Display the message of result (success or error) in a toast
-    M.toast({html: json.metas.error_message,
-            classes: json.metas.error_class,
-            displayLength: 5000,
-            outDuration: 800
-            });
+    displayToast(json.metas.error_message, json.metas.error_class);
     
     // If path successfully register, hide the bar for drawing a path
     if(json.metas.error_code === "success") {
@@ -366,11 +362,7 @@ async function addPathMembers(event) {
     let json = await callApi("GET", "paths", `action=add_members&path_id=${pathId}&citizens_ids[]=${citizensString}&token=${token}`);
     
     // Display the message of result (success or error) in a toast
-    M.toast({html: json.metas.error_message,
-            classes: json.metas.error_class,
-            displayLength: 5000,
-            outDuration: 800
-            });
+    displayToast(json.metas.error_message, json.metas.error_class);
     
     // Removes the form to select members in the card of the path
     if(json.metas.error_class) {
@@ -388,10 +380,7 @@ async function movePath(event) {
 
     // Display the eventual error in a toast
     if(json.metas.error_code !== "success") {
-        M.toast({html: json.metas.error_message,
-                 classes: json.metas.error_class,
-                 displayLength: 2500,
-                 outDuration: 800});
+        displayToast(json.metas.error_message, json.metas.error_class);
     }
     else {
         updateMeAfterMoving(json.datas.new_coord_x, json.datas.new_coord_y);
