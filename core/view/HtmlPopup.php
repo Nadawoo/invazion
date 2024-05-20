@@ -147,11 +147,13 @@ class HtmlPopup
             . "sur la carte pour explorer les zones de votre choix. Vos citoyens "
             . "suivront ce chemin et ramasseront les objets trouvés automatiquement.</p>";
         
-            $button_start = '<a href="#Outside" id="startPathCreation" class="redbutton" onclick="closePopup();startPathCreation()">Tracer une expédition</a>';
-            
-            $button_close = '<p class="center"><a href="#Outside" onclick="closePopup()">[Annuler]</a></p>';
-        
-        return $msg_popup . $button_start . $button_close;
+            $button_start = '<a href="#Outside" id="startPathCreation" class="bluebutton"'
+                          . 'onclick="closePopup();startPathCreation()"'
+                          . '>Tracer une expédition'
+                          . '<i class="material-icons">chevron_right</i>'
+                          . '</a>';
+                    
+        return $msg_popup . $button_start;
     }
     
     
@@ -162,13 +164,14 @@ class HtmlPopup
             . "ses <strong>membres</strong>, c'est-à-dire les citoyens "
             . "qui suivront le chemin tracé sur la carte.</p>";
         
-            $button_start = '<a href="#Outside" class="redbutton" '
+            $button_start = '<a href="#Outside" class="bluebutton" '
                           . 'onclick="closePopup();hideIds(\'paths_bar\');hideIds(\'attack_bar\');unhideId(\'paths_panel\')"'
-                          . '>Choisir les membres de l\'expédition</a>';
+                          . '>'
+                          . 'Choisir les membres de l\'expédition'
+                          . '<i class="material-icons">chevron_right</i>'
+                          . '</a>';
             
-            $button_close = '<p class="center"><a href="#Outside" onclick="closePopup()">[Annuler]</a></p>';
-        
-        return $msg_popup . $button_start . $button_close;
+        return $msg_popup . $button_start;
     }
     
     
