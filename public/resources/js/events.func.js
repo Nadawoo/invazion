@@ -144,6 +144,28 @@ function listenToActionModeButtons(node) {
 
 
 /**
+ * Event listener for the #action_mode_button (HTML ID, not class)
+ * @returns {undefined}
+ */
+async function listenToMainActionModeButton() {
+    
+    // Zoom on the map to the player
+    document.querySelector("#action_mode_button").addEventListener("click", switchToActionView);
+    document.querySelector("#map_mode_button").addEventListener("click", switchToMapView);
+}
+
+
+/**
+ * Event listener when clicking on the player on his map zone
+ * @returns {undefined}
+ */
+function listenToMeOnMap() {
+    
+    document.querySelector("#me").addEventListener("click", switchToActionView);
+}
+
+
+/**
  * Filter the list of constructions inside the city (by defenses, by resources, etc.)
  * 
  * @param {string} selectedValue The HTML value of the <option> selected 

@@ -102,23 +102,27 @@ function addMeOnMap() {
         myPseudo = document.querySelector("#citizenPseudo").innerHTML,
         myZone = document.querySelector(`#zone${myCoordX}_${myCoordY} .square_container`);
 
-    let htmlMe = '\
-                <img id="explosionMe" class="scale-transition scale-out" src="resources/img/thirdparty/notoemoji/collision-512.webp" width="38">\
-                <div class="map_citizen" id="me">\
-                    <span class="nbr_defenses">'+myPseudo+'</span>\
-                    <img src="resources/img/free/human.png"></div>\
-                <div class="halo">&nbsp;</div>';
+    // If there is no other citizen in the zone
+    if(myZone.querySelector(".map_citizen") === null) {
+        myZone.insertAdjacentHTML("afterbegin", 
+            '<img id="explosionMe" class="scale-transition scale-out" src="resources/img/thirdparty/notoemoji/collision-512.webp" width="38">\
+            <div class="map_citizen" id="me">\
+                <span class="nbr_defenses">'+myPseudo+'</span>\
+                <img src="resources/img/free/human.png">\
+            </div>\
+            <div class="halo">&nbsp;</div>'
+        );
+    }
     
     let htmlBubble = '<h5 class="name">Vous êtes ici&nbsp;!';
     
-    // Don't show the other citizens under the player's silhouette
-    if(myZone.querySelector(".map_citizen") !==  null) {
-        myZone.querySelector(".map_citizen").remove();
-    }
-    
-    // Add the player's silhouette 
-    myZone.innerHTML += htmlMe;
+    myZone.querySelector(".map_citizen").id = "me";
+    myZone.querySelector(".halo").classList.remove("inactive");
+    myZone.querySelector(".nbr_defenses").innerHTML = myPseudo;
     myZone.querySelector(".bubble .roleplay").innerHTML = htmlBubble;
+    
+    // Event listener when clicking on the player on his map zone
+    listenToMeOnMap();
 }
 
 
@@ -152,10 +156,12 @@ async function addCitizensOnMap(mapId) {
             }
             
             zone.insertAdjacentHTML("afterbegin", 
-                                    `<div class="map_citizen">
-                                        <span class="nbr_defenses">${label}</span>
-                                        ${htmlCitizensImages(nbrCitizens)}
-                                    </div>`);
+                `<img id="explosionMe" class="scale-transition scale-out" src="resources/img/thirdparty/notoemoji/collision-512.webp" width="38">
+                <div class="map_citizen">
+                    <span class="nbr_defenses">${label}</span>
+                    ${htmlCitizensImages(nbrCitizens)}
+                </div>
+                <div class="halo inactive">&nbsp;</div>`);
             zone.querySelector(".roleplay").innerHTML = bubble;
             
             // Delete the "&nbsp;" required on the empty zones 
@@ -836,6 +842,8 @@ function switchToActionView() {
     // Display the button which switches to the Map mode
     hide(["action_mode_button"]);
     changeDisplayValue("map_mode_button", "flex");
+    
+    updateActionBlocks();
 }
 
 
@@ -857,3 +865,4 @@ function switchToMapView() {
     unhideId("attack_bar");
     changeDisplayValue("action_mode_button", "flex");
 }
+

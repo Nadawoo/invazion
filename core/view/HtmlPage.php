@@ -157,13 +157,14 @@ class HtmlPage
                         <script type="text/javascript" src="resources/js/ZombLib.js?v'.$this->css_js_version.'"></script>
                         <script type="text/javascript" src="resources/js/cookies.func.js?v'.$this->css_js_version.'"></script>
                         <script type="text/javascript" src="resources/js/map.func.js?v'.$this->css_js_version.'"></script>
-                        <script type="text/javascript" src="resources/js/paths.func.js?v'.$this->css_js_version.'"></script>'
-                . '     <script type="text/javascript" src="resources/js/tooltips.func.js?v'.$this->css_js_version.'"></script>
+                        <script type="text/javascript" src="resources/js/paths.func.js?v'.$this->css_js_version.'"></script>
+                        <script type="text/javascript" src="resources/js/tooltips.func.js?v'.$this->css_js_version.'"></script>
                         <script type="text/javascript" src="resources/js/wallTemplate.js?v'.$this->css_js_version.'"></script>
                         <script type="text/javascript" src="resources/js/actionBlocks.func.js?v'.$this->css_js_version.'"></script>
                         <script type="text/javascript" src="resources/js/cityEnclosure.func.js?v'.$this->css_js_version.'"></script>
                         <script type="text/javascript" src="resources/js/discussions.func.js?v'.$this->css_js_version.'"></script>
                         <script type="text/javascript" src="resources/js/events.func.js?v'.$this->css_js_version.'"></script>
+                        <script type="text/javascript" src="resources/js/users.func.js?v'.$this->css_js_version.'"></script>
                         <script type="text/javascript" src="resources/js/misc.func.js?v'.$this->css_js_version.'"></script>
                         <script type="text/javascript" src="resources/js/onPageLoad.js?v'.$this->css_js_version.'"></script>
                         <script type="text/javascript" src="resources/js/events.js?v'.$this->css_js_version.'"></script>

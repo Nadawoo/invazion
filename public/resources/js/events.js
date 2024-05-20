@@ -183,25 +183,22 @@ if (document.getElementById('map') !== null) {
 }
 
 // If the player is connected
-if (document.getElementById("me") !== null) {
+if(isCitizenInGame() === true) {
     
-    // Map: switch to the "action" mode
-    document.querySelector("#action_mode_button").addEventListener("click", switchToActionView);
-    document.querySelector("#me").addEventListener("click", switchToActionView);
-    // Map: switch to the "large map" mode
-    document.querySelector("#map_mode_button").addEventListener("click", switchToMapView);
+    // Button to zoom the map on the player
+    listenToMainActionModeButton();
     
-    let myHexagon = document.getElementById("me").closest(".hexagon");
+//    let myHexagon = document.getElementById("me").closest(".hexagon");
     
     // Displays the tooltip of the player's zone when hovering the movement paddle
-    let paddle = document.getElementById("central");
-    paddle.addEventListener("mouseover", function() { displayTooltip(myHexagon); });
-    paddle.addEventListener("mouseout",  function() { hideTooltip(myHexagon);    });
-    paddle.addEventListener("click",     function() { toggleTooltip(myHexagon);  });
+//    let paddle = document.getElementById("central");
+//    paddle.addEventListener("mouseover", function() { displayTooltip(myHexagon); });
+//    paddle.addEventListener("mouseout",  function() { hideTooltip(myHexagon);    });
+//    paddle.addEventListener("click",     function() { toggleTooltip(myHexagon);  });
 
     // Same thing when hovering the GPS on the smartphone
-    let minimap = document.getElementById("minimap");
-    minimap.addEventListener("mouseover", function() { displayTooltip(myHexagon); });
-    minimap.addEventListener("mouseout",  function() { hideTooltip(myHexagon);    });
-    minimap.addEventListener("click",     function() { toggleTooltip(myHexagon);  });
+//    let minimap = document.getElementById("minimap");
+//    minimap.addEventListener("mouseover", function() { displayTooltip(myHexagon); });
+//    minimap.addEventListener("mouseout",  function() { hideTooltip(myHexagon);    });
+//    minimap.addEventListener("click",     function() { toggleTooltip(myHexagon);  });
 }

@@ -635,6 +635,11 @@ map_body_wrapper {
     animation-name: citizen_blinker_alert;
     z-index:-2; /* Put the halo behind the zombies */
 }
+.halo.inactive {
+    opacity:0.8;
+    border-color:darkgrey;
+    animation:none;
+}
 
 #map .city img {
     height:24px;
