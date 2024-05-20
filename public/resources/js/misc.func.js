@@ -519,9 +519,6 @@ async function updateLandType(landType, coordX, coordY, radius) {
  */
 async function moveCitizen(direction) {
     
-    // Delete the informations about the previous zone (obsolete)
-    _myZone = null;    
-    
     // Ask the API for moving the player
     let token = getCookie('token'); 
     let json = await callApi("GET", "zone", `action=move&to=${direction}&token=${token}`);
@@ -538,22 +535,39 @@ async function moveCitizen(direction) {
         M.toast({html: error_message, classes: json.metas.error_class, displayLength: 2500, outDuration: 800});
     }
     
+    updateMeAfterMoving(json.datas.new_coord_x, json.datas.new_coord_y);
+}
+
+
+/**
+ * Update the coordinates of the player and other player-related data modified 
+ * by the movement
+ * 
+ * @param {int} newCoordX
+ * @param {int} newCoordY
+ * @returns {undefined}
+ */
+function updateMeAfterMoving(newCoordX, newCoordY) {
+        
+    // Delete the informations about the previous zone (obsolete)
+    _myZone = null;    
+    
     // Update the stored coordinates of the player
-    document.querySelector("#citizenCoordX").innerHTML = json.datas.new_coord_x;
-    document.querySelector("#citizenCoordY").innerHTML = json.datas.new_coord_y;
+    document.querySelector("#citizenCoordX").innerHTML = newCoordX;
+    document.querySelector("#citizenCoordY").innerHTML = newCoordY;
     
     // Update the coordinates of the player in the movement paddle
-    updateMovementPaddle(json.datas.new_coord_x, json.datas.new_coord_y);
+    updateMovementPaddle(newCoordX, newCoordY);
     // Update the coordinates of the player in the land editor
-    updateMapEditor(json.datas.new_coord_x, json.datas.new_coord_y);
+    updateMapEditor(newCoordX, newCoordY);
     
     // Update the attribute "data-citizen" of the destination zone to add the player
-    let htmlCoord = json.datas.new_coord_x+"_"+json.datas.new_coord_y;
+    let htmlCoord = newCoordX+"_"+newCoordY;
         myZone = document.querySelector("#zone"+htmlCoord+" .square_container");
     myZone.dataset.citizens = parseInt(myZone.dataset.citizens, 10) + 1;
-       
-    updateRoundActionButtons(json.datas.new_coord_x, json.datas.new_coord_y);
-    updateCityDistance(json.datas.new_coord_x, json.datas.new_coord_y);
+    
+    updateRoundActionButtons(newCoordX, newCoordY);
+    updateCityDistance(newCoordX, newCoordY);
     updateBlockLandType(myZone.dataset.landtype);
     updateEnterBuildingButton(myZone.dataset.citytypeid);
     updateMoveCost(parseInt(myZone.dataset.zombies));

@@ -393,4 +393,7 @@ async function movePath(event) {
                  displayLength: 2500,
                  outDuration: 800});
     }
+    else {
+        updateMeAfterMoving(json.datas.new_coord_x, json.datas.new_coord_y);
+    }
 }
