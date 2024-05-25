@@ -54,17 +54,17 @@ async function listenToLandform() {
  * Displays/hides the tooltip of any zone when the mouse hovers one
  */
 function listenToMapZones() {
-    document.getElementById("map").addEventListener("mouseover", function(){
+    document.getElementById("map_body").addEventListener("mouseover", function(){
         displayTooltip(event.target.closest(".hexagon"));
     });
-    document.getElementById("map").addEventListener("mouseout",  function(){
+    document.getElementById("map_body").addEventListener("mouseout",  function(){
         hideTooltip(event.target.closest(".hexagon"));
     });
     // The touchstart event is required for the mobile devices (no notion of "hover" there)
-    document.getElementById("map").addEventListener("touchstart", function(){
+    document.getElementById("map_body").addEventListener("touchstart", function(){
         toggleTooltip(event.target.closest(".hexagon"));
     });
-    document.getElementById("map").addEventListener("touchend", function(){
+    document.getElementById("map_body").addEventListener("touchend", function(){
         toggleTooltip(event.target.closest(".hexagon"));
     });
 }
@@ -107,6 +107,65 @@ function listenToMapDragging() {
 
 
 /**
+ * Add event listeners on the buttons which center the map on a zone.
+ * For the buttons which center AND zoom the map, see listenToActionModeButtons().
+ * 
+ * @param {object} node The HTML node containing the buttons
+ *                      ex: document.querySelectorAll("#paths_panel .localize");
+ * @returns {undefined}
+ */
+function listenToLocationButtons(node) {
+
+    for (var i=0; i<node.length; i++) {
+        node[i].addEventListener("click", function() {
+            let htmlCoords = event.target.parentNode.dataset.coords;
+            centerMapOnZone(`zone${htmlCoords}`);
+            toggleTooltip(document.querySelector(`#zone${htmlCoords}`));
+        });
+    }
+}
+
+
+/**
+ * Add event listeners on the buttons which center the map on a zone then zoom on it.
+ * For the buttons which just center the map, see listenToLocationButtons().
+ * 
+ * @param {type} node
+ * @returns {undefined}
+ */
+function listenToActionModeButtons(node) {
+
+    for(var i=0; i<node.length; i++) {
+        node[i].addEventListener("click", function() {
+            switchToActionView();
+        });
+    }
+}
+
+
+/**
+ * Event listener for the #action_mode_button (HTML ID, not class)
+ * @returns {undefined}
+ */
+async function listenToMainActionModeButton() {
+    
+    // Zoom on the map to the player
+    document.querySelector("#action_mode_button").addEventListener("click", switchToActionView);
+    document.querySelector("#map_mode_button").addEventListener("click", switchToMapView);
+}
+
+
+/**
+ * Event listener when clicking on the player on his map zone
+ * @returns {undefined}
+ */
+function listenToMeOnMap() {
+    
+    document.querySelector("#me").addEventListener("click", switchToActionView);
+}
+
+
+/**
  * Filter the list of constructions inside the city (by defenses, by resources, etc.)
  * 
  * @param {string} selectedValue The HTML value of the <option> selected 
@@ -127,4 +186,81 @@ function filterConstructions(selectedValue) {
     } else {
         console.log("Error: unknown option value ('"+selectedValue+"') in #city_constructions <select>");
     }
+}
+
+
+/**
+ * Add a stage on a zone of the map. Useful when drawing the path of an expedition.
+ * 
+ * @param {Object} event
+ * @param {int} currentStageId The number (0, 1, 2...) of the last stage added 
+ *                             on the map
+ * @returns {int} The number of the new stage created, or the previous one if
+ *                we have deleted a stage
+ */
+function addMapPathStage(event, currentStageId) {
+    
+    let hexagon = event.target.closest(".hexagon");
+    
+    // Avoid JS error if we click in the #map but at a place with no zone
+    // (can occur because #map is currently wider than the real zones)
+    if(hexagon === null) {
+        return currentStageId;
+    }
+    
+    let square = hexagon.querySelector(".square_container");
+        coords = `${square.dataset.coordx}_${square.dataset.coordy}`;
+
+    let remove = false;
+    // If whe re-click on a zone with a stage previously added...
+    if(square.querySelector(`.path_stage[data-pathid="new"]`) !== null) {
+        // ... and only if this is the last stage of the path 
+        // (this condition avoids creating holes in the numbering)
+        let stagesInZone = square.querySelectorAll(`.path_stage[data-pathid="new"]`);
+        let clickedStage = stagesInZone[stagesInZone.length-1];
+        // NB: we take care about selecting the *last* stage inserted in the zone
+        if(parseInt(stagesInZone[stagesInZone.length-1].innerText) === currentStageId-1) {
+            // ... remove this stage from the hidden form
+            document.querySelector(`#formPathDrawing input[value="${coords}"]`).remove();
+            // ... revove the stage from the map
+            clickedStage.remove();
+            currentStageId--;
+            
+            remove = true;
+        }
+    }
+
+    // Else, if the player clicks on a stage that is not the last one 
+    // (legit when the player wants to pass several times through the same zone),
+    // or if he click on a zone with no stage
+    if(remove === false) {
+        // Add the stage in the HTML form which will create the expédition            
+        document.querySelector("#formPathDrawing .fields").insertAdjacentHTML("beforeend",
+            `<input type="hidden" name="zones[]" value="${coords}">`);
+        // Display the stage on the map
+        hexagon.style.opacity = 1;
+        square.insertAdjacentHTML("beforeend",
+            `<div class="path_stage pulse" data-pathid="new">${currentStageId}</div>`);
+        currentStageId++;
+        
+        // Steps of the tutorial to help the player to trace his expedition
+        if(currentStageId === 1) {
+            hideClasses(["place_first_stage"], "formPathDrawing");
+            unhideClasses(["place_second_stage"], "formPathDrawing");
+        }
+        else if(currentStageId === 2) {
+            hideClasses(["place_second_stage"], "formPathDrawing");
+            unhideClasses(["place_other_stages"], "formPathDrawing");
+        }
+        else if(currentStageId === 6) {
+            hideClasses(["place_other_stages"], "formPathDrawing");
+            unhideClasses(["make_a_loop"], "formPathDrawing");
+        }
+        else if(parseInt(square.querySelector('.path_stage[data-pathid="new"]').innerText) === 0) {
+            hideClasses(["make_a_loop"], "formPathDrawing");
+            unhideClasses(["save_stages"], "formPathDrawing");
+        }
+    }
+    
+    return currentStageId;
 }

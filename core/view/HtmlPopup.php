@@ -43,6 +43,8 @@ class HtmlPopup
                                      'moving_cost_zombies'    => $configs_map['moving_cost_zombies']
                                     ])
             . $this->predefined('popattack', '&#8505;&#65039; L\'attaque zombie quotidienne')
+            . $this->predefined('poppath', '')
+            . $this->predefined('poppopulatepath', '')
             . $this->template_popbuilding($msg_popup)
             . $this->customised('popsmartphone', '', $html_smartphone)
             // Generic pop-up describing the result of an action
@@ -130,6 +132,46 @@ class HtmlPopup
             $button_close = '<p class="center"><a href="#" onclick="closePopup()">[Fermer]</a></p>';
         
         return $msg_popup.$button_close;
+    }
+    
+    
+    /**
+     * Pop-up when we the player starts to create an expedition
+     * 
+     * @return string HTML
+     */
+    private function poppath() {   
+        
+        $msg_popup = 
+              "<p>Une <strong>expédition</strong> est un chemin que vous tracez "
+            . "sur la carte pour explorer les zones de votre choix. Vos citoyens "
+            . "suivront ce chemin et ramasseront les objets trouvés automatiquement.</p>";
+        
+            $button_start = '<a href="#Outside" id="startPathCreation" class="bluebutton"'
+                          . 'onclick="closePopup();startPathCreation()"'
+                          . '>Tracer une expédition'
+                          . '<i class="material-icons">chevron_right</i>'
+                          . '</a>';
+                    
+        return $msg_popup . $button_start;
+    }
+    
+    
+    private function poppopulatepath() {   
+        
+        $msg_popup = 
+              "<p>Avant de pouvoir lancer cette expédition, vous devez désigner "
+            . "ses <strong>membres</strong>, c'est-à-dire les citoyens "
+            . "qui suivront le chemin tracé sur la carte.</p>";
+        
+            $button_start = '<a href="#Outside" class="bluebutton" '
+                          . 'onclick="closePopup();hideIds(\'paths_bar\');hideIds(\'attack_bar\');unhideId(\'paths_panel\')"'
+                          . '>'
+                          . 'Choisir les membres de l\'expédition'
+                          . '<i class="material-icons">chevron_right</i>'
+                          . '</a>';
+            
+        return $msg_popup . $button_start;
     }
     
     

@@ -23,6 +23,7 @@ $wall               = new HtmlWall();
 $popup              = new HtmlPopup();
 $tutorial           = new HtmlTutorial();
 $htmlItem           = new HtmlItem();
+$htmlPaths          = new HtmlPaths();
 $sort               = new SortGameData();
 $zone               = set_default_variables('zone');
 $citizen            = set_default_variables('citizen');
@@ -201,6 +202,9 @@ echo $html['json_configs'];
 <section id="templates">
     <?php
     echo $htmlItem->item_template()
+       . $htmlPaths->path_template()
+       . $htmlPaths->pathsbar_inactive_path_template()
+       . $htmlPaths->pathsbar_active_path_template()
        . $layout->block_zone_fellow_template();
     ?>
     <template id="tplEmptySlot">
@@ -320,6 +324,28 @@ echo $html['json_configs'];
                 </div>
             </div>
         </div>
+        
+        <?php echo $htmlPaths->paths_bar() ?>
+        
+        <form method="get" id="formPathDrawing" class="hidden">
+            <ul class="center">
+                <li class="place_first_stage">Placez le point de départ de votre expédition en cliquant sur une zone de la carte.</li>
+                <li class="hidden place_second_stage">Bien ! Placez mainteant une seconde étape, sur une zone adjacente à la première.</li>
+                <li class="hidden place_other_stages">Ajoutez d'autres étapes pour tracer le chemin que vous souhaitez.</li>
+                <li class="hidden make_a_loop">Pour valider le tracé, formez une boucle jusqu'à revenir au point de départ.</li>
+                <li class="hidden save_stages">
+                    <button type="submit" class="redbutton">Enregistrer l'expédition</button>
+                </li>
+            </ul>
+            <div class="fields"></div>
+        </form>
+        
+        <section id="paths_panel" class="hidden">
+            <a class="close" onclick="hideIds('paths_panel');unhideId('paths_bar');unhideId('attack_bar');">
+                <i class="material-icons">close</i>
+            </a>
+            <div class="body"></div>
+        </section>
         
         <section id="personal_block_wrapper">
             <div id="personal_block">

@@ -8,6 +8,7 @@ var _citizens = null;
 var _cities = null;
 var _myZone = null;
 var _jsonMap = null;
+var _isPathDrawingActive = false;
 // Permanently stores the result of the API whichs gives the discussions list 
 var _jsonDiscussionApi = null;
 var _scrollBoosterInstance = null;
@@ -76,9 +77,13 @@ if (document.getElementById('map') !== null) {
     // Place on the map the buildings and cities
     _cities = addCitiesOnMap(mapId);  
     // Place the citizens on the appropriate zones of the map
-    _citizens = addCitizensOnMap(mapId);    
+    _citizens = addCitizensOnMap(mapId).then(() => {
+        if(isCitizenInGame() === true) { addMeOnMap(); }
+        });
     // Display the zombie cores on the map (item ID #106)
     displayItemOnMap(106);
+    // Display the expeditions bar at the top of the map
+    activateMapPathsView();
     
     updateConnectedCitiesLines(mapId);
     
@@ -86,46 +91,20 @@ if (document.getElementById('map') !== null) {
     _scrollBoosterInstance = listenToMapDragging();
     
     // Only if the visitor is connected
-    if(document.querySelector("#citizenId").innerHTML !== "") {
-    
-        var myCityZoneId = getMyCityZoneId();
-        // Place the current player on the appropriate zone of the map
-        addMeOnMap();
-        // Add a location sign above the city of the player
-        addCityLocationMarker(myCityZoneId);
-        // Start in the "action" mode (centered on the current player)
-        setTimeout(switchToActionView, 500);
-        
-        // Draws a line between the player and his city
-        if(myCityZoneId !== null) {
-            updateLineBetweenZones("myCity", "#me", "#"+myCityZoneId);
-        }
-        
-        // Get informations about the current zone through the "data-*" HTML attributes
-        let zoneData = document.querySelector("#me").parentNode.dataset;
-        let myHexagon = document.getElementById("me").closest(".hexagon");
-        
-        // Highlights the player's location on page load
-        displayTooltip(myHexagon);
-        // Updates the coordinates of the player in the movement paddle
-        updateMovementPaddle(zoneData.coordx, zoneData.coordy);
-        // Updates the cards of contextual actions under the movement paddle
-        updateMoveCost(parseInt(zoneData.zombies));
-        updateCardCitizensInZone(parseInt(zoneData.citizens));
-        // Updates the distance to the city displayed under the movement paddle
-        updateCityDistance(zoneData.coordx, zoneData.coordy);     
-        // Displays the button to enter if there is a city in the zone
-        setTimeout(function() { updateEnterBuildingButton(zoneData.citytypeid); }, 1000);
-        // Updates the coordinates of the player in the land editor
-        updateMapEditor(zoneData.coordx, zoneData.coordy);
-        // Update the numbers in the big buttons next to the map
-        updateRoundActionButtons(zoneData.coordx, zoneData.coordy);
-        // Display an alert over the movement paddle if the player is blocked
-        updateBlockAlertControl(zoneData.controlpointszombies, mapId, zoneData.coordx, zoneData.coordy);
-        // Display the actions for fighting against zombies
-        showFightingZombiesButtons(zoneData.zombies);
-        // Displays help about the land type of the current zone
-        updateBlockLandType(zoneData.landtype);
+    if(isCitizenInGame() === true) {
+        setTimeout(function() {
+            var myCityZoneId = getMyCityZoneId();
+
+            // Add a location sign above the city of the player
+            addCityLocationMarker(myCityZoneId);
+            // Start in the "action" mode (centered on the current player)
+//            setTimeout(switchToActionView, 500);
+
+            // Draws a line between the player and his city
+            if(myCityZoneId !== null) {
+                updateLineBetweenZones("myCity", "#me", "#"+myCityZoneId);
+            }
+        }, 1000);
     }
     
     // Restore the display of the action button before the page was refreshed

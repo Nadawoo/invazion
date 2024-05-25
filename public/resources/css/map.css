@@ -34,7 +34,7 @@ map_body_wrapper {
     position:relative;
     /* Avoids hiding zones under the borders when the map is unzoomed
        (due to the artificial horizontal shifting of the rows) */
-    padding:1em;
+    padding:2em;
 }
 #map_body.zoomedIn {
     transition: all .3s ease;
@@ -286,29 +286,28 @@ map_body_wrapper {
     /* On remonter l'hexagone pour l'emboîter dans la ligne du dessus.
        Mieux qu'une position relative "top:-1em", qui créerait un gros blanc 
        sous la carte. */
-    margin:-0.95em;
+    margin:-25px;
 }
 #map_body .row:nth-child(odd) {
     /* Shift 1 line of 2 to fit the hexagons staggered */
-    padding-left:1.2em;
+    padding-left:20px;
 }
 
-.hexagon, .not_visited {
+.hexagon {
     
     /* Pour le débogage : décommenter cette ligne pour afficher le conteneur*/
     /*border:1px solid red;*/
     
-    background-image:url("../img/copyrighted/tiles/desert/9.png");
     background-repeat:no-repeat;
     background-size:100%;
     text-align:center;
     cursor:default;
     display:inline-block;
     /* La largeur détermine la taille de l'hexagone */
-    width:        2.4em;
-    /* La hauteur va dépendre de la largeur : une bordure devra arriver 
-    pile à la pointe du bas de l'hexagone */
-    height:       3.1em;
+    width:        41px; /*2.4em;*/
+    /* Let enough height to allow elevating (city zone) or lowering (water, lava)
+       the zone without cutting the top or low tip of the hexagon */
+    height:       60px;
     /* Assure que le conteneur intérieur ne déborde pas en bas
     (tracer une bordure sur square_container) )*/
     line-height:2.55em;
@@ -332,7 +331,7 @@ map_body_wrapper {
     margin:auto;
     /* Hack CSS pour centrer le conteneur verticalement */
     position: relative;
-    top: 45%; /* poussé de la moitié de hauteur du référent */
+    top: 37%; /* poussé de la moitié de hauteur du référent */
     transform: translateY(-50%); /* tiré de la moitié de sa propre hauteur */
     /* Centrage des éléments à l'intérieur de la case */
     display:flex;
@@ -370,12 +369,13 @@ map_body_wrapper {
 #map .city_name {
     display:none;
     position:absolute;
-    top:0.8em;
+    top:-1.3em;
     padding:0.1em 0.3em;
     font-size:0.9em;
     background:darkred;
     color:white;
-    line-height:1em;
+    line-height:1.1em;
+    border:1px solid red;
     border-radius:0.3em;
     box-shadow:4px 4px 6px black;
     z-index: 1;
@@ -393,7 +393,7 @@ map_body_wrapper {
     line-height:1.5em;
     padding:0 0.3em;
     font-size:0.8em;
-    background:green;
+    background:darkgreen;
     color:white;
     border-radius:0.4em;
     box-shadow: 4px 4px 6px black;
@@ -422,6 +422,10 @@ map_body_wrapper {
 /*.ground_stone, .ground_circus {
     background-image:url("../img/copyrighted/tiles/desert/1.png");
 }*/
+.ground_default {
+    /* If the cell exists in the database but has no specific ground set */
+    background-image:url("../img/copyrighted/tiles/desert/9.png");
+}
 .ground_grass {
     background-image:url("../img/copyrighted/tiles/greenjungle/3.png");
 }
@@ -537,25 +541,55 @@ map_body_wrapper {
 }
 /* Symbole d'un citoyen sur la carte hexagonale */
 .map_citizen {
-    border-radius:50%;
-    font-weight:bold;
-    background:lightsteelblue;
-    height:100%;
-    width:100%;
-}
-#me {
     position:absolute;
-    background:lightgreen;
-    animation: blinker 2s linear infinite;
+    top:0.85em;
+    height:50%;
+    display:flex;
+    justify-content:center;
+    width: 130%;
+    border-radius:50%;
+    background:lightsteelblue;
+    z-index:1;
 }
-@keyframes blinker {
+#map .map_citizen .nbr_defenses { /* Pseudo of the player on the map */
+    width:6em;
+    margin-top:-3em;
+    border:1px solid white;
+    overflow:hidden;
+}
+#me {  
+    background:lightgreen;
+    cursor:pointer;
+}
+#me.alert {
+    width:150%;
+    background:darkred;
+    z-index:-1; /* Put the player behind the zombies */
+}
+#me.alert .nbr_defenses {
+    background:darkred;
+    border-color: red;
+}
+@keyframes citizen_blinker {
     50% {
-        opacity: 0;
+        opacity: 0.5;
+    }
+    80% {
+        border-color:lightgreen;
     }
 }
-#me img {
-    height:1.7em;
-    margin-top:0.2em;
+@keyframes citizen_blinker_alert {
+    50% {
+        opacity: 0.5;
+    }
+    80% {
+        border-color:red;
+    }
+}
+.map_citizen img {
+    position:relative;
+    top:-2.1em;
+    height:48px;
 }
 #explosionMe {
     position:absolute;
@@ -588,10 +622,23 @@ map_body_wrapper {
 
 .halo {
     position:absolute;
-    border: 3px solid green;
+    top:0.7em;
+    border: 5px solid green;
     border-radius: 50%;
-    height:100%;
-    width: 100%;
+    height:65%;
+    width: 155%;
+    animation: citizen_blinker 1s linear infinite;
+}
+.halo.alert {
+    border-width:0.8em;
+    width:180%;
+    animation-name: citizen_blinker_alert;
+    z-index:-2; /* Put the halo behind the zombies */
+}
+.halo.inactive {
+    opacity:0.8;
+    border-color:darkgrey;
+    animation:none;
 }
 
 #map .city img {
@@ -604,7 +651,7 @@ map_body_wrapper {
     height:2em;
     position:absolute;
     margin-left:-1em;
-    margin-top:-3.2em;
+    margin-top:-2.2em;
 }
 
 /* Legend for the view of the map (zombies...) */

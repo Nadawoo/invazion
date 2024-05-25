@@ -461,14 +461,12 @@ class HtmlLayout extends HtmlPage
             <div id="alert_control" class="block_alert cover_paddle">
                 <div class="title">Bloqué par les zombies !</div>
                 <div class="text">
-                    Les zombies 
-                    sont trop nombreux et vous empêchent de quitter la zone !
-                    <a href="#popcontrol">[Pourquoi ?]</a>
-                    <p>Vous pouvez tenter d\'attaquer ces putrides afin de dégager le passage...</p>
+                    Les zombies sont trop nombreux et vous empêchent de quitter la zone !
+                    <br><a href="#popcontrol">[Pourquoi ?]</a>
                     <p>
-                        <input type="button" class="redbutton" 
+                        <button class="bluebutton" 
                                onclick="toggleActionBlock(\'zombies\'); updateBlockAction(\'zombies\')" 
-                               value="&#x1F9DF; Voir mes actions d\'attaque...">
+                               >Éliminer des zombies <i class="material-icons">chevron_right</i></button>
                     </p>
                 </div>
             </div>';

@@ -1,0 +1,276 @@
+/*
+ * Styles relative to the expeditions drawn on the map
+ */
+
+/*
+ * Display the panel for handling the expeditions
+ */
+#paths_panel {
+    position:absolute;
+    top:0;
+    height:100%;
+    margin-top:1px;
+    background:#fbeee6;
+    border-right:2px outset white;
+}
+#paths_panel .close {
+    position: absolute;
+    top:   0;
+    right: -2.6rem;
+    height:     3rem;
+    width:      2.6rem;
+    background:darkred;
+    color:white;
+    border:1px solid white;
+    border-left:none;
+    border-radius:0 0.3rem 0.3rem 0;
+}
+#paths_panel .close .material-icons {
+    font-size: 2.5em;
+    line-height:1.1em;
+}
+#paths_panel .body {
+    height: 100%;
+    padding:0 0.1em;
+    overflow:auto;
+}
+#paths_panel .card {
+    width: 16em;
+    padding-bottom:1em;
+    border-bottom:1px solid grey;
+}
+#paths_panel h2 {
+    margin:auto 0;
+    padding:0.5em 0;
+    font-size:1.1em;
+    font-weight:bold;
+    background:#4a235a /*#34495e*/;
+    color:white;
+    text-align:center;
+    border-top: 1px solid grey;
+    border-radius: 0.3em 0.3em 0 0;
+    box-shadow: 0px 4px 6px black;
+}
+#paths_panel h2 .tag {
+    position:absolute;
+    right:0.2em;
+    padding:0 0.2em;
+    font-size:0.8em;
+    font-style:normal;
+    font-weight:normal;
+    border-radius:0.3em;
+    background:darkgrey;
+    color:black;    
+}
+#paths_panel .card-content {
+    padding:0.2em;
+    font-size:0.9em;
+}
+#paths_panel .items_list {
+    margin-left:0.4rem;
+}
+#paths_panel .item_label {
+    height:2.3em;
+    width: 2.3em;
+}
+#paths_panel .card-action {
+    padding: 0.8em 0.2em 0.2em 0.2em;
+}
+/* Card for each member of the expedition*/
+#paths_panel .card .card {
+    width:99%;
+    margin: 3px 0 0 0;
+    padding-top:0;
+}
+#paths_panel .card .card h2 {
+    width:100%;
+    margin-bottom: 0.5em;
+    padding:0.3em;
+    background:darkred;
+    border:none;
+    outline: 2px solid grey;
+    text-align: left;
+    box-shadow: none;
+    cursor:pointer;
+}
+#paths_panel .card .card .avatar {
+    display:inline-block;
+    height:1.6rem;
+    width:1.6rem;
+    font-size:1.1em;
+    background:white;
+    border-radius:50%;
+}
+
+/* List to add members in an expedition */
+#paths_panel .choose_members {
+    background:#34495e;
+    border: 4px ridge red;
+    border-radius:0.3em;
+}
+#paths_panel .choose_members .header {
+    padding:0.4em 0.2em 0em 0.2em;
+    font-size:1.2em;
+    text-align:center;
+    color:white;
+}
+#paths_panel .choose_members .body {
+    margin: 0.5em 0;
+}
+#paths_panel .choose_members label {
+    color:dimgrey;
+}
+#paths_panel .choose_members .redbutton {
+    width:100%;
+    height:3.2rem;
+    margin: 0.8em 0 0 0;
+    font-size: 1.2em;
+    background:red;
+    border:none;
+    border-top:1px solid darkgrey;
+    border-radius:0;
+}
+#paths_panel .choose_members .redbutton:hover {
+    background:#FFCDD2;
+    color:darkred;
+}
+
+/*
+ * Display the horizontal bar for the expeditions
+ */
+#paths_bar {
+    position:absolute;
+    top:0;
+    width:100%;
+    display:flex;
+    gap:0.5em;
+    padding:1px 5em 1px 1px;
+    background:#4a235a;
+    border-top: 1px solid grey;
+    border-bottom:1px solid grey;
+    max-width:100%;
+    overflow:auto;
+}
+#paths_bar .paths {
+    display:flex;
+    gap:0.5em;
+}
+#paths_bar .path {
+    position:relative;
+    min-width:5em;
+    background:white;
+    text-align:center;
+    border-radius:0.3em;
+    box-shadow: 4px 4px 8px black;
+    opacity:0.7;
+    cursor:pointer; /* The inactive expeditions are fully clickable to activate them */
+}
+#paths_bar .path.active {
+    min-width:10em;
+    width:11em;
+    border:2px solid red;
+    opacity:1;
+    cursor:auto;
+}
+#paths_bar .path.active .body {
+    display:flex;
+    justify-content: center;
+    gap:0.2em;
+    font-size: 1em;
+}
+#paths_bar h2 {
+    margin:0;
+    padding:0.4rem 0.2rem;
+    font-size:1em;
+    font-weight:bold;
+    background:#4a235a;
+    color:white;
+    border:1px solid white;
+    border-radius:0.2em 0.2em 0 0;
+    cursor:pointer;
+    white-space: nowrap;
+}
+#paths_bar h2 a {
+    position:absolute;
+    right:2px;
+    font-size:1.2em;
+}
+#paths_bar .path .body {
+    padding:0.2em;
+    font-size:0.9em;
+}
+#paths_bar .alert {
+    background: yellow;
+    border-radius: 1em;
+    }
+#paths_bar button {
+    background:darkred;
+    color:white;
+    border:none;
+    border-radius:0.3em;
+    border:2px outset #c0392b;
+    /*box-shadow:2px 2px 4px black;*/
+}
+#paths_bar button[disabled] {
+    background:lightgrey;
+    border:2px solid grey;
+    color:dimgrey;
+}
+/* Button to create a new expedition */
+#paths_bar .new {
+    display:block;
+}
+#paths_bar .new .plus {
+    display:block;
+    height:2.1rem;
+    width: 2.1rem;
+    margin:0.1rem auto 0.2rem auto;
+    line-height:78%;
+    font-size:2.5em;
+    background:darkred;
+    border: 3px outset #c0392b;
+    border-radius:50%;
+    color:white;
+}
+#paths_bar .new .label {
+    display:block;
+    line-height:120%;
+    font-weight:bold;
+}
+
+/*
+ * Draw the stages of the paths on the map
+ */
+#map .path_stage {
+    position:absolute;
+    height:1.7em;
+    width: 1.7em;
+    line-height:180%;
+    background:#4a235a;
+    border:1px solid white;
+    border-radius:50%;
+    font-weight:bold;
+    color:white;
+    box-sizing:content-box;
+    box-shadow: 3px 3px 4px black;
+    /*z-index:4;*/
+}
+
+#formPathDrawing {
+    position:absolute;
+    top:0;
+    width:100%;
+    padding-bottom:1em;
+    background:#4a235a;
+    border-bottom:1px solid grey;
+}
+#formPathDrawing ul {
+    max-width:27rem;
+    margin:auto;
+    margin-top:0.5em;
+    font-size:1.2em;
+    color:white;
+}
+#formPathDrawing ul .redbutton {
+    width:100%;
+}

@@ -31,6 +31,36 @@ async function updateBlockAction(blockAlias) {
 }
 
 
+async function updateActionBlocks() {
+    
+    // Get informations about the current zone through the "data-*" HTML attributes
+    let zoneData = await document.querySelector("#me").parentNode.dataset;
+
+    // Highlights the player's location on page load
+//        let myHexagon = document.getElementById("me").closest(".hexagon");
+//        displayTooltip(myHexagon);
+    // Updates the coordinates of the player in the movement paddle
+    updateMovementPaddle(zoneData.coordx, zoneData.coordy);
+    // Updates the cards of contextual actions under the movement paddle
+    updateMoveCost(parseInt(zoneData.zombies));
+    updateCardCitizensInZone(parseInt(zoneData.citizens));
+    // Updates the distance to the city displayed under the movement paddle
+    updateCityDistance(zoneData.coordx, zoneData.coordy);     
+    // Displays the button to enter if there is a city in the zone
+    setTimeout(function() { updateEnterBuildingButton(zoneData.citytypeid); }, 1000);
+    // Updates the coordinates of the player in the land editor
+    updateMapEditor(zoneData.coordx, zoneData.coordy);
+    // Update the numbers in the big buttons next to the map
+    updateRoundActionButtons(zoneData.coordx, zoneData.coordy);
+    // Display an alert over the movement paddle if the player is blocked
+    updateBlockAlertControl(zoneData.controlpointszombies, mapId, zoneData.coordx, zoneData.coordy);
+    // Display the actions for fighting against zombies
+    showFightingZombiesButtons(zoneData.zombies);
+    // Displays help about the land type of the current zone
+    updateBlockLandType(zoneData.landtype);
+}
+
+
 /**
  * Updates the cost (in action points) for leaving the zone
  * @param {int} newNbrZombies The number of zombies in the zone after the action
@@ -90,9 +120,15 @@ async function updateBlockAlertControl(controlpointsZombies, mapId, coordX, coor
         || (controlpointsZombies === 0 && actionPoints === 0 && _configsMap.moving_cost_no_zombies > 0)
         || (controlpointsZombies   > 0 && actionPoints < _configsMap.moving_cost_zombies)
         ) { 
+        // Display the alert text above the movement paddle
         display("alert_tired");
+        // Turn to red the halo under the player on the map
+        document.querySelector("#me").classList.add("alert");
+        document.querySelector(".halo").classList.add("alert");
     } else {
         hide("alert_tired");
+        document.querySelector("#me").classList.remove("alert");
+        document.querySelector(".halo").classList.remove("alert");
     }
     
     // Displays an alert when the citizens have less control points than the zombies on the zone

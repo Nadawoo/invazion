@@ -66,7 +66,7 @@ function hide(htmlIds) {
 function hideClasses(classesNames, parentId=null) {
     
     for (let i=0; i < classesNames.length; i++) {        
-        var classes = (parentId === null) ? document.getElementsByClassName(classesNames[i])
+        var classes = (parentId === null) ? document.querySelectorAll(`.${classesNames[i]}`)
                                           : document.querySelectorAll(`#${parentId} .${classesNames[i]}`);
         
         for (let i=0; i < classes.length; i++) {
@@ -82,11 +82,12 @@ function hideClasses(classesNames, parentId=null) {
  * @param   {array} classNames The names of the classes to display
  * @returns {undefined}
  */
-function unhideClasses(classesNames) {
+function unhideClasses(classesNames, parentId=null) {
     
     for (let i=0; i < classesNames.length; i++) { 
-        var classes = document.getElementsByClassName(classesNames[i]);
-
+        var classes = (parentId === null) ? document.querySelectorAll(`.${classesNames[i]}`)
+                                          : document.querySelectorAll(`#${parentId} .${classesNames[i]}`);
+        
         for (let i = 0; i < classes.length; i++) {
             classes[i].classList.remove("hidden");
         }
@@ -518,9 +519,6 @@ async function updateLandType(landType, coordX, coordY, radius) {
  */
 async function moveCitizen(direction) {
     
-    // Delete the informations about the previous zone (obsolete)
-    _myZone = null;    
-    
     // Ask the API for moving the player
     let token = getCookie('token'); 
     let json = await callApi("GET", "zone", `action=move&to=${direction}&token=${token}`);
@@ -534,25 +532,42 @@ async function moveCitizen(direction) {
         let error_message = (json.metas.error_code === "success")
                     ? `-${lost_AP} point d'action consommé<br>${new_AP}&#9889; restants`
                     : json.metas.error_message;
-        M.toast({html: error_message, classes: json.metas.error_class, displayLength: 2500, outDuration: 800});
+        displayToast(error_message, json.metas.error_class);
     }
     
+    updateMeAfterMoving(json.datas.new_coord_x, json.datas.new_coord_y);
+}
+
+
+/**
+ * Update the coordinates of the player and other player-related data modified 
+ * by the movement
+ * 
+ * @param {int} newCoordX
+ * @param {int} newCoordY
+ * @returns {undefined}
+ */
+function updateMeAfterMoving(newCoordX, newCoordY) {
+        
+    // Delete the informations about the previous zone (obsolete)
+    _myZone = null;    
+    
     // Update the stored coordinates of the player
-    document.querySelector("#citizenCoordX").innerHTML = json.datas.new_coord_x;
-    document.querySelector("#citizenCoordY").innerHTML = json.datas.new_coord_y;
+    document.querySelector("#citizenCoordX").innerHTML = newCoordX;
+    document.querySelector("#citizenCoordY").innerHTML = newCoordY;
     
     // Update the coordinates of the player in the movement paddle
-    updateMovementPaddle(json.datas.new_coord_x, json.datas.new_coord_y);
+    updateMovementPaddle(newCoordX, newCoordY);
     // Update the coordinates of the player in the land editor
-    updateMapEditor(json.datas.new_coord_x, json.datas.new_coord_y);
+    updateMapEditor(newCoordX, newCoordY);
     
     // Update the attribute "data-citizen" of the destination zone to add the player
-    let htmlCoord = json.datas.new_coord_x+"_"+json.datas.new_coord_y;
+    let htmlCoord = newCoordX+"_"+newCoordY;
         myZone = document.querySelector("#zone"+htmlCoord+" .square_container");
     myZone.dataset.citizens = parseInt(myZone.dataset.citizens, 10) + 1;
-       
-    updateRoundActionButtons(json.datas.new_coord_x, json.datas.new_coord_y);
-    updateCityDistance(json.datas.new_coord_x, json.datas.new_coord_y);
+    
+    updateRoundActionButtons(newCoordX, newCoordY);
+    updateCityDistance(newCoordX, newCoordY);
     updateBlockLandType(myZone.dataset.landtype);
     updateEnterBuildingButton(myZone.dataset.citytypeid);
     updateMoveCost(parseInt(myZone.dataset.zombies));
@@ -641,7 +656,7 @@ async function killZombies(apiAction) {
     document.querySelector("#explosionMe").classList.add("scale-in");
     setTimeout(function() {
         document.querySelector("#explosionMe").classList.remove("scale-in");
-        M.toast({html: json.metas.error_message, classes: json.metas.error_class, displayLength: 2500, outDuration: 800});
+        displayToast(json.metas.error_message, json.metas.error_class);
     }, 1500);
     
     if(json.metas.error_code === "success") {  
@@ -1269,3 +1284,42 @@ function updateBlockLandType(landType) {
 }
 
 
+/**
+ * To control a bot citizen
+ * 
+ * @param {int} targetCitizenId the ID of the citizen you want to take control over.
+ * @returns {undefined}
+ */
+async function switchToCitizen(targetCitizenId) {
+    
+    let token = getCookie('token');
+    let json = await callApi("GET", "me", `action=switch_citizen&target_id=${targetCitizenId}&token=${token}`);
+    
+    // Update the cookie to write the token corresponding to the now-controlled citizen 
+    if(json.metas.error_code === "success") {
+        setCookie("token", json.datas.token);
+    }
+    
+    displayToast(json.metas.error_message, json.metas.error_class);
+}
+
+
+/**
+ * Short way to display a toast with Materialize.css
+ * 
+ * @param {string} message The text of the message to put in the toast
+ * @param {type} error_class One of the standardized class returned by the InvZion's API
+ *                           ("info", "warning", "critical"). This allow changing 
+ *                           the background of the toast according to the gravity 
+ *                           of the alert.
+ * @returns {undefined}
+ */
+function displayToast(message, error_class) {
+    
+    M.toast({
+        html: message,
+        classes: error_class,
+        displayLength: 2500,
+        outDuration: 800
+        });
+}
