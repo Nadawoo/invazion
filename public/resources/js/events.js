@@ -8,7 +8,7 @@ var nbrExecutionsGetCyclicAttacks = 0;
 // If we are on the main game page (those elements don't exist on the connection page)
 if (document.getElementById('map') !== null) {
     
-    let myCityZoneId = getMyCityZoneId();
+    let myCityZoneId = setTimeout(getMyCityZoneId, 1000);
     
     // Needed to unregister event listeners
     const controller = new AbortController();

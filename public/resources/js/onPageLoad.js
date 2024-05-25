@@ -91,19 +91,20 @@ if (document.getElementById('map') !== null) {
     _scrollBoosterInstance = listenToMapDragging();
     
     // Only if the visitor is connected
-    if(document.querySelector("#citizenId").innerHTML !== "") {
-    
-        var myCityZoneId = getMyCityZoneId();
-        
-        // Add a location sign above the city of the player
-        addCityLocationMarker(myCityZoneId);
-        // Start in the "action" mode (centered on the current player)
-//        setTimeout(switchToActionView, 500);
-        
-        // Draws a line between the player and his city
-        if(myCityZoneId !== null) {
-            updateLineBetweenZones("myCity", "#me", "#"+myCityZoneId);
-        }
+    if(isCitizenInGame() === true) {
+        setTimeout(function() {
+            var myCityZoneId = getMyCityZoneId();
+
+            // Add a location sign above the city of the player
+            addCityLocationMarker(myCityZoneId);
+            // Start in the "action" mode (centered on the current player)
+//            setTimeout(switchToActionView, 500);
+
+            // Draws a line between the player and his city
+            if(myCityZoneId !== null) {
+                updateLineBetweenZones("myCity", "#me", "#"+myCityZoneId);
+            }
+        }, 1000);
     }
     
     // Restore the display of the action button before the page was refreshed
