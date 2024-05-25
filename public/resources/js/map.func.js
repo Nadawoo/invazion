@@ -309,6 +309,8 @@ async function addCitiesOnMap(mapId) {
         zone.closest(".hexagon").classList.add("ground_city", "elevate");
         // Make the building's zone always visible, even when never visited
         zone.closest(".hexagon").style.opacity = 1;
+        
+        zone.dataset.cityid = cityId;
         // Used to memorize the type of building in HTML
         // TODO: we could remove this attribute by using the attribute data-cityid
         zone.dataset.citytypeid = city.city_type_id;
