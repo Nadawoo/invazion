@@ -106,7 +106,9 @@ class HtmlCityEnclosure
     
     function button_close_block() {
         
-        return '<button class="close_city_blocks" onclick="hideCityBlocks();display([\'city_defenses\', \'city_submenus\'], \'flex\');updateUrlParam(\'tab\', null);">&times;</button>';
+        return '<button class="close_city_blocks" '
+                     . 'onclick="hideCityBlocks();display([\'city_defenses\', \'city_submenus\'], \'flex\');updateUrlParam(\'tab\', null);"'
+                     . '><i class="material-icons">close</i></button>';
     } 
     
     

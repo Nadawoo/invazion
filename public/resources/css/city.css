@@ -174,16 +174,18 @@
 .close_city_blocks {
     position:absolute;
     top:2.2em;
-    right:5%;
+    right:2%;
     height:1.3em;
     width: 1.3em;
     font-size:2em;
-    font-weight:bold;
     border:none;
     border-radius:50%;
     background:darkred;
     border:2px solid white;
     color:white;
+}
+.close_city_blocks .material-icons {
+    font-weight:bold;
 }
 
 /* The table of the constructions in the city */
