@@ -958,16 +958,9 @@ input[type="submit"] {
     border-radius:2em;
     background:lightgreen;
 }
-.userLabel .tag {
-    position:absolute;
-    right:0.5rem;
-    padding:0 0.2em 0 0;
-    font-size:1em;
-    font-style:normal;
-    font-weight:normal;
-    border-radius:0.3em;
-    background:lightgrey;
-    color:darkslategrey;    
+.userLabel .pseudo {
+    font-size: 1.1em;
+    letter-spacing: 0.02em;
 }
 
 /* Toasts */

@@ -442,17 +442,27 @@
     flex-direction: row;
     flex-wrap:wrap;
     justify-content: center;
+    margin-top:1rem;
 }
+#citizens_list .userLabel {
+    position:relative;
+    left:-10%;
+    width:110%;
+    border-bottom-right-radius:0;
+}
+
 #citizens_list .city_block {
+    min-height:0;
     width:14rem;
     padding-bottom:0.4rem;
-    margin:0.3rem;
+    margin:0 1rem;
     cursor:pointer;
 }
 #citizens_list ul {
     display:flex;
     justify-content:space-between;
-    margin:1em 0.8em 1em 0.6em;
+    margin:1em 0.6em 0.5em 0.6em;
+    font-size:0.9em;
     text-align:left;
 }
 #citizens_list li {
@@ -460,6 +470,7 @@
     align-items:center;
 }
 #citizens_list .material-icons {
+    font-size:1.5em;
     color:lightslategray;
 }
 #citizens_list .icons {

@@ -236,7 +236,6 @@ class HtmlCityEnclosure
     function block_fellows_list($fellows, $specialities)
     {
         
-        $buttons = new HtmlButtons();
         $itemsController = new ItemsController();
         $html_citizens = '';
         
@@ -251,7 +250,7 @@ class HtmlCityEnclosure
             
             $html_citizens .= '
                 <div class="city_block" onclick="toggleHouse(\'citizen'.$citizen['citizen_id'].'\')">
-                    <div class="userLabel z-depth-2" style="width:100%">
+                    <div class="userLabel z-depth-2">
                         <div class="avatar">&#x1F464;</div> 
                         <div class="pseudo">'.$citizen['citizen_pseudo'].'</div>
                         <var class="tag"
@@ -262,13 +261,15 @@ class HtmlCityEnclosure
                         <li><i class="material-icons">my_location</i> '.$localization.'</li>
                         '.$wound.'
                     </ul>
-                    '.$buttons->switch_citizen('switch_citizen', $citizen['citizen_id']).'
+                    
+                    <!--
                     <div class="icons">
                         <img src="resources/img/copyrighted/waggon_45px.png">
                         <img src="resources/img/copyrighted/supplies_45px.png">
                         <img src="resources/img/copyrighted/paper_45px.png">
                         <img src="resources/img/copyrighted/disapproval_45px.png">
                     </div>
+                    -->
                 </div>';
         }
         
@@ -294,6 +295,7 @@ class HtmlCityEnclosure
     function block_fellows_homes($fellows, $specialities, $city_x, $city_y)
     {
         
+        $buttons = new HtmlButtons();
         $html_houses = '';
         
         foreach ($fellows as $citizen) {
@@ -310,6 +312,21 @@ class HtmlCityEnclosure
                         <h3 style="margin:0.5em">Infos sur <span style="font-variant:small-caps">'.$pseudo.'</span></h3>
                     </div>
                     
+                    <div class="city_row">
+                        <div class="city_block"><strong class="red-text">
+                            [Cet écran du jeu est en cours de développement.
+                            Il n\'y a rien d\'intéressant à faire ici pour le moment.
+                            Ouste !]</strong>
+                            <br>
+                            <br>
+                            <button class="bluebutton" onclick="toggleHouse(\'citizen'.$citizen['citizen_id'].'\')">
+                                &lt; Retourner à la liste des citoyens
+                            </button>
+                        </div>
+                    </div>
+                    <div class="city_row">
+                        '.$buttons->switch_citizen('switch_citizen', $citizen['citizen_id']).'
+                    </div>
                     <div class="city_row">
                         '.$this->block_fellow_situation($citizen, $specialities, $citizen['distance_to_city']).'
                         '.$this->block_fellow_home($pseudo).'
