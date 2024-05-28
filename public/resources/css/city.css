@@ -473,6 +473,7 @@
 #citizens_list li {
     display:flex;
     align-items:center;
+    height:1.5rem;
 }
 #citizens_list .material-icons {
     font-size:1.5em;

@@ -239,15 +239,31 @@ class HtmlCityEnclosure
         $itemsController = new ItemsController();
         $html_citizens = '';
         
+        $strings = [
+            'in_city' => [
+                'name'  => "En ville",
+                'title' => "Ce citoyen est actuellement à l'intérieur de la ville",
+                'material_icon' => "apartment",
+                'icon_style'    => "",
+            ],
+            'out_of_city' => [
+                'name'  => "À {distance} km",
+                'title' => "Ce citoyen est actuellement dans le désert",
+                'material_icon' => "hiking",
+                'icon_style'    => "font-size:2em;color:saddlebrown",
+            ]
+        ];
+        
         foreach($fellows as $citizen) {
             
-            $localization = ($citizen['distance_to_city'] === 0)
-                ? '<span title="Ce citoyen est actuellement à l\'intérieur de la ville">En ville</span>'
-                : '<span title="Ce citoyen est actuellement dans le désert, à '.$citizen['distance_to_city'].' kilomètres de la ville">À '.$citizen['distance_to_city'].' km</span>';
+            $status = 'in_city';
+            if($citizen['distance_to_city'] > 0) {
+                $status = 'out_of_city';
+                $strings[$status]['name'] = 'À '.$citizen['distance_to_city'].' km';
+            }
             
             $action_points = $itemsController->filter($citizen['bag_items'], 'action_points');
-            $wound = ($citizen['is_wounded'] === 0) ? '' : '<li><strong class="red-text">est blessé !</strong></li>';
-            
+            $wound = ($citizen['is_wounded'] === 0) ? '' : '<li><strong class="red-text">est blessé !</strong></li>';  
             $ap_style = ($action_points === 0) ? "background:darkred;color:white;font-weight:normal" : "";
             
             $html_citizens .= '
@@ -260,7 +276,10 @@ class HtmlCityEnclosure
                     </div>
                     <ul>
                         <li><i class="material-icons">engineering</i> '.ucfirst($specialities[$citizen['speciality']]['name']).'</li>
-                        <li><i class="material-icons">my_location</i> '.$localization.'</li>
+                        <li title="'.$strings[$status]['title'].'">
+                            <i class="material-icons" style="'.$strings[$status]['icon_style'].'">'.$strings[$status]['material_icon'].'</i> '
+                            . $strings[$status]['name'] .
+                        '</li>
                         '.$wound.'
                     </ul>
                     
