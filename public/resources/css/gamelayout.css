@@ -959,6 +959,9 @@ input[type="submit"] {
     background:lightgreen;
 }
 .userLabel .pseudo {
+    text-align: left;
+    line-height:100%;
+    word-break:break-all;
     font-size: 1.1em;
     letter-spacing: 0.02em;
 }
