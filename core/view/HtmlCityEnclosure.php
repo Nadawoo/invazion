@@ -235,24 +235,29 @@ class HtmlCityEnclosure
     {
         
         $buttons = new HtmlButtons();
+        $itemsController = new ItemsController();
         $html_citizens = '';
         
         foreach($fellows as $citizen) {
             
             $localization = ($citizen['distance_to_city'] === 0)
-                ? 'en ville'
-                : '<span class="highlight">à&nbsp;'.$citizen['distance_to_city'].'&nbsp;km</span>';
+                ? '<span title="Ce citoyen est actuellement à l\'intérieur de la ville">En ville</span>'
+                : '<span title="Ce citoyen est actuellement dans le désert, à '.$citizen['distance_to_city'].' kilomètres de la ville">À '.$citizen['distance_to_city'].' km</span>';
             
+            $action_points = $itemsController->filter($citizen['bag_items'], 'action_points');
             $wound = ($citizen['is_wounded'] === 0) ? '' : '<li><strong class="red-text">est blessé !</strong></li>';
             
             $html_citizens .= '
                 <div class="city_block" onclick="toggleHouse(\'citizen'.$citizen['citizen_id'].'\')">
-                    <h2>Joueur</h2>
-                    <img src="resources/img/free/human.png" style="height:32px">&nbsp;
-                    <a><strong style="font-size:1.8em">'.$citizen['citizen_pseudo'].'</strong></a>
+                    <div class="userLabel z-depth-2" style="width:100%">
+                        <div class="avatar">&#x1F464;</div> 
+                        <div class="pseudo">'.$citizen['citizen_pseudo'].'</div>
+                        <var class="tag"
+                             title="Points d\'action dont dispose ce citoyen">&#x26A1;'.$action_points.'</var>
+                    </div>
                     <ul>
-                        <li>est spécialisé <span class="highlight">'.$specialities[$citizen['speciality']]['name'].'</span></li>
-                        <li>se trouve <span class="highlight">'.$localization.'</span></li>
+                        <li><i class="material-icons">engineering</i> '.ucfirst($specialities[$citizen['speciality']]['name']).'</li>
+                        <li><i class="material-icons">my_location</i> '.$localization.'</li>
                         '.$wound.'
                     </ul>
                     '.$buttons->switch_citizen('switch_citizen', $citizen['citizen_id']).'
