@@ -450,6 +450,11 @@
     width:110%;
     border-bottom-right-radius:0;
 }
+#citizens_list .userLabel .tag {
+    background:greenyellow;
+    font-size: 1.1em;
+    font-weight: bold;
+}
 
 #citizens_list .city_block {
     min-height:0;

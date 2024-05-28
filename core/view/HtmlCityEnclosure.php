@@ -248,12 +248,14 @@ class HtmlCityEnclosure
             $action_points = $itemsController->filter($citizen['bag_items'], 'action_points');
             $wound = ($citizen['is_wounded'] === 0) ? '' : '<li><strong class="red-text">est blessé !</strong></li>';
             
+            $ap_style = ($action_points === 0) ? "background:darkred;color:white;font-weight:normal" : "";
+            
             $html_citizens .= '
                 <div class="city_block" onclick="toggleHouse(\'citizen'.$citizen['citizen_id'].'\')">
                     <div class="userLabel z-depth-2">
                         <div class="avatar">&#x1F464;</div> 
                         <div class="pseudo">'.$citizen['citizen_pseudo'].'</div>
-                        <var class="tag"
+                        <var class="tag" style="'.$ap_style.'"
                              title="Points d\'action dont dispose ce citoyen">&#x26A1;'.$action_points.'</var>
                     </div>
                     <ul>
