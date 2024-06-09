@@ -130,8 +130,8 @@ class HtmlPaths {
                     Expédition <span class="path_name"></span> <a>&#x2699;&#xFE0F;</a>
                 </h2>
                 <div class="body">                    
-                    '.$buttons->dig_path(null).'
                     '.$buttons->move_path(null).'
+                    '.$buttons->dig_path(null).'
                     '.$buttons->populate_path(null).'
                 </div>
             </div>
