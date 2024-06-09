@@ -569,7 +569,8 @@ map_body_wrapper {
 }
 #me.alert .nbr_defenses {
     background:darkred;
-    border-color: red;
+    color:yellowgreen;
+    border: 1px solid red;
 }
 @keyframes citizen_blinker {
     50% {
