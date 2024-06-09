@@ -126,7 +126,7 @@ class HtmlPopup
             <hr>
             <h3>Quand pourra-t-on y jouer ?</h3>
             <p>Le jeu est en développement actif. Une première version
-            alpha jouable est prévue pour <strong>la rentrée 2023</strong>.
+            alpha jouable est prévue pour <strong>la rentrée 2024</strong>.
             Rejoignez 
             <strong><a href=\"https://discord.gg/2GRPTyM\">le Discord d'InvaZion</a></strong>
             pour suivre son avancement !</p>";
