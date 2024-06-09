@@ -1,5 +1,6 @@
 <?php
 require_once 'HtmlButtons.php';
+require_once 'HtmlCollapsible.php';
 
 
 class HtmlPopup
@@ -31,6 +32,7 @@ class HtmlPopup
                     $healing_items, $html_smartphone, $is_custom_popup_visible) {
         
         return $this->predefined('poppresentation', '')
+            . $this->predefined('poptasks', 'Objectifs')
             . $this->predefined('popdoor', '&#8505;&#65039; La porte de la ville')
             . $this->predefined('popdayclock', '', ['map_id'=>$map_id, 'current_cycle'=>$configs_map['current_cycle']])
             . $this->predefined('popvault',   '')
@@ -172,6 +174,65 @@ class HtmlPopup
                           . '</a>';
             
         return $msg_popup . $button_start;
+    }
+    
+    
+    private function poptasks() {   
+        
+        $items = [
+            [
+            'icon'  => "&#x2753;",
+            'title' => "Découvrir l'objectif du jeu",
+            'text'  => "Les zombies attaquent la ville chaque soir. Vous devez
+                        renforcer ses défenses en y construisant les chantiers disponibles.
+                        Les matériaux nécessaires doivent être collectés hors de la ville,
+                        dans le désert hostile.<br>
+                        <a href=\"#popattack\">[En savoir plus...]</a>"
+            ],
+            [
+            'icon'  => "&#x1F97E;",
+            'title' => "Sortir de la ville",
+            'text'  => "Sortez aux portes de la ville afin de préparer votre exploration 
+                        du désert environnant."
+            ],
+            [
+            'icon'  => "&#x1F9ED;",
+            'title' => "Tracer une expédition",
+            'text'  => "Tracez un itinéraire d'expédition qui vous permettra de déplacer
+                        vos citoyens vers les zones du désert que vous voulez explorer."
+            ],
+            [
+            'icon'  => "&#x1FAB5;",
+            'title' => "Collecter des ressources",
+            'text'  => "Déplacez-vous dans le désert et fouillez chaque zone sur votre chemin.
+                        Ramassez les objets utiles que vous trouvez."
+            ],
+            [
+            'icon'  => "&#x1F306;",
+            'title' => "Ramener les ressources en ville",
+            'text'  => "Ramenez au dépôt de la ville les objets que vous avez ramassés
+                        au cours de votre exploration du désert."
+            ],
+            [
+            'icon'  => "&#x1F9DF;",
+            'title' => "Survivre à l'attaque du soir",
+            'text'  => "Une fois que vous aurez épuisé tous vos <a href=\"#popmove\"><strong>points d'action</strong></a>,
+                        cliquez sur le bouton « Déclencher l'attaque » en bas de l'écran.<br>
+                        <a href=\"#popattack\">[En savoir plus...]</a>"
+            ],
+        ];
+        
+        $htmlCollapsible = new HtmlCollapsible();
+        
+        return "
+            <p class=\"aside\">
+                [Note du développeur : ces tâches ne sont, pour le moment, 
+                pas encore interactives (pas de filtrage en fonction du contexte,
+                pas de liens d'aide à l'action, pas de masquage une fois terminées).
+                Elles seront améliorées plus tard. En attendant, vous pouvez 
+                les accomplir dans l'ordre de la liste.]
+            </p>
+            ".$htmlCollapsible->items($items);
     }
     
     
@@ -515,13 +576,7 @@ class HtmlPopup
     private function popdayclock($params) {
         
         return "<p>&#x1F5FA;&#xFE0F; Vous êtes incarné sur la <strong>carte n° ".$params['map_id']."</strong>.<p>
-                <p>&#x1F551; Vous y vivez actuellement votre <strong>".$params['current_cycle']."<sup>e</sup> jour</strong> de survie.</p>                
-                <br>
-                <fieldset><legend> Votre objectif </legend><br>
-                Les zombies vont attaquer la ville ce soir. 
-                Collectez des ressources et construisez des défenses afin de leur résister !<br>
-                <p class=\"center\"><a href=\"#popattack\">[En savoir plus...]</a></p>
-                </fieldset>";
+                <p>&#x1F551; Vous y vivez actuellement votre <strong>".$params['current_cycle']."<sup>e</sup> jour</strong> de survie.</p>";
     }
     
     

@@ -1023,6 +1023,40 @@ a.localize .material-icons {
 }
 
 /*
+ * List of tasks/goals
+ */
+#popups .collapsible {
+    padding-left:inherit;
+}
+#tasks_button {
+    position:relative;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:3.1rem;
+    width: 3.1rem;
+    margin-left:0.5rem;
+    margin-bottom:4rem;
+    font-size:1.6em;
+    background:white;
+    border-radius:50%;
+    opacity:0.9;
+}
+#tasks_button .dot_number {
+    position:absolute;
+    top:0;
+    right:-0.4rem;
+    height: 1.4rem;
+    width:  1.4rem;
+    font-size:0.5em;
+    text-align:center;
+    border: 2px solid white;
+    border-radius:50%;
+    background:red;
+    color:white;
+}
+
+/*
  * Page to edit the configuration of the game (list of items...))
  */
 #editConfig {

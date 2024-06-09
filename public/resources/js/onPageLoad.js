@@ -30,6 +30,9 @@ document.addEventListener('DOMContentLoaded', function() {
     // Activate the Materialize's tootips
     var elems = document.querySelectorAll('.tooltipped');
     var instances = M.Tooltip.init(elems);
+    // Activate the collapsible texts
+    var elems = document.querySelectorAll('.collapsible');
+    var instances = M.Collapsible.init(elems);
     
     // Load the tutorial
     var elems = document.querySelectorAll('.tap-target');
