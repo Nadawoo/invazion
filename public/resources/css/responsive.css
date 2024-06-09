@@ -66,4 +66,13 @@
     #statusbar, #bagbar {
         margin-left:5%;
     }
+    
+    /* Compact the "Tasks" (goals) button */
+    #tasks_button {
+        width:3rem; /* Must be equal to the height to get a round button */
+        border-radius:50%;
+    }
+    #tasks_button .text {
+        display:none;
+    }
 }

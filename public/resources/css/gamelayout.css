@@ -106,7 +106,7 @@
 }
 #showWall {
     padding:0 0.3rem;
-    border-radius:0.3em;
+    border-radius:2em;
 }
 #showWall .icon {
     font-size:2em;
@@ -124,6 +124,7 @@
     height:3.1em;
     font-size: 1.1em;
     border:2px outset red;
+    border-radius:2em;
     /*font-variant:small-caps;*/
 }
 #attackCountdown {
@@ -1037,18 +1038,21 @@ a.localize .material-icons {
     display:flex;
     justify-content:center;
     align-items:center;
-    height:3.1rem;
-    width: 3.1rem;
+    height:3rem;
+    width: 8rem;
     margin-left:0.5rem;
     margin-bottom:4rem;
     font-size:1.6em;
     background:white;
-    border-radius:50%;
+    border-radius:1em;
     opacity:0.9;
+}
+#tasks_button .text {
+    font-size:0.7em;
 }
 #tasks_button .dot_number {
     position:absolute;
-    top:0;
+    top:  -0.2rem;
     right:-0.4rem;
     height: 1.4rem;
     width:  1.4rem;

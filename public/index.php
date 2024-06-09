@@ -463,7 +463,7 @@ echo $html['json_configs'];
     <section id="game_footer">
         <a href="#poptasks" id="tasks_button" class="z-depth-1">
             <span class="dot_number">6</span>
-            &#x1F4D1;
+            &#x1F4D1; <span class="text">Objectifs</span>
         </a>
         <div id="floating_wall">
             <?php echo $wall->wall() ?>
