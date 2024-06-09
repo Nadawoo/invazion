@@ -46,7 +46,7 @@ class HtmlCollapsible
         return '
             <li>
                 <div class="collapsible-header">
-                    '.$icon.' <strong>'.$title.'</strong>
+                    <strong>'.$icon.' '.$title.'</strong>
                     <i class="material-icons">chevron_right</i>
                 </div>
                 <div class="collapsible-body">

@@ -1028,6 +1028,10 @@ a.localize .material-icons {
 #popups .collapsible {
     padding-left:inherit;
 }
+.collapsible-header {
+    display:flex;
+    justify-content: space-between;
+}
 #tasks_button {
     position:relative;
     display:flex;
