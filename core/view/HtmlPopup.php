@@ -409,7 +409,7 @@ class HtmlPopup
             </p>
             <ul>
                 <li><img src="/resources/img/copyrighted/items/1.png" width="32"> <strong>Ressources</strong> pour construire les défenses de votre ville<br><br></li>
-                <li><img src="/resources/img/copyrighted/items/9.png" width="32"> <strong>Eau &amp; nourriture</strong> pour explorer les zones lointaines<br><br></li>
+                <li><img src="/resources/img/copyrighted/items/9.png" width="32"> <strong>Eau &amp; nourriture</strong> pour parcourir des longues distances<br><br></li>
                 <li><img src="/resources/img/copyrighted/items/knife_2.png" width="32"> <strong>Armes</strong> pour vous frayer un chemin parmi les zombies<br><br></li>
                 <li>Et d\'autres encore...</li>
             </ul>';

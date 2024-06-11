@@ -229,6 +229,7 @@ async function addPathsBarActivePath(pathId, nbrMembers, firstStageX, firstStage
     if(nbrMembers === 0) {
         template.querySelector('form[name="dig_path"]').classList.add("hidden");
         template.querySelector('form[name="move_path"]').classList.add("hidden");
+        template.querySelector('form[name="expert_path"]').classList.add("hidden");
         template.querySelector('form[name="populate_path"]').classList.remove("hidden");
     }
     
