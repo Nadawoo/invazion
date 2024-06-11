@@ -99,14 +99,16 @@
 }
 #paths_panel .card .card h2 button {
     position:absolute;
-    right:0;
-    height:2.9rem;
-    width: 2.9rem;
+    right:0.1em;
+    height:2.6rem;
+    width: 2.6rem;
     min-width: inherit;
+    border:2px outset lightgrey;
+    border-radius:50%;
     opacity:0.9;
 }
 #paths_panel .card .card h2 .material-icons {
-    font-size:2.3em;
+    font-size:1.6em;
 }
 #paths_panel .card .card .avatar {
     display:flex;

@@ -43,7 +43,7 @@ async function populatePathsPanel(pathsCourses, pathsMembers) {
             
             htmlMembers += `<li class="card citizen${citizen.citizen_id}">
                                 <h2 class="action_mode_button z-depth-1" data-coords="${htmlCoords}"
-                                    title="Cliquez pour prendre le contrôle de ce citoyen"
+                                    title="Agir avec ce citoyen"
                                     onclick="switchToCitizen('${citizen.citizen_id}')">
                                     <span class="avatar">&#x1F464;</span>
                                     ${citizen.citizen_pseudo}
@@ -129,7 +129,7 @@ async function htmlcitizensForExpedition() {
                                     <span>${citizen.citizen_pseudo}</span>
                                 </label>
                                 <i class="material-icons action_mode_button" 
-                                    title="Cliquez pour prendre le contrôle de ce citoyen"
+                                    title="Agir avec ce citoyen"
                                     onclick="switchToCitizen('${citizen.citizen_id}')"
                                     style="position:absolute;right:0.1em">zoom_in_map</i>
                             </h2>
