@@ -180,15 +180,17 @@ class HtmlLayout extends HtmlPage
         $buttons = new HtmlButtons();
         
         return '
+            <div>
+                <a id="appMenu" class="sidenav-trigger" data-target="slide-out">
+                    <span class="icon"><i class="material-icons">menu</i></span>
+                </a>
+            </div>
             <div id="tuto_dayclock">
                 <a href="#popdayclock" id="dayclock">
                     Jour <span style="font-size:1.7em;font-weight:bold;">'.(int)$day.'</span>
                 </a>
             </div>
             <p id="messageEndCycle" style="display:none;margin:0"></p>
-            <div id="timer">
-                '.$buttons->button('end_cycle', false).'
-            </div>
             <div class="right">
                 <a id="showWall" title="Communications">
                     <span class="icon"><i class="material-icons">sms</i></span>

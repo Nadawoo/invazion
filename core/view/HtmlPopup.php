@@ -179,6 +179,8 @@ class HtmlPopup
     
     private function poptasks() {   
         
+        $buttons = new HtmlButtons();
+        
         $items = [
             [
             'icon'  => "&#x2753;",
@@ -216,9 +218,13 @@ class HtmlPopup
             [
             'icon'  => "&#x1F9DF;",
             'title' => "Survivre à l'attaque du soir",
-            'text'  => "Une fois que vous aurez épuisé tous vos <a href=\"#popmove\"><strong>points d'action</strong></a>,
-                        cliquez sur le bouton « Déclencher l'attaque » en bas de l'écran.<br>
-                        <a href=\"#popattack\">[En savoir plus...]</a>"
+            'text'  => "Une fois que vous avez consommé 
+                        les <a href=\"#popmove\"><strong>points d'action</strong></a>
+                        de vos citoyens, vous pouvez déclencher
+                        <a href=\"#popattack\"><strong>l'attaque zombie</strong></a>.
+                        Si vous survivez, vos points d'action seront rechargés 
+                        pour une nouvelle journée.
+                        <p>".$buttons->button('end_cycle', false)."</p>"
             ],
         ];
         

@@ -78,7 +78,8 @@
     justify-content:space-between;
     width:100%;
     max-width: 51.25em;
-    border-top:1px solid grey;
+    max-height:3.5rem;
+    border-top:2px ridge dimgrey;
     background:#4a235a;
     color:lightgrey;
     box-shadow:3px 3px 8px black;
@@ -87,22 +88,37 @@
 #attack_bar ::selection {
     background:none;
 }
+#appMenu,
 #dayclock,
 #showWall {
     display:flex;
     justify-content:center;
     align-items: center;
-    height:3.5rem;
+    height:3.2rem;
     margin:0.1rem;
     border:2px outset white;
     color:white;
     box-shadow: 3px 3px 5px black;
 }
+#appMenu {
+    width: 3.2rem; /* Equal to the height */
+    border-radius:50%;
+}
+#appMenu .material-icons {
+    font-size: 1.8em;
+    margin-top:0.2em;
+}
 #dayclock {
     flex-direction:column;
-    width: 3.5rem; /* Same as the height */
+    font-size:1.3em;
+    height: 5rem;
+    width:  5rem;
+    margin-top:-1.1em;
+    padding-bottom: 0.2em;
     line-height:1.4em;
+    border:2px outset white;
     border-radius:2em;
+    background:#4a235a;
 }
 #showWall {
     padding:0 0.3rem;
@@ -119,13 +135,12 @@
     padding:0.3em;
     font-variant: small-caps;
 }
-#timer button {
+form[name="end_cycle"] button {
     flex-direction:column;
     height:3.1em;
     font-size: 1.1em;
     border:2px outset red;
     border-radius:2em;
-    /*font-variant:small-caps;*/
 }
 #attackCountdown {
     font-size:1.3em;

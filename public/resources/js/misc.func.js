@@ -1161,7 +1161,7 @@ async function displayMessageEndCycle() {
                             "descr": "Une nouvelle journée commence ! Bonne chance..."}
                    ];
 
-   hide("timer");
+//   hide("timer");
    display(textZoneId);
 
    for(let stage of stages) {
@@ -1171,7 +1171,7 @@ async function displayMessageEndCycle() {
    await sleep(1500);
 
    hide(textZoneId);
-   display("timer");
+//   display("timer");
 }
 
 

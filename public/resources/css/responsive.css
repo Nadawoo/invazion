@@ -55,7 +55,7 @@
     /* Hide the text of the button which opens the "communications" panel, 
     keep only the icon */
     #showWall {
-        width: 3.4rem; /* Must be equal to the height */
+        width: 3.2rem; /* Must be equal to the height */
         border-radius:50%;
     }
     #showWall .text {
