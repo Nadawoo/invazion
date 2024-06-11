@@ -126,12 +126,13 @@ class HtmlPaths {
         return '
         <template id="tplPathsBarActivePath">
             <div class="path active hidden">
-                <h2 onclick="hideIds(\'paths_bar\');hideIds(\'attack_bar\');unhideId(\'paths_panel\')">
-                    Expédition <span class="path_name"></span> <a>&#x2699;&#xFE0F;</a>
+                <h2>
+                    Expédition <span class="path_name"></span>
                 </h2>
                 <div class="body">                    
                     '.$buttons->move_path(null).'
                     '.$buttons->dig_path(null).'
+                    '.$buttons->expert_path(null).'
                     '.$buttons->populate_path(null).'
                 </div>
             </div>

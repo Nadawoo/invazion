@@ -246,6 +246,15 @@ class HtmlButtons
                     'action'        => 'move'
                     ],
                 ],
+            'expert_path' => [
+                'icon'  => "&#x1F50D;",
+                'name'  => "Autres...",
+                'title' => "",
+                'fields' => [
+                    'api_name'      => '',
+                    'action'        => ''
+                    ],
+                ],
             'populate_path' => [
                 'icon'  => '&#x26A0;&#xFE0F;',
                 'name'  => "Ajouter membres",
@@ -907,6 +916,23 @@ class HtmlButtons
         </form>';
     }
         
+    
+    /**
+     * Button to display the paths panel
+     * 
+     * @return string HTML
+     */
+    function expert_path()
+    {
+        
+        $button = $this->buttons['expert_path'];
+        
+        return
+        '<form onclick="hideIds(\'paths_bar\');hideIds(\'attack_bar\');unhideId(\'paths_panel\');return false">
+            <button class="z-depth-2" type="submit" title="'.$button['title'].'">'.$button['icon'].' '.$button['name'].'</button>
+        </form>';
+    }
+    
     
     /**
      * Retourne le bouton pour créer un compte

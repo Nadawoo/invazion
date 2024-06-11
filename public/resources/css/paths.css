@@ -166,7 +166,7 @@
     cursor:pointer; /* The inactive expeditions are fully clickable to activate them */
 }
 #paths_bar .path.active {
-    min-width:10em;
+    min-width:15em;
     width:11em;
     border:2px solid red;
     opacity:1;
@@ -206,7 +206,6 @@
 #paths_bar button {
     background:darkred;
     color:white;
-    border:none;
     border-radius:0.3em;
     border:2px outset #c0392b;
     /*box-shadow:2px 2px 4px black;*/
