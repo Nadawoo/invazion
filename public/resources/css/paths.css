@@ -78,27 +78,45 @@
 }
 /* Card for each member of the expedition*/
 #paths_panel .card .card {
-    width:99%;
-    margin: 3px 0 0 0;
+    width:90%;
+    margin: 0 0 0 1.5em;
     padding-top:0;
 }
 #paths_panel .card .card h2 {
-    width:100%;
+    position:relative;
+    display:flex;
+    align-items: center;
+    width:110%;
+    margin-left:-10%;
     margin-bottom: 0.5em;
-    padding:0.3em;
-    background:darkred;
+    padding:0.1em;
+    background:green;
     border:none;
-    outline: 2px solid grey;
+    border-radius: 2em 0.2em 0 2em;
+    outline: 1px solid grey;
     text-align: left;
-    box-shadow: none;
     cursor:pointer;
 }
+#paths_panel .card .card h2 button {
+    position:absolute;
+    right:0;
+    height:2.9rem;
+    width: 2.9rem;
+    min-width: inherit;
+    opacity:0.9;
+}
+#paths_panel .card .card h2 .material-icons {
+    font-size:2.3em;
+}
 #paths_panel .card .card .avatar {
-    display:inline-block;
-    height:1.6rem;
-    width:1.6rem;
-    font-size:1.1em;
-    background:white;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    height:2.5rem;
+    width: 2.5rem;
+    margin-right:0.2em;
+    font-size:1.5em;
+    background:lightgreen;
     border-radius:50%;
 }
 

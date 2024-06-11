@@ -42,12 +42,14 @@ async function populatePathsPanel(pathsCourses, pathsMembers) {
             let htmlCoords = `${citizen.coord_x}_${citizen.coord_y}`;
             
             htmlMembers += `<li class="card citizen${citizen.citizen_id}">
-                                <h2 class="action_mode_button" data-coords="${htmlCoords}"
+                                <h2 class="action_mode_button z-depth-1" data-coords="${htmlCoords}"
                                     title="Cliquez pour prendre le contrôle de ce citoyen"
                                     onclick="switchToCitizen('${citizen.citizen_id}')">
                                     <span class="avatar">&#x1F464;</span>
                                     ${citizen.citizen_pseudo}
-                                    <i class="material-icons" style="position:absolute;right:0.1em">zoom_in_map</i>
+                                    <button class="redbutton">
+                                        <i class="material-icons">zoom_in_map</i>
+                                    </button>
                                 </h2>
                                 <div style="display:flex;margin-left:0.3em">└ Sac :
                                     <ul class="items_list"></ul>
