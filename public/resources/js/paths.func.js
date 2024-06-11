@@ -42,12 +42,13 @@ async function populatePathsPanel(pathsCourses, pathsMembers) {
             let htmlCoords = `${citizen.coord_x}_${citizen.coord_y}`;
             
             htmlMembers += `<li class="card citizen${citizen.citizen_id}">
-                                <h2 class="action_mode_button z-depth-1" data-coords="${htmlCoords}"
-                                    title="Agir avec ce citoyen"
-                                    onclick="switchToCitizen('${citizen.citizen_id}')">
+                                <h2 class="action_mode_button z-depth-1" data-coords="${htmlCoords}">
                                     <span class="avatar">&#x1F464;</span>
                                     ${citizen.citizen_pseudo}
-                                    <button class="redbutton">
+                                    <button class="redbutton"
+                                        title="Agir avec ce citoyen"
+                                        onclick="switchToCitizen('${citizen.citizen_id}')"
+                                        >
                                         <i class="material-icons">zoom_in_map</i>
                                     </button>
                                 </h2>
@@ -128,10 +129,12 @@ async function htmlcitizensForExpedition() {
                                     <input type="checkbox" class="filled-in" name="citizens_ids[]" value="${citizen.citizen_id}">
                                     <span>${citizen.citizen_pseudo}</span>
                                 </label>
-                                <i class="material-icons action_mode_button" 
+                                <button class="redbutton"
                                     title="Agir avec ce citoyen"
-                                    onclick="switchToCitizen('${citizen.citizen_id}')"
-                                    style="position:absolute;right:0.1em">zoom_in_map</i>
+                                    onclick="switchToCitizen('${citizen.citizen_id}');return false"
+                                    >
+                                    <i class="material-icons">zoom_in_map</i>
+                                </button>
                             </h2>
                             <div style="display:flex;margin-left:0.3em">└ Sac :
                                 <ul class="items_list"></ul>
