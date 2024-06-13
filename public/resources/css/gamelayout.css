@@ -905,7 +905,7 @@ input[type="submit"] {
     font-size:0.9em;
     color:#fbeee6;
     max-height:9.5rem; /* Must not cover the contextual actions (enter in city...) */
-    /*overflow:auto;*/
+    overflow:auto;
 }
 .block_alert .nbr_zombies {
     font-size:1.3em;
