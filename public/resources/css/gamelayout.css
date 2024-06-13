@@ -1058,8 +1058,9 @@ a.localize .material-icons {
     justify-content:center;
     align-items:center;
     font-size:1.6em;
-    background:lightgrey;
+    background:white;
     border-radius:1em;
+    box-shadow: 12px 12px 12px black;
     opacity:0.9;
 }
 #tasks_button .text {

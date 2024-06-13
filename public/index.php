@@ -447,7 +447,7 @@ echo $html['json_configs'];
         
         <div id="message_move"><?php echo $msg_move ?></div>
         
-        <a href="#poptasks" id="tasks_button" class="z-depth-1">
+        <a href="#poptasks" id="tasks_button">
             <span class="dot_number">6</span>
             &#x1F4D1; <span class="text">Objectifs</span>
         </a>
