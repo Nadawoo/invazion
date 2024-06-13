@@ -341,7 +341,7 @@ echo $html['json_configs'];
         </form>
         
         <section id="paths_panel" class="hidden">
-            <a class="close" onclick="hideIds('paths_panel');unhideId('paths_bar');unhideId('attack_bar');">
+            <a class="close" onclick="hideIds('paths_panel');unhideId('paths_bar');unhideId('tasks_button');unhideId('attack_bar');">
                 <i class="material-icons">close</i>
             </a>
             <div class="body"></div>
@@ -447,6 +447,10 @@ echo $html['json_configs'];
         
         <div id="message_move"><?php echo $msg_move ?></div>
         
+        <a href="#poptasks" id="tasks_button" class="z-depth-1">
+            <span class="dot_number">6</span>
+            &#x1F4D1; <span class="text">Objectifs</span>
+        </a>
     </section>
     
     <?php
@@ -461,10 +465,6 @@ echo $html['json_configs'];
     } ?>
     
     <section id="game_footer">
-        <a href="#poptasks" id="tasks_button" class="z-depth-1">
-            <span class="dot_number">6</span>
-            &#x1F4D1; <span class="text">Objectifs</span>
-        </a>
         <div id="floating_wall">
             <?php echo $wall->wall() ?>
         </div>
