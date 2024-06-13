@@ -754,9 +754,9 @@ function addCityLocationMarker(myCityZoneId) {
  * @param {string} direction Set to "in" to zoom in, "out" to zoom out.
  */
 function zoomMapStep(direction) {
-    // Default zoom level = 100%
+    // Default zoom level
     if(window.currentZoomPercent === undefined) {        
-        window.currentZoomPercent = 100;
+        window.currentZoomPercent = _defaultMapZoomPercent;
     }
     
     let currentZoomPercent = parseInt(window.currentZoomPercent);
@@ -854,7 +854,7 @@ function switchToActionView() {
  */
 function switchToMapView() {
     // Display the large map (unzoom)
-    zoomMapRange(100);
+    zoomMapRange(_defaultMapZoomPercent);
     setTimeout(() => centerMapOnMe(), 500);
     // Hide the actions panel in large mode
     hide(["actions_panel", "personal_block_wrapper"]);

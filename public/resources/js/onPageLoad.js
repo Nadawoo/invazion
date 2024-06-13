@@ -15,6 +15,8 @@ var _scrollBoosterInstance = null;
 
 var _isBagVisible = false;
 
+var _defaultMapZoomPercent = 130;
+
 
 // Main burger menu (uses Materialize.css)
 document.addEventListener('DOMContentLoaded', function() {
@@ -125,7 +127,10 @@ if (document.getElementById('map') !== null) {
     // Countdown before the next zombie attack
 //    attackCountdown();
 //    setInterval(attackCountdown, 1000);
-        
+    
+    // The map looks better at 130% than with smaller zones
+    zoomMapRange(_defaultMapZoomPercent);
+    
     // Server-sent events to update the map in real time
     var timestamp = Math.floor(Date.now()/1000);
     setTimeout(function() {
