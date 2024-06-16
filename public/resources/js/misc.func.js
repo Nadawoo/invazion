@@ -663,10 +663,12 @@ function populateBuildingPopup(cityTypeId) {
  */
 function openBuildingPopup(event) {
     
-    let cityTypeId = event.target.closest(".square_container").dataset.citytypeid;
-    if(cityTypeId !== "") {
-        populateBuildingPopup(cityTypeId);
-        window.location.href = "#popsuccess";
+    if(event.target.closest(".square_container") !== null) {
+        let cityTypeId = event.target.closest(".square_container").dataset.citytypeid;
+        if(cityTypeId !== "") {
+            populateBuildingPopup(cityTypeId);
+            window.location.href = "#popsuccess";
+        }
     }
 }
 
