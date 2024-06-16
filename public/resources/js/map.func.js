@@ -294,10 +294,19 @@ async function addCitiesOnMap(mapId) {
         }
         // Adds the number of items remaining inside the explorable building
         else if(city.city_type_id !== "undefined") {
-            let maxExplorations = 100;
-            // NB: #108 = ID of the item "Counter of explorations"
-            let nbrExplorations = zones[htmlCoords]['items'][108] || 0;
-            zone.insertAdjacentHTML("afterbegin", `<span class="nbr_defenses">${maxExplorations-nbrExplorations}&#x26CF;&#xFE0F;</span>`);
+            
+            let html = "";
+            if(parseInt(zone.closest(".square_container").dataset.visitedtoday) === 0) {
+                html = `<span class="nbr_defenses diggable pulse">&#x26CF;&#xFE0F;</span>`;
+            }
+            else {
+                let maxExplorations = 100;
+                // NB: #108 = ID of the item "Counter of explorations"
+                let nbrExplorations = zones[htmlCoords]['items'][108] || 0;
+                html = `<span class="nbr_defenses">${maxExplorations-nbrExplorations}&#x26CF;&#xFE0F;</span>`;
+            }
+            
+            zone.insertAdjacentHTML("afterbegin", html);
         }
         // Adds the name of the building
         cityName = (city["city_name"] === null) ? buildingName : city["city_name"];

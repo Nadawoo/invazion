@@ -624,20 +624,49 @@ function updateEnterBuildingButton(cityTypeId) {
     document.querySelector("#button_explore").style.display = buildingVisibility;
     
     if(cityTypeId !== "") {
-        let building = _configsBuildings[cityTypeId];
-        let findableItems = (_configsBuildingsFindableItems[cityTypeId] !== undefined) ? _configsBuildingsFindableItems[cityTypeId] : [];
-        
-        // Update the content of the pop-up
-        let tplPopupBuilding = document.querySelector('#tplPopupBuilding').content.cloneNode(true),
-            popup = document.querySelector("#popsuccess .content");
-        popup.innerHTML = "";
-        popup.appendChild(tplPopupBuilding);
-        popup.querySelector(".building_name").innerHTML = building["name"];
-        popup.querySelector(".descr_ambiance").innerHTML = building["descr_ambiance"];
-        // Add the list of items findable in this building
-        for(let itemId of findableItems) {
-            popup.querySelector(".items_list").prepend(htmlItem(itemId, _configsItems[itemId]));
-        }
+        populateBuildingPopup(cityTypeId);
+    }
+}
+
+
+/**
+ * Create the pop-up describing a building on the map.
+ * If you need to open the pop-up after having created it, see openBuildingPopup()
+ * 
+ * @param {int} cityTypeId The ID of the building, as returned by the Invazion's API
+ * @returns {undefined}
+ */
+function populateBuildingPopup(cityTypeId) {
+    
+    let building = _configsBuildings[cityTypeId];
+    let findableItems = (_configsBuildingsFindableItems[cityTypeId] !== undefined) ? _configsBuildingsFindableItems[cityTypeId] : [];
+
+    // Update the content of the pop-up
+    let tplPopupBuilding = document.querySelector('#tplPopupBuilding').content.cloneNode(true),
+        popup = document.querySelector("#popsuccess .content");
+    popup.innerHTML = "";
+    popup.appendChild(tplPopupBuilding);
+    popup.querySelector(".building_name").innerHTML = building["name"];
+    popup.querySelector(".descr_ambiance").innerHTML = building["descr_ambiance"];
+    // Add the list of items findable in this building
+    for(let itemId of findableItems) {
+        popup.querySelector(".items_list").prepend(htmlItem(itemId, _configsItems[itemId]));
+    }
+}
+
+
+/**
+ * Open the pop-up describing a building on the map
+ * 
+ * @param {object} event
+ * @returns {undefined}
+ */
+function openBuildingPopup(event) {
+    
+    let cityTypeId = event.target.closest(".square_container").dataset.citytypeid;
+    if(cityTypeId !== "") {
+        populateBuildingPopup(cityTypeId);
+        window.location.href = "#popsuccess";
     }
 }
 

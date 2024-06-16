@@ -54,19 +54,46 @@ async function listenToLandform() {
  * Displays/hides the tooltip of any zone when the mouse hovers one
  */
 function listenToMapZones() {
+    // Check whether the user moves his finger rather than tapping
+    var touchmoved = false;
+    document.getElementById("map_body").addEventListener("touchmove", function(){
+        touchmoved = true;
+    });
+    
+    // [On PC] Show/hide toolip on hovering the zone
     document.getElementById("map_body").addEventListener("mouseover", function(){
-        displayTooltip(event.target.closest(".hexagon"));
-    });
+            displayTooltip(event.target.closest(".hexagon"));
+        },
+        { passive: true }
+    );
     document.getElementById("map_body").addEventListener("mouseout",  function(){
-        hideTooltip(event.target.closest(".hexagon"));
-    });
-    // The touchstart event is required for the mobile devices (no notion of "hover" there)
+            hideTooltip(event.target.closest(".hexagon"));
+        },
+        { passive: true }
+    );
+    // [On PC] Open the details of a building when clicking on it
+    document.getElementById("map_body").addEventListener("click", function(){
+            openBuildingPopup(event);
+        },
+        { passive: true }
+    );
+    
+    // [On mobile] Open the tooltip when tapping on a zone without building,
+    // or open the pop-up if the zone contains a building
     document.getElementById("map_body").addEventListener("touchstart", function(){
-        toggleTooltip(event.target.closest(".hexagon"));
-    });
+            toggleTooltip(event.target.closest(".hexagon"));
+        },
+        { passive: true }
+    );
     document.getElementById("map_body").addEventListener("touchend", function(){
-        toggleTooltip(event.target.closest(".hexagon"));
-    });
+            if(touchmoved === false) {
+                openBuildingPopup(event);
+            }
+            toggleTooltip(event.target.closest(".hexagon"));
+            touchmoved = false;
+        },
+        { passive: true }
+    );
 }
 
 
