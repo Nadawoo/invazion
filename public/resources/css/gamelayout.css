@@ -631,7 +631,7 @@ legend {
     width: 3.3em;
     background:lightgrey;
     border: 1px solid white;
-    border-radius: 50%;
+    border-radius: 0.8em;
     cursor:pointer;
 }
 .item_label>var { /* The clickable icon of the item */
