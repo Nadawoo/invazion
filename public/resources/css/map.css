@@ -279,7 +279,7 @@ map_body_wrapper {
 }
 #statusbar .item_label img {
     outline:3px solid red;
-    border-radius:0.2rem;
+    border-radius:50%;
 }
 #statusbar .actionpoints {
     position: absolute;

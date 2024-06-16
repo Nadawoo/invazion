@@ -627,10 +627,11 @@ legend {
     display:flex;
     justify-content: flex-start; /* The tooltip must start at the left of the icon (not centered)*/
     align-items: center;
-    height:3em;
-    width:3em;
+    height:3.3em;
+    width: 3.3em;
     background:lightgrey;
-    border-radius:0.2em;
+    border: 1px solid white;
+    border-radius: 50%;
     cursor:pointer;
 }
 .item_label>var { /* The clickable icon of the item */
