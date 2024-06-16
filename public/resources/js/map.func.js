@@ -453,6 +453,7 @@ function activateMapZombiesView() {
         display("map_legend_zombies");
         // Color the zones depending on the number of zombies
         squareContainer.style.background = color;
+        squareContainer.style.border = "1px solid darkgrey";
         // Reveal all the zones, regardless their date of last visit
 //        hexagons[i].style.opacity = 1;
         
@@ -476,7 +477,8 @@ function desactivateMapZombiesView() {
         
         let squareContainer = hexagons[i].querySelector(".square_container");
         // Remove the colors on the zones
-        squareContainer.style.background = "none";        
+        squareContainer.style.background = "none";
+        squareContainer.style.border = "none";
     }
     
     hide("map_legend_zombies");
@@ -616,12 +618,15 @@ function activateMapItemsView() {
         
         display("map_legend_items");
         // Color the zones depending on the number of items
-        squareContainer.style.background = color;        
+        squareContainer.style.background = color;
+        squareContainer.style.border = "1px solid darkgrey";
         // Reveal all the zones, regardless their date of last visit
 //        hexagons[i].style.opacity = 1;
         // Mark the zones visited today
         if(squareContainer.dataset.visitedtoday === "1") {
             squareContainer.innerHTML += '<div class="items_amount">&#x1F97E;</div>';
+        } else {
+            squareContainer.innerHTML += '<div class="items_amount">&#x26CF;&#xFE0F;</div>';
         }
         
         // Hides the zombies, because they are above the colored background
@@ -640,7 +645,8 @@ function desactivateMapItemsView() {
         // Hides the legend
         hide("map_legend_items");
         // Remove the colors on the zones
-        squareContainer.style.background = "none";        
+        squareContainer.style.background = "none";
+        squareContainer.style.border = "none";
         hideClasses(["items_amount"]);
         // Display the zombies again
         unhideClasses(["zombies"]);
@@ -724,6 +730,8 @@ function resetMapView() {
     window.isMapItemsViewActive = false;
     desactivateMapPathsView();
     window.isMapPathsViewActive = false;
+    
+    toggle("#tasks_button", "flex");
     
     window.isMapNeighborhoodViewActive = true;
     toggleMapNeighborhoodView();

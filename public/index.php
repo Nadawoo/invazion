@@ -387,12 +387,18 @@ echo $html['json_configs'];
             <legend>Légende</legend>
             <a href="#Outside" style="color:inherit">
                 <ul>
-                    <li><span style="background:grey"></span> Aucun objet au sol</li>
+                    <li>&#x1F97E; Zone visitée aujourd'hui</li>
+                    <li>&#x26CF;&#xFE0F; Zone fouillable</li>
+                    <li><span style="background:black;border-radius:0"></span>&nbsp;Zone à découvrir</li>
+                </ul>
+                <hr>
+                <strong>Objets au sol :</strong>
+                <ul>
+                    <li><span style="background:grey"></span> Aucun objet</li>
                     <li><span style="background:green"></span> 1-5 objets (1 sac)</li>
                     <li><span style="background:orange"></span> 6-10 objets (2 sacs)</li>
                     <li><span style="background:red"></span> 11-15 objets (3 sacs)</li>
                     <li><span style="background:darkred"></span> 16 objets ou +</li>
-                    <li>&#x1F97E; Zone visitée aujourd'hui</li>
                 </ul>
             </a>
         </fieldset>

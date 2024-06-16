@@ -375,6 +375,8 @@ map_body_wrapper {
     /* Recentre verticalement le texte à l'intérieur du conteneur.
     Calibrage: le fond coloré sous le texte doit toucher la bordure du bas du conteneur. */
     line-height:2.2em;
+    /* Makes the satellite views (items, zombies...) more legible */
+    border-radius:50%;
 }
 
 .square_container .zombies_amount,
@@ -694,20 +696,31 @@ map_body_wrapper {
 .map_legend {
     display:none;
     position:sticky;
-    bottom:4.5rem;
+    bottom:0.5rem;
     width:16em;
     margin-left:0.5em;
     font-size:0.9em;
     border:2px solid grey;
     border-radius:0.5em;
     background:white;
-    opacity:0.8;
+    opacity:0.9;
 }
 .map_legend ul {
     margin:0;
+}
+.map_legend li {
+    display:flex;
+    align-items:center;
 }
 .map_legend li span {
     display:inline-block;
     height:1em;
     width: 1em;
+    margin-right:0.4em;
+    border-radius: 50%;
+}
+.map_legend hr {
+    margin-top:0.7em;
+    border:none;
+    border-top: 1px solid grey;
 }
