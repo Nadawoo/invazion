@@ -40,9 +40,12 @@ class HtmlStatusBar {
                                 "D'autres humains se trouvent dans la même zone que vous ! L'union fait la force...")
             :$this->status_empty();
                 
-        $status_actionpoints = $this->status_image("&#9889;", null, $action_points,
+        $status_actionpoints = $this->status_image($action_points,
+                                                  null,
+                                                  "&#9889;",
                                                   "Vos points d'action restants. S'ils sont épuisés, &#10;vous ne pourrez plus vous déplacer dans le désert.",
-                                                  "popmove");
+                                                  "popmove",
+                                                  "actionpoints");
 
         return
         '<fieldset id="statusbar" class="z-depth-1">
@@ -52,12 +55,12 @@ class HtmlStatusBar {
             </div>
             <ul class="items_list">'.
                 $status_my_caracs.
-                $status_actionpoints.
                 $status_defenses.
-                $status_fellows.
                 $status_wounded.
                 $this->status_empty().
-                $this->status_empty().'
+                $this->status_empty().
+                $status_fellows.
+                $status_actionpoints.'
             </ul>
         </fieldset>';
     }
@@ -77,7 +80,7 @@ class HtmlStatusBar {
      * @param string popup_id The HTML ID of the pop-up to display when clicking on the status
      * @return string HTML
      */
-    private function status_image($img_text, $img_path, $amount, $title, $popup_id=null) {
+    private function status_image($img_text, $img_path, $amount, $title, $popup_id=null, $class=null) {
         
         // If a pop-up must open when we click on the status icon
         $popup_link   = ($popup_id !== null) ? 'href="#'.$popup_id.'"' : '';
@@ -87,7 +90,7 @@ class HtmlStatusBar {
         // Display or not the amount for this item
         $html_amount = ($amount !== null) ? '<span class="dot_number">'.$amount.'</span>' : '';
         
-        return '<li class="item_label z-depth-1">
+        return '<li class="item_label z-depth-1 '.$class.'">
                 <a title="'.$title.'" '.$popup_link.' '.$cursor_style.'>
                     '.$html_icon . $html_amount.'
                 </a>

@@ -170,6 +170,7 @@ map_body_wrapper {
 #personal_block {
     display:flex;
     flex-direction:column;
+    margin-top:0.3rem;
 }
 /*#personal_block legend {
     width:100%;
@@ -279,6 +280,33 @@ map_body_wrapper {
 #statusbar .item_label img {
     outline:3px solid red;
     border-radius:0.2rem;
+}
+#statusbar .actionpoints {
+    position: absolute;
+    top: -0.4rem;
+    left: 8rem;
+    height: 4rem;
+    width: 4rem;
+    font-size: 2em;
+    justify-content: center;
+    border: 4px outset orange;
+    border-radius: 50%;
+    background: darkred;
+    z-index: 10;
+}
+#statusbar .actionpoints a {
+    color: whitesmoke;
+}
+#statusbar .actionpoints .dot_number {
+    position: absolute;
+    top:   -0.3rem;
+    right: -0.9rem;
+    height: 1.8rem;
+    width:  1.8rem;
+    font-size: 0.55em;
+    background: darkred;
+    border: 3px outset orange;
+    border-radius: 50%;
 }
 
 #map .row {
