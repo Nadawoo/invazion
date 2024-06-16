@@ -40,7 +40,7 @@ class HtmlPopup
             . $this->predefined('popmycaracs', 'Mes caractéristiques', $speciality_caracs)
             . $this->predefined('popwounded', '', ['citizen_id'=>$citizen_id, 'healing_items'=>$healing_items])
             . $this->predefined('popcontrol', '&#8505;&#65039; Le contrôle de zone')
-            . $this->predefined('popmove', '&#8505;&#65039; Les déplacements', 
+            . $this->predefined('popmove', '&#8505;&#65039; Les points d\'action', 
                                     ['moving_cost_no_zombies' => $configs_map['moving_cost_no_zombies'], 
                                      'moving_cost_zombies'    => $configs_map['moving_cost_zombies']
                                     ])
@@ -548,17 +548,59 @@ class HtmlPopup
     private function popmove($params)
     {
         
-        return "<p>Explorer le désert exige de l'endurance.
-            Vous avez besoin de &#9889;<strong>points d'action</strong> pour vous déplacer,
-            en fonction du nombre de zombies dans la zone :
-            </p>
-            <ul>
-                <li class=\"orange-text\">&#x1F9DF; <strong>1 zombie ou davantage</strong> &#x2794;
-                    coût <strong>".$params['moving_cost_zombies']."</strong>&#9889;<br><br></li>
-                <li class=\"green-text\">&#x2714;&#xFE0F; <strong>aucun zombie</strong> &#x2794; gratuit</li>
-                </ul>
-            <p>Surveillez vos points d'action ! Si vous restez bloqué dans le désert,
-            une mort certaine vous attend cette nuit...</p>";
+        $items = [
+            [
+            'icon'  => '&#x1F97E;',
+            'title' => 'Utilité des PA dans le désert',
+            'text'  => "À l'extérieur de la ville, vous avez besoin 
+                        de points d'action pour <strong>vous déplacer</strong>,
+                        en fonction du nombre de zombies dans la zone :
+                        <br> 
+                        <ul class=\"expanded\">
+                            <li class=\"orange-text\">&#x1F9DF; <strong>1 zombie ou davantage</strong> &#x2794;
+                                coût <strong>".$params['moving_cost_zombies']."</strong>&#9889;</li>
+                            <li class=\"green-text\">&#x2714;&#xFE0F; <strong>aucun zombie</strong> &#x2794; gratuit</li>
+                        </ul>
+                        <br>
+                        <strong>Dépensez prudemment vos points d'action !</strong>
+                        Si vous êtes bloqué dans le désert au moment de l'attaque zombie,
+                        une mort certaine vous attend.<br>
+                        <a href=\"#popattack\">[En savoir plus...]</a>"
+            ],
+            [
+            'icon'  => '&#x1F3E2;',
+            'title' => "Utilité des PA en ville",
+            'text'  => "En ville, les points d'action sont nécessaires pour :
+                        <br>
+                        <ul class=\"expanded\">
+                            <li>&#x1F528; <strong>Construire</strong> des défenses et autres chantiers de la ville ;</li>
+                            <li>&#x1FA9A; <strong>Transformer</strong> des objets à l'atelier.</li>
+                        </ul>"
+            ],
+            [
+            'icon'  => '&#x1F4AA;',
+            'title' => "Comment récupérer des PA",
+            'text'  => "
+                Vous pouvez augmenter votre nombre de points d'action :
+                <br>
+                <ul class=\"expanded\">
+                    <li>&#x1F357; En consommant un <strong>objet de regain d'énergie</strong> :
+                        ration d'eau, nourriture... Vous en trouverez en fouillant le désert.
+                    </li>
+                    <li>&#x1F55B; En <strong>passant au jour suivant</strong>. Mais attention, 
+                        cette action déclenche <strong>l'attaque zombie de minuit !</strong><br>
+                        <a href=\"#popattack\">[En savoir plus...]</a>
+                    </li>
+                </ul>"
+            ],
+        ];
+        
+        $collapsible = new HtmlCollapsible();
+        
+        return "Les &#9889;<strong>points d'action (PA)</strong> sont un élément crucial 
+            pour votre survie. Ils sont indispensables pour <strong>explorer</strong>
+            le désert et <strong>construire</strong> la ville.<br><br>"
+            .$collapsible->items($items);
     }
     
     

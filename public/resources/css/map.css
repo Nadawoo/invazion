@@ -170,7 +170,7 @@ map_body_wrapper {
 #personal_block {
     display:flex;
     flex-direction:column;
-    margin-top:0.3rem;
+    margin-top:0.4rem;
 }
 /*#personal_block legend {
     width:100%;
@@ -283,14 +283,15 @@ map_body_wrapper {
 }
 #statusbar .actionpoints {
     position: absolute;
-    top: -0.4rem;
+    top: -0.5rem;
     left: 8rem;
     height: 4rem;
-    width: 4rem;
+    width:  4rem;
     font-size: 2em;
     justify-content: center;
     border: 4px outset orange;
     border-radius: 50%;
+    outline:2px solid #fbeee6;
     background: darkred;
     z-index: 10;
 }
