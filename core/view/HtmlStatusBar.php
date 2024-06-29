@@ -40,9 +40,9 @@ class HtmlStatusBar {
                                 "D'autres humains se trouvent dans la même zone que vous ! L'union fait la force...")
             :$this->status_empty();
                 
-        $status_actionpoints = $this->status_image($action_points,
+        $status_actionpoints = $this->status_image("&#9889;",
                                                   null,
-                                                  "&#9889;",
+                                                  $action_points,
                                                   "Vos points d'action restants. S'ils sont épuisés, &#10;vous ne pourrez plus vous déplacer dans le désert.",
                                                   "popmove",
                                                   "actionpoints");
