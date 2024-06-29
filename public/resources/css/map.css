@@ -356,16 +356,16 @@ map_body_wrapper {
     /* La largeur doit inscrire la bordure de .square_container 
     pile dans celle de .hexagon */
     width:  2.5rem;
-    /* La hauteur doit être égale à la largeur pour garantir 
-    que le conteneur sera parfaitement carré */
-    height: 2.5rem;
+    /* The top and bottom lines of the square must touch the top and bottom tips 
+      of the hexagon */
+    height: 3rem;
     /* Evite que les éventuelles marges intérieures agrandissent le conteneur */
     box-sizing: border-box;
     /* Centre le conteneur horizontalement */
     margin:auto;
     /* Hack CSS pour centrer le conteneur verticalement */
     position: relative;
-    top: 37%; /* poussé de la moitié de hauteur du référent */
+    top: 40%; /* poussé de la moitié de hauteur du référent */
     transform: translateY(-50%); /* tiré de la moitié de sa propre hauteur */
     /* Centrage des éléments à l'intérieur de la case */
     display:flex;
@@ -375,14 +375,25 @@ map_body_wrapper {
     /* Recentre verticalement le texte à l'intérieur du conteneur.
     Calibrage: le fond coloré sous le texte doit toucher la bordure du bas du conteneur. */
     line-height:2.2em;
-    /* Makes the satellite views (items, zombies...) more legible */
-    border-radius:50%;
 }
 
 .square_container .zombies_amount,
 .square_container .items_amount {
     position:absolute;
+    display:flex;
+    justify-content: center;
+    align-items: center;
     font-weight:bold;
+    height:100%;
+    width:100%;
+    clip-path: polygon( /* Give the background an hexagonal shape */
+                    50% 0%, 
+                    100% 25%, 
+                    100% 75%, 
+                    50% 100%, 
+                    0% 75%, 
+                    0% 25%
+                    );
 }
 
 /* Surelevate the zones with cities or buildings */
@@ -724,10 +735,17 @@ map_body_wrapper {
 }
 .map_legend li span {
     display:inline-block;
-    height:1em;
+    height:1.2em; /* Superior to the width because an hexagon is not a square */
     width: 1em;
     margin-right:0.4em;
-    border-radius: 50%;
+    clip-path: polygon( /* Give the background an hexagonal shape */
+                50% 0%, 
+                100% 25%, 
+                100% 75%, 
+                50% 100%, 
+                0% 75%, 
+                0% 25%
+                );
 }
 .map_legend hr {
     margin-top:0.7em;

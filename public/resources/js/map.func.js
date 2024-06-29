@@ -443,6 +443,7 @@ function activateMapZombiesView() {
     for(let i=0; i<hexagons.length; i++) {
         
         let squareContainer = hexagons[i].querySelector(".square_container");
+        let zombiesAmount = squareContainer.querySelector(".zombies_amount");
         let controlpoints_zombies = parseInt(squareContainer.dataset.controlpointszombies);
         let controlpoints_one_citizen = 2;
         
@@ -461,13 +462,12 @@ function activateMapZombiesView() {
         
         display("map_legend_zombies");
         // Color the zones depending on the number of zombies
-        squareContainer.style.background = color;
-        squareContainer.style.border = "1px solid darkgrey";
+        zombiesAmount.style.background = color;
         // Reveal all the zones, regardless their date of last visit
 //        hexagons[i].style.opacity = 1;
         
         if(parseInt(squareContainer.dataset.zombies) !== 0) {
-            squareContainer.querySelector(".zombies_amount").innerHTML = squareContainer.dataset.zombies;
+            zombiesAmount.innerHTML = squareContainer.dataset.zombies;
         }
     }
     
@@ -482,13 +482,13 @@ function desactivateMapZombiesView() {
     
     let hexagons = document.querySelectorAll("#map_body .hexagon");
     
-    for(let i=0; i<hexagons.length; i++) {
-        
-        let squareContainer = hexagons[i].querySelector(".square_container");
-        // Remove the colors on the zones
-        squareContainer.style.background = "none";
-        squareContainer.style.border = "none";
-    }
+//    for(let i=0; i<hexagons.length; i++) {
+//        
+//        let squareContainer = hexagons[i].querySelector(".square_container");
+//        // Remove the colors on the zones
+//        squareContainer.style.background = "none";
+//        squareContainer.style.border = "none";
+//    }
     
     hide("map_legend_zombies");
     hideClasses(["zombies_amount"]);
@@ -625,18 +625,27 @@ function activateMapItemsView() {
             color = 'grey'; 
         }
         
+        unhideClasses(["items_amount"]);
         display("map_legend_items");
-        // Color the zones depending on the number of items
-        squareContainer.style.background = color;
-        squareContainer.style.border = "1px solid darkgrey";
         // Reveal all the zones, regardless their date of last visit
 //        hexagons[i].style.opacity = 1;
-        // Mark the zones visited today
-        if(squareContainer.dataset.visitedtoday === "1") {
-            squareContainer.innerHTML += '<div class="items_amount">&#x1F97E;</div>';
-        } else {
-            squareContainer.innerHTML += '<div class="items_amount">&#x26CF;&#xFE0F;</div>';
+        
+        if(!squareContainer.querySelector(".items_amount")) {
+            let newDiv = document.createElement("div");
+            newDiv.className = "items_amount";
+            squareContainer.appendChild(newDiv);
+            
+            // Mark the zones visited today
+            if(squareContainer.dataset.visitedtoday === "1") {
+                newDiv.innerHTML += '&#x1F97E;';
+            } else {
+                newDiv.innerHTML += '&#x26CF;&#xFE0F;';
+            }
         }
+        let itemsAmount = squareContainer.querySelector(".items_amount");
+        
+        // Color the zones depending on the number of items
+        itemsAmount.style.background = color;
         
         // Hides the zombies, because they are above the colored background
         hideClasses(["zombies"]);
@@ -649,13 +658,12 @@ function desactivateMapItemsView() {
     let hexagons = document.querySelectorAll("#map_body .hexagon");
     
     for(let i=0; i<hexagons.length; i++) {
-        
-        let squareContainer = hexagons[i].querySelector(".square_container");
         // Hides the legend
         hide("map_legend_items");
         // Remove the colors on the zones
-        squareContainer.style.background = "none";
-        squareContainer.style.border = "none";
+//        let squareContainer = hexagons[i].querySelector(".square_container");
+//        squareContainer.style.background = "none";
+//        squareContainer.style.border = "none";
         hideClasses(["items_amount"]);
         // Display the zombies again
         unhideClasses(["zombies"]);
