@@ -115,19 +115,17 @@ function htmlNewDiscussionForm(citizenPseudo)
         <div id="send" class="topic discuss" style="display:none">\
             <h3><span onclick="toggle([\'#titleNew\', \'#send h3 span\']);document.querySelector(\'#titleNew\').focus()">Nouvelle discussion &#x270F;&#xFE0F;</span>\
                 <input type="text" id="titleNew" placeholder="Titre de la discussion (facultatif)">\
+                <a href="#" id="hideSendform" class="close z-depth-1">X</a>\
             </h3>\
             <div class="message">\
-                <form id="sendform">\
+                <form id="sendform" oninput="unhideId(\'sendNewTopic\')">\
                     <div>\
                         <div id="errorNewTopicPseudo" class="red"></div>\
                         <input id="guestPseudo" type="text" name="guest_pseudo" placeholder="Votre pseudo" style="'+fieldPseudoStyle+'">\
                     </div>\
                     <div id="errorNewTopicMessage" class="red"></div>\
                     <textarea id="messageNew" placeholder="Votre message ici. Donnez votre avis sur les stratégies ou demandez de l\'aide..."></textarea>\
-                    <input type="submit" value="Envoyer" class="redbutton">\
-                    <a href="#" id="hideSendform" class="bluebutton">\
-                        <i class="material-icons">chevron_left</i> Retour aux discussions\
-                    </a>\
+                    <input id="sendNewTopic" type="submit" value="Envoyer" class="redbutton hidden">\
                 </form>\
             </div>\
         </div>';
