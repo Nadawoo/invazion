@@ -1354,3 +1354,14 @@ function displayToast(message, error_class) {
         outDuration: 800
         });
 }
+
+
+/**
+ * 
+ * Returns the number of the current cycle (day XX)
+ * @returns {int}
+ */
+function getCurrentCycle() {
+    
+    return parseInt(document.querySelector("#tuto_dayclock span").innerHTML);
+}

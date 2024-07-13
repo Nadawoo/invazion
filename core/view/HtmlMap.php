@@ -146,9 +146,9 @@ class HtmlMap
                 $cell   = (isset($cells[$coords])) ? $cells[$coords] : null;
                 // Définit si le joueur connecté se trouve dans cette zone
                 $is_player_in_zone = $this->is_player_in_zone([$col, $row], [$citizen['coord_x'], $citizen['coord_y']]);
-                $is_zone_visited_today = in_array($coords, $citizen['zones_visited_today']) ? 1 : 0;
+//                $is_zone_visited_today = in_array($coords, $citizen['zones_visited_today']) ? 1 : 0;
                 
-                $result .=  $this->hexagonal_zone($col, $row, $cell, $is_player_in_zone, $is_zone_visited_today);
+                $result .=  $this->hexagonal_zone($col, $row, $cell, $is_player_in_zone);
             }
             
             $result .=  "</div>\n";
@@ -166,13 +166,10 @@ class HtmlMap
      *                  Ex : 3 if it's the 3rd line of the map
      * @param array $cell  The conntent of the zone, are returned by the "map" API
      * @param bool  $is_player_in_zone  Value "1" if the current player is in the current zone.
-     * @param bool  $is_zone_visited_today Value "1" if the current player has already
-     *                                     visited the zone during the current cycle. 
-     *                                     Else, value "0".
      * 
      * @return string   Le HTML de la case
      */
-    public function hexagonal_zone($col, $row, $cell, $is_player_in_zone, $is_zone_visited_today)
+    public function hexagonal_zone($col, $row, $cell, $is_player_in_zone)
     {
         
         // Important : la cellule doit toujours avoir un contenu, même 
@@ -247,7 +244,7 @@ class HtmlMap
                         data-cityid="'.$cell['city_id'].'"
                         data-citytypeid=""
                         data-landtype="'.$cell['land'].'"
-                        data-visitedtoday="'.$is_zone_visited_today.'"
+                        data-cyclelastvisit="'.(int)$cell['cycle_last_visit'].'"
                         >
                         <span class="zombies_amount hidden"></span>'
                         . $cell_zombies . $cell_content . $cell_name . '

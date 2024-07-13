@@ -294,14 +294,16 @@ async function addCitiesOnMap(mapId) {
                 nbrItems = zone.dataset.items;
         
             if(nbrDefenses > 0 || nbrItems > 0) {
-                zone.insertAdjacentHTML("afterbegin", `<span class="nbr_defenses">&#128737;&#65039;${nbrDefenses} <span class="green-text">|</span>&#x1F392;${nbrItems}</span>`);
+                zone.insertAdjacentHTML("afterbegin", `<span class="nbr_defenses">&#128737;&#65039;${nbrDefenses} <span class="grey-text">|</span>&#x1F392;${nbrItems}</span>`);
             }
         }
         // Adds the number of items remaining inside the explorable building
         else if(city.city_type_id !== "undefined") {
             
+            console.log();
+            
             let html = "";
-            if(parseInt(zone.closest(".square_container").dataset.visitedtoday) === 0) {
+            if(parseInt(zone.closest(".square_container").dataset.cyclelastvisit) === getCurrentCycle()) {
                 html = `<span class="nbr_defenses diggable pulse">&#x26CF;&#xFE0F;</span>`;
             }
             else {
@@ -642,7 +644,7 @@ function activateMapItemsView() {
             squareContainer.appendChild(newDiv);
             
             // Mark the zones visited today
-            if(squareContainer.dataset.visitedtoday === "1") {
+            if(parseInt(squareContainer.dataset.cyclelastvisit) === getCurrentCycle()) {
                 newDiv.innerHTML += '&#x1F97E;';
             } else {
                 newDiv.innerHTML += '&#x26CF;&#xFE0F;';

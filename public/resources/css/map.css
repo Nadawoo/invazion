@@ -442,9 +442,9 @@ map_body_wrapper {
     line-height:1.5em;
     padding: 0.1em 0.35em 0 0.1em;
     font-size:0.8em;
-    background:darkgreen;
+    background:darkslateblue;
     color:white;
-    border: 1px solid darkgrey;
+    border: 1px solid grey;
     border-radius:0.4em;
     box-shadow: 4px 4px 6px black;
     z-index:1;
