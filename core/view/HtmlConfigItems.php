@@ -80,4 +80,28 @@ class HtmlConfigItems
         
         return $result;
     }
+    
+    
+    public function tags($items_caracs)
+    {
+        
+        // Temporarily hardcoding the names of the tags. Should replace this 
+        // by an API returning the names of the tags.
+        $tags_names = [
+            1 => 'Boost',
+            2 => 'Nourriture',
+            3 => 'Drogue',
+            4 => 'Alcool',
+            5 => 'Ennemi',
+        ];
+        
+        $result = '';
+        if(isset($items_caracs['tags'])) {
+            foreach($items_caracs['tags'] as $tag) {
+                $result .= ' <div class="chip">'.$tags_names[$tag].'</div>';
+            }
+        }
+        
+        return $result;
+    }
 }

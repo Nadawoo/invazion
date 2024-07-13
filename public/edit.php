@@ -84,10 +84,11 @@ $table_header = '<tr>
             <th>Objet</th>
             <th>Créé par</th>
             <th>Encombrant</th>
-            <th>Boost</th>
+            <th>Type de boost</th>
             <th>Arme</th>
             <th>Santé</th>
             <th>Assemblable à partir de</th>
+            <th>Étiquettes</th>
         </tr>';
 
 foreach ($items as $id=>$caracs) {
@@ -101,6 +102,7 @@ foreach ($items as $id=>$caracs) {
             <td>'.$htmlitem->weapon($caracs).'</td>
             <td>'.$htmlitem->health($caracs).'</td>
             <td>'.$htmlitem->craft($items, $id).'</td>
+            <td>'.$htmlitem->tags($caracs).'</td>
         </tr>';
 }
 
