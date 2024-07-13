@@ -35,8 +35,8 @@ class HtmlConfigItems
     public function weapon($items_caracs)
     {
 
-        if ($items_caracs['killing_rate'] === 0) {
-            return  '–';
+        if (!isset($items_caracs['killing_rate'])) {
+            return  '?';
         }
         else {
             return '<abbr title="Probabilité que l\'arme tue un zombie">Réussite</abbr> : '
@@ -55,7 +55,9 @@ class HtmlConfigItems
     public function heaviness($items_caracs)
     {
 
-        return ($items_caracs['heaviness'] === 0) ? 'non' : '<span class="red">oui</span>';
+        return ($items_caracs['heaviness'] === 0)
+                ? '<span class="grey-text">non</span>'
+                : '<strong class="red-text">oui</strong>';
     }
 
 

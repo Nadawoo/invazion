@@ -83,7 +83,6 @@ $table_header = '<tr>
             <th>id</th>
             <th>Objet</th>
             <th>Créé par</th>
-            <th>% de découverte</th>
             <th>Encombrant</th>
             <th>Boost</th>
             <th>Arme</th>
@@ -97,7 +96,6 @@ foreach ($items as $id=>$caracs) {
             <td>#'.$id.'</td>
             <td>'.$caracs['name'].'</td>
             <td>user'.$caracs['user_id'].'</td>
-            <td style="text-align:right">'.$caracs['finding_rate'].'%</td>
             <td>'.$htmlitem->heaviness($caracs).'</td>
             <td>'.$htmlitem->boost($caracs, $boost_types).'</td>
             <td>'.$htmlitem->weapon($caracs).'</td>
