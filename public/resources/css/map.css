@@ -432,7 +432,7 @@ map_body_wrapper {
 #map .city_img {
     display:block;
     position:absolute;
-    bottom:8px;
+    bottom:12px;
 }
 
 #map .nbr_defenses {
@@ -440,21 +440,23 @@ map_body_wrapper {
     position:absolute;
     top:-1.4em;
     line-height:1.5em;
-    padding:0 0.3em;
+    padding: 0.1em 0.35em 0 0.1em;
     font-size:0.8em;
     background:darkgreen;
     color:white;
+    border: 1px solid darkgrey;
     border-radius:0.4em;
     box-shadow: 4px 4px 6px black;
     z-index:1;
 }
 /* Button marking a building not visited today */
 #map .nbr_defenses.diggable {
-    height:2.1em;
-    width:2.1em;
+    height:2.4em;
+    width: 2.4em;
     display:flex;
     justify-content:center;
     align-items:center;
+    padding:0;
     background:darkred;
     border:2px solid lightgrey;
     border-radius:50%;
@@ -712,7 +714,7 @@ map_body_wrapper {
     height:2em;
     position:absolute;
     margin-left:-1em;
-    margin-top:-2.2em;
+    margin-top:-3.5em;
 }
 
 /* Legend for the view of the map (zombies...) */

@@ -275,7 +275,7 @@ async function addCitiesOnMap(mapId) {
         }
         else {
             // If no image file for this building, displays an emoji for the building
-            zone.insertAdjacentHTML("afterbegin", `<div class="icon_html"  style="font-size:${buildingEmojiSize}em;">${buildingIconHtml}</div>`);
+            zone.insertAdjacentHTML("afterbegin", `<div class="icon_html" style="font-size:${buildingEmojiSize}em;">${buildingIconHtml}</div>`);
             // Delete the "&nbsp;" required on the empty zones 
 //            if(zone.querySelector(".empty") !== null) {
 //                zone.querySelector(".empty").remove();
@@ -290,7 +290,12 @@ async function addCitiesOnMap(mapId) {
         // Adds the number of defenses above each city
         // (#12 = ID of the "human city" building)
         else if(city.city_type_id === 12) {
-            zone.insertAdjacentHTML("afterbegin", `<span class="nbr_defenses">${city.total_defenses}&#128737;&#65039;</span>`);
+            let nbrDefenses = city.total_defenses,
+                nbrItems = zone.dataset.items;
+        
+            if(nbrDefenses > 0 || nbrItems > 0) {
+                zone.insertAdjacentHTML("afterbegin", `<span class="nbr_defenses">&#128737;&#65039;${nbrDefenses} <span class="green-text">|</span>&#x1F392;${nbrItems}</span>`);
+            }
         }
         // Adds the number of items remaining inside the explorable building
         else if(city.city_type_id !== "undefined") {
@@ -300,10 +305,11 @@ async function addCitiesOnMap(mapId) {
                 html = `<span class="nbr_defenses diggable pulse">&#x26CF;&#xFE0F;</span>`;
             }
             else {
-                let maxExplorations = 100;
-                // NB: #108 = ID of the item "Counter of explorations"
-                let nbrExplorations = zones[htmlCoords]['items'][108] || 0;
-                html = `<span class="nbr_defenses">${maxExplorations-nbrExplorations}&#x26CF;&#xFE0F;</span>`;
+//                let maxExplorations = 100;
+//                // NB: #108 = ID of the item "Counter of explorations"
+//                let nbrExplorationsDone = zones[htmlCoords]['items'][108] || 0;
+//                let nbrExplorationsRemaining = maxExplorations-nbrExplorationsDone;
+                html = `<span class="nbr_defenses">&#x2705;Exploré</span>`;
             }
             
             zone.insertAdjacentHTML("afterbegin", html);
