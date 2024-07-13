@@ -181,16 +181,35 @@ class HtmlPopup
         
         $buttons = new HtmlButtons();
         
-        $items = [
-            [
+        $goals = [
+                        [
             'icon'  => "&#x2753;",
-            'title' => "Découvrir l'objectif du jeu",
+            'title' => "Principe du jeu",
             'text'  => "Les zombies attaquent la ville chaque soir. Vous devez
                         renforcer ses défenses en y construisant les chantiers disponibles.
                         Les matériaux nécessaires doivent être collectés hors de la ville,
                         dans le désert hostile.<br>
                         <a href=\"#popattack\">[En savoir plus...]</a>"
             ],
+            [
+            'icon'  => "&#x1F3E2;",
+            'title' => "Découvrir 10 bâtiments",
+            'text'  => "Découvrez les 10 bâtiments dissimulés dans le désert, 
+                        avant que les zombies n'anéantissent votre ville."
+            ],
+            [
+            'icon'  => "&#x1F6E1;&#xFE0F;",
+            'title' => "Contrôler 10 bâtiments pendant 5 jours",
+            'text'  => "Si vous maintenez sous contrôle <strong>10 bâtiments</strong>
+                        pendant <strong>5 jours</strong> consécutifs,
+                        la carte sera considérée comme sécurisée et vous remporterez 
+                        la partie. Un bâtiment est sous contrôle tant que son nombre 
+                        de <a href=\"#popcontrol\"><strong>points de contrôle</strong></a>
+                        est supérieur à celui des zombies dans la zone."
+            ],
+        ];
+        
+        $tasks = [
             [
             'icon'  => "&#x1F97E;",
             'title' => "Sortir de la ville",
@@ -238,7 +257,11 @@ class HtmlPopup
                 Elles seront améliorées plus tard. En attendant, vous pouvez 
                 les accomplir dans l'ordre de la liste.]
             </p>
-            ".$htmlCollapsible->items($items);
+            <h5>Objectifs principaux</h5>
+            ".$htmlCollapsible->items($goals)."
+            <br>
+            <h5>Tâches quotidiennes</h5>
+            ".$htmlCollapsible->items($tasks);
     }
     
     
