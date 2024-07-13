@@ -118,7 +118,7 @@
     line-height:1.4em;
     border:2px outset white;
     border-radius:2em;
-    background:#4a235a;
+    background: radial-gradient(circle at 5% 5%, rgba(255, 255, 255, 1), darkred, rgba(0, 0, 50, 0.8));
 }
 #showWall {
     padding:0 0.3rem;
