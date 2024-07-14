@@ -36,7 +36,9 @@ class HtmlConfigItems
     {
 
         if (!isset($items_caracs['killing_rate'])) {
-            return  '?';
+            return ($items_caracs['is_weapon'] > 0)
+                    ? '<strong class="red-text">oui</strong>'
+                    : '<span class="grey-text">non</span>';
         }
         else {
             return '<abbr title="Probabilité que l\'arme tue un zombie">Réussite</abbr> : '
