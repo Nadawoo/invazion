@@ -251,3 +251,15 @@ li {
 #connectionForm .aside {
     margin-left:0.3em;
 }
+
+/* Tags */
+.chip {
+    cursor:pointer;
+}
+.chip::selection {
+    background: none;
+}
+.chip.active {
+    background:darkred;
+    color:white;
+}

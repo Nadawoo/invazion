@@ -74,35 +74,26 @@ $boost_types = [null        => '–',
 
 $api        = new ZombLib(official_server_root().'/api');
 $html       = new HtmlPage();
-$htmlitem   = new HtmlConfigItems();
+$htmlItem   = new HtmlConfigItems();
+$htmlTags   = new HtmlTags();
 $items      = $api->call_api('configs', 'get')['datas']['items'];
-$table_body = '';
-
-
-$table_header = '<tr>
-            <th>id</th>
-            <th>Objet</th>
-            <th>Créé par</th>
-            <th>Encombrant</th>
-            <th>Type de boost</th>
-            <th>Arme</th>
-            <th>Santé</th>
-            <th>Assemblable à partir de</th>
-            <th>Étiquettes</th>
-        </tr>';
+$table_rows = '';
 
 foreach ($items as $id=>$caracs) {
     
-    $table_body .= '<tr>
+    $textual_tags = $htmlTags->tags_item($caracs, 'text');
+    
+    $table_rows .= '
+        <tr data-tags="'.$textual_tags.'">
             <td>#'.$id.'</td>
             <td>'.$caracs['name'].'</td>
             <td>user'.$caracs['user_id'].'</td>
-            <td>'.$htmlitem->heaviness($caracs).'</td>
-            <td>'.$htmlitem->boost($caracs, $boost_types).'</td>
-            <td>'.$htmlitem->weapon($caracs).'</td>
-            <td>'.$htmlitem->health($caracs).'</td>
-            <td>'.$htmlitem->craft($items, $id).'</td>
-            <td>'.$htmlitem->tags($caracs).'</td>
+            <td>'.$htmlItem->heaviness($caracs).'</td>
+            <td>'.$htmlItem->boost($caracs, $boost_types).'</td>
+            <td>'.$htmlItem->weapon($caracs).'</td>
+            <td>'.$htmlItem->health($caracs).'</td>
+            <td>'.$htmlItem->craft($items, $id).'</td>
+            <td>'.$htmlTags->tags_item($caracs, 'html').'</td>
         </tr>';
 }
 
@@ -355,14 +346,60 @@ echo $html->page_header();
 <p class="center"><em>Tableau rudimentaire en attendant une plus belle présentation :)</em></p>
 
 <?php
-echo '<table>'
-        .$table_header
-        .$table_body.
-    '</table>';
+echo "<strong>Filtrer par étiquette :</strong> ".$htmlTags->tags_all('html');
+
+echo '
+    <table id="items_table">
+        <thead>
+            <tr>
+                <th>id</th>
+                <th>Objet</th>
+                <th>Créé par</th>
+                <th>Encombrant</th>
+                <th>Type de boost</th>
+                <th>Arme</th>
+                <th>Santé</th>
+                <th>Assemblable à partir de</th>
+                <th>Étiquettes</th>
+            </tr>
+        </thead>
+        <tbody>
+            '.$table_rows.'
+        </tbody>
+    </table>';
 ?>
 
 <!-- End of the page container #editConfig -->
 </div>
+
+
+<script>
+    // Filter the items by tag in the table of items
+    document.addEventListener('DOMContentLoaded', function() {
+        const filterButtons = document.querySelectorAll('.chip');
+        const tableRows = document.querySelectorAll('#items_table tbody tr');
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                this.classList.toggle('active');
+                filterTableByTag();
+            });
+        });
+
+        function filterTableByTag() {
+            const activeTags = Array.from(filterButtons)
+                .filter(button => button.classList.contains('active'))
+                .map(button => button.innerText);
+
+            tableRows.forEach(row => {
+                const rowTags = row.dataset.tags.split(' ');
+                const isVisible = activeTags.every(tag => rowTags.includes(tag));
+
+                row.style.display = isVisible || activeTags.length === 0 ? '' : 'none';
+            });
+        }
+    });
+</script>
 
 <?php
 echo $html->page_footer();
