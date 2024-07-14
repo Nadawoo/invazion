@@ -187,7 +187,7 @@ class HtmlLayout extends HtmlPage
             </div>
             <div id="tuto_dayclock">
                 <a href="#popdayclock" id="dayclock">
-                    Jour <span style="font-size:1.7em;font-weight:bold;">'.(int)$day.'</span>
+                    Jour <span style="font-size:1.6em;font-weight:bold;">'.(int)$day.'</span>
                 </a>
             </div>
             <p id="messageEndCycle" style="display:none;margin:0"></p>

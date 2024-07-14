@@ -292,7 +292,7 @@ map_body_wrapper {
     border: 4px outset orange;
     border-radius: 50%;
     outline:2px solid #fbeee6;
-    background: darkred;
+    background: radial-gradient(circle at 5% 5%, rgba(255, 255, 255, 1), darkred, rgba(0, 0, 50, 0.8));
     z-index: 1;
 }
 #statusbar .actionpoints a {
