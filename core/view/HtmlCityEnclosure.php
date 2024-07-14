@@ -489,6 +489,24 @@ class HtmlCityEnclosure
         $html_constructions = $this->block_constructions_list($config_buildings, $buildings_components, $items_caracs,  
                                   $completed_buildings_ids, $zone_items, $root_building_id);
         
+        $html_tips = '
+            <p>
+                <a class="bluebutton" onclick="display(\'tip_buildable\');display(\'to_constructions\', \'flex\');toggle(\'#constructions_block\')">&#x1F4A1; Conseil : Chantiers constructibles</a>
+                <a class="bluebutton" onclick="display(\'tip_resources\');display(\'to_constructions\', \'flex\');toggle(\'#constructions_block\')">&#x1F4A1; Conseil : Ressources à compléter</a>
+            </p>';
+        
+        $html_display_mode = '
+            <form style="margin:0 0 1em 0.5em;text-align:left">
+                <strong>Afficher :</strong>
+                <select id="constructionFilter" style="width:7em">
+                    <option value="none" selected>Vue simple</option>
+                    <option value="components">Composants manquants</option>
+                    <option value="effects">Effets du chantier</option>
+                </select>
+            </form>';
+        
+        $advanced_gui_elements = (count($completed_buildings_ids) > 0) ? $html_tips.$html_display_mode : '';
+        
         return '
             <div id="constructions_block" class="city_block" style="width:21.5em">
                 <img class="icon z-depth-1" src="resources/img/copyrighted/city_constructions.png">
@@ -497,20 +515,8 @@ class HtmlCityEnclosure
                     <a href="#popattack">[En savoir plus...]</a>
                 </p>
                 
-                <p>
-                    <a class="bluebutton" onclick="display(\'tip_buildable\');display(\'to_constructions\', \'flex\');toggle(\'#constructions_block\')">&#x1F4A1; Conseil : Chantiers constructibles</a>
-                    <a class="bluebutton" onclick="display(\'tip_resources\');display(\'to_constructions\', \'flex\');toggle(\'#constructions_block\')">&#x1F4A1; Conseil : Ressources à compléter</a>
-                </p>
+                '.$advanced_gui_elements.'
                 
-                <form style="margin:0 0 1em 0.5em;text-align:left">
-                    <strong>Afficher :</strong>
-                    <select id="constructionFilter" style="width:7em">
-                        <option value="none" selected>Vue simple</option>
-                        <option value="components">Composants manquants</option>
-                        <option value="effects">Effets du chantier</option>
-                    </select>
-                </form>
-
                 <table id="constructions">
                     '.$html_constructions.'
                 </table>
