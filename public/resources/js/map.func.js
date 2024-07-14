@@ -300,10 +300,8 @@ async function addCitiesOnMap(mapId) {
         // Adds the number of items remaining inside the explorable building
         else if(city.city_type_id !== "undefined") {
             
-            console.log();
-            
             let html = "";
-            if(parseInt(zone.closest(".square_container").dataset.cyclelastvisit) === getCurrentCycle()) {
+            if(parseInt(zone.closest(".square_container").dataset.cyclelastvisit) < getCurrentCycle()) {
                 html = `<span class="nbr_defenses diggable pulse">&#x26CF;&#xFE0F;</span>`;
             }
             else {
