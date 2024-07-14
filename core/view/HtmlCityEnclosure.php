@@ -34,7 +34,7 @@ class HtmlCityEnclosure
      *                                        his habitation to this city
      * @return string
      */
-    function city_submenu($city_type, $connected_city_id, $is_citizen_home_connected)
+    function city_submenu($city_type, $connected_city_id, $is_citizen_home_connected, $completed_buildings_ids)
     {
         
         $buttons = new HtmlButtons();
@@ -58,6 +58,20 @@ class HtmlCityEnclosure
                 . $buttons->button('connect_tent');
         }
         else {
+            // Don't show the submenu for the well until the well (building #15 
+            // in the Invazion's API) is built
+            $submenu_well = in_array(15, $completed_buildings_ids)
+                ? $this->city_submenu_item('city_well', 'Puits')
+                : $this->city_submenu_item('empty', '');
+            // #70 = the workshop
+            $submenu_workshop = in_array(70, $completed_buildings_ids)
+                ? $this->city_submenu_item('city_workshop', 'Atelier')
+                : $this->city_submenu_item('empty', '');
+            // #102 = the city door 
+            $submenu_door = in_array(102, $completed_buildings_ids)
+                ? $this->city_submenu_item('city_door', 'Porte')
+                : $this->city_submenu_item('empty', '');
+            
             $city_menu = '
                 <div class="row" style="gap:0.3em">
                     '.$this->city_submenu_item('city_storage', 'Dépôt').'
@@ -66,9 +80,9 @@ class HtmlCityEnclosure
                     '.$this->city_submenu_item('explore', 'Explorer').'
                 </div>
                 <div class="row" style="font-size:0.7em;margin-bottom:1em">
-                    '.$this->city_submenu_item('city_well', 'Puits').'
-                    '.$this->city_submenu_item('city_workshop', 'Atelier').'
-                    '.$this->city_submenu_item('city_door', 'Porte').'
+                    '.$submenu_well.'
+                    '.$submenu_workshop.'
+                    '.$submenu_door.'
                     '.$this->city_submenu_item('empty', '').'
                     '.$this->city_submenu_item('empty', '').'
                     '.$this->city_submenu_item('empty', '').'

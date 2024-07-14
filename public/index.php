@@ -235,7 +235,7 @@ echo $html['json_configs'];
             <div id="city_container">
                 <nav id="city_menu">
                     '.$enclosure->city_menu($citizen['map_id'], $city_data['connected_city_id'], $citizen['city_id']).'
-                    '.$enclosure->city_submenu($city_data['city_type_id'], $city_data['connected_city_id'], $is_citizen_home_connected).'
+                    '.$enclosure->city_submenu($city_data['city_type_id'], $city_data['connected_city_id'], $is_citizen_home_connected, $completed_buildings_ids).'
                     <div id="city_defenses" class="city_row">
                         '.$enclosure->block_defenses($city_data['total_defenses'], $zombies_next_attack).'
                     </div>
