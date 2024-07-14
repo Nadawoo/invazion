@@ -235,6 +235,9 @@ function htmlCitizensImages(nbrCitizens) {
  */
 async function addCitiesOnMap(mapId) {
     
+    // #233 is the ID for the "Undiscovered building" in the API.
+    let undiscoveredBuildingId = 233;
+    
     // Get the cities of the map by calling the Invazion's API
     _cities = await getMapCitiesOnce(mapId);
     
@@ -301,7 +304,10 @@ async function addCitiesOnMap(mapId) {
         else if(city.city_type_id !== "undefined") {
             
             let html = "";
-            if(parseInt(zone.closest(".square_container").dataset.cyclelastvisit) < getCurrentCycle()) {
+            if(city.city_type_id === undiscoveredBuildingId) {
+                html = "";
+            }
+            else if(parseInt(zone.closest(".square_container").dataset.cyclelastvisit) < getCurrentCycle()) {
                 html = `<span class="nbr_defenses diggable pulse">&#x26CF;&#xFE0F;</span>`;
             }
             else {
@@ -320,10 +326,16 @@ async function addCitiesOnMap(mapId) {
         
         // Adds the building description in the bubble of the zone
         zone.querySelector(".roleplay").innerHTML = `<h5 class="name">${buildingName}</h5><hr><div class="descr_ambiance">${buildingDescr}</div>`;
-        // Put the tile higher than its neighbors
-        zone.closest(".hexagon").classList.add("ground_city", "elevate");
         // Make the building's zone always visible, even when never visited
         zone.closest(".hexagon").style.opacity = 1;
+        
+        // The building is displayed differently depending on whether its zone 
+        // has been discovered or not.
+        if(city.city_type_id === undiscoveredBuildingId) {
+            zone.closest(".hexagon").style.background = "none";
+        } else {
+            zone.closest(".hexagon").classList.add("ground_city", "elevate");
+        }
         
         zone.dataset.cityid = cityId;
         // Used to memorize the type of building in HTML
