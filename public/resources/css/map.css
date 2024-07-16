@@ -536,9 +536,13 @@ map_body_wrapper {
 }
 #map .zombies {
     position:absolute;
+    margin-top: 0.5rem;
     font-weight:bold;
     color:darkred;
     opacity:0.7;
+}
+#map .zombies img {
+    height: 30px;
 }
 
 /*
@@ -651,7 +655,7 @@ map_body_wrapper {
 }
 .map_citizen img {
     position:relative;
-    top:-2.1em;
+    top:-2em;
     height:48px;
 }
 #explosionMe {
