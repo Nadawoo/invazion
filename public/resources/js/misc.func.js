@@ -8,20 +8,29 @@
 /**
  * Show/hide the given element by clicking on a button
  * 
- * @param {string} elementName The ID or class of the element to show/hide.
- *                             Don't forget the # or . before the ID or class name.
+ * @param {string|array} elementsNames The list of HTML IDs or classes to show/hide.
+ *                          Can be a string if only one ID or class to show/hide.
+ *                          In both cases, don't forget the # or . before each ID or class name.
  */
-function toggle(elementName) {
+function toggle(elementsNames) {
     
-    var elements = document.querySelectorAll(elementName);
-    // If the element is a class and not an ID, we need a loop to treat all the ocurrencies
-    for(i=0;i<elements.length;i++) {
-        // getComputedStyle(...) récupère la propriété en tenant compte de la CSS.
-        // Un simple getElementById(...).style ne tiendrait compte que des
-        // styles en ligne dans le HTML.
-//        var current_display = window.getComputedStyle(elements[i]).display;
-//        elements[i].style.display = (current_display === "none") ? visibleValue : "none";
-        elements[i].classList.toggle("hidden");
+    if(typeof(elementsNames) === "object") {
+        // If elementsNames is a list of IDs or classes, treat each one.
+        for(let i=0; i<elementsNames.length; i++) {
+            var occurrencies = document.querySelectorAll(elementsNames);
+            // If the element is a class and not an ID, we need a loop to treat all the ocurrencies
+            for(i=0;i<occurrencies.length;i++) {
+                occurrencies[i].classList.toggle("hidden");
+            }
+        }
+    }
+    else {
+        // If elementsNames is only one ID or class
+        var occurrencies = document.querySelectorAll(elementsNames);
+        // If the element is a class and not an ID, we need a loop to treat all the ocurrencies
+        for(i=0;i<occurrencies.length;i++) {
+            occurrencies[i].classList.toggle("hidden");
+        }
     }
 }
 
