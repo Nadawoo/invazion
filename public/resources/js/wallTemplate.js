@@ -32,7 +32,8 @@ function htmlDiscussion(topicId, topicType, nbrReplies) {
                 <a class="replyButton" href="#" onclick="displayReplyForm('+topicId+')">\
                     Commenter\
                 </a>\
-                <form class="sendform" method="post" action="" onsubmit="replyDiscussion('+topicId+', '+(nbrReplies+1)+'); return false;">\
+                <form class="sendform hidden" method="post" action="" \
+                      onsubmit="replyDiscussion('+topicId+', '+(nbrReplies+1)+'); return false;">\
                     <div class="replyError"></div>\
                     <textarea placeholder="Écrivez votre réponse ici"></textarea>\
                     <input type="submit" value="Envoyer la réponse" class="redbutton">\
@@ -112,9 +113,10 @@ function htmlNewDiscussionForm(citizenPseudo)
             <span class="material-icons">send</span>\
             <input type="text" placeholder="Envoyer un message...">\
         </div>\
-        <div id="send" class="topic discuss" style="display:none">\
+        <div id="send" class="topic discuss hidden">\
             <h3><span onclick="toggle([\'#titleNew\', \'#send h3 span\']);document.querySelector(\'#titleNew\').focus()">Nouvelle discussion &#x270F;&#xFE0F;</span>\
-                <input type="text" id="titleNew" placeholder="Titre de la discussion (facultatif)">\
+                <input type="text" id="titleNew" class="hidden"\
+                       placeholder="Titre de la discussion (facultatif)">\
                 <a href="#" id="hideSendform" class="close z-depth-1">X</a>\
             </h3>\
             <div class="message">\

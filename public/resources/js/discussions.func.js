@@ -127,8 +127,8 @@ async function createDiscussion() {
 function displayReplyForm(topicId) {
     
     let thread = document.querySelector(`#topic${topicId}`);
-    thread.querySelector('.replyButton').style.display = 'none';
-    thread.querySelector('.sendform').style.display = 'block';
+    thread.querySelector('.replyButton').classList.add('hidden');
+    thread.querySelector('.sendform').classList.remove('hidden');
     thread.querySelector('textarea').focus();
 }
 
@@ -173,7 +173,7 @@ function toggleSendform(event) {
     
     // Display the form for writing a new thread
     toggle("#send");
-    toggle("#sendform");
+//    toggle("#sendform");
     toggle("#buttonNewTopic");
     // Hide other elements to keep the view clear
     toggle("#wall .tabs");

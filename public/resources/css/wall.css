@@ -206,10 +206,6 @@
 #wall .discuss .time {
     margin-left:2.1em;
 }
-#wall .discuss form,
-#wall .event form {
-    display:none;
-}
 #send {
     padding:0.1em;
 }
@@ -218,7 +214,6 @@
     font-size:1.3em;
 }
 #send h3 input {
-    display:none;
     margin:0;
 }
 #send .close {
