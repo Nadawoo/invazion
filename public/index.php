@@ -12,6 +12,7 @@ $layout             = new HtmlLayout();
 $actionBlocks       = new HtmlActionBlocks();
 $actionCards        = new HtmlActionCards();
 $map                = new HtmlMap();
+$legends            = new HtmlMapLegends();
 $statusbar          = new HtmlStatusBar();
 $enclosure          = new HtmlCityEnclosure();
 $constructionCards  = new HtmlCityConstructionCards();
@@ -358,7 +359,7 @@ echo $html['json_configs'];
         </section>
         
         <ul id="views_bar">
-            <li class="map active" onclick="toggle('#map_navigation');toggle('#game_footer');this.classList.toggle('active')">
+            <li class="map active" onclick="toggle('#map_navigation');toggle('#game_footer');toggle('.map_legend');this.classList.toggle('active')">
                 <button>&#x1F9ED;</button></li>
             <li id="action_mode_button" class="my_zone">
                 <button style="left:0.25rem;">
@@ -385,37 +386,7 @@ echo $html['json_configs'];
             <?php echo $layout->block_map_navigation() ?>
         </div>
         
-        <fieldset id="map_legend_zombies" class="map_legend">
-            <legend>Légende</legend>
-            <a href="#popcontrol" style="color:inherit">
-                <ul>
-                    <li><span style="background:grey"></span> Zone sûre (aucun zombie)</li>
-                    <li><span style="background:green"></span> Zone sûre (peu de zombies)</li>
-                    <li><span style="background:orange"></span> 2 humains requis ou +</li>
-                    <li><span style="background:red"></span> 3 humains requis ou +</li>
-                    <li><span style="background:darkred"></span> 4 humains requis ou +</li>
-                </ul>
-            </a>
-        </fieldset>
-        <fieldset id="map_legend_items" class="map_legend">
-            <legend>Légende</legend>
-            <a href="#Outside" style="color:inherit">
-                <ul>
-                    <li>&#x1F97E; Zone visitée aujourd'hui</li>
-                    <li>&#x26CF;&#xFE0F; Zone fouillable</li>
-                    <li><span style="background:black;border-radius:0"></span>&nbsp;Zone à découvrir</li>
-                </ul>
-                <hr>
-                <strong>Objets au sol :</strong>
-                <ul>
-                    <li><span style="background:grey"></span> Aucun objet</li>
-                    <li><span style="background:green"></span> 1-5 objets (1 sac)</li>
-                    <li><span style="background:orange"></span> 6-10 objets (2 sacs)</li>
-                    <li><span style="background:red"></span> 11-15 objets (3 sacs)</li>
-                    <li><span style="background:darkred"></span> 16 objets ou +</li>
-                </ul>
-            </a>
-        </fieldset>
+        <?php echo $legends->all_legends() ?>
         
         <div id="actions_panel">
             <div id="round_actions">
