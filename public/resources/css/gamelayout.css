@@ -129,7 +129,7 @@
     width:100%;
     max-width: 51.25em;
     max-height:3.5rem;
-    background:linear-gradient(to top, grey, lightgrey); /*#4a235a*/
+    background:linear-gradient(to top, #17202A, #34495E); /*#4a235a*/
     border-top:1px ridge dimgrey;
     color:lightgrey;
     box-shadow:3px 3px 8px black;
@@ -146,8 +146,8 @@
     align-items: center;
     height:3.2rem;
     margin:0.1rem;
-    border:2px outset black;
-    color:black;
+    border:2px outset white;
+    color:white;
     box-shadow: 3px 3px 5px black;
 }
 #appMenu,
