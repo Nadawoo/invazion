@@ -432,6 +432,7 @@ map_body_wrapper {
     display:block;
     position:absolute;
     bottom:12px;
+    z-index: 1;
 }
 
 #map .nbr_defenses {

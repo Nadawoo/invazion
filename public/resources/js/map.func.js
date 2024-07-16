@@ -493,7 +493,7 @@ function activateMapZombiesView() {
     // Displays the number of zombies on each zone
     unhideClasses(["zombies_amount"]);
     // Hides the icons of zombies, because they are above the colored background
-    hideClasses(["zombies"]);
+    hideClasses(["zombies", "nbr_defenses"]);
 }
 
 
@@ -667,7 +667,7 @@ function activateMapItemsView() {
         itemsAmount.style.background = color;
         
         // Hides the zombies, because they are above the colored background
-        hideClasses(["zombies"]);
+        hideClasses(["zombies", "nbr_defenses"]);
         hideIds(["attack_bar", "tasks_button"]);
     }
 }
