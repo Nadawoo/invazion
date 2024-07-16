@@ -766,7 +766,7 @@ function resetMapView() {
     desactivateMapPathsView();
     window.isMapPathsViewActive = false;
     
-    toggle("#tasks_button", "flex");
+    toggle("#tasks_button");
     
     window.isMapNeighborhoodViewActive = true;
     toggleMapNeighborhoodView();

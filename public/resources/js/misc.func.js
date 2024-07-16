@@ -6,13 +6,12 @@
 
 
 /**
- * Afficher/masquer l'élement indiqué en cliquant sur un lien
+ * Show/hide the given element by clicking on a button
  * 
- * @param {string} elementName  L'id ou la classe HTML de l'élément à afficher/masquer
- * @param {string} visibleValue (Optional) The CSS type of the block when visible: 
- *                              "block", "inline-block", "flex"...
+ * @param {string} elementName The ID or class of the element to show/hide.
+ *                             Don't forget the # or . before the ID or class name.
  */
-function toggle(elementName, visibleValue="block") {
+function toggle(elementName) {
     
     var elements = document.querySelectorAll(elementName);
     // If the element is a class and not an ID, we need a loop to treat all the ocurrencies

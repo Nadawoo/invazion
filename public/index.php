@@ -358,12 +358,12 @@ echo $html['json_configs'];
         </section>
         
         <ul id="views_bar">
-            <li class="map active" onclick="toggle('#map_navigation', 'flex');toggle('#game_footer');this.classList.toggle('active')">
+            <li class="map active" onclick="toggle('#map_navigation');toggle('#game_footer');this.classList.toggle('active')">
                 <button>&#x1F9ED;</button></li>
             <li id="action_mode_button" class="my_zone">
                 <button><img src="resources/img/free/human.png" height="48"></button>
             </li>
-            <li class="paths" onclick="toggle('#paths_bar', 'flex');this.classList.toggle('active')">
+            <li class="paths" onclick="toggle('#paths_bar');this.classList.toggle('active')">
                 <button>&#x1F97E;</button>
             </li>
         </ul>
