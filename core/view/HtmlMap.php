@@ -270,8 +270,8 @@ class HtmlMap
             // Default ground for the never visited zones
             $ground = '';
         }
-        elseif ($cell['zombies'] > 0) {
-            // If there are 1 zombies or more, the ground is always the same for map clarity
+        elseif ($cell['zombies'] >= 5) {
+            // If there are a lot of zombies in the zone, the ground turns to grey
             $ground = 'ground_zombies';
         }
         elseif($cell['land'] === null) {
