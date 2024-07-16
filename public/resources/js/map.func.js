@@ -489,6 +489,7 @@ function activateMapZombiesView() {
         }
     }
     
+    hideIds(["attack_bar", "tasks_button"]);
     // Displays the number of zombies on each zone
     unhideClasses(["zombies_amount"]);
     // Hides the icons of zombies, because they are above the colored background
@@ -667,6 +668,7 @@ function activateMapItemsView() {
         
         // Hides the zombies, because they are above the colored background
         hideClasses(["zombies"]);
+        hideIds(["attack_bar", "tasks_button"]);
     }
 }
 
@@ -766,7 +768,8 @@ function resetMapView() {
     desactivateMapPathsView();
     window.isMapPathsViewActive = false;
     
-    toggle("#tasks_button");
+    unhideId("attack_bar");
+    unhideId("tasks_button");
     
     window.isMapNeighborhoodViewActive = true;
     toggleMapNeighborhoodView();
