@@ -356,13 +356,24 @@ echo $html['json_configs'];
                 ?>
             </div>
         </section>
-    
+        
+        <ul id="views_bar">
+            <li class="map active" onclick="toggle('#map_navigation', 'flex');toggle('#game_footer');this.classList.toggle('active')">
+                <button>&#x1F9ED;</button></li>
+            <li id="action_mode_button" class="my_zone">
+                <button><img src="resources/img/free/human.png" height="48"></button>
+            </li>
+            <li class="paths" onclick="toggle('#paths_bar', 'flex');this.classList.toggle('active')">
+                <button>&#x1F97E;</button>
+            </li>
+        </ul>
+        
         <?php
         if($citizen['citizen_id'] !== null) {
             ?>
             <div id="resizeMap">
                 <button id="map_mode_button" style="display:none"><i class="material-icons">zoom_out_map</i></button>
-                <button id="action_mode_button"><i class="material-icons">zoom_in_map</i></button>
+                <!-- <button id="action_mode_button"><i class="material-icons">zoom_in_map</i></button> -->
             </div>
             <?php
         } ?>

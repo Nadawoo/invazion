@@ -20,9 +20,9 @@ function toggle(elementName, visibleValue="block") {
         // getComputedStyle(...) récupère la propriété en tenant compte de la CSS.
         // Un simple getElementById(...).style ne tiendrait compte que des
         // styles en ligne dans le HTML.
-        var current_display = window.getComputedStyle(elements[i]).display;
-
-        elements[i].style.display = (current_display === "none") ? visibleValue : "none";
+//        var current_display = window.getComputedStyle(elements[i]).display;
+//        elements[i].style.display = (current_display === "none") ? visibleValue : "none";
+        elements[i].classList.toggle("hidden");
     }
 }
 

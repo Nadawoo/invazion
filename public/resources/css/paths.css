@@ -148,17 +148,19 @@
  * Display the horizontal bar for the expeditions
  */
 #paths_bar {
-    position:absolute;
-    top:0;
-    width:100%;
     display:flex;
+    position:absolute;
+    bottom:0;
+    width:100%;
     gap:0.5em;
     padding:1px 5em 1px 1px;
-    background:#4a235a;
+    background:grey; /*#4a235a*/
     border-top: 1px solid grey;
     border-bottom:1px solid grey;
+    outline:1px solid white;
     max-width:100%;
     overflow:auto;
+    z-index:1;
 }
 #paths_bar .paths {
     display:flex;
@@ -171,7 +173,7 @@
     text-align:center;
     border-radius:0.3em;
     box-shadow: 4px 4px 8px black;
-    opacity:0.7;
+    opacity:0.8;
     cursor:pointer; /* The inactive expeditions are fully clickable to activate them */
 }
 #paths_bar .path.active {

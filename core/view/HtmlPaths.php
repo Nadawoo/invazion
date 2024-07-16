@@ -75,7 +75,7 @@ class HtmlPaths {
     function paths_bar() {
         
         return '
-        <div id="paths_bar">
+        <div id="paths_bar" class="hidden">
 
             <div class="paths"></div>
             

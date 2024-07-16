@@ -881,19 +881,21 @@ function switchToActionView() {
     display(["actions_panel"]);
     changeDisplayValue("personal_block_wrapper", "flex");
     // Hide some elements of the GUI to make the interface look lighter
-    hide(["map_navigation", "tasks_button", "game_footer"]);
+    hide(["views_bar", "map_navigation", "tasks_button", "game_footer"]);
     hideClasses(["nbr_defenses", "bubble"]);
     desactivateMapPathsView();
     // Display the button which switches to the Map mode
-    hide(["action_mode_button"]);
     changeDisplayValue("map_mode_button", "flex");
+    // Remove the illumination on the button which displays the map navigation
+    document.querySelector("#views_bar .map").classList.remove("active");     
+    document.querySelector("#views_bar .paths").classList.remove("active");
     
     updateActionBlocks();
 }
 
 
 /*
- * Unzoom todisplay the large map
+ * Unzoom to display the large map
  */
 function switchToMapView() {
     // Display the large map (unzoom)
@@ -902,12 +904,12 @@ function switchToMapView() {
     // Hide the actions panel in large mode
     hide(["actions_panel", "personal_block_wrapper"]);
     // Display again the general elements of the GUI
-    changeDisplayValue(["map_navigation", "tasks_button", "game_footer"], "flex");
+    changeDisplayValue(["views_bar", "map_navigation", "tasks_button", "game_footer"], "flex");
     unhideClasses(["nbr_defenses", "bubble"]);
     // Display the button which switches to the Action mode
     hide(["map_mode_button"]);
-    unhideId("paths_bar");
     unhideId("attack_bar");
-    changeDisplayValue("action_mode_button", "flex");
+    // Restore the illumination on the button which displays the map navigation
+    document.querySelector("#views_bar .map").classList.add("active");  
 }
 
