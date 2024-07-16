@@ -94,11 +94,11 @@
     box-shadow: 12px 12px 12px black;
 }
 #views_bar button {
+    position:relative;
     border:none;
     background:none;
     font-family:auto;
     display:flex;
-    align-items: center;
 }
 #views_bar .my_zone {
     height: 4rem;

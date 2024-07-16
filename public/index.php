@@ -361,7 +361,10 @@ echo $html['json_configs'];
             <li class="map active" onclick="toggle('#map_navigation');toggle('#game_footer');this.classList.toggle('active')">
                 <button>&#x1F9ED;</button></li>
             <li id="action_mode_button" class="my_zone">
-                <button><img src="resources/img/free/human.png" height="48"></button>
+                <button style="left:0.25rem;">
+                    <span style="position:absolute;top:0.5rem;left:-0.95rem;font-size:0.6em">&#x26CF;&#xFE0F;</span>
+                    <img src="resources/img/free/human.png" height="48">
+                </button>
             </li>
             <li class="paths" onclick="toggle('#paths_bar');this.classList.toggle('active')">
                 <button>&#x1F97E;</button>
