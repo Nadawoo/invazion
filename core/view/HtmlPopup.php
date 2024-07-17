@@ -182,7 +182,7 @@ class HtmlPopup
         $buttons = new HtmlButtons();
         
         $goals = [
-                        [
+            [
             'icon'  => "&#x2753;",
             'title' => "Principe du jeu",
             'text'  => "Les zombies attaquent la ville chaque soir. Vous devez
@@ -213,34 +213,34 @@ class HtmlPopup
             [
             'icon'  => "&#x1F9F1;",
             'title' => "Construire le Mur d'enceinte",
-            'text'  => "Les zombies attendus ce soir sont plus nombreux que "
-                     . "les défenses de la ville. Augmentez les défenses en construisant"
-                     . " le chantier « Mur d'enceinte »."
+            'text'  => "Les zombies attendus ce soir sont plus nombreux que 
+                        les défenses de la ville. Augmentez les défenses en construisant
+                        le chantier « Mur d'enceinte »."
             ],
             [
             'icon'  => "&#x1F6B0;",
             'title' => "Construire le Puits",
-            'text'  => "Construisez un puits pour accéder aux réserves d'eau de la ville."
-                     . "L'eau vous donnera de l'énergie pour les constructions suivantes."
+            'text'  => "Construisez un puits pour accéder aux réserves d'eau de la ville.
+                        L'eau vous donnera de l'énergie pour les constructions suivantes."
             ],
             [
             'icon'  => "&#x1F4A7;",
             'title' => "Boire une ration d'eau",
-            'text'  => "Prenez une ration d'eau dans le puits et buvez-la"
-                     . "afin de récupérer de l'énergie."
+            'text'  => "Prenez une ration d'eau dans le puits et buvez-la
+                        afin de récupérer de l'énergie."
             ],
             [
             'icon'  => "&#x1F6A7;",
             'title' => "Construire la Porte de la ville",
-            'text'  => "Construisez la porte pour augmenter à nouveau les défenses "
-                     . "de la ville."
+            'text'  => "Construisez la porte pour augmenter à nouveau les défenses 
+                        de la ville."
             ],
             [
             'icon'  => "&#x1F512;",
             'title' => "Fermer la porte de la ville",
-            'text'  => "Fermez la porte de la ville pour activer les défenses "
-                     . "avant l'attaque zombie du soir. Si la porte est ouverte, "
-                     . "au moment de l'attaque, les défenses seront totalement inefficaces !"
+            'text'  => "Fermez la porte de la ville pour activer les défenses 
+                        avant l'attaque zombie du soir. Si la porte est ouverte, 
+                        au moment de l'attaque, les défenses seront totalement inefficaces !"
             ],
             [
             'icon'  => "&#x1F9DF;",
@@ -256,12 +256,12 @@ class HtmlPopup
             [
             'icon'  => "&#x1F6E1;&#xFE0F;",
             'title' => "Ajouter XX défenses à la ville",
-            'text'  => "Vous devez ajouter <strong>XX défenses</strong> à la ville "
-                . "pour repousser <strong><a href=\"#popattack\">l'attaque zombie</a></strong> "
-                . "de ce soir.<br><br>"
-                . "► Construisez des chantiers de défense en ville.<br>"
-                . "► Vous aurez sans doute besoin d'explorer le désert "
-                . "pour récupérer les matériaux nécessaires."
+            'text'  => "Vous devez ajouter <strong>XX défenses</strong> à la ville 
+                        pour repousser <strong><a href=\"#popattack\">l'attaque zombie</a></strong> 
+                        de ce soir.<br><br>
+                        ► Construisez des chantiers de défense en ville.<br>
+                        ► Vous aurez sans doute besoin d'explorer le désert 
+                        pour récupérer les matériaux nécessaires."
             ],
             [
             'icon'  => "&#x1F97E;",
