@@ -1,6 +1,7 @@
 <?php
 require_once 'HtmlButtons.php';
 require_once 'HtmlCollapsible.php';
+safely_require('/core/model/Tasks.php');
 
 
 class HtmlPopup
@@ -179,137 +180,34 @@ class HtmlPopup
     
     private function poptasks() {   
         
-        $buttons = new HtmlButtons();
-        
-        $goals = [
-            [
-            'icon'  => "&#x2753;",
-            'title' => "Principe du jeu",
-            'text'  => "Les zombies attaquent la ville chaque soir. Vous devez
-                        renforcer ses défenses en y construisant les chantiers disponibles.
-                        Les matériaux nécessaires doivent être collectés hors de la ville,
-                        dans le désert hostile.<br>
-                        <a href=\"#popattack\">[En savoir plus...]</a>"
-            ],
-            [
-            'icon'  => "&#x1F3E2;",
-            'title' => "Découvrir 10 bâtiments",
-            'text'  => "Découvrez les 10 bâtiments dissimulés dans le désert, 
-                        avant que les zombies n'anéantissent votre ville."
-            ],
-            [
-            'icon'  => "&#x1F6E1;&#xFE0F;",
-            'title' => "Contrôler 10 bâtiments pendant 5 jours",
-            'text'  => "Si vous maintenez sous contrôle <strong>10 bâtiments</strong>
-                        pendant <strong>5 jours</strong> consécutifs,
-                        la carte sera considérée comme sécurisée et vous remporterez 
-                        la partie. Un bâtiment est sous contrôle tant que son nombre 
-                        de <a href=\"#popcontrol\"><strong>points de contrôle</strong></a>
-                        est supérieur à celui des zombies dans la zone."
-            ],
-        ];
-        
-        $tuto_city = [
-            [
-            'icon'  => "&#x1F9F1;",
-            'title' => "Construire le Mur d'enceinte",
-            'text'  => "Les zombies attendus ce soir sont plus nombreux que 
-                        les défenses de la ville. Augmentez les défenses en construisant
-                        le chantier « Mur d'enceinte »."
-            ],
-            [
-            'icon'  => "&#x1F6B0;",
-            'title' => "Construire le Puits",
-            'text'  => "Construisez un puits pour accéder aux réserves d'eau de la ville.
-                        L'eau vous donnera de l'énergie pour les constructions suivantes."
-            ],
-            [
-            'icon'  => "&#x1F4A7;",
-            'title' => "Boire une ration d'eau",
-            'text'  => "Prenez une ration d'eau dans le puits et buvez-la
-                        afin de récupérer de l'énergie."
-            ],
-            [
-            'icon'  => "&#x1F6A7;",
-            'title' => "Construire la Porte de la ville",
-            'text'  => "Construisez la porte pour augmenter à nouveau les défenses 
-                        de la ville."
-            ],
-            [
-            'icon'  => "&#x1F512;",
-            'title' => "Fermer la porte de la ville",
-            'text'  => "Fermez la porte de la ville pour activer les défenses 
-                        avant l'attaque zombie du soir. Si la porte est ouverte, 
-                        au moment de l'attaque, les défenses seront totalement inefficaces !"
-            ],
-            [
-            'icon'  => "&#x1F9DF;",
-            'title' => "Déclencher l'attaque zombie",
-            'text'  => "Déclenchez l'attaque zombie afin de passer au jour suivant.
-                        Si vous survivez, vos points d'action seront rechargés
-                        et vous pourrez réaliser de nouvelles actions.
-                        <p>".$buttons->button('end_cycle', false)."</p>"
-            ],
-        ];
-        
-        $tasks = [
-            [
-            'icon'  => "&#x1F6E1;&#xFE0F;",
-            'title' => "Ajouter XX défenses à la ville",
-            'text'  => "Vous devez ajouter <strong>XX défenses</strong> à la ville 
-                        pour repousser <strong><a href=\"#popattack\">l'attaque zombie</a></strong> 
-                        de ce soir.<br><br>
-                        ► Construisez des chantiers de défense en ville.<br>
-                        ► Vous aurez sans doute besoin d'explorer le désert 
-                        pour récupérer les matériaux nécessaires."
-            ],
-            [
-            'icon'  => "&#x1F97E;",
-            'title' => "Sortir de la ville",
-            'text'  => "Sortez aux portes de la ville afin de préparer votre exploration 
-                        du désert environnant."
-            ],
-            [
-            'icon'  => "&#x1F9ED;",
-            'title' => "Tracer une expédition",
-            'text'  => "Tracez un itinéraire d'expédition qui vous permettra de déplacer
-                        vos citoyens vers les zones du désert que vous voulez explorer."
-            ],
-            [
-            'icon'  => "&#x1FAB5;",
-            'title' => "Collecter des ressources",
-            'text'  => "Déplacez-vous dans le désert et fouillez chaque zone sur votre chemin.
-                        Ramassez les objets utiles que vous trouvez."
-            ],
-            [
-            'icon'  => "&#x1F306;",
-            'title' => "Ramener les ressources en ville",
-            'text'  => "Ramenez au dépôt de la ville les objets que vous avez ramassés
-                        au cours de votre exploration du désert."
-            ],
-            [
-            'icon'  => "&#x1F9DF;",
-            'title' => "Survivre à l'attaque du soir",
-            'text'  => "Une fois que vous avez consommé 
-                        les <a href=\"#popmove\"><strong>points d'action</strong></a>
-                        de vos citoyens, vous pouvez déclencher
-                        <a href=\"#popattack\"><strong>l'attaque zombie</strong></a>.
-                        Si vous survivez, vos points d'action seront rechargés 
-                        pour une nouvelle journée.
-                        <p>".$buttons->button('end_cycle', false)."</p>"
-            ],
-        ];
-        
         $htmlCollapsible = new HtmlCollapsible();
+        $tasks = new Tasks();
+        
+        // Define here your sets of tasks (main goals, tutorial for the city, daily tasks...).
+        // 'tasks_ids' must exist as keys in the Tasks()->set_tasks() method.
+        // 'last_unlocked_task_id' is the ID of the last tasks accomplished by 
+        // the player. The values are harcoded for now for the developement purposes, 
+        // later they will be stored in the database.
+        $tasks_caracs = [
+            'goals'         => ['tasks_ids' => [1, 2, 3],
+                                'last_unlocked_task_id' => null
+                                ],
+            'tuto_city'     => ['tasks_ids' => [4, 5, 6, 7, 8, 9],
+                                'last_unlocked_task_id' => null
+                                ],
+            'daily_tasks'   => ['tasks_ids' => [10, 11, 12, 13, 14, 15, 16],
+                                'last_unlocked_task_id' => null
+                                ],
+        ];
+        
+        $goals       = $tasks->get_unlocked_tasks($tasks_caracs['goals']['tasks_ids'],
+                                                  $tasks_caracs['goals']['last_unlocked_task_id']);
+        $tuto_city   = $tasks->get_unlocked_tasks($tasks_caracs['tuto_city']['tasks_ids'],
+                                                  $tasks_caracs['tuto_city']['last_unlocked_task_id']);
+        $daily_tasks = $tasks->get_unlocked_tasks($tasks_caracs['daily_tasks']['tasks_ids'],
+                                                  $tasks_caracs['daily_tasks']['last_unlocked_task_id']);
         
         return "
-            <p class=\"aside\">
-                [Note du développeur : ces tâches ne sont, pour le moment, 
-                pas encore interactives (pas de filtrage en fonction du contexte,
-                pas de liens d'aide à l'action, pas de masquage une fois terminées).
-                Elles seront améliorées plus tard. En attendant, vous pouvez 
-                les accomplir dans l'ordre de la liste.]
-            </p>
             <h5>Objectifs principaux</h5>
             ".$htmlCollapsible->items($goals)."
             <br>
@@ -317,12 +215,12 @@ class HtmlPopup
             ".$htmlCollapsible->items($tuto_city)."
             <br>
             <h5>Tâches quotidiennes</h5>
-            ".$htmlCollapsible->items($tasks);
+            ".$htmlCollapsible->items($daily_tasks);
     }
     
     
     /**
-     * pop-up displayed when the citizen has been killed
+     * Pop-up displayed when the citizen has been killed
      * 
      * @param string $unvalidated_death_cause The alias of the cause of death,
      *                                        as returned by the API
