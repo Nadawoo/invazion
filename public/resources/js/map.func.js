@@ -294,10 +294,18 @@ async function addCitiesOnMap(mapId) {
         // (#12 = ID of the "human city" building)
         else if(city.city_type_id === 12) {
             let nbrDefenses = city.total_defenses,
-                nbrItems = zone.dataset.items;
-        
-            if(nbrDefenses > 0 || nbrItems > 0) {
-                zone.insertAdjacentHTML("afterbegin", `<span class="nbr_defenses">&#128737;&#65039;${nbrDefenses} <span class="grey-text">|</span>&#x1F392;${nbrItems}</span>`);
+                nbrItems = zone.dataset.items,
+                nbrZombiesNextAttack = zone.dataset.zombies,
+                defensesExcedent = nbrDefenses - nbrZombiesNextAttack;
+            
+            // Display the label above the map only if the city has at least one defense
+            if(nbrDefenses > 0) {
+                if(defensesExcedent >= 0) {
+                    htmlNbrDefenses = `<span class="nbr_defenses">&#x2705;Sécurisé</span>`;
+                } else {
+                    htmlNbrDefenses = `<span class="nbr_defenses" style="background:darkred">&nbsp; ${defensesExcedent}&#128737;&#65039;</span>`;
+                }
+                zone.insertAdjacentHTML("afterbegin", `${htmlNbrDefenses}`);
             }
         }
         // Adds the number of items remaining inside the explorable building
