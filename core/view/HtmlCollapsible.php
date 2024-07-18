@@ -19,11 +19,11 @@ class HtmlCollapsible
      *                     ]
      * @return string HTML
      */
-    public function items($items) {
+    public function items($items, $html_id_prefix=null) {
         
         $html_items = '';
-        foreach($items as $item) {
-            $html_items .= $this->item($item['icon'], $item['title'], $item['text']);
+        foreach($items as $key=>$item) {
+            $html_items .= $this->item($item['icon'], $item['title'], $item['text'], $html_id_prefix.$key);
         }
         
         return '
@@ -41,12 +41,12 @@ class HtmlCollapsible
      * @param string $text The text of the element displayed when unfolded
      * @return string HTML
      */
-    private function item($icon, $title, $text) {
+    private function item($icon, $title, $text, $html_id) {
         
         return '
-            <li>
+            <li id="'.$html_id.'">
                 <div class="collapsible-header">
-                    <strong>'.$icon.' '.$title.'</strong>
+                    <strong><span class="icon">'.$icon.'</span> '.$title.'</strong>
                     <i class="material-icons">chevron_right</i>
                 </div>
                 <div class="collapsible-body">

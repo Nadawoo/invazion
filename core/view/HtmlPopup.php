@@ -214,14 +214,14 @@ class HtmlPopup
         
         return "
             <h5>Objectifs principaux</h5>
-            ".$htmlCollapsible->items($goals)."
-            ".$htmlCollapsible->items($defenses_tasks)."
+            ".$htmlCollapsible->items($goals, 'task')."
+            ".$htmlCollapsible->items($defenses_tasks, 'task')."
             <br>
             <h5>Tutoriel : la ville</h5>
-            ".$htmlCollapsible->items($tuto_city)."
+            ".$htmlCollapsible->items($tuto_city, 'task')."
             <br>
             <h5>Tâches quotidiennes</h5>
-            ".$htmlCollapsible->items($daily_tasks);
+            ".$htmlCollapsible->items($daily_tasks, 'task');
     }
     
     

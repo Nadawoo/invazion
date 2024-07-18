@@ -168,14 +168,13 @@ class Tasks {
                 'next_task_id' => null,
                 ],
             10 => [
-                'icon'  => "&#x1F6E1;&#xFE0F;",
-                'title' => "Ajouter XX défenses à la ville",
-                'text'  => "Vous devez ajouter <strong>XX défenses</strong> à la ville 
-                            pour repousser <strong><a href=\"#popattack\">l'attaque zombie</a></strong> 
-                            de ce soir.<br><br>
-                            ► Construisez des chantiers de défense en ville.<br>
-                            ► Vous aurez sans doute besoin d'explorer le désert 
-                            pour récupérer les matériaux nécessaires.",
+                'icon'  => "&#x26A0;&#xFE0F;",
+                'title' => "Ajouter <span class=\"nbr_missing_defenses\"></span> défenses
+                            à la ville",
+                'text'  => "Vous devez augmenter les défenses de la ville pour repousser 
+                            les <a href=\"#popattack\" class=\"bold\"><span class=\"nbr_zombies\"></span> zombies</a>
+                            qui vont attaquer la ville ce soir. Construisez
+                            des <strong>chantiers de défense</strong></a>.",
                 'next_task_id' => null,
                 ],
             11 => [

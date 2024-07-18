@@ -106,14 +106,14 @@ $map->set_config_buildings($configs['buildings']);
 
 
 // If the player is connected and has already created his citizen
-if ($citizen['citizen_id'] !== NULL) {
+if ($citizen['citizen_id'] !== null) {
     
     $zone_fellows       = $citizens_by_coord[$citizen['coord_x'].'_'.$citizen['coord_y']];
     $zone               = $maps['zones'][$citizen['coord_x'].'_'.$citizen['coord_y']];
     $healing_items      = $sort->filter_bag_items('healing_wound', $configs['items'], $citizen['bag_items']);
     
     // If the citizen is inside a city
-    if ($citizen['inside_city_id'] !== NULL) {
+    if ($citizen['inside_city_id'] !== null) {
         // Gets the characteristics of this city (well, storage...)
         $cities_data  = $api->call_api('cities', 'get', ['map_id'=>$citizen['map_id']])['datas'];
         $items_inside_constructions = $api->call_api('items', 'get', [])['datas'];

@@ -109,6 +109,9 @@ if (document.getElementById('map') !== null) {
             if(myCityZoneId !== null) {
                 updateLineBetweenZones("myCity", "#me", "#"+myCityZoneId);
             }
+            // Add the number of defenses required in the tasks list
+            let tasks = new Tasks();
+            tasks.populateTaskDefenses();
         }, 1000);
     }
     
