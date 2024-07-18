@@ -195,7 +195,10 @@ class HtmlPopup
             'tuto_city'     => ['tasks_ids' => [4, 5, 6, 7, 8, 9],
                                 'last_unlocked_task_id' => null
                                 ],
-            'daily_tasks'   => ['tasks_ids' => [10, 11, 12, 13, 14, 15, 16],
+            'defenses_tasks' => ['tasks_ids' => [10],
+                                'last_unlocked_task_id' => null
+                                ],
+            'daily_tasks'   => ['tasks_ids' => [11, 12, 13, 14, 15, 16],
                                 'last_unlocked_task_id' => null
                                 ],
         ];
@@ -204,12 +207,15 @@ class HtmlPopup
                                                   $tasks_caracs['goals']['last_unlocked_task_id']);
         $tuto_city   = $tasks->get_unlocked_tasks($tasks_caracs['tuto_city']['tasks_ids'],
                                                   $tasks_caracs['tuto_city']['last_unlocked_task_id']);
+        $defenses_tasks = $tasks->get_unlocked_tasks($tasks_caracs['defenses_tasks']['tasks_ids'],
+                                                     $tasks_caracs['defenses_tasks']['last_unlocked_task_id']);
         $daily_tasks = $tasks->get_unlocked_tasks($tasks_caracs['daily_tasks']['tasks_ids'],
                                                   $tasks_caracs['daily_tasks']['last_unlocked_task_id']);
         
         return "
             <h5>Objectifs principaux</h5>
             ".$htmlCollapsible->items($goals)."
+            ".$htmlCollapsible->items($defenses_tasks)."
             <br>
             <h5>Tutoriel : la ville</h5>
             ".$htmlCollapsible->items($tuto_city)."
