@@ -195,6 +195,12 @@ class HtmlPopup
             'tuto_city'     => ['tasks_ids' => [4, 5, 6, 7, 8, 9],
                                 'last_unlocked_task_id' => null
                                 ],
+            'tuto_desert_main_goal' => ['tasks_ids' => [17],
+                                        'last_unlocked_task_id' => null
+                                        ],
+            'tuto_desert'     => ['tasks_ids' => [18, 19, 20, 21, 22],
+                                'last_unlocked_task_id' => null
+                                ],
             'defenses_tasks' => ['tasks_ids' => [10],
                                 'last_unlocked_task_id' => null
                                 ],
@@ -207,6 +213,10 @@ class HtmlPopup
                                                   $tasks_caracs['goals']['last_unlocked_task_id']);
         $tuto_city   = $tasks->get_unlocked_tasks($tasks_caracs['tuto_city']['tasks_ids'],
                                                   $tasks_caracs['tuto_city']['last_unlocked_task_id']);
+        $tuto_desert_main_goal = $tasks->get_unlocked_tasks($tasks_caracs['tuto_desert_main_goal']['tasks_ids'],
+                                                            $tasks_caracs['tuto_desert_main_goal']['last_unlocked_task_id']);
+        $tuto_desert = $tasks->get_unlocked_tasks($tasks_caracs['tuto_desert']['tasks_ids'],
+                                                  $tasks_caracs['tuto_desert']['last_unlocked_task_id']);
         $defenses_tasks = $tasks->get_unlocked_tasks($tasks_caracs['defenses_tasks']['tasks_ids'],
                                                      $tasks_caracs['defenses_tasks']['last_unlocked_task_id']);
         $daily_tasks = $tasks->get_unlocked_tasks($tasks_caracs['daily_tasks']['tasks_ids'],
@@ -219,6 +229,10 @@ class HtmlPopup
             <br>
             <h5>Tutoriel : la ville</h5>
             ".$htmlCollapsible->items($tuto_city, 'task')."
+            <br>
+            <h5>Tutoriel : le désert</h5>
+            ".$htmlCollapsible->items($tuto_desert_main_goal, 'task')."
+            ".$htmlCollapsible->items($tuto_desert, 'task')."
             <br>
             <h5>Tâches quotidiennes</h5>
             ".$htmlCollapsible->items($daily_tasks, 'task');

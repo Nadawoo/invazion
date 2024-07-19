@@ -96,11 +96,12 @@ class Tasks {
             1 => [
                 'icon'  => "&#x2753;",
                 'title' => "Principe du jeu",
-                'text'  => "Les zombies attaquent la ville chaque soir. Vous devez
-                            renforcer ses défenses en y construisant les chantiers disponibles.
-                            Les matériaux nécessaires doivent être collectés hors de la ville,
-                            dans le désert hostile.<br>
-                            <a href=\"#popattack\">[En savoir plus...]</a>",
+                'text'  => "Les <strong>zombies</strong> attaquent la ville chaque soir. Vous devez
+                            renforcer les défenses de celle-ci en y construisant 
+                            des <strong>chantiers</strong>. Les matériaux nécessaires 
+                            doivent être collectés hors de la ville,
+                            dans le <strong>désert</strong> hostile.<br><br>
+                            <a href=\"#popattack\" class=\"bluebutton\">&#x1F4A1; Détails : L'attaque zombie quotidienne</a>",
                 'next_task_id' => 2,
                 ],
             2 => [
@@ -219,11 +220,70 @@ class Tasks {
                 'text'  => "Une fois que vous avez consommé 
                             les <a href=\"#popmove\"><strong>points d'action</strong></a>
                             de vos citoyens, vous pouvez déclencher
-                            <a href=\"#popattack\"><strong>l'attaque zombie</strong></a>.
+                            <a href=\"#popattack\" class=\"bold\">l'attaque zombie</a>.
                             Si vous survivez, vos points d'action seront rechargés 
                             pour une nouvelle journée.
                             <p>".$buttons->button('end_cycle', false)."</p>",
                 'next_task_id' => null,
+                ],
+            
+            17 => [
+                'icon'  => "&#x1F3AF;",
+                'title' => "Objectif principal",
+                'text'  => "Les défenses de la ville doivent être renforcées pour repousser 
+                            la prochaine <a href=\"#popattack\" class=\"bold\">l'attaque zombie</a>,
+                            mais le dépôt de la ville ne contient pas les <strong>objets</strong>
+                            requis pour construire de nouveaux chantiers.
+                            Vous allez devoir <strong>explorer le désert</strong> à la recherche 
+                            d'objets à ramener en ville...",
+                'next_task_id' => null,
+                ],
+            18 => [
+                'icon'  => "&#x1F392;",
+                'title' => "S'équiper avant une expédition",
+                'text'  => "Avant de sortir dans le désert, prenez une <strong>ration d'eau</strong>
+                           au <strong>puits</strong> de la ville. Boire de l'eau 
+                           vous procurera suffisamment de <strong>points d'action</strong>
+                           pour marcher dans le désert et revenir en ville avant l'épuisement.",
+                'next_task_id' => 17,
+                ],
+            19 => [
+                'icon'  => "&#x1F97E;",
+                'title' => "Marcher vers un bâtiment du désert",
+                'text'  => "Sortez de la ville grâce au bouton « Explorer »,
+                            puis repérez sur la carte le <strong>bâtiment</strong>
+                            le plus proche. Basculez en mode <em>Actions de zone</em>
+                            (bouton en haut de la carte) et marchez jusqu'au bâtiment.",
+                'next_task_id' => 18,
+                ],
+            20 => [
+                'icon'  => "&#x26CF;&#xFE0F;",
+                'title' => "Explorer le bâtiment",
+                'text'  => "<strong>Fouillez</strong> le bâtiment grâce au mode <em>Actions de zone</em>.
+                            <strong>Ramassez</strong> les objets que vous trouverez.
+                            Ils seront stockés dans votre sac à dos.",
+                'next_task_id' => 19,
+                ],
+            21 => [
+                'icon'  => '<img src="resources/img/free/city.svg" alt="City" height="22">',
+                'title' => "Rapportez les objets en ville",
+                'text'  => "Reprenez votre marche pour <strong>retourner en ville</strong>.
+                            Si vous manquez de points d'action pour parcourir la distance, 
+                            buvez une <strong>ration d'eau</strong> : elle 
+                            vous restituera des points d'action.",
+                'next_task_id' => 20,
+                ],
+            22 => [
+                'icon'  => "&#x1F3D7;&#xFE0F;",
+                'title' => "Construire un chantier de défense",
+                'text'  => "Une fois en ville, déposez au <strong>dépôt</strong>
+                            les objets que vous avez rapportés de votre expédition.
+                            Rendez-vous ensuite aux <strong>chantiers</strong>
+                            pour y contruire de nouvelles défenses.
+                            <p><em>Si vous manquez de <strong>points d'action</strong>,
+                            le dépôt de la ville contient peut-être de la nourriture 
+                            pour vous restaurer.</em></p>",
+                'next_task_id' => 21,
                 ],
             ];
     }
