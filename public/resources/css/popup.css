@@ -42,6 +42,13 @@
     font-family: Tahoma, Arial, sans-serif;
     font-size: 2em;
 }
+.popup h3 {
+    margin:0;
+    padding:0.3em;
+    text-align:center;
+    background:lightgrey;
+    font-weight:bold;
+}
 .popup hr {
     margin-top:1em;
     border:none;
@@ -90,6 +97,7 @@
 }
 .popup .block_building h2 {
     margin-bottom:0.1em;
+    padding-bottom:0.1em;
     border-radius:0.2em 0.2em 0 0;
     background:#34495e;
     color:white;
@@ -103,6 +111,46 @@
     margin-left:1em;
     font-style:italic;
     color:dimgrey;
+}
+
+.popup .frame {
+    margin-top:2em;
+    border:1px solid lightgrey;
+    border-radius:0.3em;
+}
+.popup .frame>p {
+    margin-left:1em;
+    margin-right:1em;
+}
+.popup p.help {
+    margin:0.2em 0 0 0;
+    padding:0.5em;
+    font-size:0.95em;
+    font-style:italic;
+    background:antiquewhite;
+    border-bottom:1px solid lightgrey;
+}
+.popup .frame .explore_building button {
+    width:50%;
+    margin:auto;
+}
+.building_modules .status {
+    width:7em;
+    text-align:center;
+    background:forestgreen;
+    color:white;
+    border-radius:0.3em;
+}
+.building_modules .text {
+    margin-left:1em;
+}
+.building_modules .text_outoforder {
+    padding:0.3em 0.5em;
+    border-radius:0.3em;
+    border: 2px outset red;
+}
+.building_modules tr {
+    cursor:pointer;
 }
 
 /*

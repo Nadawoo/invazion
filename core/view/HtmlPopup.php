@@ -352,6 +352,87 @@ class HtmlPopup
         
         $buttons = new HtmlButtons();
         
+        $modules = [
+            [
+            'icon'  => '&#x1F3E2;',
+            'title' => 'Intégrité du bâtiment',
+            'text'  => 'Si les zombies submergent cet ultime emplacement, le bâtiment 
+                        sera irrémédiablement détruit et ses modules ne pourront 
+                        plus être réactivés.',
+            'active' => true,
+            ],
+            [
+            'icon'  => '&#x1F505;',
+            'title' => 'Éclairage minimal',
+            'text'  => 'Ce module  illumine en permanence la zone dans laquelle 
+                        se trouve le bâtiment.',
+            'active' => true,
+            ],
+            [
+            'icon'  => '&#x1F506;',
+            'title' => 'Éclairage étendu',
+            'text'  => 'Ce module illumine en permanence les 6 zones autour du bâtiment.',
+            'active' => true,
+            ],
+            [
+            'icon'  => '&#x1F6E1;&#xFE0F;',
+            'title' => 'Contrôle étendu',
+            'text'  => "Ce module empêche l'arrivée de zombies supplémentaires 
+                        dans les 6 zones autour du bâtiment.",
+            'active' => true,
+            ],
+            [
+            'icon'  => '&#x26CF;&#xFE0F;',
+            'title' => 'Fouille automatique',
+            'text'  => 'Ce module génère chaque jour 1 coffre contenant des objets.',
+            'active' => false,
+            ],
+            [
+            'icon'  => '&#x1F6E3;&#xFE0F;',
+            'title' => 'Liaison routière',
+            'text'  => 'Ce module vous permet de rapporter gratuitement en ville 
+                        les objets générés par le bâtiment.',
+            'active' => false,
+            ],
+        ];
+        
+        $htmlModules = '';
+        foreach(array_reverse($modules) as $id=>$module) {
+            
+            if($module['active'] === true) {
+                $status = '<div class="status z-depth-2">Actif</div>';
+                $text_outoforder = '';
+            } else {
+                $status =  '<div class="status z-depth-2" style="background:red">
+                                Hors service
+                            </div>';
+                $text_outoforder = '
+                    <p class="text_outoforder z-depth-2 red darken-4 white-text">
+                        &#x26A0;&#xFE0F; Ce module étant contrôlé par les zombies, 
+                        il ne fonctionne plus. Pour le réactiver, éliminez
+                        suffisamment de zombies dans la zone du bâtiment.
+                    </p>';
+            }
+            
+            $htmlModules .= '
+                <tr onclick="this.querySelector(\'.text\').classList.toggle(\'hidden\')">
+                    <td>
+                        <div style="display:flex;justify-content:space-between">
+                            <div>
+                                '.($id+1).'.
+                                '.$module['icon'].'
+                                <strong>'.$module['title'].'</strong>
+                            </div>
+                            '.$status.'
+                        </div>
+                        <div class="text hidden">
+                            <p><em>'.$module['text'].'</em></p>
+                            '.$text_outoforder.'
+                        </div>
+                    </td>
+                </tr>';
+        }
+        
         return '
         <template id="tplPopupBuilding">
             <div class="block_building z-depth-1 indigo lighten-5">
@@ -361,13 +442,30 @@ class HtmlPopup
                     <p class="descr_ambiance">{descr_ambiance}</p>
                 </div>
             </div>
-            <p>Vous devriez explorer ce bâtiment. Avec un peu de chance, vous y trouverez 
-            un de ces objets :</p>
-            <ul class="items_list" style="justify-content:center"></ul>
-            <br>
-            <div style="background:green;color:white">'.$api_message.'</div>
-            <br>
-            '.$buttons->button('explore_building', true, 'center').'<br>
+            <div class="frame">
+                <h3 class="z-depth-1">Exploration</h3>
+                <p>Vous devriez explorer ce bâtiment. Avec un peu de chance, 
+                    vous y trouverez un de ces objets :
+                </p>
+                <ul class="items_list" style="justify-content:center"></ul>
+                <br>
+                <div style="background:green;color:white">'.$api_message.'</div>
+                '.$buttons->button('explore_building', true, 'explore_building center').'
+                <br>
+            </div>
+            <div class="frame">
+                <div onclick="this.querySelector(\'.help\').classList.toggle(\'hidden\')">
+                    <h3 class="z-depth-1">Modules <a>[?]</a></h3>
+                    <p class="help hidden">
+                        Chaque module du bâtiment assure une fonction. 
+                        Les modules tombent hors service au fur et à mesure que
+                        le nombre de zombies présents dans la zone augmente.
+                    </p>
+                </div>
+                <table class="building_modules">
+                    '.$htmlModules.'
+                </table>
+            </div>
         </template>';
     }
     
