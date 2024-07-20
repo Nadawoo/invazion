@@ -83,13 +83,26 @@
     list-style-type: none;
 }
 /* Description d'ambiance d'une bâtiment */
+.popup .block_building {
+    margin:0.5em 0 2em 0;
+    border:1px solid darkgrey;
+    border-radius:0.5em;
+}
+.popup .block_building h2 {
+    margin-bottom:0.1em;
+    border-radius:0.2em 0.2em 0 0;
+    background:#34495e;
+    color:white;
+    box-shadow:4px 4px 8px black;
+}
+.popup .block_building .body {
+    display:flex;padding:0.5em;
+}
 .popup .descr_ambiance {
-    margin-left:7.5em;
-    padding-left:0.8em;
-    font-size:0.95em;
+    flex-grow:4;
+    margin-left:1em;
     font-style:italic;
-    border-left:4px solid grey;
-    border-radius:0.8em;
+    color:dimgrey;
 }
 
 /*

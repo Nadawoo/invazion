@@ -354,11 +354,14 @@ class HtmlPopup
         
         return '
         <template id="tplPopupBuilding">
-            <img src="resources/img/copyrighted/tiles/desert/10.png" alt="image bâtiment" height="128px">
-            <p class="center">Vous avez découvert un bâtiment isolé :<br>
-            <strong class="building_name" style="font-size:1.2em">{building_name}</strong></p>
-            <p class="descr_ambiance">{descr_ambiance}</p>
-            <p>Vous devriez l\'explorer. Avec un peu de chance, vous y trouverez 
+            <div class="block_building z-depth-1 indigo lighten-5">
+                <h2 class="building_name">{building_name}</h2>
+                <div class="body">
+                    <img src="resources/img/copyrighted/tiles/desert/10.png" alt="image bâtiment" height="80">
+                    <p class="descr_ambiance">{descr_ambiance}</p>
+                </div>
+            </div>
+            <p>Vous devriez explorer ce bâtiment. Avec un peu de chance, vous y trouverez 
             un de ces objets :</p>
             <ul class="items_list" style="justify-content:center"></ul>
             <br>
