@@ -491,3 +491,13 @@ function updateMapEditor(coordX, coordY) {
     document.querySelector('#landform input[name="coord_x"]').value = coordX;
     document.querySelector('#landform input[name="coord_y"]').value = coordY;
 }
+
+
+function moveBuildingBlockBelowPaddle() {
+    
+    document.querySelector("#card_building").classList.remove("above_paddle");
+    toggle(".ignore_button");
+    unhideId("card_dig");
+    unhideId("card_ap_cost");
+    unhideId("card_citizens");
+}

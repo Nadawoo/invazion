@@ -420,8 +420,8 @@ echo $html['json_configs'];
                     </div>';
 
                     echo 
-                    $actionCards->card_citizens().
                     $actionCards->card_building().
+                    $actionCards->card_citizens().
                     $actionCards->card_dig().
                     $actionCards->card_ap_cost();
                     ?>

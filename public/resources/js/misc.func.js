@@ -613,6 +613,9 @@ function updateEnterBuildingButton(cityTypeId) {
     } else {
         document.querySelector("#block_move .building_name").innerHTML = _configsBuildings[cityTypeId]["name"];
         document.querySelector("#block_move #card_building").style.display = "block";
+        document.querySelector("#card_building").classList.add("above_paddle");
+        unhideClasses(["ignore_button"]);
+        hideIds(["card_dig", "card_ap_cost", "card_citizens"]);
     }
     
     // Button to enter in the city

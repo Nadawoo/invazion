@@ -29,14 +29,14 @@ class HtmlActionCards {
         
         return '
             <div id="card_building" class="card">
-                <img src="resources/img/copyrighted/tiles/desert/10.png" height="96" width="73" alt="Bâtiment"
-                     style="float:left;margin-right:1em;">
+                <img src="resources/img/copyrighted/tiles/desert/10.png" height="96" width="73" alt="Bâtiment">
                 <strong>Bâtiment découvert :<br><span class="building_name"></span></strong>
                 <br>'
                 .$this->buttons->button('enter_city', 'no_icon')
                 .$this->buttons->button('destroy_city', 'no_icon')
                 .$this->popup->link('popsuccess', 'Explorer', 'button_explore')
-                .$this->popup->link('popvault', 'Pouvoir cryptique', 'button_crypt').'
+                .$this->popup->link('popvault', 'Pouvoir cryptique', 'button_crypt').
+                '<a class="ignore_button" onclick="moveBuildingBlockBelowPaddle()">Ignorer</a>
             </div>';
     }
     
