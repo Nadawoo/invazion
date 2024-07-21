@@ -25,6 +25,7 @@
     opacity: 1;
 }
 .popup {
+    min-height:4em;
     max-width: 30em;
     max-height:75%;
     overflow: auto;
@@ -36,8 +37,8 @@
     transition: all 250ms ease-in-out;
 }
 .popup h2 {
+    margin-top:0;
     text-align:center;
-    margin-top: 0;
     color: #333;
     font-family: Tahoma, Arial, sans-serif;
     font-size: 2em;
@@ -58,13 +59,14 @@
     position: absolute;
     top:   0;
     right: 0;
-    height:     0.9em;
-    width:      0.9em;
-    line-height:0.9em;
+    height:     1em;
+    width:      1em;
+    line-height:1em;
     text-align:center;
     font-size: 2.5em;
     text-decoration: none;
     background:darkred;
+    border:  1px solid white;
     color:white;
     transition: all 200ms;
 }
@@ -91,11 +93,12 @@
 }
 /* Description d'ambiance d'une bâtiment */
 .popup .block_building {
-    margin:0.5em 0 2em 0;
+    margin:0 0 2em 0;
     border:1px solid darkgrey;
     border-radius:0.5em;
 }
 .popup .block_building h2 {
+    margin-top:0;
     margin-bottom:0.1em;
     padding-bottom:0.1em;
     border-radius:0.2em 0.2em 0 0;

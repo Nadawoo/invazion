@@ -483,11 +483,12 @@ class HtmlPopup
         $anchor = '#Outside';
         
         $css_class = ($is_popup_visible === true) ? 'force_visibility' : '';
+        $html_title = ($title !== '') ? '<h2>'.$title.'</h2>' : '';
         
         return '
         <div id="'.$popup_alias.'" class="overlay '.$css_class.'">
             <div class="popup z-depth-2">
-                <h2>'.$title.'</h2>
+                '.$html_title.'
                 <a class="close" href="'.$anchor.'" onclick="closePopup()">&times;</a>
                 <div class="content">'.$text.'</div>
             </div>

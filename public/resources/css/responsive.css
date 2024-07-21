@@ -15,7 +15,8 @@
         width: 80%;
     }
     .popup{
-        width: 80%;
+        width: 98%;
+        max-height:96%;
     }
     #map {
         margin-right:0.2em;
