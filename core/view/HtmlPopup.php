@@ -439,7 +439,9 @@ class HtmlPopup
                 <h2 class="building_name">{building_name}</h2>
                 <div class="body">
                     <img src="resources/img/copyrighted/tiles/desert/10.png" alt="image bâtiment" height="80">
-                    <p class="descr_ambiance">{descr_ambiance}</p>
+                    <p class="descr_ambiance">
+                        (Ce bâtiment n\'a pas de description pour le moment.)
+                    </p>
                 </div>
             </div>
             <div class="frame">

@@ -658,7 +658,9 @@ function populateBuildingPopup(cityTypeId) {
     popup.innerHTML = "";
     popup.appendChild(tplPopupBuilding);
     popup.querySelector(".building_name").innerHTML = building["name"];
-    popup.querySelector(".descr_ambiance").innerHTML = building["descr_ambiance"];
+    if(building["descr_ambiance"] !== "") {
+        popup.querySelector(".descr_ambiance").innerHTML = building["descr_ambiance"];
+    }
     // Add the list of items findable in this building
     for(let itemId of findableItems) {
         popup.querySelector(".items_list").prepend(htmlItem(itemId, _configsItems[itemId]));
