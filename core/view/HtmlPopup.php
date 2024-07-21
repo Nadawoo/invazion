@@ -397,40 +397,47 @@ class HtmlPopup
         ];
         
         $htmlModules = '';
-        foreach(array_reverse($modules) as $id=>$module) {
+        foreach(array_reverse($modules) as $key=>$module) {
             
-            if($module['active'] === true) {
-                $status = '<div class="status z-depth-2">Actif</div>';
-                $text_outoforder = '';
-            } else {
-                $status =  '<div class="status z-depth-2" style="background:red">
-                                Hors service
-                            </div>';
-                $text_outoforder = '
-                    <p class="text_outoforder z-depth-2 red darken-4 white-text">
-                        &#x26A0;&#xFE0F; Ce module étant contrôlé par les zombies, 
-                        il ne fonctionne plus. Pour le réactiver, éliminez
-                        suffisamment de zombies dans la zone du bâtiment.
-                    </p>';
-            }
+            $class_active = ($module['active'] === true) ? 'active' : 'inactive';
             
             $htmlModules .= '
-                <tr onclick="this.querySelector(\'.text\').classList.toggle(\'hidden\')">
+                <tr class="'.$class_active.'" onclick="this.querySelector(\'.text\').classList.toggle(\'hidden\');this.classList.toggle(\'selected\')">
                     <td>
                         <div style="display:flex;justify-content:space-between">
                             <div>
-                                '.($id+1).'.
+                                '.($key+1).'.
                                 '.$module['icon'].'
                                 <strong>'.$module['title'].'</strong>
                             </div>
-                            '.$status.'
+                            <div class="status status_active z-depth-2">Actif</div>
+                            <div class="status status_inactive z-depth-2" style="background:red">
+                                Hors service
+                            </div>
                         </div>
                         <div class="text hidden">
                             <p><em>'.$module['text'].'</em></p>
-                            '.$text_outoforder.'
+                            <p class="text_outoforder z-depth-2 red darken-4 white-text">
+                                &#x26A0;&#xFE0F; Ce module étant contrôlé par les zombies, 
+                                il ne fonctionne plus. Pour le réactiver, éliminez
+                                suffisamment de zombies dans la zone du bâtiment.
+                            </p>
                         </div>
                     </td>
                 </tr>';
+            
+            // Add a line of zombies after the moduls which are out of order
+            // TODO: the key is harcoded for the tests.
+            if($key === 1) {
+                $htmlModules .= '
+                    <tr>
+                        <td class="zombies z-depth-1">
+                            <span class="label z-depth-2">
+                                ▼ <img src="resources/img/motiontwin/zombie.gif" alt="zombie"> 12 zombies ▼
+                            </span>
+                        </td>
+                    </tr>';
+            }
         }
         
         return '
@@ -438,13 +445,14 @@ class HtmlPopup
             <div class="block_building z-depth-1 indigo lighten-5">
                 <h2 class="building_name">{building_name}</h2>
                 <div class="body">
-                    <img src="resources/img/copyrighted/tiles/desert/10.png" alt="image bâtiment" height="80">
+                    <img src="resources/img/copyrighted/tiles/desert/10.png"
+                         class="main_image" alt="image bâtiment" height="80">
                     <p class="descr_ambiance">
                         (Ce bâtiment n\'a pas de description pour le moment.)
                     </p>
                 </div>
             </div>
-            <div class="frame">
+            <div class="frame z-depth-2">
                 <h3 class="z-depth-1">Exploration</h3>
                 <p>Vous devriez explorer ce bâtiment. Avec un peu de chance, 
                     vous y trouverez un de ces objets :
@@ -455,7 +463,7 @@ class HtmlPopup
                 '.$buttons->button('explore_building', true, 'explore_building center').'
                 <br>
             </div>
-            <div class="frame">
+            <div class="frame z-depth-2">
                 <div onclick="this.querySelector(\'.help\').classList.toggle(\'hidden\')">
                     <h3 class="z-depth-1">Modules <a>[?]</a></h3>
                     <p class="help hidden">
