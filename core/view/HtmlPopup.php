@@ -452,7 +452,7 @@ class HtmlPopup
                     </p>
                 </div>
             </div>
-            <div class="frame z-depth-2">
+            <div class="block_explore frame z-depth-2">
                 <h3 class="z-depth-1">Exploration</h3>
                 <p>Vous devriez explorer ce bâtiment. Avec un peu de chance, 
                     vous y trouverez un de ces objets :
@@ -463,7 +463,7 @@ class HtmlPopup
                 '.$buttons->button('explore_building', true, 'explore_building center').'
                 <br>
             </div>
-            <div class="frame z-depth-2">
+            <div class="block_modules frame z-depth-2">
                 <div onclick="this.querySelector(\'.help\').classList.toggle(\'hidden\')">
                     <h3 class="z-depth-1">Modules <a>[?]</a></h3>
                     <p class="help hidden">

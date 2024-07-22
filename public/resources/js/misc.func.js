@@ -665,6 +665,12 @@ function populateBuildingPopup(cityTypeId) {
     for(let itemId of findableItems) {
         popup.querySelector(".items_list").prepend(htmlItem(itemId, _configsItems[itemId]));
     }
+    
+    // If the building can't be explored (city), hide the useless frames in the pop-up.
+    if(_configsBuildings[cityTypeId]["is_explorable"] === 0) {
+        popup.querySelector(".block_explore").classList.add("hidden");
+        popup.querySelector(".block_modules").classList.add("hidden");
+    }
 }
 
 
