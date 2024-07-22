@@ -400,6 +400,7 @@ class HtmlPopup
         foreach(array_reverse($modules) as $key=>$module) {
             
             $class_active = ($module['active'] === true) ? 'active' : 'inactive';
+            $icon = ($module['active'] === true) ? $module['icon'] : "❌";
             
             $htmlModules .= '
                 <tr class="'.$class_active.'" onclick="this.querySelector(\'.text\').classList.toggle(\'hidden\');this.classList.toggle(\'selected\')">
@@ -407,7 +408,7 @@ class HtmlPopup
                         <div style="display:flex;justify-content:space-between">
                             <div>
                                 '.($key+1).'.
-                                '.$module['icon'].'
+                                '.$icon.'
                                 <strong>'.$module['title'].'</strong>
                             </div>
                             <div class="status status_active z-depth-2">Actif</div>
