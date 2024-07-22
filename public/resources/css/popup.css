@@ -55,7 +55,7 @@
     border:none;
     border-bottom:1px solid grey;
 }
-.popup .close {
+.popup>.close {
     position: absolute;
     top:   0;
     right: 0;
@@ -70,7 +70,7 @@
     color:white;
     transition: all 200ms;
 }
-.popup .close:hover {
+.popup>.close:hover {
     /*color: #06D85F;*/
     background:red;
 }
