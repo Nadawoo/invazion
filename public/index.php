@@ -36,11 +36,6 @@ $msg_move           = '';
 $is_custom_popup_visible = false;
 
 
-
-// TODO: FOR THE TESTS ONLY
-$zombies_next_attack = 99;
-
-
 /**
  * Executes the actions asked by the player (moving, digging...)
  */
@@ -238,7 +233,7 @@ echo $html['json_configs'];
                     '.$enclosure->city_menu($citizen['map_id'], $city_data['connected_city_id'], $citizen['city_id']).'
                     '.$enclosure->city_submenu($city_data['city_type_id'], $city_data['connected_city_id'], $is_citizen_home_connected, $completed_buildings_ids).'
                     <div id="city_defenses" class="city_row">
-                        '.$enclosure->block_defenses($city_data['total_defenses'], $zombies_next_attack).'
+                        '.$enclosure->block_defenses($city_data['total_defenses'], $zone['zombies']).'
                     </div>
                 </nav>
                 
