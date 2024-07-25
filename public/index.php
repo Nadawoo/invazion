@@ -189,7 +189,7 @@ echo $html['json_configs'];
 ?>
 
 <section id="popups">
-    <?php echo $popup->allPopups($msg_popup, $citizen['map_id'], $citizen['citizen_id'], 
+    <?php echo $popup->all_popups($msg_popup, $citizen['map_id'], $citizen['citizen_id'], 
                        $configs['map'], $speciality_caracs,
                        $healing_items, $html['smartphone'], $is_custom_popup_visible) 
     ?>

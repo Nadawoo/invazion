@@ -28,7 +28,7 @@ class HtmlPopup
      * @param bool $is_custom_popup_visible
      * @return string HTML
      */
-    public function allPopups($msg_popup, $map_id, $citizen_id, 
+    public function all_popups($msg_popup, $map_id, $citizen_id, 
                     $configs_map, $speciality_caracs,
                     $healing_items, $html_smartphone, $is_custom_popup_visible) {
         
@@ -350,6 +350,11 @@ class HtmlPopup
     public function template_popbuilding($api_message)
     {
         
+        // TODO: temporary hardcoded value for the tests. Replace this by the real
+        // number of zombies in the zone of the building.
+        $nbr_zombies_in_building = 12;
+        $defenses_per_module = 5;
+        $html_modules = '';
         $buttons = new HtmlButtons();
         
         $modules = [
@@ -359,57 +364,65 @@ class HtmlPopup
             'text'  => 'Si les zombies submergent cet ultime emplacement, le bâtiment 
                         sera irrémédiablement détruit et ses modules ne pourront 
                         plus être réactivés.',
-            'active' => true,
             ],
             [
             'icon'  => '&#x1F4A1;',
             'title' => 'Éclairage minimal',
             'text'  => 'Ce module  illumine en permanence la zone dans laquelle 
                         se trouve le bâtiment.',
-            'active' => true,
             ],
             [
             'icon'  => '&#x2734;&#xFE0F;',
             'title' => 'Éclairage étendu',
             'text'  => 'Ce module illumine en permanence les 6 zones autour du bâtiment.',
-            'active' => true,
             ],
             [
             'icon'  => '&#x2747;&#xFE0F;',
             'title' => 'Contrôle étendu',
             'text'  => "Ce module empêche l'arrivée de zombies supplémentaires 
                         dans les 6 zones autour du bâtiment.",
-            'active' => true,
             ],
             [
             'icon'  => '&#x26CF;&#xFE0F;',
             'title' => 'Fouille automatique',
             'text'  => 'Ce module génère chaque jour 1 coffre contenant des objets.',
-            'active' => false,
             ],
             [
             'icon'  => '&#x1F6E3;&#xFE0F;',
             'title' => 'Liaison routière',
             'text'  => 'Ce module vous permet de rapporter gratuitement en ville 
                         les objets générés par le bâtiment.',
-            'active' => false,
             ],
                         [
             'icon'  => '&#x1F6E1;&#xFE0F;',
             'title' => 'Entrée du bâtiment',
             'text'  => "Renforcez l'entrée du bâtiment avec des <strong>objets de défense</strong>
                         pour empêcher les zombies d'atteindre les modules.",
-            'active' => false,
             ],
         ];
         
-        $htmlModules = '';
         foreach(array_reverse($modules) as $key=>$module) {
             
-            $class_active = ($module['active'] === true) ? 'active' : 'inactive';
-            $icon = ($module['active'] === true) ? $module['icon'] : "❌";
+            $last_invaded_module_id = (int)floor($nbr_zombies_in_building / $defenses_per_module);
+            $is_module_active = ($key >= $last_invaded_module_id) ? true : false;
             
-            $htmlModules .= '
+            $class_active = ($is_module_active === true) ? 'active' : 'inactive';
+            $icon         = ($is_module_active === true) ? $module['icon'] : "❌";
+            
+            // Add a line of zombies after the moduls which are out of order
+            if($key === $last_invaded_module_id and $nbr_zombies_in_building > 0) {
+                $html_modules .= '
+                    <tr>
+                        <td class="zombies z-depth-1">
+                            <span class="label z-depth-2">
+                                ▼ <img src="resources/img/motiontwin/zombie.gif" alt="zombie">
+                                '.plural($nbr_zombies_in_building, 'zombie').' ▼
+                            </span>
+                        </td>
+                    </tr>';
+            }
+            
+            $html_modules .= '
                 <tr class="'.$class_active.'" onclick="this.querySelector(\'.text\').classList.toggle(\'hidden\');this.classList.toggle(\'selected\')">
                     <td>
                         <div style="display:flex;justify-content:space-between">
@@ -433,19 +446,6 @@ class HtmlPopup
                         </div>
                     </td>
                 </tr>';
-            
-            // Add a line of zombies after the moduls which are out of order
-            // TODO: the key is harcoded for the tests.
-            if($key === 2) {
-                $htmlModules .= '
-                    <tr>
-                        <td class="zombies z-depth-1">
-                            <span class="label z-depth-2">
-                                ▼ <img src="resources/img/motiontwin/zombie.gif" alt="zombie"> 12 zombies ▼
-                            </span>
-                        </td>
-                    </tr>';
-            }
         }
         
         return '
@@ -481,7 +481,7 @@ class HtmlPopup
                     </p>
                 </div>
                 <table class="building_modules">
-                    '.$htmlModules.'
+                    '.$html_modules.'
                 </table>
             </div>
         </template>';
