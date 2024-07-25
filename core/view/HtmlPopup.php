@@ -362,20 +362,20 @@ class HtmlPopup
             'active' => true,
             ],
             [
-            'icon'  => '&#x1F505;',
+            'icon'  => '&#x1F4A1;',
             'title' => 'Éclairage minimal',
             'text'  => 'Ce module  illumine en permanence la zone dans laquelle 
                         se trouve le bâtiment.',
             'active' => true,
             ],
             [
-            'icon'  => '&#x1F506;',
+            'icon'  => '&#x2734;&#xFE0F;',
             'title' => 'Éclairage étendu',
             'text'  => 'Ce module illumine en permanence les 6 zones autour du bâtiment.',
             'active' => true,
             ],
             [
-            'icon'  => '&#x1F6E1;&#xFE0F;',
+            'icon'  => '&#x2747;&#xFE0F;',
             'title' => 'Contrôle étendu',
             'text'  => "Ce module empêche l'arrivée de zombies supplémentaires 
                         dans les 6 zones autour du bâtiment.",
@@ -392,6 +392,13 @@ class HtmlPopup
             'title' => 'Liaison routière',
             'text'  => 'Ce module vous permet de rapporter gratuitement en ville 
                         les objets générés par le bâtiment.',
+            'active' => false,
+            ],
+                        [
+            'icon'  => '&#x1F6E1;&#xFE0F;',
+            'title' => 'Entrée du bâtiment',
+            'text'  => "Renforcez l'entrée du bâtiment avec des <strong>objets de défense</strong>
+                        pour empêcher les zombies d'atteindre les modules.",
             'active' => false,
             ],
         ];
@@ -429,7 +436,7 @@ class HtmlPopup
             
             // Add a line of zombies after the moduls which are out of order
             // TODO: the key is harcoded for the tests.
-            if($key === 1) {
+            if($key === 2) {
                 $htmlModules .= '
                     <tr>
                         <td class="zombies z-depth-1">
