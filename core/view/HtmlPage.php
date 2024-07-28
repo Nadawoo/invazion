@@ -156,6 +156,7 @@ class HtmlPage
                         <script type="text/javascript" src="resources/js/lib/scrollbooster.min.js"></script>
                         <script type="text/javascript" src="resources/js/ZombLib.js?v'.$this->css_js_version.'"></script>
                         <script type="text/javascript" src="resources/js/Tasks.js?v'.$this->css_js_version.'"></script>
+                        <script type="text/javascript" src="resources/js/BuildingPopup.js?v'.$this->css_js_version.'"></script>
                         <script type="text/javascript" src="resources/js/cookies.func.js?v'.$this->css_js_version.'"></script>
                         <script type="text/javascript" src="resources/js/map.func.js?v'.$this->css_js_version.'"></script>
                         <script type="text/javascript" src="resources/js/paths.func.js?v'.$this->css_js_version.'"></script>
