@@ -403,32 +403,13 @@ class HtmlPopup
         
         foreach(array_reverse($modules) as $key=>$module) {
             
-            $last_invaded_module_id = (int)floor($nbr_zombies_in_building / $defenses_per_module);
-            $is_module_active = ($key >= $last_invaded_module_id) ? true : false;
-            
-            $class_active = ($is_module_active === true) ? 'active' : 'inactive';
-            $icon         = ($is_module_active === true) ? $module['icon'] : "❌";
-            
-            // Add a line of zombies after the moduls which are out of order
-            if($key === $last_invaded_module_id and $nbr_zombies_in_building > 0) {
-                $html_modules .= '
-                    <tr>
-                        <td class="zombies z-depth-1">
-                            <span class="label z-depth-2">
-                                ▼ <img src="resources/img/motiontwin/zombie.gif" alt="zombie">
-                                '.plural($nbr_zombies_in_building, 'zombie').' ▼
-                            </span>
-                        </td>
-                    </tr>';
-            }
-            
             $html_modules .= '
-                <tr class="'.$class_active.'" onclick="this.querySelector(\'.text\').classList.toggle(\'hidden\');this.classList.toggle(\'selected\')">
+                <tr onclick="this.querySelector(\'.text\').classList.toggle(\'hidden\');this.classList.toggle(\'selected\')">
                     <td>
                         <div style="display:flex;justify-content:space-between">
                             <div>
                                 '.($key+1).'.
-                                '.$icon.'
+                                <span class="icon">'.$module['icon'].'</span>
                                 <strong>'.$module['title'].'</strong>
                             </div>
                             <div class="status status_active z-depth-2">Actif</div>
@@ -481,6 +462,14 @@ class HtmlPopup
                     </p>
                 </div>
                 <table class="building_modules">
+                    <tr class="zombies_row">
+                        <td class="zombies z-depth-1">
+                            <span class="label z-depth-2">
+                                ▼ <img src="resources/img/motiontwin/zombie.gif" alt="zombie">
+                                <span class="nbr_zombies"></span> zombies ▼
+                            </span>
+                        </td>
+                    </tr>
                     '.$html_modules.'
                 </table>
             </div>

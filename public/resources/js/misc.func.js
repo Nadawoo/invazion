@@ -647,7 +647,7 @@ function updateEnterBuildingButton(cityTypeId) {
  * @param {int} cityTypeId The ID of the building, as returned by the Invazion's API
  * @returns {undefined}
  */
-function populateBuildingPopup(cityTypeId) {
+function populateBuildingPopup(cityTypeId, nbrZombiesInZone) {
     
     let building = _configsBuildings[cityTypeId];
     let findableItems = (_configsBuildingsFindableItems[cityTypeId] !== undefined) ? _configsBuildingsFindableItems[cityTypeId] : [];
@@ -666,11 +666,54 @@ function populateBuildingPopup(cityTypeId) {
         popup.querySelector(".items_list").prepend(htmlItem(itemId, _configsItems[itemId]));
     }
     
+    // Add the line of zombies after the last invaded module
+    let lastInvadedModuleId = getLastInvadedModuleId(nbrZombiesInZone);
+    markInactiveModules(popup, lastInvadedModuleId);
+    updateModulesZombieRow(popup, nbrZombiesInZone, lastInvadedModuleId);
+    
     // If the building can't be explored (city), hide the useless frames in the pop-up.
     if(_configsBuildings[cityTypeId]["is_explorable"] === 0) {
         popup.querySelector(".block_explore").classList.add("hidden");
         popup.querySelector(".block_modules").classList.add("hidden");
     }
+}
+
+
+function getLastInvadedModuleId(nbrZombiesInBuilding) {
+    // TODO: temporary hardcoded value for the tests. Number of zombies that are
+    // needed for invaded one module of a building.
+    let defensesPerModule = 5;
+    
+    return Math.floor(nbrZombiesInBuilding / defensesPerModule);
+}
+
+
+function markInactiveModules(popup, lastInvadedModuleId) {
+    
+    let tableRows = popup.querySelectorAll(".block_modules table tr:not(.zombies_row)");
+    tableRows.forEach((row, id) => {
+        let isModuleActive = (id >= lastInvadedModuleId) ? true : false;
+        // Green or red background for the active/inactive modules
+        let htmlClass = (isModuleActive === true) ? 'active' : 'inactive';
+        row.classList.add(htmlClass);
+        // Put a cross as icon for the module if it is invaded by zombies
+        if(isModuleActive === false) {
+            row.querySelector(".icon").innerHTML = "&#x274C;";
+        }
+    });
+}
+
+
+function updateModulesZombieRow(popup, nbrZombiesInBuilding, lastInvadedModuleId) {
+    
+    let table = popup.querySelector(".block_modules table");
+    let zombiesRow = table.querySelector(".zombies_row");
+    let zombiesRowClone = zombiesRow.cloneNode(true);
+    // Write the amount of zombies inside the building
+    zombiesRowClone.querySelector(".nbr_zombies").innerHTML = nbrZombiesInBuilding;
+    // Move the row of zombies after the moduls which are out of order
+    table.querySelectorAll("tr")[lastInvadedModuleId].insertAdjacentElement('afterend', zombiesRowClone);
+    zombiesRow.remove();
 }
 
 
@@ -683,9 +726,10 @@ function populateBuildingPopup(cityTypeId) {
 function openBuildingPopup(event) {
     
     if(event.target.closest(".square_container") !== null) {
-        let cityTypeId = event.target.closest(".square_container").dataset.citytypeid;
+        let dataset = event.target.closest(".square_container").dataset;
+        let cityTypeId = dataset.citytypeid;
         if(cityTypeId !== "") {
-            populateBuildingPopup(cityTypeId);
+            populateBuildingPopup(cityTypeId, dataset.zombies);
             window.location.href = "#popsuccess";
         }
     }
