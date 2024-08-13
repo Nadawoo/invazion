@@ -496,7 +496,7 @@ function updateMapEditor(coordX, coordY) {
 function moveBuildingBlockBelowPaddle() {
     
     document.querySelector("#card_building").classList.remove("above_paddle");
-    toggle(".ignore_button");
+    toggle("#card_building .ignore_button");
     unhideId("card_dig");
     unhideId("card_ap_cost");
     unhideId("card_citizens");

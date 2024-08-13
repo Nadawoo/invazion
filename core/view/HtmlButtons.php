@@ -124,7 +124,7 @@ class HtmlButtons
                     ],
                 ],
             'enter_city' => [
-                'icon'  => '&#x1F5DD;&#xFE0F;',
+                'icon'  => '<i class="material-icons">login</i>',
                 'name'  => 'Entrer',
                 'title' => "",
                 'fields' => [

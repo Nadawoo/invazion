@@ -452,12 +452,12 @@ form[name="end_cycle"] button {
 #block_move #card_building .building_name {
     font-weight:bold;
 }
-#block_move #card_building .redbutton {
-    width:auto;
+#block_move #card_building .redbutton,
+#block_move #card_building .bluebutton {
+    width:60%;
 }
-#block_move #card_building .ignore_button {
-    display:block;
-    margin:0.8em 0 0 9.5em;
+#block_move #card_building .bluebutton {
+    font-size:85%;
 }
 #block_move #card_ap_cost .actionspoints_decrease {
     font-size:1.1em;
