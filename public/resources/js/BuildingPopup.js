@@ -88,14 +88,20 @@ class BuildingPopup {
 
 
     updateModulesZombieRow(popup, nbrZombiesInBuilding, lastInvadedModuleId) {
-
+        
         let table = popup.querySelector(".block_modules table");
         let zombiesRow = table.querySelector(".zombies_row");
-        let zombiesRowClone = zombiesRow.cloneNode(true);
-        // Write the amount of zombies inside the building
-        zombiesRowClone.querySelector(".nbr_zombies").innerHTML = nbrZombiesInBuilding;
-        // Move the row of zombies after the moduls which are out of order
-        table.querySelectorAll("tr")[lastInvadedModuleId].insertAdjacentElement('afterend', zombiesRowClone);
-        zombiesRow.remove();
+        
+        if(parseInt(nbrZombiesInBuilding) === 0) {
+            zombiesRow.remove();
+        }
+        else {
+            let zombiesRowClone = zombiesRow.cloneNode(true);
+            // Write the amount of zombies inside the building
+            zombiesRowClone.querySelector(".nbr_zombies").innerHTML = nbrZombiesInBuilding;
+            // Move the row of zombies after the moduls which are out of order
+            table.querySelectorAll("tr")[lastInvadedModuleId].insertAdjacentElement('afterend', zombiesRowClone);
+            zombiesRow.remove();
+        }
     }
 }
