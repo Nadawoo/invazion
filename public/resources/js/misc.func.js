@@ -577,7 +577,7 @@ function updateMeAfterMoving(newCoordX, newCoordY) {
     updateRoundActionButtons(newCoordX, newCoordY);
     updateCityDistance(newCoordX, newCoordY);
     updateBlockLandType(myZone.dataset.landtype);
-    updateEnterBuildingButton(myZone.dataset.citytypeid);
+    updateEnterBuildingButton(myZone.dataset.citytypeid, myZone.dataset.zombies);
     updateMoveCost(parseInt(myZone.dataset.zombies));
     updateCardCitizensInZone(myZone.dataset.citizens);
     
@@ -605,7 +605,7 @@ function updateCardCitizensInZone(nbrCitizensInZone) {
  * 
  * @param {int} cityTypeId The ID of the city type in the zone (not the ID of the city)
  */
-function updateEnterBuildingButton(cityTypeId) {
+function updateEnterBuildingButton(cityTypeId, nbrZombies) {
     
     // Displays the building's name under the movement paddle
     if(cityTypeId === "") {
@@ -635,8 +635,8 @@ function updateEnterBuildingButton(cityTypeId) {
     document.querySelector("#button_explore").style.display = buildingVisibility;
     
     if(cityTypeId !== "") {
-        let buildingPopup = new buildingPopup();
-        buildingPopup.populateBuildingPopup(cityTypeId);
+        let buildingPopup = new BuildingPopup();
+        buildingPopup.populateBuildingPopup(cityTypeId, nbrZombies);
     }
 }
 

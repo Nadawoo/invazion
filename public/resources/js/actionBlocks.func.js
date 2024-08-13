@@ -47,7 +47,7 @@ async function updateActionBlocks() {
     // Updates the distance to the city displayed under the movement paddle
     updateCityDistance(zoneData.coordx, zoneData.coordy);     
     // Displays the button to enter if there is a city in the zone
-    setTimeout(function() { updateEnterBuildingButton(zoneData.citytypeid); }, 1000);
+    setTimeout(function() { updateEnterBuildingButton(zoneData.citytypeid, zoneData.zombies); }, 1000);
     // Updates the coordinates of the player in the land editor
     updateMapEditor(zoneData.coordx, zoneData.coordy);
     // Update the numbers in the big buttons next to the map
