@@ -327,10 +327,10 @@ function htmlItem(itemId, itemCaracs) {
         itemCaracs = {
             "name":"(Objet inconnu)",
             "icon_path":null,
-            "icon_symbol":"&#x2757;",
+            "icon_symbol":`<span class="red">#${itemId}</span>`,
             "descr_ambiance":"",
             "descr_purpose":"[Bug] Cet objet est inconnu.\
-                             Signalez-le au repsonsable du site."
+                             Signalez-le au responsable du jeu."
         };
     }
     
