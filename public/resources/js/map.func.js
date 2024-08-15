@@ -312,10 +312,10 @@ async function addCitiesOnMap(mapId) {
         else if(city.city_type_id !== "undefined") {
             
             let html = "";
-            if(city.city_type_id === undiscoveredBuildingId) {
-                html = "";
-            }
-            else if(parseInt(zone.closest(".square_container").dataset.cyclelastvisit) < getCurrentCycle()) {
+//            if(city.city_type_id === undiscoveredBuildingId) {
+//                html = "";
+//            }
+            if(parseInt(zone.closest(".square_container").dataset.cyclelastvisit) < getCurrentCycle()) {
                 html = `<span class="nbr_defenses diggable pulse">&#x26CF;&#xFE0F;</span>`;
             }
             else {

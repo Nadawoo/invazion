@@ -460,6 +460,7 @@ map_body_wrapper {
     background:darkred;
     border:2px solid lightgrey;
     border-radius:50%;
+    z-index:2;
 }
 /*
  * An <svg> area covers the map to allow drawing on it (lines between zones...)
@@ -532,7 +533,7 @@ map_body_wrapper {
 #map .icon_html { /* Makes the unicode icons bigger without shifting the map tiles */
     position:absolute;
     margin-bottom:0.2em;
-    z-index:10;
+    z-index:1;
 }
 #map .zombies {
     position:absolute;
