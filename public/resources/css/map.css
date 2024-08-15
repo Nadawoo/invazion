@@ -305,7 +305,7 @@ map_body_wrapper {
 #statusbar .actionpoints .dot_number {
     position: absolute;
     top:   -0.3rem;
-    right: -1rem;
+    right: -1.2rem;
     height: 2rem;
     width:  2rem;
     font-size: 0.5em;

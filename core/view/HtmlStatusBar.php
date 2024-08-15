@@ -40,9 +40,9 @@ class HtmlStatusBar {
                                 "D'autres humains se trouvent dans la même zone que vous ! L'union fait la force...")
             :$this->status_empty();
                 
-        $status_actionpoints = $this->status_image("&#9889;",
+        $status_actionpoints = $this->status_image($action_points,
                                                   null,
-                                                  $action_points,
+                                                  "&#9889;",
                                                   "Vos points d'action restants. S'ils sont épuisés, &#10;vous ne pourrez plus vous déplacer dans le désert.",
                                                   "popmove",
                                                   "actionpoints");
@@ -92,7 +92,8 @@ class HtmlStatusBar {
         
         return '<li class="item_label z-depth-1 '.$class.'">
                 <a title="'.$title.'" '.$popup_link.' '.$cursor_style.'>
-                    '.$html_icon . $html_amount.'
+                    <span class="icon">'.$html_icon.'</span>'
+                    .$html_amount.'
                 </a>
             </li>';
     }
