@@ -92,7 +92,7 @@ class HtmlStatusBar {
         
         return '<li class="item_label z-depth-1 '.$class.'">
                 <a title="'.$title.'" '.$popup_link.' '.$cursor_style.'>
-                    <span class="icon animate__animated">'.$html_icon.'</span>'
+                    <span class="icon">'.$html_icon.'</span>'
                     .$html_amount.'
                 </a>
             </li>';

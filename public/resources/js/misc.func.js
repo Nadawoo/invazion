@@ -569,6 +569,7 @@ function animateCss(cssSelector, effectName) {
     
     // Add the class for applying the specified effect with Animate.css
     let prefixedEffectName = `animate__${effectName}`;
+    document.querySelector(cssSelector).classList.add("animate__animated");
     document.querySelector(cssSelector).classList.add(prefixedEffectName);
     // Then remove the class to allow replaying the animation later
     setTimeout(
@@ -948,6 +949,8 @@ async function pickupItem(eventSubmitter) {
         document.querySelector('#bagbar .items_list').prepend(itemNode);
         // Removes 1 empty slot in the bag
         document.querySelector('#bagbar .empty_slot').remove();
+        // Animate the bag to show the player where the item goes
+        animateCss("#bagbar .block_icon", "heartBeat");
         // Decreases the counter for the ground items
         let myZone = document.querySelector("#me").parentNode.dataset;
         myZone.items = parseInt(myZone.items, 10) - 1;
