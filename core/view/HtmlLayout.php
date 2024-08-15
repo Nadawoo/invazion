@@ -149,15 +149,15 @@ class HtmlLayout extends HtmlPage
         
         return '
                 <p class="center">
-                    <button class="redbutton" onclick="toggle(\'#specialities\');hide(\'capacities\');return false">Changer ma spécialité</button>
-                    <button class="redbutton" onclick="toggle(\'#capacities\');hide(\'specialities\');return false">Améliorer une capacité</button>
+                    <button class="redbutton" onclick="toggle(\'#specialities\');hideIds(\'capacities\');return false">Changer ma spécialité</button>
+                    <button class="redbutton" onclick="toggle(\'#capacities\');hideIds(\'specialities\');return false">Améliorer une capacité</button>
                 </p>
 
-                <ul id="specialities">
+                <ul id="specialities" class="hidden">
                     '.$html_specialities.'
                 </ul>
                 
-                <ul id="capacities">
+                <ul id="capacities" class="hidden">
                     <li>'.$buttons->button('upgrade_camouflage', '', 'inline').'<br>
                         &nbsp;&nbsp;&nbsp;Permet de vous dissimuler aux yeux des autres humains
                     </li>

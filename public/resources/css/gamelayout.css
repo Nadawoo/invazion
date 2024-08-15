@@ -304,7 +304,6 @@ form[name="end_cycle"] button {
 }
 /* Choix du métier du citoyen */
 #specialities, #capacities {
-    display:none;
     text-align:left;
     margin-left:auto;
     margin-right:auto;
