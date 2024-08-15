@@ -92,7 +92,7 @@ class HtmlButtons
                 ],
             'end_cycle' => [
                 'icon'  => '',
-                'name'  => 'Déclencher l\'attaque !
+                'name'  => 'Passer au jour suivant
                             <span style="display:flex;align-items:center;color:lightgrey">
                                 &#x1F9DF; <span class="material-icons">chevron_right</span>
                                 <span class="material-icons">chevron_right</span>

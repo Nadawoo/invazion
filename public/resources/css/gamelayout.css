@@ -198,7 +198,6 @@ form[name="end_cycle"] button {
     height:3.1em;
     font-size: 1.1em;
     border:2px outset red;
-    border-radius:2em;
 }
 #attackCountdown {
     font-size:1.3em;
