@@ -546,9 +546,37 @@ async function moveCitizen(direction) {
     if(lost_AP > 0) {
         document.querySelector("#actionPoints").innerText = new_AP;
         document.querySelector("#personal_block .actionpoints .icon").innerText = new_AP;
+        animateCss("#personal_block .actionpoints .icon", "flash");
     }
     
     updateMeAfterMoving(json.datas.new_coord_x, json.datas.new_coord_y);
+}
+
+
+/**
+ * Animate an element of the GUI by using the CSS library Animate.css
+ * Official site: https://animate.style
+ *  
+ * @param {string} cssSelector The selector of the element to animate, like with 
+ *                             querySelector(). Example: "#myBlock"
+ * @param {string} effectName The name of the animation to apply. Must exist among 
+ *                            the effects proposed by Animate.css (see https://animate.style/).
+ *                            Don't add the "animate__" prefix, just the name of the effect.
+ *                            Example : "flash" (not "animate__flash")
+ * @returns {undefined}
+ */
+function animateCss(cssSelector, effectName) {
+    
+    // Add the class for applying the specified effect with Animate.css
+    let prefixedEffectName = `animate__${effectName}`;
+    document.querySelector(cssSelector).classList.add(prefixedEffectName);
+    // Then remove the class to allow replaying the animation later
+    setTimeout(
+        function() {
+            document.querySelector(cssSelector).classList.remove(prefixedEffectName);
+        },
+        1500
+    );
 }
 
 
