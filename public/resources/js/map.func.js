@@ -413,7 +413,7 @@ function getZonePositions(zoneHtmlId) {
  * @returns {undefined}
  */
 function updateLineBetweenZones(lineName, origHtmlId, destinHtmlId, color="green") {
-          
+    
     let orig   = getZonePositions(origHtmlId);
     let destin = getZonePositions(destinHtmlId);
     

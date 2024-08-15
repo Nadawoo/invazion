@@ -8,8 +8,6 @@ var nbrExecutionsGetCyclicAttacks = 0;
 // If we are on the main game page (those elements don't exist on the connection page)
 if (document.getElementById('map') !== null) {
     
-    let myCityZoneId = setTimeout(getMyCityZoneId, 1000);
-    
     // Needed to unregister event listeners
     const controller = new AbortController();
     const { signal } = controller;
@@ -62,10 +60,11 @@ if (document.getElementById('map') !== null) {
     });
     
     // Move the citizen on the map
-    document.querySelector('#block_move [name="move"]').addEventListener("submit", function() {
+    document.querySelector('#block_move [name="move"]').addEventListener("submit", async function() {
         // Desactivate the classic submission button (avoids reloading the page)
         event.preventDefault();
         moveCitizen(event.submitter.value);
+        let myCityZoneId = await getMyCityZoneId();
         if(myCityZoneId !== null) {
             setTimeout(function() {updateLineBetweenZones("myCity", "#me", "#"+myCityZoneId);}, 1000);
         }
