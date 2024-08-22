@@ -475,6 +475,9 @@ map_body_wrapper {
     width: 100%;
     height:100%;
     opacity:0.8;
+    /* Ensure the lines are not masked by the tiles, but without blocking the mouse events */
+    z-index:1;
+    pointer-events:none;
 }
 #mapSvg line {
     stroke:green;

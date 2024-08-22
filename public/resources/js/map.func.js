@@ -386,7 +386,7 @@ function getMyCityZoneId() {
 function getZonePositions(zoneHtmlId) {
     
     let mapRect  = document.querySelector("#map_body").getBoundingClientRect();
-    let zoneRect = document.querySelector(zoneHtmlId).getBoundingClientRect();
+    let zoneRect = document.querySelector(`${zoneHtmlId} .square_container`).getBoundingClientRect();
     
     let zonePositions = {
         // "- mapRect.x" => substracts the space between the top of the window and

@@ -132,7 +132,11 @@ if (document.getElementById('map') !== null) {
 //    setInterval(attackCountdown, 1000);
     
     // The map looks better at 130% than with smaller zones
-    zoomMapRange(_defaultMapZoomPercent);
+    // NB: setTimeout because the zoom would break the coordinates calculated
+    // by updateConnectedCitiesLines()
+    setTimeout(function() {
+        zoomMapRange(_defaultMapZoomPercent);
+    }, 1000);
     
     // Server-sent events to update the map in real time
     var timestamp = Math.floor(Date.now()/1000);
