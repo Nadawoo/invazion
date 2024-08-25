@@ -441,6 +441,66 @@ class HtmlPopup
                     </p>
                 </div>
             </div>
+            <div class="block_defenses frame z-depth-2">
+                <h3 class="z-depth-1">Défenses</h3>
+                <table class="defenses_list">
+                    <tr class="grey lighten-4 bold green-text pointer" onclick="toggle(\'.defenses_details\')">
+                        <td>&#x2795; Défenses de la ville</td>
+                        <td>?? &#x1F6E1;&#xFE0F;</td>
+                    </tr>
+                    <tr class="defenses_details grey-text text-darken-1 hidden">
+                        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└ Bâtiments connectés</td>
+                        <td>?? &#x1F6E1;&#xFE0F;</td>
+                    </tr>
+                    <tr class="defenses_details grey-text text-darken-1 hidden">
+                        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└ Chantiers construits</td>
+                        <td>?? &#x1F6E1;&#xFE0F;</td>
+                    </tr>
+                    <tr class="defenses_details grey-text text-darken-1 hidden">
+                        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└ Objets de défense</td>
+                        <td>?? &#x1F6E1;&#xFE0F;</td>
+                    </tr>
+                    <tr class="defenses_details grey-text text-darken-1 hidden">
+                        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└ Citoyens dans la zone</td>
+                        <td><span class="controlpoints_citizens">??</span> &#x1F6E1;&#xFE0F;</td>
+                    </tr>
+                    
+                    <tr class="grey lighten-4 bold red-text pointer" onclick="toggle(\'.attack_details\')">
+                        <td>&#x2796; Prochaine attaque zombie</td>
+                        <td><span class="zombies">??</span>&nbsp; <img src="resources/img/motiontwin/zombie.gif" alt="zombie"></td>
+                    </tr>
+                    <tr class="attack_details grey-text text-darken-1 hidden">
+                        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└ Zombies dans la zone</td>
+                        <td><span class="zombies">??</span>&nbsp; <img src="resources/img/motiontwin/zombie.gif" alt="zombie"></td>
+                    </tr>
+                    
+                    <tr class="grey lighten-4 black-text bold pointer" onclick="toggle(\'.unsafe_city_details\')">
+                        <td>&#x27A1;&#xFE0F; Analyse</td>
+                        <td>&#x26A0;&#xFE0F; Manque ?? défenses</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="unsafe_city_details hidden"
+                            style="padding-left:2em;">
+                            Les zombies étant plus nombreux que les défenses de la ville,
+                            ils risquent de faire des dégâts en ville cette nuit.
+                            Renforcez les défenses !
+                            <p><a href="#popattack">[En savoir plus : L\'attaque zombie quotidienne]</a></p>
+                        </td>
+                    </tr>
+                    <tr class="grey lighten-4 black-text bold pointer" onclick="toggle(\'.safe_city_details\')">
+                        <td>&#x27A1;&#xFE0F; Analyse</td>
+                        <td>&#x2705; Ville sécurisée</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="safe_city_details hidden"
+                            style="padding-left:2em;">
+                            Les défenses de la ville étant supérieures au nombre de zombies,
+                            ceux-ci ne pourront pas pénétrer en ville cette nuit.
+                            <p><a href="#popattack">[En savoir plus : L\'attaque zombie quotidienne]</a></p>
+                        </td>
+                    </tr>
+                </table>
+            </div>
             <div class="block_explore frame z-depth-2">
                 <h3 class="z-depth-1">Exploration</h3>
                 <p>Vous devriez explorer ce bâtiment. Avec un peu de chance, 

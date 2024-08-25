@@ -260,3 +260,7 @@ li {
     background:darkred;
     color:white;
 }
+
+.pointer {
+    cursor:pointer;
+}

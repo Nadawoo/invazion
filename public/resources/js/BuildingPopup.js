@@ -16,7 +16,7 @@ class BuildingPopup {
             let dataset = event.target.closest(".square_container").dataset;
             let cityTypeId = dataset.citytypeid;
             if(cityTypeId !== "") {
-                this.populateBuildingPopup(cityTypeId, dataset.zombies);
+                this.populateBuildingPopup(cityTypeId, dataset.controlpointscitizens, dataset.zombies);
                 window.location.href = "#popsuccess";
             }
         }
@@ -30,7 +30,7 @@ class BuildingPopup {
      * @param {int} cityTypeId The ID of the building, as returned by the Invazion's API
      * @returns {undefined}
      */
-    populateBuildingPopup(cityTypeId, nbrZombiesInZone) {
+    populateBuildingPopup(cityTypeId, controlPointsCitizens, nbrZombiesInZone) {
 
         let building = _configsBuildings[cityTypeId];
         let findableItems = (_configsBuildingsFindableItems[cityTypeId] !== undefined) ? _configsBuildingsFindableItems[cityTypeId] : [];
@@ -53,11 +53,19 @@ class BuildingPopup {
         let lastInvadedModuleId = this.getLastInvadedModuleId(nbrZombiesInZone);
         this.markInactiveModules(popup, lastInvadedModuleId);
         this.updateModulesZombieRow(popup, nbrZombiesInZone, lastInvadedModuleId);
-
+        
+        // Populate the "Defenses" frame
+        let defenses = popup.querySelector(".defenses_list");
+        defenses.querySelector(".zombies").innerText = nbrZombiesInZone;
+        defenses.querySelector(".attack_details .zombies").innerText = nbrZombiesInZone;
+        defenses.querySelector(".controlpoints_citizens").innerText = controlPointsCitizens;
+        
         // If the building can't be explored (city), hide the useless frames in the pop-up.
         if(_configsBuildings[cityTypeId]["is_explorable"] === 0) {
             popup.querySelector(".block_explore").classList.add("hidden");
             popup.querySelector(".block_modules").classList.add("hidden");
+        } else {
+            popup.querySelector(".block_defenses").classList.add("hidden");
         }
     }
 
