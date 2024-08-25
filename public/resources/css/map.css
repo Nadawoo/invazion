@@ -294,7 +294,7 @@ map_body_wrapper {
     background: radial-gradient(circle at 50% 5%,
                                 rgba(255, 255, 255, 1),
                                 darkred,
-                                rgba(0, 0, 50, 0.8));
+                                rgba(0, 0, 50, 1));
     z-index: 1;
 }
 #statusbar .actionpoints a {
