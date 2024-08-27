@@ -820,7 +820,7 @@ class HtmlCityEnclosure
         $zombies_percent = 100 - $defense_percent;
         
         return '
-            <a href="#popattack" id="defenses_bar">
+            <a href="#popdefenses" id="defenses_bar" onclick="populateDefensesDetails()">
                 <label>┌ Défenses de la ville</label>
                 <div class="bar_wrapper">
                     <div class="bar_icon">

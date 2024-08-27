@@ -54,18 +54,10 @@ class BuildingPopup {
         this.markInactiveModules(popup, lastInvadedModuleId);
         this.updateModulesZombieRow(popup, nbrZombiesInZone, lastInvadedModuleId);
         
-        // Populate the "Defenses" frame
-        let defenses = popup.querySelector(".defenses_list");
-        defenses.querySelector(".zombies").innerText = nbrZombiesInZone;
-        defenses.querySelector(".attack_details .zombies").innerText = nbrZombiesInZone;
-        defenses.querySelector(".controlpoints_citizens").innerText = controlPointsCitizens;
-        
         // If the building can't be explored (city), hide the useless frames in the pop-up.
         if(_configsBuildings[cityTypeId]["is_explorable"] === 0) {
             popup.querySelector(".block_explore").classList.add("hidden");
             popup.querySelector(".block_modules").classList.add("hidden");
-        } else {
-            popup.querySelector(".block_defenses").classList.add("hidden");
         }
     }
 

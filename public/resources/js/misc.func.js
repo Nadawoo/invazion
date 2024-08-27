@@ -1369,3 +1369,18 @@ function getCurrentCycle() {
     
     return parseInt(document.querySelector("#tuto_dayclock span").innerHTML);
 }
+
+
+/**
+ * Add the data in the pop-up detailing the sources of the city defenses
+ * @returns {undefined}
+ */ 
+function populateDefensesDetails() {
+    
+    let popup = document.querySelector("#popdefenses");
+    let defenses = popup.querySelector(".defenses_list");
+    
+//    defenses.querySelector(".zombies").innerText = nbrZombiesInZone;
+//    defenses.querySelector(".attack_details .zombies").innerText = nbrZombiesInZone;
+//    defenses.querySelector(".controlpoints_citizens").innerText = controlPointsCitizens;
+}
