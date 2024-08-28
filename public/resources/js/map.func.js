@@ -385,15 +385,23 @@ function getMyCityZoneId() {
  */
 function getZonePositions(zoneHtmlId) {
     
-    let mapRect  = document.querySelector("#map_body").getBoundingClientRect();
-    let zoneRect = document.querySelector(`${zoneHtmlId} .square_container`).getBoundingClientRect();
+    let mapElement = document.querySelector("#map_body"),
+        zoneElement = document.querySelector(`${zoneHtmlId} .square_container`);
+    // Get bounding rectangles
+    let mapRect = mapElement.getBoundingClientRect(),
+        zoneRect = zoneElement.getBoundingClientRect();
+    // Calculate the zoom factor caused by an eventual CSS transform:scale()
+    let scaleX = zoneRect.width / zoneElement.offsetWidth,
+        scaleY = zoneRect.height / zoneElement.offsetHeight;
     
     let zonePositions = {
         // "- mapRect.x" => substracts the space between the top of the window and
         // the top of the map
         // "+ zoneRect.width/2" => places the point at the center of the zone
-        "x" : Math.round(zoneRect.x - mapRect.x + zoneRect.width/2),
-        "y" : Math.round(zoneRect.y - mapRect.y + zoneRect.height/2)
+        // "/ scaleX" => cancels the eventual zoom caused by a CSS transform:scale(),
+        // otherwise the coordinates could appear shifted.
+        "x" : Math.round((zoneRect.x - mapRect.x + zoneRect.width/2) / scaleX),
+        "y" : Math.round((zoneRect.y - mapRect.y + zoneRect.height/2) / scaleY)
         };
        
     return zonePositions;
