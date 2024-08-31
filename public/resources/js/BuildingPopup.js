@@ -15,7 +15,14 @@ class BuildingPopup {
         if(event.target.closest(".square_container") !== null) {
             let dataset = event.target.closest(".square_container").dataset;
             let cityTypeId = dataset.citytypeid;
-            if(cityTypeId !== "") {
+            // #12 = ID of the building type "city" in the Invazion's API
+            if(parseInt(cityTypeId) === 12) {
+                let cityId = event.target.closest(".square_container").dataset.cityid;
+                updateConnectedCitiesLines(mapId);
+                addCityframes(mapId, cityId);
+                setTimeout(() => toggle(["#mapSvg", ".cityframe", "#map .nbr_defenses"]));
+            }
+            else if(cityTypeId !== "") {
                 this.populateBuildingPopup(cityTypeId, dataset.controlpointscitizens, dataset.zombies);
                 window.location.href = "#popsuccess";
             }
@@ -54,11 +61,12 @@ class BuildingPopup {
         this.markInactiveModules(popup, lastInvadedModuleId);
         this.updateModulesZombieRow(popup, nbrZombiesInZone, lastInvadedModuleId);
         
-        // If the building can't be explored (city), hide the useless frames in the pop-up.
-        if(_configsBuildings[cityTypeId]["is_explorable"] === 0) {
-            popup.querySelector(".block_explore").classList.add("hidden");
-            popup.querySelector(".block_modules").classList.add("hidden");
-        }
+        // If the building can't be explored (city), hide the useless frames 
+        // in the pop-up.
+//        if(_configsBuildings[cityTypeId]["is_explorable"] === 0) {
+//            popup.querySelector(".block_explore").classList.add("hidden");
+//            popup.querySelector(".block_modules").classList.add("hidden");
+//        }
     }
 
     

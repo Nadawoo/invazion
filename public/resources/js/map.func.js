@@ -420,26 +420,36 @@ function getZonePositions(zoneHtmlId) {
  *                            Don't forget the hashtag (e.g. "#zone8_2")
  * @returns {undefined}
  */
-function updateLineBetweenZones(lineName, origHtmlId, destinHtmlId, color="green") {
+function updateLineBetweenZones(lineName, origHtmlId, destinHtmlId, colors=["#F4D03F", "yellow"]) {
     
     let orig   = getZonePositions(origHtmlId);
     let destin = getZonePositions(destinHtmlId);
     
-    // Erases the existing line in the <svg>
-    let lineNode = document.querySelector(`#mapSvg line[name=${lineName}]`);
-    if(lineNode !== null) {
-        lineNode.remove();
-    }
+    // Erase the existing line in the <svg>
+    let lineNodes = document.querySelectorAll(`#mapSvg line[name=${lineName}]`);
+    lineNodes.forEach(lineNode => lineNode.remove());
     
-    // Draws the new line in the same <svg>
-    let line = document.createElementNS("http://www.w3.org/2000/svg", "line");
-    line.setAttribute("name", lineName);
-    line.setAttribute("x1", orig.x);
-    line.setAttribute("y1", orig.y);
-    line.setAttribute("x2", destin.x);
-    line.setAttribute("y2", destin.y);
-    line.setAttribute("style", `stroke:${color}`);
-    document.querySelector("#mapSvg").append(line);
+    // Create an animated line between origin and destination
+    // Create the base line
+    let baseLine = document.createElementNS("http://www.w3.org/2000/svg", "line");
+    baseLine.setAttribute("name", lineName);
+    baseLine.setAttribute("x1", orig.x);
+    baseLine.setAttribute("y1", orig.y);
+    baseLine.setAttribute("x2", destin.x);
+    baseLine.setAttribute("y2", destin.y);
+    baseLine.setAttribute("style", `stroke:${colors[0]}`);
+    document.querySelector("#mapSvg").appendChild(baseLine);
+
+    // Create the animated line
+    let animatedLine = document.createElementNS("http://www.w3.org/2000/svg", "line");
+    animatedLine.setAttribute("name", lineName);
+    animatedLine.setAttribute("x1", orig.x);
+    animatedLine.setAttribute("y1", orig.y);
+    animatedLine.setAttribute("x2", destin.x);
+    animatedLine.setAttribute("y2", destin.y);
+    animatedLine.setAttribute("style", `stroke:${colors[1]}`);
+    animatedLine.setAttribute("class", "animated-line");
+    document.querySelector("#mapSvg").appendChild(animatedLine);
 }
 
 
@@ -450,18 +460,78 @@ function updateLineBetweenZones(lineName, origHtmlId, destinHtmlId, color="green
  */
 async function updateConnectedCitiesLines(mapId) {
 
-   _cities = await getMapCitiesOnce(mapId);
+    _cities = await getMapCitiesOnce(mapId);
 
-   for(let city of Object.entries(_cities)) {
+    for(let city of Object.entries(_cities)) {
        let childCity = city[1];
+        
+        if(childCity["connected_city_id"] !== null) {
+            let parentCity = _cities[childCity["connected_city_id"]],
+                childCityZoneId  = `zone${childCity["coord_x"]}_${childCity["coord_y"]}`,
+                parentCityZoneId = `zone${parentCity["coord_x"]}_${parentCity["coord_y"]}`;
+            
+            updateLineBetweenZones( `${childCityZoneId}To${parentCityZoneId}`,
+                                    `#${parentCityZoneId}`,
+                                    `#${childCityZoneId}`,
+                                     ["white", "dodgerblue"]
+                                     );
+        }
+    }
+}
 
-       if(childCity["connected_city_id"] !== null) {
-           let parentCity = _cities[childCity["connected_city_id"]],
-               childCityZoneId  = `zone${childCity["coord_x"]}_${childCity["coord_y"]}`,
-               parentCityZoneId = `zone${parentCity["coord_x"]}_${parentCity["coord_y"]}`;
-           updateLineBetweenZones(`${childCityZoneId}To${parentCityZoneId}`, `#${parentCityZoneId}`, `#${childCityZoneId}`, "#F4D03F");
-       }
-   }
+
+async function addCityframes(mapId, clickedCityId) {
+    
+    _cities = await getMapCitiesOnce(mapId);
+    
+    for(let city of Object.entries(_cities)) {
+        let childCity = city[1];
+
+        if(childCity["connected_city_id"] !== null) {
+            let nbrDefenses = _configsBuildings[childCity.city_type_id].defenses;
+            addCityframe(childCity["coord_x"], childCity["coord_y"], nbrDefenses);
+        }
+    }
+    
+    highlightClickedCityframe(clickedCityId);
+}
+
+
+/**
+ * Add a white frame around the desert buildings connected to a city
+ * 
+ * @param {int} cityCoordX The X coordinate of the building on wich to add the frame
+ * @param {int} cityCoordY The Y coordinate
+ * @param {int} cityDefenses The total amount of defenses of the building
+ */
+function addCityframe(cityCoordX, cityCoordY, cityDefenses) {
+    
+    let zone = document.querySelector(`#zone${cityCoordX}_${cityCoordY} .square_container`);
+    
+    if(zone.querySelector(".cityframe") === null) {
+        zone.insertAdjacentHTML("afterbegin",
+            `<div class="cityframe hidden">
+                <div class="label">${cityDefenses}&#x1F6E1;&#xFE0F;</div>
+                <div class="frame"></div>
+            </div>`
+        );
+    }
+}
+
+
+/**
+ * Turn to gold the label of the parent city (where the other buildings
+ * are connected)
+ * 
+ * @param {int} clickedCityId
+ */
+function highlightClickedCityframe(clickedCityId) {
+        
+    let cityData = _cities[clickedCityId],
+        cityDiv = document.querySelector(`#zone${cityData.coord_x}_${cityData.coord_y}`);
+        
+    cityDiv.querySelector(`.cityframe`).classList.add("gold");
+    cityDiv.querySelector(`.label`).innerHTML = `${cityData.total_defenses}&#x1F6E1;&#xFE0F;`;
 }
 
 

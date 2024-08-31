@@ -315,7 +315,7 @@ echo $html['json_configs'];
                 <div id="map_body">
                     <!-- Let the SVG *before* the map zones, otherwise the invisible
                      SVG area will cover it and block all interactions (clicking, hovering...) -->
-                    <svg id="mapSvg"></svg>
+                    <svg id="mapSvg" class="hidden"></svg>
                     <?php echo $html['map']; ?>
                 </div>
             </div>

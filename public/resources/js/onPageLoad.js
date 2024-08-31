@@ -90,8 +90,6 @@ if (document.getElementById('map') !== null) {
     // Display the expeditions bar at the top of the map
     activateMapPathsView();
     
-    updateConnectedCitiesLines(mapId);
-    
     // Allows to move the map by dragging it with the mouse
     _scrollBoosterInstance = listenToMapDragging();
     

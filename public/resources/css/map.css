@@ -465,6 +465,43 @@ map_body_wrapper {
     border-radius:50%;
     z-index:2;
 }
+.cityframe {
+    position:absolute;
+    bottom:0;
+    display:flex;
+    flex-direction:column;
+    width:2.6rem;
+    box-shadow: 2px 2px 12px black;
+    z-index:3;
+}
+.cityframe .frame {
+    height:2.9rem;
+    width: 100%;
+    border:3px solid white;
+    background: radial-gradient(circle at 5% 5%,
+                        rgba(255, 255, 255, 0.8),
+                        rgba(0, 0, 0, 0) 50%
+                        );
+}
+.cityframe .label {
+    padding:0.2em 0.4em;
+    width:100%;
+    line-height:1em;
+    font-size:0.85em;
+    text-align:center;
+    background:white;
+    color:midnightblue;
+}
+.cityframe.gold {
+    outline:1px solid darkgreen;
+}
+.cityframe.gold .label {
+    background-color:#F4D03F;
+    font-weight:bold;
+}
+.cityframe.gold .frame {
+    border:3px solid #F4D03F;
+}
 /*
  * An <svg> area covers the map to allow drawing on it (lines between zones...)
  */
@@ -481,7 +518,17 @@ map_body_wrapper {
 }
 #mapSvg line {
     stroke:green;
-    stroke-width:4;
+    stroke-width:4px;
+}
+#mapSvg .animated-line {
+    stroke-width:2px;
+    stroke-dasharray: 5,5;
+    animation: dash-animation 1s linear infinite;
+}
+@keyframes dash-animation {
+    to {
+        stroke-dashoffset: 20;
+    }
 }
 
 /*
@@ -726,6 +773,7 @@ map_body_wrapper {
     position:absolute;
     margin-left:-1em;
     margin-top:-2.5em;
+    pointer-events:none;
 }
 
 /* Legend for the view of the map (zombies...) */
