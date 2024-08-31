@@ -18,8 +18,9 @@ class BuildingPopup {
             // #12 = ID of the building type "city" in the Invazion's API
             if(parseInt(cityTypeId) === 12) {
                 let cityId = event.target.closest(".square_container").dataset.cityid;
-                updateConnectedCitiesLines(mapId);
-                addCityframes(mapId, cityId);
+                let cityConnections = new CityConnections();
+                cityConnections.updateConnectedCitiesLines(mapId);
+                cityConnections.addCityframes(mapId, cityId);
                 setTimeout(() => toggle(["#mapSvg", ".cityframe", "#map .nbr_defenses"]));
             }
             else if(cityTypeId !== "") {

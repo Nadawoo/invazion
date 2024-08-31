@@ -519,6 +519,7 @@ map_body_wrapper {
 #mapSvg line {
     stroke:green;
     stroke-width:4px;
+    stroke-linecap:round;
 }
 #mapSvg .animated-line {
     stroke-width:2px;

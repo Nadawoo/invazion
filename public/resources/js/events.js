@@ -64,10 +64,10 @@ if (document.getElementById('map') !== null) {
         // Desactivate the classic submission button (avoids reloading the page)
         event.preventDefault();
         moveCitizen(event.submitter.value);
-        let myCityZoneId = await getMyCityZoneId();
-        if(myCityZoneId !== null) {
-            setTimeout(function() {updateLineBetweenZones("myCity", "#me", "#"+myCityZoneId);}, 1000);
-        }
+//        let myCityZoneId = await getMyCityZoneId();
+//        if(myCityZoneId !== null) {
+//            setTimeout(function() {updateLineBetweenZones("myCity", "#me", "#"+myCityZoneId);}, 1000);
+//        }
     });
     
     // Change cycle (trigger the midnight attack)
