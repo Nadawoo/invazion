@@ -470,6 +470,7 @@ map_body_wrapper {
     bottom:0;
     display:flex;
     flex-direction:column;
+    align-items:center;
     width:2.6rem;
     box-shadow: 2px 2px 12px black;
     z-index:3;
@@ -478,24 +479,46 @@ map_body_wrapper {
     height:2.9rem;
     width: 100%;
     border:3px solid white;
+    outline:1px solid white;
+    border-radius: 0.2em;
     background: radial-gradient(circle at 5% 5%,
                         rgba(255, 255, 255, 0.8),
                         rgba(0, 0, 0, 0) 50%
                         );
 }
+.cityframe.resources .frame {
+    border-color:cornflowerblue;
+}
+.cityframe.boosts .frame {
+    border-color:darkorange;
+}
+.cityframe.defenses .frame {
+    border-color:green;
+}
+.cityframe.undiscovered .frame {
+    border-color:grey;
+}
+.cityframe.nolabel .label {
+    display:none;
+}
 .cityframe .label {
+    position: absolute;
+    bottom:1px;
     padding:0.2em 0.4em;
-    width:100%;
+    width:95%;
     line-height:1em;
-    font-size:0.85em;
+    font-size:0.8em;
+    font-weight: bold;
     text-align:center;
     background:white;
+    border-radius:0 0 0.2em 0.2em;
     color:midnightblue;
 }
 .cityframe.gold {
     outline:1px solid darkgreen;
 }
 .cityframe.gold .label {
+    display:block;
     background-color:#F4D03F;
     font-weight:bold;
 }

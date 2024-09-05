@@ -25,7 +25,7 @@ class CityConnections {
                                     `${childCityZoneId}To${parentCityZoneId}`,
                                     `#${parentCityZoneId}`,
                                     `#${childCityZoneId}`,
-                                     ["white", "dodgerblue"]
+                                     ["white", "green"]
                                      );
             }
         }
@@ -77,16 +77,25 @@ class CityConnections {
     }
     
     
-    async addCityframes(mapId, clickedCityId) {
+    /**
+     * Add frames around the cities on the map
+     * 
+     * @param {int} mapId The ID of the concerned map
+     * @param {int} clickedCityId The ID of the parent city. Frames will be added 
+     *                  around it and all the cities connectcted to it.
+     *                  If not set, frames will be added around all the buildings
+     *                  on the map.
+     */
+    async addCityframes(mapId, clickedCityId=null) {
 
         _cities = await getMapCitiesOnce(mapId);
 
         for(let city of Object.entries(_cities)) {
             let childCity = city[1];
-
-            if(childCity["connected_city_id"] !== null) {
+            
+            if(clickedCityId === null || childCity["connected_city_id"] !== null) {
                 let nbrDefenses = _configsBuildings[childCity.city_type_id].defenses;
-                this.#addCityframe(childCity["coord_x"], childCity["coord_y"], nbrDefenses);
+                this.#addCityframe(childCity["coord_x"], childCity["coord_y"], childCity.city_type_id, nbrDefenses);
             }
         }
 
@@ -99,16 +108,39 @@ class CityConnections {
      * 
      * @param {int} cityCoordX The X coordinate of the building on wich to add the frame
      * @param {int} cityCoordY The Y coordinate
+     * @param {int} cityTypeId The ID of the type of the building, as returned by
+     *                         the Invazion's API
+     *                         Ex: 12 if the building is an "Outpost" type
      * @param {int} cityDefenses The total amount of defenses of the building
      */
-    #addCityframe(cityCoordX, cityCoordY, cityDefenses) {
+    #addCityframe(cityCoordX, cityCoordY, cityTypeId, cityDefenses) {
 
         let zone = document.querySelector(`#zone${cityCoordX}_${cityCoordY} .square_container`);
-
+        let animation = "animate__animated animate__pulse animate__infinite",
+            label = "",
+            cssClass = "";
+        
+        if(cityTypeId === 234) {
+            // #234 = the ID of the city type "Drugstore" in the Invazion's API
+            cssClass = `boosts ${animation}`;
+            label = `&#x26A1;`;
+        } else if(cityTypeId === 11 || cityTypeId === 12) {
+            // #11 = the ID of the "City", #12 = Outpost
+            cssClass = (cityDefenses === 0) ? "defenses nolabel" : "defenses";
+            label = `${cityDefenses}&#x1F6E1;&#xFE0F;`;           
+        } else if(cityTypeId === 233) {
+            // #11 = the ID of the "Undiscovered building"
+            cssClass = `undiscovered ${animation}`;
+            label = `&#x2753;`;           
+        } else {
+            cssClass = `resources ${animation}`;
+            label = `&#x1FAB5;`;
+        }
+        
         if(zone.querySelector(".cityframe") === null) {
             zone.insertAdjacentHTML("afterbegin",
-                `<div class="cityframe hidden">
-                    <div class="label">${cityDefenses}&#x1F6E1;&#xFE0F;</div>
+                `<div class="cityframe hidden ${cssClass}">
+                    <div class="label">${label}</div>
                     <div class="frame"></div>
                 </div>`
             );
@@ -128,6 +160,7 @@ class CityConnections {
             cityDiv = document.querySelector(`#zone${cityData.coord_x}_${cityData.coord_y}`);
 
         cityDiv.querySelector(`.cityframe`).classList.add("gold");
+        cityDiv.querySelector(`.cityframe`).classList.add("animate__animated", "animate__pulse", "animate__infinite");
         cityDiv.querySelector(`.label`).innerHTML = `${cityData.total_defenses}&#x1F6E1;&#xFE0F;`;
     }
 }

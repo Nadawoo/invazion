@@ -1129,6 +1129,7 @@ a.localize .material-icons {
     align-items:center;
     font-size:1.6em;
     background:white;
+    border: 2px solid red;
     border-radius:1em;
     box-shadow: 12px 12px 12px black;
     opacity:0.9;
