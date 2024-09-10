@@ -75,8 +75,8 @@ class BuildingPopup {
         // TODO: temporary hardcoded value for the tests. Number of zombies that are
         // needed for invaded one module of a building.
         let defensesPerModule = 5;
-
-        return Math.floor(nbrZombiesInBuilding / defensesPerModule);
+        
+        return Math.floor((nbrZombiesInBuilding-1) / defensesPerModule);
     }
 
 

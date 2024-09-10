@@ -475,11 +475,11 @@ class HtmlPopup
                 <tr onclick="this.querySelector(\'.text\').classList.toggle(\'hidden\');this.classList.toggle(\'selected\')">
                     <td>
                         <div style="display:flex;justify-content:space-between">
-                            <div>
-                                '.($key+1).'.
+                            <div style="width:12rem;">
                                 <span class="icon">'.$module['icon'].'</span>
                                 <strong>'.$module['title'].'</strong>
                             </div>
+                            <div>'.(($key+1)*5).'&#x1F6E1;&#xFE0F;</div>
                             <div class="status status_active z-depth-2">Actif</div>
                             <div class="status status_inactive z-depth-2" style="background:red">
                                 Hors service
@@ -488,7 +488,7 @@ class HtmlPopup
                         <div class="text hidden">
                             <p><em>'.$module['text'].'</em></p>
                             <p class="text_outoforder z-depth-2 red darken-4 white-text">
-                                &#x26A0;&#xFE0F; Ce module étant contrôlé par les zombies, 
+                                &#x26A0;&#xFE0F; Ce module étant envahi par les zombies, 
                                 il ne fonctionne plus. Pour le réactiver, éliminez
                                 suffisamment de zombies dans la zone du bâtiment.
                             </p>
@@ -510,7 +510,6 @@ class HtmlPopup
                 </div>
             </div>
             <div class="block_explore frame z-depth-2">
-                <h3 class="z-depth-1">Exploration</h3>
                 <p>Vous devriez explorer ce bâtiment. Avec un peu de chance, 
                     vous y trouverez un de ces objets :
                 </p>
