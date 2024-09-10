@@ -351,6 +351,8 @@ map_body_wrapper {
     line-height:2.55em;
     /* Evite que les éventuelles marges intérieures agrandissent le conteneur */
     box-sizing: border-box;
+    /* Makes sure that the opacity on a tile can't place it above the preceding tiles */
+    z-index:1;
 }
 .square_container {
     
