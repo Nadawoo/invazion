@@ -510,13 +510,13 @@ class HtmlPopup
                 </div>
             </div>
             <div class="block_explore frame z-depth-2">
+                <br>
+                '.$buttons->button('explore_building', true, 'explore_building center').'
+                <div style="background:green;color:white">'.$api_message.'</div>
                 <p>Vous devriez explorer ce bâtiment. Avec un peu de chance, 
                     vous y trouverez un de ces objets :
                 </p>
                 <ul class="items_list" style="justify-content:center"></ul>
-                <br>
-                <div style="background:green;color:white">'.$api_message.'</div>
-                '.$buttons->button('explore_building', true, 'explore_building center').'
                 <br>
             </div>
             <div class="block_modules frame z-depth-2">
