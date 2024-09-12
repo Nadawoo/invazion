@@ -351,8 +351,8 @@ map_body_wrapper {
     line-height:2.55em;
     /* Evite que les éventuelles marges intérieures agrandissent le conteneur */
     box-sizing: border-box;
-    /* Makes sure that the opacity on a tile can't place it above the preceding tiles */
-    z-index:1;
+    /* Makes sure that the opacity on a tile can't place it above the tiles around */
+    position: relative;
 }
 .square_container {
     
@@ -381,6 +381,8 @@ map_body_wrapper {
     /* Recentre verticalement le texte à l'intérieur du conteneur.
     Calibrage: le fond coloré sous le texte doit toucher la bordure du bas du conteneur. */
     line-height:2.2em;
+    /* Makes sure that the frames around the buildings can't be hidden by the tiles */
+    z-index:1;
 }
 
 .square_container .zombies_amount,
@@ -475,7 +477,7 @@ map_body_wrapper {
     align-items:center;
     width:2.6rem;
     box-shadow: 2px 2px 12px black;
-    z-index:3;
+    z-index:1;
 }
 .cityframe .frame {
     height:2.9rem;
@@ -823,6 +825,7 @@ map_body_wrapper {
     margin-left:-1em;
     margin-top:-2.5em;
     pointer-events:none;
+    z-index:1;
 }
 
 /* Legend for the view of the map (zombies...) */
