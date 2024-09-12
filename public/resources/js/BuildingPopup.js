@@ -24,7 +24,7 @@ class BuildingPopup {
                 setTimeout(() => toggle(["#mapSvg", ".cityframe", "#map .nbr_defenses"]));
             }
             else if(cityTypeId !== "") {
-                this.populateBuildingPopup(cityTypeId, dataset.controlpointscitizens, dataset.zombies);
+                this.populateBuildingPopup(cityTypeId, dataset.zombies, dataset.cyclelastvisit);
                 window.location.href = "#popsuccess";
             }
         }
@@ -38,7 +38,7 @@ class BuildingPopup {
      * @param {int} cityTypeId The ID of the building, as returned by the Invazion's API
      * @returns {undefined}
      */
-    populateBuildingPopup(cityTypeId, controlPointsCitizens, nbrZombiesInZone) {
+    populateBuildingPopup(cityTypeId, nbrZombiesInZone, cycleLastVisit) {
 
         let building = _configsBuildings[cityTypeId];
         let findableItems = (_configsBuildingsFindableItems[cityTypeId] !== undefined) ? _configsBuildingsFindableItems[cityTypeId] : [];
@@ -52,9 +52,16 @@ class BuildingPopup {
         if(building["descr_ambiance"] !== "") {
             popup.querySelector(".descr_ambiance").innerHTML = building["descr_ambiance"];
         }
-        // Add the list of items findable in this building
-        for(let itemId of findableItems) {
-            popup.querySelector(".items_list").prepend(htmlItem(itemId, _configsItems[itemId]));
+        
+        // Display/hide the button for exploring the building
+        if(parseInt(cycleLastVisit) === getCurrentCycle()) {
+            popup.querySelector(".text_explored").classList.remove("hidden");
+            popup.querySelector(".text_unexplored").classList.add("hidden");
+        } else {
+            // Add the list of items findable in this building
+            for(let itemId of findableItems) {
+                popup.querySelector(".items_list").prepend(htmlItem(itemId, _configsItems[itemId]));
+            }
         }
 
         // Add the line of zombies after the last invaded module

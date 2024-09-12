@@ -635,7 +635,7 @@ function updateCardCitizensInZone(nbrCitizensInZone) {
 
 
 /**
- * Displays/hides the button to enter the bulding or city in the player's zone. 
+ * Displays/hides the button to enter the building or city in the player's zone. 
  * 
  * @param {int} cityTypeId The ID of the city type in the zone (not the ID of the city)
  */
@@ -667,11 +667,6 @@ function updateEnterBuildingButton(cityTypeId, controlPointsCitizens, nbrZombies
     // Button to explore the building
     let buildingVisibility = (cityTypeId !== "" && _configsBuildings[cityTypeId]["is_explorable"]) ? "block" : "none";
     document.querySelector("#button_explore").style.display = buildingVisibility;
-    
-    if(cityTypeId !== "") {
-        let buildingPopup = new BuildingPopup();
-        buildingPopup.populateBuildingPopup(cityTypeId, controlPointsCitizens, nbrZombies);
-    }
 }
 
 

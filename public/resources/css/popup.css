@@ -133,6 +133,10 @@
     background:antiquewhite;
     border-bottom:1px solid lightgrey;
 }
+
+.popup .block_explore {
+    padding: 1em;
+}
 .popup .frame .explore_building button {
     width:50%;
     margin:auto;
