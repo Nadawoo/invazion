@@ -116,30 +116,36 @@ class CityConnections {
     #addCityframe(cityCoordX, cityCoordY, cityTypeId, cityDefenses) {
 
         let zone = document.querySelector(`#zone${cityCoordX}_${cityCoordY} .square_container`);
-        let animation = "animate__animated animate__pulse animate__infinite",
-            label = "",
+        let isExplored = (parseInt(zone.closest(".square_container").dataset.cyclelastvisit) === getCurrentCycle());
+        let label = "",
             cssClass = "";
         
         if(cityTypeId === 234) {
             // #234 = the ID of the city type "Drugstore" in the Invazion's API
-            cssClass = `boosts ${animation}`;
+            cssClass = `boosts`;
             label = `&#x26A1;`;
         } else if(cityTypeId === 11 || cityTypeId === 12) {
-            // #11 = the ID of the "City", #12 = Outpost
+            // #12 = the ID of the "City", #11 = Outpost
             cssClass = (cityDefenses === 0) ? "defenses nolabel" : "defenses";
             label = `${cityDefenses}&#x1F6E1;&#xFE0F;`;           
         } else if(cityTypeId === 233) {
             // #11 = the ID of the "Undiscovered building"
-            cssClass = `undiscovered ${animation}`;
+            cssClass = `undiscovered`;
             label = `&#x2753;`;           
         } else {
-            cssClass = `resources ${animation}`;
+            cssClass = `resources`;
             label = `&#x1FAB5;`;
+        }
+        
+        if(isExplored === true) {
+            cssClass += " explored";
+            label = "&#x2714;&#xFE0F;";
         }
         
         if(zone.querySelector(".cityframe") === null) {
             zone.insertAdjacentHTML("afterbegin",
                 `<div class="cityframe hidden ${cssClass}">
+                    <div class="dot_number">&nbsp;</div>
                     <div class="label">${label}</div>
                     <div class="frame"></div>
                 </div>`

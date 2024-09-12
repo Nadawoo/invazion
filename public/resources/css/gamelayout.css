@@ -1136,6 +1136,7 @@ a.localize .material-icons {
 }
 #tasks_button .text {
     font-size:0.7em;
+    color:red;
 }
 #tasks_button .dot_number {
     position:absolute;

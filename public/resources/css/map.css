@@ -516,6 +516,27 @@ map_body_wrapper {
     border-radius:0 0 0.2em 0.2em;
     color:midnightblue;
 }
+.cityframe .dot_number {
+    position:absolute;
+    top:  -0.5rem;
+    right:-0.5rem;
+    height: 1rem;
+    width:  1rem;
+    line-height:150%;
+    border:2px solid white;
+    border-radius:50%;
+    background:red;
+}
+.cityframe.explored .frame {
+    outline:none;
+}
+.cityframe.explored .dot_number {
+    display:none;
+}
+.cityframe.explored .label {
+    background:darkseagreen;
+}
+
 .cityframe.gold {
     outline:1px solid darkgreen;
 }
@@ -527,6 +548,7 @@ map_body_wrapper {
 .cityframe.gold .frame {
     border:3px solid #F4D03F;
 }
+
 /*
  * An <svg> area covers the map to allow drawing on it (lines between zones...)
  */
@@ -544,7 +566,7 @@ map_body_wrapper {
 #mapSvg line {
     stroke:green;
     stroke-width:4px;
-    stroke-linecap:round;
+    /*stroke-linecap:round;*/
 }
 #mapSvg .animated-line {
     stroke-width:2px;
@@ -705,6 +727,7 @@ map_body_wrapper {
 }
 #me {  
     background:lightgreen;
+    z-index: 2;
     cursor:pointer;
 }
 #me.alert {
