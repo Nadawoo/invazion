@@ -435,7 +435,7 @@ class HtmlButtons
                     ],
                 ],
             'explore_building' => [
-                'icon'  => '',
+                'icon'  => '&#x26CF;&#xFE0F;',
                 'name'  => "Explorer le bâtiment",
                 'title' => "",
                 'fields' => [

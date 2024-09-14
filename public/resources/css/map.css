@@ -458,12 +458,16 @@ map_body_wrapper {
 }
 /* Button marking a building not visited today */
 #map .nbr_defenses.diggable {
-    height:2.4em;
-    width: 2.4em;
+    position:absolute;
+    top:-0.3rem;
+    left:1.7rem;
+    height:0;
+    width: 0;
+    padding:0.8em;
+    font-size:0.7em;
     display:flex;
     justify-content:center;
     align-items:center;
-    padding:0;
     background:darkred;
     border:2px solid lightgrey;
     border-radius:50%;
@@ -471,25 +475,29 @@ map_body_wrapper {
 }
 .cityframe {
     position:absolute;
-    bottom:0;
+    bottom:0.1rem;
     display:flex;
     flex-direction:column;
     align-items:center;
-    width:2.6rem;
-    box-shadow: 2px 2px 12px black;
     z-index:1;
 }
 .cityframe .frame {
-    height:2.9rem;
-    width: 100%;
-    border:3px solid white;
-    outline:1px solid white;
-    border-radius: 0.2em;
+    height:2.7rem;
+    width: 2.7rem;
+    outline:1px solid dimgrey;
+    border-radius:50%;
+    box-shadow: 2px 2px 12px black;
     background: radial-gradient(circle at 5% 5%,
                         rgba(255, 255, 255, 0.8),
                         rgba(0, 0, 0, 0) 50%
                         );
 }
+.cityframe.active .frame {
+    border:3px solid white;
+    outline-color:white;
+    border-radius: 0.2em;
+}
+
 .cityframe.resources .frame {
     border-color:cornflowerblue;
 }
@@ -518,7 +526,7 @@ map_body_wrapper {
     border-radius:0 0 0.2em 0.2em;
     color:midnightblue;
 }
-.cityframe .dot_number {
+.cityframe.active .dot_number {
     position:absolute;
     top:  -0.5rem;
     right:-0.5rem;
@@ -529,7 +537,7 @@ map_body_wrapper {
     border-radius:50%;
     background:red;
 }
-.cityframe.explored .frame {
+.cityframe.active.explored .frame {
     outline:none;
 }
 .cityframe.explored .dot_number {
@@ -539,16 +547,16 @@ map_body_wrapper {
     background:darkseagreen;
 }
 
-.cityframe.gold {
+.cityframe.active.gold {
     outline:1px solid darkgreen;
+}
+.cityframe.active.gold .frame {
+    border:3px solid #F4D03F;
 }
 .cityframe.gold .label {
     display:block;
     background-color:#F4D03F;
     font-weight:bold;
-}
-.cityframe.gold .frame {
-    border:3px solid #F4D03F;
 }
 
 /*
