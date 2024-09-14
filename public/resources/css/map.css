@@ -510,6 +510,14 @@ map_body_wrapper {
 .cityframe.undiscovered .frame {
     border-color:grey;
 }
+.cityframe.zombie_core.active .frame {
+    border-color:red;
+    outline-color:darkred;
+}
+.cityframe.zombie_core .label {
+    background:red;
+    color:black;
+}
 .cityframe.nolabel .label {
     display:none;
 }

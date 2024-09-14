@@ -14,18 +14,21 @@ class CityConnections {
         _cities = await getMapCitiesOnce(mapId);
 
         for(let city of Object.entries(_cities)) {
-           let childCity = city[1];
-
+            let childCity = city[1];
+            
             if(childCity["connected_city_id"] !== null) {
                 let parentCity = _cities[childCity["connected_city_id"]],
                     childCityZoneId  = `zone${childCity["coord_x"]}_${childCity["coord_y"]}`,
                     parentCityZoneId = `zone${parentCity["coord_x"]}_${parentCity["coord_y"]}`;
                 
+                // #228 = the ID of the "Zombie core"
+                let strokeColors = (childCity.city_type_id === 228) ? ["white", "red"] : ["white", "green"];
+                
                 this.#updateLineBetweenZones(
                                     `${childCityZoneId}To${parentCityZoneId}`,
                                     `#${parentCityZoneId}`,
                                     `#${childCityZoneId}`,
-                                     ["white", "green"]
+                                     strokeColors
                                      );
             }
         }
@@ -115,9 +118,11 @@ class CityConnections {
      */
     #addCityframe(cityCoordX, cityCoordY, cityTypeId, cityDefenses) {
 
-        let zone = document.querySelector(`#zone${cityCoordX}_${cityCoordY} .square_container`);
-        let isExplored = (parseInt(zone.closest(".square_container").dataset.cyclelastvisit) === getCurrentCycle());
-        let label = "",
+        let zone = document.querySelector(`#zone${cityCoordX}_${cityCoordY} .square_container`),
+            isExplored = (parseInt(zone.closest(".square_container").dataset.cyclelastvisit) === getCurrentCycle()),
+            nbrZombies = zone.closest(".square_container").dataset.zombies,
+            cssClassPulse = "animate__animated animate__pulse animate__infinite",
+            label = "",
             cssClass = "";
         
         if(cityTypeId === 234) {
@@ -128,6 +133,10 @@ class CityConnections {
             // #12 = the ID of the "City", #11 = Outpost
             cssClass = (cityDefenses === 0) ? "defenses nolabel" : "defenses";
             label = `${cityDefenses}&#x1F6E1;&#xFE0F;`;           
+        } else if(cityTypeId === 228) {
+            // #228 = the ID of the "Zombie core"
+            cssClass = `zombie_core ${cssClassPulse}`;
+            label = `${nbrZombies}&#x1F9DF;`;           
         } else if(cityTypeId === 233) {
             // #11 = the ID of the "Undiscovered building"
             cssClass = `undiscovered`;
@@ -137,7 +146,7 @@ class CityConnections {
             label = `&#x1FAB5;`;
         }
         
-        if(isExplored === true) {
+        if(isExplored === true && cityTypeId !== 228) {
             cssClass += " explored";
             label = "&#x2714;&#xFE0F;";
         }
