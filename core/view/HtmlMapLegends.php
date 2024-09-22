@@ -7,14 +7,15 @@ class HtmlMapLegends {
     public function all_legends() {
         
         return  $this->legend_zombies()
-                .$this->legend_items();
+                .$this->legend_items()
+                .$this->legend_cityframes();
     }
     
     
     private function legend_zombies() {
         
         return '
-            <fieldset id="map_legend_zombies" class="map_legend">
+            <fieldset id="map_legend_zombies" class="map_legend" style="display:none">
                 <legend>Légende</legend>
                 <a href="#popcontrol" style="color:inherit">
                     <ul>
@@ -32,7 +33,7 @@ class HtmlMapLegends {
     private function legend_items() {
         
         return '
-            <fieldset id="map_legend_items" class="map_legend">
+            <fieldset id="map_legend_items" class="map_legend" style="display:none">
                 <legend>Légende</legend>
                 <a href="#Outside" style="color:inherit">
                     <ul>
@@ -48,6 +49,30 @@ class HtmlMapLegends {
                         <li><span style="background:orange"></span> 6-10 objets (2 sacs)</li>
                         <li><span style="background:red"></span> 11-15 objets (3 sacs)</li>
                         <li><span style="background:darkred"></span> 16 objets ou +</li>
+                    </ul>
+                </a>
+            </fieldset>';
+    }
+    
+    
+    private function legend_cityframes() {
+        
+        return '
+            <fieldset id="map_legend_cityframes" class="map_legend hidden">
+                <legend>Légende</legend>
+                <a style="color:inherit">
+                    <ul>
+                        <li><strong>Réseau de défenses</strong>
+                        <li><span style="border-color:red">&#x1F9DF;</span> Foyer de zombies</li>
+                        <li><span style="border-color:green">&#x1F6E1;&#xFE0F;</span> Bâtiment à défenses</li>
+                        <li><strong>Bâtiments explorables</strong></li>
+                        <li><span style="border-color:cornflowerblue">&#x1FAB5;</span> Bâtiment à ressources</li>
+                        <li><span style="border-color:darkorange">&#x26A1;</span> Bâtiment à énergie</li>
+                        <li><span style="border-color:purple">&#x2699;&#xFE0F;</span> Bâtiment technique</li>
+                        <li><strong>Transports</strong></li>
+                        <li><span style="border-color:black">&#x1F681;</span> Héliport</li>
+                        <hr>
+                        <li>&#x2714;&#xFE0F; Bâtiment exploré</li>
                     </ul>
                 </a>
             </fieldset>';

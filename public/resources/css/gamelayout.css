@@ -618,6 +618,7 @@ legend {
     padding:0.05em 0.4em 0.1em 0.4em;
     font-weight:bold;
     font-variant:small-caps;
+    border: 1px solid grey;
     border-radius:0.3rem;
     background:#34495e;
     color:white;
