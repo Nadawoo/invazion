@@ -21,17 +21,38 @@ class CityConnections {
                     childCityZoneId  = `zone${childCity["coord_x"]}_${childCity["coord_y"]}`,
                     parentCityZoneId = `zone${parentCity["coord_x"]}_${parentCity["coord_y"]}`;
                 
-                // #228 = the ID of the "Zombie core"
-                let strokeColors = (childCity.city_type_id === 228) ? ["white", "red"] : ["white", "green"];
-                
                 this.#updateLineBetweenZones(
                                     `${childCityZoneId}To${parentCityZoneId}`,
                                     `#${parentCityZoneId}`,
                                     `#${childCityZoneId}`,
-                                     strokeColors
+                                     this.#getStrokeColors(childCity.city_type_id)
                                      );
             }
         }
+    }
+    
+    
+    /**
+     * Gives the colors of the animated line between two connected cities.
+     * 
+     * @param {int} cityTypeId The ID of the city (not the ID of the instance
+     *                         of the city), as returned by the Invazion's API
+     * @returns {Array} The two colors of the animated line (the main line and
+     *                  the animated blocks inside it)
+     */
+    #getStrokeColors(cityTypeId) {
+        
+        let strokeColors = ["white", "green"];
+        
+        if(cityTypeId === 228) {
+            // #228 = the ID of the "Zombie core"
+            strokeColors = ["white", "red"];
+        } else if(cityTypeId === 235) {
+            // #235 = the ID of the "Heliport"
+            strokeColors = ["white", "black"];
+        }
+        
+        return strokeColors;
     }
     
     
@@ -129,6 +150,10 @@ class CityConnections {
             // #234 = the ID of the city type "Drugstore" in the Invazion's API
             cssClass = `boosts`;
             label = `&#x26A1;`;
+        } else if(cityTypeId === 235 || cityTypeId === 12) {
+            // #235 = the ID of the "Heliport"
+            cssClass = "transportation";
+            label = "&#x1F681;";           
         } else if(cityTypeId === 11 || cityTypeId === 12) {
             // #12 = the ID of the "City", #11 = Outpost
             cssClass = (cityDefenses === 0) ? "defenses nolabel" : "defenses";
