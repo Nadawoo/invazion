@@ -510,6 +510,9 @@ map_body_wrapper {
 .cityframe.transportation .frame {
     border-color:black;
 }
+.cityframe.technical .frame {
+    border-color:purple;
+}
 .cityframe.undiscovered .frame {
     border-color:grey;
 }

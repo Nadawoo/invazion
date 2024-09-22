@@ -150,11 +150,15 @@ class CityConnections {
             // #234 = the ID of the city type "Drugstore" in the Invazion's API
             cssClass = `boosts`;
             label = `&#x26A1;`;
-        } else if(cityTypeId === 235 || cityTypeId === 12) {
+        } else if(cityTypeId === 235) {
             // #235 = the ID of the "Heliport"
             cssClass = "transportation";
             label = "&#x1F681;";           
-        } else if(cityTypeId === 11 || cityTypeId === 12) {
+        } else if([236, 237].includes(cityTypeId)) {
+            // #236 = the ID of the "Training room", #237 = the "Collector"
+            cssClass = "technical";
+            label = "&#x2699;&#xFE0F;";           
+        } else if([11, 12].includes(cityTypeId)) {
             // #12 = the ID of the "City", #11 = Outpost
             cssClass = (cityDefenses === 0) ? "defenses nolabel" : "defenses";
             label = `${cityDefenses}&#x1F6E1;&#xFE0F;`;           
@@ -165,10 +169,13 @@ class CityConnections {
         } else if(cityTypeId === 233) {
             // #11 = the ID of the "Undiscovered building"
             cssClass = `undiscovered`;
-            label = `&#x2753;`;           
-        } else {
+            label = `&#x1F50D;`;           
+        } else if(cityTypeId === 5) {
+            // #5 = The ID of the "Wood storage"
             cssClass = `resources`;
             label = `&#x1FAB5;`;
+        } else {
+            label = `&#x2753;`;
         }
         
         if(isExplored === true && cityTypeId !== 228) {
