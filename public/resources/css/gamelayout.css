@@ -22,6 +22,18 @@
     /*overflow:auto; */
 }
 
+.dot_notif {
+    position:absolute;
+    top:  -0.5rem;
+    right:-0.5rem;
+    height: 1rem;
+    width:  1rem;
+    /*line-height:150%;*/
+    border:2px solid white;
+    border-radius:50%;
+    background:red;
+}
+
 /* The unvariable data of the game (building names...) */
 #configs {
     display:none;
@@ -840,6 +852,9 @@ legend {
  * > .redbutton is for the main actions (to use an item...)
  * > .bluebutton is for the secondary buttons (giving a tip...)
  */
+button {
+    position:relative;
+}
 input[type="submit"] {
     cursor:pointer;
 }

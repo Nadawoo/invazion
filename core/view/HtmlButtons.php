@@ -479,8 +479,11 @@ class HtmlButtons
         return
         '<form method="post" action="#popsuccess" name="'.$button_alias.'" class="'.$class.'">
             '.$hidden_fields.'
-            <button type="submit" class="redbutton '.$class_inactive.'" title="'.$button['title'].'">'.$icon.$button['name'].'</button>'
-        .'</form>';
+            <button type="submit" class="redbutton '.$class_inactive.'" title="'.$button['title'].'">
+                '.$icon.$button['name'].'
+                <span class="dot_notif"></span>
+            </button>
+        </form>';
     }
     
     

@@ -179,7 +179,7 @@ class CityConnections {
         if(zone.querySelector(".cityframe") === null) {
             zone.insertAdjacentHTML("afterbegin",
                 `<div class="cityframe ${cssClass}">
-                    <div class="dot_number">&nbsp;</div>
+                    <span class="dot_notif"></span>
                     <div class="label hidden">${label}</div>
                     <div class="frame"></div>
                 </div>`
