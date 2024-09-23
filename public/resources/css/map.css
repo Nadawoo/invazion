@@ -493,27 +493,34 @@ map_body_wrapper {
                         );
 }
 .cityframe.active .frame {
+    height:3em;
     border:4px solid white;
     outline-color:white;
     border-radius: 0.2em;
 }
 
-.cityframe.resources .frame {
+.cityframe.resources .frame,
+.cityframe.resources .label {
     border-color:cornflowerblue;
 }
-.cityframe.boosts .frame {
+.cityframe.boosts .frame,
+.cityframe.boosts .label {
     border-color:darkorange;
 }
-.cityframe.defenses .frame {
+.cityframe.defenses .frame,
+.cityframe.defenses .label {
     border-color:green;
 }
-.cityframe.transportation .frame {
+.cityframe.transportation .frame,
+.cityframe.transportation .label {
     border-color:black;
 }
-.cityframe.technical .frame {
+.cityframe.technical .frame,
+.cityframe.technical .label {
     border-color:purple;
 }
-.cityframe.undiscovered .frame {
+.cityframe.undiscovered .frame,
+.cityframe.undiscovered .label {
     border-color:grey;
 }
 .cityframe.zombie_core.active .frame {
@@ -521,7 +528,9 @@ map_body_wrapper {
     outline:2px solid darkred;
 }
 .cityframe.zombie_core .label {
+    width:90%;
     background:red;
+    border:none;
     color:black;
 }
 .cityframe.nolabel .label {
@@ -530,14 +539,15 @@ map_body_wrapper {
 .cityframe .label {
     position: absolute;
     bottom:1px;
-    padding:0.2em 0.4em;
-    width:95%;
+    right:1px;
+    padding:2px 0;
     line-height:1em;
     font-size:0.8em;
     font-weight: bold;
     text-align:center;
     background:white;
-    border-radius:0 0 0.2em 0.2em;
+    border:1px solid black;
+    border-radius:0.2em 0 0.2em 0;
     color:midnightblue;
 }
 .cityframe.active.explored .frame {
@@ -564,8 +574,10 @@ map_body_wrapper {
     border:4px solid #F4D03F;
 }
 .cityframe.gold .label {
+    width:90%;
     display:block;
     background-color:#F4D03F;
+    border:none;
     font-weight:bold;
 }
 
