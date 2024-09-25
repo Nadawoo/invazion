@@ -34,6 +34,22 @@
     background:red;
 }
 
+.close {
+    height:1.5em;
+    width: 1.5em;
+    font-size:1.5em;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:darkred;
+    color:white;
+    border:2px solid white;
+    border-radius:50%;
+}
+.close .material-icons {
+    font-weight:bold;
+}
+
 /* The unvariable data of the game (building names...) */
 #configs {
     display:none;

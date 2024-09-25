@@ -148,14 +148,14 @@
 /*
  * Display the horizontal bar for the expeditions
  */
-#paths_bar {
+.bottom_bar {
     display:flex;
     position:absolute;
     bottom:0;
     width:100%;
     gap:0.5em;
     padding:1px 5em 1px 1px;
-    background:grey; /*#4a235a*/
+    background:#4a235a;
     border-top: 1px solid grey;
     border-bottom:1px solid grey;
     outline:1px solid white;
@@ -163,34 +163,35 @@
     overflow:auto;
     z-index:1;
 }
-#paths_bar .paths {
+.bottom_bar .paths {
     display:flex;
     gap:0.5em;
 }
-#paths_bar .path {
+.bottom_bar .path {
     position:relative;
-    min-width:6em;
+    min-width:5.5em;
     background:white;
     text-align:center;
+    border:1px solid grey;
     border-radius:0.3em;
     box-shadow: 4px 4px 8px black;
     opacity:0.8;
     cursor:pointer; /* The inactive expeditions are fully clickable to activate them */
 }
-#paths_bar .path.active {
+.bottom_bar .path.active {
     min-width:15em;
     width:11em;
     border:2px solid red;
     opacity:1;
     cursor:auto;
 }
-#paths_bar .path.active .body {
+.bottom_bar .path.active .body {
     display:flex;
     justify-content: center;
     gap:0.2em;
     font-size: 1em;
 }
-#paths_bar h2 {
+.bottom_bar h2 {
     margin:0;
     padding:0.4rem 0.2rem;
     font-size:1em;
@@ -202,36 +203,36 @@
     cursor:pointer;
     white-space: nowrap;
 }
-#paths_bar h2 a {
+.bottom_bar h2 a {
     position:absolute;
     right:2px;
     font-size:1.2em;
 }
-#paths_bar .path .body {
+.bottom_bar .path .body {
     padding:0.2em;
     font-size:0.9em;
 }
-#paths_bar .alert {
+.bottom_bar .alert {
     background: yellow;
     border-radius: 1em;
     }
-#paths_bar button {
+.bottom_bar button {
     background:darkred;
     color:white;
     border-radius:0.3em;
     border:2px outset #c0392b;
     /*box-shadow:2px 2px 4px black;*/
 }
-#paths_bar button[disabled] {
+.bottom_bar button[disabled] {
     background:lightgrey;
     border:2px solid grey;
     color:dimgrey;
 }
 /* Button to create a new expedition */
-#paths_bar .new {
+.bottom_bar .new {
     display:block;
 }
-#paths_bar .new .plus {
+.bottom_bar .new .plus {
     display:block;
     height:2.1rem;
     width: 2.1rem;
@@ -243,10 +244,31 @@
     border-radius:50%;
     color:white;
 }
-#paths_bar .new .label {
+.bottom_bar .new .label {
     display:block;
     line-height:120%;
     font-weight:bold;
+}
+
+#cityframes_bar {
+    top:1px;
+    bottom:auto;
+    padding:0.1em 0;
+    justify-content:center;
+}
+#cityframes_bar .icon {
+    font-size:2.3em;
+}
+#cityframes_bar .label {
+    font-size:1.1em;
+    font-weight:bold;
+}
+#cityframes_bar .close {
+    position:absolute;
+    top:-0.1em;
+    right:0;
+    border-radius:0 0 0 0.2em;
+    border-right:none;
 }
 
 /*

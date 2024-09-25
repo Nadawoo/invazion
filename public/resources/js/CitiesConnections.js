@@ -25,7 +25,7 @@ class CityConnections {
                                     `${childCityZoneId}To${parentCityZoneId}`,
                                     `#${parentCityZoneId}`,
                                     `#${childCityZoneId}`,
-                                     this.#getStrokeColors(childCity.city_type_id)
+                                     this.#getLineType(childCity.city_type_id)
                                      );
             }
         }
@@ -33,26 +33,26 @@ class CityConnections {
     
     
     /**
-     * Gives the colors of the animated line between two connected cities.
+     * Set a CSS class for the animated line between two connected cities.
+     * Useful to set its color, width, etc. in CSS.
      * 
      * @param {int} cityTypeId The ID of the city (not the ID of the instance
      *                         of the city), as returned by the Invazion's API
-     * @returns {Array} The two colors of the animated line (the main line and
-     *                  the animated blocks inside it)
+     * @returns {string}
      */
-    #getStrokeColors(cityTypeId) {
+    #getLineType(cityTypeId) {
         
-        let strokeColors = ["white", "green"];
+        let lineType = "defenses";
         
         if(cityTypeId === 228) {
             // #228 = the ID of the "Zombie core"
-            strokeColors = ["white", "red"];
+            lineType = "zombie_core";
         } else if(cityTypeId === 235) {
             // #235 = the ID of the "Heliport"
-            strokeColors = ["white", "black"];
+            lineType = "transportation";
         }
         
-        return strokeColors;
+        return lineType;
     }
     
     
@@ -68,7 +68,7 @@ class CityConnections {
      *                            Don't forget the hashtag (e.g. "#zone8_2")
      * @returns {undefined}
      */
-    #updateLineBetweenZones(lineName, origHtmlId, destinHtmlId, colors=["#F4D03F", "yellow"]) {
+    #updateLineBetweenZones(lineName, origHtmlId, destinHtmlId, lineType="") {
         
         let orig   = getZonePositions(origHtmlId);
         let destin = getZonePositions(destinHtmlId);
@@ -85,7 +85,7 @@ class CityConnections {
         baseLine.setAttribute("y1", orig.y);
         baseLine.setAttribute("x2", destin.x);
         baseLine.setAttribute("y2", destin.y);
-        baseLine.setAttribute("style", `stroke:${colors[0]}`);
+        baseLine.setAttribute("class", lineType);
         document.querySelector("#mapSvg").appendChild(baseLine);
 
         // Create the animated line
@@ -95,8 +95,7 @@ class CityConnections {
         animatedLine.setAttribute("y1", orig.y);
         animatedLine.setAttribute("x2", destin.x);
         animatedLine.setAttribute("y2", destin.y);
-        animatedLine.setAttribute("style", `stroke:${colors[1]}`);
-        animatedLine.setAttribute("class", "animated-line");
+        animatedLine.setAttribute("class", `animated-line ${lineType}`);
         document.querySelector("#mapSvg").appendChild(animatedLine);
     }
     

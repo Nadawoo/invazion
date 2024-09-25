@@ -494,7 +494,7 @@ map_body_wrapper {
 }
 .cityframe.active .frame {
     height:3em;
-    border:4px solid white;
+    border:4px outset white;
     outline-color:white;
     border-radius: 0.2em;
 }
@@ -596,7 +596,7 @@ map_body_wrapper {
     pointer-events:none;
 }
 #mapSvg line {
-    stroke:green;
+    stroke:white;
     stroke-width:4px;
     /*stroke-linecap:round;*/
 }
@@ -609,6 +609,16 @@ map_body_wrapper {
     to {
         stroke-dashoffset: 20;
     }
+}
+
+#mapSvg .zombie_core.animated-line {
+    stroke:red;
+}
+#mapSvg .defenses.animated-line {
+    stroke:green;
+}
+#mapSvg .transportation.animated-line {
+    stroke:black;
 }
 
 /*
@@ -897,6 +907,9 @@ map_body_wrapper {
     border-top: 1px solid grey;
 }
 
+#map_legend_cityframes {
+    width:15em;
+}
 #map_legend_cityframes li {
     padding-bottom:0.2em;
 }

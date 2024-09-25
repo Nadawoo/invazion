@@ -167,6 +167,12 @@ if (document.getElementById('map') !== null) {
         document.querySelector("#city_iso .discuss").addEventListener("click", enlargeWall);
     }
     
+    document.querySelector("#cityframes_bar .close").addEventListener("click", function(){
+            toggleCityframesView();
+        },
+        { passive: true }
+    );
+    
     // If we are inside a city
     if (document.getElementById('city_container') !== null) {  
         // Filter the list of constructions inside the city (by defenses, by resources, etc.)

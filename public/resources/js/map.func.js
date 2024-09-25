@@ -738,6 +738,18 @@ function resetMapView() {
 }
 
 
+function toggleCityframesView() {
+
+    toggle(["#views_bar", "#tasks_button", "#attack_bar"]);
+    toggle(["#cityframes_bar", "#map_legend_cityframes"]);
+    
+    toggle(["#mapSvg", ".cityframe .label", "#map .nbr_defenses"]);
+    document.querySelectorAll(".cityframe").forEach(
+        (cityframe) => cityframe.classList.toggle("active")
+    );
+}
+
+
 /**
  * Adds a location sign above the player's city on the map
  * 

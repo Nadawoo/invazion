@@ -321,7 +321,10 @@ echo $html['json_configs'];
             </div>
         </div>
         
-        <?php echo $htmlPaths->paths_bar() ?>
+        <?php
+        echo $htmlPaths->paths_bar()
+           . $htmlPaths->cityframes_bar()
+        ?>
         
         <form method="get" id="formPathDrawing" class="hidden">
             <ul class="center">

@@ -21,15 +21,7 @@ class BuildingPopup {
                 let cityConnections = new CityConnections();
                 cityConnections.updateConnectedCitiesLines(mapId);
                 cityConnections.addCityframes(mapId, cityId);
-                
-                toggle(["#map_legend_cityframes", "#views_bar", "#tasks_button", "#attack_bar"]);
-                
-                setTimeout(() =>
-                    toggle(["#mapSvg", ".cityframe .label", "#map .nbr_defenses"]),
-                    document.querySelectorAll(".cityframe").forEach(
-                        (cityframe) => cityframe.classList.toggle("active")
-                    )
-                );
+                toggleCityframesView();
             }
             else if(cityTypeId !== "") {
                 this.populateBuildingPopup(cityTypeId, dataset.zombies, dataset.cyclelastvisit);
