@@ -104,10 +104,8 @@ class HtmlPaths {
                  hideClasses([\'transportation\'], \'mapSvg\');
                  unhideClasses([\'defenses\'], \'mapSvg\');
                  ">
-                <a class="body">
-                    <span class="icon">&#x1F6E1;&#xFE0F;</span><br>
-                    <span class="label">Défenses</span>
-                </a>
+                <span class="icon">&#x1F6E1;&#xFE0F;</span>
+                <span class="label">Défenses</span>
             </div>
             <div class="path"
                  onclick="toggle(\'#map_legend_cityframes ul\');
@@ -116,10 +114,8 @@ class HtmlPaths {
                  unhideClasses([\'resources\', \'boosts\', \'technical\', \'undiscovered\'], \'map\');
                  hideClasses([\'defenses\', \'transportation\'], \'mapSvg\');
                  ">
-                <a class="body">
-                    <span class="icon">&#x26CF;&#xFE0F;</span><br>
-                    <span class="label">Ressources</span>
-                </a>
+                <span class="icon">&#x26CF;&#xFE0F;</span>
+                <span class="label">Ressources</span>
             </div>
             <div class="path"
                  onclick="toggle([\'#map_legend_cityframes ul\']);
@@ -129,10 +125,8 @@ class HtmlPaths {
                  hideClasses([\'defenses\'], \'mapSvg\');
                  unhideClasses([\'transportation\'], \'mapSvg\');
                  ">
-                <a class="body">
-                    <span class="icon">&#x1F681;</span><br>
-                    <span class="label">Transports</span>
-                </a>
+                <span class="icon">&#x1F681;</span>
+                <span class="label">Transports</span>
             </div>
             <div class="path"
                  onclick="toggle([\'#map_legend_cityframes ul\']);
@@ -141,10 +135,8 @@ class HtmlPaths {
                  unhideClasses([\'weather\'], \'map\');
                  hideClasses([\'defenses\', \'transportation\'], \'mapSvg\');
                  ">
-                <a class="body">
-                    <span class="icon">&#x1F327;&#xFE0F;</span><br>
-                    <span class="label">Météo</span>
-                </a>
+                <span class="icon">&#x1F327;&#xFE0F;</span>
+                <span class="label">Météo</span>
             </div>
             <a class="close z-depth-2"><i class="material-icons">close</i></a>
         </div>';
