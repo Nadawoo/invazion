@@ -333,7 +333,7 @@ async function addCitiesOnMap(mapId) {
         }
         // Adds the name of the building
         cityName = (city["city_name"] === null) ? buildingName : city["city_name"];
-        zone.insertAdjacentHTML("afterbegin", `<span class="city_name">${cityName}</span>`);
+        zone.insertAdjacentHTML("afterbegin", `<span class="city_name hidden">${cityName}</span>`);
         
         // Adds the building description in the bubble of the zone
         zone.querySelector(".roleplay").innerHTML = `<h5 class="name">${buildingName}</h5><hr><div class="descr_ambiance">${buildingDescr}</div>`;
@@ -440,7 +440,7 @@ function activateMapZombiesView() {
             color = 'grey';  // No zombies
         } 
         
-        display("map_legend_zombies");
+        display("#map_legend_zombies");
         // Color the zones depending on the number of zombies
         zombiesAmount.style.background = color;
         // Reveal all the zones, regardless their date of last visit
@@ -471,7 +471,7 @@ function desactivateMapZombiesView() {
 //        squareContainer.style.border = "none";
 //    }
     
-    hide("map_legend_zombies");
+    hide("#map_legend_zombies");
     hideClasses(["zombies_amount"]);
     // Display the icons of zombies again
     unhideClasses(["zombies"]);
@@ -530,29 +530,14 @@ async function displayItemOnMap(itemId) {
 function toggleMapNeighborhoodView() {
     
     if(window.isMapNeighborhoodViewActive === true) {
-        unhideClasses(["nbr_defenses"], "map");
-        var display = "none";
+        display("#map .nbr_defenses");
+        hide(["#map .zone_name", "#map .city_name"]);
         window.isMapNeighborhoodViewActive = false;
     } else {
-        hideClasses(["nbr_defenses"], "map");
-        var display = "block";
+        hide("#map .nbr_defenses");
+        display(["#map .zone_name", "#map .city_name"]);
         window.isMapNeighborhoodViewActive = true;
     }
-    
-    let zones = document.querySelectorAll("#map .zone_name");
-    for(let zone of zones) {
-        zone.style.display = display;
-    }
-    
-    let cities = document.querySelectorAll("#map .city_name");
-    for(let city of cities) {
-        city.style.display = display;
-    }
-    
-//    let defenses = document.querySelectorAll("#map .nbr_defenses");
-//    for(let defense of defenses) {
-//        defense.style.display = display;
-//    }
 }
 
 
@@ -607,7 +592,7 @@ function activateMapItemsView() {
         }
         
         unhideClasses(["items_amount"]);
-        display("map_legend_items");
+        display("#map_legend_items");
         // Reveal all the zones, regardless their date of last visit
 //        hexagons[i].style.opacity = 1;
         
@@ -641,7 +626,7 @@ function desactivateMapItemsView() {
     
     for(let i=0; i<hexagons.length; i++) {
         // Hides the legend
-        hide("map_legend_items");
+        hide("#map_legend_items");
         // Remove the colors on the zones
 //        let squareContainer = hexagons[i].querySelector(".square_container");
 //        squareContainer.style.background = "none";
@@ -807,19 +792,6 @@ function zoomMapRange(newZoomPercent) {
 
 
 /**
- * Show/hide the <range> selector to change the zoom level
- * 
- * @returns {undefined}
- */
-function toggleZoomRange() {
-    
-    let display =(document.querySelector("#zoom_form .range-field").style.display === "block") ? "none" : "block";
-    
-    document.querySelector('#zoom_form .range-field').style.display = display;
-}
-
-
-/**
  * Centers the zoomed map on the player
  */
 function centerMapOnMe() {
@@ -855,14 +827,13 @@ function switchToActionView() {
     zoomMapRange(220);
     setTimeout(() => centerMapOnMe(), 2000);
     // Display the actions panel (dig...)
-    display(["actions_panel"]);
-    changeDisplayValue("personal_block_wrapper", "flex");
+    display(["#actions_panel", "#personal_block_wrapper"]);
     // Hide some elements of the GUI to make the interface look lighter
-    hide(["views_bar", "map_navigation", "tasks_button", "game_footer"]);
+    hide(["#views_bar", "#map_navigation", "#tasks_button", "#game_footer"]);
     hideClasses(["nbr_defenses", "bubble"]);
     desactivateMapPathsView();
     // Display the button which switches to the Map mode
-    changeDisplayValue("map_mode_button", "flex");
+    display("#map_mode_button");
     // Remove the illumination on the button which displays the map navigation
     document.querySelector("#views_bar .map").classList.remove("active");     
     document.querySelector("#views_bar .paths").classList.remove("active");
@@ -879,13 +850,10 @@ function switchToMapView() {
     zoomMapRange(_defaultMapZoomPercent);
     setTimeout(() => centerMapOnMe(), 500);
     // Hide the actions panel in large mode
-    hide(["actions_panel", "personal_block_wrapper"]);
+    hide(["#actions_panel", "#personal_block_wrapper", "#map_mode_button"]);
     // Display again the general elements of the GUI
-    changeDisplayValue(["views_bar", "map_navigation", "tasks_button", "game_footer"], "flex");
-    unhideClasses(["nbr_defenses", "bubble"]);
-    // Display the button which switches to the Action mode
-    hide(["map_mode_button"]);
-    unhideId("attack_bar");
+    display(["#views_bar", "#map_navigation", "#tasks_button", "#game_footer", "#attack_bar",
+             "#map .nbr_defenses", "#map .bubble"]);
     // Restore the illumination on the button which displays the map navigation
     document.querySelector("#views_bar .map").classList.add("active");  
 }

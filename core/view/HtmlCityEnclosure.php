@@ -121,7 +121,7 @@ class HtmlCityEnclosure
     function button_close_block() {
         
         return '<button class="close_city_blocks" '
-                     . 'onclick="hideCityBlocks();display([\'city_defenses\', \'city_submenus\'], \'flex\');updateUrlParam(\'tab\', null);"'
+                     . 'onclick="hideCityBlocks();display([\'#city_defenses\', \'#city_submenus\']);updateUrlParam(\'tab\', null);"'
                      . '><i class="material-icons">close</i></button>';
     } 
     
@@ -338,7 +338,7 @@ class HtmlCityEnclosure
             $pseudo = $citizen['citizen_pseudo'];
             
             $html_houses .= '
-                <div id="citizen'.$citizen['citizen_id'].'" style="display:none">
+                <div id="citizen'.$citizen['citizen_id'].'" class="hidden">
                     <div class="city_bandeau">
                         <div class="back_button" onclick="toggleHouse(\'citizen'.$citizen['citizen_id'].'\')"
                             title="Retourner à la liste des citoyens">
@@ -491,8 +491,12 @@ class HtmlCityEnclosure
         
         $html_tips = '
             <p>
-                <a class="bluebutton" onclick="display(\'tip_buildable\');display(\'to_constructions\', \'flex\');toggle(\'#constructions_block\')">&#x1F4A1; Conseil : Chantiers constructibles</a>
-                <a class="bluebutton" onclick="display(\'tip_resources\');display(\'to_constructions\', \'flex\');toggle(\'#constructions_block\')">&#x1F4A1; Conseil : Ressources à compléter</a>
+                <a class="bluebutton" onclick="display([\'#tip_buildable\', \'#to_constructions\']);toggle(\'#constructions_block\')">
+                    &#x1F4A1; Conseil : Chantiers constructibles
+                </a>
+                <a class="bluebutton" onclick="display([\'#tip_resources\', \'#to_constructions\']);toggle(\'#constructions_block\')">
+                    &#x1F4A1; Conseil : Ressources à compléter
+                </a>
             </p>';
         
         $html_display_mode = '
@@ -926,7 +930,7 @@ class HtmlCityEnclosure
                     <span class="shield_icon z-depth-1 '.$pulse.'">&#x1F6E1;&#xFE0F;</span>
                     <span class="alert_icon"></span>
                 </a>
-                <a href="#popattack" class="defenses_missing">
+                <a href="#popattack" class="defenses_missing hidden">
                     '.$zombies_overflow.' défenses manquantes
                 </a>
                 <p class="defenses_ok">

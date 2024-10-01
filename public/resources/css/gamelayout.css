@@ -50,15 +50,6 @@
     font-weight:bold;
 }
 
-/* The unvariable data of the game (building names...) */
-#configs {
-    display:none;
-}
-/* Stores some useful data for javascript (citizen name...) */
-#gameData {
-    display:none;
-}
-
 /* Règles du jeu sous la carte */
 #rules {
     padding:0 1rem;
@@ -236,7 +227,6 @@ form[name="end_cycle"] button {
     font-size:1.5rem;
 }
 #notifsBlock {
-    display:none;
     position:absolute;
     bottom:3.5em;
     right:0;
@@ -468,6 +458,7 @@ form[name="end_cycle"] button {
     box-shadow:6px 6px 6px black;
 }
 #block_move #card_building {
+    display:block;
     height:8em;
 }
 #block_move #card_building img {
@@ -502,7 +493,6 @@ form[name="end_cycle"] button {
  * Actions in the desert (move, dig...)
  */
 #actions_panel {
-    display:none;
     position:sticky;
     /*right:0.5rem; /* Avoids shifting the buttons to the left when the scrollbar appears */
     bottom:0;
@@ -610,7 +600,6 @@ form[name="end_cycle"] button {
     margin:auto;
 }
 #actions fieldset {
-    display:none;
     position:relative;
     top:-6rem; /* Make the block start at the top of the parent block */
     height:100%;
@@ -661,7 +650,6 @@ legend {
     text-align:center;
 }
 #block_zombies #action_zombies {
-    display:none;
     text-align:center;
 }
 #block_zombies .nbr_zombies {
@@ -763,7 +751,6 @@ legend {
 }
 /* The tooltip for the item */
 .item_label .details {
-    display:none;
     position:absolute;
     top:3em;
     width:14.5em;
@@ -977,9 +964,6 @@ input[type="submit"] {
 /*
  * Bloc rouge indiquant que le joueur est bloqué par les zombies
  */
-#alert_control, #alert_tired {
-    display:none;
-}
 .block_alert {
     border:2px outset black;
     text-align:center;

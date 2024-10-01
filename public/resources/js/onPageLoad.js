@@ -158,8 +158,8 @@ if (document.getElementById('city_container') !== null) {
     
     // If we are on the landing page of the city (= no city block open)
     if(cityMenuId === "cityMenuCity" ) {
-        display("city_submenus");
-        display("city_defenses", "flex");
+        display("#city_submenus");
+        display("#city_defenses");
     }
 }
 
@@ -174,17 +174,17 @@ if (document.getElementById("controlCountdown") !== null) {
 if (document.getElementById('editConfig') !== null) {
     
     // On page load, we hide by default all the secondary options of the form
-    hide([  'block_findable',
-            'block_findable_advanced',
-            'block_compo',
-            'block_apgain',
-            'block_malus',
-            'block_healing',
-            'block_weapon',
-            'block_bag',
-            'block_drop',
-            'block_loads',
-            'block_solidity_custom',
-            'block_killing_rate'
+    hide([  '#block_findable',
+            '#block_findable_advanced',
+            '#block_compo',
+            '#block_apgain',
+            '#block_malus',
+            '#block_healing',
+            '#block_weapon',
+            '#block_bag',
+            '#block_drop',
+            '#block_loads',
+            '#block_solidity_custom',
+            '#block_killing_rate'
             ]);
 }

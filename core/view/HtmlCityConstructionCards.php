@@ -72,9 +72,12 @@ class HtmlCityConstructionCards
         $card_icon = $htmlItem->icon(null, "&#x1F4A1;", 48);
         
         return '
-            <a id="to_constructions" class="redbutton" onclick="toggle(\'#constructions_block\');hide(\'to_constructions\');hide(\'tip_buildable\');hide(\'tip_resources\')">&lt;&lt;</a>
+            <a id="to_constructions" class="redbutton hidden"
+               onclick="toggle([\'#constructions_block\', \'#to_constructions\', \'#tip_buildable\', \'#tip_resources\'])">
+               &lt;&lt;
+            </a>
                 
-            <div id="tip_buildable" class="city_block construction_card">
+            <div id="tip_buildable" class="city_block construction_card hidden">
                 <h2>'.$card_icon.'&nbsp;Chantiers constructibles</h2>
                 <p class="descr">Vous pouvez construire ces chantiers car 
                     les ressources requises sont réunies 
@@ -82,7 +85,7 @@ class HtmlCityConstructionCards
                 </p>
                 <div class="contents">'.$result_buildable.'</div>
             </div>
-            <div id="tip_resources" class="city_block construction_card">
+            <div id="tip_resources" class="city_block construction_card hidden">
                 <h2>'.$card_icon.'&nbsp;Ressources à compléter</h2>
                 <p class="descr">Rapportez ces objets lors de 
                     <a href="#" onclick="switchCitySubmenu(\'explore\')">vos explorations</a>

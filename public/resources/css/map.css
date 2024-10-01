@@ -94,7 +94,6 @@ map_body_wrapper {
     transform:rotate(-90deg);
     margin-top:1.5rem;
     margin-bottom:2rem;
-    display:none;
 }
 #zoom_form #zoom_range {
     color:black;
@@ -160,10 +159,10 @@ map_body_wrapper {
  * Status bar of the citizen
  */
 #personal_block_wrapper {
-    display:none;
     position:absolute;
     top:0.2rem;
     width:100%;
+    display:flex;
     justify-content: center;
 }
 #personal_block {
@@ -228,11 +227,6 @@ map_body_wrapper {
 }
 #bagbar {
     width:2.2em;
-}
-#bagbar .items_list li:nth-child(n+1) { 
-    /* By default, display only the X first items. Don't use overflow:hidden 
-       because it would hide the item's tooltip too. */
-    display:none;
 }
 #statusbar .item_label,
 #bagbar .item_label {
@@ -411,7 +405,6 @@ map_body_wrapper {
 }
 
 #map .zone_name {
-    display:none;
     position:absolute;
     opacity:0.8;
     line-height:1em;
@@ -422,7 +415,6 @@ map_body_wrapper {
     box-shadow:6px 6px 6px black;
 }
 #map .city_name {
-    display:none;
     position:absolute;
     top:-1.3em;
     padding:0.1em 0.3em;

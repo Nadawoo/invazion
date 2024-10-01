@@ -88,7 +88,7 @@
     text-align:center;
     color:white;
     font-size:0.9em;
-    display:none;
+    /*display:none;*/
 }
 #phone h4 {
     background:#273746;

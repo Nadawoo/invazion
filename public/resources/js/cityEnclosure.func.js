@@ -37,8 +37,8 @@ function switchCityMenu(cityMenuId) {
     hideCityBlocks();
     
     // Display the global container (Home + City) of the submenus too
-    display("city_submenus");
-    display("city_defenses", "flex");
+    display("#city_submenus");
+    display("#city_defenses");
     updateUrlParam("tab", null);
 }
 
@@ -58,7 +58,7 @@ function switchCitySubmenu(cityContentsId) {
     // Modifie l'url pour mémoriser dans quel onglet de la ville on se trouve.    
     updateUrlParam('tab', cityContentsId);
     
-    hide(["city_submenus", "city_defenses"]);
+    hide(["#city_submenus", "#city_defenses"]);
 }
 
 

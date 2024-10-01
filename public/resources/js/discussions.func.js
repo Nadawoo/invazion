@@ -152,9 +152,9 @@ async function replyDiscussion(topicId, nbrMessages) {
     if (json.metas.error_code === "success") {
         // Clears and hides the form after posting
         thread.querySelector('textarea').value = "";
-        thread.querySelector('.sendform').style.display = "none";
+        thread.querySelector('.sendform').classList.add("hidden");
         // Show the "Reply" button again
-        thread.querySelector('.replyButton').style.display = "block";
+        thread.querySelector('.replyButton').classList.remove("hidden");
         // Appends the text of the posted reply at the bottom of the discussion
         thread.querySelector('.replies').appendChild( htmlDiscussionMessage(safeMessage, false, citizenPseudo, new Date().toISOString(), nbrMessages+1) );
         // Clears the eventual error message (obsolete after sending)

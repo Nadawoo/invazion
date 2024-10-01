@@ -28,7 +28,7 @@ class HtmlLayout extends HtmlPage
      */
     function json_configs($json_map, $json_buildings, $json_buildings_findable_items, $json_items) {
         
-        return '<section id="configs">
+        return '<section id="configs" class="hidden">
                     <div class="map">
                     '.$json_map.'
                     </div>
@@ -190,7 +190,7 @@ class HtmlLayout extends HtmlPage
                     Jour <span style="font-size:1.6em;font-weight:bold;">'.(int)$day.'</span>
                 </a>
             </div>
-            <p id="messageEndCycle" style="display:none;margin:0"></p>
+            <p id="messageEndCycle" class="hidden" style="margin:0"></p>
             <div class="right">
                 <a id="showWall" title="Communications">
                     <span class="icon"><i class="material-icons">sms</i></span>
@@ -587,7 +587,7 @@ class HtmlLayout extends HtmlPage
                     <div class="icon">&#x1F392;</div>
                     <div class="name">Sac</div>
                 </div>
-                <ul class="items_list">
+                <ul class="items_list hidden">
                     ' . $htmlItem->items($bag_items, $items_caracs) . '
                     ' . $htmlItem->empty_slots($nbr_free_slots) . '
                 </ul>
@@ -694,7 +694,7 @@ class HtmlLayout extends HtmlPage
         $citizen_action_points = isset($citizen['bag_items'][23]) ? $citizen['bag_items'][23] : 0;
         
         return '
-            <section id="gameData">
+            <section id="gameData" class="hidden">
                 <div id="citizenId">'.$citizen['citizen_id'].'</div>
                 <div id="citizenPseudo">'.$citizen['citizen_pseudo'].'</div>
                 <div id="citizenCoordX">'.$citizen['coord_x'].'</div>
@@ -720,10 +720,10 @@ class HtmlLayout extends HtmlPage
         return '
             <form action="#" id="zoom_form">
                 <button id="zoomMapStepIn" title="Zoomer la carte"><i class="material-icons small">add</i></button>
-                <p class="range-field">
+                <p class="range-field hidden">
                     <input id="zoom_range" type="range" value="100" min="70" max="220" step="30">
                 </p>
-                <hr onclick="toggleZoomRange()">
+                <hr onclick="toggle(\'#zoom_form .range-field\')">
                 <button id="zoomMapStepOut" title="Dézoomer la carte"><i class="material-icons small">remove</i></button>
             </form>
             

@@ -130,15 +130,15 @@ if (document.getElementById('map') !== null) {
 //    document.getElementById("notifsButton").addEventListener("click", function(){
 //
 //        if (window.getComputedStyle(document.getElementById("notifsBlock")).display === 'none') {
-//            display("notifsBlock");
+//            display("#notifsBlock");
 //            updateDiscussionsNotifs();
 //        }
 //        else {
-//            hide("notifsBlock");
+//            hide("#notifsBlock");
 //        }
 //    });
 //    document.getElementById("notifsClose").addEventListener("click", function(){
-//        hide("notifsBlock");
+//        hide("#notifsBlock");
 //    });
         
     // Switch tabs in the communications panel

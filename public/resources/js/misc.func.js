@@ -35,33 +35,29 @@ function toggle(elementsNames) {
 }
 
 
-/**
- * Afficher ou masquer un élément à partir de son ID HTML
- * 
- * @param {string|list} htmlIds Les ID HTML des éléments à masquer. Peut être
- *                              un ID seul (string) ou une liste d'IDs.
- * @param {string} newDisplayValue Définir à "none" pour masquer l'élément, "block" pour l'afficher
- */
-function changeDisplayValue(htmlIds, newDisplayValue) {
+function display(elementsNames) {
     
-    if (typeof(htmlIds) === "object") {
-        for (let i=0; i<htmlIds.length; i++) {
-            document.getElementById(htmlIds[i]).style.display = newDisplayValue;
-        }
+    if(typeof(elementsNames) === "string") {
+        document.querySelectorAll(elementsNames).forEach(element => element.classList.remove("hidden"));
     }
     else {
-        document.getElementById(htmlIds).style.display = newDisplayValue;
+        for(i=0; i < elementsNames.length; i++){
+            document.querySelectorAll(elementsNames[i]).forEach(element => element.classList.remove("hidden"));
+        }
     }
 }
 
 
-function display(htmlIds, visibleValue="block") {    
-    changeDisplayValue(htmlIds, visibleValue);
-}
-
-
-function hide(htmlIds) {    
-    changeDisplayValue(htmlIds, "none");
+function hide(elementsNames) {
+    
+    if(typeof(elementsNames) === "string") {
+        document.querySelectorAll(elementsNames).forEach(element => element.classList.add("hidden"));
+    }
+    else {
+        for(i=0; i < elementsNames.length; i++){
+            document.querySelectorAll(elementsNames[i]).forEach(element => element.classList.add("hidden"));
+        }
+    }
 }
 
 
@@ -135,14 +131,7 @@ function toggleHide(htmlId) {
  */
 function displayClasses(classesNames) {
     
-    for (let i=0; i < classesNames.length; i++) {
-        
-        var classes = document.getElementsByClassName(classesNames[i]);
-        
-        for (let i=0; i < classes.length; i++) {
-            classes[i].style.display = "block";
-        }
-    }
+    display(classesNames);
 }
 
 
@@ -153,21 +142,15 @@ function displayClasses(classesNames) {
 function toggleBag() {
     
     if(_isBagVisible === true) {
-        var newDisplayValue = null; // Back to the default defined in the CSS
+        hide("#bagbar .items_list");
         var newWidth = null;
         var newButtonContent = "chevron_right";
         _isBagVisible = false;
     } else {
-        var newDisplayValue = "flex";
+        display("#bagbar .items_list");
         var newWidth = "18em";
         var newButtonContent = "chevron_left";
         _isBagVisible = true;
-    }
-    
-    // Show/hide the overflowing items
-    var items = document.querySelectorAll("#bagbar .items_list li");
-    for(i=0; i<items.length; i++) {
-        items[i].style.display = newDisplayValue;
     }
     
     // Update the button +/- according to the action (show/hide)
@@ -272,20 +255,14 @@ function toggleMapMarker(objectToMark) {
 
     if (window.areMapMarkersActive !== true) {        
         // Adds the HTML for the icons in the zones
-        let classes = document.querySelectorAll(markableObjects[objectToMark]);
-        
-        for(let i=0; i < classes.length; i++) {
-            classes[i].innerHTML += '<img src="resources/img/free/map_location.svg" class="location">';
-        }
+        document.querySelectorAll(markableObjects[objectToMark]).forEach(element =>
+            element.innerHTML += '<img src="resources/img/free/map_location.svg" class="location">'
+        );
         window.areMapMarkersActive = true;
     }
     else {    
         // Hides the icons added by the previous call to the function
-        let classes = document.querySelectorAll(".location");
-        
-        for(let i=0; i < classes.length; i++) {
-            classes[i].style.display = 'none';
-        }
+        hide("#map .location");
         window.areMapMarkersActive = false;
     }
 }
@@ -297,32 +274,31 @@ function toggleMapMarker(objectToMark) {
  */
 function toggleActionBlock(buttonAlias) {
     
-    let blockId = "block_"+buttonAlias;
-    let roundId = "round_"+buttonAlias;
+    let blockId = "#block_"+buttonAlias;
+    let roundId = "#round_"+buttonAlias;
     
     // In case the parameter is not in the cookie yet, or not valid
-    if (buttonAlias === undefined || document.getElementById(blockId) === null) {
+    if (buttonAlias === undefined || document.querySelector(blockId) === null) {
         return false;
     }
-        
-    if (document.getElementById(blockId).style.display === "block") {
+    
+    if(!document.querySelector(blockId).classList.contains("hidden")) {
         // If the block is already displayed, the button hides it
         hide(blockId);
-        document.getElementById(roundId).classList.remove("active");
+        document.querySelector(roundId).classList.remove("active");
         // Will memorize in the cookie to hide the block
         buttonAlias = undefined;
     }
     else {
         // Hides all the action blocks...
-        let actionBlocks = document.getElementById("actions").getElementsByTagName("fieldset");
-        for (let i=0; i<actionBlocks.length; i++) {
-            document.getElementById("actions").getElementsByTagName("fieldset")[i].style.display = "none";
-            document.getElementById("round_actions").getElementsByTagName("input")[i].parentNode.parentNode.classList.remove("active");
-        }
+        hide("#actions fieldset");
+        document.querySelectorAll("#round_actions input").forEach(
+            element => element.parentNode.parentNode.classList.remove("active")
+        );        
         // ... Then displays the only action block we want
-        document.getElementById(blockId).style.display = "block";
+        display(blockId);
         // ... and hightlights the active button
-        document.getElementById(roundId).classList.add("active");
+        document.querySelector(roundId).classList.add("active");
     }
     
     setCookieConfig("round_button", buttonAlias);
@@ -387,9 +363,9 @@ function activatePhoneTab(tabId=null) {
     }
     
     // Par défaut, on cache tous les onglet du smartphone
-    hide(["minimap", "health", "zone"]);
+    hide(["#minimap", "#health", "#zone"]);
     // Puis on affiche le contenu de l'onglet actif
-    display(tabId);
+    display(`#${tabId}`);
 }
 
 
@@ -629,8 +605,7 @@ function updateMeAfterMoving(newCoordX, newCoordY) {
  */
 function updateCardCitizensInZone(nbrCitizensInZone) {
     
-    let display = (nbrCitizensInZone > 1) ? "flex" : "none";    
-    document.querySelector("#card_citizens").style.display = display;
+    (nbrCitizensInZone <= 1) ? hide("#card_citizens") : display("#card_citizens");
 }
 
 
@@ -643,10 +618,10 @@ function updateEnterBuildingButton(cityTypeId, controlPointsCitizens, nbrZombies
     
     // Displays the building's name under the movement paddle
     if(cityTypeId === "") {
-        document.querySelector("#block_move #card_building").style.display = "none";
+        hide("#block_move #card_building");
     } else {
         document.querySelector("#block_move .building_name").innerHTML = _configsBuildings[cityTypeId]["name"];
-        document.querySelector("#block_move #card_building").style.display = "block";
+        display("#block_move #card_building");
         document.querySelector("#card_building").classList.add("above_paddle");
         unhideClasses(["ignore_button"]);
         hideIds(["card_dig", "card_ap_cost", "card_citizens"]);
@@ -720,23 +695,22 @@ function toggleItem(event) {
     let itemLabel = event.target.closest(".item_label");
     var tooltip = itemLabel.querySelector(".details");
     // If the item's tooltip is already opened, we just hide it
-    if(tooltip.style.display === "block") {
-        tooltip.style.display = "none";
+    
+    if(!tooltip.classList.contains("hidden")) {
+        tooltip.classList.add("hidden");
         itemLabel.style.border = null;
         // Avoids instant re-opening of the tooltip, as it is a click in .item_label too
         event.stopPropagation();
     }
     else {
-        // If we want to open a new tooltip, first close all the other tooltips.
-        // TODO: we should only treat the one previously opened, not checking 
-        // all the tooltips each time
-        let classes = document.querySelectorAll(".item_label .details");
+        // If we want to open a new tooltip, first close all the other open tooltips.
+        let classes = document.querySelectorAll(".item_label .details:not(.hidden)");
         for (let i=0; i < classes.length; i++) {
-            classes[i].style.display = "none";
             classes[i].closest(".item_label").style.border = null;
         }
+        hide(".item_label .details");
         // Then, display the intended tooltip
-        tooltip.style.display = "block";
+        tooltip.classList.remove("hidden");
         itemLabel.style.border = "2px solid darkred";
         
         // Avoid the item's tooltip to overflow the parent container
@@ -893,7 +867,7 @@ async function getMyZoneOnce(mapId, coordX, coordY) {
 function showFightingZombiesButtons(nbrZombies) {
     
     if(nbrZombies > 0) {
-        document.querySelector("#action_zombies").style.display = "block";
+        display("#action_zombies");
     }
 }
 
@@ -914,7 +888,7 @@ async function dig() {
     
     if(json.metas.error_code === "success") {
         // Hides the message "There are no items on the ground..."
-        document.querySelector('#items_ground .greytext').style.display = "none";
+        hide("#items_ground .greytext");
         // Adds an HTML entry in the ground items list
         for(let itemId of Object.values(json.datas.found_items_ids)) {
             htmlAddGroundItem(itemId, _configsItems[itemId], 1);
@@ -979,10 +953,10 @@ async function dropItem(eventSubmitter) {
         let tplEmptySlot = document.querySelector('#tplEmptySlot').content.cloneNode(true);
         document.querySelector('#bagbar .items_list').appendChild(tplEmptySlot);
         // Replaces the "drop" icon by the "pick-up" icon for this item
-        itemNode.querySelector('.form_drop').style.display = "none";
-        itemNode.querySelector('.form_pickup').style.display = "block";
+        itemNode.querySelector(".form_drop").classList.add("hidden");
+        itemNode.querySelector(".form_pickup").classList.remove("hidden");
         // Hides the message "There are no items on the ground..."
-        document.querySelector('#items_ground .greytext').style.display = "none";
+        hide("#items_ground .greytext");
         // Increases the counter for the ground items
         let myZone = document.querySelector("#me").parentNode.dataset;
         myZone.items = parseInt(myZone.items, 10) + 1;
@@ -1137,17 +1111,17 @@ function getHtmlActionBlockFellow(citizen, bigChips=false, displayActionButtons=
         template.querySelector(".userListItem").classList.add("big");
     }
     if(displayItsMe === false) {
-        template.querySelector('.itsMe').style.display = "none";
+        template.querySelector('.itsMe').classList.add("hidden");
     }
     
     // Displays/hides the buttons attack/heal according to the wounds of the player
     if(displayActionButtons === false) {
-        template.querySelector('.actionButtons').style.display = "none";
+        template.querySelector('.actionButtons').classList.add("hidden");
     }
     else if(citizen.is_wounded === 0) {
-        template.querySelector('form[name="heal"]').style.display = "none";
+        template.querySelector('form[name="heal"]').classList.add("hidden");
     } else {
-        template.querySelector('form[name="attack"]').style.display = "none";
+        template.querySelector('form[name="attack"]').classList.add("hidden");
     }
     
     return template;
@@ -1191,8 +1165,8 @@ async function displayMessageEndCycle() {
                             "descr": "Une nouvelle journée commence ! Bonne chance..."}
                    ];
 
-//   hide("timer");
-   display(textZoneId);
+//   hide("#timer");
+   display(`${textZoneId}`);
 
    for(let stage of stages) {
        document.getElementById(textZoneId).innerHTML = `<span style="font-size:2.6em;">${stage.icon}</span>${stage.descr}`;
@@ -1200,8 +1174,8 @@ async function displayMessageEndCycle() {
    }
    await sleep(1500);
 
-   hide(textZoneId);
-//   display("timer");
+   hide(`#${textZoneId}`);
+//   display("#timer");
 }
 
 

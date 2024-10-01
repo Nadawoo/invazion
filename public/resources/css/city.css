@@ -524,11 +524,6 @@
 }
 
 /* Recommandations on the constructions page */
-#tip_buildable,
-#tip_resources,
-#to_constructions {
-    display:none;
-}
 #to_constructions {
     min-width:auto;
     width:2.2em;
@@ -578,9 +573,6 @@
     font-weight:bold;
     color:red;
 }
-#city_defenses .defenses_ok {
-    display:none;
-}
 #city_defenses .goto {
     margin-top:2em;
     margin-bottom:0.5em;
@@ -589,9 +581,6 @@
 /* View for a safe city (zombies < defenses)*/
 #city_defenses .safe .shield_icon {
     background:green;
-}
-#city_defenses .safe .defenses_missing {
-    display:none;
 }
 #city_defenses .safe .defenses_ok {
     display:block;
@@ -713,9 +702,6 @@
     font-size:0.9em;
     color:grey;
 }
-#city_door .closed {
-    display:none;
-}
 #city_door label {
     display:block;
     margin:1em 0 0.2em 0;
@@ -728,9 +714,6 @@
 /* When the door is closed */
 #city_door .door_closed .status {
     background:darkred;
-}
-#city_door .door_closed .open {
-    display:none;
 }
 #city_door .door_closed .closed {
     display:inline;

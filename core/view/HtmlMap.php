@@ -223,7 +223,7 @@ class HtmlMap
             $opacity = $this->opacity_coeff($cell['date_last_visit']);
         }
         
-        $cell_name = ($cell['zone_name'] !== null) ? '<span class="zone_name">'.$cell['zone_name'].'</span>' : '';
+        $cell_name = ($cell['zone_name'] !== null) ? '<span class="zone_name hidden">'.$cell['zone_name'].'</span>' : '';
         
         // Variable grounds (sand, peebles...)
         $ground = $this->ground_css_class($cell);

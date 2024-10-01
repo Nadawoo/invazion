@@ -311,13 +311,17 @@ echo $html->page_header();
     <fieldset>
         <legend>État de l'objet après utilisation</legend>
         
-        <input type="radio" name="item_characs[destruction_rate]" value="100" id="is_destroyed" checked onchange="hide('block_solidity_custom')"> 
+        <input type="radio" name="item_characs[destruction_rate]" value="100" id="is_destroyed" checked
+               onchange="hide('#block_solidity_custom')"> 
         <label for="is_destroyed">L'objet disparaît (définitif)</label><br>
-        <input type="radio" name="item_characs[destruction_rate]" value="is_broken" id="is_broken" onchange="hide('block_solidity_custom')" disabled>
+        <input type="radio" name="item_characs[destruction_rate]" value="is_broken" id="is_broken"
+               onchange="hide('#block_solidity_custom')" disabled>
         <label for="is_broken">L'objet est cassé (réparable)</label><br>
-        <input type="radio" name="item_characs[destruction_rate]" value="0" id="is_intact" onchange="hide('block_solidity_custom')">
+        <input type="radio" name="item_characs[destruction_rate]" value="0" id="is_intact"
+               onchange="hide('#block_solidity_custom')">
         <label for="is_intact">L'objet reste intact</label><br>
-        <input type="radio" name="item_characs[destruction_rate]" value="custom" id="solidity_custom" onchange="toggle('#block_solidity_custom')" disabled>
+        <input type="radio" name="item_characs[destruction_rate]" value="custom" id="solidity_custom"
+               onchange="toggle('#block_solidity_custom')" disabled>
         <label for="solidity_custom">Personnaliser...</label><br>
         <div style="margin-left:2em" id="block_solidity_custom">
             <label for="break_rate">Cassé :</label>

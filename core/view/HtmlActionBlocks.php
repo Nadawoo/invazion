@@ -20,7 +20,7 @@ class HtmlActionBlocks {
     function block_dig($html_ground_items, $citizen_can_dig) {
         
         return '
-            <fieldset id="block_dig" class="z-depth-2">
+            <fieldset id="block_dig" class="z-depth-2 hidden">
                 <div style="display:flex;align-items:center;justify-content:center">'.$this->buttons->button('dig', true, '', $citizen_can_dig).'
                     <a href="#popitems" style="margin-left:0.8rem;font-size:1.2em">[?]</a>
                 </div>
@@ -49,7 +49,7 @@ class HtmlActionBlocks {
     function block_citizens() {
         
         return '
-            <fieldset id="block_citizens" class="z-depth-2">
+            <fieldset id="block_citizens" class="z-depth-2 hidden">
                 <strong>Humains dans ma zone</strong>
                 <p class="greytext"><br>Personne à proximité. Vous êtes seul au milieu 
                     de cette zone désertique...</p>
@@ -67,7 +67,7 @@ class HtmlActionBlocks {
         $html_actions_bag     = $this->layout->block_actions_bag($config_items, $citizen_bag_items);
         
         return '
-            <fieldset id="block_zombies" class="z-depth-2">
+            <fieldset id="block_zombies" class="z-depth-2 hidden">
                 '.$html_actions_zombies.'
                 <br>
                 '.$html_actions_bag.'
@@ -78,7 +78,7 @@ class HtmlActionBlocks {
     function block_build($coord_x, $coord_y) {
         
         return '
-            <fieldset id="block_build" class="z-depth-2">
+            <fieldset id="block_build" class="z-depth-2 hidden">
                 '.$this->layout->block_actions_build()
                 .'<hr>'
                 . $this->layout->block_edit_land($coord_x, $coord_y)

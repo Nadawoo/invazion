@@ -380,7 +380,7 @@ class HtmlCityIso {
         
         return '
             <div class="asset '.$alias.'" style="top:'.$top.'em;left:'.$left.'em;"
-                 onclick="switchCitySubmenu(\''.$alias.'\');hide(\'city_iso\')">
+                 onclick="switchCitySubmenu(\''.$alias.'\');hide(\'#city_iso\')">
                 <div class="actions">
                     <div class="name">'.$name.'</div>
                     <div class="actionblocks">

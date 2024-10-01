@@ -66,7 +66,7 @@ class HtmlMyZone
         if ($this->_city_size >= 2) {
             
             $hexagon_content = '
-                <div id="city_name">Ville anonyme</div>
+                <div id="city_name hidden">Ville anonyme</div>
                 <div id="city_descr">0 défenses | '.$this->_city_size.' habitations</div>
                 <div id="city_enclosure">
                     <div id="city_icon">&#127751;</div>

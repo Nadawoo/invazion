@@ -66,17 +66,15 @@ async function updateActionBlocks() {
  * @param {int} newNbrZombies The number of zombies in the zone after the action
  */
 function updateMoveCost(newNbrZombies) {
-    
-    let display = "flex";    
-    // The movement has no AP cost in some situations
+      
+    // The movement has no AP cost in some situations => hide the card under 
+    // the movement paddle
     if(newNbrZombies === 0 && parseInt(_configsMap.moving_cost_no_zombies) === 0) {
-        display = "none";
+        hide("#card_ap_cost");
     }
     else if(newNbrZombies >= 1 && parseInt(_configsMap.moving_cost_zombies) === 0) {
-        display = "none";
+        hide("#card_ap_cost");
     }
-    // Updates the card under the movement paddle
-    document.querySelector("#card_ap_cost").style.display = display;
     
     // Updates the block showing the AP before=>after moving
     let currentAp = document.querySelector("#actionPoints").innerHTML,
@@ -121,18 +119,18 @@ async function updateBlockAlertControl(controlpointsZombies, mapId, coordX, coor
         || (controlpointsZombies   > 0 && actionPoints < _configsMap.moving_cost_zombies)
         ) { 
         // Display the alert text above the movement paddle
-        display("alert_tired");
+        display("#alert_tired");
         // Turn to red the halo under the player on the map
         document.querySelector("#me").classList.add("alert");
         document.querySelector(".halo").classList.add("alert");
     } else {
-        hide("alert_tired");
+        hide("#alert_tired");
         document.querySelector("#me").classList.remove("alert");
         document.querySelector(".halo").classList.remove("alert");
     }
     
     // Displays an alert when the citizens have less control points than the zombies on the zone
-    document.querySelector("#alert_control").style.display = (parseInt(controlpointsCitizens) < parseInt(controlpointsZombies)) ? "block" : "none";
+    (controlpointsCitizens >= controlpointsZombies) ? hide("#alert_control") : display("#alert_control");
 }
 
 
@@ -148,10 +146,10 @@ function updateDigButtons(is_visited_today) {
     
     if(is_visited_today === 1) {
         digButton.classList.add("inactive");
-        document.querySelector("#block_move #card_dig").style.display = "none";
+        hide("#block_move #card_dig");
     } else {
         digButton.classList.remove("inactive");
-        document.querySelector("#block_move #card_dig").style.display = "flex";
+        display("#block_move #card_dig");
     }  
 }
 
@@ -177,10 +175,10 @@ function updateBlockActionZombies(newNbrZombies) {
     if(newNbrZombies > 0) {
         document.querySelector("#block_zombies .nbr_zombies").innerHTML = newNbrZombies+" zombies";
         document.querySelector("#block_zombies .zombies_visual").innerHTML = '<span class="zombie">&#x1F9DF;</span>'.repeat(newNbrZombies);
-        document.querySelector("#action_zombies").style.display = "block";
+        display("#action_zombies");
     } else {
         // If there is no more zombies, hide the buttons & infos about killing zombies
-        document.querySelector("#action_zombies").style.display = "none";
+        hide("#action_zombies");
     }
 }
 
@@ -217,12 +215,12 @@ async function updateBlockActionCitizens(coordX, coordY) {
         // Shows me in the list of the citizens
         if(citizensInMyZone.length <= 0) {
             // If the connected player is alone, show a generic text
-            document.querySelector("#block_citizens .greytext").style.display = "block";
+            display("#block_citizens .greytext");
             block.innerHTML = "";
             
         } else {
             // Hide the generic text
-            document.querySelector("#block_citizens .greytext").style.display = "none";
+            hide("#block_citizens .greytext");
             // Add the player's pseudo at the top of the list of citizens
             template = getHtmlActionBlockFellow(_citizens[myCitizenId], bigChips=true, displayActionButtons=false, displayItsMe=true);
             document.querySelector("#block_citizens #citizensInMyZone").appendChild(template);
@@ -262,8 +260,7 @@ async function updateBlockActionDig(mapId, coordX, coordY) {
     // Update the data only one time per zone
     if(block.dataset.coordx !== coordX || block.dataset.coordy !== coordY
        || block.innerHTML.length === 0) {
-    
-        let noItemsText = document.querySelector('#items_ground .greytext');
+        
         // Clear the obsolete items list from the previous zone
         block.innerHTML = "";        
         // Get the items in the zone by calling the Invazion's API
@@ -271,13 +268,13 @@ async function updateBlockActionDig(mapId, coordX, coordY) {
         // Set the digging button to grey if the player can't dig
         updateDigButtons(_myZone.user_specific.is_visited_today);
         
-        if(_myZone.items === null) {
+        if(_myZone.items.length === 0) {
             // Show the default text if no items on the ground
-            noItemsText.style.display = "block";
+            display("#items_ground .greytext");
         }
         else {
             // Hide the default text if there are items
-            noItemsText.style.display = "none";
+            hide("#items_ground .greytext");
             
             for(let [itemId, itemAmount] of Object.entries(_myZone.items)) {
                 // Adds the item in the items list
@@ -451,9 +448,9 @@ function updateRoundButtonDotNumber(roundButtonId, amount, forceHighlight=false)
     
     if(amount == 0) {
         // Don't show the dot number if 0 stuff in the zone
-        document.querySelector(`#${roundButtonId} .dot_number`).style.display = "none";
+        hide(`#${roundButtonId} .dot_number`);
     } else {
-        document.querySelector(`#${roundButtonId} .dot_number`).style.display = "block";
+        display(`#${roundButtonId} .dot_number`);
         document.querySelector(`#${roundButtonId} .dot_number`).innerHTML = amount;
     }
     

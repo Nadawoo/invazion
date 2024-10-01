@@ -346,7 +346,7 @@ echo $html['json_configs'];
             <div class="body"></div>
         </section>
         
-        <section id="personal_block_wrapper">
+        <section id="personal_block_wrapper" class="hidden">
             <div id="personal_block">
                 <?php
                 echo $statusbar->statusbar($citizen['bag_items'], $citizen['city_id'], $citizen['is_wounded'],
@@ -374,7 +374,7 @@ echo $html['json_configs'];
         if($citizen['citizen_id'] !== null) {
             ?>
             <div id="resizeMap">
-                <button id="map_mode_button" style="display:none"><i class="material-icons">zoom_out_map</i></button>
+                <button id="map_mode_button" class="hidden"><i class="material-icons">zoom_out_map</i></button>
                 <!-- <button id="action_mode_button"><i class="material-icons">zoom_in_map</i></button> -->
             </div>
             <?php
@@ -386,7 +386,7 @@ echo $html['json_configs'];
         
         <?php echo $legends->all_legends() ?>
         
-        <div id="actions_panel">
+        <div id="actions_panel" class="hidden">
             <div id="round_actions">
                 <?php
                 echo  $buttons->button_round('move', ($zone['controlpoints_zombies']-$zone['controlpoints_citizens']))
@@ -400,7 +400,7 @@ echo $html['json_configs'];
             </div>
             
             <div id="actions">
-                <fieldset id="block_move" class="z-depth-2">
+                <fieldset id="block_move" class="z-depth-2 hidden">
                     <?php
                     if ($zone['controlpoints_citizens'] < $zone['controlpoints_zombies'] and time() < strtotime($zone['date_control_end'])) {
                         echo $layout->block_alert_escape(strtotime($zone['date_control_end']));
