@@ -169,7 +169,7 @@ class HtmlPopup
             . "qui suivront le chemin tracé sur la carte.</p>";
         
             $button_start = '<a href="#Outside" class="bluebutton" '
-                          . 'onclick="closePopup();hideIds(\'paths_bar\');hideIds(\'attack_bar\');unhideId(\'paths_panel\')"'
+                          . 'onclick="closePopup();hide([\'#paths_bar\', \'#attack_bar\']);display(\'#paths_panel\')"'
                           . '>'
                           . 'Choisir les membres de l\'expédition'
                           . '<i class="material-icons">chevron_right</i>'

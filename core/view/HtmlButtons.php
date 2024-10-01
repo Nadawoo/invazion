@@ -932,7 +932,7 @@ class HtmlButtons
         
         return
         '<form name="expert_path"
-            onclick="hideIds([\'paths_bar\', \'tasks_button\', \'attack_bar\']);unhideId(\'paths_panel\');return false"
+            onclick="hide([\'#paths_bar\', \'#tasks_button\', \'#attack_bar\']);display(\'#paths_panel\');return false"
             >
             <button class="z-depth-2" type="submit" title="'.$button['title'].'">'.$button['icon'].' '.$button['name'].'</button>
         </form>';

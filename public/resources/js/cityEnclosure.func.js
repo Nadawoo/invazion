@@ -13,7 +13,7 @@ function hideCityBlocks() {
     
     var cityContents = document.getElementById("city_contents").children;
     for(i=0; i<cityContents.length; i++) {
-        hideIds(cityContents[i].id);
+        hide(`#${cityContents[i].id}`);
     }
 }
 
@@ -27,18 +27,15 @@ function hideCityBlocks() {
  */
 function switchCityMenu(cityMenuId) {
     
-    var tabsList = ['cityMenuMyHome', 'cityMenuCity'];
-    
     // On masque tous les sous-menus de ville sans exception...
-    hideIds(tabsList);        
+    hide(['#cityMenuMyHome', '#cityMenuCity']);        
     // ... puis on affiche celui qu'on veut voir
-    unhideId(cityMenuId);
+    display(`#${cityMenuId}`);
     // On masque tous les blocs de la ville sans exception...
     hideCityBlocks();
     
     // Display the global container (Home + City) of the submenus too
-    display("#city_submenus");
-    display("#city_defenses");
+    display(["#city_submenus", "#city_defenses"]);
     updateUrlParam("tab", null);
 }
 
@@ -54,7 +51,7 @@ function switchCitySubmenu(cityContentsId) {
     // On masque tous les blocs de la ville sans exception...
     hideCityBlocks();
     // ... puis on affiche celui qu'on veut voir
-    unhideId(cityContentsId);
+    display(`#${cityContentsId}`);
     // Modifie l'url pour mémoriser dans quel onglet de la ville on se trouve.    
     updateUrlParam('tab', cityContentsId);
     

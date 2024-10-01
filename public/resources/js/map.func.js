@@ -451,7 +451,7 @@ function activateMapZombiesView() {
         }
     }
     
-    hideIds(["attack_bar", "tasks_button"]);
+    hide(["#attack_bar", "#tasks_button"]);
     // Displays the number of zombies on each zone
     display(".zombies_amount");
     // Hides the icons of zombies, because they are above the colored background
@@ -591,7 +591,7 @@ function activateMapItemsView() {
             color = 'grey'; 
         }
         
-        diplay(".items_amount");
+        display(".items_amount");
         display("#map_legend_items");
         // Reveal all the zones, regardless their date of last visit
 //        hexagons[i].style.opacity = 1;
@@ -615,7 +615,7 @@ function activateMapItemsView() {
         
         // Hides the zombies, because they are above the colored background
         hide([".zombies", ".nbr_defenses"]);
-        hideIds(["attack_bar", "tasks_button"]);
+        hide(["#attack_bar", "#tasks_button"]);
     }
 }
 
@@ -669,9 +669,7 @@ function desactivateMapPathsView() {
         hide("#paths_bar .active");
         display("#paths_bar .inactive");
         // Hides the list of expeditions
-        hideIds("paths_panel");
-        hideIds("paths_bar");
-        hideIds("attack_bar");
+        hide(["#paths_panel", "#paths_bar", "#attack_bar"]);
 //        document.querySelectorAll("#paths_panel .card").forEach(el => el.remove());
     }
 }
@@ -715,8 +713,7 @@ function resetMapView() {
     desactivateMapPathsView();
     window.isMapPathsViewActive = false;
     
-    unhideId("attack_bar");
-    unhideId("tasks_button");
+    display(["#attack_bar", "#tasks_button"]);
     
     window.isMapNeighborhoodViewActive = true;
     toggleMapNeighborhoodView();

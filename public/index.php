@@ -340,7 +340,7 @@ echo $html['json_configs'];
         </form>
         
         <section id="paths_panel" class="hidden">
-            <a class="close" onclick="hideIds('paths_panel');unhideId('paths_bar');unhideId('tasks_button');unhideId('attack_bar');">
+            <a class="close" onclick="hide('#paths_panel');display('#paths_bar', '#tasks_button', '#attack_bar');">
                 <i class="material-icons">close</i>
             </a>
             <div class="body"></div>

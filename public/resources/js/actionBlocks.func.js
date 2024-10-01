@@ -494,7 +494,5 @@ function moveBuildingBlockBelowPaddle() {
     
     document.querySelector("#card_building").classList.remove("above_paddle");
     toggle("#card_building .ignore_button");
-    unhideId("card_dig");
-    unhideId("card_ap_cost");
-    unhideId("card_citizens");
+    display(["#card_dig", "#card_ap_cost", "#card_citizens"]);
 }

@@ -61,24 +61,6 @@ function hide(elementsNames) {
 }
 
 
-function hideIds(htmlIds) {
-    
-    if(typeof(htmlIds) === "string") {
-        document.getElementById(htmlIds).classList.add("hidden");
-    }
-    else {
-        for(i=0; i < htmlIds.length; i++){
-            document.getElementById(htmlIds[i]).classList.add("hidden");
-        }
-    }
-}
-
-
-function unhideId(htmlId) {    
-    document.getElementById(htmlId).classList.remove("hidden");
-}
-
-
 function toggleHide(htmlId) {
     document.getElementById(htmlId).classList.toggle("hidden");
 }
@@ -586,7 +568,7 @@ function updateEnterBuildingButton(cityTypeId, controlPointsCitizens, nbrZombies
         display("#block_move #card_building");
         document.querySelector("#card_building").classList.add("above_paddle");
         display(".ignore_button");
-        hideIds(["card_dig", "card_ap_cost", "card_citizens"]);
+        hide(["#card_dig", "#card_ap_cost", "#card_citizens"]);
     }
     
     // Button to enter in the city

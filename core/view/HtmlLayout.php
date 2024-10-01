@@ -149,8 +149,8 @@ class HtmlLayout extends HtmlPage
         
         return '
                 <p class="center">
-                    <button class="redbutton" onclick="toggle(\'#specialities\');hideIds(\'capacities\');return false">Changer ma spécialité</button>
-                    <button class="redbutton" onclick="toggle(\'#capacities\');hideIds(\'specialities\');return false">Améliorer une capacité</button>
+                    <button class="redbutton" onclick="toggle(\'#specialities\');hide(\'#capacities\');return false">Changer ma spécialité</button>
+                    <button class="redbutton" onclick="toggle(\'#capacities\');hide(\'#specialities\');return false">Améliorer une capacité</button>
                 </p>
 
                 <ul id="specialities" class="hidden">

@@ -250,15 +250,13 @@ async function activatePathsBarPath(event) {
     
     // Get the data from the inactive expedition card
     let pathId = event.target.closest(".path").getAttribute("data-pathid");
-    let inactiveHtmlId = `barPath${pathId}`,
-        activeHtmlId = `activeBarPath${pathId}`;
     
     //  Resets the view
     hide("#paths_bar .active");
     display("#paths_bar .inactive");
     // Display the activated block
-    hideIds(inactiveHtmlId);
-    unhideId(activeHtmlId);
+    hide(`#barPath${pathId}`);
+    display(`#activeBarPath${pathId}`);
     // Display the path stages on the map for the selected expedition
     hide(".path_stage");
     display(`.path_stage[data-pathid="${pathId}"]`);
@@ -277,10 +275,10 @@ async function activatePathsBarPath(event) {
 function startPathCreation() {
     
     // Hide the useless elements overloading the map
-    hideIds(['paths_bar', 'resizeMap', 'attack_bar']);
-    hide('.bubble');
+    hide(['#paths_bar', '#resizeMap', '#attack_bar']);
+    hide('#map .bubble');
     // Start the steps to create an expedition
-    unhideId('formPathDrawing');
+    display('#formPathDrawing');
 }
 
 
@@ -334,11 +332,8 @@ async function submitNewPath(event, controller) {
     // If path successfully register, hide the bar for drawing a path
     if(json.metas.error_code === "success") {
         // Display again the GUI elements previously masked
-        hideIds(["formPathDrawing"]);
-        unhideId("paths_bar");
-        unhideId("resizeMap");
-        unhideId("attack_bar");
-        display("#map .bubble");
+        hide("#formPathDrawing");
+        display(["#paths_bar", "#resizeMap", "#attack_bar", "#map .bubble"]);
         
         // Reset the form with the list of stages
         document.querySelector("#formPathDrawing .fields").innerText = "";

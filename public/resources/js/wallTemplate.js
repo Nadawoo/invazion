@@ -120,7 +120,7 @@ function htmlNewDiscussionForm(citizenPseudo)
                 <a href="#" id="hideSendform" class="close z-depth-1">X</a>\
             </h3>\
             <div class="message">\
-                <form id="sendform" oninput="unhideId(\'sendNewTopic\')">\
+                <form id="sendform" oninput="display(\'#sendNewTopic\')">\
                     <div>\
                         <div id="errorNewTopicPseudo" class="red"></div>\
                         <input id="guestPseudo" type="text" name="guest_pseudo" placeholder="Votre pseudo" style="'+fieldPseudoStyle+'">\
