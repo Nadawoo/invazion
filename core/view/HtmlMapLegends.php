@@ -60,13 +60,15 @@ class HtmlMapLegends {
         return '
             <fieldset id="map_legend_cityframes" class="map_legend hidden">
                 <legend>Légende</legend>
+                <ul class="undiscovered">
+                    <li><span style="border-color:black">&#x1F50D;</span> Bâtiment non identifié</li>
+                </ul>
                 <ul class="defenses">
                     <li><span style="border-color:#F4D03F">&#x1F3E2;</span> Ville</li>
                     <li><span style="border-color:green">&#x1F6E1;&#xFE0F;</span> Bâtiment de défense</li>
                     <li><span style="border-color:red">&#x1F9DF;</span> Foyer de zombies</li>
                 </ul>
                 <ul class="explorables">
-                    <li><span style="border-color:black">&#x2753;</span> Bâtiment à découvrir</li>
                     <li><span style="border-color:cornflowerblue">&#x1FAB5;</span> Bâtiment à ressources</li>
                     <li><span style="border-color:darkorange">&#x26A1;</span> Bâtiment à énergie</li>
                     <li><span style="border-color:purple">&#x2699;&#xFE0F;</span> Bâtiment technique</li>

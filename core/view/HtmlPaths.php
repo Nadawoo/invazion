@@ -109,10 +109,20 @@ class HtmlPaths {
             </div>
             <div class="path"
                  onclick="hide(\'#map_legend_cityframes ul\');
+                 display(\'#map_legend_cityframes .undiscovered\');
+                 hide(\'#map .cityframe\');
+                 display(\'#map .undiscovered\');
+                 hide([\'#mapSvg .transportation\', \'#mapSvg .defenses\', \'#map .zombie_core\']);
+                 ">
+                <span class="icon">&#x2753;</span>
+                <span class="label">Inexploré</span>
+            </div>
+            <div class="path"
+                 onclick="hide(\'#map_legend_cityframes ul\');
                  display(\'#map_legend_cityframes .explorables\');
                  hide(\'#map .cityframe\');
-                 display([\'#map .resources\', \'#map .boosts\', \'#map .technical\', \'#map .undiscovered\']);
-                 hide([\'#mapSvg .defenses\', \'#mapSvg .transportation\', \'#mapSvg .zombie_core\']);
+                 display([\'#map .resources\', \'#map .boosts\', \'#map .technical\']);
+                 hide([\'#map .undiscovered\', \'#mapSvg .defenses\', \'#mapSvg .transportation\', \'#mapSvg .zombie_core\']);
                  ">
                 <span class="icon">&#x26CF;&#xFE0F;</span>
                 <span class="label">Ressources</span>
