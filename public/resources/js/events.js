@@ -156,7 +156,7 @@ if (document.getElementById('map') !== null) {
     });
 //    document.querySelector("#wall .tabs a[href='#wallNotifications']").addEventListener("click", function() {
 //        getLogEvents("notifications");
-//        hideClasses(["iAmNotInvolved"]);
+//        hide([".iAmNotInvolved"]);
 //    });
     
     // Show/hide the vertical panel for the discussions and events

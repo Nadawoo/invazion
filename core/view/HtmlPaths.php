@@ -99,10 +99,10 @@ class HtmlPaths {
             <div class="path"
                  onclick="toggle(\'#map_legend_cityframes ul\');
                  toggle(\'#map_legend_cityframes .defenses\');
-                 hideClasses([\'cityframe\'], \'map\');
-                 unhideClasses([\'defenses\', \'zombie_core\'], \'map\');
-                 hideClasses([\'transportation\'], \'mapSvg\');
-                 unhideClasses([\'defenses\'], \'mapSvg\');
+                 hide(\'#map .cityframe\');
+                 display([\'.defenses\', \'.zombie_core\'], \'.map\');
+                 hide([\'#mapSvg .transportation\']);
+                 display(\'#mapSvg .defenses\');
                  ">
                 <span class="icon">&#x1F6E1;&#xFE0F;</span>
                 <span class="label">Défenses</span>
@@ -110,9 +110,9 @@ class HtmlPaths {
             <div class="path"
                  onclick="toggle(\'#map_legend_cityframes ul\');
                  toggle(\'#map_legend_cityframes .explorables\');
-                 hideClasses([\'cityframe\'], \'map\');
-                 unhideClasses([\'resources\', \'boosts\', \'technical\', \'undiscovered\'], \'map\');
-                 hideClasses([\'defenses\', \'transportation\'], \'mapSvg\');
+                 hide(\'#map .cityframe\');
+                 display([\'#map .resources\', \'#map .boosts\', \'#map .technical\', \'#map .undiscovered\']);
+                 hide([\'#mapSvg .defenses\', \'#mapSvg .transportation\']);
                  ">
                 <span class="icon">&#x26CF;&#xFE0F;</span>
                 <span class="label">Ressources</span>
@@ -120,10 +120,10 @@ class HtmlPaths {
             <div class="path"
                  onclick="toggle([\'#map_legend_cityframes ul\']);
                  toggle(\'#map_legend_cityframes .transportations\');
-                 hideClasses([\'cityframe\'], \'map\');
-                 unhideClasses([\'transportation\'], \'map\');
-                 hideClasses([\'defenses\'], \'mapSvg\');
-                 unhideClasses([\'transportation\'], \'mapSvg\');
+                 hide(\'#map .cityframe\');
+                 display(\'#map .transportation\');
+                 hide(\'#mapSvg .defenses\');
+                 display(\'#mapSvg .transportation\');
                  ">
                 <span class="icon">&#x1F681;</span>
                 <span class="label">Transports</span>
@@ -131,9 +131,9 @@ class HtmlPaths {
             <div class="path"
                  onclick="toggle([\'#map_legend_cityframes ul\']);
                  toggle(\'#map_legend_cityframes .weather\');
-                 hideClasses([\'cityframe\'], \'map\');
-                 unhideClasses([\'weather\'], \'map\');
-                 hideClasses([\'defenses\', \'transportation\'], \'mapSvg\');
+                 hide(\'#map .cityframe\');
+                 display(\'#map .weather\');
+                 hide([\'#mapSvg .defenses\', \'#mapSvg .transportation\']);
                  ">
                 <span class="icon">&#x1F327;&#xFE0F;</span>
                 <span class="label">Météo</span>

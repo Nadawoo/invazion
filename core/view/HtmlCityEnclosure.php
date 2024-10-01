@@ -674,7 +674,7 @@ class HtmlCityEnclosure
         
         return '
             <tr>
-                <td onclick="toggle(\'#building'.$building_id.'\');hideClasses([\'defenses\'])" class="foldable '.$status.'" style="margin-left:'.($child_level*1.4).'em;background:'.$bg_color.'">
+                <td onclick="toggle(\'#building'.$building_id.'\');hide([\'.defenses\'])" class="foldable '.$status.'" style="margin-left:'.($child_level*1.4).'em;background:'.$bg_color.'">
                     '.str_repeat('<span class="hierarchy">├</span>', $child_level).'
                     '.$building_image.'
                     <div class="label">
@@ -684,7 +684,7 @@ class HtmlCityEnclosure
                     <div class="progressbar_filling" style="background-color:'.$progressbar_bg.';width:'.$components_percent.'%"></div>
                 </td>
                 <td class="defenses hidden" style="background:'.$bg_color.';color:'.$text_color.'"
-                    onclick="toggle(\'#building'.$building_id.'\');hideClasses([\'defenses\'])">
+                    onclick="toggle(\'#building'.$building_id.'\');hide([\'.defenses\'])">
                     '.$html_resources.'
                     <strong class="construction_defenses hidden" style="color:'.$text_color.'"
                         title="Ce chantier augmente les défenses de la ville lorsqu\'il est construit.">

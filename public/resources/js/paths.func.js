@@ -93,7 +93,7 @@ async function populatePathsPanel(pathsCourses, pathsMembers) {
              
         // List of citizens available to populate the expedition
         if(members.length === 0) {
-            unhideClasses(["choose_members"], htmlId);            
+            display(`#${htmlId} .choose_members`);            
             document.querySelector(`#${htmlId} form[name="available_members"] ul`).innerHTML = htmlAvailableCitizens;
             document.querySelector(`#${htmlId} form input[name="path_id"`).value = pathId;
         }
@@ -254,14 +254,14 @@ async function activatePathsBarPath(event) {
         activeHtmlId = `activeBarPath${pathId}`;
     
     //  Resets the view
-    hideClasses(["active"], "paths_bar");
-    unhideClasses(["inactive"], "paths_bar");
+    hide("#paths_bar .active");
+    display("#paths_bar .inactive");
     // Display the activated block
     hideIds(inactiveHtmlId);
     unhideId(activeHtmlId);
     // Display the path stages on the map for the selected expedition
-    hideClasses([`path_stage`]);
-    unhideClasses([`path_stage[data-pathid="${pathId}"]`]);
+    hide(".path_stage");
+    display(`.path_stage[data-pathid="${pathId}"]`);
     
     // Center the map on the first stage of the selected expedition
     firstStageZoneHtmlId = document.querySelector(`#map .path_stage[data-pathid="${pathId}"]`).closest(".hexagon").id;
@@ -278,7 +278,7 @@ function startPathCreation() {
     
     // Hide the useless elements overloading the map
     hideIds(['paths_bar', 'resizeMap', 'attack_bar']);
-    hideClasses(['bubble']);
+    hide('.bubble');
     // Start the steps to create an expedition
     unhideId('formPathDrawing');
 }
@@ -338,7 +338,7 @@ async function submitNewPath(event, controller) {
         unhideId("paths_bar");
         unhideId("resizeMap");
         unhideId("attack_bar");
-        unhideClasses(["bubble"], "map");
+        display("#map .bubble");
         
         // Reset the form with the list of stages
         document.querySelector("#formPathDrawing .fields").innerText = "";

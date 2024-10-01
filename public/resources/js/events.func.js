@@ -202,15 +202,15 @@ function listenToMeOnMap() {
  */
 function filterConstructions(selectedValue) {
     if(selectedValue === "none") {
-        hideClasses(["defenses"], "constructions");
+        hide("#constructions .defenses");
     } else if(selectedValue === "effects") {
-        unhideClasses(["defenses"], "constructions");
-        unhideClasses(["construction_defenses"]);
-        hideClasses(["components"]);
+        display("#constructions .defenses");
+        display(".construction_defenses");
+        hide([".components"]);
     } else if(selectedValue === "components") {
-        unhideClasses(["defenses"], "constructions");
-        unhideClasses(["components"]);
-        hideClasses(["construction_defenses"]);
+        display("#constructions .defenses");
+        display(".components");
+        hide(".construction_defenses");
     } else {
         console.log("Error: unknown option value ('"+selectedValue+"') in #city_constructions <select>");
     }
@@ -273,20 +273,20 @@ function addMapPathStage(event, currentStageId) {
         
         // Steps of the tutorial to help the player to trace his expedition
         if(currentStageId === 1) {
-            hideClasses(["place_first_stage"], "formPathDrawing");
-            unhideClasses(["place_second_stage"], "formPathDrawing");
+            hide("#formPathDrawing .place_first_stage");
+            display("#formPathDrawing .place_second_stage");
         }
         else if(currentStageId === 2) {
-            hideClasses(["place_second_stage"], "formPathDrawing");
-            unhideClasses(["place_other_stages"], "formPathDrawing");
+            hide("#formPathDrawing .place_second_stage");
+            display("#formPathDrawing .place_other_stages");
         }
         else if(currentStageId === 6) {
-            hideClasses(["place_other_stages"], "formPathDrawing");
-            unhideClasses(["make_a_loop"], "formPathDrawing");
+            hide("#formPathDrawing .place_other_stages");
+            display("#formPathDrawing .make_a_loop");
         }
         else if(parseInt(square.querySelector('.path_stage[data-pathid="new"]').innerText) === 0) {
-            hideClasses(["make_a_loop"], "formPathDrawing");
-            unhideClasses(["save_stages"], "formPathDrawing");
+            hide("#formPathDrawing .make_a_loop");
+            display("#formPathDrawing .save_stages");
         }
     }
     

@@ -453,9 +453,9 @@ function activateMapZombiesView() {
     
     hideIds(["attack_bar", "tasks_button"]);
     // Displays the number of zombies on each zone
-    unhideClasses(["zombies_amount"]);
+    display(".zombies_amount");
     // Hides the icons of zombies, because they are above the colored background
-    hideClasses(["zombies", "nbr_defenses"]);
+    hide([".zombies", ".nbr_defenses"]);
 }
 
 
@@ -472,9 +472,9 @@ function desactivateMapZombiesView() {
 //    }
     
     hide("#map_legend_zombies");
-    hideClasses(["zombies_amount"]);
+    hide(".zombies_amount");
     // Display the icons of zombies again
-    unhideClasses(["zombies"]);
+    display(".zombies");
 }
 
 
@@ -591,7 +591,7 @@ function activateMapItemsView() {
             color = 'grey'; 
         }
         
-        unhideClasses(["items_amount"]);
+        diplay(".items_amount");
         display("#map_legend_items");
         // Reveal all the zones, regardless their date of last visit
 //        hexagons[i].style.opacity = 1;
@@ -614,7 +614,7 @@ function activateMapItemsView() {
         itemsAmount.style.background = color;
         
         // Hides the zombies, because they are above the colored background
-        hideClasses(["zombies", "nbr_defenses"]);
+        hide([".zombies", ".nbr_defenses"]);
         hideIds(["attack_bar", "tasks_button"]);
     }
 }
@@ -631,9 +631,9 @@ function desactivateMapItemsView() {
 //        let squareContainer = hexagons[i].querySelector(".square_container");
 //        squareContainer.style.background = "none";
 //        squareContainer.style.border = "none";
-        hideClasses(["items_amount"]);
+        hide(".items_amount");
         // Display the zombies again
-        unhideClasses(["zombies"]);
+        display(".zombies");
     }
 }
 
@@ -664,10 +664,10 @@ function desactivateMapPathsView() {
     
     for(let i=0; i<hexagons.length; i++) {
         // Hide the stages of expeditions drawn on the map
-        hideClasses(["path_stage"]);
+        hide(".path_stage");
         // Resets the active expedition in the paths bar
-        hideClasses(["active"], "paths_bar");
-        unhideClasses(["inactive"], "paths_bar");
+        hide("#paths_bar .active");
+        display("#paths_bar .inactive");
         // Hides the list of expeditions
         hideIds("paths_panel");
         hideIds("paths_bar");
@@ -830,7 +830,7 @@ function switchToActionView() {
     display(["#actions_panel", "#personal_block_wrapper"]);
     // Hide some elements of the GUI to make the interface look lighter
     hide(["#views_bar", "#map_navigation", "#tasks_button", "#game_footer"]);
-    hideClasses(["nbr_defenses", "bubble"]);
+    hide([".nbr_defenses", ".bubble"]);
     desactivateMapPathsView();
     // Display the button which switches to the Map mode
     display("#map_mode_button");

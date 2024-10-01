@@ -61,44 +61,6 @@ function hide(elementsNames) {
 }
 
 
-/**
- * Ajoute la classe .hidden sur les classes CSS demandées
- * 
- * @param   {array} classesNames Liste des noms des classes à masquer
- * @returns {undefined}
- */
-function hideClasses(classesNames, parentId=null) {
-    
-    for (let i=0; i < classesNames.length; i++) {        
-        var classes = (parentId === null) ? document.querySelectorAll(`.${classesNames[i]}`)
-                                          : document.querySelectorAll(`#${parentId} .${classesNames[i]}`);
-        
-        for (let i=0; i < classes.length; i++) {
-            classes[i].classList.add("hidden");
-        }
-    }
-}
-
-
-/**
- * Supprime la classe .hidden sur les classes CSS demandées
- * 
- * @param   {array} classNames The names of the classes to display
- * @returns {undefined}
- */
-function unhideClasses(classesNames, parentId=null) {
-    
-    for (let i=0; i < classesNames.length; i++) { 
-        var classes = (parentId === null) ? document.querySelectorAll(`.${classesNames[i]}`)
-                                          : document.querySelectorAll(`#${parentId} .${classesNames[i]}`);
-        
-        for (let i = 0; i < classes.length; i++) {
-            classes[i].classList.remove("hidden");
-        }
-    }
-}
-
-
 function hideIds(htmlIds) {
     
     if(typeof(htmlIds) === "string") {
@@ -623,7 +585,7 @@ function updateEnterBuildingButton(cityTypeId, controlPointsCitizens, nbrZombies
         document.querySelector("#block_move .building_name").innerHTML = _configsBuildings[cityTypeId]["name"];
         display("#block_move #card_building");
         document.querySelector("#card_building").classList.add("above_paddle");
-        unhideClasses(["ignore_button"]);
+        display(".ignore_button");
         hideIds(["card_dig", "card_ap_cost", "card_citizens"]);
     }
     
