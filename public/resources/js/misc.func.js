@@ -61,24 +61,6 @@ function hide(elementsNames) {
 }
 
 
-function toggleHide(htmlId) {
-    document.getElementById(htmlId).classList.toggle("hidden");
-}
-
-
-/**
- * Affiche des éléments masqués à partir de noms de classes (pas d'id).
- * Inverse de hideClasses()
- * 
- * @param   {array} classesNames Liste des noms des classes à afficher
- * @returns {undefined}
- */
-function displayClasses(classesNames) {
-    
-    display(classesNames);
-}
-
-
 /*
  * Button to enlarge/reduce the bag (hide the overflowing items)
  * @returns {undefined}
