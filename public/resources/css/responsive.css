@@ -76,4 +76,8 @@
     #tasks_button .text {
         display:none;
     }
+    /* Avoid overflowing the bar on the left side */
+    #cityframes_bar {
+        justify-content:left;
+    }
 }
