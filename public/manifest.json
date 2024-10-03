@@ -4,10 +4,10 @@
   "dir": "ltr",
   "display_override": ["fullscreen", "standalone", "minimal-ui"],
   "display": "browser",
-  "name": "InvaZion, le jeu de zombies",
+  "name": "Azimutant, le jeu de zombies",
   "orientation": "any",
   "scope": "/",
-  "short_name": "InvaZion",
+  "short_name": "Azimutant",
   "start_url": "/",
   "theme_color": "#ffffff",
   "categories": [

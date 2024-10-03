@@ -1,4 +1,4 @@
-# Le projet InvaZion, en deux mots
+# Le projet Azimutant, en deux mots
 
 **Jouer :** https://invaziongame.nadazone.fr/  
 **Discord** : https://discord.gg/2GRPTyM
@@ -35,7 +35,7 @@ Le jeu vise à être hautement customisable et le plus ouvert possible (interfac
 L'avancement du codage avant le lancement d'une version bêta jouable complète est décrit dans [docs/PROGRESSION.md](docs/PROGRESSION.md)
 
 ## Fonctionnalités futures
-Une fois le jeu officiellement lancé, des fonctionnalités propres à InvaZion seront implémentées.
+Une fois le jeu officiellement lancé, des fonctionnalités propres à Azimutant seront implémentées.
 Voir [docs/FUTURE_FEATURES.md](docs/FUTURE_FEATURES.md) 
 
 # Organisation des fichiers

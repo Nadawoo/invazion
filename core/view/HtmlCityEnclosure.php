@@ -59,7 +59,7 @@ class HtmlCityEnclosure
         }
         else {
             // Don't show the submenu for the well until the well (building #15 
-            // in the Invazion's API) is built
+            // in the Azimutant's API) is built
             $submenu_well = in_array(15, $completed_buildings_ids)
                 ? $this->city_submenu_item('city_well', 'Puits')
                 : $this->city_submenu_item('empty', '');

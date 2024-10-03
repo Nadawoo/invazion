@@ -15,7 +15,7 @@ class BuildingPopup {
         if(event.target.closest(".square_container") !== null) {
             let dataset = event.target.closest(".square_container").dataset;
             let cityTypeId = dataset.citytypeid;
-            // #12 = ID of the building type "city" in the Invazion's API
+            // #12 = ID of the building type "city" in the Azimutant's API
             if(parseInt(cityTypeId) === 12) {
                 let cityId = event.target.closest(".square_container").dataset.cityid;
                 let cityConnections = new CityConnections();
@@ -35,7 +35,7 @@ class BuildingPopup {
      * Create the pop-up describing a building on the map.
      * If you need to open the pop-up after having created it, see openBuildingPopup()
      * 
-     * @param {int} cityTypeId The ID of the building, as returned by the Invazion's API
+     * @param {int} cityTypeId The ID of the building, as returned by the Azimutant's API
      * @returns {undefined}
      */
     populateBuildingPopup(cityTypeId, nbrZombiesInZone, cycleLastVisit) {

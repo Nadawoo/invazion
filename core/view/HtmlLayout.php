@@ -14,7 +14,7 @@ class HtmlLayout extends HtmlPage
     
     /**
      * Store in the HTML the unvariable data of the game (building names...).
-     * Useful to reuse those data with javascript without calling the Invazion's API
+     * Useful to reuse those data with javascript without calling the Azimutant's API
      * 
      * @param string $json_map       The JSON string containing the general characteristics
      *                               of the map : cost of a move...
@@ -625,7 +625,7 @@ class HtmlLayout extends HtmlPage
      * @return string HTML
      */
     function block_edit_land($coord_x, $coord_y) {
-        // The land aliases must exist in the Invazion API, otherwise 
+        // The land aliases must exist in the Azimutant API, otherwise 
         // the land type won't be changed.
         // If you add a land type here, don't forget to add the appropriate
         // CSS class in map.css (.ground_xxxx), otherwise the default tile (sand)

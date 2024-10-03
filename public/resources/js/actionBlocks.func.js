@@ -138,7 +138,7 @@ async function updateBlockAlertControl(controlpointsZombies, mapId, coordX, coor
  * Toggles the digging button to active/inactive if the player can't dig here
  * 
  * @param {int} is_visited_today Values "1" if the player has already visited 
- *                               the zone today(comes from the Invazion's API) 
+ *                               the zone today(comes from the Azimutant's API) 
  */
 function updateDigButtons(is_visited_today) {
     
@@ -200,7 +200,7 @@ async function updateBlockActionCitizens(coordX, coordY) {
             myCitizenPseudo = document.querySelector("#citizenPseudo").innerHTML,
             mapId           = document.querySelector("#mapId").innerHTML;
             
-        // Get the citizens of the map by calling the Invazion's API
+        // Get the citizens of the map by calling the Azimutant's API
         _citizens = await getMapCitizensOnce(mapId);    
         
         // Keeps only the citizens who are in the player's zone
@@ -263,7 +263,7 @@ async function updateBlockActionDig(mapId, coordX, coordY) {
         
         // Clear the obsolete items list from the previous zone
         block.innerHTML = "";        
-        // Get the items in the zone by calling the Invazion's API
+        // Get the items in the zone by calling the Azimutant's API
         _myZone = await getMyZoneOnce(mapId, coordX, coordY);        
         // Set the digging button to grey if the player can't dig
         updateDigButtons(_myZone.user_specific.is_visited_today);
@@ -384,9 +384,9 @@ function htmlItem(itemId, itemCaracs) {
  * Generates the icon for an item
  * 
  * @param {string} iconPath The path to the image (PNG, GIF...), 
- *                         as returned by the "configs" API of Invazion
+ *                         as returned by the "configs" API of Azimutant
  * @param {string} iconSymbol The code for the HTML icon (&#...), 
- *                          as returned by the "configs" API of Invazion
+ *                          as returned by the "configs" API of Azimutant
  * @returns {string} HTML for the icon (<img> tag HTML symbol)
  */
 function getItemIcon(iconPath, iconSymbol) {

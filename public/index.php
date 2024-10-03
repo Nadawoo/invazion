@@ -46,7 +46,7 @@ if (!empty($_POST)) {
     $params_post    = filter_input(INPUT_POST, 'params',   FILTER_SANITIZE_STRING, FILTER_REQUIRE_ARRAY);
     $method         = filter_input(INPUT_POST, 'method',   FILTER_SANITIZE_STRING);
    
-    // Calls the API ont the central server of InvaZion
+    // Calls the API ont the central server of Azimutant
     $api_result = $api->call_api($api_name, $action_post, $params_post, $method);
     
     if (in_array($action_post, ['move', 'drop', 'bigfight'])

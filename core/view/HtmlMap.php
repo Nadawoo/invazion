@@ -140,7 +140,7 @@ class HtmlMap
                 
                 // Important : on utilise le système des « coordonnées doublées » 
                 // afin de simplifier les algorithmes de déplacement, distance, etc.
-                // Explications détaillées sur le site d'Invazion.
+                // Explications détaillées sur le site d'Azimutant.
                 $col    = get_coordx($i, $row);
                 $coords = $col.'_'.$row;
                 $cell   = (isset($cells[$coords])) ? $cells[$coords] : null;

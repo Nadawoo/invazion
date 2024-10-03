@@ -62,7 +62,7 @@ async function initiateDiscussTab() {
 
 
 /**
- * Gets the all the messages of a discussion by calling the InvaZion's API to 
+ * Gets the all the messages of a discussion by calling the Azimutant's API to 
  * 
  * @param {int} topicId the ID of the discussion to load
  * @returns {string} The JSON returned by the API
@@ -213,7 +213,7 @@ function urlDiscussion(discussionId, messageId="") {
  */
 async function updateDiscussionsList(topicType) {
     
-    // Gets the titles of the discussions, by calling the InvaZion's API
+    // Gets the titles of the discussions, by calling the Azimutant's API
     var jsonTopics = await callDiscussionApiOnce(topicType, refresh=true);
     
     var citizenPseudo = document.getElementById("citizenPseudo").innerHTML;

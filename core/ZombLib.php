@@ -1,8 +1,8 @@
 <?php
 /**
- * Librairie d'appel à l'API d'InvaZion
+ * Librairie d'appel à l'API d'Azimutant
  * pour récupérer ou/et écrire des données sur le serveur
- * http://invazion.nadazone.fr
+ * https://invazion.nadazone.fr
  * 
  * Version 5.2
  */
@@ -16,11 +16,11 @@ class ZombLib
     public function __construct($api_url='')
     {
         
-        $default_url = 'http://invazion.nadazone.fr/api';
+        $default_url = 'https://invazion.nadazone.fr/api';
         
         // Si besoin, vous pouvez changer l'URL par défaut de l'API
         // en précisant la nouvelle URL lorsque vous appelez à la classe :
-        // $api = new ZombLib('http://newapisite.com/api')
+        // $api = new ZombLib('https://newapisite.com/api')
         $this->url = trim($api_url) !== '' ? $api_url : $default_url;
     }
     
@@ -38,8 +38,8 @@ class ZombLib
     
     
     /**
-     * Generic method to call any API of InvaZion
-     * (sends data to the Invazion's server, then gets the JSON result returned by the API).
+     * Generic method to call any API of Azimutant
+     * (sends data to the Azimutant's server, then gets the JSON result returned by the API).
      * See the online documentation to know the names of the APIs and the paramters they support :
      * https://invazion.nadazone.fr/apis-list
      * 
@@ -232,7 +232,7 @@ class ZombLib
      * Indique si l'utilisateur est déjà connecté ou non
      * (en analysant le cookie contenant le jeton d'identification).
      * NB : cette méthode ne vérifie pas si les données du jeton ont été trafiquées 
-     * (contrôle de la clé). Ce contrôle sera réalisé par le serveur central d'InvaZion.
+     * (contrôle de la clé). Ce contrôle sera réalisé par le serveur central d'Azimutant.
      * 
      * @return boolean  TRUE si l'utilisateur est connecté, sinon FALSE.
      */
@@ -631,7 +631,7 @@ class ZombLib
                 'method'  => $http_method,
                 'header'  => "Content-type: application/x-www-form-urlencoded\r\n"
                             // VERY IMPORTANT : sets a user agent. If no user agent
-                            // is sent, the server of InvaZion will return a "403/forbidden" error
+                            // is sent, the server of Azimutant will return a "403/forbidden" error
                             // so you wouldn't be able to access the API.
                             ."User-Agent: Mozilla/4.0 (compatible; MSIE 6.0)\r\n",
                 // Important : allows file_get_contents() to follow the 404 errors,
@@ -670,7 +670,7 @@ class ZombLib
                 'metas' => [
                     'api_version'   => 'rescue_zomblib_api',
                     'error_code'    => 'zomblib_invalid_json',
-                    'error_message' => 'Erreur serveur : le site d\'InvaZion a retourné un flux JSON invalide, '
+                    'error_message' => 'Erreur serveur : le site d\'Azimutant a retourné un flux JSON invalide, '
                                      . 'signalez-le à l\'administrateur du jeu.<br>'
                                      . 'Le serveur a retourné le message suivant : '. $json,
                     'error_class'   => 'critical'

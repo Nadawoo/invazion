@@ -1,6 +1,6 @@
 # Futures fonctionnalités du jeu
 Une fois le jeu officiellement lancé (voir [PROGRESSION.md](PROGRESSION.md), des fonctionnalités
-propres à InvaZion seront implémentées. En voici un aperçu non exhaustif, et susceptible
+propres à Azimutant seront implémentées. En voici un aperçu non exhaustif, et susceptible
 d'évoluer fortement en fonction de l'évolution de l'orientation du jeu et des priorités.
 
 ## A court terme
@@ -16,7 +16,7 @@ Le rythme d'apparition des zombies dépendra du rythme de la partie.
 
 ### ► Cartes multiples
 La grande carte commune actuelle est un bac à sable pour les tests.   
-Le joueur pourra lancer sa partie seul ou avec d'autres joueurs. Pas de quota de nombre de joueurs pour que la ville démarre (trop incertain). Le jeu sera jouable seul (voir plus bas), mais jouer à plusieurs apportera de nombreux avantages (Invazion est un jeu collaboratif).
+Le joueur pourra lancer sa partie seul ou avec d'autres joueurs. Pas de quota de nombre de joueurs pour que la ville démarre (trop incertain). Le jeu sera jouable seul (voir plus bas), mais jouer à plusieurs apportera de nombreux avantages (Azimutant est un jeu collaboratif).
 
 ### ► Citoyens-bots si manque d'humains dans une partie
 * Présence de citoyens bots afin que le jeu soit jouable quel que soit le nombre d'actifs. Mais jouer avec des humains sera toujours plus avantageux (meilleures caractéristiques...).   

@@ -134,7 +134,7 @@ function addMeOnMap() {
  */
 async function addCitizensOnMap(mapId) {
     
-    // Get the citizens of the map by calling the Invazion's API
+    // Get the citizens of the map by calling the Azimutant's API
     _citizens = await getMapCitizensOnce(mapId);
     
     // Place the citizens on the appropriate zones
@@ -238,7 +238,7 @@ async function addCitiesOnMap(mapId) {
     // #233 is the ID for the "Undiscovered building" in the API.
     let undiscoveredBuildingId = 233;
     
-    // Get the cities of the map by calling the Invazion's API
+    // Get the cities of the map by calling the Azimutant's API
     _cities = await getMapCitiesOnce(mapId);
     
     // Place the cities on the appropriate zones

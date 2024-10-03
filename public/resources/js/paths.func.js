@@ -8,9 +8,9 @@
  * Create a card for each expedition in the list of expeditions (lateral panel)
  * 
  * @param {object} pathsCourses The coordinates of all the zones constituting the path,
- *                               as returned by the Invazion's API
+ *                               as returned by the Azimutant's API
  * @param {object} pathsMembers The members of the expeditions, 
- *                              as returned by the Invazion's API
+ *                              as returned by the Azimutant's API
  * @returns {undefined}
  */
 async function populatePathsPanel(pathsCourses, pathsMembers) {
@@ -150,9 +150,9 @@ async function htmlcitizensForExpedition() {
  * Create a card for each expedition in the list of expeditions (lateral panel)
  * 
  * @param {object} pathsCourses The coordinates of all the zones constituting the paths, 
- *                              as returned by the Invazion's API
+ *                              as returned by the Azimutant's API
  * @param {object} pathsMembers The members of the expeditions, 
- *                              as returned by the Invazion's API
+ *                              as returned by the Azimutant's API
  * @returns {undefined}
  */
 async function populatePathsBar(pathsCourses, pathsMembers) {
@@ -311,7 +311,7 @@ function drawPathsOnMap(pathsCourses) {
 
 
 /**
- * Send to Invazion's API the form containing the stage of the new path to create
+ * Send to Azimutant's API the form containing the stage of the new path to create
  * 
  * @param {Object} event
  * @returns {undefined}
@@ -323,7 +323,7 @@ async function submitNewPath(event, controller) {
     let zonesList = formData.getAll('zones[]');
     let zonesString = zonesList.join('&zones[]=');
     
-    // Send the data to the Invazion's API
+    // Send the data to the Azimutant's API
     let json = await callApi("GET", "paths", `action=add&zones[]=${zonesString}&token=${token}`);
     
     // Display the message of result (success or error) in a toast
@@ -359,7 +359,7 @@ async function addPathMembers(event) {
         selectedCitizensIds = formData.getAll('citizens_ids[]'),
         citizensString = selectedCitizensIds.join('&citizens_ids[]=');
     
-    // Send the data to the Invazion's API
+    // Send the data to the Azimutant's API
     let json = await callApi("GET", "paths", `action=add_members&path_id=${pathId}&citizens_ids[]=${citizensString}&token=${token}`);
     
     // Display the message of result (success or error) in a toast

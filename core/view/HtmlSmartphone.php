@@ -172,7 +172,7 @@ class HtmlSmartphone
     /**
      * Displays a notification on the in-game smartphone (if movement costs AP, etc.)
      * 
-     * @param array $zone The data of the zone, as returned by the API of Invazion
+     * @param array $zone The data of the zone, as returned by the API of Azimutant
      * @param int   $AP   Amount of action points the citizen owns
      * @return string HTML
      */

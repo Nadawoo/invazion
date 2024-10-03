@@ -44,9 +44,9 @@ class HtmlPage
                     : '';
         
         $metas = [
-            'site_name'     => "InvaZion",
+            'site_name'     => "Azimutant",
             'canonical'     => "https://invaziongame.nadazone.fr",
-            'page_title'    => "InvaZion, le jeu de zombies",
+            'page_title'    => "Azimutant, le jeu de zombies",
             'meta_title'    => "Jeu de survie collaboratif. Explorer, construire, résister",
             'description'   => "Jeu de survie collaboratif inspiré de Hordes.fr. "
                              . "Explorez le désert en équipe ou en solo, dénichez les précieuses ressources, "
@@ -117,7 +117,7 @@ class HtmlPage
                         <a style="float:right;color:slategrey" href="#poppresentation">
                             <i class="material-icons" style="margin:0.3em;font-size:2.5em;border:1px solid grey;border-radius:10%">help</i>
                         </a>
-                        <h1><a href="/">InvaZion</a></h1>
+                        <h1><a href="/">Azimutant</a></h1>
                         <div id="slogan">Gérez l\'apocalypse.</div>
                         '.$this->site_menu($user_id, $citizen_id, $citizen_pseudo).'
                     </header>';
@@ -134,9 +134,9 @@ class HtmlPage
         
         return '
                             <footer>
-                                <p>Ce jeu est issu d\'<a href="https://invazion.nadazone.fr">Invazion</a>, 
+                                <p>Ce jeu est issu d\'<a href="https://invazion.nadazone.fr">Azimutant</a>, 
                                 créé par <strong>Nadawoo</strong> (développeur indépendant).<br> 
-                                Invazion est inspiré du jeu <strong>Hordes</strong> développé 
+                                Azimutant est inspiré du jeu <strong>Hordes</strong> développé 
                                 par <a href="https://motion-twin.com" target="_blank" rel="noopener">Motion Twin</a>.<br>
                                 Il n\'est pas affilié à Motion Twin.<br>
                                 
@@ -218,7 +218,7 @@ class HtmlPage
                 </a></li>'
                 .$this->site_menu_item('Wiki', 'http://invazion.wikidot.com', 'edit')
                 .$this->site_menu_item('Partager', official_server_root().'/share', 'share',
-                        'Partager et soutenir le projet InvaZion')
+                        'Partager et soutenir le projet Azimutant')
                 
 //                $this->site_menu_item('Forum', official_server_root().'/discuss', 'forum')
                 

@@ -15,7 +15,7 @@ importScripts('https://storage.googleapis.com/workbox-cdn/releases/5.1.2/workbox
 
 const CACHE = "pwabuilder-page";
 
-// Set here the path to the Invazion's offline fallback page
+// Set here the path to the Azimutant's offline fallback page
 const offlineFallbackPage = "offline.html";
 
 self.addEventListener("message", (event) => {

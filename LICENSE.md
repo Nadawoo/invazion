@@ -1,41 +1,41 @@
 
-# Licence d'utilisation  d'InvaZion
+# Licence d'utilisation  d'Azimutant
 
 
 ## Utilisation du code source
 Le code source désigne les instructions des langages programmation et de balisage : PHP, Javascript, HTML, CSS... Il exclut les images, sons et autres ressources (pour ces éléments, voir les autres sections).
- - Vous pouvez utiliser le code source : télécharger, installer, modifier. Vous devez cependant en indiquer l'origine  en insérant ce message à un endroit visible de votre site ou application : « Issu du jeu Invazion créé par Nadawoo (https://invazion.nadazone.fr), sur un concept original de Motion Twin (https://motion-twin.com) ». Vous pouvez éventuellement reformuler ce message, du moment que toutes ces informations sont conservées.
- - Les versions modifiées du code sont soumises à la présente licence d'Invazion. Leur diffusion, qu'elle soit publique ou privée, doit être accompagnée du texte de cette licence.
+ - Vous pouvez utiliser le code source : télécharger, installer, modifier. Vous devez cependant en indiquer l'origine  en insérant ce message à un endroit visible de votre site ou application : « Issu du jeu Azimutant créé par Nadawoo (https://invazion.nadazone.fr), sur un concept original de Motion Twin (https://motion-twin.com) ». Vous pouvez éventuellement reformuler ce message, du moment que toutes ces informations sont conservées.
+ - Les versions modifiées du code sont soumises à la présente licence d'Azimutant. Leur diffusion, qu'elle soit publique ou privée, doit être accompagnée du texte de cette licence.
  - L'utilisation commerciale n'est pas autorisée (ni pour la version originale, ni pour les versions modifiées). Vous pouvez demander une participation financière à vos utilisateurs pour couvrir vos frais (coût du serveur, frais de réalisation de graphismes/sons...), mais pas pour réaliser des bénéfices. L'utilisation à but publicitaire, site gratuit à objectif marketing, etc. sont également interdits. Ces restrictions sont imposées par la licence du jeu original « Hordes » (voir la section « Utilisation du concept »)
 	
 	
 ## Utilisation des images
- - **Images dans le dossier "/images/copyrighted" :** l'usage des images qui se trouvent dans ce dossier est limité car Invazion doit respecter les conditions imposées par leurs créateurs.
-   + **Utilisation :** Vous pouvez utiliser ces images uniquement pour des projets liés à Invazion (voir la section « Notion de projet lié »). Il est interdit d'utiliser ces images pour vos autres projets non liés à Invazion.
-   + **Diffusion :** Il est interdit de transmettre ces images à des tiers pour des projets non liés à Invazion, même gratuitement et même de manière privée. Cette diffusion priverait les créateurs de la rémunération de leur travail.
-   + **Modification :** Vous pouvez modifier ces images, à condition qu'elles ne soient utilisées que dans des projets liés à Invazion. Les images modifiées sont soumises aux mêmes conditions que les originales.
- - **Images dans le dossier "/images/motiontwin" :** ces images ne sont pas régies par la licence d'Invazion mais par la licence de Motion Twin. Référez-vous à l'annexe « Licence de Motion Twin ».
+ - **Images dans le dossier "/images/copyrighted" :** l'usage des images qui se trouvent dans ce dossier est limité car Azimutant doit respecter les conditions imposées par leurs créateurs.
+   + **Utilisation :** Vous pouvez utiliser ces images uniquement pour des projets liés à Azimutant (voir la section « Notion de projet lié »). Il est interdit d'utiliser ces images pour vos autres projets non liés à Azimutant.
+   + **Diffusion :** Il est interdit de transmettre ces images à des tiers pour des projets non liés à Azimutant, même gratuitement et même de manière privée. Cette diffusion priverait les créateurs de la rémunération de leur travail.
+   + **Modification :** Vous pouvez modifier ces images, à condition qu'elles ne soient utilisées que dans des projets liés à Azimutant. Les images modifiées sont soumises aux mêmes conditions que les originales.
+ - **Images dans le dossier "/images/motiontwin" :** ces images ne sont pas régies par la licence d'Azimutant mais par la licence de Motion Twin. Référez-vous à l'annexe « Licence de Motion Twin ».
  - **Images dans le dossier "/images/free" :** les images qui se trouvent dans ce dossier peuvent être utilisées, modifiées et redistribuées librement. Vous n'êtes pas obligé d'en indiquer la paternité.
  - **Autres images :** leur réutilisation n'est en principe pas autorisée. Contactez-nous pour connaître les usages possibles.
 	
 
 ## Utilisation du concept du jeu
-Invazion est basé sur le concept du jeu original « Hordes », créé par le studio Motion Twin (https://motion-twin.com). Le studio a autorisé en 2020 la réutilisation des concepts et éléments graphiques de Hordes, à certaines conditions. En conséquence :
- - Si votre projet est **lié à Invazion** (voir l'annexe « Notion de projet lié » pour une définition) : votre projet doit respecter la présente licence d'Invazion (notamment les sections « Utilisation du code » et « Utilisation des images »). Cette licence respecte les conditions imposées par Motion Twin.
- - Si votre projet utilise les concepts et/ou ressources graphiques de Hordes mais n'est **pas lié à Invazion** : votre projet n'est pas soumis à la licence d'Invazion, en revanche il doit respecter la licence de Motion Twin. Référez-vous à l'annexe « Licence de Motion Twin ».
+Azimutant est basé sur le concept du jeu original « Hordes », créé par le studio Motion Twin (https://motion-twin.com). Le studio a autorisé en 2020 la réutilisation des concepts et éléments graphiques de Hordes, à certaines conditions. En conséquence :
+ - Si votre projet est **lié à Azimutant** (voir l'annexe « Notion de projet lié » pour une définition) : votre projet doit respecter la présente licence d'Azimutant (notamment les sections « Utilisation du code » et « Utilisation des images »). Cette licence respecte les conditions imposées par Motion Twin.
+ - Si votre projet utilise les concepts et/ou ressources graphiques de Hordes mais n'est **pas lié à Azimutant** : votre projet n'est pas soumis à la licence d'Azimutant, en revanche il doit respecter la licence de Motion Twin. Référez-vous à l'annexe « Licence de Motion Twin ».
 
 
 ## Annexes
 
-### Notion de « projet lié à Invazion »
-Certains points de la licence utilisent la notion de « projets liés à Invazion ». En voici une définition :
-  - Un projet est « lié à Invazion » s'il fait appel aux API du serveur d'Invazion (https://invazion.nadazone.fr/api) pour fonctionner, au moins partiellement. Un projet qui utilise les API d'Invazion et y ajoute ses propres modules indépendants, ou qui n'utilise qu'une partie des API, est également considéré comme un projet lié.
-  - Un projet n'est pas « lié à Invazion » s'il ne fait pas appel utilement à ses API, même s'il reprend du code ou des concepts d'Invazion. Des appels inutiles au fonctionnement réel du projet (exemple : récupérer uniquement l'heure du jour, sans données réelles de jeu) ne suffisent pas en faire un « projet lié ».
+### Notion de « projet lié à Azimutant »
+Certains points de la licence utilisent la notion de « projets liés à Azimutant ». En voici une définition :
+  - Un projet est « lié à Azimutant » s'il fait appel aux API du serveur d'Azimutant (https://invazion.nadazone.fr/api) pour fonctionner, au moins partiellement. Un projet qui utilise les API d'Azimutant et y ajoute ses propres modules indépendants, ou qui n'utilise qu'une partie des API, est également considéré comme un projet lié.
+  - Un projet n'est pas « lié à Azimutant » s'il ne fait pas appel utilement à ses API, même s'il reprend du code ou des concepts d'Azimutant. Des appels inutiles au fonctionnement réel du projet (exemple : récupérer uniquement l'heure du jour, sans données réelles de jeu) ne suffisent pas en faire un « projet lié ».
 
 
 ### Licence de Motion Twin
 
-*Contexte : Le studio [Motion Twin](https://motion-twin.com) a officiellement autorisé qu'un certain nombre de ses jeux soient reproduits, dont « Hordes », le jeu dont s'inspire Invazion. Ils ont néanmoins posé certaines conditions indiquées ci-dessous. Certains points ne concernent pas Invazion, mais nous reproduisons leur annonce intégralement afin de ne pas altérer leurs propos.*
+*Contexte : Le studio [Motion Twin](https://motion-twin.com) a officiellement autorisé qu'un certain nombre de ses jeux soient reproduits, dont « Hordes », le jeu dont s'inspire Azimutant. Ils ont néanmoins posé certaines conditions indiquées ci-dessous. Certains points ne concernent pas Azimutant, mais nous reproduisons leur annonce intégralement afin de ne pas altérer leurs propos.*
 
 «
 20 avril 2020

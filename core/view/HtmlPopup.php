@@ -109,8 +109,8 @@ class HtmlPopup
     private function poppresentation() {   
         
         $msg_popup = "
-            <h3>Qu'est-ce qu'InvaZion ?</h3>
-            <p>InvaZion est un <strong>jeu de survie</strong> collaboratif.
+            <h3>Qu'est-ce qu'Azimutant ?</h3>
+            <p>Azimutant est un <strong>jeu de survie</strong> collaboratif.
             Explorez le désert en solo ou en équipe, dénichez les précieuses ressources,
             construisez des défenses et survivez à l'attaque quotidienne !</p>
             <hr>
@@ -118,7 +118,7 @@ class HtmlPopup
             <p>Le jeu est en développement actif. Une première version
             alpha jouable est prévue pour <strong>fin 2024</strong>.
             Rejoignez 
-            <strong><a href=\"https://discord.gg/2GRPTyM\">le Discord d'InvaZion</a></strong>
+            <strong><a href=\"https://discord.gg/2GRPTyM\">le Discord d'Azimutant</a></strong>
             pour suivre son avancement !</p>
             <hr>
             <h3>Pourquoi l'interface a-t-elle un aspect... rudimentaire ?</h3>
@@ -127,10 +127,10 @@ class HtmlPopup
             toute personne sachant programmer pourra développer sa propre interface graphique.</p>
             <hr>
             <h3>D'où vient le concept ?</h3>
-            <p>Invazion est un jeu indépendant inspiré de <strong>Hordes.fr</strong>,
+            <p>Azimutant est un jeu indépendant inspiré de <strong>Hordes.fr</strong>,
             un jeu original du studio <em>Motion Twin</em> (connu aujourd'hui 
             pour son succès mondial <em>Dead Cells</em>). Motion Twin a autorisé
-            la réutilisation du concept et des éléments graphiques, mais InvaZion
+            la réutilisation du concept et des éléments graphiques, mais Azimutant
             n'est pas affilié à Motion Twin.<p>";
             
             $button_close = '<p class="center"><a href="#" onclick="closePopup()">[Fermer]</a></p>';

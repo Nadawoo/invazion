@@ -2,7 +2,7 @@
 /**
  * A partir d'un numéro de colonne ordinaire, calcule la coordonnée X conforme
  * au système des coordonnées doublées (dans lequel  les X sautent de 2 en 2, 
- * voir la doc sur le site d'Invazion).
+ * voir la doc sur le site d'Azimutant).
  * 
  * @param int $col_num  Le numéro théorique de la colonne (1, 2, 3), sans tenir compte
  *                      de la numérotation particulière des coordonnées doublées
@@ -14,7 +14,7 @@ function get_coordx($col_num, $coord_y)
     
     // On utilise le système des « coordonnées doublées » 
     // afin de simplifier les algorithmes de déplacement, distance, etc.
-    // Explications détaillées sur le site d'Invazion.
+    // Explications détaillées sur le site d'Azimutant.
     
     // La coordonnée X augmente donc de 2 en 2...
     $coord_x = $col_num*2;

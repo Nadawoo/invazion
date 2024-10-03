@@ -37,7 +37,7 @@ class CityConnections {
      * Useful to set its color, width, etc. in CSS.
      * 
      * @param {int} cityTypeId The ID of the city (not the ID of the instance
-     *                         of the city), as returned by the Invazion's API
+     *                         of the city), as returned by the Azimutant's API
      * @returns {string}
      */
     #getLineType(cityTypeId) {
@@ -132,7 +132,7 @@ class CityConnections {
      * @param {int} cityCoordX The X coordinate of the building on wich to add the frame
      * @param {int} cityCoordY The Y coordinate
      * @param {int} cityTypeId The ID of the type of the building, as returned by
-     *                         the Invazion's API
+     *                         the Azimutant's API
      *                         Ex: 12 if the building is an "Outpost" type
      * @param {int} cityDefenses The total amount of defenses of the building
      */
@@ -146,7 +146,7 @@ class CityConnections {
             cssClass = "";
         
         if(cityTypeId === 234) {
-            // #234 = the ID of the city type "Drugstore" in the Invazion's API
+            // #234 = the ID of the city type "Drugstore" in the Azimutant's API
             cssClass = `boosts`;
             label = `&#x26A1;`;
         } else if(cityTypeId === 235) {

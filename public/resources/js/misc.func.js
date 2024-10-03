@@ -101,7 +101,7 @@ function updateUrlParam(name, value) {
         search_params.append(name, value);
     }
     // Met l'url à jour avec le nouveau paramètre
-    window.history.pushState('', 'InvaZion - En ville', '?'+search_params);
+    window.history.pushState('', 'Azimutant - En ville', '?'+search_params);
 }
 
 
@@ -355,11 +355,11 @@ async function createItem() {
 /**
  * Displays the discussions list in the notifications panel.
  * WARNING : don't call this function more than needed, because it makes a distant request 
- * to the InvaZion's API.
+ * to the Azimutant's API.
  */
 async function updateDiscussionsNotifs() {
     
-    // Gets the titles of the discussions, by calling the InvaZion's API
+    // Gets the titles of the discussions, by calling the Azimutant's API
     var jsonTopics = await callDiscussionApiOnce("all", refresh=true);
     
     var length = jsonTopics.datas.length;
@@ -660,7 +660,7 @@ function toggleItem(event) {
 /**
  * Converts a raw UTC date to a string text date
  * 
- * @param {string} utcDate  The date as returned by the Invazion's API (UTC time + ISO 8601 format)
+ * @param {string} utcDate  The date as returned by the Azimutant's API (UTC time + ISO 8601 format)
  *                          Example : "2020-02-18T14:51:41+01:00"
  * @return {string} The human-readable date (e.g.: "lundi 6 juin 2020 à 13h40")
  */
@@ -725,7 +725,7 @@ async function getLogEvents(htmlContainerId) {
 
 
 /*
- * Get the citizens of the map by calling the Invazion's API
+ * Get the citizens of the map by calling the Azimutant's API
  */
 async function getMapCitizensOnce(mapId) {
     
@@ -740,7 +740,7 @@ async function getMapCitizensOnce(mapId) {
 
 
 /*
- * Get the cities of the map by calling the Invazion's API
+ * Get the cities of the map by calling the Azimutant's API
  */
 async function getMapCitiesOnce(mapId) {
     
@@ -755,7 +755,7 @@ async function getMapCitiesOnce(mapId) {
 
 
 /*
- * Get all the zones of the map by calling the Invazion's API
+ * Get all the zones of the map by calling the Azimutant's API
  */
 async function getMapZonesOnce(mapId) {
     
@@ -769,7 +769,7 @@ async function getMapZonesOnce(mapId) {
 
 
 /*
- * Get the data about the player's zone by calling the Invazion's API
+ * Get the data about the player's zone by calling the Azimutant's API
  */
 async function getMyZoneOnce(mapId, coordX, coordY) {
     
@@ -1013,7 +1013,7 @@ function getDistance(cityX, cityY, citizenX, citizenY) {
  * Generates the HTML of a citizen with his name in a chips + the actions buttons
  * (to heal, to attack...)
  * 
- * @param {dict} citizen The citzen's data, as returned by the Invazion's API
+ * @param {dict} citizen The citzen's data, as returned by the Azimutant's API
  *                       (citizen_id, citizen_pseudo...) 
  * @param {boolean} bigChips Set to "true" to make bigger the chips of the user
  * @param {boolean} displayActionButtons Set to "false" if you want to hide the buttons 

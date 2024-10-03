@@ -3,7 +3,7 @@
  * Don't put functions here (see scripts.js) nor events listeners (see events.js)
  */
 
-// Permanently stores the results returned by the Invazion's APIs.
+// Permanently stores the results returned by the Azimutant's APIs.
 var _citizens = null;
 var _cities = null;
 var _myZone = null;
@@ -139,7 +139,7 @@ if (document.getElementById('map') !== null) {
         let evtSource = new EventSource(getOfficialServerRoot()+"/api/sse.php");
         // NB: common pitfall: the unamed SSE events (= no "event:" line in the SSE message)
         // can be catched in javascript with "evtSource.onmessage". But when the events are named,
-        // like Invazion does, they *must* be catched with addEventListener(). 
+        // like Azimutant does, they *must* be catched with addEventListener(). 
         // Onmessage *never* works with named events.
         evtSource.addEventListener("updatezones", async function(event) { 
             timestamp = await updateMapRealtime(event, timestamp);

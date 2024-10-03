@@ -22,7 +22,7 @@ class HtmlTags {
      * Display the tags affected to a given item.
      * 
      * @param array $items_caracs The characteristics of the item, as returned 
-     *                            by the Invazion's API.
+     *                            by the Azimutant's API.
      * @param string $format Set to "html" or "text" to format the tag name 
      *                       in HTML or raw text.
      * @return string HTML

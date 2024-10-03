@@ -6,7 +6,7 @@ class HtmlStatusBar {
      * Displays the status bar at the top of the map (wound, etc.)
      * 
      * @param array $bag_items The list of items in the citizen's bag,
-     *                         as returned by the Invazion's API
+     *                         as returned by the Azimutant's API
      * @param int $city_id
      * @param int $is_wounded Value "1" if the citizen is wounded
      * @param int $nbr_zone_fellows The number of humans in the citizen's zone

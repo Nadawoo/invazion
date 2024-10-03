@@ -1,12 +1,12 @@
 /**
- * Javacript version of the ZombLib (library to easily use the API of InvaZion)
+ * Javacript version of the ZombLib (library to easily use the API of Azimutant)
  * v. 1.3
  */
 
 
 /**
- * Returns the URL of the central server of InvaZion (which contains the APIs).
- * No need to change this unless you are the main developer of InvaZion.
+ * Returns the URL of the central server of Azimutant (which contains the APIs).
+ * No need to change this unless you are the main developer of Azimutant.
  */
 function getOfficialServerRoot() {
     
@@ -20,7 +20,7 @@ function getOfficialServerRoot() {
  * Sends a form with the GET or POST method
  * 
  * @param {string} method  The HTTP method to send the data (GET or POST)
- * @param {string} apiName The name of the Invazion's API to call (map, citizen, city...) 
+ * @param {string} apiName The name of the Azimutant's API to call (map, citizen, city...) 
  *                         E.g.: for the API "https://invazion.nadazone.fr/api/map", apiName is "map"
  * @param {string} params  The additional parameters to send to the API, as a unique string
  *                         E.g.: "action=get&citizen_id=87"
