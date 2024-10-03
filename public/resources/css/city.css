@@ -171,21 +171,11 @@
     z-index:1;
 }
 /* Button to hide all the city blocks */
-.close_city_blocks {
-    position:absolute;
-    top:2.2em;
+#city_contents .close {
+    top:4.5em;
     right:2%;
-    height:1.3em;
-    width: 1.3em;
-    font-size:2em;
-    border:none;
-    border-radius:50%;
-    background:darkred;
     border:2px solid white;
-    color:white;
-}
-.close_city_blocks .material-icons {
-    font-weight:bold;
+    border-radius:0.3em;
 }
 
 /* The table of the constructions in the city */

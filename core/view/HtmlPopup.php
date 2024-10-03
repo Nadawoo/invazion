@@ -564,7 +564,9 @@ class HtmlPopup
         <div id="'.$popup_alias.'" class="overlay '.$css_class.'">
             <div class="popup z-depth-2">
                 '.$html_title.'
-                <a class="close" href="'.$anchor.'" onclick="closePopup()">&times;</a>
+                <a class="close" href="'.$anchor.'" onclick="closePopup()">
+                    <i class="material-icons">close</i>
+                </a>
                 <div class="content">'.$text.'</div>
             </div>
         </div>';

@@ -35,19 +35,31 @@
 }
 
 .close {
-    height:1.5em;
-    width: 1.5em;
-    font-size:1.5em;
+    position: absolute;
+    top:   0;
+    right: 0;
+    height:2.5rem;
+    width: 2.5rem;
     display:flex;
     align-items:center;
     justify-content:center;
     background:darkred;
     color:white;
     border:2px solid white;
-    border-radius:50%;
+    border-top:none;
+    border-right:none;
+    border-radius: 0 0 0 0.3em;
+    outline: 1px solid grey;
+    /* Smooth change of the background color when hovering the cross */
+    transition: all 200ms;
 }
 .close .material-icons {
+    font-size: 2em;
     font-weight:bold;
+}
+.close:hover {
+    background:red;
+    color: white;
 }
 
 /* Règles du jeu sous la carte */
@@ -811,13 +823,6 @@ legend {
     border: 1px solid white;
     border-radius:0.1em;
     color:black;
-}
-
-.item_label .details .close {
-    position:absolute;
-    right:0.2em;
-    top:0.2em;
-    cursor:pointer;
 }
 
 .item_label.precious {

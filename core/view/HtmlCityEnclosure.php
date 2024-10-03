@@ -120,9 +120,10 @@ class HtmlCityEnclosure
     
     function button_close_block() {
         
-        return '<button class="close_city_blocks" '
-                     . 'onclick="hideCityBlocks();display([\'#city_defenses\', \'#city_submenus\']);updateUrlParam(\'tab\', null);"'
-                     . '><i class="material-icons">close</i></button>';
+        return '<a class="close" '
+                    . 'onclick="hideCityBlocks();display([\'#city_defenses\', \'#city_submenus\']);updateUrlParam(\'tab\', null);"'
+                    . '><i class="material-icons">close</i>'
+                . '</a>';
     } 
     
     

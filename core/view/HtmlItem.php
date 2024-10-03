@@ -26,7 +26,9 @@ class HtmlItem {
                 <li class="item_label z-depth-1" onclick="toggleItem(event)">
                     <var class="icon">{icon}</var>
                     <div class="details hidden">
-                        <span class="close" onclick="toggleItem(event)">&#x274C;</span>
+                        <a class="close" onclick="toggleItem(event)">
+                            <i class="material-icons">close</i>
+                        </a>
                         <var><span class="icon">{icon}</span>&nbsp;<span class="item_name">{item_name}</span></var>
                         <hr class="line">
                         <p class="descr_ambiance">{descr_ambiance}</p>
@@ -148,7 +150,9 @@ class HtmlItem {
                     '.$item_image.'
                 </var>
                 <div class="details hidden">
-                    <span class="close" onclick="toggleItem(event)">&#x274C;</span>
+                    <a class="close" onclick="toggleItem(event)">
+                        <i class="material-icons">close</i>
+                    </a>
                     <var>'.$item_image.'&nbsp;'.$item_caracs['name'].'</var>
                     <hr class="line">
                     <p class="descr_ambiance">'.$item_caracs['descr_ambiance'].'</p>

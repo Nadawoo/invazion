@@ -55,25 +55,6 @@
     border:none;
     border-bottom:1px solid grey;
 }
-.popup>.close {
-    position: absolute;
-    top:   0;
-    right: 0;
-    height:     1em;
-    width:      1em;
-    line-height:1em;
-    text-align:center;
-    font-size: 2.5em;
-    text-decoration: none;
-    background:darkred;
-    border:  1px solid white;
-    color:white;
-    transition: all 200ms;
-}
-.popup>.close:hover {
-    /*color: #06D85F;*/
-    background:red;
-}
 .popup .content {
     max-height: 30%;
     overflow: auto;

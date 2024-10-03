@@ -12,22 +12,14 @@
     margin-top:1px;
     background:#fbeee6;
     border-right:2px outset white;
+    /* The panel must be over the horiztonal bar of views */
+    z-index: 1;
 }
 #paths_panel .close {
-    position: absolute;
-    top:   0;
-    right: -2.6rem;
-    height:     3rem;
-    width:      2.6rem;
-    background:darkred;
-    color:white;
-    border:1px solid white;
+    right:-2.5rem;
+    border:2px solid white;
     border-left:none;
     border-radius:0 0.3rem 0.3rem 0;
-}
-#paths_panel .close .material-icons {
-    font-size: 2.5em;
-    line-height:1.1em;
 }
 #paths_panel .body {
     height: 100%;
@@ -270,13 +262,6 @@
     color:white;
     border-top:1px solid grey;
     border-radius:0 0 0.3em 0.3em;
-}
-#cityframes_bar .close {
-    position:absolute;
-    top:-0.1em;
-    right:0;
-    border-radius:0 0 0 0.2em;
-    border-right:none;
 }
 
 /*

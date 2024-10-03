@@ -117,7 +117,9 @@ function htmlNewDiscussionForm(citizenPseudo)
             <h3><span onclick="toggle([\'#titleNew\', \'#send h3 span\']);document.querySelector(\'#titleNew\').focus()">Nouvelle discussion &#x270F;&#xFE0F;</span>\
                 <input type="text" id="titleNew" class="hidden"\
                        placeholder="Titre de la discussion (facultatif)">\
-                <a href="#" id="hideSendform" class="close z-depth-1">X</a>\
+                <a href="#" id="hideSendform" class="close z-depth-2">\
+                    <i class="material-icons">close</i>\
+                </a>\
             </h3>\
             <div class="message">\
                 <form id="sendform" oninput="display(\'#sendNewTopic\')">\
