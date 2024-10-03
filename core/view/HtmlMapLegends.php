@@ -15,7 +15,7 @@ class HtmlMapLegends {
     private function legend_zombies() {
         
         return '
-            <fieldset id="map_legend_zombies" class="map_legend" style="display:none">
+            <fieldset id="map_legend_zombies" class="map_legend hidden">
                 <legend>Légende</legend>
                 <a href="#popcontrol" style="color:inherit">
                     <ul>
@@ -33,7 +33,7 @@ class HtmlMapLegends {
     private function legend_items() {
         
         return '
-            <fieldset id="map_legend_items" class="map_legend" style="display:none">
+            <fieldset id="map_legend_items" class="map_legend hidden">
                 <legend>Légende</legend>
                 <a href="#Outside" style="color:inherit">
                     <ul>
