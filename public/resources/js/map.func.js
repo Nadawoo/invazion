@@ -301,7 +301,7 @@ async function addCitiesOnMap(mapId) {
             // Display the label above the map only if the city has at least one defense
             if(nbrDefenses > 0) {
                 if(defensesExcedent >= 0) {
-                    htmlNbrDefenses = `<span class="nbr_defenses">&#x2705;Sécurisé</span>`;
+                    htmlNbrDefenses = `<span class="nbr_defenses safe">&#x2705;</span>`;
                 } else {
                     htmlNbrDefenses = `<span class="nbr_defenses" style="background:darkred">&nbsp; ${defensesExcedent}&#128737;&#65039;</span>`;
                 }
@@ -326,7 +326,7 @@ async function addCitiesOnMap(mapId) {
 //                // NB: #108 = ID of the item "Counter of explorations"
 //                let nbrExplorationsDone = zones[htmlCoords]['items'][108] || 0;
 //                let nbrExplorationsRemaining = maxExplorations-nbrExplorationsDone;
-                html = `<span class="nbr_defenses">&#x2705;Exploré</span>`;
+                html = `<span class="nbr_defenses safe">&#x2705;</span>`;
             }
             
             zone.insertAdjacentHTML("afterbegin", html);

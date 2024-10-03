@@ -451,8 +451,8 @@ map_body_wrapper {
 /* Button marking a building not visited today */
 #map .nbr_defenses.diggable {
     position:absolute;
-    top:-0.3rem;
-    left:1.7rem;
+    top:-0.1rem;
+    left:1.6rem;
     height:0;
     width: 0;
     padding:0.8em;
@@ -461,8 +461,22 @@ map_body_wrapper {
     justify-content:center;
     align-items:center;
     background:darkred;
-    border:2px solid lightgrey;
-    border-radius:50%;
+    z-index:2;
+}
+#map .nbr_defenses.safe {
+    top:  1.69em;
+    right:-0.3em;
+    height:18px;
+    width: 18px;
+    padding:0;
+    display: inline-flex;
+    justify-content: center;
+    align-items:center;
+    font-size:1em;
+    background:none;
+    border:2px solid dimgrey;
+    border-radius:0.2em;
+    box-shadow:none;
     z-index:2;
 }
 .cityframe {
@@ -553,9 +567,6 @@ map_body_wrapper {
 }
 .cityframe.explored .dot_notif {
     display:none;
-}
-.cityframe.explored .label {
-    background:darkseagreen;
 }
 
 .cityframe.active.gold {

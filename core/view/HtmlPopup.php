@@ -519,7 +519,7 @@ class HtmlPopup
                     <ul class="items_list" style="justify-content:center"></ul>
                 </div>
                 <div class="text_explored hidden">
-                    <p><strong>&#x2714;&#xFE0F; Vous avez déjà exploré ce bâtiment aujourd\'hui.</strong></p>
+                    <p><strong>&#x2705; Vous avez déjà exploré ce bâtiment aujourd\'hui.</strong></p>
                 </div>
             </div>
             <div class="block_modules frame z-depth-2">

@@ -72,7 +72,7 @@ class HtmlMapLegends {
                     <li><span style="border-color:cornflowerblue">&#x1FAB5;</span> Bâtiment à ressources</li>
                     <li><span style="border-color:darkorange">&#x26A1;</span> Bâtiment à énergie</li>
                     <li><span style="border-color:purple">&#x2699;&#xFE0F;</span> Bâtiment technique</li>
-                    <li>&#x2714;&#xFE0F; &nbsp;Bâtiment exploré</li>
+                    <li>&nbsp;&#x2705; &nbsp;Bâtiment exploré</li>
                 </ul>
                 <ul class="transportations">
                     <li><span style="border-color:black">&#x1F681;</span> Héliport</li>

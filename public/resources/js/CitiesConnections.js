@@ -179,7 +179,7 @@ class CityConnections {
         
         if(isExplored === true && cityTypeId !== 228) {
             cssClass += " explored";
-            label = "&#x2714;&#xFE0F;";
+            label = "&#x2705;";
         }
         
         if(zone.querySelector(".cityframe") === null) {
