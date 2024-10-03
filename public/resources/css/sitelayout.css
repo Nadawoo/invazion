@@ -84,7 +84,7 @@ header h1 {
     margin:0;
     font-family:"Courier New";
     font-weight:bold;
-    font-size:2em;
+    font-size:2.5em;
 }
 header h1 a, header h1 a:hover {
     color:black;
@@ -92,7 +92,8 @@ header h1 a, header h1 a:hover {
 #slogan {
     text-align:center;
     font-weight:bold;
-    letter-spacing:0.1em;
+    font-size:1.1em;
+    letter-spacing:1px;
     color:grey;
 }
 

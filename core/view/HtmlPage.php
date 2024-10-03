@@ -118,7 +118,7 @@ class HtmlPage
                             <i class="material-icons" style="margin:0.3em;font-size:2.5em;border:1px solid grey;border-radius:10%">help</i>
                         </a>
                         <h1><a href="/">InvaZion</a></h1>
-                        <div id="slogan">Le projet de Hordes-like collaboratif</div>
+                        <div id="slogan">Gérez l\'apocalypse.</div>
                         '.$this->site_menu($user_id, $citizen_id, $citizen_pseudo).'
                     </header>';
     }
