@@ -194,6 +194,7 @@
     margin-top:0.2em;
 }
 #dayclock {
+    position:relative;
     flex-direction:column;
     font-size:1.3em;
     height: 5rem;
@@ -208,6 +209,23 @@
     border:2px outset white;
     border-radius:2em;
     color:white;
+}
+#dayclock .dot_number {
+    position:absolute;
+    top:  -0.4em;
+    right:-0.6em;
+    height:1.5em;
+    width: 1.5em;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:darkred;
+    border:2px solid white;
+    border-radius:50%;
+    text-align: center;
+}
+#current_day {
+    font-size:1.6em;
 }
 #showWall {
     padding:0 0.3rem;

@@ -1262,7 +1262,7 @@ function displayToast(message, error_class) {
  */
 function getCurrentCycle() {
     
-    return parseInt(document.querySelector("#tuto_dayclock span").innerHTML);
+    return parseInt(document.querySelector("#current_day").innerHTML);
 }
 
 
