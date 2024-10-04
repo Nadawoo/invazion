@@ -365,7 +365,7 @@ echo $html['json_configs'];
                     <img src="resources/img/free/human.png" height="48">
                 </button>
             </li>
-            <li class="paths" onclick="toggle('#paths_bar');this.classList.toggle('active')">
+            <li class="paths" onclick="togglePathsBar()">
                 <button>&#x1F97E;</button>
             </li>
         </ul>

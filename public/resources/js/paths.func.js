@@ -387,3 +387,10 @@ async function movePath(event) {
         updateMeAfterMoving(json.datas.new_coord_x, json.datas.new_coord_y);
     }
 }
+
+
+function togglePathsBar() {
+    
+    toggle(["#paths_bar", "#game_footer", "#tasks_button"]);
+    document.querySelector("#views_bar .paths").classList.toggle("active");
+}

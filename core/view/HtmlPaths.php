@@ -88,6 +88,10 @@ class HtmlPaths {
                     </a>
                 </div>
             </div>
+            
+            <a class="close z-depth-2" onclick="togglePathsBar()">
+               <i class="material-icons">close</i>
+            </a>
         </div>';
     }
     
