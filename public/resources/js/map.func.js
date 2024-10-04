@@ -336,7 +336,10 @@ async function addCitiesOnMap(mapId) {
         zone.insertAdjacentHTML("afterbegin", `<span class="city_name hidden">${cityName}</span>`);
         
         // Adds the building description in the bubble of the zone
-        zone.querySelector(".roleplay").innerHTML = `<h5 class="name">${buildingName}</h5><hr><div class="descr_ambiance">${buildingDescr}</div>`;
+        zone.querySelector(".roleplay").innerHTML = `
+            <h5 class="name">${buildingName}</h5>
+            <hr>
+            <div class="descr_ambiance">${nl2br(buildingDescr)}</div>`;
         // Make the building's zone always visible, even when never visited
         zone.closest(".hexagon").style.opacity = 1;
         

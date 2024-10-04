@@ -50,7 +50,7 @@ class BuildingPopup {
         popup.appendChild(tplPopupBuilding);
         popup.querySelector(".building_name").innerHTML = building["name"];
         if(building["descr_ambiance"] !== "") {
-            popup.querySelector(".descr_ambiance").innerHTML = building["descr_ambiance"];
+            popup.querySelector(".descr_ambiance").innerHTML = nl2br(building.descr_ambiance);
         }
         
         // Display/hide the button for exploring the building

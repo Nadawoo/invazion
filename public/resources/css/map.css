@@ -705,7 +705,7 @@ map_body_wrapper {
     padding:0.3em;
     text-align:left;
     white-space: normal;
-    hyphens: auto;
+    /*hyphens: auto;*/
     background:darkred;
     color:white;
     border:1px solid red;

@@ -153,8 +153,8 @@ class CityConnections {
             // #235 = the ID of the "Heliport"
             cssClass = "transportation";
             label = "&#x1F681;";           
-        } else if([236, 237].includes(cityTypeId)) {
-            // #236 = the ID of the "Training room", #237 = the "Collector"
+        } else if([236, 237, 238].includes(cityTypeId)) {
+            // #236 = the ID of the "Training room", #237 = the "Collector", #238 = the "Multiplier
             cssClass = "technical";
             label = "&#x2699;&#xFE0F;";           
         } else if([11, 12].includes(cityTypeId)) {
