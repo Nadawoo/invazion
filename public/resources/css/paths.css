@@ -173,7 +173,7 @@
 .bottom_bar .path.active {
     min-width:15em;
     width:11em;
-    border-color:red;
+    border-color:lawngreen;
     opacity:1;
     cursor:auto;
 }
@@ -269,17 +269,17 @@
  */
 #map .path_stage {
     position:absolute;
-    height:1.7em;
-    width: 1.7em;
+    height:1.6em;
+    width: 1.6em;
     line-height:180%;
     background:#4a235a;
-    border:1px solid white;
-    border-radius:50%;
+    border:2px outset lawngreen;
+    border-radius:0.3em;
     font-weight:bold;
     color:white;
     box-sizing:content-box;
     box-shadow: 3px 3px 4px black;
-    /*z-index:4;*/
+    z-index:2;
 }
 
 #formPathDrawing {
