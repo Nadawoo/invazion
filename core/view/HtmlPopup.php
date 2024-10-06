@@ -522,6 +522,47 @@ class HtmlPopup
                     <p><strong>&#x2705; Vous avez déjà exploré ce bâtiment aujourd\'hui.</strong></p>
                 </div>
             </div>
+            <div class="block_plans frame z-depth-2">
+                <div onclick="this.querySelector(\'.help\').classList.toggle(\'hidden\')">
+                    <h3 class="z-depth-1">Améliorations <a>[?]</a></h3>
+                    <div class="help hidden">
+                        Déposez ici les <strong>plans de bâtiment</strong> que 
+                        vous trouvez dans le désert. Chaque plan multiplie les effets 
+                        du bâtiment :
+                        <ul>
+                            <li>1 plan  = production x1,2</li>
+                            <li>2 plans = production x1,4</li>
+                            <li>3 plans = production x1,6</li>
+                        </ul>
+                        Chaque plan doit être placé dans un type de bâtiment précis
+                        (ex : le bâtiment "Collecteur" ne peut être amélioré qu\'avec 
+                        un "plan de collecteur"). Adaptez votre stratégie en fonction
+                        des plans que vous découvrez...
+                    </div>
+                </div>
+                <div class="cards">
+                    <div class="card">
+                        <div style="text-align:center">
+                            Plan de <span class="building_name">{building_name}</span>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div style="text-align:center">
+                            Plan de <span class="building_name">{building_name}</span>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div style="text-align:center">
+                            Plan de <span class="building_name">{building_name}</span>
+                        </div>
+                    </div>
+                </div>
+                <p class="aside red-text">
+                    [Note du développeur : cette fonctionnalité sera ajoutée dans 
+                    une mise à jour ultérieure. Pour le moment, les plans ne peuvent 
+                    pas être trouvés dans le désert. Un peu de patience...]
+                </p>
+            </div>
             <div class="block_modules frame z-depth-2">
                 <div onclick="this.querySelector(\'.help\').classList.toggle(\'hidden\')">
                     <h3 class="z-depth-1">Modules <a>[?]</a></h3>

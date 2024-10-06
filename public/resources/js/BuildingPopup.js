@@ -48,7 +48,9 @@ class BuildingPopup {
             popup = document.querySelector("#popsuccess .content");
         popup.innerHTML = "";
         popup.appendChild(tplPopupBuilding);
-        popup.querySelector(".building_name").innerHTML = building["name"];
+        popup.querySelectorAll(".building_name").forEach(
+            element => element.innerHTML = building.name
+        );
         if(building["descr_ambiance"] !== "") {
             popup.querySelector(".descr_ambiance").innerHTML = nl2br(building.descr_ambiance);
         }
@@ -71,10 +73,12 @@ class BuildingPopup {
         
         // If the building can't be explored (city), hide the useless frames 
         // in the pop-up.
-//        if(_configsBuildings[cityTypeId]["is_explorable"] === 0) {
-//            popup.querySelector(".block_explore").classList.add("hidden");
-//            popup.querySelector(".block_modules").classList.add("hidden");
-//        }
+        if(_configsBuildings[cityTypeId]["is_explorable"] === 0) {
+            popup.querySelector(".block_explore").classList.add("hidden");
+        } else {
+            popup.querySelector(".block_plans").classList.add("hidden");
+            popup.querySelector(".block_modules").classList.add("hidden");
+        }
     }
 
     

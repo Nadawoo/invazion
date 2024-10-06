@@ -106,7 +106,7 @@
     margin-left:1em;
     margin-right:1em;
 }
-.popup p.help {
+.popup .help {
     margin:0.2em 0 0 0;
     padding:0.5em;
     font-size:0.95em;
@@ -116,11 +116,26 @@
 }
 
 .popup .block_explore {
-    padding: 1em;
+    padding:1em;
 }
 .popup .frame .explore_building button {
     width:50%;
     margin:auto;
+}
+
+.popup .block_plans .cards {
+    display:flex;
+    justify-content:space-between;
+    padding:1em;
+}
+.popup .block_plans .card {
+    height:10em;
+    width: 7em;
+    display:flex;
+    align-items:center;
+    border:2px dashed grey;
+    color:grey;
+    border-radius:0.4em;
 }
 
 .building_modules {
