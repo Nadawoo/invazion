@@ -188,7 +188,7 @@ class HtmlLayout extends HtmlPage
             <div id="tuto_dayclock">
                 <a href="#popdayclock" id="dayclock">
                     <span class="dot_number"><i class="material-icons">fast_forward</i></span>
-                    Jour <strong id="current_day">'.(int)$day.'</strong>
+                    <span data-translate="day">Jour</span> <strong id="current_day">'.(int)$day.'</strong>
                 </a>
             </div>
             <p id="messageEndCycle" class="hidden" style="margin:0"></p>

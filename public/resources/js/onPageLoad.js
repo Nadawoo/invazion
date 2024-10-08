@@ -3,6 +3,10 @@
  * Don't put functions here (see scripts.js) nor events listeners (see events.js)
  */
 
+// Set the language of the game here. Available values: "fr", "en".
+// TODO: guess the language automatically by geolocalizing the user.
+let lang = "fr";
+
 // Permanently stores the results returned by the Azimutant's APIs.
 var _citizens = null;
 var _cities = null;
@@ -188,3 +192,7 @@ if (document.getElementById('editConfig') !== null) {
             '#block_killing_rate'
             ]);
 }
+
+// Translate the game in the appropriate language
+translator = new Translator();
+translator.translate(lang);

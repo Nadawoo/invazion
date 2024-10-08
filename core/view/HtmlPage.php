@@ -110,7 +110,7 @@ class HtmlPage
             <body>    
             <div id="body_bg">
                 <div id="page_container">
-                    <header>
+                    <header data-section="header">
                         <a style="float:left;color:slategrey" href="#" data-target="slide-out" class="sidenav-trigger">
                             <i class="material-icons" style="margin:0.3em;font-size:2.5em;border:1px solid grey;border-radius:10%">menu</i>
                         </a>
@@ -118,7 +118,7 @@ class HtmlPage
                             <i class="material-icons" style="margin:0.3em;font-size:2.5em;border:1px solid grey;border-radius:10%">help</i>
                         </a>
                         <h1><a href="/">Azimutant</a></h1>
-                        <div id="slogan">Gérez l\'apocalypse.</div>
+                        <div id="slogan" data-translate="slogan">Gérez l\'apocalypse.</div>
                         '.$this->site_menu($user_id, $citizen_id, $citizen_pseudo).'
                     </header>';
     }
@@ -157,6 +157,7 @@ class HtmlPage
                         <script type="text/javascript" src="resources/js/lib/scrollbooster.min.js"></script>
                         <script type="text/javascript" src="resources/js/ZombLib.js?v'.$this->css_js_version.'"></script>
                         <script type="text/javascript" src="resources/js/Tasks.js?v'.$this->css_js_version.'"></script>
+                        <script type="text/javascript" src="resources/js/Translator.js?v'.$this->css_js_version.'"></script>
                         <script type="text/javascript" src="resources/js/BuildingPopup.js?v'.$this->css_js_version.'"></script>
                         <script type="text/javascript" src="resources/js/CitiesConnections.js?v'.$this->css_js_version.'"></script>
                         <script type="text/javascript" src="resources/js/cookies.func.js?v'.$this->css_js_version.'"></script>

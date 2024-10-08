@@ -220,7 +220,7 @@ echo $html['json_configs'];
     } ?>
     
     
-<div id="game_container">
+<div id="game_container" data-section="game">
     
     <?php
     // If the citizen is inside a city, display the city enclosure over the map
@@ -438,7 +438,7 @@ echo $html['json_configs'];
         
         <a href="#poptasks" id="tasks_button">
             <span class="dot_number">8</span>
-            &#x1F4D1; <span class="text">Objectifs</span>
+            &#x1F4D1; <span class="text" data-translate="goals">Objectifs</span>
         </a>
     </section>
     
