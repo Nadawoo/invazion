@@ -517,8 +517,8 @@ map_body_wrapper {
 .cityframe.defenses .label {
     border-color:green;
 }
-.cityframe.transportation .frame,
-.cityframe.transportation .label {
+.cityframe.transportations .frame,
+.cityframe.transportations .label {
     border-color:black;
 }
 .cityframe.technical .frame,
@@ -614,13 +614,17 @@ map_body_wrapper {
     }
 }
 
-#mapSvg .zombie_core.animated-line {
-    stroke:red;
-}
 #mapSvg .defenses.animated-line {
     stroke:green;
 }
-#mapSvg .transportation.animated-line {
+#mapSvg .zombie_core {
+    stroke-width:10px;
+}
+#mapSvg .zombie_core.animated-line {
+    stroke:red;
+    stroke-width:8px;
+}
+#mapSvg .transportations.animated-line {
     stroke:black;
 }
 

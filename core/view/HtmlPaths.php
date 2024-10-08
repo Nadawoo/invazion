@@ -100,55 +100,24 @@ class HtmlPaths {
         
         return '
         <div id="cityframes_bar" class="bottom_bar hidden">
-            <div class="path"
-                 onclick="hide(\'#map_legend_cityframes ul\');
-                 display(\'#map_legend_cityframes .defenses\');
-                 hide(\'#map .cityframe\');
-                 display([\'#map .defenses\', \'#map .zombie_core\']);
-                 hide(\'#mapSvg .transportation\');
-                 display(\'#mapSvg .defenses\');
-                 ">
+            <div class="path defenses" onclick="switchCityframesType(\'defenses\')">
                 <span class="icon">&#x1F6E1;&#xFE0F;</span>
                 <span class="label">Défenses</span>
             </div>
-            <div class="path"
-                 onclick="hide(\'#map_legend_cityframes ul\');
-                 display(\'#map_legend_cityframes .undiscovered\');
-                 hide(\'#map .cityframe\');
-                 display(\'#map .undiscovered\');
-                 hide([\'#mapSvg .transportation\', \'#mapSvg .defenses\', \'#map .zombie_core\']);
-                 ">
+            <div class="path undiscovered" onclick="switchCityframesType(\'undiscovered\')">
                 <span class="icon">&#x2753;</span>
                 <span class="label">Inexploré</span>
             </div>
-            <div class="path"
-                 onclick="hide(\'#map_legend_cityframes ul\');
-                 display(\'#map_legend_cityframes .explorables\');
-                 hide(\'#map .cityframe\');
-                 display([\'#map .resources\', \'#map .boosts\', \'#map .technical\']);
-                 hide([\'#map .undiscovered\', \'#mapSvg .defenses\', \'#mapSvg .transportation\', \'#mapSvg .zombie_core\']);
-                 ">
+            <div class="path resources"
+                 onclick="switchCityframesType(\'resources\')">
                 <span class="icon">&#x26CF;&#xFE0F;</span>
                 <span class="label">Ressources</span>
             </div>
-            <div class="path"
-                 onclick="hide([\'#map_legend_cityframes ul\']);
-                 display(\'#map_legend_cityframes .transportations\');
-                 hide(\'#map .cityframe\');
-                 display(\'#map .transportation\');
-                 hide([\'#mapSvg .defenses\', \'#mapSvg .zombie_core\']);
-                 display(\'#mapSvg .transportation\');
-                 ">
+            <div class="path transportations" onclick="switchCityframesType(\'transportations\')">
                 <span class="icon">&#x1F681;</span>
                 <span class="label">Transports</span>
             </div>
-            <div class="path"
-                 onclick="hide([\'#map_legend_cityframes ul\']);
-                 display(\'#map_legend_cityframes .weather\');
-                 hide(\'#map .cityframe\');
-                 display(\'#map .weather\');
-                 hide([\'#mapSvg .defenses\', \'#mapSvg .transportation\', \'#mapSvg .zombie_core\']);
-                 ">
+            <div class="path weather" onclick="switchCityframesType(\'weather\')">
                 <span class="icon">&#x1F327;&#xFE0F;</span>
                 <span class="label">Météo</span>
             </div>

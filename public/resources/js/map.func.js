@@ -723,6 +723,10 @@ function resetMapView() {
 }
 
 
+/**
+ * Display/hide the frames around the cities on the map and the bar to filter them
+ * (defensense, transportations, weather...)
+ */
 function toggleCityframesView() {
 
     toggle(["#views_bar", "#tasks_button", "#attack_bar"]);
@@ -732,6 +736,30 @@ function toggleCityframesView() {
     document.querySelectorAll(".cityframe").forEach(
         (cityframe) => cityframe.classList.toggle("active")
     );
+    
+    // By default, display only the "defenses"
+    switchCityframesType("defenses");
+    document.querySelector("#cityframes_bar .defenses").classList.add("active");
+}
+
+
+function switchCityframesType(typeToActivate) {
+    
+    // Display the appropriate legend on the map
+    hide('#map_legend_cityframes ul');
+    display(`#map_legend_cityframes .${typeToActivate}`);    
+    // Display the appropriate cityframes on the map
+    hide('#map .cityframe');
+    display(`#map .${typeToActivate}`);//, '#map .zombie_core']);    
+    // Display the appropriate connections between the cities
+    hide('#mapSvg line');
+    display(`#mapSvg .${typeToActivate}`);
+    
+    // Highlight the button of the activated type (defenses, resources...)
+    document.querySelectorAll(`#cityframes_bar .path`).forEach(
+        element => element.classList.remove("active")
+    );
+    document.querySelector(`#cityframes_bar .${typeToActivate}`).classList.add("active");
 }
 
 

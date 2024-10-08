@@ -175,7 +175,7 @@
     width:11em;
     border-color:lawngreen;
     opacity:1;
-    cursor:auto;
+    /*cursor:auto;*/
 }
 .bottom_bar .path.active .body {
     display:flex;
@@ -250,6 +250,7 @@
 }
 #cityframes_bar .path {
     width:6.2em;
+    min-width:auto;
 }
 #cityframes_bar .icon {
     font-size:2em;

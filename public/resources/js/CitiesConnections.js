@@ -46,10 +46,10 @@ class CityConnections {
         
         if(cityTypeId === 228) {
             // #228 = the ID of the "Zombie core"
-            lineType = "zombie_core";
+            lineType = "zombie_core defenses";
         } else if(cityTypeId === 235) {
             // #235 = the ID of the "Heliport"
-            lineType = "transportation";
+            lineType = "transportations";
         }
         
         return lineType;
@@ -147,16 +147,16 @@ class CityConnections {
         
         if(cityTypeId === 234) {
             // #234 = the ID of the city type "Drugstore" in the Azimutant's API
-            cssClass = `boosts`;
+            cssClass = `boosts resources`;
             label = `&#x26A1;`;
         } else if(cityTypeId === 235) {
             // #235 = the ID of the "Heliport"
-            cssClass = "transportation";
+            cssClass = "transportations";
             label = "&#x1F681;";           
         } else if([236, 237, 238, 239].includes(cityTypeId)) {
             // #236 = the ID of the "Training room", #237 = the "Collector",
             // #238 = the "Multiplier", #239 = the "Power plant"
-            cssClass = "technical";
+            cssClass = "technical resources";
             label = "&#x2699;&#xFE0F;";           
         } else if([11, 12].includes(cityTypeId)) {
             // #12 = the ID of the "City", #11 = Outpost
@@ -164,7 +164,7 @@ class CityConnections {
             label = `${cityDefenses}&#x1F6E1;&#xFE0F;`;           
         } else if(cityTypeId === 228) {
             // #228 = the ID of the "Zombie core"
-            cssClass = `zombie_core ${cssClassPulse}`;
+            cssClass = `zombie_core defenses ${cssClassPulse}`;
             label = `${nbrZombies}&#x1F9DF;`;           
         } else if(cityTypeId === 233) {
             // #11 = the ID of the "Undiscovered building"
