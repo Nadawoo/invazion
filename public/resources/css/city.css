@@ -171,7 +171,7 @@
     z-index:1;
 }
 /* Button to hide all the city blocks */
-#city_contents .close {
+.city_row>.close {
     top:4.5em;
     right:2%;
     border:2px solid white;
