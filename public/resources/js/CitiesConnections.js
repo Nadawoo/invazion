@@ -178,7 +178,8 @@ class CityConnections {
             label = `&#x2753;`;
         }
         
-        if(isExplored === true && cityTypeId !== 228) {
+        // #228 = the ID of the "Zombie core", #11 = Outpost
+        if(isExplored === true && ![11, 228].includes(cityTypeId)) {
             cssClass += " explored";
             label = "&#x2705;";
         }
