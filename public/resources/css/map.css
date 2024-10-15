@@ -183,13 +183,14 @@ map_body_wrapper {
     position:absolute;
     top:-0.15em;
     left:-2em;
-    height:3.1em;
+    height:3.1em; /* Equal to the round action buttons (move, dig...) */
     width: 3.1em;
     text-align:center;
     background:#fbeee6;
-    border:3px outset #34495e;
+    border:4px outset #34495e;
     border-radius:50%;
     box-shadow:2px 2px 8px black;
+    outline:2px outset white;
 }
 #personal_block .block_icon .icon {
     margin-top:-0.15em;
@@ -198,7 +199,7 @@ map_body_wrapper {
 #personal_block .block_icon .name {
     position:absolute;
     bottom:0;
-    width:98%;
+    width:100%;
     line-height:120%;
     font-size:0.9em;
     text-align:center;
@@ -217,7 +218,7 @@ map_body_wrapper {
     flex-wrap: wrap;
     width:18em;
     min-height:2.7em;
-    margin:0.15em 0.5em;
+    margin: 0.15em 0.5em 0.5em 0.5em;
     padding:0.5em 0;
     background:#fbeee6;
     border:none; /*1px solid #34495e;*/

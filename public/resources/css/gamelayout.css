@@ -220,7 +220,7 @@
     justify-content:center;
     align-items:center;
     background:darkred;
-    border:2px solid white;
+    border:2px outset white;
     border-radius:50%;
     text-align: center;
 }
@@ -548,19 +548,20 @@ form[name="end_cycle"] button {
 .round_action_block {
     position:relative;
     display:inline-block;
-    margin:0 0.08rem;
+    /*margin:0 0.08rem;*/
     background:#34495e;
-    border-top:1px solid white;
-    border-radius:0.2rem;
+    border:1px solid lightgrey;
+    border-top:2px solid white;
+    border-radius:0.3rem;
 }
 .round_action {
     position:relative;
-    height:3.3rem;
-    width: 3.3rem;
+    height:3.2rem; /* Equal to the buttons "Bag" and "Status" in the #personal_bar */
+    width: 3.2rem;
      /* Bigger margin at the right and bottom to compensate for the feeling 
         of asymetry caused by the shadow */
-    margin:0.3rem 0.5rem 0.8rem 0.4rem;
-    padding:0;
+    margin:0.4rem 0.5rem 0.7rem 0.5rem;
+    padding:0 0 0.2em 0;
     font-size:1.7em;
     background:#c0392b;
     border:3px outset #f5b7b1;    
