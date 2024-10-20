@@ -105,20 +105,21 @@ function addMeOnMap() {
     // If there is no other citizen in the zone
     if(myZone.querySelector(".map_citizen") === null) {
         myZone.insertAdjacentHTML("afterbegin", 
-            '<img id="explosionMe" class="scale-transition scale-out" src="resources/img/thirdparty/notoemoji/collision-512.webp" width="38">\
-            <div class="map_citizen" id="me">\
-                <span class="nbr_defenses">'+myPseudo+'</span>\
-                <img src="resources/img/free/human.png">\
-            </div>\
-            <div class="halo">&nbsp;</div>'
-        );
+            `<div class="map_citizen" id="me">
+                <span class="nbr_defenses">${myPseudo}</span>
+                <img src="resources/img/free/human.png">
+                <img id="explosionMe" class="scale-transition scale-out" src="resources/img/thirdparty/notoemoji/collision-512.webp" width="38">
+            </div>
+            <div class="halo">&nbsp;</div>
+            <div class="overlay"></div>
+            `);
+    } else {
+        myZone.querySelector(".map_citizen").id = "me";
+        myZone.querySelector(".halo").classList.remove("inactive");
+        myZone.querySelector(".overlay").classList.remove("hidden");
     }
     
     let htmlBubble = '<h5 class="name">Vous êtes ici&nbsp;!';
-    
-    myZone.querySelector(".map_citizen").id = "me";
-    myZone.querySelector(".halo").classList.remove("inactive");
-    myZone.querySelector(".nbr_defenses").innerHTML = myPseudo;
     myZone.querySelector(".bubble .roleplay").innerHTML = htmlBubble;
     
     // Event listener when clicking on the player on his map zone
@@ -156,12 +157,13 @@ async function addCitizensOnMap(mapId) {
             }
             
             zone.insertAdjacentHTML("afterbegin", 
-                `<img id="explosionMe" class="scale-transition scale-out" src="resources/img/thirdparty/notoemoji/collision-512.webp" width="38">
-                <div class="map_citizen">
+                `<div class="map_citizen">
                     <span class="nbr_defenses">${label}</span>
                     ${htmlCitizensImages(nbrCitizens)}
                 </div>
-                <div class="halo inactive">&nbsp;</div>`);
+                <div class="halo inactive">&nbsp;</div>
+                <div class="overlay hidden"></div>
+                `);
             zone.querySelector(".roleplay").innerHTML = bubble;
             
             // Delete the "&nbsp;" required on the empty zones 
@@ -858,13 +860,15 @@ function switchToActionView() {
     display(["#actions_panel", "#personal_block_wrapper"]);
     // Hide some elements of the GUI to make the interface look lighter
     hide(["#views_bar", "#map_navigation", "#tasks_button", "#game_footer"]);
-    hide([".nbr_defenses", ".bubble"]);
+    hide([".bubble"]);
     desactivateMapPathsView();
     // Display the button which switches to the Map mode
     display("#map_mode_button");
     // Remove the illumination on the button which displays the map navigation
     document.querySelector("#views_bar .map").classList.remove("active");     
     document.querySelector("#views_bar .paths").classList.remove("active");
+    
+    document.querySelector("#map").classList.add("action_view");
     
     updateActionBlocks();
 }
@@ -884,4 +888,6 @@ function switchToMapView() {
              "#map .nbr_defenses", "#map .bubble"]);
     // Restore the illumination on the button which displays the map navigation
     document.querySelector("#views_bar .map").classList.add("active");  
+    
+    document.querySelector("#map").classList.remove("action_view");
 }

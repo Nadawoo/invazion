@@ -6,7 +6,7 @@
  * Avec des modifications perso (délais, taille...)
  */
 
-.overlay {
+#popups .overlay {
     position: fixed;
     top: 0;
     bottom: 0;
@@ -18,7 +18,7 @@
     opacity: 0;
     z-index:60;
 }
-.overlay:target, /* Display popup when the anchor is in the url */
+#popups .overlay:target, /* Display popup when the anchor is in the url */
 .force_visibility /* Force the popup to display even without the anchor  */
 {
     visibility: visible;
