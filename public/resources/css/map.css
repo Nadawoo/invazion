@@ -502,7 +502,7 @@ map_body_wrapper {
 .cityframe.active .frame {
     height:3em;
     border:4px outset white;
-    outline-color:white;
+    outline:2px outset white;
     border-radius: 0.2em;
 }
 
@@ -530,10 +530,6 @@ map_body_wrapper {
 .cityframe.undiscovered .label {
     border-color:grey;
 }
-.cityframe.zombie_core.active .frame {
-    border-color:red;
-    outline:2px solid darkred;
-}
 .cityframe.zombie_core .label {
     width:90%;
     background:red;
@@ -558,18 +554,22 @@ map_body_wrapper {
     color:midnightblue;
 }
 .cityframe.active.explored .frame {
-    outline:none;
+    outline-width:1px;
 }
 .cityframe .dot_notif {
     display:none;
 }
 .cityframe.active .dot_notif {
-    display:block;
+    display:flex;
 }
 .cityframe.explored .dot_notif {
     display:none;
 }
 
+.cityframe.zombie_core.active .frame {
+    border-color:red;
+    outline:2px solid darkred;
+}
 .cityframe.active.gold {
     outline:2px solid darkgreen;
     border-radius:0.2em;

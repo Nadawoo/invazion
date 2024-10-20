@@ -179,15 +179,17 @@ class CityConnections {
         }
         
         // #228 = the ID of the "Zombie core", #11 = Outpost
-        if(isExplored === true && ![11, 228].includes(cityTypeId)) {
+        if(isExplored === true) {
             cssClass += " explored";
+        }
+        if(isExplored === true && ![11, 228].includes(cityTypeId)) {
             label = "&#x2705;";
         }
         
         if(zone.querySelector(".cityframe") === null) {
             zone.insertAdjacentHTML("afterbegin",
                 `<div class="cityframe ${cssClass}">
-                    <span class="dot_notif"></span>
+                    <span class="dot_notif">!</span>
                     <div class="label hidden">${label}</div>
                     <div class="frame"></div>
                 </div>`
