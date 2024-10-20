@@ -121,8 +121,10 @@ class CityConnections {
                 this.#addCityframe(childCity["coord_x"], childCity["coord_y"], childCity.city_type_id, nbrDefenses);
             }
         }
-
-        this.#highlightClickedCityframe(clickedCityId);
+        
+        if(clickedCityId !== null) {
+            this.#highlightClickedCityframe(clickedCityId);
+        }
     }
 
 
@@ -208,7 +210,7 @@ class CityConnections {
         
         let cityData = _cities[clickedCityId],
             cityDiv = document.querySelector(`#zone${cityData.coord_x}_${cityData.coord_y}`);
-
+        
         cityDiv.querySelector(`.cityframe`).classList.add("gold");
         cityDiv.querySelector(`.cityframe`).classList.add("animate__animated", "animate__pulse", "animate__infinite");
         cityDiv.querySelector(`.label`).innerHTML = `${cityData.total_defenses}&#x1F6E1;&#xFE0F;`;
