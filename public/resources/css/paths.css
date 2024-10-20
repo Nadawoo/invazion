@@ -247,6 +247,7 @@
     bottom:auto;
     padding:0.1em 0;
     justify-content:center;
+    border-top:none;
 }
 #cityframes_bar .path {
     width:6.2em;

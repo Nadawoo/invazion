@@ -46,9 +46,7 @@
     background:darkred;
     color:white;
     border:2px solid white;
-    border-top:none;
-    border-right:none;
-    border-radius: 0 0 0 0.3em;
+    border-radius: 0 0.5em 0 0.3em;
     outline: 1px solid grey;
     /* Smooth change of the background color when hovering the cross */
     transition: all 200ms;
