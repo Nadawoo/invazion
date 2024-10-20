@@ -311,9 +311,6 @@ async function addCitiesOnMap(mapId) {
         // Adds the number of items remaining inside the explorable building
         else if(city.city_type_id !== "undefined") {
             
-            let cityConnections = new CityConnections();
-            cityConnections.addCityframes(mapId);
-            
             let html = "";
 //            if(city.city_type_id === undiscoveredBuildingId) {
 //                html = "";

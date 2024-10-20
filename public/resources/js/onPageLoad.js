@@ -84,7 +84,9 @@ if (document.getElementById('map') !== null) {
     _jsonMap = getMapZonesOnce(mapId);
     
     // Place on the map the buildings and cities
-    _cities = addCitiesOnMap(mapId);  
+    _cities = addCitiesOnMap(mapId);
+    let cityConnections = new CityConnections();
+    cityConnections.addCityframes(mapId);
     // Place the citizens on the appropriate zones of the map
     _citizens = addCitizensOnMap(mapId).then(() => {
         if(isCitizenInGame() === true) { addMeOnMap(); }

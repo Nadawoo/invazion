@@ -110,7 +110,7 @@ class CityConnections {
      *                  on the map.
      */
     async addCityframes(mapId, clickedCityId=null) {
-
+        
         _cities = await getMapCitiesOnce(mapId);
 
         for(let city of Object.entries(_cities)) {
