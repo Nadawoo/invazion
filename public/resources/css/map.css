@@ -458,6 +458,7 @@ map_body_wrapper {
     width: 0;
     padding:0.8em;
     font-size:0.7em;
+    font-weight: bold;
     display:flex;
     justify-content:center;
     align-items:center;
@@ -777,7 +778,7 @@ map_body_wrapper {
 }
 #me {  
     background:lightgreen;
-    z-index: 2;
+    z-index:3;
     cursor:pointer;
 }
 #me.alert {

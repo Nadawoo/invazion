@@ -246,7 +246,8 @@ async function addCitiesOnMap(mapId) {
         
         let city = _cities[cityId],
             htmlCoords = city.coord_x+"_"+city.coord_y,
-            zone = document.querySelector("#zone"+htmlCoords+" .square_container");
+            zone = document.querySelector("#zone"+htmlCoords+" .square_container"),
+            nbrItems = zone.dataset.items;
         
         let zones = await _jsonMap;
 
@@ -294,7 +295,6 @@ async function addCitiesOnMap(mapId) {
         // (#12 = ID of the "human city" building)
         else if(city.city_type_id === 12) {
             let nbrDefenses = city.total_defenses,
-                nbrItems = zone.dataset.items,
                 nbrZombiesNextAttack = zone.dataset.zombies,
                 defensesExcedent = nbrDefenses - nbrZombiesNextAttack;
             
@@ -315,8 +315,11 @@ async function addCitiesOnMap(mapId) {
 //            if(city.city_type_id === undiscoveredBuildingId) {
 //                html = "";
 //            }
-            if(parseInt(zone.closest(".square_container").dataset.cyclelastvisit) < getCurrentCycle()) {
+            if(parseInt(zone.dataset.cyclelastvisit) < getCurrentCycle()) {
                 html = `<span class="nbr_defenses diggable pulse">&#x26CF;&#xFE0F;</span>`;
+            }
+            else if(nbrItems > 0) {
+                html = `<span class="nbr_defenses diggable pulse">${nbrItems}</span>`;
             }
             else {
 //                let maxExplorations = 100;
