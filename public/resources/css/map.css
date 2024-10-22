@@ -963,3 +963,8 @@ map_body_wrapper {
     transform:scale(0.5);
     top:1.1rem;
 }
+
+#map.action_view .diggable,
+#map.action_view .safe {
+    transform:scale(0.7);
+}
