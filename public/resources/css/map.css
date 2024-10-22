@@ -63,10 +63,10 @@ map_body_wrapper {
     align-items: center;
     height:3rem;
     width: 3rem;
-    margin:0.08em 0;
+    margin:0.3rem;
     font-size:3em;
     border:none;
-    border-radius:0.2em;
+    border-radius:0.1em;
     background:lightgrey;
     opacity:0.8;
     box-shadow: 12px 12px 12px black;
@@ -143,8 +143,8 @@ map_body_wrapper {
  */
 #resizeMap {
     position:absolute;
-    top:  0.1em;
-    right:0.1em;
+    top:  0;
+    right:0;
 }
 #resizeMap button {
     background:darkred;
@@ -160,15 +160,20 @@ map_body_wrapper {
  */
 #personal_block_wrapper {
     position:absolute;
-    top:0.2rem;
+    top:0;
     width:100%;
+    padding-top:0.3em;
     display:flex;
-    justify-content: center;
+    justify-content:center;
+    background: rgba(0,0,0,0.3);
+    height:3.6em;
 }
 #personal_block {
+    position:relative;
+    width:14em;
     display:flex;
-    flex-direction:column;
-    margin-top:0.4rem;
+    justify-content:center;
+    gap:25px;
 }
 /*#personal_block legend {
     width:100%;
@@ -180,21 +185,20 @@ map_body_wrapper {
     font-variant:normal;
 }*/
 #personal_block .block_icon {
-    position:absolute;
-    top:-0.15em;
-    left:-2em;
+    position:relative;
     height:3.1em; /* Equal to the round action buttons (move, dig...) */
     width: 3.1em;
     text-align:center;
     background:#fbeee6;
     border:4px outset #34495e;
     border-radius:50%;
-    box-shadow:2px 2px 8px black;
+    box-shadow:12px 12px 12px black;
     outline:2px outset white;
+    cursor:pointer;
 }
 #personal_block .block_icon .icon {
     margin-top:-0.15em;
-    font-size:1.7em;
+    font-size:1.6em;
 }
 #personal_block .block_icon .name {
     position:absolute;
@@ -208,38 +212,33 @@ map_body_wrapper {
     border-radius:0 0 40em 40em;
 }
 #personal_block .items_list {
-    margin:0;
-    padding-left:1.5em;
-}
-#statusbar,
-#bagbar {
-    position:relative;
+    position:absolute;
+    left:0;
+    min-height:2.7em;
+    width:100%;
+    margin:0.2em 0;
+    padding:0.5em 0;
     display:flex;
     flex-wrap: wrap;
-    width:18em;
-    min-height:2.7em;
-    margin: 0.15em 0.5em 0.5em 0.5em;
-    padding:0.5em 0;
     background:#fbeee6;
-    border:none; /*1px solid #34495e;*/
+    border:2px outset white;
     border-radius:0.3em;
     box-shadow: 12px 12px 12px black;
-    /*overflow:auto;*/
-}
-#bagbar {
-    width:2.2em;
+    z-index:2;
 }
 #statusbar .item_label,
 #bagbar .item_label {
-    height:1.5em;
-    width: 1.5em;
+    height:2em;
+    width: 2em;
     font-size:1.2em;
 }
 #bagbar .item_label img {
     height:26px;
     width: 26px;
 }
-#bagbar .show_more { /* Button to view the hidden items of the bag */
+/* Button to view the hidden items of the bag */
+/*
+#bagbar .show_more {
     position:absolute;
     top:0;
     right:-0.8em;
@@ -248,12 +247,13 @@ map_body_wrapper {
     display:flex;
     justify-content:center;
     align-items:center;
-    font-family:sans-serif; /* Avoids shifting with the default font for <button> */
+    font-family:sans-serif;
     background:darkred;
     color:white;
     border:1px solid lightgrey;
     border-radius:0 0.3em 0.3em 0;
 }
+*/
 #bagbar .show_more .material-icons {
     font-size:1.8em;
 }
@@ -272,17 +272,20 @@ map_body_wrapper {
     line-height:130%;
 }
 #statusbar .item_label img {
+    height:90%;
+    width:100%;
     outline:3px solid red;
-    border-radius:50%;
+    border-radius:0.2em;
 }
-#statusbar .actionpoints {
-    position: absolute;
-    top: -0.5rem;
-    left: 8rem;
+#apbar .actionpoints {
+    position:relative;
     height: 4rem;
     width:  4rem;
-    font-size: 2em;
-    justify-content: center;
+    font-size:1.2em;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color:whitesmoke;
     border: 4px outset orange;
     border-radius: 50%;
     outline:2px solid #fbeee6;
@@ -292,22 +295,14 @@ map_body_wrapper {
                                 rgba(0, 0, 50, 1));
     z-index: 1;
 }
-#statusbar .actionpoints a {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: whitesmoke;
-}
-#statusbar .actionpoints .dot_number {
+#apbar .actionpoints .dot_number {
     position: absolute;
     top:   -0.3rem;
     right: -1.2rem;
     height: 2rem;
     width:  2rem;
-    font-size: 0.5em;
-    padding-top:0.2em;
+    font-size: 0.8em;
+    text-align:center;
     background: darkred;
     border: 3px outset orange;
     border-radius: 50%;

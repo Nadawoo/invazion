@@ -577,13 +577,13 @@ class HtmlLayout extends HtmlPage
     }
     
     
-    function bagbar($items_caracs, $bag_items, $max_bag_slots) {
+    function bag_bar($items_caracs, $bag_items, $max_bag_slots) {
         
         $htmlItem = new HtmlItem();
         $nbr_free_slots = $max_bag_slots - array_sum(array_values($bag_items));
         
         return '
-            <fieldset id="bagbar">
+            <div id="bagbar">
                 <div class="block_icon" onclick="toggleBag()">
                     <div class="icon">&#x1F392;</div>
                     <div class="name">Sac</div>
@@ -592,10 +592,7 @@ class HtmlLayout extends HtmlPage
                     ' . $htmlItem->items($bag_items, $items_caracs) . '
                     ' . $htmlItem->empty_slots($nbr_free_slots) . '
                 </ul>
-                <button title="Afficher/masquer les autres objets du sac" class="show_more" onclick="toggleBag()">
-                    <i class="material-icons">chevron_right</i>
-                </button>
-            </fieldset>';
+            </div>';
     }
     
     

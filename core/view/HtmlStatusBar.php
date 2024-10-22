@@ -12,11 +12,7 @@ class HtmlStatusBar {
      * @param int $nbr_zone_fellows The number of humans in the citizen's zone
      * @return string HTML
      */
-    public function statusbar($bag_items, $city_id, $is_wounded, $nbr_zone_fellows) {
-        
-        // #23 = ID of the item "action points" in the database
-        $ap_item_id = 23;
-        $action_points = isset($bag_items[$ap_item_id]) ? $bag_items[$ap_item_id] : 0;
+    public function status_bar($bag_items, $city_id, $is_wounded, $nbr_zone_fellows) {
         
         $status_my_caracs = $this->status_image("&#x1F464;", null, null,
                                 "Mes caractéristiques de base",
@@ -39,30 +35,50 @@ class HtmlStatusBar {
             ? $this->status_image("&#128101;", null, $nbr_zone_fellows,
                                 "D'autres humains se trouvent dans la même zone que vous ! L'union fait la force...")
             :$this->status_empty();
-                
-        $status_actionpoints = $this->status_image($action_points,
-                                                  null,
-                                                  "&#9889;",
-                                                  "Vos points d'action restants. S'ils sont épuisés, &#10;vous ne pourrez plus vous déplacer dans le désert.",
-                                                  "popmove",
-                                                  "actionpoints");
 
-        return
-        '<fieldset id="statusbar" class="z-depth-1">
-            <div class="block_icon">
-                <div class="icon">&#9877;&#65039;</div>
-                <div class="name">États</div>
-            </div>
-            <ul class="items_list">'.
-                $status_my_caracs.
-                $status_defenses.
-                $status_wounded.
-                $this->status_empty().
-                $this->status_empty().
-                $status_fellows.
-                $status_actionpoints.'
-            </ul>
-        </fieldset>';
+        return '
+            <div id="statusbar" onclick="toggle(\'#statusbar .items_list\')">
+                <div class="block_icon">
+                    <div class="icon">&#9877;&#65039;</div>
+                    <div class="name">États</div>
+                </div>
+                <ul class="items_list hidden">'.
+                    $status_my_caracs.
+                    $status_defenses.
+                    $status_wounded.
+                    $this->status_empty().
+                    $this->status_empty().
+                    $status_fellows.'
+                </ul>
+            </div>';
+    }
+    
+    
+    public function actionpoints_bar($bag_items) {
+        
+        // #23 = ID of the "action points" item in the database
+        $ap_item_id = 23;
+        $ap_nbr = isset($bag_items[$ap_item_id]) ? $bag_items[$ap_item_id] : 0;
+        
+        $ap_block = $this->status_image(
+                        $ap_nbr,
+                        null,
+                        "&#9889;",
+                        "Vos points d'action restants. S'ils sont épuisés, &#10;vous "
+                        . "ne pourrez plus vous déplacer dans le désert.",
+                        "popmove",
+                        "actionpoints");
+        
+        return '
+            <div id="apbar">
+                <a href="#popmove" class="block_icon actionpoints"
+                   title="Vos points d\'action restants. S\'ils sont épuisés, &#10;'.
+                          'vous ne pourrez plus vous déplacer dans le désert." 
+                    >
+                    <span class="icon">'.$ap_nbr.'</span>
+                    <span class="dot_number">&#9889;</span>
+                </a>
+            </div>';
     }
     
     
@@ -90,11 +106,14 @@ class HtmlStatusBar {
         // Display or not the amount for this item
         $html_amount = ($amount !== null) ? '<span class="dot_number">'.$amount.'</span>' : '';
         
-        return '<li class="item_label z-depth-1 '.$class.'">
-                <a title="'.$title.'" '.$popup_link.' '.$cursor_style.'>
-                    <span class="icon">'.$html_icon.'</span>'
-                    .$html_amount.'
-                </a>
+        return '
+            <li class="item_label z-depth-1 '.$class.'">
+                <var>
+                    <a title="'.$title.'" '.$popup_link.' '.$cursor_style.'>
+                        <span class="icon">'.$html_icon.'</span>'
+                        .$html_amount.'
+                    </a>
+                </var>
             </li>';
     }
     

@@ -346,12 +346,19 @@ echo $html['json_configs'];
             <div class="body"></div>
         </section>
         
-        <section id="personal_block_wrapper" class="hidden">
+        <section id="personal_block_wrapper" class="z-depth-1 hidden">
             <div id="personal_block">
                 <?php
-                echo $statusbar->statusbar($citizen['bag_items'], $citizen['city_id'], $citizen['is_wounded'],
-                                           count($zone_fellows)-1);
-                echo $layout->bagbar($configs['items'], $citizen['bag_items'], $citizen['bag_size']);
+                echo $statusbar->status_bar($citizen['bag_items'],
+                                            $citizen['city_id'],
+                                            $citizen['is_wounded'],
+                                            count($zone_fellows)-1
+                                            );
+                echo $statusbar->actionpoints_bar($citizen['bag_items']);
+                echo $layout->bag_bar($configs['items'],
+                                      $citizen['bag_items'],
+                                      $citizen['bag_size']
+                                      );
                 ?>
             </div>
         </section>

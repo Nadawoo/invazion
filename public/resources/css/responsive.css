@@ -63,11 +63,6 @@
         display:none;
     }
     
-    /* Avoid the "status" and "bag" icons to overflow at the left of the screen */
-    #statusbar, #bagbar {
-        margin-left:5%;
-    }
-    
     /* Compact the "Tasks" (goals) button */
     #tasks_button {
         width:3rem; /* Must be equal to the height to get a round button */
@@ -79,5 +74,11 @@
     /* Avoid overflowing the bar on the left side */
     #cityframes_bar {
         justify-content:left;
+    }
+    
+    #resizeMap button {
+        height:2rem;
+        width: 2rem;
+        font-size:2em;
     }
 }
