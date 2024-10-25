@@ -48,13 +48,9 @@ map_body_wrapper {
  * Buttons to change the map view (zoom, center on me, stalleite view...)
  */
 #map_navigation {
-    display:flex;
-    flex-direction:column;
-    justify-content: space-between;
-    align-items: flex-end;
     position:absolute;
     top:  8rem;
-    right:0.5em;
+    right:0.2em;
 }
 #map_navigation button,
 #resizeMap button {
@@ -63,13 +59,16 @@ map_body_wrapper {
     align-items: center;
     height:3rem;
     width: 3rem;
-    margin:0.3rem;
+    margin:0.9rem 0.5rem 0 0;
     font-size:3em;
     border:none;
-    border-radius:0.1em;
+    border-radius:0.2em;
     background:lightgrey;
     opacity:0.8;
     box-shadow: 12px 12px 12px black;
+}
+#map_navigation button {
+    margin-top:0.7rem;
 }
 /* Buttons for zooming on the map */
 #zoom_form {
@@ -162,7 +161,7 @@ map_body_wrapper {
     position:absolute;
     top:0;
     width:100%;
-    padding-top:0.3em;
+    margin-top:0.5em;
     display:flex;
     justify-content:center;
     background: rgba(0,0,0,0.3);
@@ -170,10 +169,13 @@ map_body_wrapper {
 }
 #personal_block {
     position:relative;
-    width:14em;
+    margin:0.1em;
     display:flex;
     justify-content:center;
+    align-items:center;
     gap:25px;
+    background:#fbeee6;
+    border-radius:5em;
 }
 /*#personal_block legend {
     width:100%;
@@ -192,11 +194,12 @@ map_body_wrapper {
     background:#fbeee6;
     border:4px outset #34495e;
     border-radius:50%;
-    box-shadow:12px 12px 12px black;
-    outline:2px outset white;
+    box-shadow:0 8px 12px black;
+    outline:2px outset #fbeee6;
     cursor:pointer;
 }
-#personal_block .block_icon .icon {
+#statusbar .icon,
+#bagbar .icon {
     margin-top:-0.15em;
     font-size:1.6em;
 }
@@ -281,14 +284,14 @@ map_body_wrapper {
     position:relative;
     height: 4rem;
     width:  4rem;
-    font-size:1.2em;
+    font-size:1.9em;
     display:flex;
     justify-content:center;
     align-items:center;
     color:whitesmoke;
     border: 4px outset orange;
     border-radius: 50%;
-    outline:2px solid #fbeee6;
+    outline:2px outset #fbeee6;
     background: radial-gradient(circle at 50% 5%,
                                 rgba(255, 255, 255, 1),
                                 darkred,
@@ -297,11 +300,11 @@ map_body_wrapper {
 }
 #apbar .actionpoints .dot_number {
     position: absolute;
-    top:   -0.3rem;
+    top:   -0.4rem;
     right: -1.2rem;
     height: 2rem;
     width:  2rem;
-    font-size: 0.8em;
+    font-size: 0.55em;
     text-align:center;
     background: darkred;
     border: 3px outset orange;
