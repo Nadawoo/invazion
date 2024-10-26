@@ -67,21 +67,23 @@ function hide(elementsNames) {
  */
 function toggleBag() {
     
-    if(_isBagVisible === true) {
-        hide("#bagbar .items_list");
-        var newWidth = null;
-        var newButtonContent = "chevron_right";
-        _isBagVisible = false;
-    } else {
-        display("#bagbar .items_list");
-        var newWidth = "18em";
-        var newButtonContent = "chevron_left";
-        _isBagVisible = true;
-    }
+    toggle("#bagbar .items_list");
+    document.querySelector("#bagbar").classList.remove("inactive");
     
-    // Update the button +/- according to the action (show/hide)
-    document.querySelector("#bagbar .show_more .material-icons").innerHTML = newButtonContent;
-    document.querySelector("#bagbar").style.width = newWidth;
+    hide("#statusbar .items_list");
+    document.querySelector("#statusbar").classList.toggle("inactive");
+    document.querySelector("#apbar").classList.toggle("inactive");
+}
+
+
+function toggleStatus() {
+    
+    toggle("#statusbar .items_list");
+    document.querySelector("#statusbar").classList.remove("inactive");
+    
+    hide("#bagbar .items_list");
+    document.querySelector("#bagbar").classList.toggle("inactive");
+    document.querySelector("#apbar").classList.toggle("inactive");
 }
 
 

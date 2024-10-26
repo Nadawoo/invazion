@@ -17,8 +17,6 @@ var _isPathDrawingActive = false;
 var _jsonDiscussionApi = null;
 var _scrollBoosterInstance = null;
 
-var _isBagVisible = false;
-
 var _defaultMapZoomPercent = 130;
 
 

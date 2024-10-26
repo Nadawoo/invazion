@@ -37,7 +37,7 @@ class HtmlStatusBar {
             :$this->status_empty();
 
         return '
-            <div id="statusbar" onclick="toggle(\'#statusbar .items_list\')">
+            <div id="statusbar" onclick="toggleStatus()">
                 <div class="block_icon">
                     <div class="icon">&#9877;&#65039;</div>
                     <div class="name">États</div>
