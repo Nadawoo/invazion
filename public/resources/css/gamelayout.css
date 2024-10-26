@@ -52,7 +52,7 @@
     color:white;
     border:2px solid white;
     border-radius: 0 0.5em 0 0.3em;
-    outline: 1px solid grey;
+    outline: 1px solid #34495e;
     /* Smooth change of the background color when hovering the cross */
     transition: all 200ms;
 }
@@ -754,6 +754,13 @@ legend {
     border-radius:0.3em;
     cursor:pointer;
 }
+.item_label .close {
+    right:-2.7em;
+    height:3.5em;
+    outline:1px outset #34495e;
+    border-radius:0 0.5em 0.5em 0;
+    box-shadow:8px 8px 15px black;
+}
 .item_label>var { /* The clickable icon of the item */
     display:flex;
     margin:auto;
@@ -791,36 +798,35 @@ legend {
     padding:0.2em 0.2em 0.7em 0.5em;
     text-align:left;
     background:lightgrey;
-    border:1px solid grey;
+    border:1px outset #34495e;
     border-radius:0.3em;
-    box-shadow:5px 5px 10px black;
+    border-top-right-radius:0;
+    box-shadow:8px 8px 15px black;
     cursor:auto;
     z-index:2;
 }
 .item_label .details var { /* The icon & name inside the item's tooltip */
     display:flex;
     align-items: center;
-    margin:0.3em auto auto auto;
+    margin-top:0.3em;
     font-size:1.2em;
     font-weight:bold;
     font-style:normal;
-}
-.item_label .details hr {
-    margin:0.3em 0 !important;
-    padding:0;
 }
 .item_label .details .drop_button {
     height:1.8em;
 }
 .item_label .details .descr_ambiance {
     font-size:0.85em;
-    margin:1.2em 0 0.5em 0;
+    margin:0; /*1.2em 0 0.5em 0*/
     line-height:140%;
     font-style:italic;
 }
 .item_label .details .descr_purpose {
+    margin:0.5em auto 1em auto;
     padding:0.2em;
     line-height: 130%;
+    border-radius:0.5em;
 }
 
 .item_label .details ul {

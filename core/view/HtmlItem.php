@@ -30,7 +30,6 @@ class HtmlItem {
                             <i class="material-icons">close</i>
                         </a>
                         <var><span class="icon">{icon}</span>&nbsp;<span class="item_name">{item_name}</span></var>
-                        <hr class="line">
                         <p class="descr_ambiance">{descr_ambiance}</p>
                         <p class="descr_purpose z-depth-1">{descr_purpose}</p>
                         <ul>
