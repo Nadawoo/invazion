@@ -531,6 +531,16 @@ map_body_wrapper {
 .cityframe.technical .label {
     border-color:purple;
 }
+.cityframe.technical .frame {
+    transform: rotate(45deg);
+    height:2.6em;
+    width: 2.6em;
+}
+.cityframe.technical .label {
+    bottom:-0.3em;
+    right: -0.3em;
+    z-index:1;
+}
 .cityframe.undiscovered .frame,
 .cityframe.undiscovered .label {
     border-color:grey;
@@ -721,7 +731,7 @@ map_body_wrapper {
     border:1px solid red;
     border-radius:0.4em;
     font-family:Calibri;
-    font-size:0.8em;    
+    font-size:0.7em;    
     box-shadow: 12px 12px 12px black;
     z-index:3;
 }

@@ -37,6 +37,7 @@
     border-radius:50%;
     background:red;
     color:white;
+    z-index:1;
 }
 
 .close {
