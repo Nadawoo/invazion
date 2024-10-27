@@ -467,6 +467,7 @@ class HtmlButtons
         $button = $this->buttons[$button_alias];
         $icon   = ($show_icon !== true) ? '' : $button['icon'].'&nbsp;';
         $class_inactive = ($is_active !== true) ? 'inactive' : '';
+        $dot_notif = ($is_active !== true) ? '' : '<span class="dot_notif"></span>';
         
         // Generates the hidden fields for the HTML form
         $hidden_fields = '';
@@ -481,7 +482,7 @@ class HtmlButtons
             '.$hidden_fields.'
             <button type="submit" class="redbutton '.$class_inactive.'" title="'.$button['title'].'">
                 '.$icon.$button['name'].'
-                <span class="dot_notif"></span>
+                '.$dot_notif.'
             </button>
         </form>';
     }
