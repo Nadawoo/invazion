@@ -861,7 +861,7 @@ map_body_wrapper {
     border: 5px solid green;
     border-radius: 50%;
     height:65%;
-    width: 155%;
+    width: 156%;
     animation: citizen_blinker 1s linear infinite;
 }
 .halo.alert {

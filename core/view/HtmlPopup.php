@@ -502,8 +502,7 @@ class HtmlPopup
             <div class="block_building z-depth-1 indigo lighten-5">
                 <h2 class="building_name">{building_name}</h2>
                 <div class="body">
-                    <img src="resources/img/copyrighted/tiles/desert/10.png"
-                         class="main_image" alt="image bâtiment" height="80">
+                    <div class="icon z-depth-1">{building_icon}</div>
                     <p class="descr_ambiance">
                         (Ce bâtiment n\'a pas de description pour le moment.)
                     </p>

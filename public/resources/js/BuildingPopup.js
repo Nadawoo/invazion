@@ -42,7 +42,8 @@ class BuildingPopup {
 
         let building = _configsBuildings[cityTypeId];
         let findableItems = (_configsBuildingsFindableItems[cityTypeId] !== undefined) ? _configsBuildingsFindableItems[cityTypeId] : [];
-
+        let buildingConfig = _configsBuildings[cityTypeId];
+        
         // Update the content of the pop-up
         let tplPopupBuilding = document.querySelector('#tplPopupBuilding').content.cloneNode(true),
             popup = document.querySelector("#popsuccess .content");
@@ -51,6 +52,16 @@ class BuildingPopup {
         popup.querySelectorAll(".building_name").forEach(
             element => element.innerHTML = building.name
         );
+        
+        // Icon of the building
+        if(buildingConfig["icon_path"] !== null) {
+            popup.querySelector(".block_building .icon").innerHTML = 
+                `<img src="/resources/img/${buildingConfig["icon_path"]}"
+                      alt="Icône du bâtiment" height="80">`;
+        } else {
+            popup.querySelector(".block_building .icon").innerHTML = buildingConfig["icon_html"];
+        }
+        
         if(building["descr_ambiance"] !== "") {
             popup.querySelector(".descr_ambiance").innerHTML = nl2br(building.descr_ambiance);
         }

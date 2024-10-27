@@ -41,7 +41,7 @@
     text-align:center;
     color: #333;
     font-family: Tahoma, Arial, sans-serif;
-    font-size: 2em;
+    font-size:1.8em;
 }
 .popup h3 {
     margin:0;
@@ -60,12 +60,6 @@
     overflow: auto;
 }
 
-.popup .main_image {
-    display:block;
-    float:left;
-    margin-right:0.5em;
-}
-
 .popup ul {
     margin: 0;
     padding: 0;
@@ -81,7 +75,7 @@
 .popup .block_building h2 {
     margin-top:0;
     margin-bottom:0.1em;
-    padding-bottom:0.1em;
+    padding:0.15em;
     border-radius:0.2em 0.2em 0 0;
     background:#34495e;
     color:white;
@@ -89,6 +83,19 @@
 }
 .popup .block_building .body {
     display:flex;padding:0.5em;
+}
+.popup .body .icon {
+    float:left;
+    height:1.5em;
+    width: 1.5em;
+    font-size:2.8em;
+    margin-top:0.15em;
+    background:#34495e;
+    border:3px outset steelblue;
+    border-radius:50%;
+}
+.popup .body .icon img {
+    margin-top:-0.2em;
 }
 .popup .descr_ambiance {
     flex-grow:4;
