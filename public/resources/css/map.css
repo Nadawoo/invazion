@@ -50,7 +50,10 @@ map_body_wrapper {
 #map_navigation {
     position:absolute;
     top:  8rem;
-    right:0.2em;
+    right:0.5em;
+    display:flex;
+    flex-direction:column;
+    align-items:flex-end;
 }
 #map_navigation button,
 #resizeMap button {
@@ -59,7 +62,6 @@ map_body_wrapper {
     align-items: center;
     height:3rem;
     width: 3rem;
-    margin:0.9rem 0.5rem 0 0;
     font-size:3em;
     border:none;
     border-radius:0.2em;
@@ -68,15 +70,14 @@ map_body_wrapper {
     box-shadow: 12px 12px 12px black;
 }
 #map_navigation button {
-    margin-top:0.7rem;
+    margin-top:0.5rem;
 }
 /* Buttons for zooming on the map */
 #zoom_form {
+    width:3rem;
     display:flex;
     flex-direction: column;
     align-items:center;
-    width:3rem;
-    margin-bottom:0.25rem;
     background:lightgrey;
     opacity:0.8;
     box-shadow: 12px 12px 12px black;
@@ -107,7 +108,7 @@ map_body_wrapper {
 
 /* Specific sub-menu to select the desired satellite view */
 #map_navigation #mapRadarMenu {
-    margin:0.5em 0;
+    margin:0.8em 0;
     padding:0;
     font-size:0.9em;
     background:#34495e;
@@ -142,8 +143,8 @@ map_body_wrapper {
  */
 #resizeMap {
     position:absolute;
-    top:  0;
-    right:0;
+    top:  0.9em;
+    right:0.3em;
 }
 #resizeMap button {
     background:darkred;
