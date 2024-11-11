@@ -104,10 +104,6 @@ class HtmlPaths {
                 <span class="icon">&#x1F6E1;&#xFE0F;</span>
                 <span class="label">Défenses</span>
             </div>
-            <div class="path undiscovered" onclick="switchCityframesType(\'undiscovered\')">
-                <span class="icon">&#x2753;</span>
-                <span class="label">Inexploré</span>
-            </div>
             <div class="path resources"
                  onclick="switchCityframesType(\'resources\')">
                 <span class="icon">&#x26CF;&#xFE0F;</span>
@@ -120,6 +116,10 @@ class HtmlPaths {
             <div class="path weather" onclick="switchCityframesType(\'weather\')">
                 <span class="icon">&#x1F327;&#xFE0F;</span>
                 <span class="label">Météo</span>
+            </div>
+            <div class="path undiscovered" onclick="switchCityframesType(\'undiscovered\')">
+                <span class="icon">&#x2753;</span>
+                <span class="label">Inexploré</span>
             </div>
             <a class="close z-depth-2"><i class="material-icons">close</i></a>
         </div>';
