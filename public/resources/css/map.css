@@ -423,15 +423,17 @@ map_body_wrapper {
 #map .city_name {
     position:absolute;
     top:-1.3em;
-    padding:0.1em 0.3em;
-    font-size:0.9em;
+    padding:0.2em 0.2em 0.1em 0.2em;
+    width:8em;
+    font-size:0.65em;
+    white-space:break-spaces;
     background:darkred;
     color:white;
     line-height:1.1em;
     border:1px solid red;
     border-radius:0.3em;
     box-shadow:4px 4px 6px black;
-    z-index: 1;
+    z-index:2;
 }
 #map .city_img {
     display:block;
