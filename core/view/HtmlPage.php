@@ -20,7 +20,7 @@ class HtmlPage
     {
         // Disallows third-party sites to display the site in an <iframe>
         // Doc : https://infosec.mozilla.org/guidelines/web_security#x-frame-options
-        header("Content-Security-Policy: frame-ancestors 'none'");
+        header("Content-Security-Policy: frame-ancestors 'none'; object-src 'none';");
         header("X-Frame-Options: DENY");
     }
     
