@@ -365,10 +365,11 @@ echo $html['json_configs'];
         
         <ul id="views_bar" class="animate__animated animate__slideInDown">
             <li class="map active" onclick="toggle(['#map_navigation', '#game_footer', '.map_legend']);this.classList.toggle('active')">
-                <button>&#x1F9ED;</button></li>
+                <button>&#x1F9ED;</button>
+            </li>
             <li id="action_mode_button" class="my_zone">
-                <button style="left:0.25rem;">
-                    <span style="position:absolute;top:0.5rem;left:-0.95rem;font-size:0.6em">&#x26CF;&#xFE0F;</span>
+                <button>
+                    <span class="pickaxe">&#x26CF;&#xFE0F;</span>
                     <img src="resources/img/free/human.png" height="48">
                 </button>
             </li>

@@ -34,19 +34,19 @@ class HtmlItem {
                         <p class="descr_purpose z-depth-1">{descr_purpose}</p>
                         <ul>
                             <li class="hidden type_booster">
-                                <i class="material-icons" style="background:orange">bolt</i>
+                                <i class="material-icons">bolt</i>
                                 Cet objet donne de l\'énergie
                             </li>
                             <li class="hidden type_resource">
-                                <i class="material-icons" style="background:#7FB3D5">construction</i>
+                                <i class="material-icons">construction</i>
                                 Cet objet est une ressource
                             </li>
                             <li class="hidden type_weapon">
-                                <i class="material-icons" style="background:#EC7063">sports_kabaddi</i>
+                                <i class="material-icons">sports_kabaddi</i>
                                 Cet objet est une arme
                             </li>
                             <li class="hidden preciousness">
-                                <i class="material-icons" style="color:#FFD700;-webkit-text-stroke: 1px darkslategrey;">star</i>
+                                <i class="material-icons">star</i>
                                 Cet objet est précieux
                             </li>
                             <li class="hidden heaviness">

@@ -10,6 +10,27 @@ html, body {
     height:100%;
     font-size:16px;
 }
+
+header .menu_button {
+    float:left;
+}
+header .help_button {
+    float:right;
+}
+header a,
+header a:hover  
+{
+    color:slategrey;
+}
+header .menu_button .material-icons,
+header .help_button .material-icons
+{
+    margin:0.3em;
+    font-size:2.5em;
+    border:1px solid grey;
+    border-radius:10%;
+}
+
 body {
     margin:auto;
     background:black;/* #2c3e50  Darker color here = darker transparent background */
@@ -166,6 +187,11 @@ li {
 }
 .center {
     text-align:center;
+}
+div.center {
+    display:flex;
+    align-items:center;
+    justify-content:center;
 }
 .right {
     text-align:right;

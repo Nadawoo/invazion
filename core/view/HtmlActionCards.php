@@ -17,10 +17,10 @@ class HtmlActionCards {
     function card_citizens() {
         
         return '
-            <a id="card_citizens" class="card" style="border-width:2px"
+            <a id="card_citizens" class="card"
                 onclick="toggleActionBlock(\'citizens\'); updateBlockAction(\'citizens\')">
                 D\'autres humains se trouvent dans la zone !
-                <strong style="color:darkred">&#x1F465; Interagir &#9002;</strong>
+                <strong>&#x1F465; Interagir &#9002;</strong>
             </a>';
     }
     
@@ -47,7 +47,7 @@ class HtmlActionCards {
             <a id="card_dig" class="card"
                 onclick="toggleActionBlock(\'dig\'); updateBlockAction(\'dig\')">
                 La zone peut être fouillée.
-                <strong style="color:darkred">&#9935;&#65039; Fouiller &#9002;</strong>
+                <strong>&#9935;&#65039; Fouiller &#9002;</strong>
             </a>';
     }
     
@@ -55,8 +55,7 @@ class HtmlActionCards {
     function card_ap_cost() {
         
         return '
-            <a href="#popmove" id="card_ap_cost" class="card"
-                style="border:2px solid #e65100;color:inherit">
+            <a href="#popmove" id="card_ap_cost" class="card">
                 <span>Quitter la zone vous coûtera <strong>1</strong>&#9889;</span>
                 <span class="actionspoints_decrease"></span>
              </a>';

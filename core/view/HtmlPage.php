@@ -109,11 +109,11 @@ class HtmlPage
             <div id="body_bg">
                 <div id="page_container">
                     <header data-section="header">
-                        <a style="float:left;color:slategrey" href="#" data-target="slide-out" class="sidenav-trigger">
-                            <i class="material-icons" style="margin:0.3em;font-size:2.5em;border:1px solid grey;border-radius:10%">menu</i>
+                        <a href="#" data-target="slide-out" class="menu_button sidenav-trigger">
+                            <i class="material-icons">menu</i>
                         </a>
-                        <a style="float:right;color:slategrey" href="#poppresentation">
-                            <i class="material-icons" style="margin:0.3em;font-size:2.5em;border:1px solid grey;border-radius:10%">help</i>
+                        <a href="#poppresentation" class="help_button">
+                            <i class="material-icons">help</i>
                         </a>
                         <h1><a href="/">Azimutant</a></h1>
                         <div id="slogan" data-translate="slogan">Gérez l\'apocalypse.</div>

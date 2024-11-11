@@ -136,9 +136,16 @@
     display:flex;
 }
 #views_bar .my_zone {
+    padding-left:0.5rem;
     height: 4rem;
     width:  4rem;
     font-size:2.2em;
+}
+#views_bar .my_zone .pickaxe {
+    position:absolute;
+    top:0.5rem;
+    left:-0.95rem;
+    font-size:0.6em;
 }
 #views_bar li.active {
     background:radial-gradient(circle at 50% 5%,
@@ -510,7 +517,12 @@ form[name="end_cycle"] button {
 #block_move #card_building .bluebutton {
     font-size:85%;
 }
-#block_move #card_ap_cost .actionspoints_decrease {
+#block_move #card_building.above_paddle {
+    margin-top:-7.5em;
+    height:9em;
+}
+
+#card_ap_cost .actionspoints_decrease {
     font-size:1.1em;
     padding:0.2em 0.2em 0.2em 0.5em;
     background:#bf360c;
@@ -518,9 +530,17 @@ form[name="end_cycle"] button {
     font-weight:bold;
     border-radius:0.2em;
 }
-#block_move #card_building.above_paddle {
-    margin-top:-7.5em;
-    height:9em;
+#card_ap_cost.card {
+    border:2px solid #e65100;
+    color:inherit;
+}
+
+#card_citizens.card {
+    border-width:2px;
+}
+#card_citizens.card strong,
+#card_dig.card strong {
+    color:darkred;
 }
 
 /* 
@@ -852,6 +872,20 @@ legend {
     border: 1px solid white;
     border-radius:0.1em;
     color:black;
+}
+
+.item_label .details .type_booster .material-icons {
+    background:orange;
+}
+.item_label .details .type_resource .material-icons {
+    background:#7FB3D5;
+}
+.item_label .details .type_weapon .material-icons {
+    background:#EC7063;
+}
+.item_label .details .preciousness .material-icons {
+    color:#FFD700;
+    -webkit-text-stroke:1px darkslategrey;
 }
 
 .item_label.precious {
