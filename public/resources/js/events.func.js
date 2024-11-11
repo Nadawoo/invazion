@@ -62,13 +62,8 @@ function listenToMapZones() {
     });
     
     // [On PC] Show/hide toolip on hovering the zone
-    document.getElementById("map_body").addEventListener("mouseover", function(){
-            displayTooltip(event.target.closest(".hexagon"));
-        },
-        { passive: true }
-    );
-    document.getElementById("map_body").addEventListener("mouseout",  function(){
-            hideTooltip(event.target.closest(".hexagon"));
+    document.querySelector("#map_body").addEventListener("mouseover", function(){
+            triggerTooltip(event.target.closest(".hexagon"));
         },
         { passive: true }
     );

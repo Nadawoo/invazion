@@ -5,18 +5,34 @@
 
 
 /**
+ * Displays/hides the tooltip over a zone of the map
+ * @param {object} hexagon
+ * @returns {undefined}
+ */
+function triggerTooltip(hexagon) { 
+    // If the tooltip is not already displayed
+    if(hexagon !== null && hexagon.querySelector(".bubble").classList.contains("block") === false) {
+        // Display the tooltip
+        displayTooltip(hexagon);
+        // Will hide the tooltip when the mouse leaves the hexagon
+        hexagon.addEventListener("mouseleave",
+                                ()=>hideTooltip(hexagon),
+                                { passive: true }
+        );
+    }
+}
+
+
+/**
  * Displays the tooltip over a zone of the map
  * @param {object} hexagon
  * @returns {undefined}
  */
-function displayTooltip(hexagon) { 
-    
-    if (hexagon !== null) {
-        // Displays the tooltip
-        hexagon.querySelector(".bubble").classList.add("block");
-        // Shifts the zone tooltip to the left if it overflows the map on the right
-        handleTooltipOverflow(hexagon);
-    }
+function displayTooltip(hexagon) {
+    // Displays the tooltip
+    hexagon.querySelector(".bubble").classList.add("block");
+    // Shifts the zone tooltip to the left if it overflows the map on the right
+    handleTooltipOverflow(hexagon);
 }
 
 
@@ -27,9 +43,7 @@ function displayTooltip(hexagon) {
  */
 function hideTooltip(hexagon) {
     
-    if (hexagon !== null) {
-        hexagon.querySelector(".bubble").classList.remove("block");;
-    }
+    hexagon.querySelector(".bubble").classList.remove("block");
 }
 
 
