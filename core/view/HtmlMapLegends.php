@@ -58,7 +58,7 @@ class HtmlMapLegends {
     private function legend_cityframes() {
         
         return '
-            <fieldset id="map_legend_cityframes" class="map_legend hidden">
+            <fieldset id="map_legend_cityframes" class="map_legend hidden animate__animated animate__slideInUp">
                 <legend>Légende</legend>
                 <ul class="undiscovered">
                     <li><span style="border-color:black">&#x1F50D;</span> Bâtiment non identifié</li>

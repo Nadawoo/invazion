@@ -346,7 +346,7 @@ echo $html['json_configs'];
             <div class="body"></div>
         </section>
         
-        <section id="personal_block_wrapper" class="z-depth-1 hidden">
+        <section id="personal_block_wrapper" class="z-depth-1 animate__animated animate__slideInDown hidden">
             <div id="personal_block">
                 <?php
                 echo $statusbar->status_bar($citizen['bag_items'],
@@ -363,7 +363,7 @@ echo $html['json_configs'];
             </div>
         </section>
         
-        <ul id="views_bar">
+        <ul id="views_bar" class="animate__animated animate__slideInDown">
             <li class="map active" onclick="toggle(['#map_navigation', '#game_footer', '.map_legend']);this.classList.toggle('active')">
                 <button>&#x1F9ED;</button></li>
             <li id="action_mode_button" class="my_zone">
@@ -380,20 +380,22 @@ echo $html['json_configs'];
         <?php
         if($citizen['citizen_id'] !== null) {
             ?>
-            <div id="resizeMap">
-                <button id="map_mode_button" class="hidden"><i class="material-icons">zoom_out_map</i></button>
+            <div id="resizeMap" class="">
+                <button id="map_mode_button" class="animate__animated animate__slideInRight hidden">
+                    <i class="material-icons">zoom_out_map</i>
+                </button>
                 <!-- <button id="action_mode_button"><i class="material-icons">zoom_in_map</i></button> -->
             </div>
             <?php
         } ?>
         
-        <div id="map_navigation">
+        <div id="map_navigation" class="animate__animated animate__slideInRight">
             <?php echo $layout->block_map_navigation() ?>
         </div>
         
         <?php echo $legends->all_legends() ?>
         
-        <div id="actions_panel" class="hidden">
+        <div id="actions_panel" class="animate__animated animate__slideInUp hidden">
             <div id="round_actions">
                 <?php
                 echo  $buttons->button_round('move', ($zone['controlpoints_zombies']-$zone['controlpoints_citizens']))
@@ -443,7 +445,7 @@ echo $html['json_configs'];
         
         <div id="message_move"><?php echo $msg_move ?></div>
         
-        <a href="#poptasks" id="tasks_button">
+        <a href="#poptasks" id="tasks_button" class="animate__animated animate__slideInLeft">
             <span class="dot_number">8</span>
             &#x1F4D1; <span class="text" data-translate="goals">Objectifs</span>
         </a>
@@ -464,7 +466,7 @@ echo $html['json_configs'];
         <div id="floating_wall">
             <?php echo $wall->wall() ?>
         </div>
-        <div id="attack_bar">
+        <div id="attack_bar" class="animate__animated animate__slideInUp">
             <?php echo $html['attack_bar'] ?>
         </div>
     </section>

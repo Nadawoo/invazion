@@ -75,7 +75,7 @@ class HtmlPaths {
     function paths_bar() {
         
         return '
-        <div id="paths_bar" class="bottom_bar hidden">
+        <div id="paths_bar" class="bottom_bar animate__animated animate__slideInUp hidden">
 
             <div class="paths"></div>
             
@@ -99,7 +99,7 @@ class HtmlPaths {
     function cityframes_bar() {
         
         return '
-        <div id="cityframes_bar" class="bottom_bar hidden">
+        <div id="cityframes_bar" class="bottom_bar animate__animated animate__slideInDown hidden">
             <div class="path defenses" onclick="switchCityframesType(\'defenses\')">
                 <span class="icon">&#x1F6E1;&#xFE0F;</span>
                 <span class="label">Défenses</span>

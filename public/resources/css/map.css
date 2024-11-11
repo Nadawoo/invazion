@@ -895,10 +895,10 @@ map_body_wrapper {
 
 /* Legend for the view of the map (zombies...) */
 .map_legend {
-    position:sticky;
-    bottom:0.5rem;
+    position:absolute;
+    bottom:0.5em;
+    right: 0.5em;
     width:16em;
-    margin-left:0.5em;
     font-size:0.9em;
     border:2px solid grey;
     border-radius:0.5em;
