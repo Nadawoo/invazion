@@ -562,6 +562,12 @@ function activateMapItemsView() {
     
     let hexagons = document.querySelectorAll("#map_body .hexagon");
     
+    display("#map_legend_items");
+    display(".items_amount");
+    // Hide the zombies because they are above the colored background
+    hide([".zombies", ".nbr_defenses"]);
+    hide(["#attack_bar", "#tasks_button"]);
+        
     for(let i=0; i<hexagons.length; i++) {
         
         let squareContainer = hexagons[i].querySelector(".square_container");
@@ -580,8 +586,6 @@ function activateMapItemsView() {
             color = 'grey'; 
         }
         
-        display(".items_amount");
-        display("#map_legend_items");
         // Reveal all the zones, regardless their date of last visit
 //        hexagons[i].style.opacity = 1;
         
@@ -601,10 +605,6 @@ function activateMapItemsView() {
         
         // Color the zones depending on the number of items
         itemsAmount.style.background = color;
-        
-        // Hides the zombies, because they are above the colored background
-        hide([".zombies", ".nbr_defenses"]);
-        hide(["#attack_bar", "#tasks_button"]);
     }
 }
 
