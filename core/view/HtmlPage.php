@@ -160,7 +160,8 @@ class HtmlPage
                         <script type="text/javascript" src="resources/js/CitiesConnections.js?v'.$this->css_js_version.'"></script>
                         <script type="text/javascript" src="resources/js/strings.func.js?v'.$this->css_js_version.'" async></script>
                         <script type="text/javascript" src="resources/js/cookies.func.js?v'.$this->css_js_version.'"></script>
-                        <script type="text/javascript" src="resources/js/map.func.js?v'.$this->css_js_version.'"></script>
+                        <script type="text/javascript" src="resources/js/mapInit.func.js?v'.$this->css_js_version.'"></script>
+                        <script type="text/javascript" src="resources/js/mapUse.func.js?v'.$this->css_js_version.'" async></script>
                         <script type="text/javascript" src="resources/js/paths.func.js?v'.$this->css_js_version.'" async></script>
                         <script type="text/javascript" src="resources/js/tooltips.func.js?v'.$this->css_js_version.'" async></script>
                         <script type="text/javascript" src="resources/js/wallTemplate.js?v'.$this->css_js_version.'"></script>
