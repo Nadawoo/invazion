@@ -394,6 +394,7 @@ map_body_wrapper {
     font-weight:bold;
     height:100%;
     width:100%;
+    z-index:1;
     clip-path: polygon( /* Give the background an hexagonal shape */
                     50% 0%, 
                     100% 25%, 
@@ -782,7 +783,7 @@ map_body_wrapper {
     width: 130%;
     border-radius:50%;
     background:lightsteelblue;
-    z-index:1;
+    z-index:3;
 }
 #map .map_citizen .nbr_defenses { /* Pseudo of the player on the map */
     width:6em;
@@ -792,7 +793,7 @@ map_body_wrapper {
     overflow:hidden;
 }
 #me {  
-    background:lightgreen;
+    background:radial-gradient(lightgreen 30%, green 100%);
     z-index:3;
     cursor:pointer;
 }
@@ -861,8 +862,9 @@ map_body_wrapper {
     top:0.7em;
     border: 5px solid green;
     border-radius: 50%;
-    height:65%;
-    width: 156%;
+    height:62%;
+    width: 152%;
+    z-index:2;
     animation: citizen_blinker 1s linear infinite;
 }
 .halo.alert {
@@ -898,6 +900,7 @@ map_body_wrapper {
     bottom:0.5em;
     right: 0.5em;
     width:16em;
+    padding:0.5em;
     font-size:0.9em;
     border:2px solid grey;
     border-radius:0.5em;
@@ -913,9 +916,10 @@ map_body_wrapper {
 }
 .map_legend li span {
     display:inline-block;
-    height:1.2em; /* Superior to the width because an hexagon is not a square */
-    width: 1em;
+    height:1.7em; /* Superior to the width because an hexagon is not a square */
+    width: 1.4em;
     margin-right:0.4em;
+    text-align:center;
     clip-path: polygon( /* Give the background an hexagonal shape */
                 50% 0%, 
                 100% 25%, 

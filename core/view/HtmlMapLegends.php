@@ -8,6 +8,7 @@ class HtmlMapLegends {
         
         return  $this->legend_zombies()
                 .$this->legend_items()
+                .$this->legend_explorations()
                 .$this->legend_cityframes();
     }
     
@@ -15,7 +16,7 @@ class HtmlMapLegends {
     private function legend_zombies() {
         
         return '
-            <fieldset id="map_legend_zombies" class="map_legend hidden">
+            <fieldset id="map_legend_zombies" class="hidden map_legend animate__animated animate__slideInUp">
                 <legend>Légende</legend>
                 <a href="#popcontrol" style="color:inherit">
                     <ul>
@@ -32,18 +33,11 @@ class HtmlMapLegends {
     private function legend_items() {
         
         return '
-            <fieldset id="map_legend_items" class="map_legend hidden">
+            <fieldset id="map_legend_items" class="hidden map_legend animate__animated animate__slideInUp">
                 <legend>Légende</legend>
                 <a href="#Outside" style="color:inherit">
                     <ul>
-                        <li>&#x1F97E; Zone visitée aujourd\'hui</li>
-                        <li>&#x26CF;&#xFE0F; Zone fouillable</li>
-                        <li><span style="background:black;border-radius:0"></span>&nbsp;Zone à découvrir</li>
-                    </ul>
-                    <hr>
-                    <strong>Objets au sol :</strong>
-                    <ul>
-                        <li><span style="background:grey"></span> Aucun objet</li>
+                        <!-- <li><span style="background:grey"></span> Aucun objet au sol</li> -->
                         <li><span style="background:green"></span> 1-5 objets (1 sac)</li>
                         <li><span style="background:orange"></span> 6-10 objets (2 sacs)</li>
                         <li><span style="background:red"></span> 11-15 objets (3 sacs)</li>
@@ -54,10 +48,27 @@ class HtmlMapLegends {
     }
     
     
+    private function legend_explorations() {
+        
+        return '
+            <fieldset id="map_legend_explorations" class="hidden map_legend animate__animated animate__slideInUp">
+                <legend>Légende</legend>
+                <a href="#Outside" style="color:inherit">
+                    <ul>
+                        <li><span style="background:darkred">&#x1F97E;</span> Zone visitée aujourd\'hui</li>
+                        <li><span style="background:green">&#x26CF;&#xFE0F;</span> Zone fouillable</li>
+                        <li><span style="background:grey">...</span> Zone épuisée</li>
+                        <li><span style="background:black;border-radius:0"></span>Zone à découvrir</li>
+                    </ul>
+                </a>
+            </fieldset>';
+    }
+    
+    
     private function legend_cityframes() {
         
         return '
-            <fieldset id="map_legend_cityframes" class="map_legend hidden animate__animated animate__slideInUp">
+            <fieldset id="map_legend_cityframes" class="hidden map_legend animate__animated animate__slideInUp">
                 <legend>Légende</legend>
                 <ul class="undiscovered">
                     <li><span style="border-color:black">&#x1F50D;</span> Bâtiment non identifié</li>

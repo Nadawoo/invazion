@@ -416,7 +416,7 @@ function activateMapZombiesView() {
         let controlpoints_zombies = parseInt(squareContainer.dataset.controlpointszombies);
         let controlpoints_one_citizen = 2;
         
-        let color = 'white';
+        let color = "";
         if(controlpoints_zombies > controlpoints_one_citizen*3) {
             color = 'darkred';//'#ff0505'; // Needs 4 citizens (8 CP) or more
         } else if(controlpoints_zombies > controlpoints_one_citizen*2) {
@@ -426,10 +426,9 @@ function activateMapZombiesView() {
         } else if(controlpoints_zombies > 0) {
             color = 'green'; //'#d4ac0d'; Safe with 1 citizen (2 CP)
         } else if(controlpoints_zombies === 0) {
-            color = 'green';  // No zombies
+//            color = 'green';  // No zombies
         } 
         
-        display("#map_legend_zombies");
         // Color the zones depending on the number of zombies
         zombiesAmount.style.background = color;
         // Reveal all the zones, regardless their date of last visit
@@ -440,30 +439,17 @@ function activateMapZombiesView() {
         }
     }
     
-    hide(["#attack_bar", "#tasks_button"]);
-    // Displays the number of zombies on each zone
+    hide(["#views_bar, #attack_bar", "#tasks_button"]);
+    hide([".nbr_defenses"]);
+    display("#map_legend_zombies");
     display(".zombies_amount");
-    // Hides the icons of zombies, because they are above the colored background
-    hide([".zombies", ".nbr_defenses"]);
 }
 
 
 function desactivateMapZombiesView() {
     
-    let hexagons = document.querySelectorAll("#map_body .hexagon");
-    
-//    for(let i=0; i<hexagons.length; i++) {
-//        
-//        let squareContainer = hexagons[i].querySelector(".square_container");
-//        // Remove the colors on the zones
-//        squareContainer.style.background = "none";
-//        squareContainer.style.border = "none";
-//    }
-    
     hide("#map_legend_zombies");
     hide(".zombies_amount");
-    // Display the icons of zombies again
-    display(".zombies");
 }
 
 
@@ -561,19 +547,13 @@ async function getItemCoords(itemId) {
 function activateMapItemsView() {
     
     let hexagons = document.querySelectorAll("#map_body .hexagon");
-    
-    display("#map_legend_items");
-    display(".items_amount");
-    // Hide the zombies because they are above the colored background
-    hide([".zombies", ".nbr_defenses"]);
-    hide(["#attack_bar", "#tasks_button"]);
         
     for(let i=0; i<hexagons.length; i++) {
         
         let squareContainer = hexagons[i].querySelector(".square_container");
         let nbrItems = parseInt(squareContainer.dataset.items);
         
-        let color = 'white';
+        let color = "";
         if(nbrItems > 15) {
             color = 'darkred';
         } else if(nbrItems > 10) {
@@ -583,7 +563,7 @@ function activateMapItemsView() {
         } else if(nbrItems > 0) {
             color = 'green';
         } else if(nbrItems === 0) {
-            color = 'grey'; 
+//            color = 'grey';
         }
         
         // Reveal all the zones, regardless their date of last visit
@@ -592,38 +572,72 @@ function activateMapItemsView() {
         if(!squareContainer.querySelector(".items_amount")) {
             let newDiv = document.createElement("div");
             newDiv.className = "items_amount";
+            newDiv.innerHTML = (nbrItems > 0) ? nbrItems : "";
+            squareContainer.appendChild(newDiv);
+        }
+        
+        // Color the zones depending on the number of items
+        squareContainer.querySelector(".items_amount").style.background = color;
+    }
+    
+    hide(["#views_bar, #attack_bar", "#tasks_button"]);
+    hide([".nbr_defenses"]);
+    display("#map_legend_items");
+    display(".items_amount");
+}
+
+
+/**
+ * Displays colors above map zones to show the zones already explored
+ * 
+ * @returns {undefined}
+ */
+function activateMapExplorationsView() {
+    
+    let hexagons = document.querySelectorAll("#map_body .hexagon");
+     
+    for(let i=0; i<hexagons.length; i++) {
+        
+        let squareContainer = hexagons[i].querySelector(".square_container"),
+            color = "";
+        
+        if(!squareContainer.querySelector(".items_amount")) {
+            let newDiv = document.createElement("div");
+            newDiv.className = "items_amount";
             squareContainer.appendChild(newDiv);
             
             // Mark the zones visited today
-            if(parseInt(squareContainer.dataset.cyclelastvisit) === getCurrentCycle()) {
-                newDiv.innerHTML += '&#x1F97E;';
+            if(Number(squareContainer.dataset.cyclelastvisit) === getCurrentCycle()) {
+                newDiv.innerHTML += "&#x1F97E;";
+                color = "darkred";
             } else {
-                newDiv.innerHTML += '&#x26CF;&#xFE0F;';
+                newDiv.innerHTML += "&#x26CF;&#xFE0F;";
+                color = "green";
             }
+            
+            // Color the zones
+            squareContainer.querySelector(".items_amount").style.background = color;
         }
-        let itemsAmount = squareContainer.querySelector(".items_amount");
-        
-        // Color the zones depending on the number of items
-        itemsAmount.style.background = color;
     }
+    
+    hide(["#views_bar, #attack_bar", "#tasks_button"]);
+    hide([".nbr_defenses"]);
+    display("#map_legend_explorations");
+    display(".items_amount");
 }
 
 
 function desactivateMapItemsView() {
     
-    let hexagons = document.querySelectorAll("#map_body .hexagon");
+    hide("#map_legend_items");
+    hide(".items_amount");
+}
+
+
+function desactivateMapExplorationsView() {
     
-    for(let i=0; i<hexagons.length; i++) {
-        // Hides the legend
-        hide("#map_legend_items");
-        // Remove the colors on the zones
-//        let squareContainer = hexagons[i].querySelector(".square_container");
-//        squareContainer.style.background = "none";
-//        squareContainer.style.border = "none";
-        hide(".items_amount");
-        // Display the zombies again
-        display(".zombies");
-    }
+    hide("#map_legend_explorations");
+    hide(".items_amount");
 }
 
 
@@ -649,18 +663,14 @@ async function activateMapPathsView() {
 
 function desactivateMapPathsView() {
     
-    let hexagons = document.querySelectorAll("#map_body .hexagon");
-    
-    for(let i=0; i<hexagons.length; i++) {
-        // Hide the stages of expeditions drawn on the map
-        hide(".path_stage");
-        // Resets the active expedition in the paths bar
-        hide("#paths_bar .active");
-        display("#paths_bar .inactive");
-        // Hides the list of expeditions
-        hide(["#paths_panel", "#paths_bar", "#attack_bar"]);
-//        document.querySelectorAll("#paths_panel .card").forEach(el => el.remove());
-    }
+    // Hide the stages of expeditions drawn on the map
+    hide(".path_stage");
+    // Resets the active expedition in the paths bar
+    hide("#paths_bar .active");
+    display("#paths_bar .inactive");
+    // Hides the list of expeditions
+    hide(["#paths_panel", "#paths_bar"]);
+//    document.querySelectorAll("#paths_panel .card").forEach(el => el.remove());
 }
 
 
@@ -672,6 +682,18 @@ function toggleMapItemsView() {
     } else {
         activateMapItemsView();
         window.isMapItemsViewActive = true;
+    }
+}
+
+
+function toggleMapExplorationsView() {
+    
+    if (window.isMapExplorationsViewActive === true) {   
+        desactivateMapExplorationsView();
+        window.isMapExplorationsViewActive = false;
+    } else {
+        activateMapExplorationsView();
+        window.isMapExplorationsViewActive = true;
     }
 }
 
@@ -699,10 +721,12 @@ function resetMapView() {
     window.isMapZombiesViewActive = false;
     desactivateMapItemsView();
     window.isMapItemsViewActive = false;
+    desactivateMapExplorationsView();
+    window.isMapExplorationsViewActive = false;
     desactivateMapPathsView();
     window.isMapPathsViewActive = false;
     
-    display(["#attack_bar", "#tasks_button"]);
+    display(["#views_bar, #attack_bar", "#tasks_button"]);
     
     window.isMapNeighborhoodViewActive = true;
     toggleMapNeighborhoodView();
