@@ -741,7 +741,7 @@ class HtmlLayout extends HtmlPage
                 <li onclick="resetMapView();toggleMapZombiesView();toggleMapItemMarker(106)"  title="Voir les zombies sur la carte">&nbsp;<img src="resources/img/motiontwin/zombie.gif" alt="&#x1F9DF;">&nbsp; Zombies</li>
             </ul>
             
-            <button><a href="#popsmartphone" style="font-size:55%">&#128241;</a></button>
+            <button><a href="#popsmartphone" style="font-size:55%" onclick="activatePhoneTab()">&#128241;</a></button>
             
             <button>'.$buttons->refresh().'</button>
         

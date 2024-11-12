@@ -126,9 +126,6 @@ if (document.getElementById('map') !== null) {
 //        toggleItemsPanel();
 //    }
       
-    // Displays the active tab of the in-game smartphone
-    activatePhoneTab();
-    
     // Countdown before the next zombie attack
 //    attackCountdown();
 //    setInterval(attackCountdown, 1000);
