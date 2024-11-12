@@ -19,7 +19,6 @@ class HtmlMapLegends {
                 <legend>Légende</legend>
                 <a href="#popcontrol" style="color:inherit">
                     <ul>
-                        <li><span style="background:grey"></span> Zone sûre (aucun zombie)</li>
                         <li><span style="background:green"></span> Zone sûre (peu de zombies)</li>
                         <li><span style="background:orange"></span> 2 humains requis ou +</li>
                         <li><span style="background:red"></span> 3 humains requis ou +</li>

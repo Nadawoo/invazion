@@ -426,7 +426,7 @@ function activateMapZombiesView() {
         } else if(controlpoints_zombies > 0) {
             color = 'green'; //'#d4ac0d'; Safe with 1 citizen (2 CP)
         } else if(controlpoints_zombies === 0) {
-            color = 'grey';  // No zombies
+            color = 'green';  // No zombies
         } 
         
         display("#map_legend_zombies");
