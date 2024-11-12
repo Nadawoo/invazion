@@ -59,26 +59,6 @@ class HtmlMap
     
     
     /**
-     * Templates for the tooltip contents, according to what is in the zone
-     * 
-     * @param string $bubble_alias A name picked in the list of tooltips in this method
-     * @param string $string1      A free string to display a variable text (a pseudo...)
-     * @return string HTML
-     */
-    private function html_bubble($bubble_alias, $string1='')
-    {
-        
-        $templates = [
-            'citizen_alone' => 'Le citoyen '.$string1.' est ici.',
-            'items'         => '<br>• '.plural($string1, 'objet').' au sol',
-            'zombies'       => '<br>• '.plural($string1, 'zombie').' dans la zone',
-        ];
-        
-        return (isset($templates[$bubble_alias])) ? "    ".$templates[$bubble_alias]."\n" : null;
-    }
-    
-    
-    /**
      * Specific tooltip for the buildings in the desert
      * 
      * @param int $building_id
@@ -239,12 +219,6 @@ class HtmlMap
                         >
                         <span class="zombies_amount hidden"></span>'
                         . $cell_zombies . $cell_content . $cell_name . '
-                        <div class="bubble">
-                            <div class="coords"></div>
-                            <div class="roleplay"></div>
-                            <div class="inventory"></div>
-                            <div class="triangle_down"></div>
-                        </div>
                     </div>
                     '.$player_city_marker.'
                 </div>';

@@ -206,6 +206,14 @@ echo $html['json_configs'];
     <template id="tplEmptySlot">
         <li class="empty_slot"></li>
     </template>
+    <template id="tplTooltip">
+        <div class="bubble">
+            <div class="coords"></div>
+            <div class="roleplay"></div>
+            <div class="inventory"></div>
+            <div class="triangle_down"></div>
+        </div>
+    </template>
 </section>
     
     <?php
