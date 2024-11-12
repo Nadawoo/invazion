@@ -179,9 +179,6 @@ class HtmlMap
         $cell_zombies   = '';
         $elevate        = '';
         $opacity        = '';
-        $bubble_roleplay = 'Zone explorable';
-        $bubble_zombies = '';
-        $bubble_items   = '';
         $player_city_marker = '';
         
         if ($cell === null) {
@@ -200,14 +197,8 @@ class HtmlMap
 
         if ($cell['zombies'] > 0) {
             $cell_zombies   = $this->html_cell_content('zombies', $cell['zombies'], min (9, $cell['zombies']));
-            $bubble_zombies = $this->html_bubble('zombies', $cell['zombies']);
-        }
-
-        if (!empty($cell['items'])) {
-            $bubble_items = $this->html_bubble('items', count($cell['items']));
-        }        
-
-
+        }      
+        
         // La case est plus ou moins opaque selon la date de dernière visite
         if($cell === null) {
             $opacity = 0;
@@ -249,10 +240,9 @@ class HtmlMap
                         <span class="zombies_amount hidden"></span>'
                         . $cell_zombies . $cell_content . $cell_name . '
                         <div class="bubble">
-                            <div class="coords">['.$col.':'.$row.']</div>
-                            <div class="roleplay">'.$bubble_roleplay.'</div>'
-                            . $bubble_items
-                            . $bubble_zombies . '
+                            <div class="coords"></div>
+                            <div class="roleplay"></div>
+                            <div class="inventory"></div>
                             <div class="triangle_down"></div>
                         </div>
                     </div>

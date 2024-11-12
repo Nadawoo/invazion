@@ -5,7 +5,8 @@
 
 
 /**
- * Displays/hides the tooltip over a zone of the map
+ * Display/hide the tooltip over a zone of the map
+ * 
  * @param {object} hexagon
  * @returns {undefined}
  */
@@ -24,20 +25,23 @@ function triggerTooltip(hexagon) {
 
 
 /**
- * Displays the tooltip over a zone of the map
+ * Display the tooltip over a zone of the map
+ * 
  * @param {object} hexagon
  * @returns {undefined}
  */
 function displayTooltip(hexagon) {
     // Displays the tooltip
     hexagon.querySelector(".bubble").classList.add("block");
+    populateTooltip(hexagon);
     // Shifts the zone tooltip to the left if it overflows the map on the right
     handleTooltipOverflow(hexagon);
 }
 
 
 /**
- * Hides the tooltip of a zone of the map
+ * Hide the tooltip of a zone of the map
+ * 
  * @param {object} hexagon
  * @returns {undefined}
  */
@@ -48,7 +52,8 @@ function hideTooltip(hexagon) {
 
 
 /**
- * Switches the display/hide of the tooltip on the map
+ * Switch the display/hide of the tooltip on the map
+ * 
  * @param {object} hexagon
  * @returns {undefined}
  */
@@ -71,7 +76,48 @@ function toggleTooltip(hexagon) {
 
 
 /**
- * Shifts the zone tooltip to the left if it overflows the map on the right
+ * Add the data inside the tooltip (number of zombies in the zone...)
+ * 
+ * @param {type} hexagon
+ * @returns {undefined}
+ */
+function populateTooltip(hexagon) {
+    
+    let dataset     = hexagon.querySelector(".square_container").dataset,
+        nbrItems    = Number(dataset.items);
+        nbrZombies  = Number(dataset.zombies),
+        nbrCitizens = Number(dataset.citizens),
+        cityTypeId  = Number(dataset.citytypeid);
+
+    let htmlItems    = (nbrItems > 0)    ? `<br>• ${plural(nbrItems, "objet")} au sol` : "",
+        htmlZombies  = (nbrZombies > 0)  ? `<br>• ${plural(nbrZombies, "zombie")} dans la zone` : "",
+        htmlCitizens = (nbrCitizens > 0) ? `<br>• ${plural(nbrCitizens, "humain")} dans la zone` : "";
+
+    let htmlRoleplay = "";
+    
+    if(hexagon.querySelector("#me") !== null) {
+        htmlRoleplay = '<h5 class="name">Vous êtes ici&nbsp;!</h5>';
+    } else if(cityTypeId !== 0) {
+        // Add the description of the building in the bubble 
+        let buildingCarcs = _configsBuildings[cityTypeId],
+            buildingName = buildingCarcs.name,
+            buildingDescr = buildingCarcs.descr_ambiance;
+        
+        htmlRoleplay = `<h5 class="name">${buildingName}</h5>
+                        <hr>
+                        <div class="descr_ambiance">${nl2br(buildingDescr)}</div>`;
+    } else {
+        htmlRoleplay = "Zone explorable";
+    }
+    
+    hexagon.querySelector(".bubble .coords").innerText = `[${dataset.coordx}:${dataset.coordy}]`;
+    hexagon.querySelector(".bubble .roleplay").innerHTML = htmlRoleplay;
+    hexagon.querySelector(".bubble .inventory").innerHTML = htmlItems + htmlZombies + htmlCitizens;
+}
+
+
+/**
+ * Shift the zone tooltip to the left if it overflows the map on the right
  * 
  * @param {type} hexagon The HTML of the zone where the tooltip is
  * @returns {undefined}

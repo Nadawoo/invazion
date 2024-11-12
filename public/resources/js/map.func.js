@@ -119,9 +119,6 @@ function addMeOnMap() {
         myZone.querySelector(".overlay").classList.remove("hidden");
     }
     
-    let htmlBubble = '<h5 class="name">Vous êtes ici&nbsp;!';
-    myZone.querySelector(".bubble .roleplay").innerHTML = htmlBubble;
-    
     // Event listener when clicking on the player on his map zone
     listenToMeOnMap();
 }
@@ -148,13 +145,7 @@ async function addCitizensOnMap(mapId) {
         if(zone.querySelector(".map_citizen") === null && zone.dataset.zombies < 1 && zone.dataset.cityid < 1) {
             
             let nbrCitizens = zone.dataset.citizens;
-            if(nbrCitizens > 1)  {
-                var label = "[Groupe]";
-                    bubble = `${nbrCitizens} citoyens sont rassemblés ici.`;
-            } else {
-                var label = citizen.citizen_pseudo,
-                    bubble = "Le citoyen "+citizen.citizen_pseudo+" est ici.";
-            }
+            let label = (nbrCitizens > 1) ? "[Groupe]" : citizen.citizen_pseudo;
             
             zone.insertAdjacentHTML("afterbegin", 
                 `<div class="map_citizen">
@@ -164,7 +155,6 @@ async function addCitizensOnMap(mapId) {
                 <div class="halo inactive">&nbsp;</div>
                 <div class="overlay hidden"></div>
                 `);
-            zone.querySelector(".roleplay").innerHTML = bubble;
             
             // Delete the "&nbsp;" required on the empty zones 
 //            if(zone.querySelector(".empty") !== null) {
@@ -258,8 +248,7 @@ async function addCitiesOnMap(mapId) {
             buildingIconPath = "resources/img/"+buildingCarcs["icon_path"],
             buildingIconWidth = Math.round(buildingCarcs["icon_size_ratio"] * 32),
             buildingEmojiSize = Math.round(buildingCarcs["icon_size_ratio"] * 1.5),
-            buildingName = buildingCarcs["name"],
-            buildingDescr = buildingCarcs["descr_ambiance"];
+            buildingName = buildingCarcs["name"];
         
         // If the city is already placed in the zone, don't add it twice
         if(zone.dataset.citytypeid != "") {
@@ -337,11 +326,6 @@ async function addCitiesOnMap(mapId) {
         cityName = (city["city_name"] === null) ? buildingName : city["city_name"];
         zone.insertAdjacentHTML("afterbegin", `<span class="city_name hidden">${cityName}</span>`);
         
-        // Adds the building description in the bubble of the zone
-        zone.querySelector(".roleplay").innerHTML = `
-            <h5 class="name">${buildingName}</h5>
-            <hr>
-            <div class="descr_ambiance">${nl2br(buildingDescr)}</div>`;
         // Make the building's zone always visible, even when never visited
         zone.closest(".hexagon").style.opacity = 1;
         

@@ -1281,3 +1281,24 @@ function populateDefensesDetails() {
 //    defenses.querySelector(".attack_details .zombies").innerText = nbrZombiesInZone;
 //    defenses.querySelector(".controlpoints_citizens").innerText = controlPointsCitizens;
 }
+
+
+/**
+ * Automatically makes the word plural if there are 2 or more.
+ * Useful to match words whose quantity is not known in advance
+ * without adding "if" everywhere.
+ * The function only handles plurals in "S" for the moment (not those in "-aux"
+ * in French).
+ * 
+ * @param int    $amount        The amount of the item
+ * @param string $singular_word The word, in the singular form
+ * 
+ * @return string Examples : "1 zombie"
+ *                           "5 zombies"
+ */
+function plural(amount, singular_word)
+{
+
+    let s = (amount <= 1) ? '' : 's';
+    return `${amount} ${singular_word}${s}`;
+}
