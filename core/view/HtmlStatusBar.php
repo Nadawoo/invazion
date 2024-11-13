@@ -18,7 +18,7 @@ class HtmlStatusBar {
                                 "Mes caractéristiques de base",
                                 "popmycaracs");
         $status_defenses = (is_int($city_id))
-            ? $this->status_image("Attaque du soir", "resources/img/copyrighted/wolf.png", null,
+            ? $this->status_image("Attaque du soir", "resources/img/copyrighted/wolf_64px.png", null,
                                 "Construisez des défenses dans votre ville &#10;pour contrer l'attaque zombie du soir !",
                                 "popattack")
             : $this->status_image("Abri", "resources/img/copyrighted/home_house.png", null,

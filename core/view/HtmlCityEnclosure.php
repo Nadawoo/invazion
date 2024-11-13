@@ -871,7 +871,7 @@ class HtmlCityEnclosure
         
         return '
             <div class="city_block '.$door_status.'">
-                <img class="icon z-depth-1" src="resources/img/copyrighted/city_door.png">
+                <img class="icon z-depth-1" src="resources/img/copyrighted/city_door_64px.png">
                 <h2>Grande porte</h2>
                 <p class="descr">Fermez la porte de la ville chaque soir pour activer les défenses.
                     N\'oubliez personne dehors...
