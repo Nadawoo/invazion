@@ -36,7 +36,6 @@ function listenToSendform() {
 function listenToMapZones() {
     // Check whether the user moves his finger rather than tapping
     var touchmoved = false;
-    var buildingPopup = new BuildingPopup();
     document.getElementById("map_body").addEventListener("touchmove", function(){
         touchmoved = true;
     });
@@ -49,6 +48,7 @@ function listenToMapZones() {
     );
     // [On PC] Open the details of a building when clicking on it
     document.getElementById("map_body").addEventListener("click", function(){
+            let buildingPopup = new BuildingPopup();
             buildingPopup.openBuildingPopup(event);
         },
         { passive: true }
@@ -63,6 +63,7 @@ function listenToMapZones() {
     );
     document.getElementById("map_body").addEventListener("touchend", function(){
             if(touchmoved === false) {
+                let buildingPopup = new BuildingPopup();
                 buildingPopup.openBuildingPopup(event);
             }
             toggleTooltip(event.target.closest(".hexagon"));
