@@ -91,8 +91,6 @@ if (document.getElementById('map') !== null) {
         });
     // Display the zombie cores on the map (item ID #106)
     displayItemOnMap(106);
-    // Display the expeditions bar at the top of the map
-    activateMapPathsView();
     
     // Allows to move the map by dragging it with the mouse
     _scrollBoosterInstance = listenToMapDragging();

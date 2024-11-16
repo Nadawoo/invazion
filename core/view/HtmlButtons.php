@@ -932,9 +932,7 @@ class HtmlButtons
         $button = $this->buttons['expert_path'];
         
         return
-        '<form name="expert_path"
-            onclick="hide([\'#paths_bar\', \'#tasks_button\', \'#attack_bar\']);display(\'#paths_panel\');return false"
-            >
+        '<form name="expert_path">
             <button class="z-depth-2" type="submit" title="'.$button['title'].'">'.$button['icon'].' '.$button['name'].'</button>
         </form>';
     }

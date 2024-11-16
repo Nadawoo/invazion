@@ -195,26 +195,6 @@ async function displayItemOnMap(itemId) {
 
 
 /**
- * Displays the expeditions on the map
- * 
- * @returns {undefined}
- */
-async function activateMapPathsView() {
-    
-    // Get the datas about the expeditions
-    let mapId = await document.querySelector("#mapId").innerText;
-    let json = await callApi("GET", "paths", "action=get&map_id="+mapId);
-    
-    // Draw the course of each expedition on the map
-    drawPathsOnMap(json.datas.courses);
-    // Populate the list of expeditions (horizontal bar)  
-    populatePathsBar(json.datas.courses, json.datas.members);
-    // Populate the list of expeditions (lateral panel)    
-    populatePathsPanel(json.datas.courses, json.datas.members);
-}
-
-
-/**
  * Zooms in or out of the map with an HTML <range> tag
  * 
  * @param {int} newZoomPercent

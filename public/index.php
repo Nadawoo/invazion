@@ -347,7 +347,7 @@ echo $html['json_configs'];
             <div class="fields"></div>
         </form>
         
-        <section id="paths_panel" class="hidden">
+        <section id="paths_panel" class="hidden animate__animated animate__slideInLeft">
             <a class="close" onclick="hide('#paths_panel');display('#paths_bar', '#tasks_button', '#attack_bar');">
                 <i class="material-icons">close</i>
             </a>

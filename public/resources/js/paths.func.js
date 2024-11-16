@@ -395,4 +395,36 @@ function togglePathsBar() {
     
     toggle(["#paths_bar", "#game_footer", "#tasks_button"]);
     document.querySelector("#views_bar .paths").classList.toggle("active");
+    
+    // If the paths bar is open for the first time, populate it
+    if(document.querySelector("#paths_bar .paths").innerText === "") {
+        activateMapPathsView();
+    }
+}
+
+
+function displayPathsPanel() {
+    
+    hide(['#paths_bar', '#tasks_button', '#attack_bar']);
+    display('#paths_panel');
+}
+
+
+/**
+ * Displays the expeditions on the map
+ * 
+ * @returns {undefined}
+ */
+async function activateMapPathsView() {
+    
+    // Get the datas about the expeditions
+    let mapId = await document.querySelector("#mapId").innerText;
+    let json = await callApi("GET", "paths", "action=get&map_id="+mapId);
+    
+    // Draw the course of each expedition on the map
+    drawPathsOnMap(json.datas.courses);
+    // Populate the list of expeditions (horizontal bar)  
+    populatePathsBar(json.datas.courses, json.datas.members);
+    // Populate the list of expeditions (lateral panel)    
+    populatePathsPanel(json.datas.courses, json.datas.members);
 }

@@ -110,6 +110,9 @@ if (document.getElementById('map') !== null) {
         else if(formName === "populate_path") {
             window.location.replace("#poppopulatepath");
         }
+        else if(formName === "expert_path") {
+            displayPathsPanel();
+        }
         else {
             displayToast("[Bug] Action inconnue dans la barre d'expéditions. "
                          + "Signalez-le au responsable du site.",
