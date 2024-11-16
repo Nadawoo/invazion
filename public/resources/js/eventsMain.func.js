@@ -155,7 +155,6 @@ async function listenToMainActionModeButton() {
     
     // Zoom on the map to the player
     document.querySelector("#action_mode_button").addEventListener("click", switchToActionView);
-    document.querySelector("#map_mode_button").addEventListener("click", switchToMapView);
 }
 
 
