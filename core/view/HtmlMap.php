@@ -217,8 +217,7 @@ class HtmlMap
                         data-landtype="'.$cell['land'].'"
                         data-cyclelastvisit="'.(int)$cell['cycle_last_visit'].'"
                         >
-                        <span class="zombies_amount hidden"></span>'
-                        . $cell_zombies . $cell_content . $cell_name . '
+                        '. $cell_zombies . $cell_content . $cell_name . '
                     </div>
                     '.$player_city_marker.'
                 </div>';

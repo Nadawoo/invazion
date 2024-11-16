@@ -237,14 +237,21 @@ function getZonePositions(zoneHtmlId) {
  */
 function activateMapZombiesView() {
     
-    let hexagons = document.querySelectorAll("#map_body .hexagon");
+    // Get only the hexagons wich contain zombies for better performance
+    // (not all the hexagons of the map) for better performance
+    let hexagons = document.querySelectorAll("#map_body .hexagon .zombies");
     
     for(let i=0; i<hexagons.length; i++) {
         
-        let squareContainer = hexagons[i].querySelector(".square_container");
+        let squareContainer = hexagons[i].closest(".hexagon").querySelector(".square_container");
         let zombiesAmount = squareContainer.querySelector(".zombies_amount");
         let controlpoints_zombies = parseInt(squareContainer.dataset.controlpointszombies);
         let controlpoints_one_citizen = 2;
+        
+        if(zombiesAmount === null) {
+            squareContainer.insertAdjacentHTML("beforeend", '<span class="zombies_amount"></span>');
+            zombiesAmount = squareContainer.querySelector(".zombies_amount");
+        }
         
         let color = "";
         if(controlpoints_zombies > controlpoints_one_citizen*3) {
