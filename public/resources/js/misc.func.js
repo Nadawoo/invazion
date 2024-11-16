@@ -571,50 +571,6 @@ async function getLogEvents(htmlContainerId) {
 
 
 /*
- * Get the citizens of the map by calling the Azimutant's API
- */
-async function getMapCitizensOnce(mapId) {
-    
-    // If the API has already be called before, don't re-call it
-    if(_citizens === null) {
-        let json = await callApi("GET", "citizens", `action=get&map_id=${mapId}`);    
-        _citizens = json.datas;
-    }
-    
-    return _citizens;
-}
-
-
-/*
- * Get the cities of the map by calling the Azimutant's API
- */
-async function getMapCitiesOnce(mapId) {
-    
-    // If the API has already be called before, don't re-call it
-    if(_cities === null) {
-        let json = await callApi("GET", "cities", `action=get&map_id=${mapId}`);    
-        _cities = json.datas;
-    }
-    
-    return _cities;
-}
-
-
-/*
- * Get all the zones of the map by calling the Azimutant's API
- */
-async function getMapZonesOnce(mapId) {
-    
-    if(_jsonMap === null) {
-        let json = await callApi("GET", "maps", "action=get&map_id="+mapId);
-        _jsonMap = json.datas.zones;
-    }
-    
-    return _jsonMap;
-}
-
-
-/*
  * Get the data about the player's zone by calling the Azimutant's API
  */
 async function getMyZoneOnce(mapId, coordX, coordY) {
