@@ -24,32 +24,6 @@ async function callDiscussionApiOnce(topicType, refresh=false) {
 
 
 /**
- * Show/hide the vertical panel for the discussions and events
- */
-async function enlargeWall() {
-    
-    let minBarHeight = "2.5rem",
-        maxBarHeight = "100vh";
-
-    if (document.querySelector("#floating_wall").style.height !== maxBarHeight) {
-        // Enlarges the panel
-        document.querySelector("#floating_wall").style.height = maxBarHeight;
-        document.querySelector("#wallHeader .arrow").style.transform = "rotate(+180deg)";
-        document.querySelector("#floating_wall").style.zIndex = 60;
-    }
-    else {
-        // Reduces the panel
-        document.querySelector("#floating_wall").style.height = minBarHeight;
-        document.querySelector("#wallHeader .arrow").style.transform = "rotate(0)";
-        document.querySelector("#floating_wall").style.zIndex = 0;
-    }
-    
-    // Loads the discussions tab by default
-    initiateDiscussTab();
-}
-
-
-/**
  * Gets the discussions and write them in the "discussions" tab.
  * Note that this function doesn't display the tab: this task is handled by Materialize.css
  */
@@ -261,4 +235,33 @@ async function updateDiscussionsList(topicType) {
     
     document.querySelector("#wall .footer").innerHTML = htmlNewDiscussionForm(citizenPseudo);
     document.getElementById("wallDiscuss").scrollIntoView(false);
+}
+
+
+/**
+ * Switch tabs in the communications panel
+ */
+function listenToDiscussTabs() {
+    
+    document.querySelector("#wall .tabs a[href='#wallDiscuss']").addEventListener("click",
+        initiateDiscussTab
+    );
+    
+    document.querySelector("#wall .tabs a[href='#wallAttacks']").addEventListener("click", function() {
+        // Updates the log of attacks
+        getCyclicAttacks(nbrExecutionsGetCyclicAttacks);
+        nbrExecutionsGetCyclicAttacks++;
+    });
+    
+    document.querySelector("#wall .tabs a[href='#wallEvents']").addEventListener("click", function() {
+        updateDiscussionsList("event");
+        // Add the listener on the form to create a topic.
+        // TODO: make a cleaner code with async
+        setTimeout(listenToSendform, 100);
+    });
+    
+//    document.querySelector("#wall .tabs a[href='#wallNotifications']").addEventListener("click", function() {
+//        getLogEvents("notifications");
+//        hide([".iAmNotInvolved"]);
+//    });
 }

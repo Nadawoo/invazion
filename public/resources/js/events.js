@@ -107,24 +107,6 @@ if (document.getElementById('map') !== null) {
 //    document.getElementById("notifsClose").addEventListener("click", function(){
 //        hide("#notifsBlock");
 //    });
-        
-    // Switch tabs in the communications panel
-    document.querySelector("#wall .tabs a[href='#wallDiscuss']").addEventListener("click", initiateDiscussTab);
-    document.querySelector("#wall .tabs a[href='#wallAttacks']").addEventListener("click", function() {
-        // Updates the log of attacks
-        getCyclicAttacks(nbrExecutionsGetCyclicAttacks);
-        nbrExecutionsGetCyclicAttacks++;
-    });
-    document.querySelector("#wall .tabs a[href='#wallEvents']").addEventListener("click", function() {
-        updateDiscussionsList("event");
-        // Add the listener on the form to create a topic.
-        // TODO: make a cleaner code with async
-        setTimeout(listenToSendform, 100);
-    });
-//    document.querySelector("#wall .tabs a[href='#wallNotifications']").addEventListener("click", function() {
-//        getLogEvents("notifications");
-//        hide([".iAmNotInvolved"]);
-//    });
     
     // Show/hide the vertical panel for the discussions and events
     document.querySelector("#showWall").addEventListener("click", enlargeWall);
