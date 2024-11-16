@@ -11,22 +11,24 @@ class BuildingPopup {
      * @returns {undefined}
      */
     openBuildingPopup(event) {
+        
+        var zone = (event.target.closest(".square_container") === null)
+                    ? document.querySelector("#me").closest(".square_container")
+                    : event.target.closest(".square_container");
 
-        if(event.target.closest(".square_container") !== null) {
-            let dataset = event.target.closest(".square_container").dataset;
-            let cityTypeId = dataset.citytypeid;
-            // #12 = ID of the building type "city" in the Azimutant's API
-            if(parseInt(cityTypeId) === 12) {
-                let cityId = event.target.closest(".square_container").dataset.cityid;
-                let cityConnections = new CityConnections();
-                cityConnections.updateConnectedCitiesLines(mapId);
-                cityConnections.addCityframes(mapId, cityId);
-                toggleCityframesView();
-            }
-            else if(cityTypeId !== "") {
-                this.populateBuildingPopup(cityTypeId, dataset.zombies, dataset.cyclelastvisit);
-                window.location.href = "#popsuccess";
-            }
+        let dataset = zone.dataset;
+        let cityTypeId = dataset.citytypeid;
+        // #12 = ID of the building type "city" in the Azimutant's API
+        if(parseInt(cityTypeId) === 12) {
+            let cityId = event.target.closest(".square_container").dataset.cityid;
+            let cityConnections = new CityConnections();
+            cityConnections.updateConnectedCitiesLines(mapId);
+            cityConnections.addCityframes(mapId, cityId);
+            toggleCityframesView();
+        }
+        else if(cityTypeId !== "") {
+            this.populateBuildingPopup(cityTypeId, dataset.zombies, dataset.cyclelastvisit);
+            window.location.href = "#popsuccess";
         }
     }
     

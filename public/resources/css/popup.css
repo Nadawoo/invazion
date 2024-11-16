@@ -21,8 +21,8 @@
 #popups .overlay:target, /* Display popup when the anchor is in the url */
 .force_visibility /* Force the popup to display even without the anchor  */
 {
-    visibility: visible;
-    opacity: 1;
+    visibility: visible !important;
+    opacity: 1 !important;
 }
 .popup {
     min-height:4em;

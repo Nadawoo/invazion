@@ -19,9 +19,6 @@ if (document.getElementById('map') !== null) {
         currentStageId = addMapPathStage(event, currentStageId);
     };
     
-    // Change the ground type of a zone (lava, grass...)
-    listenToLandform();
-    
     // If the player is drawing a path for an expedition on the map...
     document.querySelector("#startPathCreation").addEventListener("click",  function(){
         startPathCreation();
@@ -59,44 +56,11 @@ if (document.getElementById('map') !== null) {
         zoomMapStep("out");
     });
     
-    // Move the citizen on the map
-    document.querySelector('#block_move [name="move"]').addEventListener("submit", async function() {
-        // Desactivate the classic submission button (avoids reloading the page)
-        event.preventDefault();
-        moveCitizen(event.submitter.value);
-//        let myCityZoneId = await getMyCityZoneId();
-//        if(myCityZoneId !== null) {
-//            setTimeout(function() {updateLineBetweenZones("myCity", "#me", "#"+myCityZoneId);}, 1000);
-//        }
-    });
-    
     // Change cycle (trigger the midnight attack)
 //    document.querySelector('form[name="end_cycle"]').addEventListener("submit", function() {
 //        //event.preventDefault();
 //        displayMessageEndCycle();
 //    });
-    
-    // Digs a zone to find items
-    document.querySelector('#block_dig form[name="dig"]').addEventListener("submit", function() {
-        // Desactivate the classic submission button (avoids reloading the page)
-        event.preventDefault();
-        dig();
-    });
-    // Drops or pick up an item from the player's bag
-    document.querySelector('#block_dig').addEventListener("submit", function() {
-        let formType = event.target.closest("form").className;
-        // NB: this condition avoids interferences with the other forms in the block
-        // (actions specific to the item, e.g. to eat a burger)
-        if(formType === "form_drop") {
-            // Desactivate the classic submission button (avoids reloading the page)
-            event.preventDefault();
-            dropItem(event.submitter);
-        }
-        else if(formType === "form_pickup") {
-            event.preventDefault();
-            pickupItem(event.submitter);
-        }
-    });
     
     // Actions in the horizontal bar of expeditions
     document.querySelector('#paths_bar').addEventListener("submit", function() {

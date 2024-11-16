@@ -416,8 +416,9 @@ echo $html['json_configs'];
     //                echo $layout->block_alert_wounded((bool)$citizen['is_wounded']);
                 ?>
             </div>
+            <div id="actions"></div>
             
-            <div id="actions">
+            <template id="tplActions">
                 <fieldset id="block_move" class="z-depth-2 hidden">
                     <?php
                     if ($zone['controlpoints_citizens'] < $zone['controlpoints_zombies'] and time() < strtotime($zone['date_control_end'])) {
@@ -449,7 +450,7 @@ echo $html['json_configs'];
                 echo $actionBlocks->block_citizens();
                 echo $actionBlocks->block_build($citizen['coord_x'], $citizen['coord_y']);
                 ?>
-            </div>
+            </template>
         </div>
         
         <div id="message_move"><?php echo $msg_move ?></div>
