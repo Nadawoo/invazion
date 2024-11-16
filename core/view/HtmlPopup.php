@@ -322,7 +322,7 @@ class HtmlPopup
         if($unvalidated_death_cause === 'outside') {
             $msg_popup = 
                   '<h2>Vous êtes mort !</h2>'
-                . '<img src="resources/img/copyrighted/skull.png" alt="image crâne" style="height:120px">'
+                . '<img src="resources/img/copyrighted/skull.png" alt="image crâne" height="120">'
                 . '<p>Les zombies vous ont dévoré dans le désert cette nuit !</p> '
                 . '<p>Rappelez-vous que les villes et les tentes sont les seuls abris '
                 . 'valables contre l\'attaques zombie quotidienne. '
@@ -331,14 +331,14 @@ class HtmlPopup
         elseif($unvalidated_death_cause === 'wound') {
             $msg_popup = 
                   '<h2>Vous êtes mort !</h2>'
-                . '<img src="resources/img/copyrighted/skull.png" alt="image crâne" style="height:120px">'
+                . '<img src="resources/img/copyrighted/skull.png" alt="image crâne" height="120">'
                 . '<p>Votre blessure s\'est infectée et la gangrène a eu raison de vous.</p> '
                 . '<p>La prochaine fois, soignez vos blessures avant minuit...</p>';
         }
         elseif($unvalidated_death_cause === 'wingame') {
             $msg_popup = 
                 '<h2>Félicitations, vous avez survécu !</h2>
-                <img src="resources/img/copyrighted/map.png" alt="image carte" style="height:120px">
+                <img src="resources/img/copyrighted/map.png" alt="image carte" height="120">
                 <p>Votre ténacité et votre chance vous ont permis de vous enfuir
                 de cette contrée hostile.</p>
                 <p>Les payages désolés défilent lentement pendant que la voiture, 
@@ -661,7 +661,7 @@ class HtmlPopup
         
         $buttons = new HtmlButtons();
         
-        return '<img src="/resources/img/copyrighted/crypt.png" width="100px">
+        return '<img src="/resources/img/copyrighted/crypt.png" width="100">
             <p class="descr_ambiance">Vous pénétrez dans la crypte obscure dont les murs irréguliers  
             suintent d\'un&nbsp;liquide indéterminé. L\'odeur des moisissures vous enveloppe 
             tandis que vous descendez les marches étroites...
@@ -704,7 +704,7 @@ class HtmlPopup
             }
         }
         
-        return '<img src="/resources/img/copyrighted/wound.png" width="100px">
+        return '<img src="/resources/img/copyrighted/wound_64px.png" width="100">
             <p class="descr_ambiance">Une vilaine plaie ouverte parcourt votre cuisse droite, 
             ce n\'est pas beau à voir. La septicémie vous guette...</p>
             <br>

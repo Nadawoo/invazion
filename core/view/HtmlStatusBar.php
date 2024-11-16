@@ -26,7 +26,7 @@ class HtmlStatusBar {
                                   "popattack");
                 
         $status_wounded = ($is_wounded >= 1)
-            ? $this->status_image("Blessure", "resources/img/copyrighted/wound.png", null,
+            ? $this->status_image("Blessure", "resources/img/copyrighted/wound_64px.png", null,
                                   "Vous êtes blessé ! Soignez-vous rapidement &#10;pour ne pas mourir d'infection...",
                                   "popwounded")
             : $this->status_empty();
