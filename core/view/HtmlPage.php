@@ -169,7 +169,8 @@ class HtmlPage
                         <script type="text/javascript" src="resources/js/cityEnclosure.func.js?v'.$this->css_js_version.'" async></script>
                         <script type="text/javascript" src="resources/js/discussions.func.js?v'.$this->css_js_version.'" async></script>
                         <script type="text/javascript" src="resources/js/smartphone.func.js?v'.$this->css_js_version.'" async></script>
-                        <script type="text/javascript" src="resources/js/events.func.js?v'.$this->css_js_version.'"></script>
+                        <script type="text/javascript" src="resources/js/eventsMain.func.js?v'.$this->css_js_version.'"></script>
+                        <script type="text/javascript" src="resources/js/eventsActions.func.js?v'.$this->css_js_version.'" async></script>
                         <script type="text/javascript" src="resources/js/users.func.js?v'.$this->css_js_version.'"></script>
                         <script type="text/javascript" src="resources/js/misc.func.js?v'.$this->css_js_version.'" async></script>
                         <script type="text/javascript" src="resources/js/onPageLoad.js?v'.$this->css_js_version.'"></script>
