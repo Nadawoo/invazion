@@ -372,7 +372,7 @@ echo $html['json_configs'];
         </section>
         
         <ul id="views_bar" class="animate__animated animate__slideInDown">
-            <li class="map active" onclick="toggle(['#map_navigation', '#game_footer', '.map_legend']);this.classList.toggle('active')">
+            <li class="map active" onclick="toggle(['#map_navigation', '#game_footer', '#tasks_button']);this.classList.toggle('active')">
                 <button>&#x1F9ED;</button>
             </li>
             <li id="action_mode_button" class="my_zone">
