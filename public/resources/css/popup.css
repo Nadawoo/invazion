@@ -93,6 +93,10 @@
     background:#34495e;
     border:3px outset steelblue;
     border-radius:50%;
+    text-shadow:-1px -1px 0 darkgrey,  /* Top left */
+                1px -1px 0 darkgrey,   /* Top right */
+                -1px 1px 0 darkgrey,   /* Bottom left */
+                1px 1px 0 darkgrey;    /* Bottom right */
 }
 .popup .body .icon img {
     margin-top:-0.2em;

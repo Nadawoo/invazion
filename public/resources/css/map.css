@@ -703,6 +703,10 @@ map_body_wrapper {
     position:absolute;
     margin-bottom:0.2em;
     z-index:1;
+    text-shadow:-1px -1px 0 darkgrey,  /* Top left */
+                1px -1px 0 darkgrey,   /* Top right */
+                -1px 1px 0 darkgrey,   /* Bottom left */
+                1px 1px 0 darkgrey;    /* Bottom right */
 }
 #map .zombies {
     position:absolute;
