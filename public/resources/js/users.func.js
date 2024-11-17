@@ -34,6 +34,8 @@ async function connectUser() {
         else {
             // Stores the identification token in a cookie
             setCookie("token", json.datas.token);
+            // Stores the email adress for prefilling the field at the next connection
+            setCookie("email", email);
             // Redirects to the main game page after the connction
             window.location.replace("index.php#Outside");
         }

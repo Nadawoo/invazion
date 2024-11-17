@@ -13,6 +13,7 @@ var _cities = null;
 var _myZone = null;
 var _jsonMap = null;
 var _isPathDrawingActive = false;
+var _userEmail = null;
 // Permanently stores the result of the API whichs gives the discussions list 
 var _jsonDiscussionApi = null;
 var _scrollBoosterInstance = null;
@@ -187,6 +188,19 @@ if (document.getElementById('editConfig') !== null) {
             '#block_killing_rate'
             ]);
 }
+
+
+// If we are on the connection page
+if(document.querySelector("#connectionForm") !== null) {
+    // Prefill the "email" field
+    setTimeout(function() {
+        _userEmail = getCookie("email");
+        if(_userEmail !== null) {
+            document.querySelector("#connectionForm input[name='email']").value = _userEmail;
+        }
+    }, 1000);
+}
+
 
 // Translate the game in the appropriate language
 translator = new Translator();
