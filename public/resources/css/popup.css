@@ -56,8 +56,9 @@
     border-bottom:1px solid grey;
 }
 .popup .content {
-    max-height: 30%;
-    overflow: auto;
+    max-height:30%;
+    margin-top:2em;
+    overflow:auto;
 }
 
 .popup ul {
