@@ -23,7 +23,8 @@ class HtmlSmartphone
     public function smartphone($map_cols, $map_rows, $citizen, $speciality, $zone)
     {
         
-        return '<div id="phone">
+        return '
+            <div id="phone">
                 <div class="title">––</div>
                 <div class="body">
                     <div class="sideicons">

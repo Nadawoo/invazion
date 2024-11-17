@@ -24,13 +24,13 @@ class HtmlPopup
      * @param array $configs_map
      * @param array $speciality_caracs
      * @param array $healing_items
-     * @param string $html_smartphone
      * @param bool $is_custom_popup_visible
+     * 
      * @return string HTML
      */
     public function all_popups($msg_popup, $map_id, $citizen_id, 
                     $configs_map, $speciality_caracs,
-                    $healing_items, $html_smartphone, $is_custom_popup_visible) {
+                    $healing_items, $is_custom_popup_visible) {
         
         return $this->predefined('poppresentation', '')
             . $this->predefined('poptasks', 'Objectifs')
@@ -49,8 +49,6 @@ class HtmlPopup
             . $this->predefined('poppath', '')
             . $this->predefined('poppopulatepath', '')
             . $this->predefined('popdefenses', 'Détail des défenses')
-            . $this->template_popbuilding($msg_popup)
-            . $this->customised('popsmartphone', '', $html_smartphone)
             // Generic pop-up describing the result of an action
             . $this->customised('popsuccess', '', $msg_popup, $is_custom_popup_visible);
     }
@@ -584,6 +582,15 @@ class HtmlPopup
                 </table>
             </div>
         </template>';
+    }
+    
+    
+    public function template_popsmartphone($html_smartphone) {
+        
+        return '
+            <template id="tplSmartphone">
+                '.$this->template('popsmartphone', '', $html_smartphone).'
+            </template>';
     }
     
     

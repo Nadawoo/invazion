@@ -4,6 +4,19 @@
  * Put only functions in this file, no executable code.
  */
 
+
+function displaySmartphone() {
+    
+    // If we display the smartphone for the first time
+    if(document.querySelector("#popsmartphone") === null) {
+        let tplSmartphone = document.querySelector("#tplSmartphone").content.cloneNode(true)
+        document.querySelector("#popups").appendChild(tplSmartphone);
+    }
+    
+    activatePhoneTab();
+}
+
+
 /*
  * Active l'onglet du smartphone à droite de la carte
  *
