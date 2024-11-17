@@ -48,7 +48,9 @@ async function connectUser() {
  */
 function isCitizenInGame() {
     
-    return Number.isInteger(parseInt(document.querySelector("#citizenId").innerText));
+    let citizenIdNode = document.querySelector("#citizenId");
+    
+    return (citizenIdNode === null) ? false : Number.isInteger(parseInt(citizenIdNode.innerText));
 }
 
 
