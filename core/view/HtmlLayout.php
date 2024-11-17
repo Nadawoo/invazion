@@ -93,7 +93,7 @@ class HtmlLayout extends HtmlPage
                 Identifiez-vous pour commencer à&nbsp;jouer...
                 <a href="register" id="register" class="z-depth-5">Créer un&nbsp;compte</a>
                 ou
-                <a href="connect" id="connect">Connectez-vous</a> si vous êtes déjà inscrit
+                <a href="connect" id="connect">Connectez-vous</a> si vous êtes déjà inscrit.
             </div>';
     }
     

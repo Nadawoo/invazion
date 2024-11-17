@@ -114,6 +114,10 @@ if (document.getElementById('map') !== null) {
             let tasks = new Tasks();
             tasks.populateTaskDefenses();
         }, 1000);
+    } else {
+        document.querySelector("#views_bar").classList.add("hidden");
+        document.querySelector("#map_navigation").classList.add("hidden");
+        document.querySelector("#tasks_button").classList.add("hidden");
     }
     
     // Restore the display of the action button before the page was refreshed

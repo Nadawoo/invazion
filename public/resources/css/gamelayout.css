@@ -323,35 +323,36 @@ form[name="end_cycle"] button {
 
 /* Bloc invitant à se connecter ou à créer son 1er citoyen à droite de la carte */
 #identification_near_map {
-    position:fixed;
+    position:sticky;
     bottom:0;
     width:100%;
-    max-width:51.2em;
-    padding:2.5em 0;
+    padding:1em;
     box-sizing:border-box;
     box-shadow: 0px 15px 20px black;
     border-top:2px solid white;
     color:white;
     text-align:center;
-    border-radius:0.5rem;
+    border-radius:0.5em;
     background: linear-gradient(to bottom right, #3f51b5 30%, #17202a );
-    z-index:60;
+    z-index:2;
+}
+#identification_near_map a {
+    padding:0.2em 0.5em;
+    background:darkred;
+    border:1px solid white;
+    color:white;
 }
 #identification_near_map #register {
     display:block;
-    width:9em;
-    margin:2rem auto 2rem auto;
-    padding:0.2em 0.5em;
-    border-radius:0.3em;
-    border:1px solid white;
-    background:ivory;
+    width:14em;
+    margin:1rem auto 2rem auto;
+    border-width:2px;
+    border-radius:1em;
     font-size:1.3em;
     font-weight:bold;
 }
 #identification_near_map #connect {
-    padding:0.2em 0.3em;
     font-size:1.2em;
-    background:white;
     border-radius:0.3em;
 }
 #identification_near_map #register:hover {
