@@ -310,9 +310,14 @@ function toggleMapZombiesView() {
  */
 async function toggleMapItemMarker(itemId) {
     
-    let zombieCoresCoords = getItemCoords(itemId);
-    
-    for(let coords of Object.values(await zombieCoresCoords)) {
+    var itemsCoords = [];
+    if(Number.isInteger(itemId)) {
+        itemsCoords = getItemCoords(itemId);
+    } else {
+        itemsCoords = getItemCoords("boost");
+    }
+
+    for(let coords of Object.values(await itemsCoords)) {
         let zone = document.querySelector("#map #zone"+coords);
         zone.style.opacity = 1;
         zone.dataset.marker = 1;
@@ -378,7 +383,7 @@ function activateMapItemsView() {
     }
     
     hide(["#views_bar, #attack_bar", "#tasks_button"]);
-    hide([".nbr_defenses"]);
+    hide(["#map .nbr_defenses"]);
     display("#map_legend_items");
     display(".items_amount");
 }
@@ -427,7 +432,8 @@ function activateMapExplorationsView() {
 function desactivateMapItemsView() {
     
     hide("#map_legend_items");
-    hide(".items_amount");
+    hide("#map .items_amount");
+    display("#map .nbr_defenses");
 }
 
 
@@ -502,6 +508,8 @@ function resetMapView() {
     window.isMapExplorationsViewActive = false;
     desactivateMapPathsView();
     window.isMapPathsViewActive = false;
+    
+    hide("#map .location");
     
     display(["#views_bar, #attack_bar", "#tasks_button"]);
     

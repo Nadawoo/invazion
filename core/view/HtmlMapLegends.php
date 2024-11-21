@@ -20,10 +20,10 @@ class HtmlMapLegends {
                 <legend>Légende</legend>
                 <a href="#popcontrol" style="color:inherit">
                     <ul>
-                        <li><span style="background:green"></span> Zone sûre (peu de zombies)</li>
-                        <li><span style="background:orange"></span> 2 humains requis ou +</li>
-                        <li><span style="background:red"></span> 3 humains requis ou +</li>
-                        <li><span style="background:darkred"></span> 4 humains requis ou +</li>
+                        <li><span class="legend_color" style="background:green"></span> Zone sûre (peu de zombies)</li>
+                        <li><span class="legend_color" style="background:orange"></span> 2 humains requis ou +</li>
+                        <li><span class="legend_color" style="background:red"></span> 3 humains requis ou +</li>
+                        <li><span class="legend_color" style="background:darkred"></span> 4 humains requis ou +</li>
                     </ul>
                 </a>
             </fieldset>';
@@ -38,10 +38,20 @@ class HtmlMapLegends {
                 <a href="#Outside" style="color:inherit">
                     <ul>
                         <!-- <li><span style="background:grey"></span> Aucun objet au sol</li> -->
-                        <li><span style="background:green"></span> 1-5 objets (1 sac)</li>
-                        <li><span style="background:orange"></span> 6-10 objets (2 sacs)</li>
-                        <li><span style="background:red"></span> 11-15 objets (3 sacs)</li>
-                        <li><span style="background:darkred"></span> 16 objets ou +</li>
+                        <li><span class="legend_color" style="background:green"></span> 1-5 objets (1 sac)</li>
+                        <li><span class="legend_color" style="background:orange"></span> 6-10 objets (2 sacs)</li>
+                        <li><span class="legend_color" style="background:red"></span> 11-15 objets (3 sacs)</li>
+                        <li><span class="legend_color" style="background:darkred"></span> 16 objets ou +</li>
+                        <hr>
+                        <strong>Localiser des objets au sol :</strong>
+                        <li class="switch"
+                            title="Voir les objets donnant des points d\'action sur la carte">
+                            <label>
+                                <input type="checkbox">
+                                <span class="lever" onclick="toggleMapItemMarker(\'boost\')"></span>
+                                &#x26A1;Regain d\'énergie
+                            </label>
+                        </li>
                     </ul>
                 </a>
             </fieldset>';
@@ -55,10 +65,10 @@ class HtmlMapLegends {
                 <legend>Légende</legend>
                 <a href="#Outside" style="color:inherit">
                     <ul>
-                        <li><span style="background:darkred">&#x1F97E;</span> Zone visitée aujourd\'hui</li>
-                        <li><span style="background:green">&#x26CF;&#xFE0F;</span> Zone fouillable</li>
-                        <li><span style="background:grey">...</span> Zone épuisée</li>
-                        <li><span style="background:black;border-radius:0"></span>Zone à découvrir</li>
+                        <li><span class="legend_color" style="background:darkred">&#x1F97E;</span> Zone visitée aujourd\'hui</li>
+                        <li><span class="legend_color" style="background:green">&#x26CF;&#xFE0F;</span> Zone fouillable</li>
+                        <li><span class="legend_color" style="background:grey">...</span> Zone épuisée</li>
+                        <li><span class="legend_color" style="background:black"></span>Zone à découvrir</li>
                     </ul>
                 </a>
             </fieldset>';

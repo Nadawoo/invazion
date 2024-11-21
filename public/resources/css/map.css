@@ -918,7 +918,7 @@ map_body_wrapper {
     display:flex;
     align-items:center;
 }
-.map_legend li span {
+.map_legend .legend_color {
     display:inline-block;
     height:1.7em; /* Superior to the width because an hexagon is not a square */
     width: 1.4em;
@@ -937,6 +937,13 @@ map_body_wrapper {
     margin-top:0.7em;
     border:none;
     border-top: 1px solid grey;
+}
+.map_legend .switch label {
+    font-size:inherit;
+    color:inherit;
+}
+.map_legend .switch label .lever {
+    margin:0;
 }
 
 #map_legend_cityframes {

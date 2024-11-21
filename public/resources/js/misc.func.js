@@ -137,16 +137,21 @@ function toggleMapMarker(objectToMark) {
         "generic":  "#map [data-marker='1']"
         };
 
-    if (window.areMapMarkersActive !== true) {        
-        // Adds the HTML for the icons in the zones
-        document.querySelectorAll(markableObjects[objectToMark]).forEach(element =>
-            element.innerHTML += '<img src="resources/img/free/map_location.svg" class="location">'
-        );
+    if (window.areMapMarkersActive !== true) {
+        // Add the HTML for the icons in the zones, if not already created
+        if(document.querySelector(".hexagon .location") === null) {
+            document.querySelectorAll(markableObjects[objectToMark]).forEach(element =>
+                element.innerHTML += '<img src="resources/img/free/map_location.svg" class="location animate__animated animate__slideInDown">'
+            );
+        }
+        display("#map .location");
+//        hide("#map .nbr_defenses");
         window.areMapMarkersActive = true;
     }
     else {    
         // Hides the icons added by the previous call to the function
         hide("#map .location");
+//        display("#map .nbr_defenses");
         window.areMapMarkersActive = false;
     }
 }

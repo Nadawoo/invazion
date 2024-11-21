@@ -259,7 +259,9 @@ function zoomMapRange(newZoomPercent) {
 /**
  * Get the coordinates of all the zones containing an exemplary of the given item
  * 
- * @param {int} itemId The ID of the item your are looking for
+ * @param {int|string} itemId The ID of the item your are looking for.
+ *                            Set it to "boost" to get the coordinates of the zones 
+ *                            containg items giving action points (water, food...)
  * @returns {array} The coordinates of the zones containing the item
  *                  Exemple: [0_3, 4_1, 5_8, ...]
  */
@@ -268,14 +270,51 @@ async function getItemCoords(itemId) {
     _jsonMap = await getMapZonesOnce(mapId);    
     let itemCoords = [];
     
-    for(let zone of Object.entries(_jsonMap)) {
-        // If the item ID is in the zone, memorize its coordinates
-        if(zone[1].items !== null && itemId in zone[1].items) {
-            itemCoords.push(zone[0]);
+    // If we try to get the items giving action points (water, food...),
+    // the parameter is a string and not an item ID
+    if(Number.isInteger(itemId) === false) {        
+        let boostItemsIds = getBoostItemsIds();
+        
+        for(let zone of Object.entries(_jsonMap)) {
+            // If the item ID is in the zone, memorize its coordinates
+            if(zone[1].items !== null && boostItemsIds.some(element => Object.keys(zone[1].items).includes(element))) {
+                itemCoords.push(zone[0]);
+            }
+        }
+    } else {
+        // If we try to get only one specific item ID
+        for(let zone of Object.entries(_jsonMap)) {
+            // If the item ID is in the zone, memorize its coordinates
+            if(zone[1].items !== null && itemId in zone[1].items) {
+                itemCoords.push(zone[0]);
+            }
         }
     }
     
     return itemCoords;
+}
+
+
+/**
+ * Get the list of the items that give action points to the player
+ * (food, water, drug...)
+ * @returns {Array}
+ */
+function getBoostItemsIds() {
+    // These values must exist in the the "item_type" field in the Azimutant's 
+    // items API
+    let boostTypes = ["food", "water"];
+    
+    let boostItemsIds = [];
+    for(let itemCaracs of Object.entries(_configsItems)) {
+        if(itemCaracs[1]["item_type"] !== null
+            && boostTypes.some(element => itemCaracs[1]["item_type"].includes(element))
+            ) {
+            boostItemsIds.push(itemCaracs[0]);
+        }
+    }
+    
+    return boostItemsIds;
 }
 
 
