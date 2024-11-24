@@ -66,7 +66,7 @@ map_body_wrapper {
     border:none;
     border-radius:0.2em;
     background:lightgrey;
-    opacity:0.8;
+    opacity:0.9;
     box-shadow: 12px 12px 12px black;
 }
 #map_navigation button {
@@ -79,7 +79,7 @@ map_body_wrapper {
     flex-direction: column;
     align-items:center;
     background:lightgrey;
-    opacity:0.8;
+    opacity:0.9;
     box-shadow: 12px 12px 12px black;
     border-radius:0.5em;
 }
@@ -917,6 +917,7 @@ map_body_wrapper {
 .map_legend li {
     display:flex;
     align-items:center;
+    line-height:1.8em;
 }
 .map_legend .legend_color {
     display:inline-block;
@@ -943,7 +944,7 @@ map_body_wrapper {
     color:inherit;
 }
 .map_legend .switch label .lever {
-    margin:0;
+    margin:0 0.2em 0 0;
 }
 
 #map_legend_cityframes {

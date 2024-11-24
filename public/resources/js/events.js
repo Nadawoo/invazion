@@ -56,6 +56,8 @@ if (document.getElementById('map') !== null) {
         zoomMapStep("out");
     });
     
+    listenToMapLegendSwitches();
+    
     // Change cycle (trigger the midnight attack)
 //    document.querySelector('form[name="end_cycle"]').addEventListener("submit", function() {
 //        //event.preventDefault();

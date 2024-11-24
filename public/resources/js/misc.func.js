@@ -142,9 +142,7 @@ function toggleMapMarker(objectToMark) {
     if (window.areMapMarkersActive !== true) {
         // Remove the eventual previously created markers, as they can mark 
         // an other type of item (boosts, resources...)
-        document.querySelectorAll("#map .location").forEach(element => 
-            element.remove()
-        );
+        deleteMapMarkers();
         // Add the HTML for the icons in the zones
         document.querySelectorAll(markableObjects[objectToMark]).forEach(element =>
             element.innerHTML += '<img src="resources/img/free/map_location.svg" class="location animate__animated animate__slideInDown">'
@@ -159,6 +157,20 @@ function toggleMapMarker(objectToMark) {
         hide("#map .location");
         window.areMapMarkersActive = false;
     }
+}
+
+
+/**
+ * Remove all the "location.svg" markers from the map, whatever they mark
+ * (boosts, resources...)
+ */
+function deleteMapMarkers() {
+    
+    document.querySelectorAll("#map .location").forEach(element => 
+        element.remove()
+    );
+    
+    window.areMapMarkersActive = false;
 }
 
 

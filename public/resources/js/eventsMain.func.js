@@ -295,3 +295,24 @@ async function enlargeWall() {
     
     listenToDiscussTabs();
 }
+
+
+function listenToMapLegendSwitches() {
+    
+    // When we (des)activate a switch button
+    document.querySelector("#map_legend_items .switches").addEventListener("change", function() {
+        // Uncheck all other switches previously activated
+        document.querySelectorAll("#map_legend_items .switches input").forEach(element => {
+            if(element !== event.target) {
+                element.checked = false;
+            }
+        });
+        // Delete all the markers already placed on the map
+        deleteMapMarkers();
+        // Add the location markers on the map for the wanted item type 
+        // (boosts, resources...)        
+        if(event.target.checked === true) {
+            toggleMapItemMarker(event.target.getAttribute("name"));
+        }
+    });
+}

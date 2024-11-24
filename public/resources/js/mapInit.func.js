@@ -308,7 +308,7 @@ function getItemsIdsByType(itemType) {
     if(itemType === "boost") {
         apiItemsTypes = ["food", "water"];
     } else if(itemType === "resource") {
-        apiItemsTypes = ["resource_rare"];
+        apiItemsTypes = ["resource", "resource_rare"];
     } else {
         console.log(`[Azimutant error] Unknown parameter value for \"itemType\"`
                     +`in getItemsIdsByType()`);

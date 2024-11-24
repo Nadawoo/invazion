@@ -42,21 +42,23 @@ class HtmlMapLegends {
                         <li><span class="legend_color" style="background:orange"></span> 6-10 objets (2 sacs)</li>
                         <li><span class="legend_color" style="background:red"></span> 11-15 objets (3 sacs)</li>
                         <li><span class="legend_color" style="background:darkred"></span> 16 objets ou +</li>
-                        <hr>
-                        <strong>Localiser des objets au sol :</strong>
+                    </ul>
+                    <hr>
+                    <strong>Localiser des objets au sol :</strong>
+                    <ul class="switches">
                         <li class="switch"
                             title="Localiser sur la carte les objets donnant des points d\'action">
                             <label>
-                                <input type="checkbox">
-                                <span class="lever" onclick="toggleMapItemMarker(\'boost\')"></span>
+                                <input type="checkbox" name="boost">
+                                <span class="lever"></span>
                                 &#x26A1;Regain d\'énergie
                             </label>
                         </li>
                         <li class="switch"
                             title="Localiser sur la carte les objets utiles pour les constructions">
                             <label>
-                                <input type="checkbox">
-                                <span class="lever" onclick="toggleMapItemMarker(\'resource\')"></span>
+                                <input type="checkbox" name="resource">
+                                <span class="lever"></span>
                                 &#x1FAB5;Ressources
                             </label>
                         </li>
