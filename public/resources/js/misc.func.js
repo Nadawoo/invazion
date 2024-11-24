@@ -134,16 +134,22 @@ function toggleMapMarker(objectToMark) {
     var markableObjects = {
         "items":    ".square_container:not([data-items='0'])",
         "citizens": ".square_container:not([data-citizens='0'])",
+        "boost":    "#map [data-markerboost='1']",
+        "resource": "#map [data-markerresource='1']",
         "generic":  "#map [data-marker='1']"
         };
-
+        
     if (window.areMapMarkersActive !== true) {
-        // Add the HTML for the icons in the zones, if not already created
-        if(document.querySelector(".hexagon .location") === null) {
-            document.querySelectorAll(markableObjects[objectToMark]).forEach(element =>
-                element.innerHTML += '<img src="resources/img/free/map_location.svg" class="location animate__animated animate__slideInDown">'
-            );
-        }
+        // Remove the eventual previously created markers, as they can mark 
+        // an other type of item (boosts, resources...)
+        document.querySelectorAll("#map .location").forEach(element => 
+            element.remove()
+        );
+        // Add the HTML for the icons in the zones
+        document.querySelectorAll(markableObjects[objectToMark]).forEach(element =>
+            element.innerHTML += '<img src="resources/img/free/map_location.svg" class="location animate__animated animate__slideInDown">'
+        );
+        
         display("#map .location");
 //        hide("#map .nbr_defenses");
         window.areMapMarkersActive = true;
@@ -151,7 +157,6 @@ function toggleMapMarker(objectToMark) {
     else {    
         // Hides the icons added by the previous call to the function
         hide("#map .location");
-//        display("#map .nbr_defenses");
         window.areMapMarkersActive = false;
     }
 }

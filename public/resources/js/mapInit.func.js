@@ -272,12 +272,13 @@ async function getItemCoords(itemId) {
     
     // If we try to get the items giving action points (water, food...),
     // the parameter is a string and not an item ID
-    if(Number.isInteger(itemId) === false) {        
-        let boostItemsIds = getBoostItemsIds();
+    if(Number.isInteger(itemId) === false) {
+        let itemType = itemId;
+        let itemsIds = getItemsIdsByType(itemType);
         
         for(let zone of Object.entries(_jsonMap)) {
             // If the item ID is in the zone, memorize its coordinates
-            if(zone[1].items !== null && boostItemsIds.some(element => Object.keys(zone[1].items).includes(element))) {
+            if(zone[1].items !== null && itemsIds.some(element => Object.keys(zone[1].items).includes(element))) {
                 itemCoords.push(zone[0]);
             }
         }
@@ -300,21 +301,30 @@ async function getItemCoords(itemId) {
  * (food, water, drug...)
  * @returns {Array}
  */
-function getBoostItemsIds() {
+function getItemsIdsByType(itemType) {
     // These values must exist in the the "item_type" field in the Azimutant's 
     // items API
-    let boostTypes = ["food", "water"];
+    let apiItemsTypes = [];
+    if(itemType === "boost") {
+        apiItemsTypes = ["food", "water"];
+    } else if(itemType === "resource") {
+        apiItemsTypes = ["resource_rare"];
+    } else {
+        console.log(`[Azimutant error] Unknown parameter value for \"itemType\"`
+                    +`in getItemsIdsByType()`);
+        return false;
+    }
     
-    let boostItemsIds = [];
+    let itemsIds = [];
     for(let itemCaracs of Object.entries(_configsItems)) {
         if(itemCaracs[1]["item_type"] !== null
-            && boostTypes.some(element => itemCaracs[1]["item_type"].includes(element))
+            && apiItemsTypes.some(element => itemCaracs[1]["item_type"].includes(element))
             ) {
-            boostItemsIds.push(itemCaracs[0]);
+            itemsIds.push(itemCaracs[0]);
         }
     }
     
-    return boostItemsIds;
+    return itemsIds;
 }
 
 

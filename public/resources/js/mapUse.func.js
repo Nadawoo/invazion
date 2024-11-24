@@ -305,25 +305,34 @@ function toggleMapZombiesView() {
 /**
  * Add/remove a location mark on the zones containing the given item
  * 
- * @param {int} itemId The ID of the item to mark
+ * @param {int|string} itemId The ID of the item to mark.
+ *                            Set it to "boost" to get the coordinates of the zones 
+ *                            containg items giving action points (water, food...)
  * @returns {undefined}
  */
 async function toggleMapItemMarker(itemId) {
     
-    var itemsCoords = [];
-    if(Number.isInteger(itemId)) {
-        itemsCoords = getItemCoords(itemId);
-    } else {
-        itemsCoords = getItemCoords("boost");
-    }
+    let markerType = "generic";
+    
+    // If the items are not already marked, get their coordinates
+    if(window.areMapMarkersActive !== true) {
+        
+        var itemsCoords = [];
+        if(Number.isInteger(itemId)) {
+            itemsCoords = getItemCoords(itemId);
+        } else {
+            markerType = itemId;
+            itemsCoords = getItemCoords(markerType);
+        }
 
-    for(let coords of Object.values(await itemsCoords)) {
-        let zone = document.querySelector("#map #zone"+coords);
-        zone.style.opacity = 1;
-        zone.dataset.marker = 1;
+        for(let coords of Object.values(await itemsCoords)) {
+            let zone = document.querySelector("#map #zone"+coords);
+            zone.style.opacity = 1;
+            zone.dataset["marker"+markerType] = 1;
+        }
     }
     
-    toggleMapMarker('generic');
+    toggleMapMarker(markerType);
 }
 
 

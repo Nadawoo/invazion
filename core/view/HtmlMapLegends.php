@@ -45,11 +45,19 @@ class HtmlMapLegends {
                         <hr>
                         <strong>Localiser des objets au sol :</strong>
                         <li class="switch"
-                            title="Voir les objets donnant des points d\'action sur la carte">
+                            title="Localiser sur la carte les objets donnant des points d\'action">
                             <label>
                                 <input type="checkbox">
                                 <span class="lever" onclick="toggleMapItemMarker(\'boost\')"></span>
                                 &#x26A1;Regain d\'énergie
+                            </label>
+                        </li>
+                        <li class="switch"
+                            title="Localiser sur la carte les objets utiles pour les constructions">
+                            <label>
+                                <input type="checkbox">
+                                <span class="lever" onclick="toggleMapItemMarker(\'resource\')"></span>
+                                &#x1FAB5;Ressources
                             </label>
                         </li>
                     </ul>
