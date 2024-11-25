@@ -249,7 +249,9 @@ function activateMapZombiesView() {
         let controlpoints_one_citizen = 2;
         
         if(zombiesAmount === null) {
-            squareContainer.insertAdjacentHTML("beforeend", '<span class="zombies_amount"></span>');
+            let newDiv = document.createElement("div");
+            newDiv.className = "zombies_amount animate__animated animate__zoomIn";
+            squareContainer.appendChild(newDiv);
             zombiesAmount = squareContainer.querySelector(".zombies_amount");
         }
         
@@ -382,7 +384,7 @@ function activateMapItemsView() {
         
         if(!squareContainer.querySelector(".items_amount")) {
             let newDiv = document.createElement("div");
-            newDiv.className = "items_amount";
+            newDiv.className = "items_amount animate__animated animate__zoomIn";
             newDiv.innerHTML = (nbrItems > 0) ? nbrItems : "";
             squareContainer.appendChild(newDiv);
         }
@@ -414,7 +416,7 @@ function activateMapExplorationsView() {
         
         if(!squareContainer.querySelector(".items_amount")) {
             let newDiv = document.createElement("div");
-            newDiv.className = "items_amount";
+            newDiv.className = "items_amount animate__animated animate__zoomIn";
             squareContainer.appendChild(newDiv);
             
             // Mark the zones visited today

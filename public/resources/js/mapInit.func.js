@@ -155,7 +155,7 @@ async function addCitiesOnMap(mapId) {
         }
         // Adds the name of the building
         cityName = (city["city_name"] === null) ? buildingName : city["city_name"];
-        zone.insertAdjacentHTML("afterbegin", `<span class="city_name hidden">${cityName}</span>`);
+        zone.insertAdjacentHTML("afterbegin", `<span class="hidden city_name animate__animated animate__zoomIn">${cityName}</span>`);
         
         // Make the building's zone always visible, even when never visited
         zone.closest(".hexagon").style.opacity = 1;
