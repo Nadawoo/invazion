@@ -367,3 +367,33 @@ function switchToActionView() {
     
     updateActionBlocks();
 }
+
+
+/**
+ * Display/hide the tooltip over a zone of the map
+ * 
+ * @param {object} hexagon
+ * @returns {undefined}
+ */
+function triggerTooltip(hexagon) { 
+    
+    if(hexagon !== null
+        && (hexagon.querySelector(".bubble") === null || hexagon.querySelector(".bubble").classList.contains("block") === false)
+        ) {
+        
+        // Initialize the tooltip for the first time
+        if(hexagon.querySelector(".bubble") === null) {
+            // Writes the HTML of the tooltip in the DOM
+            let template = document.querySelector("#tplTooltip").content.cloneNode(true);
+            hexagon.querySelector(".square_container").append(template);
+            // Will hide the tooltip when the mouse leaves the hexagon
+            hexagon.addEventListener("mouseleave",
+                                    ()=>hideTooltip(hexagon),
+                                    { passive: true }
+            );
+        }
+        
+        // Display the hidden tooltip
+        displayTooltip(hexagon);
+    }
+}

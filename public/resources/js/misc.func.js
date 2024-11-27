@@ -1080,17 +1080,6 @@ function displayToast(message, error_class) {
 
 
 /**
- * 
- * Returns the number of the current cycle (day XX)
- * @returns {int}
- */
-function getCurrentCycle() {
-    
-    return parseInt(document.querySelector("#current_day").innerHTML);
-}
-
-
-/**
  * Add the data in the pop-up detailing the sources of the city defenses
  * @returns {undefined}
  */ 

@@ -40,7 +40,7 @@ class HtmlPage
         $this->http_headers();
         
         $css_link = ($css_path !== NULL) 
-                    ? '<link rel="stylesheet" type="text/css" href="'.$css_path.'?v1.6">'
+                    ? '<link rel="stylesheet" type="text/css" href="'.$css_path.'?v'.$this->css_js_version.'">'
                     : '';
         
         $metas = [
@@ -172,6 +172,7 @@ class HtmlPage
                         <script type="text/javascript" src="resources/js/eventsMain.func.js?v'.$this->css_js_version.'"></script>
                         <script type="text/javascript" src="resources/js/eventsActions.func.js?v'.$this->css_js_version.'" async></script>
                         <script type="text/javascript" src="resources/js/users.func.js?v'.$this->css_js_version.'"></script>
+                        <script type="text/javascript" src="resources/js/miscInit.func.js?v'.$this->css_js_version.'"></script>
                         <script type="text/javascript" src="resources/js/misc.func.js?v'.$this->css_js_version.'" async></script>
                         <script type="text/javascript" src="resources/js/onPageLoad.js?v'.$this->css_js_version.'"></script>
                         <script type="text/javascript" src="resources/js/events.js?v'.$this->css_js_version.'"></script>
