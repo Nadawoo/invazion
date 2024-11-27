@@ -322,12 +322,20 @@ echo $html['json_configs'];
         
         <div id="map_viewport">
             <div id="map_body_wrapper">
-                <div id="map_body">
-                    <!-- Let the SVG *before* the map zones, otherwise the invisible
-                     SVG area will cover it and block all interactions (clicking, hovering...) -->
-                    <svg id="mapSvg" class="hidden"></svg>
-                    <?php echo $html['map']; ?>
-                </div>
+                <table id="map_body">
+                    <thead>
+                        <tr>
+                            <td>
+                            <!-- Let the SVG *before* the map zones, otherwise the invisible
+                                 SVG area will cover it and block all interactions (clicking, hovering...) -->
+                                <svg id="mapSvg" class="hidden"></svg>
+                            </td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php echo $html['map']; ?>
+                    </tbody>
+                </table>
             </div>
         </div>
         

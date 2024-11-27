@@ -110,7 +110,7 @@ class HtmlMap
         // Pour chaque ligne de la carte
         for ($row=0; $row<$nbr_rows; $row++) {
             
-            $result .= '<div class="row">';
+            $result .= '<tr class="row">';
             
             // Ligne de la horde zombie sur la carte (triangles rouges)
             $result .= $this->html_hurd($nbr_cols, $row, $next_attack_hour);
@@ -131,7 +131,7 @@ class HtmlMap
                 $result .=  $this->hexagonal_zone($col, $row, $cell, $is_player_in_zone);
             }
             
-            $result .=  "</div>\n";
+            $result .=  "</tr>\n";
         }
         
         return $result;
@@ -203,7 +203,7 @@ class HtmlMap
         // - La classe "hexagon" sert à tracer le fond hexgonal
         // - La classe "square_container" est un conteneur carré pour assurer la symétrie du contenu
         // (un hexagone ne peut pas, par définition, être inscrit dans un carré)
-        return '<div id="zone'.$col.'_'.$row.'" class="hexagon '.$ground.' '.$elevate.'" style="opacity:'.$opacity.'">
+        return '<td id="zone'.$col.'_'.$row.'" class="hexagon '.$ground.' '.$elevate.'" style="opacity:'.$opacity.'">
                     <div class="square_container"
                         data-coordx="'.$col.'"
                         data-coordy="'.$row.'"
@@ -220,7 +220,7 @@ class HtmlMap
                         '. $cell_zombies . $cell_content . $cell_name . '
                     </div>
                     '.$player_city_marker.'
-                </div>';
+                </td>';
     }
     
     
@@ -266,10 +266,13 @@ class HtmlMap
             $triangle = '<span class="icon">&#9760;</span>'
                       . '<span class="triangle"></span>';
             
-            $result .= '<div class="hurd" title="Une horde ravageuse est en train de progresser vers le sud ! '
+            $result .= '
+                <tr>
+                    <td class="hurd" title="Une horde ravageuse est en train de progresser vers le sud ! '
                                               . 'Restez à distance ou vous mourrez...">'
-                    . str_repeat($triangle, $nbr_cols-1) 
-                    . "</div>\n";
+                        .str_repeat($triangle, $nbr_cols-1)."
+                    </td>
+                </tr>\n";
         }
         
         return $result;

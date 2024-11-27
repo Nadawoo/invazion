@@ -319,16 +319,25 @@ map_body_wrapper {
     color:white;
 }
 
+#map td {
+    padding:0;
+}
 #map .row {
     white-space:nowrap;
     /* On remonter l'hexagone pour l'emboîter dans la ligne du dessus.
        Mieux qu'une position relative "top:-1em", qui créerait un gros blanc 
        sous la carte. */
-    margin:-25px;
+    /*margin-top:-25px;*/
 }
-#map_body .row:nth-child(odd) {
+#map_body .row:not(:first-child) td {
+    /* On remonte l'hexagone pour l'emboîter dans la ligne du dessus.
+       Mieux qu'une position relative "top:-1em", qui créerait un gros blanc 
+       sous la carte. */
+    margin-top:-25px;
+}
+#map_body .row:nth-child(even) td:first-child {
     /* Shift 1 line of 2 to fit the hexagons staggered */
-    padding-left:20px;
+    margin-left:20px;
 }
 
 .hexagon {
@@ -361,7 +370,7 @@ map_body_wrapper {
     
     /* La largeur doit inscrire la bordure de .square_container 
     pile dans celle de .hexagon */
-    width:  2.5rem;
+    /*width:  2.5rem;*/
     /* The top and bottom lines of the square must touch the top and bottom tips 
       of the hexagon */
     height: 3rem;
@@ -371,16 +380,16 @@ map_body_wrapper {
     margin:auto;
     /* Hack CSS pour centrer le conteneur verticalement */
     position: relative;
-    top: 40%; /* poussé de la moitié de hauteur du référent */
-    transform: translateY(-50%); /* tiré de la moitié de sa propre hauteur */
+    /* top: 40%; */ /* poussé de la moitié de hauteur du référent */
+    /* transform:translateY(-50%); */ /* tiré de la moitié de sa propre hauteur */
     /* Centrage des éléments à l'intérieur de la case */
     display:flex;
-    flex-direction: column;
+    /*flex-direction:column;*/
     align-items:center;
     justify-content: center;
     /* Recentre verticalement le texte à l'intérieur du conteneur.
     Calibrage: le fond coloré sous le texte doit toucher la bordure du bas du conteneur. */
-    line-height:2.2em;
+    /*line-height:2.2em;*/
     /* Makes sure that the frames around the buildings can't be hidden by the tiles */
     z-index:1;
 }
