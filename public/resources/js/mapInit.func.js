@@ -141,7 +141,7 @@ async function addCitiesOnMap(mapId) {
                 html = `<span class="nbr_defenses diggable pulse">&#x26CF;&#xFE0F;</span>`;
             }
             else if(nbrItems > 0) {
-                html = `<span class="nbr_defenses diggable pulse">${nbrItems}</span>`;
+                html = `<span class="nbr_defenses diggable" style="background:royalblue">${nbrItems}</span>`;
             }
             else {
 //                let maxExplorations = 100;
