@@ -155,50 +155,35 @@ class HtmlMap
         // Important : la cellule doit toujours avoir un contenu, même 
         // un simple espace, sinon décalages si la cellule contient ou non 
         // des citoyens/zombies/objets
-        $cell_content   = '<span class="empty">&nbsp;</span>';
+        $cell_content   = ''; //'<span class="empty">&nbsp;</span>';
         $cell_zombies   = '';
         $elevate        = '';
         $opacity        = '';
         $player_city_marker = '';
         
-        if ($cell === null) {
-            // Quand la zone est vide.
-            // Cette condition ne sert qu'à éviter de répéter "if(isset($cells[$coords])..."
-            // à chacune des condition suivantes.
-            // TODO : revoir l'organisation de l'affichage afin d'éviter ce bricolage.
-        }
-//        elseif ($cell['city_type_id'] !== null) {
-//            // The appropriate icon will be added by javascript
-//            $cell_content = $this->html_icon_building($cell['city_type_id']);
-//            $bubble_roleplay = $this->html_bubble_building($cell['city_type_id']);
-//            $elevate      = 'elevate';
-//        }
-        
-
-        if ($cell['zombies'] > 0) {
-            $cell_zombies   = $this->html_cell_content('zombies', $cell['zombies'], min (9, $cell['zombies']));
-        }      
-        
-        // La case est plus ou moins opaque selon la date de dernière visite
-        if($cell === null) {
-            $opacity = 0;
-        }
-        // TODO: get the building config in a cleaner way
-        elseif ($is_player_in_zone === true 
-//                or ($cell['building_id'] !== null and
-//                   (bool)$this->building($cell['building_id'], 'is_always_visible') === true)
-                ) {
-            $opacity = 1;
+        // The never visited zones always look the same
+        if($cell === null or $cell['date_last_visit'] === null) {
+            $opacity = 0.3;
+            $ground  = 'ground_zombies';
         }
         else {
-            $opacity = $this->opacity_coeff($cell['date_last_visit']);
+            // Opacity of the zone
+            if ($is_player_in_zone === true) {
+                $opacity = 1;
+            } else {
+//                $opacity = $this->opacity_coeff($cell['date_last_visit']);
+            }
+            
+            // Silhouettes of the zombies in the zone
+            if ($cell['zombies'] > 0) {
+                $cell_zombies = $this->html_cell_content('zombies', $cell['zombies'], min (9, $cell['zombies']));
+            }
+            
+            // Variable grounds (sand, peebles...)
+            $ground = $this->ground_css_class($cell);
         }
         
         $cell_name = ($cell['zone_name'] !== null) ? '<span class="zone_name hidden">'.$cell['zone_name'].'</span>' : '';
-        
-        // Variable grounds (sand, peebles...)
-        $ground = $this->ground_css_class($cell);
-        
         
         // - La classe "hexagon" sert à tracer le fond hexgonal
         // - La classe "square_container" est un conteneur carré pour assurer la symétrie du contenu
