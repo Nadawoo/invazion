@@ -440,9 +440,10 @@ echo $html['json_configs'];
                     echo '
                     <div class="main_block">'
                         .$paddle->paddle($citizen['coord_x'], $citizen['coord_y'])
-                        .'<div>'
-                            .$layout->block_landtype()
+                        .'<div style="width:11.5em">'
+                            .$layout->block_zombies_gauge()
                             .$layout->block_distance()
+                            .$layout->block_landtype()
                         .'</div>
                     </div>';
 

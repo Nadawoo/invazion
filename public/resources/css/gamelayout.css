@@ -417,6 +417,7 @@ form[name="end_cycle"] button {
     color:darkred;
     background:none;
     border:none;
+    text-shadow:black 1px 1px 1px;
 }
 #movement_paddle button:hover {
     color:red;
@@ -435,15 +436,66 @@ form[name="end_cycle"] button {
     left:33%;
     height:2.6em;
 }
+
+#zombies_gauge {
+    margin:0.5em 0 1.5em 0;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+#zombies_gauge ul {
+    max-height:2.5em;
+    width:85%;
+    margin:0;
+    padding-right:0.2em;
+    font-size:0.9em;
+    display:flex;
+    justify-content:space-evenly;
+    align-items: center;
+    background:lightgrey;
+    /*background:linear-gradient(whitesmoke 33%, darkgrey);*/
+    border:1px solid darkred;
+    border-radius:0.3em;
+    color:grey;
+}
+#zombies_gauge li {
+    width:100%;
+    border-right:1px solid darkgrey;
+    text-align:center;
+}
+#zombies_gauge li:last-child {
+    font-size:1.2em;
+    text-shadow:red 0 -1px 4px,
+                red 0 1px 4px;
+    border:none;
+}
+#zombies_gauge li.active {
+    /*width:80%;*/
+    margin:0 0.3em;
+    background:whitesmoke;
+    outline:5px ridge orangered;
+    border:none;
+    border-radius:0.1em;
+    font-size:1.5em;
+    font-weight:bold;
+    color:black;
+}
+#zombies_gauge li:first-child.active {
+    outline-color:darkseagreen;
+}
+
 /* Shows the distance to the city */
 #block_distance {
     display:flex;
     align-items:center;
     justify-content:center;
     height:42px; /* Stabilize the block height when the city image is resized */
-    width:10em;
+    width:11.5em;
     margin-bottom:0.5em;
     background:#d3d3d3;
+    /*background:linear-gradient(whitesmoke 33%, darkgrey);*/
+    border:1px solid dimgrey;
+    border-radius:0.3em;
     text-align:center;
     font-weight:normal;
 }
@@ -456,8 +508,8 @@ form[name="end_cycle"] button {
 #block_distance .distance {
     /* Stabilize the position of the number of kilometers when it is on 1 or 2 digits */
     display:inline-block;
-    width:1em;
     text-align:right;
+    font-weight:bold;
 }
 
 #block_landtype {
@@ -467,6 +519,8 @@ form[name="end_cycle"] button {
     height:42px;
     margin-bottom:0.7em;
     background:lightgrey;
+    border:1px solid grey;
+    border-radius:2em;
     cursor:help;
 }
 
@@ -493,6 +547,7 @@ form[name="end_cycle"] button {
     align-items:center;
     justify-content: space-between;
     height:4rem;
+    margin-right:0.25rem;
     padding:0.5em 1em 0.2em 1em;
     border:1px solid green;
     border-radius:0.3em;

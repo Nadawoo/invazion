@@ -319,8 +319,26 @@ class HtmlLayout extends HtmlPage
         return '
             <div id="block_distance">
                 <div class="city_image"><img src="resources/img/free/city.svg" alt="ville"></div>'
-                .'<span class="distance"></span> km
+                .'&nbsp;Ville à <span class="distance"></span> km
             </div>';
+    }
+    
+    
+    function block_zombies_gauge() {
+        
+        return '
+            <a href="#popcontrol" id="zombies_gauge" title="Indicateur du contrôle de zone">
+                <img src="resources/img/motiontwin/zombie.gif" height="28" alt="Zombies">
+                <ul aria-label="Nombre de zombies dans la zone">
+                    <li aria-label="0">0</li>
+                    <li aria-label="1">1</li>
+                    <li aria-label="2">2</li>
+                    <li aria-label="3">3</li>
+                    <li aria-label="4">4</li>
+                    <li aria-label="5">5</li>
+                    <li aria-label="Perte de contrôle"><span class="nbr_zombies"></span>&#x1F480;</li>
+                </ul>
+            </a>';
     }
     
     
@@ -332,7 +350,7 @@ class HtmlLayout extends HtmlPage
     function block_landtype() {
         
         return '
-            <div id="block_landtype"></div>';
+            <div id="hidden block_landtype"></div>';
     }
     
     

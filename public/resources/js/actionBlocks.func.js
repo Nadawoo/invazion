@@ -57,7 +57,9 @@ async function updateActionBlocks() {
     // Display the actions for fighting against zombies
     showFightingZombiesButtons(zoneData.zombies);
     // Displays help about the land type of the current zone
-    updateBlockLandType(zoneData.landtype);
+//    updateBlockLandType(zoneData.landtype);
+    // Update the cursor indicating the control of the zone
+    updateZombiesGauge(zoneData.zombies);
 }
 
 
@@ -131,6 +133,34 @@ async function updateBlockAlertControl(controlpointsZombies, mapId, coordX, coor
     
     // Displays an alert when the citizens have less control points than the zombies on the zone
     (controlpointsCitizens >= controlpointsZombies) ? hide("#alert_control") : display("#alert_control");
+}
+
+
+/**
+ * Update the cursor indicating the control of the zone
+ * 
+ * @param {int} nbrZombies
+ * @returns {undefined}
+ */
+function updateZombiesGauge(nbrZombies) {
+    
+    let oldActiveNode = document.querySelector(`#zombies_gauge li[class="active"]`);
+    let newActiveNode = document.querySelector(`#zombies_gauge li[aria-label="${nbrZombies}"]`);
+    let lostControlNode = document.querySelector(`#zombies_gauge li:last-child`);
+    
+    // Desactivate the previously highlighted number of zombies
+    if(oldActiveNode !== null) {
+        oldActiveNode.classList.remove("active");
+        lostControlNode.querySelector(".nbr_zombies").innerText = "";
+    }
+    
+    // Highlight the new number of zombies
+    if(newActiveNode !== null) {
+        newActiveNode.classList.add("active");
+    } else {
+        lostControlNode.classList.add("active");
+        lostControlNode.querySelector(".nbr_zombies").innerText = nbrZombies;
+    }
 }
 
 

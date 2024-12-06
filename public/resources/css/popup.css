@@ -239,7 +239,7 @@
     min-width:1.3em;
     padding:0.2em;
     padding-top:0;
-    font-size:1em;
+    font-size:1.5em;
     text-align:center;
     background:white;
 /*    border:2px solid lightgrey;*/
@@ -247,10 +247,10 @@
     z-index:20;
 }
 .popup .stagetext {
-    padding:0.1em 0 1em 0.2em;
+    padding:0.1em 0 1em 0.5em;
 }
 .popup .stagetext, .popup .stageicon {
     /*Force l'icône à se placer devant le trait vertical du bloc texte*/
     position:relative;
-    left:-1em;
+    left:-0.8em;
 }

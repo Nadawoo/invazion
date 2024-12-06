@@ -731,29 +731,31 @@ class HtmlPopup
         
         return "
             <div class=\"stageblock\">
-                <div class=\"stageicon\">&#x1F465;</div>
+                <div class=\"stageicon\">&#x1F6E1;&#xFE0F;</div>
                 <div class=\"stagetext\">
-                    Plus les humains sont nombreux dans votre zone, plus vous disposez 
-                    de <strong>points de contrôle</strong> pour contenir les zombies.
-                    <strong>Sortez groupés</strong> pour éviter les mésaventures...
-                    <hr>
-                </div>
-            </div>
-            <div class=\"stageblock\">
-                <div class=\"stageicon\">&#x26A0;&#xFE0F;</div>
-                <div class=\"stagetext\">
-                    Si la somme des points de contrôle des zombies devient supérieure 
-                    à celle des humains, <strong>vous ne pouvez plus quitter la zone !</strong>
+                    Les <strong>points de contrôle</strong> déterminent 
+                    si les humains peuvent se déplacer dans la zone.
                     <ul>
-                        <li>• Chaque humain vaut 2 points</li>
-                        <li>• Chaque zombie vaut 1 point.</li>
+                        <li><img src=\"/resources/img/free/human.png\" height=\"24\">
+                            Chaque humain (hors bonus) = <strong>2</strong> points.
+                        </li>
+                        <li><img src=\"resources/img/motiontwin/zombie.gif\" height=\"24\">
+                            Chaque zombie = <strong>1</strong> point.
+                        </li>
                     </ul>
                     <hr>
                 </div>
             </div>
-            
             <div class=\"stageblock\">
-                <div class=\"stageicon\">&#x270A;&#x1F3FC;</div>
+                <div class=\"stageicon\" style=\"text-shadow:red 0 -1px 4px, red 0 1px 4px\">&#x1F480;</div>
+                <div class=\"stagetext\">
+                    Si la somme des points de contrôle des zombies est supérieure 
+                    à celle des humains, <strong>vous ne pouvez plus quitter la zone !</strong>
+                    <hr>
+                </div>
+            </div>
+            <div class=\"stageblock\">
+                <div class=\"stageicon\">&#x270A;&#x1F3FD;</div>
                 <div class=\"stagetext\">
                     <strong>Si vous êtes bloqué</strong>, reprenez votre liberté en inversant le rapport de forces :
                     <ul>
@@ -762,6 +764,15 @@ class HtmlPopup
                         <li>• soit en <strong>tuant des zombies</strong>
                         (réduira le contrôle des zombies).</li>
                     </ul>
+                    <hr>
+                </div>
+            </div>
+            <div class=\"stageblock\">
+                <div class=\"stageicon\"><img src=\"/resources/img/free/human.png\" height=\"32\"></div>
+                <div class=\"stagetext\">
+                    Plus les humains sont nombreux dans votre zone, plus vous disposez 
+                    de <strong>points de contrôle</strong> pour contenir les zombies.
+                    <strong>Sortez groupés</strong> pour éviter les mésaventures...
                 </div>
             </div>";
     }

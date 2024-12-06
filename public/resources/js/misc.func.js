@@ -409,7 +409,8 @@ function updateMeAfterMoving(newCoordX, newCoordY) {
     
     updateRoundActionButtons(newCoordX, newCoordY);
     updateCityDistance(newCoordX, newCoordY);
-    updateBlockLandType(myZone.dataset.landtype);
+//    updateBlockLandType(myZone.dataset.landtype);
+    updateZombiesGauge(myZone.dataset.zombies);
     updateEnterBuildingButton(myZone.dataset.citytypeid, myZone.dataset.controlpointscitizens, myZone.dataset.zombies);
     updateMoveCost(parseInt(myZone.dataset.zombies));
     updateCardCitizensInZone(myZone.dataset.citizens);
