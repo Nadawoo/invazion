@@ -383,16 +383,16 @@ echo $html['json_configs'];
         
         <ul id="views_bar" class="animate__animated animate__slideInDown">
             <li class="map active" onclick="toggle(['#map_navigation', '#game_footer', '#tasks_button']);this.classList.toggle('active')">
-                <button>&#x1F9ED;</button>
+                <button aria-label="Masquer les boutons de navigation">&#x1F9ED;</button>
             </li>
             <li id="action_mode_button" class="my_zone">
-                <button>
+                <button aria-label="Passer en mode action de zone">
                     <span class="pickaxe">&#x26CF;&#xFE0F;</span>
-                    <img src="resources/img/free/human.png" height="48">
+                    <img src="resources/img/free/human.png" height="48" alt="My citizen">
                 </button>
             </li>
             <li class="paths" onclick="togglePathsBar()">
-                <button>&#x1F97E;</button>
+                <button aria-label="Ouvrir le mode Expéditions">&#x1F97E;</button>
             </li>
         </ul>
         
