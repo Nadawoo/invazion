@@ -154,12 +154,11 @@ class HtmlPopup
             . "<a href=\"https://discord.gg/2GRPTyM\" target=\"_blank\" ><strong>le Discord du jeu</strong></a>.]"
             . "</p>";
         
-        $button_start= '';
-//        $button_start = '<a href="#Outside" id="startPathCreation" class="bluebutton"'
-//                      . 'onclick="closePopup();startPathCreation()"'
-//                      . '>Tracer une expédition'
-//                      . '<i class="material-icons">chevron_right</i>'
-//                      . '</a>';
+        $button_start = '<a href="#Outside" id="startPathCreation" class="hidden bluebutton"'
+                      . 'onclick="closePopup();startPathCreation()"'
+                      . '>Tracer une expédition'
+                      . '<i class="material-icons">chevron_right</i>'
+                      . '</a>';
                     
         return $msg_popup . $button_start;
     }
