@@ -546,7 +546,7 @@ form[name="end_cycle"] button {
     display:flex;
     align-items:center;
     justify-content: space-between;
-    height:4rem;
+    min-height:4rem;
     margin-right:0.25rem;
     padding:0.5em 1em 0.2em 1em;
     border:1px solid green;
@@ -569,9 +569,6 @@ form[name="end_cycle"] button {
 #block_move #card_building .redbutton,
 #block_move #card_building .bluebutton {
     width:60%;
-}
-#block_move #card_building .bluebutton {
-    font-size:85%;
 }
 #block_move #card_building.above_paddle {
     margin-top:-7.5em;
