@@ -75,10 +75,4 @@
     #cityframes_bar {
         justify-content:left;
     }
-    
-    #resizeMap button {
-        height:2rem;
-        width: 2rem;
-        font-size:2em;
-    }
 }
