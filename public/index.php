@@ -160,7 +160,7 @@ $html = [
                                                  json_encode($configs['items'])),
     // Assembling the HTML for the map
     'map' => $map->hexagonal_map($maps['map_width'], $maps['map_height'], $maps['zones'], $citizen, $maps['next_attack_hour']),
-    'map_citizens'      => $layout->map_citizens($citizens),
+//    'map_citizens'      => $layout->map_citizens($citizens),
     'attack_bar'        => $layout->attack_bar($citizen['map_id'], $configs['map']['current_cycle']),
     // Contents of the round action buttons at the right of the map
     'ground_items'      => $layout->block_ground_items($citizen['coord_x'], $citizen['coord_y']),
@@ -516,10 +516,12 @@ echo $html['json_configs'];
                title="Lien spécial pour le débugage - Ignorez-le sauf si un administrateur du jeu vous le demande." />
     </form>
     
-    
+    <!--
     <section>
         <h3 id="Citizens"><a href="#Citizens">&Hat;</a>&nbsp;Liste des citoyens</h3>    
-        <?php echo $html['map_citizens'] ?>
+        <?php
+        //echo $html['map_citizens']
+        ?>
     </section>
     
     <hr>
@@ -527,6 +529,7 @@ echo $html['json_configs'];
     <p>Merci à <a href="http://twinoid.com/user/7912453" target="_blank" rel="noopener"><strong>Ross</strong></a> 
         pour son image de ville <img src="resources/img/free/city.png" alt="city.png">
     </p>
+    -->
     
     <hr>
     
