@@ -147,13 +147,19 @@ class HtmlPopup
         $msg_popup = 
               "<p>Une <strong>expédition</strong> est un chemin que vous tracez "
             . "sur la carte pour explorer les zones de votre choix. Vos citoyens "
-            . "suivront ce chemin et ramasseront les objets trouvés automatiquement.</p>";
+            . "suivront ce chemin et ramasseront les objets trouvés automatiquement.</p>"
+            . "<p class=\"aside\">[Note : cette fonctionnalité est en cours de développement "
+            . "et n'est pas disponible pour le moment. Vous pouvez suivre l'avancement "
+            . "des mises à jour sur "
+            . "<a href=\"https://discord.gg/2GRPTyM\" target=\"_blank\" ><strong>le Discord du jeu</strong></a>.]"
+            . "</p>";
         
-            $button_start = '<a href="#Outside" id="startPathCreation" class="bluebutton"'
-                          . 'onclick="closePopup();startPathCreation()"'
-                          . '>Tracer une expédition'
-                          . '<i class="material-icons">chevron_right</i>'
-                          . '</a>';
+        $button_start= '';
+//        $button_start = '<a href="#Outside" id="startPathCreation" class="bluebutton"'
+//                      . 'onclick="closePopup();startPathCreation()"'
+//                      . '>Tracer une expédition'
+//                      . '<i class="material-icons">chevron_right</i>'
+//                      . '</a>';
                     
         return $msg_popup . $button_start;
     }
