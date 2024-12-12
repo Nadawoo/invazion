@@ -1,0 +1,10 @@
+{
+    "dev": {
+        "gui_server_root": "http://invaziongame.localhost",
+        "api_server_root": "http://invazion.localhost"
+    },
+    "prod": {
+        "gui_server_root": "https://invaziongame.nadazone.fr",
+        "api_server_root": "https://invazion.nadazone.fr"
+    }
+}

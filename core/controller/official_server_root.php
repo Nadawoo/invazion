@@ -1,5 +1,6 @@
 <?php
-require 'is_development_server.php';
+safely_require('/core/model/Server.php');
+require_once 'is_development_server.php';
 
 /**
  * Returns the URL of the central server of Azimutant (which contains the APIs 
@@ -10,13 +11,8 @@ require 'is_development_server.php';
 function official_server_root()
 {
     
-    if(is_development_server()) {
-        
-        // Only the main developer of Azimutant has access to this
-        return 'http://invazion.localhost';
-    }
-    else {
-        
-        return 'https://invazion.nadazone.fr';
-    }
+    $server = new Server();
+    $configs = $server->get_config_file();
+    
+    return (is_development_server()) ? $configs->dev->api_server_root : $configs->prod->api_server_root;
 }
