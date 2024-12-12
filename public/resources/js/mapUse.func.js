@@ -577,11 +577,11 @@ function switchCityframesType(typeToActivate) {
  */
 function addCityLocationMarker(myCityZoneId) {
     
-    let htmlBubble = 'Ceci est votre habitation ! Votre refuge contre les zombies...',
-        htmlLocationMarker = '<img src="resources/img/free/map_location.svg" class="location">';
+//    let htmlBubble = 'Ceci est votre habitation ! Votre refuge contre les zombies...';
+    let htmlLocationMarker = '<img src="resources/img/free/map_location.svg" class="location">';
 
     if(myCityZoneId !== null) {
-        document.querySelector(`#${myCityZoneId} .bubble .roleplay`).innerHTML = htmlBubble;
+//        document.querySelector(`#${myCityZoneId} .bubble .roleplay`).innerHTML = htmlBubble;
         document.querySelector(`#${myCityZoneId}`).innerHTML += htmlLocationMarker;
     }
 }
