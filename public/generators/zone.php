@@ -5,7 +5,7 @@
  */
 
 require_once '../../core/controller/autoload.php';
-safely_require('/core/controller/official_server_root.php');
+safely_require('/core/model/Server.php');
 safely_require('/core/controller/SortGameData.php');
 safely_require('/core/ZombLib.php');
 
@@ -16,9 +16,11 @@ $map_id     = filter_input(INPUT_GET, 'map_id',     FILTER_VALIDATE_INT);
 $newerthan  = filter_input(INPUT_GET, 'newerthan',  FILTER_VALIDATE_INT);
 $citizen_id = filter_input(INPUT_GET, 'citizen_id', FILTER_VALIDATE_INT);
 
+$server = new Server();
+$official_server_root = $server->official_server_root();
 $map           = new HtmlMap();
 $sort          = new SortGameData();
-$api           = new ZombLib(official_server_root().'/api');
+$api           = new ZombLib($official_server_root.'/api');
 $html_zones    = [];
 $player_coords = [];
 

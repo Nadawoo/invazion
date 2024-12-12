@@ -1,10 +1,11 @@
 <?php
 require_once '../core/controller/autoload.php';
-safely_require('/core/controller/official_server_root.php');
+safely_require('/core/model/Server.php');
 
-
+$server = new Server();
+$official_server_root = $server->official_server_root();
 $http_host = filter_var($_SERVER['HTTP_HOST'],   FILTER_SANITIZE_URL);
-$registration_page = official_server_root().'/register?redirect='.urlencode('http://'.$http_host.'/connect');
+$registration_page = $official_server_root.'/register?redirect='.urlencode('http://'.$http_host.'/connect');
 
 // Redirect directly to the registration page on the Azimutant's main server.
 header("Location: ".$registration_page);

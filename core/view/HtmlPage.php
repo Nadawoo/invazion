@@ -1,5 +1,5 @@
 <?php
-safely_require('/core/controller/official_server_root.php');
+safely_require('/core/model/Server.php');
 
 /**
  * Classe générique pour générer la structure HTML d'une page du site.
@@ -192,6 +192,9 @@ class HtmlPage
      */
     function site_menu($user_id, $citizen_id, $citizen_pseudo) {
         
+        $server = new Server();
+        $official_server_root = $server->official_server_root();
+        
         $connection_buttons = ($citizen_id === null)
                     ? '<a href="register" class="#0d47a1 blue darken-4 white-text"> M\'inscrire </a> · <a href="connect#connectionForm" class="#0d47a1 blue darken-4 white-text"> Me connecter </a>'
                     : '<br>';
@@ -221,20 +224,20 @@ class HtmlPage
                         height="32" width="32" style="margin-left:-0.2em;margin-bottom:-0.8em;"></i>Discord
                 </a></li>'
                 .$this->site_menu_item('Wiki', 'http://invazion.wikidot.com', 'edit')
-                .$this->site_menu_item('Partager', official_server_root().'/share', 'share',
+                .$this->site_menu_item('Partager', $official_server_root.'/share', 'share',
                         'Partager et soutenir le projet Azimutant')
                 
-//                $this->site_menu_item('Forum', official_server_root().'/discuss', 'forum')
+//                $this->site_menu_item('Forum', $official_server_root.'/discuss', 'forum')
                 
                 .$this->site_menu_subheader('Développer')
-                .$this->site_menu_item('Le projet', official_server_root().'/project', 'help')
-                .$this->site_menu_item('Créez votre version du jeu', official_server_root().'/customise-the-game', 'build').'
+                .$this->site_menu_item('Le projet', $official_server_root.'/project', 'help')
+                .$this->site_menu_item('Créez votre version du jeu', $official_server_root.'/customise-the-game', 'build').'
                 <li><a href="https://github.com/Nadawoo/invazion" target="_blank" rel="noopener"
                     title="Le code source du jeu est disponible sur Github">
                     <i><img src="/resources/img/thirdparty/GitHub-Mark-32px.png" alt="github_logo"
                     height="24" width="24" style="margin-bottom:-0.4em;"></i>Github
                 </a></li>
-                <li><a href="'.official_server_root().'/apis-list" 
+                <li><a href="'.$official_server_root.'/apis-list" 
                     title="Modifiez toute l\'interface du jeu grâce aux API">
                     <i><img src="/resources/img/free/api.png" alt="api_logo"
                     height="24" width="24" style="margin-bottom:-0.4em;"></i>API

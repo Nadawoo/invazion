@@ -6,7 +6,7 @@
  */
 
 require_once '../../core/controller/autoload.php';
-safely_require('/core/controller/official_server_root.php');
+safely_require('/core/model/Server.php');
 safely_require('/core/ZombLib.php');
 
 header('content-type:application/json');
@@ -39,7 +39,9 @@ foreach($get as $key=>$value) {
 }
 
 
-$api        = new ZombLib(official_server_root().'/api');
+$server = new Server();
+$official_server_root = $server->official_server_root();
+$api        = new ZombLib($official_server_root.'/api');
 $layout     = new HtmlLayout();
 $enclosure  = new HtmlCityEnclosure();
 $coord      = $get['coord_x'].'_'.$get['coord_y'];

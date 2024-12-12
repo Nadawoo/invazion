@@ -5,7 +5,7 @@
 
 require_once '../core/controller/autoload.php';
 safely_require('/core/view/html_options.php');
-safely_require('/core/controller/official_server_root.php');
+safely_require('/core/model/Server.php');
 safely_require('/core/ZombLib.php');
 
 
@@ -72,7 +72,9 @@ $boost_types = [null        => '–',
                 ];
 
 
-$api        = new ZombLib(official_server_root().'/api');
+$server = new Server();
+$official_server_root = $server->official_server_root();
+$api        = new ZombLib($official_server_root.'/api');
 $html       = new HtmlPage();
 $htmlItem   = new HtmlConfigItems();
 $htmlTags   = new HtmlTags();

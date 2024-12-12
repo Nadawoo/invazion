@@ -1,13 +1,15 @@
 <?php
 require_once '../core/controller/autoload.php';
 safely_require('/core/model/set_default_variables.php');
-safely_require('/core/controller/official_server_root.php');
+safely_require('/core/model/Server.php');
 safely_require('/core/controller/get_game_day.php');
 safely_require('/core/controller/get_well_current_water.php');
 safely_require('/core/controller/SortGameData.php');
 safely_require('/core/ZombLib.php');
 
-$api                = new ZombLib(official_server_root().'/api');
+$server = new Server();
+$official_server_root = $server->official_server_root();
+$api                = new ZombLib($official_server_root.'/api');
 $layout             = new HtmlLayout();
 $actionBlocks       = new HtmlActionBlocks();
 $actionCards        = new HtmlActionCards();
@@ -510,7 +512,7 @@ echo $html['json_configs'];
     
     <br>
     
-    <form method="post" action="<?php echo official_server_root().'/apis-list' ?>" target="_blank">
+    <form method="post" action="<?php echo $official_server_root.'/apis-list' ?>" target="_blank">
         <input type="hidden" name="token" value="<?php echo $api->get_token() ?>" />
         <input type="submit" value="Debugage"  class="formlink" style="color:grey"
                title="Lien spécial pour le débugage - Ignorez-le sauf si un administrateur du jeu vous le demande." />

@@ -13,7 +13,9 @@ header('content-type:application/json');
 $type       = filter_input(INPUT_GET, 'type',   FILTER_SANITIZE_STRING);
 $sort       = filter_input(INPUT_GET, 'sort',   FILTER_SANITIZE_STRING);
 
-$api            = new ZombLib(official_server_root().'/api');
+$server = new Server();
+$official_server_root = $server->official_server_root();
+$api            = new ZombLib($official_server_root.'/api');
 $htmlLogAttacks = new HtmlLogAttacks();
 $html_attacks   = [];
 
