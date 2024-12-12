@@ -138,9 +138,9 @@ if (document.getElementById('map') !== null) {
     
     // Server-sent events to update the map in real time
     var timestamp = Math.floor(Date.now()/1000);
-    setTimeout(function() {
+    setTimeout(async function() {
         // NB: keep the ".php" extension, otherwise it will give a "CORS error" with the local API version
-        let evtSource = new EventSource(getOfficialServerRoot()+"/api/sse.php");
+        let evtSource = new EventSource(await getOfficialServerRoot()+"/api/sse.php");
         // NB: common pitfall: the unamed SSE events (= no "event:" line in the SSE message)
         // can be catched in javascript with "evtSource.onmessage". But when the events are named,
         // like Azimutant does, they *must* be catched with addEventListener(). 

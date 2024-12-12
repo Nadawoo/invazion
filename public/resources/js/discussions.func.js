@@ -172,9 +172,9 @@ function toggleSendform(event) {
  *                            direct the user directly on it.
  * @return {String}
  */
-function urlDiscussion(discussionId, messageId="") {
+async function urlDiscussion(discussionId, messageId="") {
     
-    return getOfficialServerRoot()+'/discuss/topic?topic='+discussionId+'#msg'+messageId;
+    return await getOfficialServerRoot()+'/discuss/topic?topic='+discussionId+'#msg'+messageId;
 }
 
 

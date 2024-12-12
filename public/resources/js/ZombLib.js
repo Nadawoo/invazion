@@ -6,13 +6,50 @@
 
 /**
  * Returns the URL of the central server of Azimutant (which contains the APIs).
- * No need to change this unless you are the main developer of Azimutant.
  */
-function getOfficialServerRoot() {
+async function getOfficialServerRoot() {
     
-    return (window.location.hostname === "invaziongame.localhost"
-        ? "http://invazion.localhost" 
-        : "https://invazion.nadazone.fr");
+    const configs = await getConfigFile();
+    let result = false;
+
+    if (window.location.hostname === filterUrlHostName(configs.dev.gui_server_root)) {
+        result = configs.dev.api_server_root;
+    } else if (window.location.hostname === filterUrlHostName(configs.prod.gui_server_root)) {
+        result = configs.prod.api_server_root;
+    } else {
+        result = false;
+    }
+
+    return result;
+}
+
+
+/**
+ * Extract the host name from an url
+ * Ex: "http://mydomain.com" => "mydomain.com"
+ * 
+ * @param {string} fullUrl
+ * @returns {String}
+ */
+function filterUrlHostName(fullUrl) {
+    
+    const url = new URL(fullUrl);
+    return url.hostname;
+}
+
+
+/**
+ * Get the configuration set for the server (dev/prod)
+ * @returns {unresolved}
+ */
+async function getConfigFile() {
+    
+    try {
+        const response = await fetch('../config.json');
+        return await response.json();
+    } catch (error) {
+        console.error('[Azimutant] Error while loading configuration file :', error);
+    }
 }
 
 
@@ -29,7 +66,7 @@ function getOfficialServerRoot() {
  */
  async function callApi(method, apiName, params) {
     
-    let root   = getOfficialServerRoot(),
+    let root   = await getOfficialServerRoot(),
         apiUrl = `${root}/api/${apiName}`,
         option = {
             method: method,
