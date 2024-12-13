@@ -546,6 +546,8 @@
     width: 1.5em;
     font-size:4em;
     background:#EF5350;
+    border:3px outset white;
+    outline:1px solid lightgrey;
     border-radius:50%;
 }
 #city_defenses .alert_icon {

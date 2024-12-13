@@ -828,11 +828,11 @@ class HtmlCityEnclosure
             <a href="#popdefenses" id="defenses_bar" onclick="populateDefensesDetails()">
                 <label>┌ Défenses de la ville</label>
                 <div class="bar_wrapper">
-                    <div class="bar_icon">
+                    <div class="bar_icon z-depth-3">
                         <img src="resources/img/free/city.png" height="24">
                     </div>
                     
-                    <div style="width:100%">
+                    <div style="width:100%" class="z-depth-3">
                         <div class="bar_background" style="width:'.$defense_percent.'%;">
                             <span class="number">'.$total_defenses.'</span>
                         </div>'
@@ -841,7 +841,7 @@ class HtmlCityEnclosure
                         </div>
                     </div>
                     
-                    <div class="bar_icon bar_icon_zombies">
+                    <div class="bar_icon bar_icon_zombies z-depth-3"">
                         <img src="resources/img/motiontwin/zombie.gif" height="24">
                     </div>
                 </div>
