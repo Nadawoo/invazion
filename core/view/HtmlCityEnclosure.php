@@ -69,7 +69,7 @@ class HtmlCityEnclosure
                 : $this->city_submenu_item('empty', '');
             // #102 = the city door 
             $submenu_door = in_array(102, $completed_buildings_ids)
-                ? $this->city_submenu_item('city_door', 'Porte')
+                ? $this->city_submenu_item('city_door', 'Porte', 'copyright/city_door_64px')
                 : $this->city_submenu_item('empty', '');
             
             $city_menu = '
@@ -77,7 +77,7 @@ class HtmlCityEnclosure
                     '.$this->city_submenu_item('city_storage', 'Dépôt').'
                     '.$this->city_submenu_item('city_constructions', 'Chantiers').'
                     '.$this->city_submenu_item('city_fellows', 'Habitants').'
-                    '.$this->city_submenu_item('explore', 'Explorer').'
+                    '.$this->city_submenu_item('explore', 'Explorer', 'free/map.png').'
                 </div>
                 <div class="row" style="font-size:0.7em;margin-bottom:1em">
                     '.$submenu_well.'
@@ -102,14 +102,14 @@ class HtmlCityEnclosure
     }
     
     
-    private function city_submenu_item($item_alias, $item_name) {
+    private function city_submenu_item($item_alias, $item_name, $icon_filename=null) {
         
         // Special images
         if($item_alias === 'empty') {
             return '<div class="item" style="background:none;cursor:default"></div>';
         }
         
-        $icon_path = ($item_alias === 'explore') ? 'free/map.png' : 'copyrighted/'.$item_alias.'.png';
+        $icon_path = ($icon_filename !== null) ? $icon_filename : 'copyrighted/'.$item_alias.'.png';
         
         return '<div class="item" style="background-image:url(\'resources/img/'.$icon_path.'\')" '
                   . 'onclick="switchCitySubmenu(\''.$item_alias.'\')">'
