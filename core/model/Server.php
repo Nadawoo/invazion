@@ -11,7 +11,8 @@ class Server {
      */
     function get_config_file() {
         
-        $file_contents = file_get_contents('../public/config.json');
+        $root = filter_var($_SERVER['DOCUMENT_ROOT'], FILTER_SANITIZE_SPECIAL_CHARS);
+        $file_contents = file_get_contents($root.'/config.json');
         return json_decode($file_contents);
     }
     
