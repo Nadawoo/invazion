@@ -582,7 +582,7 @@ class HtmlCityEnclosure
                 $this->block_construction_foldable($building_id, $building['name'], $building['defenses'],
                                                    $building['icon_path'], $building['icon_html'], 
                                                    $status, $child_level, $buildings_components, $items_caracs, $zone_items).'
-                <tr id="building'.$building_id.'" class="folded">
+                <tr id="building'.$building_id.'" class="folded hidden">
                     <td>
                         <ul class="tabs">
                             <li class="tab"><a href="#tabDescr'.$building_id.'" class="active">Description</a></li>

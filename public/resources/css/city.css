@@ -212,7 +212,7 @@
 #constructions .items_list {
     flex-direction: column;
     gap:4px;
-    padding:1em 0;
+    padding:1em 0 0 0.5em;
     /*background:#fbeee6;*/
 }
 #constructions .item_label {
@@ -406,11 +406,6 @@
     min-width:1.8em;
     border-top-left-radius:   8em;
     border-bottom-left-radius:8em;
-}
-
-.city_block .folded {
-    display:none;
-    margin:0 0.2em 1.5em 0;
 }
 
 /* Suggestions of constructions */
