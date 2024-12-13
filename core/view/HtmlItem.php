@@ -114,9 +114,12 @@ class HtmlItem {
             // Handles the anormal case where an item ID is not among the list of items.
             // Possible when an item on a map is not in the items set for this map.
             $item_caracs = isset($items_caracs[$item_id]) ? $items_caracs[$item_id] : set_default_variables('item', $item_id);
-            // Si le citoyen possède un objet en plusieurs exemplaires, on le fait 
-            // apparaître autant de fois dans le sac.
-            $result .= str_repeat($htmlItem->item($item_caracs, $item_id), $item_amount);
+            // Don't display in the bag the items tagged "hideInBag" (tag #6)
+            if(!in_array(6, $item_caracs['tags'])) {
+                // Si le citoyen possède un objet en plusieurs exemplaires, on le fait 
+                // apparaître autant de fois dans le sac.
+                $result .= str_repeat($htmlItem->item($item_caracs, $item_id), $item_amount);
+            }
         }
         
         return $result;

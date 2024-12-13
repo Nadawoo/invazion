@@ -52,6 +52,7 @@ function set_default_variables($variable, $item_id=null) {
             'is_weapon'         => '',
             'healing_wound'     => '',
             'items_inside_min'  => '',
+            'tags'              => [],
         ];
     
     return $default[$variable];
