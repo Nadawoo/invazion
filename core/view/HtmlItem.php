@@ -102,27 +102,96 @@ class HtmlItem {
      *                           ...]
      * @param array $items_caracs All the characteristics of the items, as returned by
      *                            the API "configs"
+     * @param array $only_tags One or several tags to use for filtering.
+     *                         Only the items owning these tags will be keeped.
+     * @param array $all_but_tags One or several tags to use for filtering.
+     *                            The items owning these tags will be removed.
      * @return string
      */
-    function items($bag_items, $items_caracs)
+    function items($bag_items, $items_caracs, $only_tag=null, $all_but_tag=null)
     {
         
         $htmlItem = new HtmlItem();
         $result = '';
         
-        foreach ($bag_items as $item_id=>$item_amount) {
+        $filtered_bag_items = $bag_items;
+        if($only_tag !== null) {
+            $filtered_bag_items = $this->filter_only_tags($filtered_bag_items, $items_caracs, $only_tag);
+        }
+        if($all_but_tag !== null) {
+            $filtered_bag_items = $this->filter_all_but_tags($filtered_bag_items, $items_caracs, $all_but_tag);
+        }
+        
+        foreach($filtered_bag_items as $item_id=>$item_amount) {
             // Handles the anormal case where an item ID is not among the list of items.
             // Possible when an item on a map is not in the items set for this map.
             $item_caracs = isset($items_caracs[$item_id]) ? $items_caracs[$item_id] : set_default_variables('item', $item_id);
-            // Don't display the action points in the bag
-            if(!in_array('actionPoints', $item_caracs['tags'])) {
-                // Si le citoyen possède un objet en plusieurs exemplaires, on le fait 
-                // apparaître autant de fois dans le sac.
-                $result .= str_repeat($htmlItem->item($item_caracs, $item_id), $item_amount);
+            // Si le citoyen possède un objet en plusieurs exemplaires, on le fait 
+            // apparaître autant de fois dans le sac.
+            $result .= str_repeat($htmlItem->item($item_caracs, $item_id), $item_amount);
+        }
+        
+        return $result;
+    }
+    
+    
+    /**
+     * Filter the items by keeping only the ones owning the given tags.
+     * 
+     * @param array $bag_items The list of items, as returned by the Azimutant's API
+     *                         (pairs item_id=>item_amount)
+     * @param array $items_caracs The characteristics of the items, as returned 
+     *                            by the "configs" API of Azimutant
+     * @param array $only_tags One or several tags to use for filtering.
+     *                         Only the items owning these tags will be keeped.
+     * @return array
+     */
+    private function filter_only_tags($bag_items, $items_caracs, $only_tags=null) {
+        
+        $result = [];
+        
+        foreach($bag_items as $item_id=>$item_amount) {
+            // Handles the anormal case where an item ID is not among the list of items.
+            // Possible when an item on a map is not in the items set for this map.
+            $item_caracs = isset($items_caracs[$item_id]) ? $items_caracs[$item_id] : set_default_variables('item', $item_id);
+            
+            foreach($only_tags as $tag) {
+                if(in_array($tag, $item_caracs['tags'])) {
+                    $result[$item_id] = $item_amount;
+                }
             }
         }
         
         return $result;
+    }
+    
+    
+    /**
+     * Filter the items by removing the ones owning the given tags.
+     * 
+     * @param array $bag_items The list of items, as returned by the Azimutant's API
+     *                         (pairs item_id=>item_amount)
+     * @param array $items_caracs The characteristics of the items, as returned 
+     *                            by the "configs" API of Azimutant
+     * @param array $all_but_tags One or several tags to use for filtering.
+     *                            The items owning these tags will be removed.
+     * @return type
+     */
+    private function filter_all_but_tags($bag_items, $items_caracs, $all_but_tags) {
+        
+        foreach($bag_items as $item_id=>$item_amount) {
+            // Handles the anormal case where an item ID is not among the list of items.
+            // Possible when an item on a map is not in the items set for this map.
+            $item_caracs = isset($items_caracs[$item_id]) ? $items_caracs[$item_id] : set_default_variables('item', $item_id);
+            
+            foreach($all_but_tags as $tag) {
+                if(in_array($tag, $item_caracs['tags'])) {
+                    unset($bag_items[$item_id]);
+                }
+            }
+        }
+        
+        return $bag_items;
     }
     
     

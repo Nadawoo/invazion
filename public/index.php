@@ -369,7 +369,8 @@ echo $html['json_configs'];
         <section id="personal_block_wrapper" class="z-depth-1 animate__animated animate__slideInDown hidden">
             <div id="personal_block">
                 <?php
-                echo $statusbar->status_bar($citizen['bag_items'],
+                echo $statusbar->status_bar($configs['items'],
+                                            $citizen['bag_items'],
                                             $citizen['city_id'],
                                             $citizen['is_wounded'],
                                             count($zone_fellows)-1

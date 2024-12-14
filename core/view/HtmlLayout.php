@@ -607,7 +607,7 @@ class HtmlLayout extends HtmlPage
                     <div class="name">Sac</div>
                 </div>
                 <ul class="items_list hidden">
-                    ' . $htmlItem->items($bag_items, $items_caracs) . '
+                    ' . $htmlItem->items($bag_items, $items_caracs, null, ['actionPoints', 'status']) . '
                     ' . $htmlItem->empty_slots($nbr_free_slots) . '
                 </ul>
             </div>';

@@ -12,7 +12,9 @@ class HtmlStatusBar {
      * @param int $nbr_zone_fellows The number of humans in the citizen's zone
      * @return string HTML
      */
-    public function status_bar($bag_items, $city_id, $is_wounded, $nbr_zone_fellows) {
+    public function status_bar($items_caracs, $bag_items, $city_id, $is_wounded, $nbr_zone_fellows) {
+        
+        $htmlItem = new HtmlItem();
         
         $status_my_caracs = $this->status_image("&#x1F464;", null, null,
                                 "Mes caractéristiques de base",
@@ -45,6 +47,7 @@ class HtmlStatusBar {
                 <ul class="items_list hidden">'.
                     $status_my_caracs.
                     $status_defenses.
+                    $htmlItem->items($bag_items, $items_caracs, ['status']).
                     $status_wounded.
                     $this->status_empty().
                     $this->status_empty().
