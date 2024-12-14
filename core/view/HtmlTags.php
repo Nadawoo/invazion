@@ -34,8 +34,8 @@ class HtmlTags {
         $result = '';
         
         if(isset($items_caracs['tags'])) {
-            foreach($items_caracs['tags'] as $tag_id) {
-                $result .= $this->get_tag($this->tags_names[$tag_id], $format).$separator;
+            foreach($items_caracs['tags'] as $tag_name) {
+                $result .= $this->get_tag($tag_name, $format).$separator;
             }
         }
         
