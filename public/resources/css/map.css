@@ -282,9 +282,10 @@ map_body_wrapper {
     line-height:130%;
 }
 #statusbar .item_label img {
-    height:90%;
+    height:1.4em;
     width:100%;
-    outline:3px solid red;
+    display:flex;
+    align-items:center;
     border-radius:0.2em;
 }
 #apbar .actionpoints {

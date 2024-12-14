@@ -51,6 +51,9 @@ class HtmlStatusBar {
                     $status_wounded.
                     $this->status_empty().
                     $this->status_empty().
+                    $this->status_empty().
+                    $this->status_empty().
+                    $this->status_empty().
                     $status_fellows.'
                 </ul>
             </div>';
