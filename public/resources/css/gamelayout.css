@@ -691,15 +691,16 @@ form[name="end_cycle"] button {
 }
 #round_actions .alert_icon {
     position:absolute;
-    top:-0.2rem;
-    right:-0.15rem;
+    top:  0.25rem;
+    right:0.75rem;
     background:none;
-    font-size:1.3em;
+    font-size:2em;
     text-shadow:0px 0px 5px black;
     opacity:0.1; /* To play the animation in the right way */
     animation: alert_blinker 1.5s linear infinite;
     animation-direction: alternate;
     z-index:10;
+    pointer-events:none;
 }
 /* The maskable frames which contain the actions buttons */
 #actions {
@@ -1225,7 +1226,6 @@ input[type="submit"] {
 /* Discreet text to say that the zone has no zombies or no citizens, etc */
 .greytext {
     text-align:center;
-    font-style:italic;
     color:grey;
 }
 

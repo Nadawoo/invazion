@@ -231,6 +231,36 @@ function getZonePositions(zoneHtmlId) {
 
 
 /**
+ * Activate the appropriate map when activating one of the round action buttons.
+ * Ex: Display the number of zombies in the zones when clicking on the "zombie" 
+ * button.
+ * 
+ * @param {string} actionAlias The HTML id of one of the round action buttons
+ *                             (move, dig, zombies, citizens, build)
+ * @returns {undefined}
+ */
+function switchMapView(actionAlias) {
+    
+    if(actionAlias === "move") {
+        resetMapView();
+    } else if(actionAlias === "dig") {
+        resetMapView();
+        toggleMapItemsView();
+    } else if(actionAlias === "zombies") {
+        resetMapView();
+        toggleMapZombiesView();
+        toggleMapItemMarker(106);
+    } else if(actionAlias === "citizens") {
+        resetMapView();
+    } else if(actionAlias === "build") {
+        resetMapView();
+    } else {
+        console.log("[Azimutant] Error: unknown parameter value in switchMapView()");
+    }
+}
+
+
+/**
  * Displays colors above map zones to show the repartition of the zombies
  * 
  * @returns {undefined}
@@ -522,7 +552,9 @@ function resetMapView() {
     
     hide("#map .location");
     
-    display(["#views_bar, #attack_bar", "#tasks_button"]);
+    if(window.isActionViewActive !== true) {
+        display(["#views_bar, #attack_bar", "#tasks_button"]);
+    }
     
     window.isMapNeighborhoodViewActive = true;
     toggleMapNeighborhoodView();
@@ -649,6 +681,10 @@ function switchToMapView() {
              "#map .nbr_defenses", "#map .bubble"]);
     // Restore the illumination on the button which displays the map navigation
     document.querySelector("#views_bar .map").classList.add("active");  
+    // Desactivate the zombies/items view eventually activated while player in action mode
+    resetMapView();
     
     document.querySelector("#map").classList.remove("action_view");
+    
+    window.isActionViewActive = false;
 }

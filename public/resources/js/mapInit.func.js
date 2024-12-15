@@ -366,6 +366,8 @@ function switchToActionView() {
     document.querySelector("#map").classList.add("action_view");
     
     updateActionBlocks();
+    
+    window.isActionViewActive = true;
 }
 
 
