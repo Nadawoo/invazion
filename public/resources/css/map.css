@@ -204,8 +204,8 @@ map_body_wrapper {
 #apbar.inactive {
     opacity:0.3;
 }
-#statusbar .icon,
-#bagbar .icon {
+#statusbar .block_icon .icon,
+#bagbar .block_icon .icon {
     margin-top:-0.15em;
     font-size:1.4em;
 }
