@@ -100,7 +100,7 @@ if (document.getElementById('map') !== null) {
     if(isCitizenInGame() === true) {
         setTimeout(function() {
             var myCityZoneId = getMyCityZoneId();
-
+            centerMapOnMe();
             // Add a location sign above the city of the player
             addCityLocationMarker(myCityZoneId);
             // Start in the "action" mode (centered on the current player)
