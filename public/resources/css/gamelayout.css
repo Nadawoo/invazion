@@ -790,7 +790,7 @@ legend {
 }
 
 /* The player's bag */
-#items_bag .form_pickup {
+#bagbar .form_pickup {
     display:none; /* Hide the "pick up" button if item already in bag */
 }
 #items_ground .form_drop {
