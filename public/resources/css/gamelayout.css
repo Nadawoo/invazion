@@ -864,6 +864,7 @@ legend {
 }
 .item_label.empty_slot {
     background-color:#fafafa;
+    border:1px solid lightgrey;
 }
 /* The tooltip for the item */
 .item_label .details {

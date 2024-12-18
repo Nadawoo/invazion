@@ -11,7 +11,19 @@
  */
 function toggleBag() {
     
-    toggle("#bagbar .items_list");
+    let citizenId = document.querySelector("#citizenId").innerText;
+    let bagItems = _citizens[citizenId]["bag_items"];
+    let bagItemsSelector = "#bagbar .items_list";
+    
+    // Remove the status and the AP from the bag (not real items)
+    let allBagItemsButTags = filterAllItemsButTags(bagItems, _configsItems, ["actionPoints", "status"]);
+    
+    // Populate the list of items in the bag if not already done
+    if(document.querySelector(bagItemsSelector).innerText === "") {
+        populateItemsList(bagItemsSelector, allBagItemsButTags, _citizens[citizenId]["bag_size"]);
+    }
+    
+    toggle(bagItemsSelector);
     document.querySelector("#bagbar").classList.remove("inactive");
     
     hide("#statusbar .items_list");
@@ -28,6 +40,36 @@ function toggleStatus() {
     hide("#bagbar .items_list");
     document.querySelector("#bagbar").classList.toggle("inactive");
     document.querySelector("#apbar").classList.toggle("inactive");
+}
+
+
+/**
+ * Filter the items by removing the ones owning the given tags.
+ * 
+ * @param {array} bagItems The list of items, as returned by the Azimutant's API
+ *                         (pairs item_id=>item_amount)
+ * @param {array} itemsCaracs The characteristics of the items, as returned 
+ *                            by the "configs" API of Azimutant
+ * @param {array} allButTags One or several tags to use for filtering.
+ *                           The items owning these tags will be removed.
+ * @return {array}
+ */
+function filterAllItemsButTags(bagItems, itemsCaracs, allButTags) {
+     
+    for(let [itemId, itemAmount] of Object.entries(bagItems)) {
+        // Handles the anormal case where an item ID is not among the list of items.
+        // Possible when an item on a map is not in the items set for this map.
+//        let item_caracs = isset(items_caracs[$item_id]) ? items_caracs[$item_id] : set_default_variables('$item', item_id);
+        let item_caracs = itemsCaracs[itemId];
+        
+        allButTags.forEach((tag) => {
+            if(item_caracs['tags'].includes(tag)) {
+                delete bagItems[itemId];
+            }
+        });
+    }
+    
+    return bagItems;
 }
 
 
@@ -554,23 +596,44 @@ async function dig() {
     
     let token = getCookie('token');
     
-    // Calls the API to dig
+    // Call the API to dig
     let json = await callApi("GET", "zone", `action=dig&token=${token}`);
     
-    // Displays the result of the digging in pop-up
+    // Display the result of the digging in pop-up
     document.querySelector("#popsuccess").classList.add("force_visibility");
     document.querySelector("#popsuccess .content").innerHTML = nl2br(json.metas.error_message);
     
     if(json.metas.error_code === "success") {
-        // Hides the message "There are no items on the ground..."
+        // Hide the message "There are no items on the ground..."
         hide("#items_ground .greytext");
-        // Adds an HTML entry in the ground items list
-        for(let itemId of Object.values(json.datas.found_items_ids)) {
-            htmlAddGroundItem(itemId, _configsItems[itemId], 1);
-        }
-        // Makes the digging button inactive
+        // Add the new item(s) in the ground items list
+        newItemsWithAmounts = mergeItemsIdsWithAmounts(json.datas.found_items_ids);
+        populateItemsList("#items_ground .items_list", newItemsWithAmounts);
+        // Make the digging button inactive
         updateDigButtons(1);
     }
+}
+
+
+/**
+ * From a list of items IDs, eventually with duplications, bind the amount to each item:
+ * - "1" if only one occurrency of the ID
+ * - The amount of occurrencies if the item ID is several times in the list
+ * Ex: [52, 67, 67, 104] => {52:1, 67:2, 104:1}
+ * 
+ * @param {array} itemsIds The list of items IDs
+ *                         Ex: [52, 67, 67, 104]
+ * @returns {array} The pairs item ID / item amount
+ *                  Ex: {52:1, 67:2, 104:1}
+ */
+function mergeItemsIdsWithAmounts(itemsIds) {
+    
+    let itemsWithAmounts = {};
+    itemsIds.forEach(itemId => {
+        itemsWithAmounts[itemId] = (itemsWithAmounts[itemId] === undefined) ? 1 : itemsWithAmounts[itemId]+1;
+    });
+    
+    return itemsWithAmounts;
 }
 
 

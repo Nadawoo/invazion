@@ -208,7 +208,7 @@ echo $html['json_configs'];
        . $popup->template_popsmartphone($html['smartphone']);
     ?>
     <template id="tplEmptySlot">
-        <li class="empty_slot"></li>
+        <li class="item_label empty_slot"></li>
     </template>
     <template id="tplTooltip">
         <div class="bubble">

@@ -29,20 +29,6 @@ class HtmlActionBlocks {
                 
                 &#x270B;&#x1F3FC; <strong>Objets au sol</strong>
                     '.$html_ground_items.'
-                    
-                    <!--
-                    <div id="items_ground">
-                        <p class="greytext">
-                            Aucun objet au sol pour l\'instant. Vous allez devoir fouiller...
-                        </p>
-                        
-                        <input type="hidden" name="api_name" value="zone">
-                        <input type="hidden" name="action" value="pickup">
-                        
-                        <ul class="items_list" style="margin-left:1.5rem;"
-                            data-coordx="" data-coordy=""></ul>
-                    </div>
-                    -->
             </fieldset>';
     }
     

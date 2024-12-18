@@ -285,7 +285,7 @@ async function updateBlockActionCitizens(coordX, coordY) {
  */
 async function updateBlockActionDig(mapId, coordX, coordY) {
     
-    let block = document.querySelector('#items_ground .items_list');
+    let block = document.querySelector("#items_ground .items_list");
     
     // Update the data only one time per zone
     if(block.dataset.coordx !== coordX || block.dataset.coordy !== coordY
@@ -305,14 +305,7 @@ async function updateBlockActionDig(mapId, coordX, coordY) {
         else {
             // Hide the default text if there are items
             hide("#items_ground .greytext");
-            
-            for(let [itemId, itemAmount] of Object.entries(_myZone.items)) {
-                // Adds the item in the items list
-                let item_caracs = _configsItems[itemId];
-                for(let i=0; i<itemAmount; i++) {
-                    htmlAddGroundItem(itemId, item_caracs);
-                }
-            }
+            populateItemsList("#items_ground .items_list", _myZone.items);
         }
         
         // Useful to know if the block is up-to-date after moving the player
@@ -323,15 +316,47 @@ async function updateBlockActionDig(mapId, coordX, coordY) {
 
 
 /**
+ * Writes the HTML for the items in the bag or in the ground.
+ * 
+ * @param {string} domSelector The path in the DOM where to add the items
+ * @param {array} itemsAmounts The list of items. Each item is a pair {itemId=>itemAmount}
+ * @param {int} nbrSlots The total number of available slots
+ * @returns {undefined}
+ */
+function populateItemsList(domSelector, itemsAmounts, nbrSlots=null) {
+    
+    let nbrItemsTotal = 0;
+    
+    for(let [itemId, itemAmount] of Object.entries(itemsAmounts)) {
+        // Adds the item in the items list
+        let item_caracs = _configsItems[itemId];
+        for(let i=0; i<itemAmount; i++) {
+            htmlAddGroundItem(domSelector, itemId, item_caracs);
+        }
+        nbrItemsTotal += itemAmount;
+    }
+    
+    // Add the empty slots in the bag
+    if(nbrSlots !== null) {
+        for(let i=0; i<(nbrSlots-nbrItemsTotal); i++) {
+            let tplEmptySlot = document.querySelector("#tplEmptySlot").content.cloneNode(true);
+            document.querySelector("#bagbar .items_list").appendChild(tplEmptySlot);
+        }
+    }
+}
+
+
+/**
  * Adds an HTML entry in the ground items list
  * 
+ * @param {string} domSelector The path in the DOM where to add the items
  * @param {int} itemId The ID of the item in the game (can't be your homemade ID)
  * @param {array} itemCaracs The caracteristics of the item, as return 
  *                           by the "item" API (name, description...)
  */
-function htmlAddGroundItem(itemId, itemCaracs) {
+function htmlAddGroundItem(domSelector, itemId, itemCaracs) {
     
-    document.querySelector('#items_ground .items_list').prepend(htmlItem(itemId, itemCaracs));
+    document.querySelector(domSelector).prepend(htmlItem(itemId, itemCaracs));
 }
 
 
