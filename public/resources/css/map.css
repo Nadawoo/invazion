@@ -298,7 +298,6 @@ map_body_wrapper {
     align-items:center;
     color:whitesmoke;
     border: 4px outset orange;
-    border-radius: 50%;
     outline:2px outset #fbeee6;
     background: radial-gradient(circle at 50% 5%,
                                 rgba(255, 255, 255, 1),

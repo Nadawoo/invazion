@@ -166,28 +166,27 @@
 #attack_bar {
     position:relative;
     display:flex;
-    align-items:center;
+    align-items:end;
     justify-content:space-between;
     width:100%;
     max-width: 51.25em;
-    max-height:3.5rem;
+    max-height:3.6rem;
+    padding:0.2em;
     background:linear-gradient(to top, #17202A, #34495E); /*#4a235a*/
-    border-top:1px ridge dimgrey;
+    border-top:1px ridge darkgrey;
     color:lightgrey;
-    box-shadow:3px 3px 8px black;
+    box-shadow:0 -3px 5px dimgrey;
     z-index:50;
 }
 #attack_bar ::selection {
     background:none;
 }
 #appMenu,
-#dayclock,
 #showWall {
     display:flex;
     justify-content:center;
     align-items: center;
     height:3.2rem;
-    margin:0.1rem;
     border:2px outset white;
     color:white;
     box-shadow: 3px 3px 5px black;
@@ -204,22 +203,37 @@
     font-size: 1.8em;
     margin-top:0.2em;
 }
-#dayclock {
+#tuto_dayclock {
+    display:flex;
+    align-items:end;
+    gap:0.3em;
+}
+#tuto_dayclock a {
     position:relative;
+    display:flex;
     flex-direction:column;
-    font-size:1.3em;
-    height: 5rem;
-    width:  5rem;
-    margin-top:-1.1em;
-    padding-bottom: 0.2em;
-    line-height:1.4em;
+    justify-content:center;
+    align-items:center;
+    font-size:0.7em;
+    height:4rem;
+    width: 4rem;
     background: radial-gradient(circle at 50% 5%,
                                 rgba(255, 255, 255, 1),
                                 darkred,
                                 rgba(0, 0, 50, 0.8));
     border:2px outset white;
-    border-radius:2em;
+    border-radius:50%;
+    outline:1px solid #34495E;
+    box-shadow:0 -5px 5px dimgrey;
     color:white;
+}
+a#dayclock {
+    font-size:1.3em;
+    height:5rem;
+    width: 5rem;
+    padding-bottom:0.2em;
+    line-height:1.35em;
+    border-width:3px;
 }
 #dayclock .dot_number {
     position:absolute;
@@ -231,12 +245,16 @@
     justify-content:center;
     align-items:center;
     background:darkred;
-    border:2px outset white;
+    border:3px outset white;
     border-radius:50%;
     text-align: center;
 }
-#current_day {
+#dayclock .material-icons {
+    font-size:1em;
+}
+#tuto_dayclock .number {
     font-size:1.6em;
+    font-weight:inherit;
 }
 #showWall {
     padding:0 0.3rem;
