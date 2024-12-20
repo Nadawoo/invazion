@@ -134,10 +134,11 @@ async function addCitiesOnMap(mapId) {
         else if(city.city_type_id !== "undefined") {
             
             let html = "";
-//            if(city.city_type_id === undiscoveredBuildingId) {
-//                html = "";
-//            }
-            if(parseInt(zone.dataset.cyclelastvisit) < getCurrentCycle()) {
+            
+            if(Number(zone.dataset.cyclelastvisit) === 0) {
+                html = "";
+            }
+            else if(Number(zone.dataset.cyclelastvisit) < getCurrentCycle()) {
                 html = `<span class="nbr_defenses diggable pulse">&#x26CF;&#xFE0F;</span>`;
             }
             else if(nbrItems > 0) {
