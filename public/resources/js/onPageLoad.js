@@ -117,6 +117,12 @@ if (document.getElementById('map') !== null) {
             // Add the number of defenses required in the tasks list
             let tasks = new Tasks();
             tasks.populateTaskDefenses();
+            
+            // Ask for chosing a citizen speciality (builder, digger...)
+            let citizenId = Number(document.querySelector("#citizenId").innerText);
+            if(Number(_citizens[citizenId]["last_specialization_cycle"]) < getCurrentCycle()) {
+                window.location.hash = "#popspecialize";
+            }
         }, 1000);
     } else {
         document.querySelector("#views_bar").classList.add("hidden");

@@ -181,7 +181,7 @@ unset($maps, $citizens, $citizens_by_coord);
 
 <?php
 /**
- * Start of the HTML page
+ * Beginning of the HTML page
  */
 echo $layout->page_header($citizen['user_id'], $citizen['citizen_id'], $citizen['citizen_pseudo']);
 echo $html['hidden_player_data'];
@@ -191,9 +191,15 @@ echo $html['json_configs'];
 ?>
 
 <section id="popups">
-    <?php echo $popup->all_popups($msg_popup, $citizen['map_id'], $citizen['citizen_id'], 
-                       $configs['map'], $speciality_caracs,
-                       $healing_items, $is_custom_popup_visible) 
+    <?php echo $popup->all_popups(  $msg_popup,
+                                    $citizen['map_id'],
+                                    $citizen['citizen_id'], 
+                                    $configs['map'],
+                                    $specialities,
+                                    $speciality_caracs,
+                                    $healing_items,
+                                    $is_custom_popup_visible
+                                    ); 
     ?>
 </section>
 
@@ -219,19 +225,7 @@ echo $html['json_configs'];
         </div>
     </template>
 </section>
-    
-    <?php
-    // Asks for chosing a citizen speciality (builder, digger...)
-    if ($citizen['citizen_id'] !== null and $citizen['last_specialization_cycle'] < $current_cycle) {
-        ?>
-        <fieldset id="citizen_caracs">
-            <legend>Action du jour</legend>
-            <?php echo $layout->block_speciality_choice($specialities) ?>
-        </fieldset>
-        <?php
-    } ?>
-    
-    
+
 <div id="game_container" data-section="game">
     
     <?php

@@ -22,15 +22,22 @@ class HtmlPopup
      * @param int $map_id
      * @param int $citizen_id
      * @param array $configs_map
+     * @param array $specialities
      * @param array $speciality_caracs
      * @param array $healing_items
      * @param bool $is_custom_popup_visible
      * 
      * @return string HTML
      */
-    public function all_popups($msg_popup, $map_id, $citizen_id, 
-                    $configs_map, $speciality_caracs,
-                    $healing_items, $is_custom_popup_visible) {
+    public function all_popups( $msg_popup,
+                                $map_id,
+                                $citizen_id, 
+                                $configs_map,
+                                $specialities,
+                                $speciality_caracs,
+                                $healing_items,
+                                $is_custom_popup_visible
+                                ) {
         
         return $this->predefined('poppresentation', '')
             . $this->predefined('poptasks', 'Objectifs')
@@ -38,6 +45,7 @@ class HtmlPopup
             . $this->predefined('popdayclock', '', ['map_id'=>$map_id, 'current_cycle'=>$configs_map['current_cycle']])
             . $this->predefined('popvault',   '')
             . $this->predefined('popitems', '')
+            . $this->predefined('popspecialize', 'Action du jour', $specialities)
             . $this->predefined('popmycaracs', 'Mes caractéristiques', $speciality_caracs)
             . $this->predefined('popwounded', '', ['citizen_id'=>$citizen_id, 'healing_items'=>$healing_items])
             . $this->predefined('popcontrol', '&#8505;&#65039; Le contrôle de zone')
@@ -869,6 +877,55 @@ class HtmlPopup
         return "<p>&#x1F5FA;&#xFE0F; Vous êtes incarné sur la <strong>carte n° ".$params['map_id']."</strong>.<p>
                 <p>&#x1F551; Vous y vivez actuellement votre <strong>".$params['current_cycle']."<sup>e</sup> jour</strong> de survie.</p>
                 <p>".$buttons->button('end_cycle', false)."</p>";
+    }
+    
+    
+    private function popspecialize($specialities) {
+        
+        $buttons = new HtmlButtons();
+        
+        $html_specialities = '';
+        foreach($specialities as $alias=>$speciality) {
+            
+            $html_specialities .= '
+                <li>'.$buttons->button('specialize_'.$alias, '', 'inline').'&nbsp;
+                    [<abbr title="Les points d\'action vous permettent d\'explorer le désert, construire des bâtiments et d\'autres actions encore.">Points d\'action</abbr>&nbsp;:
+                                  '. $speciality['action_points'].'&nbsp; |&nbsp;
+                    <abbr title="Plus votre sac est grand, plus vous pouvez transporter d\'objets en même temps.">Sac</abbr>&nbsp;:
+                    '.plural($speciality['bag_size'], 'objet').']
+                    <div style="margin-left:0.5em;margin-bottom:0.5em;font-style:italic">'.$speciality['descr_purpose'].'</div>
+                </li>';
+        }
+        
+        return '
+                <p>Choisissez la caractéristique à améliorer sur votre citoyen :</p>
+                
+                <ul class="collapsible">
+                    <li>
+                        <div class="collapsible-header"><strong>Choisir ma spécialité</strong></div>
+                        <div class="collapsible-body">
+                            <ul id="specialities">
+                                '.$html_specialities.'
+                            </ul>
+                        </div>
+                    </li>
+                    
+                    <!--
+                    <li>
+                        <div class="collapsible-header"><strong>Améliorer une capacité</strong></div>
+                        <div class="collapsible-body">
+                            <ul id="capacities">
+                                <li>'.$buttons->button('upgrade_camouflage', '', 'inline').'<br>
+                                    &nbsp;&nbsp;&nbsp;Permet de vous dissimuler aux yeux des autres humains
+                                </li>
+                                <li>'.$buttons->button('upgrade_vision', '', 'inline').'<br>
+                                    &nbsp;&nbsp;&nbsp;Permet de percer le camouflage des humains et des bâtiments
+                                </li>            
+                            </ul>
+                        </div>
+                    </li>
+                    -->
+                </ul>';
     }
     
     

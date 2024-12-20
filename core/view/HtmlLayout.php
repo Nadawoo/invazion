@@ -122,53 +122,6 @@ class HtmlLayout extends HtmlPage
     
     
     /**
-     * Boutons pour choisir sa spécialité citoyenne
-     * (explorateur, fouineur, bâtisseur)
-     * 
-     * @param array $specialities Les caractéristiques de chaque spécialité, issues de l'API
-     *                            (points d'action, temps de fouille..)
-     * @return string
-     */
-    function block_speciality_choice($specialities)
-    {
-        
-        $buttons = new HtmlButtons();
-        
-        $html_specialities = '';
-        foreach($specialities as $alias=>$speciality) {
-            
-            $html_specialities .= '
-                <li>'.$buttons->button('specialize_'.$alias, '', 'inline').'&nbsp;
-                    [<abbr title="Les points d\'action vous permettent d\'explorer le désert, construire des bâtiments et d\'autres actions encore.">Points d\'action</abbr>&nbsp;:
-                                  '. $speciality['action_points'].'&nbsp; |&nbsp;
-                    <abbr title="Plus votre sac est grand, plus vous pouvez transporter d\'objets en même temps.">Sac</abbr>&nbsp;:
-                    '.plural($speciality['bag_size'], 'objet').']
-                    <div style="margin-left:0.5em;margin-bottom:0.5em;font-style:italic">'.$speciality['descr_purpose'].'</div>
-                </li>';
-        }
-        
-        return '
-                <p class="center">
-                    <button class="redbutton" onclick="toggle(\'#specialities\');hide(\'#capacities\');return false">Changer ma spécialité</button>
-                    <button class="redbutton" onclick="toggle(\'#capacities\');hide(\'#specialities\');return false">Améliorer une capacité</button>
-                </p>
-
-                <ul id="specialities" class="hidden">
-                    '.$html_specialities.'
-                </ul>
-                
-                <ul id="capacities" class="hidden">
-                    <li>'.$buttons->button('upgrade_camouflage', '', 'inline').'<br>
-                        &nbsp;&nbsp;&nbsp;Permet de vous dissimuler aux yeux des autres humains
-                    </li>
-                    <li>'.$buttons->button('upgrade_vision', '', 'inline').'<br>
-                        &nbsp;&nbsp;&nbsp;Permet de percer le camouflage des humains et des bâtiments
-                    </li>            
-                </ul>';
-    }
-    
-    
-    /**
      * Bar above the map showing the countdown before the next attack, the current day...
      * @param  int $map_id The ID of the map on which the player is
      * @param  int $day The number of days since the game start
