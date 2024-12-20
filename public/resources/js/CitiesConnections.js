@@ -113,12 +113,14 @@ class CityConnections {
         
         _cities = await getMapCitiesOnce(mapId);
 
-        for(let city of Object.entries(_cities)) {
-            let childCity = city[1];
-            
-            if(clickedCityId === null || childCity["connected_city_id"] !== null) {
-                let nbrDefenses = _configsBuildings[childCity.city_type_id].defenses;
-                this.#addCityframe(childCity["coord_x"], childCity["coord_y"], childCity.city_type_id, nbrDefenses);
+        if(_cities !== null) {
+            for(let city of Object.entries(_cities)) {
+                let childCity = city[1];
+
+                if(clickedCityId === null || childCity["connected_city_id"] !== null) {
+                    let nbrDefenses = _configsBuildings[childCity.city_type_id].defenses;
+                    this.#addCityframe(childCity["coord_x"], childCity["coord_y"], childCity.city_type_id, nbrDefenses);
+                }
             }
         }
         
