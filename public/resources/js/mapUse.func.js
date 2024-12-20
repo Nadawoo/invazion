@@ -101,11 +101,11 @@ function addMeOnMap() {
     let myCoordX = document.querySelector("#citizenCoordX").innerHTML,
         myCoordY = document.querySelector("#citizenCoordY").innerHTML,    
         myPseudo = document.querySelector("#citizenPseudo").innerHTML,
-        myZone = document.querySelector(`#zone${myCoordX}_${myCoordY} .square_container`);
-
+        myZone = document.querySelector(`#zone${myCoordX}_${myCoordY}`);
+        
     // If there is no other citizen in the zone
     if(myZone.querySelector(".map_citizen") === null) {
-        myZone.insertAdjacentHTML("afterbegin", 
+        myZone.querySelector(".square_container").insertAdjacentHTML("afterbegin", 
             `<div class="map_citizen" id="me">
                 <span class="nbr_defenses">${myPseudo}</span>
                 <img src="resources/img/free/human.png">
@@ -120,6 +120,8 @@ function addMeOnMap() {
         myZone.querySelector(".overlay").classList.remove("hidden");
     }
     
+    // Ensure the player is visible just after spawning
+    myZone.style.opacity = 1;
     // Event listener when clicking on the player on his map zone
     listenToMeOnMap();
 }
