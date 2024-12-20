@@ -78,9 +78,9 @@ async function addCitiesOnMap(mapId) {
             buildingIconHtml = buildingCarcs["icon_html"],
             buildingIconPath = "resources/img/"+buildingCarcs["icon_path"],
             buildingIconWidth = Math.round(buildingCarcs["icon_size_ratio"] * 32),
-            buildingEmojiSize = Math.round(buildingCarcs["icon_size_ratio"] * 1.5),
+            buildingEmojiSize = (buildingCarcs["icon_size_ratio"] * 1.5).toFixed(2),
             buildingName = buildingCarcs["name"];
-        
+            
         // If the city is already placed in the zone, don't add it twice
         if(zone.dataset.citytypeid != "") {
             continue;

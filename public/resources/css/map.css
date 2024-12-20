@@ -505,8 +505,9 @@ map_body_wrapper {
     z-index:2;
 }
 .cityframe .frame {
-    height:2.7rem;
-    width: 2.7rem;
+    height:2.6rem;
+    width: 2.6rem;
+    margin-bottom:3px;
     outline:1px solid dimgrey;
     border-radius:50%;
     box-shadow: 2px 2px 12px black;
