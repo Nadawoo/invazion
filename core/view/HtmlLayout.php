@@ -186,17 +186,21 @@ class HtmlLayout extends HtmlPage
                 </a>
             </div>
             <div id="tuto_dayclock">
-                <a href="#popdayclock">
+                <a href="#popdayclock" id="zombie_cores_counter"
+                   title="Nombre de noyaux zombies sur la carte"
+                   >
                     <img src="resources/img/motiontwin/zombie.gif" alt="Zombies" width="14">
-                    <strong class="number">?/5</strong>
+                    <strong class="number">{?/?}</strong>
                 </a>
                 <a href="#popdayclock" id="dayclock">
                     <span class="dot_number"><i class="material-icons">fast_forward</i></span>
                     <span data-translate="day">Jour</span> <strong id="current_day" class="number">'.(int)$day.'</strong>
                 </a>
-                <a href="#popdayclock">
+                <a href="#popdayclock" id="city_counter"
+                   title="Nombre de bâtiments découverts sur la carte"
+                   >
                     <img class="city_img" src="resources/img/free/city.svg" alt="🌇" width="24">
-                    <strong class="number">?/10</strong>
+                    <strong class="number">{?/?}</strong>
                 </a>
             </div>
             <p id="messageEndCycle" class="hidden" style="margin:0"></p>

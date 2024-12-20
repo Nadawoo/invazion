@@ -89,3 +89,43 @@ function getCurrentCycle() {
     
     return parseInt(document.querySelector("#current_day").innerHTML);
 }
+
+
+/**
+ * Display the number of (not) discoverd cities on the map
+ */
+async function updateCitiesCounter() {
+        
+    let nbrTotalCities = Object.keys(await _cities).length;
+    let nbrUndiscoveredCities = 0;
+    // Calculate the number of not discovered cities on the map
+    Object.values(_cities).forEach((caracs) => {
+        let zone = document.querySelector(`#zone${caracs.coord_x}_${caracs.coord_y} .square_container`);
+        if(Number(zone.dataset.cyclelastvisit) === 0) {
+            nbrUndiscoveredCities++;
+        }
+    });
+    // Display the number of not discovered cities in the counter
+    // at the bottom of the map
+    let nbrDiscoveredCities = nbrTotalCities-nbrUndiscoveredCities;
+    document.querySelector("#city_counter .number").innerText = `${nbrDiscoveredCities}/${nbrTotalCities}`;
+}
+
+
+/**
+ * Display the number of zombie cores on the map
+ */
+async function updateZombieCoresCounter() {
+
+    let nbrZombieCores = 0;
+    // Calculate the number of zombie cores on the map
+    Object.values(await _cities).forEach((caracs) => {
+        // #228 is the ID of the type of building for the "zombie cores"
+        if(Number(caracs.city_type_id) === 228) {
+            nbrZombieCores++;
+        }
+    });
+    // Display the number of zombie cores in the counter
+    // at the bottom of the map
+    document.querySelector("#zombie_cores_counter .number").innerText = `${nbrZombieCores}/${nbrZombieCores}`;
+}

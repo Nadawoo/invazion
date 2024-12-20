@@ -254,6 +254,9 @@ a#dayclock {
 }
 #tuto_dayclock .number {
     font-size:1.6em;
+}
+#zombie_cores_counter .number,
+#city_counter .number {
     font-weight:inherit;
 }
 #showWall {
