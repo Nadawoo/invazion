@@ -8,6 +8,10 @@ safely_require('/core/view/html_options.php');
 safely_require('/core/model/Server.php');
 safely_require('/core/ZombLib.php');
 
+// The ID of the map is set as a parameter in the URL
+$map_id_get = filter_input(INPUT_GET, 'map_id', FILTER_VALIDATE_INT);
+$map_id = ($map_id_get !== null) ? $map_id_get : 1;
+
 
 /**
  * Liste de tous les objets du jeu pour menu déroulant <select>
@@ -78,7 +82,7 @@ $api        = new ZombLib($official_server_root.'/api');
 $html       = new HtmlPage();
 $htmlItem   = new HtmlConfigItems();
 $htmlTags   = new HtmlTags();
-$items      = $api->call_api('configs', 'get')['datas']['items'];
+$items      = $api->call_api('configs', 'get', ['map_id'=>$map_id])['datas']['items'];
 $table_rows = '';
 
 foreach ($items as $id=>$caracs) {
@@ -352,7 +356,15 @@ echo $html->page_header();
 <p class="center"><em>Tableau rudimentaire en attendant une plus belle présentation :)</em></p>
 
 <?php
-echo "<strong>Filtrer par étiquette :</strong> ".$htmlTags->tags_all('html');
+echo '
+    <div style="display:flex;align-items:center">
+        <strong>Carte n° </strong>
+        <form method="get" style="display:flex;gap:10px">
+            <input type="number" name="map_id" value="'.$map_id.'" style="width:50px">
+            <input type="submit" value="Actualiser">
+        </form>
+    </div>';
+echo '<p><strong>Filtrer par étiquette :</strong> '.$htmlTags->tags_all('html').'</p>';
 
 echo '
     <table id="items_table">
