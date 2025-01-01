@@ -351,7 +351,7 @@ echo $html->page_header();
 <hr>
 
 
-<h2>Liste des objets existants</h2>
+<h2 id="items">Liste des objets existants</h2>
 
 <p class="center"><em>Tableau rudimentaire en attendant une plus belle présentation :)</em></p>
 
@@ -359,13 +359,13 @@ echo $html->page_header();
 echo '
     <div style="display:flex;align-items:center">
         <strong>Carte n° </strong>
-        <form method="get" style="display:flex;gap:10px">
+        <form method="get" action="#items" style="display:flex;gap:10px">
             <input type="number" name="map_id" value="'.$map_id.'" style="width:50px">
             <input type="submit" value="Actualiser">
         </form>
     </div>
     <p><strong>Filtrer par étiquette :</strong></p>
-    <div id="tags">'.$htmlTags->tags_all('html').'</div>';
+    <ul id="tags"></ul>';
 
 echo '
     <table id="items_table">
@@ -392,9 +392,17 @@ echo '
 </div>
 
 
+<script type="text/javascript" src="resources/js/ItemsConfig.js?v1"></script>
+
 <script>
     // Filter the items by tag in the table of items
     document.addEventListener('DOMContentLoaded', function() {
+        
+        let itemsConfig = new ItemsConfig(),
+            tags = itemsConfig.getTagsList();
+            
+        itemsConfig.writeHtmlTagsList(tags);
+        
         const filterButtons = document.querySelectorAll('#tags .chip');
         const tableRows = document.querySelectorAll('#items_table tbody tr');
 

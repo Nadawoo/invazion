@@ -1327,8 +1327,12 @@ a.localize .material-icons {
 }
 
 #editConfig table {
-    margin:auto;
+    margin:1.5rem auto 25rem auto;
     border-collapse:collapse;
+}
+#editConfig th {
+    background:lightsteelblue;
+    border:1px solid grey;
 }
 #editConfig table td {
     border:1px solid grey;

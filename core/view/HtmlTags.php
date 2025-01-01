@@ -50,6 +50,7 @@ class HtmlTags {
      *                       in HTML or raw text.
      * @return string HTML
      */
+    /*
     public function tags_all($format='html')
     {
         
@@ -62,6 +63,7 @@ class HtmlTags {
         
         return $result;
     }
+    */
     
     
     /**
