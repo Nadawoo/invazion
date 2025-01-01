@@ -363,8 +363,9 @@ echo '
             <input type="number" name="map_id" value="'.$map_id.'" style="width:50px">
             <input type="submit" value="Actualiser">
         </form>
-    </div>';
-echo '<p><strong>Filtrer par étiquette :</strong> '.$htmlTags->tags_all('html').'</p>';
+    </div>
+    <p><strong>Filtrer par étiquette :</strong></p>
+    <div id="tags">'.$htmlTags->tags_all('html').'</div>';
 
 echo '
     <table id="items_table">
@@ -394,7 +395,7 @@ echo '
 <script>
     // Filter the items by tag in the table of items
     document.addEventListener('DOMContentLoaded', function() {
-        const filterButtons = document.querySelectorAll('.chip');
+        const filterButtons = document.querySelectorAll('#tags .chip');
         const tableRows = document.querySelectorAll('#items_table tbody tr');
 
         filterButtons.forEach(button => {

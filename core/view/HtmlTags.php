@@ -77,7 +77,7 @@ class HtmlTags {
         $result = false;
         
         if($format === 'html') {
-            $result = '<div class="chip">'.$tag_name.'</div>';
+            $result = '<span class="chip">'.$tag_name.'</span>';
         }
         elseif($format === 'text') {
             $result = $tag_name;
