@@ -197,7 +197,7 @@ class HtmlMap
                         data-items="'.count($cell['items']).'"
                         data-controlPointsZombies="'.$cell['controlpoints_zombies'].'"
                         data-controlPointsCitizens="'.$cell['controlpoints_citizens'].'"
-                        data-cityid="'.$cell['city_id'].'"
+                        data-cityid=""
                         data-citytypeid=""
                         data-landtype="'.$cell['land'].'"
                         data-cyclelastvisit="'.(int)$cell['cycle_last_visit'].'"
