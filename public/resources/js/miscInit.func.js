@@ -110,7 +110,8 @@ async function nbrUndiscoveredCitiesOnMap() {
     if(await _cities !== null) {
         Object.values(_cities).forEach((caracs) => {
             let zone = document.querySelector(`#zone${caracs.coord_x}_${caracs.coord_y} .square_container`);
-            if(Number(zone.dataset.cyclelastvisit) === 0) {
+            // #233 = ID of the city type for "Undiscovered building" in the Azimutant's API
+            if(Number(zone.dataset.citytypeid) === 233) {
                 nbrUndiscoveredCities++;
             }
         });
