@@ -119,8 +119,9 @@ if (document.getElementById('map') !== null) {
             tasks.populateTaskDefenses();
             
             // Ask for chosing a citizen speciality (builder, digger...)
-            let citizenId = Number(document.querySelector("#citizenId").innerText);
-            if(Number(_citizens[citizenId]["last_specialization_cycle"]) < getCurrentCycle()) {
+            let citizenId = Number(document.querySelector("#citizenId").innerText),
+                lastSpecializationCycle = _citizens[citizenId]["last_specialization_cycle"];
+            if(lastSpecializationCycle === null || Number(lastSpecializationCycle) < getCurrentCycle()) {
                 window.location.hash = "#popspecialize";
             }
         }, 1000);
