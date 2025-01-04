@@ -221,10 +221,10 @@
                                 rgba(255, 255, 255, 1),
                                 darkred,
                                 rgba(0, 0, 50, 0.8));
-    border:2px outset white;
+    border:2px inset darkslategrey;
     border-radius:50%;
     outline:1px solid #34495E;
-    box-shadow:0 -5px 5px dimgrey;
+    box-shadow:0 -4px 5px dimgrey;
     color:white;
 }
 a#dayclock {
