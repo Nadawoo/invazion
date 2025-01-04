@@ -262,6 +262,7 @@ class HtmlLayout extends HtmlPage
             <div id="action_zombies">
                 <div class="zombies_text">
                     <strong class="nbr_zombies">'.plural($zone_zombies, 'zombie').'</strong> dans votre zone !
+                    &nbsp;<a href="#popcontrol" class="bold" style="font-size:1.2em">[?]</a>
                 </div>
                 <div class="zombies_visual">'. str_repeat('<span class="zombie">&#x1F9DF;</span>', $zone_zombies) .'</div>
                 <div class="buttons_kill">'
@@ -292,7 +293,9 @@ class HtmlLayout extends HtmlPage
     function block_zombies_gauge() {
         
         return '
-            <a href="#popcontrol" id="zombies_gauge" title="Indicateur du contrôle de zone">
+            <a id="zombies_gauge" title="Indicateur du contrôle de zone"
+                onclick="toggleActionBlock(\'zombies\')"
+                >
                 <img src="resources/img/motiontwin/zombie.gif" height="28" alt="Zombies">
                 <ul aria-label="Nombre de zombies dans la zone">
                     <li aria-label="0">0</li>
@@ -448,7 +451,6 @@ class HtmlLayout extends HtmlPage
                 <div class="title">Bloqué par les zombies !</div>
                 <div class="text">
                     Les zombies sont trop nombreux et vous empêchent de quitter la zone !
-                    <br><a href="#popcontrol">[Pourquoi ?]</a>
                     <p>
                         <button class="bluebutton" 
                                onclick="toggleActionBlock(\'zombies\'); updateBlockAction(\'zombies\')" 
