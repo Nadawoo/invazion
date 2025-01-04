@@ -380,7 +380,9 @@ echo $html['json_configs'];
         
         <ul id="views_bar" class="animate__animated animate__slideInDown">
             <li class="map active" onclick="toggle(['#map_navigation', '#game_footer', '#tasks_button']);this.classList.toggle('active')">
-                <button aria-label="Masquer les boutons de navigation">&#x1F9ED;</button>
+                <button aria-label="Masquer les boutons de navigation">
+                    <i class="material-icons small">web</i>
+                </button>
             </li>
             <li id="action_mode_button" class="my_zone">
                 <button aria-label="Passer en mode action de zone">
