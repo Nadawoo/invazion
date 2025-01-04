@@ -416,7 +416,7 @@ echo '
         function filterTableByTag() {
             const activeTags = Array.from(filterButtons)
                 .filter(button => button.classList.contains('active'))
-                .map(button => button.innerText);
+                .map(button => button.dataset.tag);
 
             tableRows.forEach(row => {
                 const rowTags = row.dataset.tags.split(' ');
