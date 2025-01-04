@@ -718,14 +718,7 @@ map_body_wrapper {
                 1px 1px 0 darkgrey;    /* Bottom right */
 }
 #map .zombies {
-    position:absolute;
-    margin-top: 0.5rem;
-    font-weight:bold;
-    color:darkred;
     opacity:0.7;
-}
-#map .zombies img {
-    height: 30px;
 }
 
 /*

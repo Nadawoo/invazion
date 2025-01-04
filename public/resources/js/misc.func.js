@@ -466,7 +466,7 @@ async function killZombies(apiAction) {
         
         // Update the zombie silhouettes on the map zone
         if(newNbrZombies > 0) {
-            myZone.querySelector(".zombies img").getAttribute("src").innerHTML = "resources/img/motiontwin/zombie"+newNbrZombies+".gif";
+            myZone.querySelector(".zombies").getAttribute("src").innerHTML = "resources/img/motiontwin/zombie"+newNbrZombies+".gif";
         }
         // Update the hidden data about the zone
         myZone.dataset.zombies = newNbrZombies;
