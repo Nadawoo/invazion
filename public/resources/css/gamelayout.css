@@ -578,6 +578,7 @@ form[name="end_cycle"] button {
 #block_move #card_building {
     display:block;
     height:8em;
+    transition:margin-top 0.8s ease-out;
 }
 #block_move #card_building img {
     float:left;
