@@ -107,6 +107,18 @@ function addMeOnMap() {
     if(myZone.querySelector(".map_citizen") === null) {
         myZone.querySelector(".square_container").insertAdjacentHTML("afterbegin", 
             `<div class="map_citizen" id="me">
+                <!--
+                <div class="pointer" style="position:absolute;top:-7rem;left:-4rem;z-index:1"
+                     onclick="toggleActionBlock('dig');
+                              updateBlockAction('dig');
+                              switchMapView('dig')"
+                    >
+                    <span style="padding:0.1em 0.3em;font-size:0.9em;color:white;background:darkred;border:1px solid red;border-radius:0.2em">Fouiller</span>
+                    <div class="line" style="height:5.8rem;margin:-0.7rem auto auto 1.8rem;border:2px solid red;border-right:none;border-top:none;border-bottom-left-radius:5px;">
+                        <span class="circle" style="position:absolute;bottom:-0.2rem;right:-0.4rem;display:block;height:0.6em;width:0.6em;border:3px solid red;border-radius:50%"></span>
+                    </div>
+                </div>
+                -->
                 <span class="nbr_defenses">${myPseudo}</span>
                 <img src="resources/img/free/human.png">
                 <img id="explosionMe" class="scale-transition scale-out" src="resources/img/thirdparty/notoemoji/collision-512.webp" width="38">
