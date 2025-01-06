@@ -637,7 +637,8 @@ form[name="end_cycle"] button {
 /* The big round action buttons with icon */
 #round_actions {
     position:relative;
-    top:-1.8em;
+    /*top:-1.8em;*/
+    margin-top:1px;
     display:flex;
     align-items:flex-start;
     justify-content:center;
@@ -647,11 +648,11 @@ form[name="end_cycle"] button {
 .round_action_block {
     position:relative;
     display:inline-block;
-    /*margin:0 0.08rem;*/
+    width:4.58em;
     background:#34495e;
     border:1px solid lightgrey;
-    border-top:2px solid white;
-    border-radius:0.3rem;
+    border-top:1px solid white;
+    /*border-radius:0.3rem;*/
 }
 .round_action {
     position:relative;
@@ -690,14 +691,16 @@ form[name="end_cycle"] button {
 }
 #round_actions label {
     display:block;
-    padding:0.1em 0;
+    padding:0.3em 0;
     background:grey;
     font-size:0.9em;
     color:white;
+    cursor:pointer;
 }
 #round_actions .active label {
     background:#283747;
-    border-top:1px solid lightgrey;
+    /*border-top:1px solid lightgrey;*/
+    border-bottom:3px solid royalblue;
 }
 #round_actions .dot_number {
     position:absolute;
@@ -705,7 +708,6 @@ form[name="end_cycle"] button {
     bottom:1.4em;
     min-width:1.2rem; /* Not simply "width" to avoid overflow with 3-digits numbers */
     height:   1.2rem;
-    padding:0.1em;
     font-size:0.9em;
     border-radius:1rem;
     background:#fae5d3;
@@ -732,10 +734,10 @@ form[name="end_cycle"] button {
 }
 #actions fieldset {
     position:relative;
-    top:-6rem; /* Make the block start at the top of the parent block */
+    top:-35px; /* Make the block start at the top of the parent block */
     height:100%;
     margin:0;
-    padding-top:5.5rem; /* Let space for the action buttons, which are over the block */
+    padding-top:50px; /* Let space for the action buttons, which are over the block */
     padding-bottom:2rem;
     text-align:left;
     border:1px solid #34495e;

@@ -354,6 +354,13 @@ function switchToActionView() {
         );
     }    
     
+    // Activate the "Move" tab action
+    setTimeout(() => {
+        document.querySelector("#round_move").classList.add("active"); 
+        toggleActionBlock('move');
+        updateBlockAction('move');
+    }, 1000);    
+    
     // Hide some elements of the GUI to make the interface look lighter
     hide(["#views_bar", "#map_navigation", "#tasks_button", "#game_footer"]);
     hide([".bubble"]);
