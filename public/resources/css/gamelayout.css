@@ -580,7 +580,7 @@ form[name="end_cycle"] button {
     border:3px outset dimgrey;
     border-radius:5px;
 }
-#block_move .card .material-icons {
+#block_move a.card .material-icons {
     font-size:2em;
     color:darkred;
 }
