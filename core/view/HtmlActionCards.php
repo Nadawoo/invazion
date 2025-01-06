@@ -19,8 +19,9 @@ class HtmlActionCards {
         return '
             <a id="card_citizens" class="card animate__animated animate__slideInLeft"
                 onclick="toggleActionBlock(\'citizens\'); updateBlockAction(\'citizens\')">
-                D\'autres humains se trouvent dans la zone !
-                <strong>&#x1F465; Interagir &#9002;</strong>
+                <img src="/resources/img/copyrighted/city_fellows.png" alt="&#x1F465;" height="48">
+                Humains dans la zone !
+                <i class="material-icons">chevron_right</i>
             </a>';
     }
     
@@ -48,8 +49,9 @@ class HtmlActionCards {
         return '
             <a id="card_dig" class="card animate__animated animate__slideInLeft"
                 onclick="toggleActionBlock(\'dig\'); updateBlockAction(\'dig\')">
+                <img src="/resources/img/copyrighted/mining_48px.png" alt="&#9935;&#65039;" height="48">
                 La zone peut être fouillée.
-                <strong>&#9935;&#65039; Fouiller &#9002;</strong>
+                <i class="material-icons">chevron_right</i>
             </a>';
     }
     

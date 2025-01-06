@@ -567,23 +567,33 @@ form[name="end_cycle"] button {
     display:flex;
     align-items:center;
     justify-content: space-between;
-    min-height:4rem;
-    margin-right:0.25rem;
-    padding:0.5em 1em 0.2em 1em;
-    border:1px solid green;
+    /*min-height:4rem;*/
+    /*padding:0.5em 1em 0.2em 0;*/
+    padding:0.1em  0.1em;
+    background:#e8eaf6;
+    border: 1px outset steelblue;
     border-radius:0.3em;
     color:inherit; /* Keeps the text in bleck when the card is a <a> tag */
-    box-shadow:6px 6px 6px black;
+    box-shadow:5px 5px 8px dimgrey;
+}
+#block_move .card img {
+    border:3px outset dimgrey;
+    border-radius:5px;
+}
+#block_move .card .material-icons {
+    font-size:2em;
+    color:darkred;
 }
 #block_move #card_building {
     display:block;
     height:8em;
+    padding:0.5em;
     transition:margin-top 0.8s ease-out;
 }
 #block_move #card_building img {
     float:left;
     margin-top:0.5em;
-    margin-right:1em;
+    border:none;
 }
 #block_move #card_building .building_name {
     font-weight:bold;
@@ -599,7 +609,7 @@ form[name="end_cycle"] button {
 
 #card_ap_cost .actionspoints_decrease {
     font-size:1.1em;
-    padding:0.2em 0.2em 0.2em 0.5em;
+    padding:0.7em 0 0.6em 0.2em;
     background:#bf360c;
     color:white;
     font-weight:bold;
@@ -610,9 +620,6 @@ form[name="end_cycle"] button {
     color:inherit;
 }
 
-#card_citizens.card {
-    border-width:2px;
-}
 #card_citizens.card strong,
 #card_dig.card strong {
     color:darkred;
@@ -652,6 +659,7 @@ form[name="end_cycle"] button {
     background:#34495e;
     border:1px solid lightgrey;
     border-top:1px solid white;
+    border-bottom:none;
     /*border-radius:0.3rem;*/
 }
 .round_action {
@@ -695,6 +703,7 @@ form[name="end_cycle"] button {
     background:grey;
     font-size:0.9em;
     color:white;
+    border-bottom:3px solid lightgrey;
     cursor:pointer;
 }
 #round_actions .active label {
@@ -734,7 +743,7 @@ form[name="end_cycle"] button {
 }
 #actions fieldset {
     position:relative;
-    top:-35px; /* Make the block start at the top of the parent block */
+    top:-33px; /* Make the block start at the top of the parent block */
     height:100%;
     margin:0;
     padding-top:50px; /* Let space for the action buttons, which are over the block */
