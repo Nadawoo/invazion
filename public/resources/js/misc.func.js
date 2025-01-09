@@ -462,7 +462,7 @@ async function killZombies(apiAction) {
         // Update the action blocks (round buttons next to the map)
         updateBlockActionZombies(newNbrZombies);
         updateMoveCost(newNbrZombies);
-        updateBlockAlertControl(myZone.dataset.controlpointszombies, mapId, myZone.dataset.coordx, myZone.dataset.coordy);
+        updateBlockAlertControl(Number(myZone.dataset.controlpointszombies), mapId, myZone.dataset.coordx, myZone.dataset.coordy);
         
         // Update the zombie silhouettes on the map zone
         if(newNbrZombies > 0) {

@@ -40,7 +40,7 @@ async function updateMapRealtime(event, timestamp) {
     // Get informations about the current zone through the "data-*" HTML attributes
     let zoneData = document.querySelector("#me").parentNode.dataset;
     // Display an alert over the movement paddle if the player is blocked
-    updateBlockAlertControl(zoneData.controlpointszombies, mapId, zoneData.coordx, zoneData.coordy);  
+    updateBlockAlertControl(Number(zoneData.controlpointszombies), mapId, zoneData.coordx, zoneData.coordy);  
     
     // Refresh the timestamp to memorize that these actions have been treated
     return timestamp = await JSON.parse(event.data).zones;

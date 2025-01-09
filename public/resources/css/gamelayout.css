@@ -1131,7 +1131,6 @@ input[type="submit"] {
 }
 .cover_paddle { /* Covers the movement paddle */
     position:absolute;
-    top:5rem;
     margin-right:0.5rem;
     z-index:1;
 }

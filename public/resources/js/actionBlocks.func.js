@@ -53,7 +53,7 @@ async function updateActionBlocks() {
     // Update the numbers in the big buttons next to the map
     updateRoundActionButtons(zoneData.coordx, zoneData.coordy);
     // Display an alert over the movement paddle if the player is blocked
-    updateBlockAlertControl(zoneData.controlpointszombies, mapId, zoneData.coordx, zoneData.coordy);
+    updateBlockAlertControl(Number(zoneData.controlpointszombies), mapId, zoneData.coordx, zoneData.coordy);
     // Display the actions for fighting against zombies
     showFightingZombiesButtons(zoneData.zombies);
     // Displays help about the land type of the current zone
@@ -68,7 +68,12 @@ async function updateActionBlocks() {
  * @param {int} newNbrZombies The number of zombies in the zone after the action
  */
 function updateMoveCost(newNbrZombies) {
-      
+    
+    // Updates the block showing the AP before=>after moving
+    let currentAp = document.querySelector("#actionPoints").innerHTML,
+        ApAfterMove = currentAp - 1;    
+    document.querySelector("#card_ap_cost .actionspoints_decrease").innerHTML = currentAp+"&#x2794;"+ApAfterMove+"&#9889;";
+    
     // The movement has no AP cost in some situations => hide the card under 
     // the movement paddle
     if(newNbrZombies === 0 && parseInt(_configsMap.moving_cost_no_zombies) === 0) {
@@ -77,11 +82,9 @@ function updateMoveCost(newNbrZombies) {
     else if(newNbrZombies >= 1 && parseInt(_configsMap.moving_cost_zombies) === 0) {
         hide("#card_ap_cost");
     }
-    
-    // Updates the block showing the AP before=>after moving
-    let currentAp = document.querySelector("#actionPoints").innerHTML,
-        ApAfterMove = currentAp - 1;    
-    document.querySelector("#card_ap_cost .actionspoints_decrease").innerHTML = currentAp+"&#x2794;"+ApAfterMove+"&#9889;";
+    else if(ApAfterMove < 0) {
+        hide("#card_ap_cost");
+    }
 }
 
 
@@ -112,14 +115,14 @@ function updateMoveCost(newNbrZombies) {
  */
 async function updateBlockAlertControl(controlpointsZombies, mapId, coordX, coordY) {
     
-    let actionPoints = document.querySelector("#gameData #actionPoints").innerHTML;
+    let actionPoints = Number(document.querySelector("#gameData #actionPoints").innerHTML);
     let controlpointsCitizens = await sumControlpoints(await _citizens, mapId, coordX, coordY);
     
     // Displays an alert when the player has not enough action points to  move
     if ((   controlpointsZombies === 0 && actionPoints < _configsMap.moving_cost_no_zombies)
         || (controlpointsZombies === 0 && actionPoints === 0 && _configsMap.moving_cost_no_zombies > 0)
         || (controlpointsZombies   > 0 && actionPoints < _configsMap.moving_cost_zombies)
-        ) { 
+        ) {
         // Display the alert text above the movement paddle
         display("#alert_tired");
         // Turn to red the halo under the player on the map
