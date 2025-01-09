@@ -395,7 +395,8 @@ map_body_wrapper {
 }
 
 .square_container .zombies_amount,
-.square_container .items_amount {
+.square_container .items_amount,
+.square_container .explorations_amount {
     position:absolute;
     display:flex;
     justify-content: center;

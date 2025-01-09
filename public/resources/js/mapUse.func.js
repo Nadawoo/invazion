@@ -458,29 +458,30 @@ function activateMapExplorationsView() {
         let squareContainer = hexagons[i].querySelector(".square_container"),
             color = "";
         
-        if(!squareContainer.querySelector(".items_amount")) {
+        if(!squareContainer.querySelector(".explorations_amount")) {
             let newDiv = document.createElement("div");
-            newDiv.className = "items_amount animate__animated animate__zoomIn";
+            newDiv.className = "explorations_amount animate__animated animate__zoomIn";
             squareContainer.appendChild(newDiv);
             
             // Mark the zones visited today
             if(Number(squareContainer.dataset.cyclelastvisit) === getCurrentCycle()) {
                 newDiv.innerHTML += "&#x1F97E;";
                 color = "darkred";
-            } else {
-                newDiv.innerHTML += "&#x26CF;&#xFE0F;";
-                color = "green";
             }
+//            else {
+//                newDiv.innerHTML += "&#x26CF;&#xFE0F;";
+//                color = "green";
+//            }
             
             // Color the zones
-            squareContainer.querySelector(".items_amount").style.background = color;
+            squareContainer.querySelector(".explorations_amount").style.background = color;
         }
     }
     
     hide(["#views_bar, #attack_bar", "#tasks_button"]);
     hide([".nbr_defenses"]);
     display("#map_legend_explorations");
-    display(".items_amount");
+    display(".explorations_amount");
 }
 
 
@@ -495,7 +496,7 @@ function desactivateMapItemsView() {
 function desactivateMapExplorationsView() {
     
     hide("#map_legend_explorations");
-    hide(".items_amount");
+    hide("#map .explorations_amount");
 }
 
 

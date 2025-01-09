@@ -76,9 +76,13 @@ class HtmlMapLegends {
                 <a href="#Outside" style="color:inherit">
                     <ul>
                         <li><span class="legend_color" style="background:darkred">&#x1F97E;</span> Zone visitée aujourd\'hui</li>
+                        <!--
                         <li><span class="legend_color" style="background:green">&#x26CF;&#xFE0F;</span> Zone fouillable</li>
-                        <li><span class="legend_color" style="background:grey">...</span> Zone épuisée</li>
+                        -->
+                        <li><span class="legend_color" style="background:darkgrey">&#x3030;&#xFE0F;</span> Zone épuisée</li>
+                        <!--
                         <li><span class="legend_color" style="background:black"></span>Zone à découvrir</li>
+                        -->
                     </ul>
                 </a>
             </fieldset>';
