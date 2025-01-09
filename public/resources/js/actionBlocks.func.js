@@ -433,6 +433,10 @@ function htmlItem(itemId, itemCaracs) {
     if(itemCaracs["heaviness"] > 0) {
         template.querySelector('.item_label .heaviness').classList.remove("hidden");
     }
+    // Display the button to use the item as a weapon
+    if(itemCaracs["item_type"] === "weapon") {
+        template.querySelector("form[name='fight'] input[name='params[item_id]']").value = itemId;
+    }
     
     return template;
 }

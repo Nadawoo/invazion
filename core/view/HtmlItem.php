@@ -19,6 +19,7 @@ class HtmlItem {
         $buttons = new HtmlButtons();
         $button_drop = $buttons->drop_item(0);
         $button_pickup = $buttons->pickup_item(0);
+        $button_fight = $buttons->use_item('fight', 0, '');
         $button_use = $buttons->use_item('{item_alias}', 0, '{item_name}');
         
         return '
@@ -54,7 +55,10 @@ class HtmlItem {
                                 Cet objet est encombrant
                             </li>
                         </ul>
-                        '.$button_use . $button_drop . $button_pickup.'
+                        '.$button_fight
+                         .$button_use
+                         .$button_drop
+                         .$button_pickup.'
                     </div>
                 </li>
             </template>';

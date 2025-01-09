@@ -34,7 +34,7 @@ class HtmlButtons
                 ],
             'fight' => [
                 'icon'  => '',
-                'name'  => 'Attaquer avec',
+                'name'  => 'Attaquer les zombies',
                 'title' => "",
                 'fields' => [
                     'api_name'      => 'zone',
@@ -594,7 +594,7 @@ class HtmlButtons
             $fields = $button['fields'];
 
             return
-            '<form method="post" action="#popsuccess">
+            '<form method="post" action="#popsuccess" name="fight">
                 <input type="hidden" name="api_name" value="'.$fields['api_name'].'">
                 <input type="hidden" name="action" value="'.$fields['action'].'">
                 <input type="hidden" name="params[item_id]" value="'.$item_id.'">
