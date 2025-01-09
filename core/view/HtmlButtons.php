@@ -532,7 +532,7 @@ class HtmlButtons
         $dot_number = '';
         
         if ($amount >= $min_amount and isset($button['alert'])) {
-             $dot_number = '<div class="alert_icon">'.$button['alert'].'</div>';
+//             $dot_number = '<div class="alert_icon">'.$button['alert'].'</div>';
         } 
         elseif ($amount >= 0) {
             $dot_number = '<div class="dot_number z-depth-2">'.$amount.'</div>';
