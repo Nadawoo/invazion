@@ -381,7 +381,7 @@ function updateMeAfterMoving(newCoordX, newCoordY) {
     updateMoveCost(parseInt(myZone.dataset.zombies));
     updateCardCitizensInZone(myZone.dataset.citizens);
     
-    setTimeout(centerMapOnMe, 1000);
+    setTimeout(()=>{ centerMapOnMe(10) }, 1000);
 }
 
 

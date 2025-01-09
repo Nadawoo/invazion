@@ -336,7 +336,7 @@ function switchToActionView() {
     
     // Zoom the map on the player
     zoomMapRange(220);
-    setTimeout(() => centerMapOnMe(), 2000);
+    setTimeout(() => centerMapOnMe(10), 2000);
     
     // Display the action blocks (move, dig...)
     display(["#actions_panel", "#personal_block_wrapper"]);

@@ -655,26 +655,31 @@ function zoomMapStep(direction) {
 
 /**
  * Centers the zoomed map on the player
+ * 
+ * @param {int} centeringCoeff
+ * @returns {undefined}
  */
-function centerMapOnMe() {
+function centerMapOnMe(centeringCoeff=7) {
     
-    centerMapOnZone(document.querySelector("#me").closest(".hexagon").id);
+    centerMapOnZone(document.querySelector("#me").closest(".hexagon").id, centeringCoeff);
 }
 
 
 /**
  * Centers the map on a zone
  * 
+ * @param {int} centeringCoeff Adjust this value to Correct the centering.
+                               Useful to shift the player to the top in action mode.
  * @param {string} zoneHtmlId The HTML ID of the concerned zone, ex: "zone10_2"
  * @returns {undefined}
  */
-function centerMapOnZone(zoneHtmlId) {
+function centerMapOnZone(zoneHtmlId, centeringCoeff=7) {
     
     let viewport = document.querySelector("#map_body_wrapper").getBoundingClientRect();
     let me = document.querySelector(`#${zoneHtmlId}`).getBoundingClientRect();
     
     let offsetX = (me.x - viewport.x + me.width/2 - viewport.width/2); 
-    let offsetY = (me.y - viewport.y + me.height/2 - viewport.height/7);
+    let offsetY = (me.y - viewport.y + me.height/2 - viewport.height/centeringCoeff);
     
     _scrollBoosterInstance.scrollTo({ x: offsetX, y: offsetY });
     _scrollBoosterInstance.updateMetrics();
