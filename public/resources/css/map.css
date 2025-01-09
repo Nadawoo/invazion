@@ -193,7 +193,7 @@ map_body_wrapper {
     width: 3.1em;
     text-align:center;
     background:#fbeee6;
-    border:4px outset #34495e;
+    border:3px inset #34495e;
     border-radius:50%;
     box-shadow:0 8px 12px black;
     outline:2px outset #fbeee6;
@@ -207,7 +207,7 @@ map_body_wrapper {
 #statusbar .block_icon .icon,
 #bagbar .block_icon .icon {
     margin-top:-0.15em;
-    font-size:1.4em;
+    font-size:1.6em;
 }
 #personal_block .block_icon .name {
     position:absolute;
@@ -289,7 +289,6 @@ map_body_wrapper {
     border-radius:0.2em;
 }
 #apbar .actionpoints {
-    position:relative;
     height: 4.2rem;
     width:  4.2rem;
     font-size:1.9em;
@@ -297,8 +296,7 @@ map_body_wrapper {
     justify-content:center;
     align-items:center;
     color:whitesmoke;
-    border: 4px outset orange;
-    outline:2px outset #fbeee6;
+    border-color:orange;
     background: radial-gradient(circle at 50% 5%,
                                 rgba(255, 255, 255, 1),
                                 darkred,
@@ -311,7 +309,7 @@ map_body_wrapper {
     right: -1.2rem;
     height: 2rem;
     width:  2rem;
-    font-size: 0.55em;
+    font-size: 0.53em;
     text-align:center;
     background: darkred;
     border: 3px outset orange;
