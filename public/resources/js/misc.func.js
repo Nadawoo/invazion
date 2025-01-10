@@ -354,7 +354,7 @@ function animateCss(cssSelector, effectName) {
  * @param {int} newCoordY
  * @returns {undefined}
  */
-function updateMeAfterMoving(newCoordX, newCoordY) {
+async function updateMeAfterMoving(newCoordX, newCoordY) {
         
     // Delete the informations about the previous zone (obsolete)
     _myZone = null;    
@@ -380,6 +380,7 @@ function updateMeAfterMoving(newCoordX, newCoordY) {
     updateEnterBuildingButton(myZone.dataset.citytypeid, myZone.dataset.controlpointscitizens, myZone.dataset.zombies);
     updateMoveCost(parseInt(myZone.dataset.zombies));
     updateCardCitizensInZone(myZone.dataset.citizens);
+    updateBlockAction('dig');
     
     setTimeout(()=>{ centerMapOnMe(10) }, 1000);
 }
@@ -457,7 +458,7 @@ async function killZombies(apiAction) {
         let myZone = document.querySelector("#me").parentNode;
         let oldNbrZombies = myZone.dataset.zombies,
             newNbrZombies = Math.max(0, oldNbrZombies - json.datas.nbr_zombies_removed);
-        let mapId = document.querySelector("#gameData #mapId").innerHTML;
+        let mapId = Number(document.querySelector("#gameData #mapId").innerHTML);
         
         // Update the action blocks (round buttons next to the map)
         updateBlockActionZombies(newNbrZombies);

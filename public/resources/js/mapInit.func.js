@@ -355,10 +355,16 @@ function switchToActionView() {
     }    
     
     // Activate the "Move" tab action
-    setTimeout(() => {
+    setTimeout(async () => {
         document.querySelector("#round_move").classList.add("active"); 
         toggleActionBlock('move');
         updateBlockAction('move');
+        // Hide the card for digging if the zone is not diggable
+        let mapId = Number(document.querySelector("#mapId").innerHTML),
+            coordX = Number(document.querySelector("#citizenCoordX").innerHTML),
+            coordY = Number(document.querySelector("#citizenCoordY").innerHTML);
+        _myZone = await getMyZoneOnce(mapId, coordX, coordY);
+        updateDigButtons(_myZone.user_specific.is_visited_today); 
     }, 1000);    
     
     // Hide some elements of the GUI to make the interface look lighter

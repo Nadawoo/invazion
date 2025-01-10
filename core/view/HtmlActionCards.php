@@ -47,7 +47,7 @@ class HtmlActionCards {
     function card_dig() {
         
         return '
-            <a id="card_dig" class="card animate__animated animate__slideInLeft"
+            <a id="card_dig" class="hidden card animate__animated animate__slideInLeft"
                 onclick="toggleActionBlock(\'dig\'); updateBlockAction(\'dig\')">
                 <img src="/resources/img/copyrighted/pickaxe_48px.png" alt="&#9935;&#65039;" height="48">
                 La zone peut être fouillée.

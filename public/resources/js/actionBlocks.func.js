@@ -24,9 +24,10 @@ async function updateBlockAction(blockAlias) {
     }
     else if(blockAlias === "dig") {
         
-        let mapId = document.querySelector("#mapId").innerHTML,
-            myZone = document.querySelector("#me").parentNode.dataset;
-        updateBlockActionDig(mapId, myZone.coordx, myZone.coordy); 
+        let mapId = Number(document.querySelector("#mapId").innerHTML),
+            coordX = Number(document.querySelector("#citizenCoordX").innerHTML),
+            coordY = Number(document.querySelector("#citizenCoordY").innerHTML);
+        updateBlockActionDig(mapId, coordX, coordY); 
     }
 }
 
@@ -291,15 +292,16 @@ async function updateBlockActionDig(mapId, coordX, coordY) {
     let block = document.querySelector("#items_ground .items_list");
     
     // Update the data only one time per zone
-    if(block.dataset.coordx !== coordX || block.dataset.coordy !== coordY
-       || block.innerHTML.length === 0) {
-        
+    if(Number(block.dataset.coordx) !== coordX
+        || Number(block.dataset.coordy) !== coordY
+        || block.innerHTML.length === 0
+        ) {        
         // Clear the obsolete items list from the previous zone
         block.innerHTML = "";        
         // Get the items in the zone by calling the Azimutant's API
-        _myZone = await getMyZoneOnce(mapId, coordX, coordY);        
+        _myZone = await getMyZoneOnce(mapId, coordX, coordY);
         // Set the digging button to grey if the player can't dig
-        updateDigButtons(_myZone.user_specific.is_visited_today);
+        updateDigButtons(await _myZone.user_specific.is_visited_today);
         
         if(_myZone.items.length === 0) {
             // Show the default text if no items on the ground
