@@ -475,7 +475,7 @@ form[name="end_cycle"] button {
     align-items: center;
     background:lightgrey;
     /*background:linear-gradient(whitesmoke 33%, darkgrey);*/
-    border:1px solid darkred;
+    border:1px solid dimgrey;
     border-radius:0.3em;
     color:grey;
 }
@@ -511,14 +511,12 @@ form[name="end_cycle"] button {
     align-items:center;
     justify-content:center;
     height:42px; /* Stabilize the block height when the city image is resized */
-    width:11.5em;
-    margin-bottom:0.5em;
+    width:85%;
+    margin-left:1.7em;
     background:#d3d3d3;
     /*background:linear-gradient(whitesmoke 33%, darkgrey);*/
     border:1px solid dimgrey;
     border-radius:0.3em;
-    text-align:center;
-    font-weight:normal;
 }
 #block_distance .city_image {
     /* Keep the city image vertically centered when resized */
