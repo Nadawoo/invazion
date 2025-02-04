@@ -164,22 +164,22 @@ map_body_wrapper {
     width:100%;
     margin-top:0.5em;
     display:flex;
-    justify-content:center;
-    background: rgba(0,0,0,0.3);
+    /*background: rgba(0,0,0,0.3);*/
     height:3.6em;
 }
 #personal_block {
-    position:relative;
+    position:absolute;
     margin:0.2em;
     display:flex;
+    flex-direction:column;
     justify-content:center;
     align-items:center;
-    gap:2.35em;
-    background:#fbeee6;
+    gap:0.5em;
+/*    background:#fbeee6;
     border: 1px solid dimgrey;
     outline:2px solid #fbeee6;
     border-radius:5em;
-    box-shadow:12px 12px 12px black;
+    box-shadow:12px 12px 12px black;*/
 }
 /*#personal_block legend {
     width:100%;
@@ -192,20 +192,20 @@ map_body_wrapper {
 }*/
 #personal_block .block_icon {
     position:relative;
-    height:3.1em; /* Equal to the round action buttons (move, dig...) */
-    width: 3.1em;
+    height:2.8em;
+    width: 2.8em;
     text-align:center;
     background:#fbeee6;
     border:3px inset #34495e;
     border-radius:50%;
-    box-shadow:0 8px 12px black;
+    box-shadow:12px 12px 12px black;
     outline:2px outset #fbeee6;
     cursor:pointer;
 }
 #statusbar.inactive,
 #bagbar.inactive,
 #apbar.inactive {
-    opacity:0.3;
+    opacity:0;
 }
 #statusbar .block_icon .icon,
 #bagbar .block_icon .icon {
@@ -217,7 +217,7 @@ map_body_wrapper {
     bottom:0;
     width:100%;
     line-height:120%;
-    font-size:0.9em;
+    font-size:0.85em;
     text-align:center;
     background:#34495e;
     color:white;
@@ -225,9 +225,10 @@ map_body_wrapper {
 }
 #personal_block .items_list {
     position:absolute;
-    left:0;
+    top:0;
+    left:4rem;
     min-height:2.7em;
-    width:100%;
+    width:15.7rem;
     margin:0.2em 0;
     padding:0.5em;
     display:flex;
@@ -292,9 +293,9 @@ map_body_wrapper {
     border-radius:0.2em;
 }
 #apbar .actionpoints {
-    height: 4.2rem;
-    width:  4.2rem;
-    font-size:1.9em;
+    height: 3.6rem;
+    width:  3.6rem;
+    font-size:1.7em;
     display:flex;
     justify-content:center;
     align-items:center;
@@ -309,9 +310,9 @@ map_body_wrapper {
 #apbar .actionpoints .dot_number {
     position: absolute;
     top:   -0.4rem;
-    right: -1.2rem;
-    height: 2rem;
-    width:  2rem;
+    right: -1rem;
+    height: 1.8rem;
+    width:  1.8rem;
     font-size: 0.53em;
     text-align:center;
     background: darkred;
@@ -1007,4 +1008,14 @@ map_body_wrapper {
 #map.action_view .diggable,
 #map.action_view .safe {
     transform:scale(0.7);
+}
+
+/* Add this class to a .square_container to create a bloody stain on the zone */
+.stain {
+    z-index:2;
+    height:80px;
+    width:100%;
+    background: radial-gradient(circle, darkred, rgba(140, 0, 0, 0) 60%);
+    background-position-y:-16px;
+    border-radius:2em;
 }
