@@ -714,13 +714,14 @@ form[name="end_cycle"] button {
 #round_actions .dot_number {
     position:absolute;
     right:0;
-    bottom:1.4em;
+    bottom:1.8em;
     min-width:1.2rem; /* Not simply "width" to avoid overflow with 3-digits numbers */
     height:   1.2rem;
     font-size:0.9em;
     border-radius:1rem;
-    background:#fae5d3;
-    color:black;
+    outline:2px solid lightgrey;
+    background:red;
+    color:white;
 }
 /*#round_actions .alert_icon {
     position:absolute;
