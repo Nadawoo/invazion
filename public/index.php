@@ -414,6 +414,7 @@ echo $html['json_configs'];
         <?php echo $legends->all_legends() ?>
         
         <div id="actions_panel" class="animate__animated animate__slideInUp hidden">
+            <div id="actions"></div>
             <div id="round_actions">
                 <?php
                 echo  $buttons->button_round('move', ($zone['controlpoints_zombies']-$zone['controlpoints_citizens']))
@@ -425,7 +426,6 @@ echo $html['json_configs'];
     //                echo $layout->block_alert_wounded((bool)$citizen['is_wounded']);
                 ?>
             </div>
-            <div id="actions"></div>
             
             <template id="tplActions">
                 <fieldset id="block_move" class="z-depth-2 hidden">

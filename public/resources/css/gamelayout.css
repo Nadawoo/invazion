@@ -633,19 +633,17 @@ form[name="end_cycle"] button {
     /*right:0.5rem; /* Avoids shifting the buttons to the left when the scrollbar appears */
     bottom:0;
     height:50%;
-    width:100%;
-    max-width: 51.25rem;
     text-align:center;
     font-size:0.9em;
     background:#fbeee6;
     border-radius:0.6em;
     border:1px solid #34495e;
+    box-shadow:0 -1px 2px dimgrey;
 }
 /* The big round action buttons with icon */
 #round_actions {
     position:relative;
     /*top:-1.8em;*/
-    margin-top:1px;
     display:flex;
     align-items:flex-start;
     justify-content:center;
@@ -699,7 +697,7 @@ form[name="end_cycle"] button {
 }
 #round_actions label {
     display:block;
-    padding:0.3em 0;
+    padding:0.5em 0;
     background:grey;
     font-size:0.9em;
     color:white;
@@ -738,22 +736,19 @@ form[name="end_cycle"] button {
 }*/
 /* The maskable frames which contain the actions buttons */
 #actions {
-    height:100%;
-    width:21.7rem;
+    height:87%;
+    width:21.4rem;
     margin:auto;
 }
 #actions fieldset {
-    position:relative;
-    top:-33px; /* Make the block start at the top of the parent block */
     height:100%;
     margin:0;
-    padding-top:50px; /* Let space for the action buttons, which are over the block */
+    padding-top:10px;
     padding-bottom:2rem;
     text-align:left;
     border:1px solid #34495e;
-    border-top:none;
+    border:none;
     background:#fbeee6;
-    z-index:20;
     animation: switchAction 0.3s;
     overflow:auto;
 }
