@@ -170,13 +170,16 @@ map_body_wrapper {
 }
 #personal_block {
     position:relative;
-    margin:0.1em;
+    margin:0.2em;
     display:flex;
     justify-content:center;
     align-items:center;
     gap:2.35em;
     background:#fbeee6;
+    border: 1px solid dimgrey;
+    outline:2px solid #fbeee6;
     border-radius:5em;
+    box-shadow:12px 12px 12px black;
 }
 /*#personal_block legend {
     width:100%;
