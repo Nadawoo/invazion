@@ -184,6 +184,8 @@ function updateDigButtons(is_visited_today) {
     } else {
         digButton.classList.remove("inactive");
         display("#block_move #card_dig");
+        display("#round_dig .dot_number");
+        document.querySelector("#round_dig .dot_number").innerHTML = "&#x26CF;&#xFE0F;";
     }  
 }
 

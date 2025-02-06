@@ -710,9 +710,10 @@ form[name="end_cycle"] button {
 #round_actions .dot_number {
     position:absolute;
     right:0;
-    bottom:1.8em;
+    bottom:2em;
     min-width:1.2rem; /* Not simply "width" to avoid overflow with 3-digits numbers */
     height:   1.2rem;
+    padding:0 0.2em;
     font-size:0.9em;
     border-radius:1rem;
     outline:2px solid lightgrey;
@@ -1035,9 +1036,13 @@ input[type="submit"] {
     color:white;
 }
 .redbutton.inactive,
-.bluebutton.inactive{
+.bluebutton.inactive {
     background:grey;
     text-decoration:line-through;
+}
+.redbutton.inactive .dot_number,
+.bluebutton.inactive .dot_number {
+    display:none;
 }
 .redbutton .dot_number,
 .bluebutton .dot_number {
