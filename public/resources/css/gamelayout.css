@@ -1035,6 +1035,9 @@ input[type="submit"] {
     background:#CC0000;
     color:white;
 }
+form.big .redbutton {
+    height:3.3em;
+}
 .redbutton.inactive,
 .bluebutton.inactive {
     background:grey;

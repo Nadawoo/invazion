@@ -22,7 +22,7 @@ class HtmlActionBlocks {
         return '
             <fieldset id="block_dig" class="z-depth-2 hidden">
                 <div class="center">
-                    '.$this->buttons->button('dig', true, '', $citizen_can_dig).'
+                    '.$this->buttons->button('dig', true, 'big', $citizen_can_dig).'
                     <a href="#popitems" style="margin-left:0.8rem;font-size:1.2em">[?]</a>
                 </div>
                 <br>
