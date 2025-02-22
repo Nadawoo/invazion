@@ -641,7 +641,7 @@ form[name="end_cycle"] button {
 /* The big round action buttons with icon */
 #round_actions {
     position:relative;
-    /*top:-1.8em;*/
+    top:-2.5em;
     display:flex;
     align-items:flex-start;
     justify-content:center;
@@ -735,7 +735,7 @@ form[name="end_cycle"] button {
 }*/
 /* The maskable frames which contain the actions buttons */
 #actions {
-    height:87%;
+    height:100%;
     width:21.4rem;
     margin:auto;
 }
