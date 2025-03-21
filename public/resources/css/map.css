@@ -511,9 +511,9 @@ map_body_wrapper {
     height:2.6rem;
     width: 2.6rem;
     margin-bottom:3px;
-    outline:1px solid dimgrey;
     border-radius:50%;
-    box-shadow: 2px 2px 12px black;
+    /*outline:1px solid dimgrey;*/
+    /*box-shadow: 2px 2px 12px black;*/
     background: radial-gradient(circle at 5% 5%,
                         rgba(255, 255, 255, 0.8),
                         rgba(0, 0, 0, 0) 50%
@@ -975,7 +975,7 @@ map_body_wrapper {
 #map_body::after {
     content:'';
     position:absolute;
-    box-shadow:0 0 0 9999px rgba(0, 0, 0, 0.3);
+    box-shadow:0 0 0 9999px rgba(0, 0, 0, 0.2);
 }
 .hexagon .overlay::before {
     content:'';
