@@ -71,8 +71,6 @@ async function addCitiesOnMap(mapId) {
             htmlCoords = city.coord_x+"_"+city.coord_y,
             zone = document.querySelector("#zone"+htmlCoords+" .square_container"),
             nbrItems = zone.dataset.items;
-        
-        let zones = await _jsonMap;
 
         let buildingCarcs = _configsBuildings[city.city_type_id],
             buildingIconHtml = buildingCarcs["icon_html"],
@@ -83,6 +81,9 @@ async function addCitiesOnMap(mapId) {
             
         // If the city is already placed in the zone, don't add it twice
         if(zone.dataset.citytypeid != "") {
+            displayToast(`[Bug] Impossible de placer la ville #${cityId} sur 
+                          une zone déjà construite [${city.coord_x}:${city.coord_y}]`,
+                         "critical");
             continue;
         }
         
