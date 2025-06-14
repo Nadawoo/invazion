@@ -873,7 +873,7 @@ map_body_wrapper {
     border: 5px solid green;
     border-radius: 50%;
     height:40%;
-    width: 122%;
+    width: 120%;
     z-index:2;
     animation: citizen_blinker 1s linear infinite;
 }
@@ -1003,7 +1003,7 @@ map_body_wrapper {
 }
 #map.action_view .halo {
     transform:scale(0.5);
-    top:1.1rem;
+    top:1.2rem;
 }
 
 #map.action_view .diggable,
