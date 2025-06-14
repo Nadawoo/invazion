@@ -435,16 +435,16 @@ map_body_wrapper {
 }
 #map .city_name {
     position:absolute;
-    top:-1.3em;
-    padding:0.2em 0.2em 0.1em 0.2em;
-    width:8em;
-    font-size:0.65em;
+    top:-1.4em;
+    padding:0.1em 0.4em;
+    width:max-content;
+    font-size:0.7em;
     white-space:break-spaces;
     background:darkred;
     color:white;
-    line-height:1.1em;
+    line-height:normal;
     border:1px solid red;
-    border-radius:0.3em;
+    border-radius:2em;
     box-shadow:4px 4px 6px black;
     z-index:2;
 }
@@ -459,12 +459,12 @@ map_body_wrapper {
     /*display:none;*/
     position:absolute;
     top:-1.4em;
-    line-height:1.5em;
-    font-size:0.8em;
+    line-height:normal;
+    font-size:0.7em;
     background:green; /*darkslateblue*/
     color:white;
     border:1px solid lightgrey;
-    border-radius:0.4em;
+    border-radius:1em;
     box-shadow:4px 4px 6px black;
     z-index:2;
 }
@@ -786,11 +786,11 @@ map_body_wrapper {
 /* Symbole d'un citoyen sur la carte hexagonale */
 .map_citizen {
     position:absolute;
-    top:0.85em;
-    height:50%;
+    top:1.5em;
+    height:30%;
     display:flex;
     justify-content:center;
-    width: 130%;
+    width: 100%;
     border-radius:50%;
     background:lightsteelblue;
     z-index:3;
@@ -803,7 +803,7 @@ map_body_wrapper {
     overflow:hidden;
 }
 #me {  
-    background:radial-gradient(lightgreen 30%, green 100%);
+    background:radial-gradient(lightgreen 50%, green 100%);
     z-index:3;
     cursor:pointer;
 }
@@ -836,11 +836,11 @@ map_body_wrapper {
 .map_citizen img {
     position:relative;
     top:-2em;
-    height:48px;
+    height:42px;
 }
 #explosionMe {
     position:absolute;
-    top:-2em;
+    top:-1.9em;
     z-index:10;
 }
 /* Ligne de zombies (zombies de l'attaque') */
@@ -869,11 +869,11 @@ map_body_wrapper {
 
 .halo {
     position:absolute;
-    top:0.7em;
+    top:1.4em;
     border: 5px solid green;
     border-radius: 50%;
-    height:62%;
-    width: 152%;
+    height:40%;
+    width: 122%;
     z-index:2;
     animation: citizen_blinker 1s linear infinite;
 }
