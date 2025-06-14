@@ -1300,20 +1300,20 @@ a.localize .material-icons {
     justify-content:center;
     align-items:center;
     font-size:1.6em;
-    background:white;
-    border: 2px solid red;
+    background:darkred;
+    border: 2px outset red;
     border-radius:1em;
     box-shadow: 12px 12px 12px black;
     opacity:0.9;
 }
 #tasks_button .text {
-    font-size:0.7em;
-    color:red;
+    font-size:0.65em;
+    color:white;
 }
 #tasks_button .dot_number {
     position:absolute;
-    top:  -0.2rem;
-    right:-0.4rem;
+    top:  -0.4rem;
+    right:-0.6rem;
     height: 1.4rem;
     width:  1.4rem;
     font-size:0.5em;
