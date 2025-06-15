@@ -649,21 +649,21 @@ class HtmlCityEnclosure
         $components_percent = $nbr_components_gathered/max(1,$nbr_components_needed)*100;
         
         if($status === 'achieved') {
-            $progressbar_bg = '';
+//            $progressbar_bg = '';
             $bg_color    = 'green';
             $text_color  = 'lightgreen';
             $html_status = '&check; Construit !';
             $html_resources = '<span class="components hidden" style="justify-content:center">.</span>';
         }
         elseif($nbr_components_gathered >= $nbr_components_needed) {
-            $progressbar_bg = '';
+//            $progressbar_bg = '';
             $bg_color    = 'darkred';
             $text_color  = 'white';
             $html_status = '<a style="font-size:1.2em;color:white">&#9889;Constructible&nbsp;<span class="arrow">&#65088;</span></a>';
             $html_resources = $this->block_construction_resources_column($components, $zone_items, $items_caracs);
         }
         else { // Status "in progress"
-            $progressbar_bg = '#E67E22';
+//            $progressbar_bg = '#E67E22';
             $bg_color    = '';
             $text_color  = '#263238';
             $html_status = '<a>'.$nbr_components_gathered.'/'.$nbr_components_needed.' composants&nbsp;<span class="arrow">&#65088;</span></a>';
@@ -682,7 +682,7 @@ class HtmlCityEnclosure
                         <h3 style="color:'.$text_color.'">&nbsp;'.$building_name.'</h3>
                         <div class="unfold_button" style="color:'.$text_color.'">'.$html_status.' &nbsp;</div>
                     </div>
-                    <div class="progressbar_filling" style="background-color:'.$progressbar_bg.';width:'.$components_percent.'%"></div>
+                    <div class="progressbar_filling" style="width:'.$components_percent.'%"></div>
                 </td>
                 <td class="defenses hidden" style="background:'.$bg_color.';color:'.$text_color.'"
                     onclick="toggle(\'#building'.$building_id.'\');hide([\'.defenses\'])">
@@ -1125,20 +1125,19 @@ class HtmlCityEnclosure
         $missing_amount = max(0, $required_amount-$available_amount);
         $title = ($missing_amount <= 0) ? $enough : $not_enough;
         $progress = round($available_amount/max(1, $required_amount) * 100);
-        $progressbar_color = ($progress >= 100) ? "lightgreen" : $progressbar_unfilled_color;
+//        $progressbar_color = ($progress >= 100) ? "lightgreen" : $progressbar_unfilled_color;
         
         $item_icon = $htmlItem->icon($item_caracs['icon_path'], $item_caracs['icon_symbol'], 32);
         
         return '
             <li style="display:flex;position:relative;height:3em" title="'.$title.'">
-                <form method="post" action="#popsuccess">
+                <form method="post" action="#popsuccess" class="item_label z-depth-1">
                     <input type="hidden" name="api_name" value="buildings">
                     <input type="hidden" name="action" value="build">
                     <input type="hidden" name="params[building_id]" value="'.$building_id.'">
-                    <button type="submit" class="item_label z-depth-1 '.$redbutton.'" '.$disabled.'>
-                        <span class="progressbar_filling" style="width:'.$progress.'%;background:'.$progressbar_color.'">
+                    <span class="progressbar_filling" style="width:'.$progress.'%"></span>
+                    <button type="submit" class="'.$redbutton.'" '.$disabled.'>
                         &nbsp;'.$item_icon.'&nbsp;'.$button_name.'
-                        </span>
                     </button>
                 </form>
                 '.$this->html_component_amount($required_amount, $available_amount).'
