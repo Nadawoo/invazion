@@ -100,8 +100,8 @@ class SortGameData
         $filtered_items = [];
 
         foreach ($bag_items as $item_id=>$amount) {
-
-            if ($game_items[$item_id][$carac_filter] !== 0) {
+            
+            if (isset($game_items[$item_id]) and $game_items[$item_id][$carac_filter] !== 0) {
                 $filtered_items[$item_id] = $game_items[$item_id];
             }
         }

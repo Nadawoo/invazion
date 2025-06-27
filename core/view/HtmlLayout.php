@@ -417,6 +417,10 @@ class HtmlLayout extends HtmlPage
         
         foreach ($bag_items as $id=>$amount) {
             
+            if(!isset($items_caracs[$id])) {
+                $items_caracs[$id] = set_default_variables('item', $id);
+            }
+            
             $button_alias = get_item_action($items_caracs[$id]);
             
             if ($button_alias !== null) {
