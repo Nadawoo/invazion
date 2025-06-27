@@ -170,10 +170,10 @@
     justify-content:space-between;
     width:100%;
     max-width: 51.25em;
-    max-height:3.6rem;
+    max-height:3.5rem;
     padding:0.2em;
     background:linear-gradient(to top, #17202A, #34495E); /*#4a235a*/
-    border-top:1px ridge darkgrey;
+    /*border-top:1px ridge darkgrey;*/
     color:lightgrey;
     box-shadow:0 -3px 5px dimgrey;
     z-index:50;
@@ -187,7 +187,7 @@
     justify-content:center;
     align-items: center;
     height:3.2rem;
-    border:2px outset white;
+    border:2px solid dimgrey;
     color:white;
     box-shadow: 3px 3px 5px black;
 }
@@ -221,7 +221,7 @@
                                 rgba(255, 255, 255, 1),
                                 darkred,
                                 rgba(0, 0, 50, 0.8));
-    border:2px inset darkslategrey;
+    border:1px inset darkslategrey;
     border-radius:50%;
     outline:1px solid #34495E;
     box-shadow:0 -4px 5px dimgrey;
@@ -1301,7 +1301,7 @@ a.localize .material-icons {
     align-items:center;
     font-size:1.6em;
     background:darkred;
-    border: 2px outset red;
+    border:1px outset red;
     border-radius:1em;
     box-shadow: 12px 12px 12px black;
     opacity:0.9;
