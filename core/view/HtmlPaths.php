@@ -100,6 +100,10 @@ class HtmlPaths {
         
         return '
         <div id="cityframes_bar" class="bottom_bar animate__animated animate__slideInDown hidden">
+            <div class="path move" onclick="switchCityframesType(\'move\')">
+                <span class="icon">&#x1F97E;</span>
+                <span class="label">Aller</span>
+            </div>
             <div class="path defenses" onclick="switchCityframesType(\'defenses\')">
                 <span class="icon">&#x1F6E1;&#xFE0F;</span>
                 <span class="label">Défenses</span>

@@ -518,6 +518,7 @@ class HtmlPopup
                         (Ce bâtiment n\'a pas de description pour le moment.)
                     </p>
                 </div>
+                '.$buttons->teleport(null).'
             </div>
             <div class="block_explore frame z-depth-2">
                 <div class="text_unexplored">

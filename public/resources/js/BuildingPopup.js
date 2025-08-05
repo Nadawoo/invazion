@@ -17,17 +17,17 @@ class BuildingPopup {
                     : event.target.closest(".square_container");
 
         let dataset = zone.dataset;
+        let cityId = dataset.cityid;
         let cityTypeId = dataset.citytypeid;
         // #12 = ID of the building type "city" in the Azimutant's API
         if(parseInt(cityTypeId) === 12) {
-            let cityId = event.target.closest(".square_container").dataset.cityid;
             let cityConnections = new CityConnections();
             cityConnections.updateConnectedCitiesLines(mapId);
             cityConnections.addCityframes(mapId, cityId);
             toggleCityframesView();
         }
         else if(cityTypeId !== "") {
-            this.populateBuildingPopup(cityTypeId, dataset.zombies, dataset.cyclelastvisit);
+            this.populateBuildingPopup(cityId, cityTypeId, dataset.zombies, dataset.cyclelastvisit);
             window.location.href = "#popsuccess";
         }
     }
@@ -40,8 +40,8 @@ class BuildingPopup {
      * @param {int} cityTypeId The ID of the building, as returned by the Azimutant's API
      * @returns {undefined}
      */
-    populateBuildingPopup(cityTypeId, nbrZombiesInZone, cycleLastVisit) {
-
+    populateBuildingPopup(cityId, cityTypeId, nbrZombiesInZone, cycleLastVisit) {
+        
         let building = _configsBuildings[cityTypeId];
         let findableItems = (_configsBuildingsFindableItems[cityTypeId] !== undefined) ? _configsBuildingsFindableItems[cityTypeId] : [];
         let buildingConfig = _configsBuildings[cityTypeId];
@@ -67,6 +67,9 @@ class BuildingPopup {
         if(building["descr_ambiance"] !== "") {
             popup.querySelector(".descr_ambiance").innerHTML = nl2br(building.descr_ambiance);
         }
+        
+        // Add the city ID on the button to teleport the citizen
+        popup.querySelector("form[name='teleport'] input[name='params[target_id]']").value = cityId;
         
         // Display/hide the button for exploring the building
         if(parseInt(cycleLastVisit) === getCurrentCycle()) {

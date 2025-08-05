@@ -376,6 +376,16 @@ class HtmlButtons
                     'action'            => 'switch_citizen',
                     ],
                 ],
+            'teleport' => [
+                'icon'  => '&#x27A1;&#xFE0F;',
+                'name'  => "Aller à ce bâtiment (-1&#x26A1;)",
+                'title' => "Me déplacer vers ce bâtiment",
+                'fields' => [
+                    'api_name'      => 'zone',
+                    'action'        => 'teleport',
+                    'to'            => 'city',
+                    ],
+                ],
             'upgrade_camouflage' => [
                 'icon'  => '',
                 'name'  => "Camouflage +1 niveau",
@@ -865,6 +875,29 @@ class HtmlButtons
         '<form method="post" action="#popsuccess">
             <input type="hidden" name="api_name" value="'.$fields['api_name'].'">
             <input type="hidden" name="action" value="'.$fields['action'].'">
+            <input type="hidden" name="params[target_id]" value="'.$target_id.'">
+            <button type="submit" class="redbutton" title="'.$button['title'].'">'.$button['name'].'</button>
+        </form>';
+    }
+    
+    
+    /**
+     * Button to teleport a citizen from a city to an other
+     * 
+     * @param int $target_id The ID of the destination city
+     * @return type
+     */
+    function teleport($target_id)
+    {
+        
+        $button = $this->buttons['teleport'];
+        $fields = $button['fields'];
+
+        return
+        '<form name="teleport" method="post" action="#popsuccess">
+            <input type="hidden" name="api_name" value="'.$fields['api_name'].'">
+            <input type="hidden" name="action" value="'.$fields['action'].'">
+            <input type="hidden" name="params[to]" value="'.$fields['to'].'">
             <input type="hidden" name="params[target_id]" value="'.$target_id.'">
             <button type="submit" class="redbutton" title="'.$button['title'].'">'.$button['name'].'</button>
         </form>';

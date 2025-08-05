@@ -122,14 +122,14 @@ async function addCitiesOnMap(mapId) {
                 defensesExcedent = nbrDefenses - nbrZombiesNextAttack;
             
             // Display the label above the map only if the city has at least one defense
-            if(nbrDefenses > 0) {
+//            if(nbrDefenses > 0) {
                 if(defensesExcedent >= 0) {
                     htmlNbrDefenses = `<span class="nbr_defenses safe">&#x2705;</span>`;
                 } else {
-                    htmlNbrDefenses = `<span class="nbr_defenses" style="background:darkred">&nbsp; ${defensesExcedent}&#128737;&#65039;</span>`;
+                    htmlNbrDefenses = `<span class="nbr_defenses" style="background:darkred;border:1px outset red;">&nbsp; ${defensesExcedent}&#128737;&#65039;</span>`;
                 }
                 zone.insertAdjacentHTML("afterbegin", `${htmlNbrDefenses}`);
-            }
+//            }
         }
         // Adds the number of items remaining inside the explorable building
         else if(city.city_type_id !== "undefined") {
