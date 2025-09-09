@@ -67,8 +67,13 @@ function listenToMapZones() {
     
     // [On PC] Open the details of a building when clicking on it
     document.getElementById("map_body").addEventListener("click", function(){
-            let buildingPopup = new BuildingPopup();
-            buildingPopup.openBuildingPopup(event);
+            if(event.target.matches("button[name=teleport]") === true) {
+                let cityId = Number(event.target.closest(".square_container").dataset.cityid);
+                teleportToCity(cityId);
+            } else {
+                let buildingPopup = new BuildingPopup();
+                buildingPopup.openBuildingPopup(event);
+            }
         },
         { passive: true }
     );

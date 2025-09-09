@@ -302,7 +302,6 @@ async function teleportToCity(destinationCityId) {
     // Ask the API for teleporting the player
     let token = getCookie('token');
     let json = await callApi("GET", "zone", `action=teleport&to=city&target_id=${destinationCityId}&token=${token}`);
-    
     updateMeAfterMoving(json.datas.new_coord_x, json.datas.new_coord_y);
     
     // Display the result (error or success) in a toast
