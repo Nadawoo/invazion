@@ -41,11 +41,30 @@ function listenToMapZones() {
     });
     
     // [On PC] Show/hide toolip on hovering the zone
+    // Store the timeouts associated to each element
+    const tooltipTimers = new WeakMap();
     document.querySelector("#map_body").addEventListener("mouseover", function(){
-            triggerTooltip(event.target.closest(".hexagon"));
-        },
-        { passive: true }
-    );
+        const hexagon = event.target.closest(".hexagon");
+        if(!hexagon) return;
+        // Start a timeout for this hexagon
+        const timerId = setTimeout(() => {
+            triggerTooltip(hexagon);
+        }, 500);
+        // Save the timeout to be able to cancel it
+        tooltipTimers.set(hexagon, timerId);
+    }, { passive: true });
+    
+    document.querySelector("#map_body").addEventListener("mouseout", function(event) {
+        const hexagon = event.target.closest(".hexagon");
+        if (!hexagon) return;
+        // Destroys the timeout if exists
+        const timerId = tooltipTimers.get(hexagon);
+        if (timerId) {
+            clearTimeout(timerId);
+            tooltipTimers.delete(hexagon);
+        }
+    }, { passive: true });
+    
     // [On PC] Open the details of a building when clicking on it
     document.getElementById("map_body").addEventListener("click", function(){
             let buildingPopup = new BuildingPopup();
