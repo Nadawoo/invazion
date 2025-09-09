@@ -608,7 +608,7 @@ function switchCityframesType(typeToActivate) {
                 <button aria-label="Me déplacer vers ce bâtiment"
                     class="city_name animate__animated animate__pulse animate__infinite"
                     style="border-radius:0.5em"
-                    onclick="teleportToCity(${mapId}, ${cityId})">Aller<br>-1&#x26A1;</button>
+                    onclick="teleportToCity(${cityId})">Aller<br>-1&#x26A1;</button>
             `);
         });
     }

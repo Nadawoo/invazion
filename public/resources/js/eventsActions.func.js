@@ -101,6 +101,6 @@ function listenToTeleportButton() {
         // Desactivate the classic submission button (avoids reloading the page)
         event.preventDefault();
         let destinationCityId = form.querySelector('input[name="params[target_id]"]').value;
-        teleportCitizen(destinationCityId);
+        teleportToCity(destinationCityId);
     });
 }

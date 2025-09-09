@@ -18,8 +18,8 @@ class HtmlCityEnclosure
     {
          return '
             <div id="city_tabs">
-                <a onclick="switchCityMenu(\'cityMenuMyHome\');teleportToCity('.$map_id.', '.$home_id.')">Chez moi</a> &nbsp; 
-                <a onclick="switchCityMenu(\'cityMenuCity\');  teleportToCity('.$map_id.', '.$city_id.')">La ville</a>
+                <a onclick="switchCityMenu(\'cityMenuMyHome\');teleportToCity('.$home_id.')">Chez moi</a> &nbsp; 
+                <a onclick="switchCityMenu(\'cityMenuCity\');  teleportToCity('.$city_id.')">La ville</a>
             </div>';
     }
     
