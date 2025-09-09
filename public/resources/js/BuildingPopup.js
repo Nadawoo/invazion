@@ -29,6 +29,7 @@ class BuildingPopup {
         else if(cityTypeId !== "") {
             this.populateBuildingPopup(cityId, cityTypeId, dataset.zombies, dataset.cyclelastvisit);
             window.location.href = "#popsuccess";
+            listenToTeleportButton();
         }
     }
     

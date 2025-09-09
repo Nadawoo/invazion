@@ -319,6 +319,23 @@ async function moveCitizen(direction) {
 
 
 /**
+ * Teleport a citizen to a city
+ * 
+ * @param {int} destinationCityId The ID of the city which is the destination for the teleportation
+ * @returns {undefined}
+ */
+async function teleportCitizen(destinationCityId) {
+    
+    // Ask the API for teleporting the player
+    let token = getCookie('token');
+    let json = await callApi("GET", "zone", `action=teleport&to=city&target_id=${destinationCityId}&token=${token}`);
+    
+    // Display the result (error or success) in a toast
+    displayToast(json.metas.error_message, json.metas.error_class);
+}
+
+
+/**
  * Animate an element of the GUI by using the CSS library Animate.css
  * Official site: https://animate.style
  *  
