@@ -315,6 +315,7 @@ async function moveCitizen(direction) {
     }
     
     updateMeAfterMoving(json.datas.new_coord_x, json.datas.new_coord_y);
+    updateActionBlocksAfterMoving(json.datas.new_coord_x, json.datas.new_coord_y);
 }
 
 
@@ -329,6 +330,8 @@ async function teleportCitizen(destinationCityId) {
     // Ask the API for teleporting the player
     let token = getCookie('token');
     let json = await callApi("GET", "zone", `action=teleport&to=city&target_id=${destinationCityId}&token=${token}`);
+    
+    updateMeAfterMoving(json.datas.new_coord_x, json.datas.new_coord_y);
     
     // Display the result (error or success) in a toast
     displayToast(json.metas.error_message, json.metas.error_class);
@@ -364,7 +367,7 @@ function animateCss(cssSelector, effectName) {
 
 
 /**
- * Update the coordinates of the player and other player-related data modified 
+ * Update the main coordinates of the player after moving 
  * by the movement
  * 
  * @param {int} newCoordX
@@ -379,6 +382,19 @@ async function updateMeAfterMoving(newCoordX, newCoordY) {
     // Update the stored coordinates of the player
     document.querySelector("#citizenCoordX").innerHTML = newCoordX;
     document.querySelector("#citizenCoordY").innerHTML = newCoordY;
+    
+    setTimeout(()=>{ centerMapOnMe(10) }, 1000);
+}
+
+
+/**
+ * Update the data in the action blocks affected by the citizen's moving
+ * 
+ * @param {int} newCoordX
+ * @param {int} newCoordY
+ * @returns {undefined}
+ */
+async function updateActionBlocksAfterMoving(newCoordX, newCoordY) {
     
     // Update the coordinates of the player in the movement paddle
     updateMovementPaddle(newCoordX, newCoordY);
@@ -398,10 +414,7 @@ async function updateMeAfterMoving(newCoordX, newCoordY) {
     updateMoveCost(parseInt(myZone.dataset.zombies));
     updateCardCitizensInZone(myZone.dataset.citizens);
     updateBlockAction('dig');
-    
-    setTimeout(()=>{ centerMapOnMe(10) }, 1000);
 }
-
 
 /**
  * Shows/hides the card under the movement paddle notifying the presence 
