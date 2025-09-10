@@ -41,38 +41,47 @@ function listenToMapZones() {
     });
     
     // [On PC] Show/hide toolip on hovering the zone
-    // Store the timeouts associated to each element
-    const tooltipTimers = new WeakMap();
-    document.querySelector("#map_body").addEventListener("mouseover", function(){
-        const hexagon = event.target.closest(".hexagon");
-        if(!hexagon) return;
-        // Start a timeout for this hexagon
-        const timerId = setTimeout(() => {
-            triggerTooltip(hexagon);
-        }, 500);
-        // Save the timeout to be able to cancel it
-        tooltipTimers.set(hexagon, timerId);
-    }, { passive: true });
+//    // Store the timeouts associated to each element
+//    const tooltipTimers = new WeakMap();
+//    document.querySelector("#map_body").addEventListener("mouseover", function(){
+//        const hexagon = event.target.closest(".hexagon");
+//        if(!hexagon) return;
+//        // Start a timeout for this hexagon
+//        const timerId = setTimeout(() => {
+//            triggerTooltip(hexagon);
+//        }, 500);
+//        // Save the timeout to be able to cancel it
+//        tooltipTimers.set(hexagon, timerId);
+//    }, { passive: true });
+//    
+//    document.querySelector("#map_body").addEventListener("mouseout", function(event) {
+//        const hexagon = event.target.closest(".hexagon");
+//        if (!hexagon) return;
+//        // Destroys the timeout if exists
+//        const timerId = tooltipTimers.get(hexagon);
+//        if (timerId) {
+//            clearTimeout(timerId);
+//            tooltipTimers.delete(hexagon);
+//        }
+//    }, { passive: true });
     
-    document.querySelector("#map_body").addEventListener("mouseout", function(event) {
-        const hexagon = event.target.closest(".hexagon");
-        if (!hexagon) return;
-        // Destroys the timeout if exists
-        const timerId = tooltipTimers.get(hexagon);
-        if (timerId) {
-            clearTimeout(timerId);
-            tooltipTimers.delete(hexagon);
-        }
-    }, { passive: true });
-    
-    // [On PC] Open the details of a building when clicking on it
+    // [On PC] Action when clicking on a zone
     document.getElementById("map_body").addEventListener("click", function(){
+            const hexagon = event.target.closest(".hexagon");
+            
             if(event.target.matches("button[name=teleport]") === true) {
+                // If we click on a teleportation button over a city, teleport the citizen
                 let cityId = Number(event.target.closest(".square_container").dataset.cityid);
                 teleportToCity(cityId);
-            } else {
+            }
+            else if(hexagon.querySelector(".square_container").dataset.citytypeid !== "") {
+                // If we click on a city, open the city pop-up
                 let buildingPopup = new BuildingPopup();
                 buildingPopup.openBuildingPopup(event);
+            }
+            else {
+                // Else, display the tooltip of the zone
+                triggerTooltip(hexagon);
             }
         },
         { passive: true }

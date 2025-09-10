@@ -108,8 +108,7 @@ class HtmlPaths {
                 <span class="icon">&#x1F6E1;&#xFE0F;</span>
                 <span class="label">Défenses</span>
             </button>
-            <button name="resources" class="path"
-                 onclick="switchCityframesType(\'resources\')">
+            <button name="resources" class="path" onclick="switchCityframesType(\'resources\')">
                 <span class="icon">&#x26CF;&#xFE0F;</span>
                 <span class="label">Ressources</span>
             </button>
