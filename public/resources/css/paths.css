@@ -244,13 +244,19 @@
 #cityframes_bar {
     top:1px;
     bottom:auto;
+    height:5.5rem;
     padding:0.1em 0;
     justify-content:center;
     border-top:none;
 }
-#cityframes_bar .path {
+#cityframes_bar button {
+    padding:0;
     width:6.2em;
     min-width:auto;
+    
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-end;
 }
 #cityframes_bar .icon {
     font-size:2em;
@@ -259,6 +265,8 @@
 #cityframes_bar .label {
     display:block;
     margin:1px;
+    margin-top:0.5em;
+    padding:2px 0 5px 0;
     background:purple;
     color:white;
     border-top:1px solid grey;

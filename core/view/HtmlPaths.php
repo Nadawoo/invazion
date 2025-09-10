@@ -100,31 +100,31 @@ class HtmlPaths {
         
         return '
         <div id="cityframes_bar" class="bottom_bar animate__animated animate__slideInDown hidden">
-            <div class="path move" onclick="switchCityframesType(\'move\')">
+            <button class="path move" onclick="switchCityframesType(\'move\')">
                 <span class="icon">&#x1F97E;</span>
                 <span class="label">Aller</span>
-            </div>
-            <div class="path defenses" onclick="switchCityframesType(\'defenses\')">
+            </button>
+            <button class="path defenses" onclick="switchCityframesType(\'defenses\')">
                 <span class="icon">&#x1F6E1;&#xFE0F;</span>
                 <span class="label">Défenses</span>
-            </div>
-            <div class="path resources"
+            </button>
+            <button class="path resources"
                  onclick="switchCityframesType(\'resources\')">
                 <span class="icon">&#x26CF;&#xFE0F;</span>
                 <span class="label">Ressources</span>
-            </div>
-            <div class="path transportations" onclick="switchCityframesType(\'transportations\')">
+            </button>
+            <button class="path transportations" onclick="switchCityframesType(\'transportations\')">
                 <span class="icon">&#x1F681;</span>
                 <span class="label">Transports</span>
-            </div>
-            <div class="path weather" onclick="switchCityframesType(\'weather\')">
+            </button>
+            <button class="path weather" onclick="switchCityframesType(\'weather\')">
                 <span class="icon">&#x1F327;&#xFE0F;</span>
                 <span class="label">Météo</span>
-            </div>
-            <div class="path undiscovered" onclick="switchCityframesType(\'undiscovered\')">
+            </button>
+            <button class="path undiscovered" onclick="switchCityframesType(\'undiscovered\')">
                 <span class="icon">&#x2753;</span>
                 <span class="label">Inexploré</span>
-            </div>
+            </button>
             <a class="close z-depth-2"><i class="material-icons">close</i></a>
         </div>';
     }
