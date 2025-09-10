@@ -100,28 +100,28 @@ class HtmlPaths {
         
         return '
         <div id="cityframes_bar" class="bottom_bar animate__animated animate__slideInDown hidden">
-            <button class="path move" onclick="switchCityframesType(\'move\')">
+            <button name="move" class="path" onclick="switchCityframesType(\'move\')">
                 <span class="icon">&#x1F97E;</span>
                 <span class="label">Aller</span>
             </button>
-            <button class="path defenses" onclick="switchCityframesType(\'defenses\')">
+            <button name="defenses" class="path" onclick="switchCityframesType(\'defenses\')">
                 <span class="icon">&#x1F6E1;&#xFE0F;</span>
                 <span class="label">Défenses</span>
             </button>
-            <button class="path resources"
+            <button name="resources" class="path"
                  onclick="switchCityframesType(\'resources\')">
                 <span class="icon">&#x26CF;&#xFE0F;</span>
                 <span class="label">Ressources</span>
             </button>
-            <button class="path transportations" onclick="switchCityframesType(\'transportations\')">
+            <button name="transportations" class="path" onclick="switchCityframesType(\'transportations\')">
                 <span class="icon">&#x1F681;</span>
                 <span class="label">Transports</span>
             </button>
-            <button class="path weather" onclick="switchCityframesType(\'weather\')">
+            <button name="weather" class="path" onclick="switchCityframesType(\'weather\')">
                 <span class="icon">&#x1F327;&#xFE0F;</span>
                 <span class="label">Météo</span>
             </button>
-            <button class="path undiscovered" onclick="switchCityframesType(\'undiscovered\')">
+            <button name="undiscovered" class="path" onclick="switchCityframesType(\'undiscovered\')">
                 <span class="icon">&#x2753;</span>
                 <span class="label">Inexploré</span>
             </button>

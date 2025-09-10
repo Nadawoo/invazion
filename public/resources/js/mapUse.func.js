@@ -590,17 +590,17 @@ function toggleCityframesView() {
         (cityframe) => cityframe.classList.toggle("active")
     );
     
-    // By default, display only the "defenses"
-    switchCityframesType("defenses");
-    document.querySelector("#cityframes_bar .defenses").classList.add("active");
+    // By default, activate the first button from the left
+    let typeToActivate = document.querySelector("#cityframes_bar").firstElementChild.name;
+    switchCityframesType(typeToActivate);
+    document.querySelector(`#cityframes_bar button[name=${typeToActivate}]`).classList.add("active");
 }
 
 
 function switchCityframesType(typeToActivate) {
     
+    // Add the button over the cities to teleport the citizens
     if(typeToActivate === "move") {
-        let mapId = document.querySelector("#gameData #mapId").innerHTML;
-        
         document.querySelectorAll("#map .cityframe").forEach((cityframe) => {
             zone = cityframe.closest(".square_container");
             cityId = zone.dataset.cityid;
@@ -628,7 +628,7 @@ function switchCityframesType(typeToActivate) {
     document.querySelectorAll(`#cityframes_bar .path`).forEach(
         element => element.classList.remove("active")
     );
-    document.querySelector(`#cityframes_bar .${typeToActivate}`).classList.add("active");
+    document.querySelector(`#cityframes_bar button[name=${typeToActivate}]`).classList.add("active");
 }
 
 
