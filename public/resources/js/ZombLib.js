@@ -40,16 +40,23 @@ function filterUrlHostName(fullUrl) {
 
 /**
  * Get the configuration set for the server (dev/prod)
- * @returns {unresolved}
+ * 
+ * @returns {json}
  */
 async function getConfigFile() {
     
-    try {
-        const response = await fetch('../config.json');
-        return await response.json();
-    } catch (error) {
-        console.error('[Azimutant] Error while loading configuration file :', error);
+    if (!_configsServer) {
+        _configsServer = fetch('/config.json')
+            .then(res => {
+                if (!res.ok) throw new Error("[Azimutant] Error while loading configuration file");
+                return res.json();
+            });
     }
+//    else {
+//        console.log("Using cached config");
+//    }
+
+    return _configsServer;
 }
 
 

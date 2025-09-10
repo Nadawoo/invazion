@@ -17,6 +17,7 @@ var _userEmail = null;
 // Permanently stores the result of the API whichs gives the discussions list 
 var _jsonDiscussionApi = null;
 var _scrollBoosterInstance = null;
+var _configsServer = null;
 
 var _defaultMapZoomPercent = 130;
 
