@@ -603,14 +603,17 @@ function switchCityframesType(typeToActivate) {
     if(typeToActivate === "move") {
         document.querySelectorAll("#map .cityframe").forEach((cityframe) => {
             zone = cityframe.closest(".square_container");
-            cityId = zone.dataset.cityid;
-            zone.insertAdjacentHTML("afterbegin", `
-                <button aria-label="Me déplacer vers ce bâtiment"
-                    name="teleport"
-                    class="city_name animate__animated animate__pulse animate__infinite"
-                    style="border-radius:0.5em"
-                    >Aller<br>-1&#x26A1;</button>
-            `);
+            // If the teleportation button doesn't exist, create it
+            if(zone.querySelector("button[name=teleport]") === null) {
+                cityId = zone.dataset.cityid;
+                zone.insertAdjacentHTML("afterbegin", `
+                    <button aria-label="Me déplacer vers ce bâtiment"
+                        name="teleport"
+                        class="city_name animate__animated animate__pulse animate__infinite"
+                        style="border-radius:0.5em"
+                        >Aller<br>-1&#x26A1;</button>
+                `);
+            }
         });
     }
     
