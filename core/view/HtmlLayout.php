@@ -373,9 +373,14 @@ class HtmlLayout extends HtmlPage
 //                . '</tr>';
 //        }
 //        else {
-            $table .= '<tr>
+            $table .= '
+            <tr>
                 <td>'.$buttons->icon('add_vault').'</td>
                 <td>'.$buttons->button('add_vault', 'no_icon').'</td>
+            </tr>
+            <tr>
+                <td>'.$buttons->icon('add_zone_zombies').'</td>
+                <td>'.$buttons->add_zone_zombies().'</td>
             </tr>';
 //        }
         

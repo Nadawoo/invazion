@@ -216,6 +216,21 @@ async function createItem() {
 
 
 /**
+ * Add zombies in one given zone
+ */
+async function addZombiesInZone() {
+    
+    let token = getCookie('token'),
+        coordX = Number(document.querySelector("#gameData #citizenCoordX").innerHTML),
+        coordY = Number(document.querySelector("#gameData #citizenCoordY").innerHTML);
+    
+    let json = await callApi("GET", "zone", `action=add&stuff=zombies&zones=${coordX}_${coordY}&token=${token}`);
+    
+    displayToast(json.metas.error_message, json.metas.error_class);
+}
+
+
+/**
  * Displays the discussions list in the notifications panel.
  * WARNING : don't call this function more than needed, because it makes a distant request 
  * to the Azimutant's API.

@@ -69,6 +69,12 @@ class HtmlButtons
                     'params[stuff]' => 'vault'
                     ],
                 ],
+            'add_zone_zombies' => [
+                'icon'  => '&#x1F9DF;',
+                'name'  => 'Ajouter des zombies dans la zone',
+                'title' => "",
+                'fields' => [], // Handled by Javascript
+                ],
             'add_map_zombies' => [
                 'icon'  => '',
                 'name'  => 'Ajouter des zombies sur toute la carte',
@@ -939,7 +945,7 @@ class HtmlButtons
     
     
     /**
-     * Button to dig the zone where the expeiditon is
+     * Button to dig the zone where the expedition is
      * 
      * @param int $path_id The ID of the expedition
      * @return string HTML
@@ -959,6 +965,23 @@ class HtmlButtons
         </form>';
     }
         
+    
+    /**
+     * Button to add zombies in one given zone
+     * 
+     * @param string $coord_x The X coordinate of the zone where to add the zombies
+     * @param string $coord_y The Y coordinate of the zone where to add the zombies
+     * @return string HTML
+     */
+    function add_zone_zombies()
+    {
+        
+        $button = $this->buttons['add_zone_zombies'];
+        $fields = $button['fields'];
+        
+        return '<button class="redbutton" title="'.$button['title'].'" onclick="addZombiesInZone()">'.$button['name'].'</button>';
+    }
+    
     
     /**
      * Button to display the paths panel
