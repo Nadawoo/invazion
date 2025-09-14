@@ -1123,6 +1123,7 @@ form.big .redbutton {
  * Bloc rouge indiquant que le joueur est bloqué par les zombies
  */
 .block_alert {
+    width:20rem;
     border:2px outset black;
     text-align:center;
     background:#a93226;
