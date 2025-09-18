@@ -533,6 +533,27 @@ class HtmlPopup
                     <p><strong>&#x2705; Vous avez déjà exploré ce bâtiment aujourd\'hui.</strong></p>
                 </div>
             </div>
+            <div class="block_modules frame z-depth-2">
+                <div onclick="this.querySelector(\'.help\').classList.toggle(\'hidden\')">
+                    <h3 class="z-depth-1">Modules <a>[?]</a></h3>
+                    <p class="help hidden">
+                        Chaque module du bâtiment assure une fonction. 
+                        Les modules tombent hors service au fur et à mesure que
+                        le nombre de zombies présents dans la zone augmente.
+                    </p>
+                </div>
+                <table class="building_modules">
+                    <tr class="zombies_row">
+                        <td class="zombies z-depth-1">
+                            <span class="label z-depth-2">
+                                ▼ <img src="resources/img/motiontwin/zombie.gif" alt="zombie">
+                                <span class="nbr_zombies"></span> zombies ▼
+                            </span>
+                        </td>
+                    </tr>
+                    '.$html_modules.'
+                </table>
+            </div>
             <div class="block_plans frame z-depth-2">
                 <div onclick="this.querySelector(\'.help\').classList.toggle(\'hidden\')">
                     <h3 class="z-depth-1">Améliorations <a>[?]</a></h3>
@@ -573,27 +594,6 @@ class HtmlPopup
                     une mise à jour ultérieure. Pour le moment, les plans ne peuvent 
                     pas être trouvés dans le désert. Un peu de patience...]
                 </p>
-            </div>
-            <div class="block_modules frame z-depth-2">
-                <div onclick="this.querySelector(\'.help\').classList.toggle(\'hidden\')">
-                    <h3 class="z-depth-1">Modules <a>[?]</a></h3>
-                    <p class="help hidden">
-                        Chaque module du bâtiment assure une fonction. 
-                        Les modules tombent hors service au fur et à mesure que
-                        le nombre de zombies présents dans la zone augmente.
-                    </p>
-                </div>
-                <table class="building_modules">
-                    <tr class="zombies_row">
-                        <td class="zombies z-depth-1">
-                            <span class="label z-depth-2">
-                                ▼ <img src="resources/img/motiontwin/zombie.gif" alt="zombie">
-                                <span class="nbr_zombies"></span> zombies ▼
-                            </span>
-                        </td>
-                    </tr>
-                    '.$html_modules.'
-                </table>
             </div>
         </template>';
     }
