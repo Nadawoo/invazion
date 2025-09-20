@@ -116,18 +116,22 @@ async function addCitiesOnMap(mapId) {
         }        
         // Adds the number of defenses above each city
         // (#12 = ID of the "human city" building)
-        else if(city.city_type_id === 12) {
-            let nbrDefenses = city.total_defenses,
+        // (#13 = ID of the "tent" building)
+        else if(city.city_type_id === 12 || city.city_type_id === 13) {
+//            let nbrDefenses = city.total_defenses,
+            let nbrDefenses = 35, // 35 is the number of default defenses set for now
                 nbrZombiesNextAttack = zone.dataset.zombies,
                 defensesExcedent = nbrDefenses - nbrZombiesNextAttack;
             
             // Display the label above the map only if the city has at least one defense
 //            if(nbrDefenses > 0) {
-                if(defensesExcedent >= 0) {
-                    htmlNbrDefenses = `<span class="nbr_defenses safe">&#x2705;</span>`;
-                } else {
-                    htmlNbrDefenses = `<span class="nbr_defenses" style="background:darkred;border:1px outset red;">&nbsp; ${defensesExcedent}&#128737;&#65039;</span>`;
-                }
+//                if(defensesExcedent >= 0) {
+//                    htmlNbrDefenses = `<span class="nbr_defenses safe">&#x2705;</span>`;
+//                } else {
+//                    htmlNbrDefenses = `<span class="nbr_defenses" style="background:darkred;border:1px outset red;">&nbsp; ${defensesExcedent}&#128737;&#65039;</span>`;
+//                }
+                htmlNbrDefenses = `<span class="nbr_defenses" style="background:darkred;border:1px outset red;">&nbsp; ${defensesExcedent}&#128737;&#65039;</span>`;
+                
                 zone.insertAdjacentHTML("afterbegin", `${htmlNbrDefenses}`);
 //            }
         }
