@@ -218,9 +218,13 @@ class HtmlMap
             // Default ground for the never visited zones
             $ground = '';
         }
-        elseif ($cell['zombies'] >= 5) {
+        elseif ($cell['zombies'] >= 8) {
             // If there are a lot of zombies in the zone, the ground turns to grey
-            $ground = 'ground_zombies';
+            $ground = 'ground_mass_zombies';
+        }
+        elseif ($cell['zombies'] >= 4) {
+            // If there are a few zombies in the zone, the ground turns to sand
+            $ground = 'ground_few_zombies';
         }
         elseif($cell['land'] === null) {
             // If the cell exists in the database but has no specific ground set

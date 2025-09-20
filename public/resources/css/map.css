@@ -667,7 +667,7 @@ map_body_wrapper {
 }*/
 .ground_default {
     /* If the cell exists in the database but has no specific ground set */
-    background-image:url("../img/copyrighted/tiles/desert/9.png");
+    background-image:url("../img/copyrighted/tiles/greenjungle/3.png");
 }
 .ground_grass {
     background-image:url("../img/copyrighted/tiles/greenjungle/3.png");
@@ -702,7 +702,10 @@ map_body_wrapper {
     background-position-y: 0.25em;
 }
 
-.ground_zombies {
+.ground_few_zombies {
+    background-image:url("../img/copyrighted/tiles/desert/9.png");
+}
+.ground_mass_zombies {
     background-image:url("../img/copyrighted/tiles/grey/5.png");
 }
 
