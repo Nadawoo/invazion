@@ -512,8 +512,8 @@ map_body_wrapper {
     width: 2.6rem;
     margin-bottom:3px;
     border-radius:50%;
-    /*outline:1px solid dimgrey;*/
-    /*box-shadow: 2px 2px 12px black;*/
+    outline:2px outset green;
+    box-shadow: 2px 2px 12px black;
     background: radial-gradient(circle at 5% 5%,
                         rgba(255, 255, 255, 0.8),
                         rgba(0, 0, 0, 0) 50%
