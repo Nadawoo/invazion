@@ -285,24 +285,35 @@ async function moveCitizen(direction) {
     
     let current_AP = (document.querySelector("#actionPoints").innerText),
         lost_AP    = json.datas.action_points_lost;
-        new_AP     = current_AP - lost_AP;
+        newAP     = current_AP - lost_AP;
         
     // Display the eventual error in a toast
     if(lost_AP > 0 || json.metas.error_code !== "success") {
         let error_message = (json.metas.error_code === "success")
-                    ? `-${lost_AP} point d'action consommé<br>(${new_AP} restants)`
+                    ? `-${lost_AP} point d'action consommé<br>(${newAP} restants)`
                     : json.metas.error_message;
         displayToast(error_message, json.metas.error_class);
     }
     
     if(lost_AP > 0) {
-        document.querySelector("#actionPoints").innerText = new_AP;
-        document.querySelector("#personal_block .actionpoints .icon").innerText = new_AP;
-        animateCss("#personal_block .actionpoints .icon", "flash");
+        updateActionPoints(newAP);
     }
     
     updateMeAfterMoving(json.datas.new_coord_x, json.datas.new_coord_y);
     updateActionBlocksAfterMoving(json.datas.new_coord_x, json.datas.new_coord_y);
+}
+
+
+/**
+ * Update the number of action points in the red AP counter
+ * 
+ * @param {int} newAP The new amount of action points after making the action
+ */
+function updateActionPoints(newAP) {
+    
+    document.querySelector("#actionPoints").innerText = newAP;
+    document.querySelector("#personal_block .actionpoints .icon").innerText = newAP;
+    animateCss("#personal_block .actionpoints .icon", "flash");
 }
 
 
