@@ -27,9 +27,13 @@ async function updateMapRealtime(event, timestamp) {
     let json = await callApi("GET", "citizens", `action=get&map_id=${mapId}`);   
     _citizens = json.datas;
     
-    // Updates the HTML for the modified zones
-    for (let coords in htmlZones) {
-        document.getElementById("zone"+coords).outerHTML = htmlZones[coords];
+    if(htmlZones.metas !== undefined && htmlZones.metas.error_code !== "success") {
+        displayToast(htmlZones.metas.error_message, htmlZones.metas.error_class);
+    } else {
+        // Update the HTML for the modified zones
+        for (let coords in htmlZones) {
+            document.getElementById("zone"+coords).outerHTML = htmlZones[coords];
+        }
     }
     
     addCitiesOnMap(mapId);
