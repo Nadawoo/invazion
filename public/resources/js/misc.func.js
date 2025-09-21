@@ -496,10 +496,16 @@ async function killZombies(apiAction) {
             newNbrZombies = Math.max(0, oldNbrZombies - json.datas.nbr_zombies_removed);
         let mapId = Number(document.querySelector("#gameData #mapId").innerHTML);
         
+        let current_AP = (document.querySelector("#actionPoints").innerText),
+            lost_AP    = json.datas.action_points_lost;
+            newAP     = current_AP - lost_AP;
+        
         // Update the action blocks (round buttons next to the map)
         updateBlockActionZombies(newNbrZombies);
         updateMoveCost(newNbrZombies);
         updateBlockAlertControl(Number(myZone.dataset.controlpointszombies), mapId, myZone.dataset.coordx, myZone.dataset.coordy);
+        
+        updateActionPoints(newAP);
         
         // Update the zombie silhouettes on the map zone
         if(newNbrZombies > 0) {
