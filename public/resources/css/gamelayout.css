@@ -584,7 +584,7 @@ form[name="end_cycle"] button {
 }
 #block_move #card_building {
     display:block;
-    height:8em;
+    min-height:8em;
     padding:0.5em;
     transition:margin-top 0.8s ease-out;
 }
@@ -602,7 +602,7 @@ form[name="end_cycle"] button {
 }
 #block_move #card_building.above_paddle {
     margin-top:-7.5em;
-    height:9em;
+    min-height:9em;
 }
 
 #card_ap_cost .actionspoints_decrease {
