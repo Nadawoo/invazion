@@ -59,7 +59,9 @@ async function getMapCitizensOnce(mapId) {
 async function addCitiesOnMap(mapId) {
     
     // #233 is the ID for the "Undiscovered building" in the API.
-    let undiscoveredBuildingId = 233;
+    let undiscoveredBuildingId = 233,
+        zombieCoreId = 228
+        zombieBaseId = 230;
     
     // Get the cities of the map by calling the Azimutant's API
     _cities = await getMapCitiesOnce(mapId);
@@ -110,10 +112,12 @@ async function addCitiesOnMap(mapId) {
         }
         
         // Adds the number of zombies of the daily attack 
-        // (#230 = ID of the "zombie base" building)
-        if(city.city_type_id === 230) {
+        if(city.city_type_id === zombieBaseId) {
             zone.insertAdjacentHTML("afterbegin", `<span class="nbr_defenses" style="background:red">${zone.dataset.zombies} <img src="resources/img/motiontwin/zombie.gif" alt="&#x1F9DF;"></span>`);
-        }        
+        }
+        else if(city.city_type_id === zombieCoreId) {
+            zone.insertAdjacentHTML("afterbegin", `<span class="nbr_defenses safe" style="background:lightgrey;border:none">&#x2757;</span>`);
+        }
         // Adds the number of defenses above each city
         // (#12 = ID of the "human city" building)
         // (#13 = ID of the "tent" building)
