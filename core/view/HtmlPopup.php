@@ -333,7 +333,7 @@ class HtmlPopup
         if($unvalidated_death_cause === 'outside') {
             $msg_popup = 
                   '<h2>Vous êtes mort !</h2>'
-                . '<img src="resources/img/copyrighted/skull.png" alt="image crâne" height="120">'
+                . '<p><img src="resources/img/copyrighted/skull.png" alt="image crâne" height="120"></p>'
                 . '<p>Les zombies vous ont dévoré dans le désert cette nuit !</p> '
                 . '<p>Rappelez-vous que les villes et les tentes sont les seuls abris '
                 . 'valables contre l\'attaques zombie quotidienne. '
@@ -361,7 +361,7 @@ class HtmlPopup
             $msg_popup .= '<p>[Bug: motif de mort inconnu]</p>';
         }
         
-        $msg_popup .= $buttons->button('start_game', true, 'center') . '<br>'
+        $msg_popup .= $buttons->button('start_game', true, 'center')
                     . $buttons->button('validate_death', true, 'center');
         
         return $msg_popup;

@@ -12,7 +12,7 @@
     bottom: 0;
     left: 0;
     right: 0;
-    background: rgba(0, 0, 0, 0.7);
+    background: rgba(0, 0, 0, 0.85);
     transition: opacity 500ms;
     visibility: hidden;
     opacity: 0;
@@ -30,14 +30,13 @@
     max-height:75%;
     overflow: auto;
     margin: 5% auto;
-    padding: 1em 0.5em;
     background: #fff;
     border-radius: 8px;
     position: relative;
     transition: all 250ms ease-in-out;
 }
 .popup h2 {
-    margin-top:0;
+    margin-top:0.4em;
     text-align:center;
     color: #333;
     font-family: Tahoma, Arial, sans-serif;
@@ -57,8 +56,13 @@
 }
 .popup .content {
     max-height:30%;
-    margin-top:2em;
+    margin:0.2em;
+    margin-top:0.15em;
     overflow:auto;
+}
+.popup p {
+    padding-left:1em;
+    padding-right:1em; 
 }
 
 .popup ul {
@@ -112,7 +116,7 @@
 .popup .frame {
     margin-top:2em;
     border:1px solid darkgrey;
-    border-radius:0.3em;
+    border-radius:0.5em;
 }
 .popup .frame>p {
     margin-left:1em;
