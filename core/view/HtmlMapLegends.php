@@ -20,10 +20,10 @@ class HtmlMapLegends {
                 <legend>Légende</legend>
                 <a href="#popcontrol" style="color:inherit">
                     <ul>
-                        <li><span class="legend_color" style="background:mediumseagreen"></span> Zone sûre (peu de zombies)</li>
-                        <li><span class="legend_color" style="background:orange"></span> 2 humains requis ou +</li>
-                        <li><span class="legend_color" style="background:red"></span> 3 humains requis ou +</li>
-                        <li><span class="legend_color" style="background:darkred"></span> 4 humains requis ou +</li>
+                        <li><span class="legend_color level_1"></span> Zone sûre (peu de zombies)</li>
+                        <li><span class="legend_color level_2"></span> 2 humains requis ou +</li>
+                        <li><span class="legend_color level_3"></span> 3 humains requis ou +</li>
+                        <li><span class="legend_color level_4"></span> 4 humains requis ou +</li>
                     </ul>
                 </a>
             </fieldset>';
@@ -38,10 +38,10 @@ class HtmlMapLegends {
                 <a href="#Outside" style="color:inherit">
                     <ul>
                         <!-- <li><span style="background:grey"></span> Aucun objet au sol</li> -->
-                        <li><span class="legend_color" style="background:mediumseagreen"></span> 1-5 objets (1 sac)</li>
-                        <li><span class="legend_color" style="background:orange"></span> 6-10 objets (2 sacs)</li>
-                        <li><span class="legend_color" style="background:red"></span> 11-15 objets (3 sacs)</li>
-                        <li><span class="legend_color" style="background:darkred"></span> 16 objets ou +</li>
+                        <li><span class="legend_color level_1"></span> 1-5 objets (1 sac)</li>
+                        <li><span class="legend_color level_2"></span> 6-10 objets (2 sacs)</li>
+                        <li><span class="legend_color level_3"></span> 11-15 objets (3 sacs)</li>
+                        <li><span class="legend_color level_4"></span> 16 objets ou +</li>
                     </ul>
                     <hr>
                     <strong>Localiser des objets au sol :</strong>

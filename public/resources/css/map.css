@@ -928,6 +928,7 @@ map_body_wrapper {
     align-items:center;
     line-height:1.8em;
 }
+
 .map_legend .legend_color {
     display:inline-block;
     height:1.7em; /* Superior to the width because an hexagon is not a square */
@@ -943,6 +944,19 @@ map_body_wrapper {
                 0% 25%
                 );
 }
+.map_legend .level_1 {
+    background:mediumseagreen;
+}
+.map_legend .level_2 {
+    background:orange;
+}
+.map_legend .level_3 {
+    background:red;
+}
+.map_legend .level_4 {
+    background:darkred;
+}
+
 .map_legend hr {
     margin-top:0.7em;
     border:none;
