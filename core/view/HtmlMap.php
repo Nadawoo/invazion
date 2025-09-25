@@ -110,7 +110,7 @@ class HtmlMap
         // Pour chaque ligne de la carte
         for ($row=0; $row<$nbr_rows; $row++) {
             
-            $result .= '<tr class="row">';
+            $result .= '<tr>';
             
             // Ligne de la horde zombie sur la carte (triangles rouges)
             $result .= $this->html_hurd($nbr_cols, $row, $next_attack_hour);

@@ -324,20 +324,20 @@ map_body_wrapper {
 #map td {
     padding:0;
 }
-#map .row {
+#map_body tr {
     white-space:nowrap;
     /* On remonter l'hexagone pour l'emboîter dans la ligne du dessus.
        Mieux qu'une position relative "top:-1em", qui créerait un gros blanc 
        sous la carte. */
     /*margin-top:-25px;*/
 }
-#map_body .row:not(:first-child) td {
+#map_body tr:not(:first-child) td {
     /* On remonte l'hexagone pour l'emboîter dans la ligne du dessus.
        Mieux qu'une position relative "top:-1em", qui créerait un gros blanc 
        sous la carte. */
     margin-top:-25px;
 }
-#map_body .row:nth-child(even) td:first-child {
+#map_body tr:nth-child(even) td:first-child {
     /* Shift 1 line of 2 to fit the hexagons staggered */
     margin-left:20px;
 }
