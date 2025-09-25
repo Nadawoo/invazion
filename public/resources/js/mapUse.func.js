@@ -311,7 +311,7 @@ function activateMapZombiesView() {
         } else if(controlpoints_zombies > controlpoints_one_citizen*1) {
             color = 'orange';//'#fb8c00'; // Safe with 2 citizens (4 CP)
         } else if(controlpoints_zombies > 0) {
-            color = 'green'; //'#d4ac0d'; Safe with 1 citizen (2 CP)
+            color = 'mediumseagreen'; //'#d4ac0d'; Safe with 1 citizen (2 CP)
         } else if(controlpoints_zombies === 0) {
 //            color = 'green';  // No zombies
         } 
@@ -422,7 +422,7 @@ function activateMapItemsView() {
         } else if(nbrItems > 5) {
             color = 'orange';
         } else if(nbrItems > 0) {
-            color = 'green';
+            color = 'mediumseagreen';
         } else if(nbrItems === 0) {
 //            color = 'grey';
         }
