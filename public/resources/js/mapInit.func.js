@@ -243,7 +243,7 @@ async function displayItemOnMap(itemId) {
     
     for(let coords of Object.values(await itemCoords)) {
         let img = image(itemId, 38);
-        document.querySelector(`#map #zone${coords} .square_container`).insertAdjacentHTML('afterBegin', `<div style="position:absolute;top:-0.1rem;font-size:1.9em;">${img}</div>`);
+        document.querySelector(`#map_body #zone${coords} .square_container`).insertAdjacentHTML('afterBegin', `<div style="position:absolute;top:-0.1rem;font-size:1.9em;">${img}</div>`);
     }
 }
 

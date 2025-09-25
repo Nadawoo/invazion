@@ -58,8 +58,8 @@ async function updateMapRealtime(event, timestamp) {
  */
 function replaceBuildingsPlaceholders() {
     
-    // Gets all the placeholders on the map
-    var buildingIds = document.querySelectorAll("#map .buildingId");
+    // Get all the placeholders on the map
+    var buildingIds = document.querySelectorAll("#map_body .buildingId");
     
     for(let building of buildingIds) {
         // Warning: the class of the parent tag must be named as the field is
@@ -376,7 +376,7 @@ async function toggleMapItemMarker(itemId) {
         }
 
         for(let coords of Object.values(await itemsCoords)) {
-            let zone = document.querySelector("#map #zone"+coords);
+            let zone = document.querySelector("#map_body #zone"+coords);
             zone.style.opacity = 1;
             zone.dataset["marker"+markerType] = 1;
         }
@@ -389,12 +389,12 @@ async function toggleMapItemMarker(itemId) {
 function toggleMapNeighborhoodView() {
     
     if(window.isMapNeighborhoodViewActive === true) {
-        display("#map .nbr_defenses");
-        hide(["#map .zone_name", "#map .city_name"]);
+        display("#map_body .nbr_defenses");
+        hide(["#map_body .zone_name", "#map_body .city_name"]);
         window.isMapNeighborhoodViewActive = false;
     } else {
-        hide("#map .nbr_defenses");
-        display(["#map .zone_name", "#map .city_name"]);
+        hide("#map_body .nbr_defenses");
+        display(["#map_body .zone_name", "#map_body .city_name"]);
         window.isMapNeighborhoodViewActive = true;
     }
 }
@@ -442,7 +442,7 @@ function activateMapItemsView() {
     }
     
     hide(["#views_bar, #attack_bar", "#tasks_button"]);
-    hide(["#map .nbr_defenses"]);
+    hide(["#map_body .nbr_defenses"]);
     display("#map_legend_items");
     display(".items_amount");
 }
@@ -492,15 +492,15 @@ function activateMapExplorationsView() {
 function desactivateMapItemsView() {
     
     hide("#map_legend_items");
-    hide("#map .items_amount");
-    display("#map .nbr_defenses");
+    hide("#map_body .items_amount");
+    display("#map_body .nbr_defenses");
 }
 
 
 function desactivateMapExplorationsView() {
     
     hide("#map_legend_explorations");
-    hide("#map .explorations_amount");
+    hide("#map_body .explorations_amount");
 }
 
 
@@ -569,7 +569,7 @@ function resetMapView() {
     desactivateMapPathsView();
     window.isMapPathsViewActive = false;
     
-    hide("#map .location");
+    hide("#map_body .location");
     
     if(window.isActionViewActive !== true) {
         display(["#views_bar, #attack_bar", "#tasks_button"]);
@@ -589,7 +589,7 @@ function toggleCityframesView() {
     toggle(["#views_bar", "#tasks_button", "#attack_bar"]);
     toggle(["#cityframes_bar", "#map_legend_cityframes"]);
     
-    toggle(["#mapSvg", ".cityframe .label", "#map .nbr_defenses"]);
+    toggle(["#mapSvg", ".cityframe .label", "#map_body .nbr_defenses"]);
     document.querySelectorAll(".cityframe").forEach(
         (cityframe) => cityframe.classList.toggle("active")
     );
@@ -605,7 +605,7 @@ function switchCityframesType(typeToActivate) {
     
     // Add the button over the cities to teleport the citizens
     if(typeToActivate === "move") {
-        document.querySelectorAll("#map .cityframe").forEach((cityframe) => {
+        document.querySelectorAll("#map_body .cityframe").forEach((cityframe) => {
             zone = cityframe.closest(".square_container");
             // If the teleportation button doesn't exist, create it
             if(zone.querySelector("button[name=teleport]") === null) {
@@ -625,8 +625,8 @@ function switchCityframesType(typeToActivate) {
     hide('#map_legend_cityframes ul');
     display(`#map_legend_cityframes .${typeToActivate}`);    
     // Display the appropriate cityframes on the map
-    hide('#map .cityframe');
-    display(`#map .${typeToActivate}`);//, '#map .zombie_core']);    
+    hide('#map_body .cityframe');
+    display(`#map_body .${typeToActivate}`);//, '#map .zombie_core']);    
     // Display the appropriate connections between the cities
     hide('#mapSvg line');
     display(`#mapSvg .${typeToActivate}`);
@@ -721,7 +721,7 @@ function switchToMapView() {
     hide(["#actions_panel", "#personal_block_wrapper", "#map_mode_button"]);
     // Display again the general elements of the GUI
     display(["#views_bar", "#map_navigation", "#tasks_button", "#game_footer", "#attack_bar",
-             "#map .nbr_defenses", "#map .bubble"]);
+             "#map_body .nbr_defenses", "#map_body .bubble"]);
     // Restore the illumination on the button which displays the map navigation
     document.querySelector("#views_bar .map").classList.add("active");  
     // Desactivate the zombies/items view eventually activated while player in action mode

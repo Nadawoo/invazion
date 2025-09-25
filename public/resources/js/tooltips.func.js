@@ -40,7 +40,7 @@ function hideTooltip(hexagon) {
 function toggleTooltip(hexagon) {
     
     if(hexagon !== null) {
-        let activeTooltip = document.querySelector("#map .bubble.block"),
+        let activeTooltip = document.querySelector("#map_body .bubble.block"),
             newTooltip = hexagon.querySelector(".bubble");
         // Hide the eventual currently displayed tooltip
         if(activeTooltip !== null) {
@@ -105,7 +105,7 @@ function populateTooltip(hexagon) {
 function handleTooltipOverflow(hexagon) {
     
     let tooltipBounding = hexagon.querySelector(".bubble").getBoundingClientRect();
-    let mapBounding    = document.querySelector("#map").getBoundingClientRect();
+    let mapBounding    = document.querySelector("#map_body").getBoundingClientRect();
     if (tooltipBounding.right > mapBounding.right) {
         hexagon.querySelector(".bubble").style.left        = "-15em";
         hexagon.querySelector(".triangle_down").style.left = "16em";

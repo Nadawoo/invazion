@@ -276,7 +276,7 @@ function startPathCreation() {
     
     // Hide the useless elements overloading the map
     hide(['#paths_bar', '#resizeMap', '#attack_bar']);
-    hide('#map .bubble');
+    hide('#map_body .bubble');
     // Start the steps to create an expedition
     display('#formPathDrawing');
 }
@@ -335,7 +335,7 @@ async function submitNewPath(event, controller) {
     if(json.metas.error_code === "success") {
         // Display again the GUI elements previously masked
         hide("#formPathDrawing");
-        display(["#paths_bar", "#resizeMap", "#attack_bar", "#map .bubble"]);
+        display(["#paths_bar", "#resizeMap", "#attack_bar", "#map_body .bubble"]);
         
         // Reset the form with the list of stages
         document.querySelector("#formPathDrawing .fields").innerText = "";

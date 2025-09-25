@@ -100,9 +100,9 @@ function toggleMapMarker(objectToMark) {
     var markableObjects = {
         "items":    ".square_container:not([data-items='0'])",
         "citizens": ".square_container:not([data-citizens='0'])",
-        "boost":    "#map [data-markerboost='1']",
-        "resource": "#map [data-markerresource='1']",
-        "generic":  "#map [data-marker='1']"
+        "boost":    "#map_body [data-markerboost='1']",
+        "resource": "#map_body [data-markerresource='1']",
+        "generic":  "#map_body [data-marker='1']"
         };
         
     if (window.areMapMarkersActive !== true) {
@@ -114,13 +114,13 @@ function toggleMapMarker(objectToMark) {
             element.innerHTML += '<img src="resources/img/free/map_location.svg" class="location animate__animated animate__slideInDown">'
         );
         
-        display("#map .location");
-//        hide("#map .nbr_defenses");
+        display("#map_body .location");
+//        hide("#map_body .nbr_defenses");
         window.areMapMarkersActive = true;
     }
     else {    
         // Hides the icons added by the previous call to the function
-        hide("#map .location");
+        hide("#map_body .location");
         window.areMapMarkersActive = false;
     }
 }
@@ -132,7 +132,7 @@ function toggleMapMarker(objectToMark) {
  */
 function deleteMapMarkers() {
     
-    document.querySelectorAll("#map .location").forEach(element => 
+    document.querySelectorAll("#map_body .location").forEach(element => 
         element.remove()
     );
     
@@ -768,7 +768,7 @@ function closePopup() {
 // */
 //function replaceCitiesPlaceholders() {
 //    
-//    let zonesWithCity = document.querySelectorAll('#map [data-citytypeid]:not([data-citytypeid=""])');
+//    let zonesWithCity = document.querySelectorAll('#map_body [data-citytypeid]:not([data-citytypeid=""])');
 //    
 //    for(let zone of zonesWithCity) {
 //        let buildingTypeId = zone.dataset.citytypeid;
