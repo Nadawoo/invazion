@@ -396,6 +396,7 @@ map_body_wrapper {
     z-index:1;
 }
 
+.square_container .zone_shadow,
 .square_container .zombies_amount,
 .square_container .items_amount,
 .square_container .explorations_amount {
@@ -415,6 +416,13 @@ map_body_wrapper {
                     0% 75%, 
                     0% 25%
                     );
+}
+#map_body .zone_shadow {
+    /* Shadow on each hexagon to make the map look less "flat" */
+    background: radial-gradient(circle at 180% 180%,
+                                rgba(0, 0, 0, 0.6),
+                                rgba(0, 0, 0, 0) 65%
+                                );
 }
 
 /* Surelevate the zones with cities or buildings */
