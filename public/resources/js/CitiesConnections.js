@@ -167,7 +167,7 @@ class CityConnections {
             label = `${cityDefenses}&#x1F6E1;&#xFE0F;`;           
         } else if(cityTypeId === 228) {
             // #228 = the ID of the "Zombie core"
-            cssClass = `zombie_core defenses ${cssClassPulse}`;
+            cssClass = `zombie_core defenses ${cssClassPulse} `;
             label = `${nbrZombies}&#x1F9DF;`;           
         } else if(cityTypeId === 233) {
             // #11 = the ID of the "Undiscovered building"

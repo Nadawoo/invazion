@@ -522,7 +522,7 @@ map_body_wrapper {
                         );
 }
 #map_body .cityframe.submerged .frame {
-    outline:3px outset darkred;
+    outline-color:darkred;
     background: radial-gradient(circle at 50% 50%,
                                 rgba(255, 0, 0, 0),
                                 rgba(255, 0, 0, 1) 250%
@@ -605,9 +605,9 @@ map_body_wrapper {
     display:none;
 }
 
-.cityframe.zombie_core.active .frame {
+#map_body .cityframe.zombie_core .frame {
     border-color:red;
-    outline:2px solid darkred;
+    outline-color:darkred;
 }
 .cityframe.active.gold {
     outline:2px solid darkgreen;
