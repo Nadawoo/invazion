@@ -335,14 +335,14 @@ map_body_wrapper {
     /* On remonte l'hexagone pour l'emboîter dans la ligne du dessus.
        Mieux qu'une position relative "top:-1em", qui créerait un gros blanc 
        sous la carte. */
-    margin-top:-25px;
+    margin-top:-26px; /*-25px;*/
 }
 #map_body tr:nth-child(even) td:first-child {
     /* Shift 1 line of 2 to fit the hexagons staggered */
     margin-left:20px;
 }
 
-.hexagon {
+#map_body .hexagon {
     
     /* Pour le débogage : décommenter cette ligne pour afficher le conteneur*/
     /*border:1px solid red;*/
@@ -353,10 +353,10 @@ map_body_wrapper {
     cursor:default;
     display:inline-block;
     /* La largeur détermine la taille de l'hexagone */
-    width:        41px; /*2.4em;*/
+    width:        40px; /*41px;*/
     /* Let enough height to allow elevating (city zone) or lowering (water, lava)
        the zone without cutting the top or low tip of the hexagon */
-    height:       60px;
+    height:       59px; /*60px;*/
     /* Assure que le conteneur intérieur ne déborde pas en bas
     (tracer une bordure sur square_container) )*/
     line-height:2.55em;
@@ -365,7 +365,7 @@ map_body_wrapper {
     /* Makes sure that the opacity on a tile can't place it above the tiles around */
     position: relative;
 }
-.square_container {
+#map_body .square_container {
     
     /* Pour le débogage : décommenter cette ligne pour afficher le conteneur*/
     /* border:1px solid red; */
@@ -375,7 +375,7 @@ map_body_wrapper {
     /*width:  2.5rem;*/
     /* The top and bottom lines of the square must touch the top and bottom tips 
       of the hexagon */
-    height: 3rem;
+    height: 46px; /*3rem;*/
     /* Evite que les éventuelles marges intérieures agrandissent le conteneur */
     box-sizing: border-box;
     /* Centre le conteneur horizontalement */
@@ -499,7 +499,7 @@ map_body_wrapper {
     box-shadow:none;
     z-index:2;
 }
-.cityframe {
+#map_body .cityframe {
     position:absolute;
     bottom:0.1rem;
     display:flex;
@@ -507,10 +507,10 @@ map_body_wrapper {
     align-items:center;
     z-index:2;
 }
-.cityframe .frame {
+#map_body .cityframe .frame {
     height:2.6rem;
     width: 2.6rem;
-    margin-bottom:3px;
+    margin-bottom:2px;
     border-radius:50%;
     outline:2px outset green;
     box-shadow: 2px 2px 12px black;
