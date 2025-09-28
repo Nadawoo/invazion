@@ -874,10 +874,15 @@ class HtmlPopup
     private function popdayclock($params) {
         
         $buttons = new HtmlButtons();
+        $gameStats = new HtmlGameStats();
         
         return "<p>&#x1F5FA;&#xFE0F; Vous êtes incarné sur la <strong>carte n° ".$params['map_id']."</strong>.<p>
                 <p>&#x1F551; Vous y vivez actuellement votre <strong>".$params['current_cycle']."<sup>e</sup> jour</strong> de survie.</p>
-                <p>".$buttons->button('end_cycle', false)."</p>";
+                <p>".$buttons->button('end_cycle', false)."</p>"
+                ."<hr>
+                <br>
+                <h3>Scores</h3>"
+                .$gameStats->stats();
     }
     
     

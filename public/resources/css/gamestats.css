@@ -1,0 +1,6 @@
+/**
+ * Statistics for the end of a game (how many zones explored, etc.)
+ */
+#gameStats meter {
+    width:50%;
+}
