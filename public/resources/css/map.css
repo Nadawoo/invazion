@@ -321,7 +321,7 @@ map_body_wrapper {
     color:white;
 }
 
-#map td {
+#map_body td {
     padding:0;
 }
 #map_body tr {
@@ -418,12 +418,12 @@ map_body_wrapper {
 }
 
 /* Surelevate the zones with cities or buildings */
-#map .elevate {
+#map_body .elevate {
     position:relative;
     top:-0.3rem;
 }
 
-#map .zone_name {
+#map_body .zone_name {
     position:absolute;
     opacity:0.8;
     line-height:1em;
@@ -433,7 +433,7 @@ map_body_wrapper {
     border-radius:0.3em;
     box-shadow:6px 6px 6px black;
 }
-#map .city_name {
+#map_body .city_name {
     position:absolute;
     top:-1.4em;
     padding:0.1em 0.4em;
@@ -448,14 +448,14 @@ map_body_wrapper {
     box-shadow:4px 4px 6px black;
     z-index:2;
 }
-#map .city_img {
+#map_body .city_img {
     display:block;
     position:absolute;
     bottom:12px;
     z-index: 1;
 }
 
-#map .nbr_defenses {
+#map_body .nbr_defenses {
     /*display:none;*/
     position:absolute;
     top:-1em;
@@ -469,7 +469,7 @@ map_body_wrapper {
     z-index:2;
 }
 /* Button marking a building not visited today */
-#map .nbr_defenses.diggable {
+#map_body .nbr_defenses.diggable {
     top:-0.1rem;
     left:1.6rem;
     height:0;
@@ -483,7 +483,7 @@ map_body_wrapper {
     align-items:center;
     background:darkred;
 }
-#map .nbr_defenses.safe {
+#map_body .nbr_defenses.safe {
     top:  1.69em;
     right:-0.3em;
     height:18px;
@@ -723,7 +723,7 @@ map_body_wrapper {
                 -1px 1px 0 darkgrey,   /* Bottom left */
                 1px 1px 0 darkgrey;    /* Bottom right */
 }
-#map .zombies {
+#map_body .zombies {
     opacity:0.7;
     z-index:1;
 }
@@ -731,7 +731,7 @@ map_body_wrapper {
 /*
  * Bulles d'information sur la carte
  */
-.bubble {
+#map_body .bubble {
     display:none;
     position:absolute;
     bottom:3.2em;
@@ -750,7 +750,7 @@ map_body_wrapper {
     box-shadow: 12px 12px 12px black;
     z-index:3;
 }
-.triangle_down {
+#map_body .triangle_down {
     width:0;
     height:0;
     border-left: 0.6em solid transparent;
@@ -761,10 +761,10 @@ map_body_wrapper {
     bottom:-1em;
     z-index:2;
 }
-.bubble .coords {
+#map_body .bubble .coords {
     text-align:right;
 }
-.bubble .roleplay {
+#map_body .bubble .roleplay {
     margin-top:0.3rem;
     padding:0.3em 0.2em;
     font-size:1.1em;
@@ -772,22 +772,22 @@ map_body_wrapper {
     background:#c40007;
     border-radius:0.2em;
 }
-.bubble h5 {
+#map_body .bubble h5 {
     font-size:1.2em;
     margin:0;
 }
-.bubble hr {
+#map_body .bubble hr {
     color:white;
     margin:0.2em 0;
 }
 
 /* Symbole indiquant la présence d'objets sur la case */
-.items {
+#map_body .items {
     position:absolute;
     font-size:80%;
 }
 /* Symbole d'un citoyen sur la carte hexagonale */
-.map_citizen {
+#map_body .map_citizen {
     position:absolute;
     top:1.5em;
     height:30%;
@@ -798,14 +798,14 @@ map_body_wrapper {
     background:lightsteelblue;
     z-index:3;
 }
-#map .map_citizen .nbr_defenses { /* Pseudo of the player on the map */
+#map_body .map_citizen .nbr_defenses { /* Pseudo of the player on the map */
     width:6em;
     margin-top:-3em;
     background:lightgreen;
     color:revert;
     overflow:hidden;
 }
-#me {  
+#me.map_citizen {  
     background:radial-gradient(lightgreen 50%, green 100%);
     z-index:3;
     cursor:pointer;
@@ -870,7 +870,7 @@ map_body_wrapper {
     border-top:2em solid red;
 }
 
-.halo {
+#map_body .halo {
     position:absolute;
     top:1.4em;
     border: 5px solid green;
@@ -880,25 +880,25 @@ map_body_wrapper {
     z-index:2;
     animation: citizen_blinker 1s linear infinite;
 }
-.halo.alert {
+#map_body .halo.alert {
     border-width:0.8em;
     width:180%;
     animation-name: citizen_blinker_alert;
     z-index:-2; /* Put the halo behind the zombies */
 }
-.halo.inactive {
+#map_body .halo.inactive {
     opacity:0.8;
     border-color:darkgrey;
     animation:none;
 }
 
-#map .city img {
+#map_body .city img {
     height:24px;
     width: 24px;
 }
 
 /* Puce de localisation sur la carte */
-.location {
+#map_body .location {
     height:2em;
     position:absolute;
     margin-left:-1em;
@@ -987,7 +987,7 @@ map_body_wrapper {
 /*
  * Action view (zoom on the player)
  */
-.hexagon .overlay {
+#map_body .hexagon .overlay {
     position:absolute;
 }
 #map_body::after {
@@ -995,7 +995,7 @@ map_body_wrapper {
     position:absolute;
     box-shadow:0 0 0 9999px rgba(0, 0, 0, 0.2);
 }
-.hexagon .overlay::before {
+#map_body .hexagon .overlay::before {
     content:'';
     position:absolute;
     width: 130px;
