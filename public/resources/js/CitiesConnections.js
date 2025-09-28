@@ -118,8 +118,7 @@ class CityConnections {
                 let childCity = city[1];
 
                 if(clickedCityId === null || childCity["connected_city_id"] !== null) {
-                    let nbrDefenses = _configsBuildings[childCity.city_type_id].defenses;
-                    this.#addCityframe(childCity["coord_x"], childCity["coord_y"], childCity.city_type_id, nbrDefenses);
+                    this.#addCityframe(childCity["coord_x"], childCity["coord_y"], childCity.city_type_id, childCity["total_defenses"]);
                 }
             }
         }
@@ -184,10 +183,15 @@ class CityConnections {
         
         // #228 = the ID of the "Zombie core", #11 = Outpost
         if(isExplored === true) {
-            cssClass += " explored";
+            cssClass += "explored";
         }
         if(isExplored === true && ![11, 228].includes(cityTypeId)) {
             label = "&#x2705;";
+        }
+        
+        // If the city is définitively submerged by the zombies
+        if(nbrZombies > cityDefenses) {
+            cssClass = "submerged";
         }
         
         if(zone.querySelector(".cityframe") === null) {
