@@ -77,7 +77,7 @@ async function addCitiesOnMap(mapId) {
         let buildingCarcs = _configsBuildings[city.city_type_id],
             buildingIconHtml = buildingCarcs["icon_html"],
             buildingIconPath = "resources/img/"+buildingCarcs["icon_path"],
-            buildingIconWidth = Math.round(buildingCarcs["icon_size_ratio"] * 32),
+            buildingIconWidth = Math.round(buildingCarcs["icon_size_ratio"] * 28),
             buildingEmojiSize = (buildingCarcs["icon_size_ratio"] * 1.5).toFixed(2),
             buildingName = buildingCarcs["name"];
             
@@ -116,7 +116,7 @@ async function addCitiesOnMap(mapId) {
             zone.insertAdjacentHTML("afterbegin", `<span class="nbr_defenses" style="background:red">${zone.dataset.zombies} <img src="resources/img/motiontwin/zombie.gif" alt="&#x1F9DF;"></span>`);
         }
         else if(city.city_type_id === zombieCoreId) {
-            zone.insertAdjacentHTML("afterbegin", `<span class="nbr_defenses safe" style="background:lightgrey;border:none">&#x2757;</span>`);
+            zone.insertAdjacentHTML("afterbegin", `<span class="nbr_defenses safe" style="background:lightgrey;border:none;border-radius:50%">&#x2757;</span>`);
         }
         // Adds the number of defenses above each city
         // (#12 = ID of the "human city" building)
