@@ -802,14 +802,14 @@ map_body_wrapper {
     height:30%;
     display:flex;
     justify-content:center;
-    width: 100%;
+    width:80%;
     border-radius:50%;
     background:lightsteelblue;
     z-index:3;
 }
 #map_body .map_citizen .nbr_defenses { /* Pseudo of the player on the map */
     width:6em;
-    margin-top:-3em;
+    margin-top:-30px;
     background:lightgreen;
     border:1px solid lightgrey;
     color:revert;
@@ -848,8 +848,8 @@ map_body_wrapper {
 }
 .map_citizen img {
     position:relative;
-    top:-2em;
-    height:42px;
+    top:-22px;
+    height:30px;
 }
 #explosionMe {
     position:absolute;
@@ -886,7 +886,7 @@ map_body_wrapper {
     border: 5px solid green;
     border-radius: 50%;
     height:40%;
-    width: 120%;
+    width: 100%;
     z-index:2;
     animation: citizen_blinker 1s linear infinite;
 }
