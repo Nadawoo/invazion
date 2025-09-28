@@ -461,9 +461,11 @@ map_body_wrapper {
     top:-1em;
     line-height:normal;
     font-size:0.7em;
-    background:green; /*darkslateblue*/
+    /*background:green;*/
+    /*border:1px solid lightgrey;*/
+    background:darkred;
+    border:1px outset red;
     color:white;
-    border:1px solid lightgrey;
     border-radius:1em;
     box-shadow:4px 4px 6px black;
     z-index:2;
@@ -802,6 +804,7 @@ map_body_wrapper {
     width:6em;
     margin-top:-3em;
     background:lightgreen;
+    border:1px solid lightgrey;
     color:revert;
     overflow:hidden;
 }
