@@ -177,7 +177,7 @@ async function addCitiesOnMap(mapId) {
         if(city.city_type_id === undiscoveredBuildingId) {
             zone.closest(".hexagon").style.background = "none";
         } else {
-            zone.closest(".hexagon").classList.add("ground_city", "elevate");
+            zone.closest(".hexagon").classList.add("elevate");
         }
         
         zone.dataset.cityid = cityId;
