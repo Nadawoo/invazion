@@ -354,7 +354,7 @@
     position:relative;
     display:flex;
     height:4em;
-    margin-bottom:0.2em;
+    margin-bottom:5px;
     padding-right:0.3em;
     border-radius:0.3em;
     background:sandybrown;
@@ -404,13 +404,16 @@
     color:#CACFD2;
 }
 
-.foldable .progressbar_filling {
+#city_contents progress {
     position:absolute;
-    /* Quick fix: force minimal components amount to avoid progressbar overflow 
-       on the left when 0 component gathered */
-    /*min-width:1.8em;*/
-    border-top-left-radius:   8em;
-    border-bottom-left-radius:8em;
+    width:100%;
+    height:10%;
+    /* Same value as the container of the bar */
+    border-radius:0.3em 0.3em;
+    border:1px solid grey
+}
+#city_contents progress[value="0"] {
+    visibility:hidden;
 }
 
 /* Suggestions of constructions */
@@ -498,21 +501,6 @@
 .back_button:hover {
     background:darkred;
     color:white;
-}
-
-/* Remplissage coloré de la barre de progression */
-.progressbar_filling {
-    display:flex;
-    align-items: center;
-    height:10%;
-    /* Minimal width to show the progress bar even when empty */
-    min-width:0.5em;
-    margin:0;
-    box-sizing: border-box;
-    /* Same value as the container of the bar */
-    border-radius:0.3em;
-    background:green !important;
-    border:1px solid grey
 }
 
 /* Recommandations on the constructions page */

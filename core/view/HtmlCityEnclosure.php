@@ -682,7 +682,7 @@ class HtmlCityEnclosure
                         <h3 style="color:'.$text_color.'">&nbsp;'.$building_name.'</h3>
                         <div class="unfold_button" style="color:'.$text_color.'">'.$html_status.' &nbsp;</div>
                     </div>
-                    <div class="progressbar_filling" style="width:'.$components_percent.'%"></div>
+                    <progress value="'.$components_percent.'" max="100"></progress>
                 </td>
                 <td class="defenses hidden" style="background:'.$bg_color.';color:'.$text_color.'"
                     onclick="toggle(\'#building'.$building_id.'\');hide([\'.defenses\'])">
@@ -1136,7 +1136,7 @@ class HtmlCityEnclosure
                     <input type="hidden" name="api_name" value="buildings">
                     <input type="hidden" name="action" value="build">
                     <input type="hidden" name="params[building_id]" value="'.$building_id.'">
-                    <span class="progressbar_filling" style="width:'.$progress.'%"></span>
+                    <progress value="'.$progress.'" max="100"></progress>
                     <button type="submit" class="'.$redbutton.'" '.$disabled.'>
                         &nbsp;'.$item_icon.'&nbsp;'.$button_name.'
                     </button>
