@@ -820,8 +820,9 @@ class HtmlCityEnclosure
     function defenses_bar($total_defenses, $zombies_next_attack) {
         
         $total = ($total_defenses + $zombies_next_attack);
-        
-        $defense_percent = round($total_defenses / $total * 100);        
+        // NB: we set the maximum to 87% to reserve enough place for 
+        // the zombies amount, even if there are 0 zombies
+        $defense_percent = round(min(87, $total_defenses/$total*100));        
         $zombies_percent = 100 - $defense_percent;
         
         return '

@@ -327,11 +327,11 @@
 }
 #defenses_bar .number {
     position:relative;
-    padding:0 0.2em;
+    padding:0.1em 0.4em;
     width:2em;
     background:lightgreen;
-    border:1px solid green;
-    border-radius:0.2em;
+    /*border:1px solid green;*/
+    border-radius:1em;
     color:black;
     z-index:1; /* Avoid being covered by the other bar when the bar is very thin */
 }
