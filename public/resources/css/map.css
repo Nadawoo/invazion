@@ -464,7 +464,6 @@ map_body_wrapper {
 }
 
 #map_body .nbr_defenses {
-    /*display:none;*/
     position:absolute;
     top:-1em;
     line-height:normal;
@@ -478,26 +477,29 @@ map_body_wrapper {
     box-shadow:4px 4px 6px black;
     z-index:2;
 }
-/* Button marking a building not visited today */
-#map_body .nbr_defenses.diggable {
-    top:-0.1rem;
+#map_body .nbr_items {
+    position:absolute;
+    top:auto;
+    bottom:0;
     left:1.6rem;
-    height:0;
-    width: 0;
-    padding:0.8em;
-    font-size:0.7em;
-    font-weight:bold;
-    text-shadow:black 1px 1px 1px;
+    height:18px;
+    width: 18px;
     display:flex;
     justify-content:center;
     align-items:center;
-    background:darkred;
+    font-size:0.6em;
+    font-weight:bold;
+    background:royalblue;
+    border:1px solid aliceblue;
+    border-radius:1em;
+    color:white;
+    text-shadow:black 1px 1px 1px;
+    /*box-shadow:4px 4px 6px black;*/
+    z-index:2;
 }
-#map_body .nbr_defenses.safe {
+#map_body .nbr_items.safe {
     top:  1.69em;
     right:-0.3em;
-    height:18px;
-    width: 18px;
     padding:0;
     display: inline-flex;
     justify-content: center;
@@ -1041,8 +1043,8 @@ map_body_wrapper {
     top:1.2rem;
 }
 
-#map.action_view .diggable,
-#map.action_view .safe {
+#map.action_view .nbr_defenses,
+#map.action_view .nbr_items {
     transform:scale(0.7);
 }
 

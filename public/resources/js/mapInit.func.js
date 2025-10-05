@@ -73,7 +73,7 @@ async function addCitiesOnMap(mapId) {
             htmlCoords = city.coord_x+"_"+city.coord_y,
             zone = document.querySelector("#zone"+htmlCoords+" .square_container"),
             nbrItems = zone.dataset.items;
-
+            
         let buildingCarcs = _configsBuildings[city.city_type_id],
             buildingIconHtml = buildingCarcs["icon_html"],
             buildingIconPath = "resources/img/"+buildingCarcs["icon_path"],
@@ -116,12 +116,11 @@ async function addCitiesOnMap(mapId) {
             zone.insertAdjacentHTML("afterbegin", `<span class="nbr_defenses" style="background:red">${zone.dataset.zombies} <img src="resources/img/motiontwin/zombie.gif" alt="&#x1F9DF;"></span>`);
         }
         else if(city.city_type_id === zombieCoreId) {
-            zone.insertAdjacentHTML("afterbegin", `<span class="nbr_defenses safe" style="background:lightgrey;border:none;border-radius:50%">&#x2757;</span>`);
+            zone.insertAdjacentHTML("afterbegin", `<span class="nbr_items" style="background:lightgrey">&#x2757;</span>`);
         }
-        // Adds the number of defenses above each city
-        // (#12 = ID of the "human city" building)
-        // (#13 = ID of the "tent" building)
-        else if(city.city_type_id === 12 || city.city_type_id === 13) {
+        // Adds the number of defenses above each city, excepted
+        // the undiscovered ones (#233)
+        else if(city.city_type_id !== 233) {
             let nbrDefenses = city.total_defenses,
                 nbrZombiesNextAttack = zone.dataset.zombies,
                 defensesExcedent = nbrDefenses - nbrZombiesNextAttack;
@@ -141,30 +140,31 @@ async function addCitiesOnMap(mapId) {
                 zone.insertAdjacentHTML("afterbegin", `${htmlNbrDefenses}`);
 //            }
         }
+        
         // Adds the number of items remaining inside the explorable building
-        else if(city.city_type_id !== "undefined") {
+        if(buildingCarcs.is_explorable === 1) {
             
-            let html = "";
-            
+            let html = "";            
             if(Number(zone.dataset.cyclelastvisit) === 0) {
                 html = "";
             }
             else if(Number(zone.dataset.cyclelastvisit) < getCurrentCycle()) {
-                html = `<span class="nbr_defenses diggable pulse">&#x26CF;&#xFE0F;</span>`;
+                html = `<span class="nbr_items pulse">&#x26CF;&#xFE0F;</span>`;
             }
             else if(nbrItems > 0) {
-                html = `<span class="nbr_defenses diggable" style="background:royalblue">${nbrItems}</span>`;
+                html = `<span class="nbr_items">${nbrItems}</span>`;
             }
             else {
 //                let maxExplorations = 100;
 //                // NB: #108 = ID of the item "Counter of explorations"
 //                let nbrExplorationsDone = zones[htmlCoords]['items'][108] || 0;
 //                let nbrExplorationsRemaining = maxExplorations-nbrExplorationsDone;
-                html = `<span class="nbr_defenses safe">&#x2705;</span>`;
+                html = `<span class="nbr_items safe">&#x2705;</span>`;
             }
             
             zone.insertAdjacentHTML("afterbegin", html);
         }
+        
         // Adds the name of the building
         cityName = (city["city_name"] === null) ? buildingName : city["city_name"];
         zone.insertAdjacentHTML("afterbegin", `<span class="hidden city_name animate__animated animate__zoomIn">${cityName}</span>`);
