@@ -50,9 +50,13 @@ class HtmlItem {
                                 <i class="material-icons">star</i>
                                 Cet objet est précieux
                             </li>
+                            <li class="hidden defenses">
+                                <i class="material-icons">shield</i>
+                                Objet de défense (+<span class="nbr_defenses"></span> pts)
+                            </li>
                             <li class="hidden heaviness">
                                 <i class="material-icons">fitness_center</i>
-                                Cet objet est encombrant
+                                Encombrant dans le sac
                             </li>
                         </ul>
                         '.$button_fight

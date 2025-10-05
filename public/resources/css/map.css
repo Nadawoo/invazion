@@ -1043,8 +1043,8 @@ map_body_wrapper {
     top:1.2rem;
 }
 
-#map.action_view .nbr_defenses,
-#map.action_view .nbr_items {
+#map.action_view .hexagon .nbr_defenses,
+#map.action_view .hexagon .nbr_items {
     transform:scale(0.7);
 }
 

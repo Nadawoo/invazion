@@ -441,6 +441,11 @@ function htmlItem(itemId, itemCaracs) {
     if(itemCaracs["item_type"] === "weapon") {
         template.querySelector("form[name='fight'] input[name='params[item_id]']").value = itemId;
     }
+    // Display if the item gives defenses
+    if(itemCaracs["defenses"] > 0) {
+        template.querySelector('.item_label .defenses').classList.remove("hidden");
+        template.querySelector('.item_label .defenses .nbr_defenses').innerText = itemCaracs["defenses"];
+    }
     
     return template;
 }
