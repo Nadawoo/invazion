@@ -73,15 +73,17 @@ class BuildingPopup {
         popup.querySelector("form[name='teleport'] input[name='params[target_id]']").value = cityId;
         
         // Display/hide the button for exploring the building
-        if(parseInt(cycleLastVisit) === getCurrentCycle()) {
-            popup.querySelector(".text_explored").classList.remove("hidden");
-            popup.querySelector(".text_unexplored").classList.add("hidden");
-        } else {
+        // TODO: Bug to fix building is considered "explored" as soon as the citizen 
+        // enters the zone...
+//        if(parseInt(cycleLastVisit) === getCurrentCycle()) {
+//            popup.querySelector(".text_explored").classList.remove("hidden");
+//            popup.querySelector(".text_unexplored").classList.add("hidden");
+//        } else {
             // Add the list of items findable in this building
             for(let itemId of findableItems) {
                 popup.querySelector(".items_list").prepend(htmlItem(itemId, _configsItems[itemId]));
             }
-        }
+//        }
 
         // Add the line of zombies after the last invaded module
         let lastInvadedModuleId = this.getLastInvadedModuleId(nbrZombiesInZone);
