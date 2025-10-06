@@ -436,7 +436,7 @@ function updateLightHalos() {
     // Remove the former light halos
     mask.querySelectorAll("circle").forEach(c => c.remove());
 
-    const zones = document.querySelectorAll("#map_body .cityframe");
+    const zones = document.querySelectorAll("#map_body .cityframe, #map_body .map_citizen");
     const namespace = "http://www.w3.org/2000/svg";
     
     zones.forEach(zone => {
