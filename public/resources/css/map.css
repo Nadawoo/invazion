@@ -10,7 +10,7 @@
     overflow-y:hidden; /*scroll;*/
     font-size:1.05em;
     border-radius:0.5em;
-    background:repeating-linear-gradient(0.38turn, black, black 2px, #17202a 2px, #17202a 4px);
+    background:black;
     box-shadow: 5px 5px 10px black;
     /* Pour que la largeur de la ville en surimpression soit calculée 
        par rapport celle la carte et pas à celle de la page */
@@ -21,10 +21,15 @@
 }
 
 #map_viewport {
-    margin-top:6.5em;
+    margin-top:5em;
 }
-map_body_wrapper {
-    height:50vh; /* Allows to scroll vertically with ScrollBooster */
+#map_body_wrapper {
+    /* Allows to scroll vertically with ScrollBooster */
+    /*height:50vh;*/ 
+    background: repeating-linear-gradient(0.38turn, black,
+                                                    black 2px, 
+                                                    #17202a 2px,
+                                                    #17202a 4px);
 }
 
 /*
@@ -495,7 +500,7 @@ map_body_wrapper {
     color:white;
     text-shadow:black 1px 1px 1px;
     /*box-shadow:4px 4px 6px black;*/
-    z-index:2;
+    z-index:4;
 }
 #map_body .nbr_items.safe {
     top:  1.69em;
@@ -1026,6 +1031,17 @@ map_body_wrapper {
     /* Adds a smooth transition between the light and the shadow*/
     background: radial-gradient(rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 1) 80%);
     transform:translate(-50%, -50%);
+}
+
+/* SVG overlay for drawing the light halos around the cities */
+#map:not(.action_view) #lightOverlay {
+    position:absolute;
+    top:0;
+    left:0;
+    width: 100%;
+    height:100%;
+    pointer-events:none;
+    z-index:2;
 }
 
 #map .overlay {

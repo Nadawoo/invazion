@@ -94,6 +94,9 @@ if (document.getElementById('map') !== null) {
     // Display the zombie cores on the map (item ID #106)
     displayItemOnMap(106);
     
+    // Add the light halos around the cities
+    setTimeout(updateLightHalos, 500);
+    
     // Update the red counters at the bottom of the map
     updateCitiesCounter();
     updateZombieCoresCounter();

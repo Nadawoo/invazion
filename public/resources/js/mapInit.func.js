@@ -424,3 +424,33 @@ function triggerTooltip(hexagon) {
         displayTooltip(hexagon);
     }
 }
+
+
+/**
+ * Add light halos on the map around the cities
+ */
+function updateLightHalos() {
+    
+    const mask = document.querySelector("#lightMask");
+
+    // Remove the former light halos
+    mask.querySelectorAll("circle").forEach(c => c.remove());
+
+    const zones = document.querySelectorAll("#map_body .cityframe");
+    const namespace = "http://www.w3.org/2000/svg";
+    
+    zones.forEach(zone => {
+        // Get the pixel coordinates of the zone
+        hexagon = zone.closest(".hexagon");
+        positions = getZonePositions(`#${hexagon.id}`);
+
+        let {x, y} = positions;
+            circle = document.createElementNS(namespace, 'circle');
+
+        circle.setAttribute('cx', x);
+        circle.setAttribute('cy', y);
+        circle.setAttribute('r', 65);
+        circle.setAttribute('fill', 'url(#penumbra)');
+        mask.appendChild(circle);
+    });
+}

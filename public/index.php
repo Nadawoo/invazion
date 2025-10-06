@@ -315,16 +315,31 @@ echo $html['json_configs'];
     
     <!-- The map -->
     <section id="map">
-        
         <div id="map_viewport">
             <div id="map_body_wrapper">
                 <table id="map_body">
                     <thead>
                         <tr>
                             <td>
-                            <!-- Let the SVG *before* the map zones, otherwise the invisible
-                                 SVG area will cover it and block all interactions (clicking, hovering...) -->
+                                <!-- Let the SVG *before* the map zones, otherwise the invisible
+                                SVG area will cover it and block all interactions (clicking, hovering...) -->
                                 <svg id="mapSvg" class="hidden"></svg>
+                                
+                                <!-- Overlay to create the light halos around the cities -->
+                                <svg id="lightOverlay">
+                                    <defs>
+                                        <mask id="lightMask">
+                                            <rect x="0" y="0" width="100%" height="100%" fill="white" />
+                                        </mask>
+                                        <!-- Set here the gradient of penumbra around each halo -->
+                                        <radialGradient id="penumbra" cx="50%" cy="50%" r="50%">
+                                            <stop offset="50%" stop-color="black" stop-opacity="1" />
+                                            <stop offset="100%" stop-color="black" stop-opacity="0" />
+                                        </radialGradient>               
+                                    </defs>
+                                    <!-- Set here the darkness of the global shadow over the map -->
+                                    <rect x="0" y="0" width="100%" height="100%" fill="rgba(0,0,0,0.7)" mask="url(#lightMask)" />
+                                </svg>    
                             </td>
                         </tr>
                     </thead>
