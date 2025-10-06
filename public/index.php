@@ -338,7 +338,7 @@ echo $html['json_configs'];
                                         </radialGradient>               
                                     </defs>
                                     <!-- Set here the darkness of the global shadow over the map -->
-                                    <rect x="0" y="0" width="100%" height="100%" fill="rgba(0,0,0,0.7)" mask="url(#lightMask)" />
+                                    <rect x="0" y="0" width="100%" height="100%" fill="rgba(0,0,0,0.5)" mask="url(#lightMask)" />
                                 </svg>    
                             </td>
                         </tr>

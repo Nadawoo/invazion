@@ -537,12 +537,26 @@
                         );
 }
 #map_body .cityframe.submerged .frame {
-    outline-color:darkred;
+    outline-color:red;
     background: radial-gradient(circle at 50% 50%,
-                                rgba(255, 0, 0, 0),
-                                rgba(255, 0, 0, 1) 250%
-                                );
+                                rgba(255, 0, 0, 0), 
+                                rgba(255, 0, 0, 0) 20%,
+                                rgba(139, 0, 0, 1) 80%);
 }
+#map_body .nbr_defenses.submerged {
+    top:auto;
+}
+#map_body .nbr_defenses.submerged:before {
+    content:"";
+    position:absolute;
+    top:7px;
+    left:-12px;
+    width:40px;
+    border:1px outset red;
+    z-index:-1;
+    transform:rotate(45deg);
+}
+
 .cityframe.active .frame {
     height:3em;
     border:4px outset white;

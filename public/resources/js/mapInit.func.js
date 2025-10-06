@@ -124,16 +124,19 @@ async function addCitiesOnMap(mapId) {
             let nbrDefenses = city.total_defenses,
                 nbrZombiesNextAttack = zone.dataset.zombies,
                 defensesExcedent = nbrDefenses - nbrZombiesNextAttack;
+            let htmlNbrDefenses = "";
             
             // Display the label above the map only if the city has at least one defense
 //            if(nbrDefenses > 0) {
-                if(defensesExcedent <= 0) {
-                    htmlNbrDefenses = `<span class="nbr_defenses">&#x1F480;</span>`;
+                if(defensesExcedent <= 0 && nbrZombiesNextAttack > 0) {
+                    // Submerged by the zombies
+                    htmlNbrDefenses = `<span class="nbr_defenses submerged">&#x1F480;</span>`;
                 }
 //                else if(defensesExcedent >= 0) {
 //                    htmlNbrDefenses = `<span class="nbr_defenses safe">&#x2705;</span>`;
 //                }
-                else {
+                else if(nbrDefenses > 0) {
+                    // Display the number of defenses for the city if not zero
                     htmlNbrDefenses = `<span class="nbr_defenses">&nbsp; ${defensesExcedent}&#128737;&#65039;</span>`;
                 }
                 
