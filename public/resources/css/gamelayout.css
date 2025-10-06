@@ -42,8 +42,8 @@
 
 .close {
     position: absolute;
-    top:   0;
-    right: 0;
+    top:0;
+    right:1px;
     height:2.5rem;
     width: 2.5rem;
     display:flex;
@@ -52,8 +52,9 @@
     background:darkred;
     color:white;
     border:2px solid white;
-    border-radius: 0 0.5em 0 0.3em;
+    border-radius:5px;
     outline: 1px solid #34495e;
+    box-shadow:4px 4px 6px black;
     /* Smooth change of the background color when hovering the cross */
     transition: all 200ms;
 }

@@ -25,14 +25,15 @@
     opacity: 1 !important;
 }
 .popup {
+    position:relative;
     min-height:4em;
     max-width: 30em;
     max-height:75%;
     overflow: auto;
     margin: 5% auto;
     background: #fff;
-    border-radius: 8px;
-    position: relative;
+    border:4px ridge lightslategrey;
+    border-radius:8px;
     transition: all 250ms ease-in-out;
 }
 .popup h2 {
@@ -56,8 +57,6 @@
 }
 .popup .content {
     max-height:30%;
-    margin:0.2em;
-    margin-top:0.15em;
     overflow:auto;
 }
 .popup p {
@@ -73,15 +72,14 @@
 }
 /* Description d'ambiance d'une bâtiment */
 .popup .block_building {
-    margin:0 0 2em 0;
+    /*margin:0 0 2em 0;*/
     border:1px solid darkgrey;
-    border-radius:0.5em;
 }
 .popup .block_building h2 {
     margin-top:0;
     margin-bottom:0.1em;
     padding:0.15em;
-    border-radius:0.2em 0.2em 0 0;
+    border-radius:4px 4px 0 0;
     background:#34495e;
     color:white;
     box-shadow:4px 4px 8px black;
