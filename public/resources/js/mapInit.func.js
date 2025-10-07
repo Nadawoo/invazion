@@ -59,9 +59,7 @@ async function getMapCitizensOnce(mapId) {
 async function addCitiesOnMap(mapId) {
     
     // #233 is the ID for the "Undiscovered building" in the API.
-    let undiscoveredBuildingId = 233,
-        zombieCoreId = 228
-        zombieBaseId = 230;
+    let undiscoveredBuildingId = 233;
     
     // Get the cities of the map by calling the Azimutant's API
     _cities = await getMapCitiesOnce(mapId);
@@ -71,8 +69,7 @@ async function addCitiesOnMap(mapId) {
         
         let city = _cities[cityId],
             htmlCoords = city.coord_x+"_"+city.coord_y,
-            zone = document.querySelector("#zone"+htmlCoords+" .square_container"),
-            nbrItems = zone.dataset.items;
+            zone = document.querySelector("#zone"+htmlCoords+" .square_container");
             
         let buildingCarcs = _configsBuildings[city.city_type_id],
             buildingIconHtml = buildingCarcs["icon_html"],
@@ -109,30 +106,6 @@ async function addCitiesOnMap(mapId) {
 //            if(zone.querySelector(".empty") !== null) {
 //                zone.querySelector(".empty").remove();
 //            }
-        }
-        
-        // Adds the number of items remaining inside the explorable building
-        if(buildingCarcs.is_explorable === 1) {
-            
-            let html = "";            
-            if(Number(zone.dataset.cyclelastvisit) === 0) {
-                html = "";
-            }
-            else if(Number(zone.dataset.cyclelastvisit) < getCurrentCycle()) {
-                html = `<span class="nbr_items pulse">&#x26CF;&#xFE0F;</span>`;
-            }
-            else if(nbrItems > 0) {
-                html = `<span class="nbr_items">${nbrItems}</span>`;
-            }
-            else {
-//                let maxExplorations = 100;
-//                // NB: #108 = ID of the item "Counter of explorations"
-//                let nbrExplorationsDone = zones[htmlCoords]['items'][108] || 0;
-//                let nbrExplorationsRemaining = maxExplorations-nbrExplorationsDone;
-                html = `<span class="nbr_items safe">&#x2705;</span>`;
-            }
-            
-            zone.insertAdjacentHTML("afterbegin", html);
         }
         
         // Adds the name of the building

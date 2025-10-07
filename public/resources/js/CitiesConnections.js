@@ -120,6 +120,7 @@ class CityConnections {
                 if(clickedCityId === null || childCity["connected_city_id"] !== null) {
                     this.#addCityframe(childCity.coord_x, childCity.coord_y, childCity.city_type_id, childCity.total_defenses);
                     this.#addNbrDefenses(childCity.coord_x, childCity.coord_y, childCity.city_type_id, childCity.total_defenses);
+                    this.#addNbrItems(childCity.coord_x, childCity.coord_y);
                 }
             }
         }
@@ -128,7 +129,46 @@ class CityConnections {
             this.#highlightClickedCityframe(clickedCityId);
         }
     }
-
+    
+    
+    /**
+     * Add the label for the number of items on a city
+     * 
+     * @param {int} cityCoordX
+     * @param {int} cityCoordY
+     * @returns {undefined}
+     */
+    #addNbrItems(cityCoordX, cityCoordY) {
+        
+//        if(buildingCarcs.is_explorable === 1) {
+            
+            let htmlCoords = cityCoordX+"_"+cityCoordY,
+                zone = document.querySelector("#zone"+htmlCoords+" .square_container"),
+                nbrItems = zone.dataset.items;
+            
+            let html = "";            
+            if(Number(zone.dataset.cyclelastvisit) === 0) {
+                html = "";
+            }
+            else if(Number(zone.dataset.cyclelastvisit) < getCurrentCycle()) {
+                // Icon of an axe
+                html = `<span class="nbr_items pulse animate__animated animate__zoomIn">&#x26CF;&#xFE0F;</span>`;
+            }
+            else if(nbrItems > 0) {
+                html = `<span class="nbr_items">${nbrItems}</span>`;
+            }
+            else {
+//                let maxExplorations = 100;
+//                // NB: #108 = ID of the item "Counter of explorations"
+//                let nbrExplorationsDone = zones[htmlCoords]['items'][108] || 0;
+//                let nbrExplorationsRemaining = maxExplorations-nbrExplorationsDone;
+                html = `<span class="nbr_items safe">&#x2705;</span>`;
+            }
+            
+            zone.querySelector(".cityframe").insertAdjacentHTML("afterbegin", html);
+//        }
+    }
+    
     
     /**
      * Add the "number of defenses" label above each city
@@ -143,7 +183,7 @@ class CityConnections {
         
         // #233 is the ID for the "Undiscovered building" in the API.
         let undiscoveredBuildingId = 233,
-            zombieCoreId = 228
+            zombieCoreId = 228,
             zombieBaseId = 230;
         
         let htmlCoords = cityCoordX+"_"+cityCoordY,
@@ -171,11 +211,11 @@ class CityConnections {
                 htmlNbrDefenses = `<div class="nbr_defenses">&#x1F480;</div>`;
             }
 //                else if(defensesExcedent >= 0) {
-//                    htmlNbrDefenses = `<span class="nbr_defenses safe">&#x2705;</span>`;
+//                    htmlNbrDefenses = `<div class="nbr_defenses safe">&#x2705;</div>`;
 //                }
             else if(nbrDefenses > 0) {
                 // Display the number of defenses for the city if not zero
-                htmlNbrDefenses = `<span class="nbr_defenses">&nbsp; ${defensesExcedent}&#128737;&#65039;</span>`;
+                htmlNbrDefenses = `<div class="nbr_defenses animate__animated animate__zoomIn">&nbsp; ${defensesExcedent}&#128737;&#65039;</div>`;
             }
 
             zone.querySelector(".cityframe").insertAdjacentHTML("afterbegin", `${htmlNbrDefenses}`);

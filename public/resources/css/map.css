@@ -487,11 +487,13 @@
     top:auto;
     bottom:0;
     left:1.6rem;
-    height:18px;
-    width: 18px;
+    height:   19px;
+    min-width:19px;
+    padding:0 0.2em; /* Useful for large numbers */
     display:flex;
     justify-content:center;
     align-items:center;
+    line-height:normal;
     font-size:0.6em;
     font-weight:bold;
     background:royalblue;
@@ -512,7 +514,6 @@
     font-size:1em;
     background:none;
     border:2px solid dimgrey;
-    border-radius:0.2em;
     box-shadow:none;
     z-index:2;
 }
@@ -555,6 +556,10 @@
     border:1px outset red;
     z-index:-1;
     transform:rotate(45deg);
+}
+
+#map_body .submerged .nbr_items {
+    display:none;
 }
 
 .cityframe.active .frame {
@@ -1073,7 +1078,7 @@
     top:1.2rem;
 }
 
-#map.action_view .hexagon .nbr_defenses:not(.submerged),
+#map.action_view .cityframe:not(.submerged) .nbr_defenses,
 #map.action_view .hexagon .nbr_items {
     transform:scale(0.7);
 }
