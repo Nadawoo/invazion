@@ -118,7 +118,8 @@ class CityConnections {
                 let childCity = city[1];
 
                 if(clickedCityId === null || childCity["connected_city_id"] !== null) {
-                    this.#addCityframe(childCity["coord_x"], childCity["coord_y"], childCity.city_type_id, childCity["total_defenses"]);
+                    this.#addCityframe(childCity.coord_x, childCity.coord_y, childCity.city_type_id, childCity.total_defenses);
+                    this.#addNbrDefenses(childCity.coord_x, childCity.coord_y, childCity.city_type_id, childCity.total_defenses);
                 }
             }
         }
@@ -128,7 +129,60 @@ class CityConnections {
         }
     }
 
+    
+    /**
+     * Add the "number of defenses" label above each city
+     * 
+     * @param {int} cityCoordX
+     * @param {int} cityCoordY
+     * @param {int} cityTypeId
+     * @param {int} cityDefenses
+     * @returns {undefined}
+     */
+    #addNbrDefenses(cityCoordX, cityCoordY, cityTypeId, cityDefenses) {
+        
+        // #233 is the ID for the "Undiscovered building" in the API.
+        let undiscoveredBuildingId = 233,
+            zombieCoreId = 228
+            zombieBaseId = 230;
+        
+        let htmlCoords = cityCoordX+"_"+cityCoordY,
+            zone = document.querySelector("#zone"+htmlCoords+" .square_container");
+                        
+        if(cityTypeId === zombieBaseId) {
+            // Add the number of zombies of the daily attack 
+            zone.insertAdjacentHTML("afterbegin", `<div class="nbr_defenses" style="background:red">${zone.dataset.zombies} <img src="resources/img/motiontwin/zombie.gif" alt="&#x1F9DF;"></div>`);
+        }
+        else if(cityTypeId === zombieCoreId) {
+            // Add a special marker on the zombie cores
+            zone.insertAdjacentHTML("afterbegin", `<div class="nbr_items" style="background:lightgrey">&#x2757;</div>`);
+        }
+        else if(cityTypeId !== undiscoveredBuildingId) {
+            // Add the number of defenses above each city, excepted above
+            // the undiscovered ones
+            let nbrDefenses = cityDefenses,
+                nbrZombiesNextAttack = zone.dataset.zombies,
+                defensesExcedent = nbrDefenses - nbrZombiesNextAttack;
+            let htmlNbrDefenses = "";
+            
+            // Display the label above the map only if the city has at least one defense
+            if(defensesExcedent <= 0 && nbrZombiesNextAttack > 0) {
+                // Submerged by the zombies
+                htmlNbrDefenses = `<div class="nbr_defenses">&#x1F480;</div>`;
+            }
+//                else if(defensesExcedent >= 0) {
+//                    htmlNbrDefenses = `<span class="nbr_defenses safe">&#x2705;</span>`;
+//                }
+            else if(nbrDefenses > 0) {
+                // Display the number of defenses for the city if not zero
+                htmlNbrDefenses = `<span class="nbr_defenses">&nbsp; ${defensesExcedent}&#128737;&#65039;</span>`;
+            }
 
+            zone.querySelector(".cityframe").insertAdjacentHTML("afterbegin", `${htmlNbrDefenses}`);
+        }
+    }
+    
+    
     /**
      * Add a white frame around the desert buildings connected to a city
      * 
@@ -189,7 +243,7 @@ class CityConnections {
             label = "&#x2705;";
         }
         
-        // If the city is définitively submerged by the zombies
+        // If the city is definitively submerged by the zombies
         if(nbrZombies > cityDefenses) {
             cssClass = "submerged";
         }

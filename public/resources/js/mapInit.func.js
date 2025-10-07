@@ -111,39 +111,6 @@ async function addCitiesOnMap(mapId) {
 //            }
         }
         
-        // Adds the number of zombies of the daily attack 
-        if(city.city_type_id === zombieBaseId) {
-            zone.insertAdjacentHTML("afterbegin", `<span class="nbr_defenses" style="background:red">${zone.dataset.zombies} <img src="resources/img/motiontwin/zombie.gif" alt="&#x1F9DF;"></span>`);
-        }
-        else if(city.city_type_id === zombieCoreId) {
-            zone.insertAdjacentHTML("afterbegin", `<span class="nbr_items" style="background:lightgrey">&#x2757;</span>`);
-        }
-        // Adds the number of defenses above each city, excepted
-        // the undiscovered ones (#233)
-        else if(city.city_type_id !== 233) {
-            let nbrDefenses = city.total_defenses,
-                nbrZombiesNextAttack = zone.dataset.zombies,
-                defensesExcedent = nbrDefenses - nbrZombiesNextAttack;
-            let htmlNbrDefenses = "";
-            
-            // Display the label above the map only if the city has at least one defense
-//            if(nbrDefenses > 0) {
-                if(defensesExcedent <= 0 && nbrZombiesNextAttack > 0) {
-                    // Submerged by the zombies
-                    htmlNbrDefenses = `<span class="nbr_defenses submerged">&#x1F480;</span>`;
-                }
-//                else if(defensesExcedent >= 0) {
-//                    htmlNbrDefenses = `<span class="nbr_defenses safe">&#x2705;</span>`;
-//                }
-                else if(nbrDefenses > 0) {
-                    // Display the number of defenses for the city if not zero
-                    htmlNbrDefenses = `<span class="nbr_defenses">&nbsp; ${defensesExcedent}&#128737;&#65039;</span>`;
-                }
-                
-                zone.insertAdjacentHTML("afterbegin", `${htmlNbrDefenses}`);
-//            }
-        }
-        
         // Adds the number of items remaining inside the explorable building
         if(buildingCarcs.is_explorable === 1) {
             
