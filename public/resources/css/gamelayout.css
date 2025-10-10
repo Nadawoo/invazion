@@ -860,15 +860,13 @@ legend {
     cursor:pointer;
 }
 .item_label .close {
-    right:-2.7em;
-    height:3.5em;
-    outline:1px outset #34495e;
-    border-radius:0 0.5em 0.5em 0;
-    box-shadow:8px 8px 15px black;
+    top:  -1em;
+    right:-1em;
 }
 .item_label>var { /* The clickable icon of the item */
     display:flex;
     margin:auto;
+    font-size:1.8em; /* Magnify the emoji icons */
     font-style:normal;
 }
 .item_label var::selection {
@@ -901,7 +899,7 @@ legend {
     position:absolute;
     top:3em;
     width:14.5em;
-    padding:0.2em 0.2em 0.7em 0.5em;
+    padding:0.2em 0.3em 0.7em 0.3em;
     text-align:left;
     background:lightgrey;
     border:1px outset #34495e;
@@ -918,6 +916,9 @@ legend {
     font-size:1.2em;
     font-weight:bold;
     font-style:normal;
+}
+.item_label .details button {
+    width:100%;
 }
 .item_label .details .drop_button {
     height:1.8em;
@@ -937,6 +938,7 @@ legend {
 
 .item_label .details ul {
     margin-bottom:0.8em;
+    padding-left:0;
 }
 .item_label .details li {
     display:flex;
@@ -948,6 +950,7 @@ legend {
     background:#34495e;
     color:white;
     border-radius:0.1em;
+    box-shadow:4px 4px 4px grey;
 }
 .item_label .details li .material-icons {
     height:100%;
