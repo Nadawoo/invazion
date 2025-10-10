@@ -401,7 +401,26 @@
     z-index:1;
 }
 
-.square_container .zone_shadow,
+ /* Add a shadow on each hexagon to make the map look less "flat" */
+#map_body .square_container:after {
+    content:"";
+    position:absolute;
+    height:100%;
+    width:100%;
+    background: radial-gradient(circle at 180% 180%,
+                                rgba(0, 0, 0, 0.6),
+                                rgba(0, 0, 0, 0) 70%
+                                );
+    /* Give the background an hexagonal shape */
+    clip-path: polygon( 50% 0%,
+                        100% 25%,
+                        100% 75%,
+                        50% 100%,
+                        0% 75%,
+                        0% 25%
+                        );
+}
+
 .square_container .zombies_amount,
 .square_container .items_amount,
 .square_container .explorations_amount {
@@ -421,13 +440,6 @@
                     0% 75%, 
                     0% 25%
                     );
-}
-#map_body .zone_shadow {
-    /* Shadow on each hexagon to make the map look less "flat" */
-    background: radial-gradient(circle at 180% 180%,
-                                rgba(0, 0, 0, 0.6),
-                                rgba(0, 0, 0, 0) 65%
-                                );
 }
 
 /* Surelevate the zones with cities or buildings */

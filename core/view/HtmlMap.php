@@ -202,7 +202,6 @@ class HtmlMap
                         data-cyclelastvisit="'.(int)$cell['cycle_last_visit'].'"
                         >
                         '. $cell_zombies . $cell_content . $cell_name . '
-                        <div class="zone_shadow"></div>
                     </div>
                     '.$player_city_marker.'
                 </td>';
