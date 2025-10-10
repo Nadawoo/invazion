@@ -134,9 +134,9 @@ class HtmlLayout extends HtmlPage
         
         return '
             <div>
-                <a id="appMenu" class="sidenav-trigger" data-target="slide-out">
+                <button aria-label="Ouvrir/fermer le menu de l\'application" id="appMenu" class="sidenav-trigger" data-target="slide-out">
                     <span class="icon"><i class="material-icons">menu</i></span>
-                </a>
+                </button>
             </div>
             <div id="tuto_dayclock">
                 <a href="#popdayclock" id="zombie_cores_counter"
@@ -158,10 +158,10 @@ class HtmlLayout extends HtmlPage
             </div>
             <p id="messageEndCycle" class="hidden" style="margin:0"></p>
             <div class="right">
-                <a id="showWall" title="Communications">
+                <button aria-label="Ouvrir/fermer le panneau des communications" title="Communications" id="showWall">
                     <span class="icon"><i class="material-icons">sms</i></span>
                     <span class="text">Communications</span>
-                </a>
+                </button>
                 
                 <!--
                 <a id="notifsButton" title="Notifications">&#x1F514;</a>

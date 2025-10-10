@@ -188,7 +188,8 @@
     justify-content:center;
     align-items: center;
     height:3.2rem;
-    border:2px solid dimgrey;
+    background:none;
+    border:2px outset lightslategrey;
     color:white;
     box-shadow: 3px 3px 5px black;
 }
