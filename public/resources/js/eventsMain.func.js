@@ -69,6 +69,11 @@ function listenToMapZones() {
     document.getElementById("map_body").addEventListener("click", function(){
             const hexagon = event.target.closest(".hexagon");
             
+            // Avoid error if we clicked on a border of the map without zone
+            if(hexagon === null) {
+                return;
+            }
+            
             if(event.target.matches("button[name=teleport]") === true) {
                 // If we click on a teleportation button over a city, teleport the citizen
                 let cityId = Number(event.target.closest(".square_container").dataset.cityid);
