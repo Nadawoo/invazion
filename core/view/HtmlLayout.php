@@ -28,20 +28,12 @@ class HtmlLayout extends HtmlPage
      */
     function json_configs($json_map, $json_buildings, $json_buildings_findable_items, $json_items) {
         
-        return '<section id="configs" class="hidden">
-                    <div class="map">
-                    '.$json_map.'
-                    </div>
-                    <div class="buildings">
-                    '.$json_buildings.'
-                    </div>
-                    <div class="buildings_findable_items">
-                    '.$json_buildings_findable_items.'
-                    </div>
-                    <div class="items">
-                    '.$json_items.'
-                    </div>
-                </section>';
+        return '<ul id="configs" class="hidden">
+                    <li class="map">'.$json_map.'</li>
+                    <li class="buildings">'.$json_buildings.'</li>
+                    <li class="buildings_findable_items">'.$json_buildings_findable_items.'</li>
+                    <li class="items">'.$json_items.'</li>
+                </ul>';
     }
     
     
@@ -683,16 +675,16 @@ class HtmlLayout extends HtmlPage
         $citizen_action_points = isset($citizen['bag_items'][23]) ? $citizen['bag_items'][23] : 0;
         
         return '
-            <section id="gameData" class="hidden">
-                <div id="citizenId">'.$citizen['citizen_id'].'</div>
-                <div id="citizenPseudo">'.$citizen['citizen_pseudo'].'</div>
-                <div id="citizenCoordX">'.$citizen['coord_x'].'</div>
-                <div id="citizenCoordY">'.$citizen['coord_y'].'</div>
-                <div id="actionPoints">'.$citizen_action_points.'</div>
-                <div id="maxActionPoints">'.$max_action_points.'</div>
-                <div id="mapId">'.$citizen['map_id'].'</div>
-                <div id="cityId">'.$citizen['city_id'].'</div>
-            </section>';
+            <ul id="gameData" class="hidden">
+                <li id="citizenId">'.$citizen['citizen_id'].'</li>
+                <li id="citizenPseudo">'.$citizen['citizen_pseudo'].'</li>
+                <li id="citizenCoordX">'.$citizen['coord_x'].'</li>
+                <li id="citizenCoordY">'.$citizen['coord_y'].'</li>
+                <li id="actionPoints">'.$citizen_action_points.'</li>
+                <li id="maxActionPoints">'.$max_action_points.'</li>
+                <li id="mapId">'.$citizen['map_id'].'</li>
+                <li id="cityId">'.$citizen['city_id'].'</li>
+            </ul>';
     }
     
     

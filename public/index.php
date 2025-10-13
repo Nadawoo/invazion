@@ -184,46 +184,50 @@ unset($maps, $citizens, $citizens_by_coord);
  * Beginning of the HTML page
  */
 echo $layout->page_header($citizen['user_id'], $citizen['citizen_id'], $citizen['citizen_pseudo']);
-echo $html['hidden_player_data'];
-echo $html['json_configs'];
-
-//echo $tutorial->all_steps();
 ?>
 
-<section id="popups">
-    <?php echo $popup->all_popups(  $msg_popup,
-                                    $citizen['map_id'],
-                                    $citizen['citizen_id'], 
-                                    $configs['map'],
-                                    $specialities,
-                                    $speciality_caracs,
-                                    $healing_items,
-                                    $is_custom_popup_visible
-                                    ); 
-    ?>
-</section>
-
-<section id="templates">
+<section id="technical">
     <?php
-    echo $htmlItem->item_template()
-       . $htmlPaths->path_template()
-       . $htmlPaths->pathsbar_inactive_path_template()
-       . $htmlPaths->pathsbar_active_path_template()
-       . $layout->block_zone_fellow_template()
-       . $popup->template_popbuilding($msg_popup)
-       . $popup->template_popsmartphone($html['smartphone']);
+    echo $html['hidden_player_data'];
+    echo $html['json_configs'];
+    //echo $tutorial->all_steps();
     ?>
-    <template id="tplEmptySlot">
-        <li class="item_label empty_slot"></li>
-    </template>
-    <template id="tplTooltip">
-        <div class="bubble">
-            <div class="coords"></div>
-            <div class="roleplay"></div>
-            <div class="inventory"></div>
-            <div class="triangle_down"></div>
-        </div>
-    </template>
+
+    <div id="popups">
+        <?php echo $popup->all_popups(  $msg_popup,
+                                        $citizen['map_id'],
+                                        $citizen['citizen_id'], 
+                                        $configs['map'],
+                                        $specialities,
+                                        $speciality_caracs,
+                                        $healing_items,
+                                        $is_custom_popup_visible
+                                        ); 
+        ?>
+    </div>
+
+    <div id="templates">
+        <?php
+        echo $htmlItem->item_template()
+           . $htmlPaths->path_template()
+           . $htmlPaths->pathsbar_inactive_path_template()
+           . $htmlPaths->pathsbar_active_path_template()
+           . $layout->block_zone_fellow_template()
+           . $popup->template_popbuilding($msg_popup)
+           . $popup->template_popsmartphone($html['smartphone']);
+        ?>
+        <template id="tplEmptySlot">
+            <li class="item_label empty_slot"></li>
+        </template>
+        <template id="tplTooltip">
+            <div class="bubble">
+                <div class="coords"></div>
+                <div class="roleplay"></div>
+                <div class="inventory"></div>
+                <div class="triangle_down"></div>
+            </div>
+        </template>
+    </div>
 </section>
 
 <div id="game_container" data-section="game">
