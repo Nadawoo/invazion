@@ -240,7 +240,7 @@ div.center {
  */
 #connectionForm {
     border:1px solid lightgrey;
-    border-radius:0.2em;
+    border-radius:0.3em;
     margin:auto;
     padding:0 1rem 1rem 1rem;
     max-width:60%;
@@ -262,6 +262,7 @@ div.center {
     padding:0 0.3em;
     font-size:1.1em;
     border:1px solid grey;
+    border-radius:0.3em;
 }
 #connectionForm #buttonsBlock {
     display:flex;

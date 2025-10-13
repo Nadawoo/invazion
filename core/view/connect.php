@@ -8,7 +8,7 @@
 function connect($email)
 {
     
-    return '<form method="post" id="connectionForm" onsubmit="connectUser(); return false;">
+    return '<form method="post" id="connectionForm" class="z-depth-2" onsubmit="connectUser();return false;">
         
         <h2>Connexion</h2>
         
