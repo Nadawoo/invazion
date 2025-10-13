@@ -163,7 +163,7 @@ class HtmlMap
         // The never visited zones always look the same
         if($cell === null or $cell['date_last_visit'] === null) {
             $opacity = 0.3;
-            $ground  = 'ground_zombies';
+            $ground  = '';
         }
         else {
             // Opacity of the zone
