@@ -561,7 +561,7 @@ class HtmlButtons
                     switchMapView(\''.$button_alias.'\')';
         
         return '
-        <div class="round_action_block z-depth-3" id="round_'.$button_alias.'">
+        <li class="round_action_block z-depth-3" id="round_'.$button_alias.'">
             <div id="tuto_button_'.$button_alias.'" class="hidden">
                 <input type="submit"
                        class="round_action '.$class_inactive.'"
@@ -570,7 +570,7 @@ class HtmlButtons
             </div>
             '.$dot_number.'
             <label onclick="'.$onclick.'">'.$button['label'].'</label>
-        </div>';
+        </li>';
     }
     
     

@@ -25,7 +25,7 @@ class HtmlItem {
         return '
             <template id="tplItem">
                 <li class="item_label z-depth-1" onclick="toggleItem(event)">
-                    <var class="icon">{icon}</var>
+                    <var class="icon" aria-label="{item_name}">{icon}</var>
                     <div class="details hidden">
                         <a class="close" onclick="toggleItem(event)">
                             <i class="material-icons">close</i>

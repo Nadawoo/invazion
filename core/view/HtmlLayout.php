@@ -276,7 +276,7 @@ class HtmlLayout extends HtmlPage
         
         return '
             <div id="block_distance">
-                <div class="city_image"><img src="resources/img/free/city.svg" alt="ville"></div>'
+                <div class="city_image"><img src="resources/img/free/city.svg" alt=""></div>'
                 .'&nbsp;Ville à <span class="distance"></span> km
             </div>';
     }

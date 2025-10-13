@@ -318,7 +318,7 @@ echo $layout->page_header($citizen['user_id'], $citizen['citizen_id'], $citizen[
     <div id="Outside" style="line-height:0"></div>
     
     <!-- The map -->
-    <section id="map">
+    <section aria-label="Début de la carte du jeu" id="map">
         <div id="map_viewport">
             <div id="map_body_wrapper">
                 <table id="map_body">
@@ -434,7 +434,7 @@ echo $layout->page_header($citizen['user_id'], $citizen['citizen_id'], $citizen[
         
         <div id="actions_panel" class="animate__animated animate__slideInUp hidden">
             <div id="actions"></div>
-            <div id="round_actions">
+            <ul aria-label="Onglets d'action" id="round_actions">
                 <?php
                 echo  $buttons->button_round('move', ($zone['controlpoints_zombies']-$zone['controlpoints_citizens']))
                     . $buttons->button_round('dig', array_sum((array)$zone['items']), (bool)$citizen['can_dig'])
@@ -444,7 +444,7 @@ echo $layout->page_header($citizen['user_id'], $citizen['citizen_id'], $citizen[
                 // Warn if wounded
     //                echo $layout->block_alert_wounded((bool)$citizen['is_wounded']);
                 ?>
-            </div>
+            </ul>
             
             <template id="tplActions">
                 <fieldset id="block_move" class="z-depth-2 hidden">

@@ -152,7 +152,7 @@ class CityConnections {
             }
             else if(Number(zone.dataset.cyclelastvisit) < getCurrentCycle()) {
                 // Icon of an axe
-                html = `<span class="nbr_items pulse animate__animated animate__zoomIn">&#x26CF;&#xFE0F;</span>`;
+                html = `<span aria-label="Cette zone peut être fouillée" class="nbr_items pulse animate__animated animate__zoomIn">&#x26CF;&#xFE0F;</span>`;
             }
             else if(nbrItems > 0) {
                 html = `<span class="nbr_items">${nbrItems}</span>`;
@@ -208,14 +208,14 @@ class CityConnections {
             // Display the label above the map only if the city has at least one defense
             if(defensesExcedent <= 0 && nbrZombiesNextAttack > 0) {
                 // Submerged by the zombies
-                htmlNbrDefenses = `<div class="nbr_defenses">&#x1F480;</div>`;
+                htmlNbrDefenses = `<div aria-label="Ce bâtiment est irrémédiablement submergé par les zombies" class="nbr_defenses">&#x1F480;</div>`;
             }
 //                else if(defensesExcedent >= 0) {
 //                    htmlNbrDefenses = `<div class="nbr_defenses safe">&#x2705;</div>`;
 //                }
             else if(nbrDefenses > 0) {
                 // Display the number of defenses for the city if not zero
-                htmlNbrDefenses = `<div class="nbr_defenses animate__animated animate__zoomIn">&nbsp; ${defensesExcedent}&#128737;&#65039;</div>`;
+                htmlNbrDefenses = `<div aria-label="${defensesExcedent} défenses" class="nbr_defenses animate__animated animate__zoomIn">&nbsp; ${defensesExcedent}&#128737;&#65039;</div>`;
             }
 
             zone.querySelector(".cityframe").insertAdjacentHTML("afterbegin", `${htmlNbrDefenses}`);

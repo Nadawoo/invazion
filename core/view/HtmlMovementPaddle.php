@@ -50,7 +50,7 @@ class HtmlMovementPaddle
     {
 
         return '
-        <form method="post" action="#Outside" name="move" id="movement_paddle">
+        <form aria-label="Flèches pour vous déplacer sur la carte" method="post" action="#Outside" name="move" id="movement_paddle">
         <table>
             <tr>
                 <td></td>
@@ -60,7 +60,7 @@ class HtmlMovementPaddle
             </tr>
             <tr>
                 <td>'.$this->arrow('west').'</td>
-                <td colspan="2" id="central" onclick="centerMapOnMe()" title="Cliquez sur une flèche pour vous déplacer...">
+                <td colspan="2" id="central" onclick="centerMapOnMe()">
                     <br>
                     <img src="resources/img/free/human.png" class="me">
                     <span class="coords"></span>
@@ -89,6 +89,7 @@ class HtmlMovementPaddle
     {
         
         return '<button type="submit" name="direction" value="'.$direction.'" 
+                    aria-label="'.$this->arrows[$direction]['title'].'" 
                     title="'.$this->arrows[$direction]['title'].'"
                     style="'.$this->arrows[$direction]['style'].'">
                     '.$this->arrows[$direction]['icon'].'

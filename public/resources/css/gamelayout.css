@@ -643,7 +643,7 @@ form[name="end_cycle"] button {
 /* The big round action buttons with icon */
 #round_actions {
     position:relative;
-    top:-2.5em;
+    top:-3.55em;
     display:flex;
     align-items:flex-start;
     justify-content:center;
@@ -652,8 +652,7 @@ form[name="end_cycle"] button {
 }
 .round_action_block {
     position:relative;
-    display:inline-block;
-    width:4.58em;
+    width:4.53em;
     background:#34495e;
     border:1px solid lightgrey;
     border-top:1px solid white;

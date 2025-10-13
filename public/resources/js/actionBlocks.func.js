@@ -418,6 +418,7 @@ function htmlItem(itemId, itemCaracs) {
     template.querySelector('.form_drop button[name="params[item_id]"]').value  = itemId;
     template.querySelector('.form_pickup button[name="params[item_id]"]').value = itemId;
     template.querySelector('.icon').innerHTML = icon;
+    template.querySelector('.icon').setAttribute('aria-label', itemCaracs['name']);
     template.querySelector('.details .icon').innerHTML = icon;
     template.querySelector('.item_name').innerHTML = itemCaracs['name'];
     template.querySelector('.descr_ambiance').innerHTML = itemCaracs['descr_ambiance'];
