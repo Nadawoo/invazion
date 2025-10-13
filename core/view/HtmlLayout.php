@@ -700,23 +700,23 @@ class HtmlLayout extends HtmlPage
         
         return '
             <form action="#" id="zoom_form">
-                <button id="zoomMapStepIn" title="Agrandir la carte">
+                <button id="zoomMapStepIn" aria-label="Zoomer sur la carte" title="Agrandir la carte">
                     <i class="material-icons small">add</i>
                 </button>
                 <p class="range-field hidden">
                     <input id="zoom_range" type="range" value="100" min="70" max="220" step="30">
                 </p>
                 <hr onclick="toggle(\'#zoom_form .range-field\')">
-                <button id="zoomMapStepOut" title="Réduire la carte">
+                <button id="zoomMapStepOut" aria-label="Dézoomer sur la carte" title="Dézoomer sur la carte">
                     <i class="material-icons small">remove</i>
                 </button>
             </form>
             
-            <button onclick="centerMapOnMe()" title="Centrer la carte sur ma zone">
+            <button onclick="centerMapOnMe()" aria-label="Centrer la carte sur ma zone" title="Centrer la carte sur ma zone">
                 <i class="material-icons small">my_location</i>
             </button>
             
-            <button onclick="toggle(\'#mapRadarMenu\')" title="Vues satellite">
+            <button onclick="toggle(\'#mapRadarMenu\')" aria-label="Vues satellite" title="Vues satellite">
                 <span style="font-size:50%;margin-top:-0.2em;">&#x1F6F0;&#xFE0F;</span>
             </button>
             
@@ -740,9 +740,13 @@ class HtmlLayout extends HtmlPage
                 </li>
             </ul>
             
-            <button><a href="#popsmartphone" style="font-size:55%" onclick="displaySmartphone()">&#128241;</a></button>
+            <button aria-label="Afficher le smartphone du jeu">
+                <a href="#popsmartphone" style="font-size:55%" onclick="displaySmartphone()">&#128241;</a>
+            </button>
             
-            <button>'.$buttons->refresh().'</button>
+            <button aria-label="Recharger la page">
+                '.$buttons->refresh().'
+            </button>
         
             <!-- 
             <button id="launchTutorial"><i class="material-icons small grey-text text-darken-2">help</i></button>
