@@ -110,10 +110,10 @@ class HtmlMap
         // Pour chaque ligne de la carte
         for ($row=0; $row<$nbr_rows; $row++) {
             
-            $result .= '<tr aria-label="Ligne '.$row.'">';
-            
-            // Ligne de la horde zombie sur la carte (triangles rouges)
+            // Line for the zombie hurd on the map (red triangles)
             $result .= $this->html_hurd($nbr_cols, $row, $next_attack_hour);
+            
+            $result .= '<tr aria-label="Ligne '.$row.'">';
             
             // Crée les cases de la ligne en cours
             for($i=0; $i<$nbr_cols; $i++) {
