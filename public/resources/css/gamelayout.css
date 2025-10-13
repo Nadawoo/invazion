@@ -650,15 +650,6 @@ form[name="end_cycle"] button {
     white-space:nowrap;
     z-index:21;
 }
-.round_action_block {
-    position:relative;
-    width:4.53em;
-    background:#34495e;
-    border:1px solid lightgrey;
-    border-top:1px solid white;
-    border-bottom:none;
-    /*border-radius:0.3rem;*/
-}
 .round_action {
     position:relative;
     height:3.2rem; /* Equal to the buttons "Bag" and "Status" in the #personal_bar */
@@ -694,16 +685,21 @@ form[name="end_cycle"] button {
     box-shadow:1px 1px 2px white;
     opacity:1;
 }
-#round_actions label {
-    display:block;
+.round_action_block {
+    position: relative;
+    width:4.53em;
+}
+#round_actions button {
+    width: 100%;
     padding:0.5em 0;
     background:grey;
-    font-size:0.9em;
     color:white;
+    border:1px solid lightgrey;
+    border-top:1px solid white;
     border-bottom:3px solid lightgrey;
     cursor:pointer;
 }
-#round_actions .active label {
+#round_actions .active button {
     background:#283747;
     /*border-top:1px solid lightgrey;*/
     border-bottom:3px solid royalblue;

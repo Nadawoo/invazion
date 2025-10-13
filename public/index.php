@@ -434,7 +434,7 @@ echo $layout->page_header($citizen['user_id'], $citizen['citizen_id'], $citizen[
         
         <div id="actions_panel" class="animate__animated animate__slideInUp hidden">
             <div id="actions"></div>
-            <ul aria-label="Onglets d'action" id="round_actions">
+            <ul role="tablist" aria-label="Onglets d'action" id="round_actions">
                 <?php
                 echo  $buttons->button_round('move', ($zone['controlpoints_zombies']-$zone['controlpoints_citizens']))
                     . $buttons->button_round('dig', array_sum((array)$zone['items']), (bool)$citizen['can_dig'])
@@ -447,7 +447,7 @@ echo $layout->page_header($citizen['user_id'], $citizen['citizen_id'], $citizen[
             </ul>
             
             <template id="tplActions">
-                <fieldset id="block_move" class="z-depth-2 hidden">
+                <fieldset aria-controls="block_move" id="block_move" class="z-depth-2 hidden">
                     <?php
                     if ($zone['controlpoints_citizens'] < $zone['controlpoints_zombies'] and time() < strtotime($zone['date_control_end'])) {
                         echo $layout->block_alert_escape(strtotime($zone['date_control_end']));
