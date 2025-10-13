@@ -51,14 +51,14 @@ class HtmlMovementPaddle
 
         return '
         <form aria-label="Flèches pour vous déplacer sur la carte" method="post" action="#Outside" name="move" id="movement_paddle">
-        <table>
-            <tr>
+        <table role="presentation">
+            <tr role="presentation">
                 <td></td>
                 <td>'.$this->arrow('northwest').'</td>
                 <td>'.$this->arrow('northeast').'</td>
                 <td></td>
             </tr>
-            <tr>
+            <tr role="presentation">
                 <td>'.$this->arrow('west').'</td>
                 <td colspan="2" id="central" onclick="centerMapOnMe()">
                     <br>
@@ -67,7 +67,7 @@ class HtmlMovementPaddle
                 </td>
                 <td>'.$this->arrow('east').'</td>
             </tr>
-            <tr>
+            <tr role="presentation">
                 <td></td>
                 <td>'.$this->arrow('southwest').'</td>
                 <td>'.$this->arrow('southeast').'</td>
