@@ -45,7 +45,7 @@
 #my_zone input[type="submit"]:hover {
     color:red;
 }
-#my_zone input[type="submit"].inactive {
+#my_zone input[type="submit"]:disabled {
     color:grey;
     text-decoration:line-through;
 }

@@ -179,10 +179,10 @@ function updateDigButtons(is_visited_today) {
     let digButton = document.querySelector('#block_dig form[name="dig"] .redbutton');
     
     if(is_visited_today === 1) {
-        digButton.classList.add("inactive");
+        digButton.disabled = true;
         hide("#block_move #card_dig");
     } else {
-        digButton.classList.remove("inactive");
+        digButton.disabled = false;
         display("#block_move #card_dig");
         display("#round_dig .dot_number");
         document.querySelector("#round_dig .dot_number").innerHTML = "&#x26CF;&#xFE0F;";
@@ -199,9 +199,9 @@ function updateBlockActionZombies(newNbrZombies) {
     // Activates the big round action button "Zombies"
     let zombiesButton = document.querySelector("#round_zombies");
     if(newNbrZombies > 0) {
-        zombiesButton.querySelector("input").classList.remove("inactive");
+        zombiesButton.querySelector("input").disabled = false;
     } else {
-        zombiesButton.querySelector("input").classList.add("inactive");
+        zombiesButton.querySelector("input").disabled = true;
     }
     
     // Update the number of zombies in the round button
@@ -528,9 +528,9 @@ function updateRoundButtonDotNumber(roundButtonId, amount, forceHighlight=false)
     
     // Highlights the big round button if there is stuff in the zone
     if(amount >= 1 || forceHighlight === true) {
-        document.querySelector(`#${roundButtonId} input`).classList.remove("inactive");
+        document.querySelector(`#${roundButtonId} input`).disabled = false;
     } else {
-        document.querySelector(`#${roundButtonId} input`).classList.add("inactive");
+        document.querySelector(`#${roundButtonId} input`).disabled = true;
     }
 }
 

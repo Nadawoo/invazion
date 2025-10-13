@@ -1042,13 +1042,13 @@ input[type="submit"] {
 form.big .redbutton {
     height:3.3em;
 }
-.redbutton.inactive,
-.bluebutton.inactive {
+.redbutton:disabled,
+.bluebutton:disabled {
     background:grey;
     text-decoration:line-through;
 }
-.redbutton.inactive .dot_number,
-.bluebutton.inactive .dot_number {
+.redbutton:disabled .dot_number,
+.bluebutton:disabled .dot_number {
     display:none;
 }
 .redbutton .dot_number,

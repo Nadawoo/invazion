@@ -482,7 +482,7 @@ class HtmlButtons
         
         $button = $this->buttons[$button_alias];
         $icon   = ($show_icon !== true) ? '' : $button['icon'].'&nbsp;';
-        $class_inactive = ($is_active !== true) ? 'inactive' : '';
+        $disabled = ($is_active !== true) ? 'disabled' : '';
         $dot_notif = ($is_active !== true) ? '' : '<span class="dot_notif"></span>';
         
         // Generates the hidden fields for the HTML form
@@ -496,7 +496,7 @@ class HtmlButtons
         return
         '<form method="post" action="#popsuccess" name="'.$button_alias.'" class="'.$class.'">
             '.$hidden_fields.'
-            <button type="submit" class="redbutton '.$class_inactive.'" title="'.$button['title'].'">
+            <button type="submit" class="redbutton" '.$disabled.' title="'.$button['title'].'">
                 '.$icon.$button['name'].'
                 '.$dot_notif.'
             </button>
@@ -554,7 +554,7 @@ class HtmlButtons
             $dot_number = '<div class="dot_number z-depth-2">'.$amount.'</div>';
         }
         
-        $class_inactive = ($is_active !== true) ? 'inactive' : '';
+        $disabled = ($is_active !== true) ? 'disabled' : '';
         
         $onclick = 'toggleActionBlock(\''.$button_alias.'\');
                     updateBlockAction(\''.$button_alias.'\');
@@ -564,9 +564,10 @@ class HtmlButtons
         <li class="round_action_block z-depth-3" id="round_'.$button_alias.'">
             <div id="tuto_button_'.$button_alias.'" class="hidden">
                 <input type="submit"
-                       class="round_action '.$class_inactive.'"
+                       class="round_action"
                        value="'.$button['icon'].'" 
-                       onclick="'.$onclick.'">
+                       onclick="'.$onclick.'"
+                       '.$disabled.'>
             </div>
             '.$dot_number.'
             <label onclick="'.$onclick.'">'.$button['label'].'</label>
