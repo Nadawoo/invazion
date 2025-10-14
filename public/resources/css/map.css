@@ -501,21 +501,21 @@
     top:auto;
     bottom:0;
     left:1.6rem;
-    height:   19px;
-    min-width:19px;
+    height:   18px;
+    min-width:18px;
     padding:0 0.2em; /* Useful for large numbers */
-    display:flex;
+/*    display:flex;
     justify-content:center;
-    align-items:center;
+    align-items:center;*/
     line-height:normal;
-    font-size:0.6em;
+    font-size:0.55em;
     font-weight:bold;
     background:royalblue;
     border:1px solid aliceblue;
     border-radius:1em;
     color:white;
     text-shadow:black 1px 1px 1px;
-    /*box-shadow:4px 4px 6px black;*/
+    box-shadow:4px 4px 6px black;
     z-index:4;
 }
 #map_body .nbr_items.safe {
