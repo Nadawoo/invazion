@@ -152,7 +152,7 @@ class CityConnections {
             }
             else if(Number(zone.dataset.cyclelastvisit) < getCurrentCycle()) {
                 // Icon of an axe
-                html = `<span aria-label="Cette zone peut être fouillée" class="nbr_items pulse animate__animated animate__zoomIn">&#x26CF;&#xFE0F;</span>`;
+                html = `<div aria-label="Cette zone peut être fouillée" class="nbr_items pulse animate__animated animate__zoomIn"><span aria-hidden="true">&#x26CF;&#xFE0F;</span></div>`;
             }
             else if(nbrItems > 0) {
                 html = `<span class="nbr_items">${nbrItems}</span>`;
@@ -165,7 +165,7 @@ class CityConnections {
                 html = `<span class="nbr_items safe">&#x2705;</span>`;
             }
             
-            zone.querySelector(".cityframe").insertAdjacentHTML("afterbegin", html);
+            zone.querySelector(".cityframe").insertAdjacentHTML("beforeend", html);
 //        }
     }
     
@@ -215,7 +215,7 @@ class CityConnections {
 //                }
             else if(nbrDefenses > 0) {
                 // Display the number of defenses for the city if not zero
-                htmlNbrDefenses = `<div aria-label="${defensesExcedent} défenses" class="nbr_defenses animate__animated animate__zoomIn">&nbsp; ${defensesExcedent}&#128737;&#65039;</div>`;
+                htmlNbrDefenses = `<div aria-label="${defensesExcedent} défenses" class="nbr_defenses animate__animated animate__zoomIn"><span aria-hidden="true">&nbsp; ${defensesExcedent}&#128737;&#65039;</span></div>`;
             }
 
             zone.querySelector(".cityframe").insertAdjacentHTML("afterbegin", `${htmlNbrDefenses}`);
@@ -289,7 +289,7 @@ class CityConnections {
         }
         
         if(zone.querySelector(".cityframe") === null) {
-            zone.insertAdjacentHTML("afterbegin",
+            zone.insertAdjacentHTML("beforeend",
                 `<div class="cityframe ${cssClass}">
                     <span class="dot_notif">!</span>
                     <div class="label hidden">${label}</div>
