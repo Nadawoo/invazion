@@ -561,7 +561,7 @@ class HtmlButtons
                     switchMapView(\''.$button_alias.'\')';
         
         return '
-        <li role="presentation" class="round_action_block z-depth-3" id="round_'.$button_alias.'">
+        <li role="none" class="round_action_block z-depth-3" id="round_'.$button_alias.'">
             <div id="tuto_button_'.$button_alias.'" class="hidden">
                 <input type="submit"
                        class="round_action"

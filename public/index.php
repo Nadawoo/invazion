@@ -321,7 +321,7 @@ echo $layout->page_header($citizen['user_id'], $citizen['citizen_id'], $citizen[
     <section aria-label="Début de la carte du jeu" id="map">
         <div id="map_viewport">
             <div id="map_body_wrapper">
-                <table id="map_body">
+                <table id="map_body" role="none">
                     <thead>
                         <tr>
                             <td>
@@ -330,7 +330,7 @@ echo $layout->page_header($citizen['user_id'], $citizen['citizen_id'], $citizen[
                                 <svg id="mapSvg" class="hidden"></svg>
                                 
                                 <!-- Overlay to create the light halos around the cities -->
-                                <svg id="lightOverlay">
+                                <svg id="lightOverlay" role="none">
                                     <defs>
                                         <mask id="lightMask">
                                             <rect x="0" y="0" width="100%" height="100%" fill="white" />

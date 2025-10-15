@@ -109,12 +109,12 @@ class HtmlPage
             <body>    
             <div id="body_bg">
                 <div id="page_container">
-                    <header data-section="header">
-                        <a href="#" data-target="slide-out" class="menu_button sidenav-trigger">
-                            <i class="material-icons">menu</i>
+                    <header aria-label="Bandeau en haut de la page" data-section="header">
+                        <a aria-label="Ouvrir le menu principal" href="#" data-target="slide-out" class="menu_button sidenav-trigger">
+                            <i class="material-icons" aria-hidden="true">menu</i>
                         </a>
-                        <a href="#poppresentation" class="help_button">
-                            <i class="material-icons">help</i>
+                        <a aria-label="Ouvrir la fenêtre de présentation rapide du jeu" href="#poppresentation" class="help_button">
+                            <i class="material-icons" aria-hidden="true">help</i>
                         </a>
                         <h1><a href="/">Azimutant</a></h1>
                         <div id="slogan" data-translate="slogan">Gérez l\'apocalypse.</div>
@@ -206,25 +206,28 @@ class HtmlPage
                     : '<span title="Vous êtes connecté au compte #'.$user_id."\nVous contrôlez actuellement le citoyen #".$citizen_id.' « '.$citizen_pseudo.' »">Compte #'.$user_id.'<br>Citoyen #'.$citizen_id.'</span>';
                     
         return '
-            <ul id="slide-out" class="sidenav">
+            <ul aria-label="Menu principal" id="slide-out" class="sidenav">
             
-                <li><div class="user-view">
-                    <div class="background">
-                        <img src="resources/img/motiontwin/mapBg.jpg" alt="Fond">
+                <li role="none">
+                    <div class="user-view">
+                        <div class="background">
+                            <img src="resources/img/motiontwin/mapBg.jpg" alt="">
+                        </div>
+                        <a href="connect#connectionForm" class="user blue darken-4">
+                            <img class="circle" src="resources/img/icons8/profile-96.png" alt="Utilisateur">
+                            '.$user_name.'
+                        </a>
+                        '.$connection_buttons.'
                     </div>
-                    <a href="connect#connectionForm" class="user blue darken-4">
-                        <img class="circle" src="resources/img/icons8/profile-96.png" alt="Utilisateur">
-                        '.$user_name.'
-                    </a>
-                    '.$connection_buttons.'
-                </div></li>'
-                
+                </li>'
                 .$this->site_menu_item('Jouer', 'index#Outside', 'gamepad').'
-                <li><a href="https://discord.gg/2GRPTyM" target="_blank" rel="noopener"
-                    title="Pour parler du jeu, faire des propositions... Ou tout simplement discuter :)">
-                    <i><img src="/resources/img/thirdparty/Discord-Logo-Black.png" alt="discord_logo"
-                        height="32" width="32" style="margin-left:-0.2em;margin-bottom:-0.8em;"></i>Discord
-                </a></li>'
+                <li role="none">
+                    <a href="https://discord.gg/2GRPTyM" target="_blank" rel="noopener"
+                        title="Pour parler du jeu, faire des propositions... Ou tout simplement discuter :)">
+                        <i><img src="/resources/img/thirdparty/Discord-Logo-Black.png" alt=""
+                            height="32" width="32" style="margin-left:-0.2em;margin-bottom:-0.8em;"></i>Discord
+                    </a>
+                </li>'
                 .$this->site_menu_item('Wiki', 'http://invazion.wikidot.com', 'edit')
                 .$this->site_menu_item('Partager', $official_server_root.'/share', 'share',
                         'Partager et soutenir le projet Azimutant')
@@ -234,32 +237,36 @@ class HtmlPage
                 .$this->site_menu_subheader('Développer')
                 .$this->site_menu_item('Le projet', $official_server_root.'/project', 'help')
                 .$this->site_menu_item('Créez votre version du jeu', $official_server_root.'/customise-the-game', 'build').'
-                <li><a href="https://github.com/Nadawoo/invazion" target="_blank" rel="noopener"
-                    title="Le code source du jeu est disponible sur Github">
-                    <i><img src="/resources/img/thirdparty/GitHub-Mark-32px.png" alt="github_logo"
-                    height="24" width="24" style="margin-bottom:-0.4em;"></i>Github
-                </a></li>
-                <li><a href="'.$official_server_root.'/apis-list" 
-                    title="Modifiez toute l\'interface du jeu grâce aux API">
-                    <i><img src="/resources/img/free/api.png" alt="api_logo"
-                    height="24" width="24" style="margin-bottom:-0.4em;"></i>API
-                </a></li>
+                <li role="none">
+                    <a href="https://github.com/Nadawoo/invazion" target="_blank" rel="noopener"
+                        title="Le code source du jeu est disponible sur Github">
+                        <i><img src="/resources/img/thirdparty/GitHub-Mark-32px.png" alt=""
+                        height="24" width="24" style="margin-bottom:-0.4em;"></i>Github
+                    </a>
+                </li>
+                <li role="none">
+                    <a href="'.$official_server_root.'/apis-list" 
+                        title="Modifiez toute l\'interface du jeu grâce aux API">
+                        <i><img src="/resources/img/free/api.png" alt=""
+                        height="24" width="24" style="margin-bottom:-0.4em;"></i>API
+                    </a>
+                </li>
             </ul>';
     }
     
     
     private function site_menu_subheader($name, $no_divider=null) {
         
-        $divider = ($no_divider === null) ? '<li><div class="divider"></div></li>' : '';
+        $divider = ($no_divider === null) ? '<li role="none"><div role="none" class="divider"></div></li>' : '';
         
-        return $divider.'<li><a class="subheader">'.$name.'</a></li>';
+        return $divider.'<li role="none"><a class="subheader">'.$name.'</a></li>';
     }
     
     
     private function site_menu_item($name, $href, $googlefont_icon, $title="") {
         
-        return '<li>
-            <a href="'.$href.'" title="'.$title.'"><i class="material-icons black-text">'.$googlefont_icon.'</i>'.$name.'</a>
+        return '<li role="none">
+            <a href="'.$href.'" title="'.$title.'"><i class="material-icons black-text" aria-hidden="true">'.$googlefont_icon.'</i>'.$name.'</a>
             </li>';
     }
 }
