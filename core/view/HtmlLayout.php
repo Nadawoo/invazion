@@ -127,32 +127,34 @@ class HtmlLayout extends HtmlPage
         return '
             <div>
                 <button aria-label="Ouvrir/fermer le menu de l\'application" id="appMenu" class="sidenav-trigger" data-target="slide-out">
-                    <span class="icon"><i class="material-icons">menu</i></span>
+                    <span class="icon"><i class="material-icons" aria-hidden="true">menu</i></span>
                 </button>
             </div>
             <div id="tuto_dayclock">
                 <a href="#popdayclock" id="zombie_cores_counter"
-                   title="Nombre de noyaux zombies sur la carte"
+                   aria-label="Nombre de noyaux zombies actifs sur la carte"
+                   title="Nombre de noyaux zombies actifs sur la carte"
                    >
-                    <img src="resources/img/motiontwin/zombie.gif" alt="Zombies" width="14">
-                    <strong class="number">{?/?}</strong>
+                    <img src="resources/img/motiontwin/zombie.gif" alt="" width="14">
+                    <strong class="number" role="none">{?/?}</strong>
                 </a>
                 <a href="#popdayclock" id="dayclock">
-                    <span class="dot_number"><i class="material-icons">fast_forward</i></span>
-                    <span data-translate="day">Jour</span> <strong id="current_day" class="number">'.(int)$day.'</strong>
+                    <span data-translate="day">Jour</span> <strong id="current_day" class="number" role="none">'.(int)$day.'</strong>
+                    <span aria-label="Avancer au jour suivant" class="dot_number"><i class="material-icons" aria-hidden="true">fast_forward</i></span>
                 </a>
                 <a href="#popdayclock" id="city_counter"
+                   aria-label="Nombre de bâtiments découverts sur la carte"
                    title="Nombre de bâtiments découverts sur la carte"
                    >
-                    <img class="city_img" src="resources/img/free/city.svg" alt="🌇" width="24">
-                    <strong class="number">{?/?}</strong>
+                    <img class="city_img" src="resources/img/free/city.svg" alt="" width="24">
+                    <strong class="number" role="none">{?/?}</strong>
                 </a>
             </div>
             <p id="messageEndCycle" class="hidden" style="margin:0"></p>
             <div class="right">
                 <button aria-label="Ouvrir/fermer le panneau des communications" title="Communications" id="showWall">
-                    <span class="icon"><i class="material-icons">sms</i></span>
-                    <span class="text">Communications</span>
+                    <span class="icon"><i class="material-icons" aria-hidden="true">sms</i></span>
+                    <span class="text" aria-hidden="true">Communications</span>
                 </button>
                 
                 <!--

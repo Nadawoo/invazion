@@ -318,9 +318,9 @@ echo $layout->page_header($citizen['user_id'], $citizen['citizen_id'], $citizen[
     <div id="Outside" style="line-height:0"></div>
     
     <!-- The map -->
-    <section aria-label="Début de la carte du jeu" id="map">
-        <div id="map_viewport">
-            <div id="map_body_wrapper">
+    <section aria-label="Carte du jeu" id="map">
+        <div id="map_viewport" role="none">
+            <div id="map_body_wrapper" role="none">
                 <table id="map_body" role="none">
                     <thead>
                         <tr>
@@ -505,7 +505,7 @@ echo $layout->page_header($citizen['user_id'], $citizen['citizen_id'], $citizen[
         <div id="floating_wall">
             <?php echo $wall->wall() ?>
         </div>
-        <div id="attack_bar" class="animate__animated animate__slideInUp">
+        <div aria-label="Barre en pied de page" id="attack_bar" class="animate__animated animate__slideInUp">
             <?php echo $html['attack_bar'] ?>
         </div>
     </section>
