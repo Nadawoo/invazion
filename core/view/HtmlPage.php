@@ -110,14 +110,16 @@ class HtmlPage
             <div id="body_bg">
                 <div id="page_container">
                     <header aria-label="Bandeau en haut de la page" data-section="header">
-                        <a aria-label="Ouvrir le menu principal" href="#" data-target="slide-out" class="menu_button sidenav-trigger">
-                            <i class="material-icons" aria-hidden="true">menu</i>
-                        </a>
+                        <div class="site_name" role="none">
+                            <h1><a href="/">Azimutant</a></h1>
+                            <div aria-label="Slogan du jeu" id="slogan" data-translate="slogan">Gérez l\'apocalypse.</div>
+                        </div>
                         <a aria-label="Ouvrir la fenêtre de présentation rapide du jeu" href="#poppresentation" class="help_button">
                             <i class="material-icons" aria-hidden="true">help</i>
                         </a>
-                        <h1><a href="/">Azimutant</a></h1>
-                        <div id="slogan" data-translate="slogan">Gérez l\'apocalypse.</div>
+                        <a aria-label="Ouvrir le menu principal" href="#" data-target="slide-out" class="menu_button sidenav-trigger">
+                            <i class="material-icons" aria-hidden="true">menu</i>
+                        </a>
                         '.$this->site_menu($user_id, $citizen_id, $citizen_pseudo).'
                     </header>';
     }

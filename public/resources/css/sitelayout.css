@@ -11,12 +11,22 @@ html, body {
     font-size:16px;
 }
 
+header {
+    display:flex;
+    justify-content: space-between;
+}
+header .site_name {
+    /* Keep the site name at the first place in the DOM for accessibility, but 
+       display it between the menu and help button */
+    order:2;
+}
 header .menu_button {
-    float:left;
+    order:1;
 }
 header .help_button {
-    float:right;
+    order:3;
 }
+
 header a,
 header a:hover  
 {
