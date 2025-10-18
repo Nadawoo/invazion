@@ -107,9 +107,9 @@ class HtmlPage
             </head>
             
             <body>    
-            <div id="body_bg">
-                <div id="page_container">
-                    <header aria-label="Bandeau en haut de la page" data-section="header">
+            <div id="body_bg" role="none">
+                <div id="page_container" role="none">
+                    <header data-section="header">
                         <div class="site_name" role="none">
                             <h1><a href="/">Azimutant</a></h1>
                             <div aria-label="Slogan du jeu" id="slogan" data-translate="slogan">Gérez l\'apocalypse.</div>

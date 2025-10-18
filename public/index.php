@@ -318,10 +318,10 @@ echo $layout->page_header($citizen['user_id'], $citizen['citizen_id'], $citizen[
     <div id="Outside" style="line-height:0"></div>
     
     <!-- The map -->
-    <section aria-label="Carte du jeu" id="map">
+    <main id="map" aria-label="Carte du jeu et outils liés à celle-ci">
         <div id="map_viewport" role="none">
             <div id="map_body_wrapper" role="none">
-                <table id="map_body" role="none">
+                <table id="map_body" aria-label="Carte du jeu" aria-description="La carte du jeu se compose de zones hexagonales dont la pointe est orientée vers le haut. La carte est globalement de forme rectangulaire. Notez que la coordonnée X progresse de 2 en 2 afin de maintenir une numérotation logique avec des zones hexagonales. Ces sauts ne signifient pas que des zones sont manquantes.">
                     <thead>
                         <tr>
                             <td>
@@ -397,20 +397,20 @@ echo $layout->page_header($citizen['user_id'], $citizen['citizen_id'], $citizen[
             </div>
         </section>
         
-        <ul id="views_bar" class="animate__animated animate__slideInDown">
-            <li class="map active" onclick="toggle(['#map_navigation', '#game_footer', '#tasks_button']);this.classList.toggle('active')">
+        <ul aria-label="Modes d'affichage de la carte" id="views_bar" class="animate__animated animate__slideInDown">
+            <li role="none" class="map active" onclick="toggle(['#map_navigation', '#game_footer', '#tasks_button']);this.classList.toggle('active')">
                 <button aria-label="Masquer les boutons de navigation">
-                    <i class="material-icons small">web</i>
+                    <i class="material-icons small" aria-hidden="true">web</i>
                 </button>
             </li>
-            <li id="action_mode_button" class="my_zone">
+            <li role="none" id="action_mode_button" class="my_zone">
                 <button aria-label="Passer en mode action de zone">
-                    <span class="pickaxe">&#x26CF;&#xFE0F;</span>
-                    <img src="resources/img/free/human.png" height="48" alt="My citizen">
+                    <span class="pickaxe" aria-hidden="true">&#x26CF;&#xFE0F;</span>
+                    <img src="resources/img/free/human.png" height="48" alt="">
                 </button>
             </li>
-            <li class="paths" onclick="togglePathsBar()">
-                <button aria-label="Ouvrir le mode Expéditions">&#x1F97E;</button>
+            <li role="none" class="paths" onclick="togglePathsBar()">
+                <button aria-label="Ouvrir le mode Expéditions"><span aria-hidden="true">&#x1F97E;</span></button>
             </li>
         </ul>
         
@@ -426,7 +426,7 @@ echo $layout->page_header($citizen['user_id'], $citizen['citizen_id'], $citizen[
             <?php
         } ?>
         
-        <div id="map_navigation" class="animate__animated animate__slideInRight">
+        <div aria-label="Outils pour la carte" id="map_navigation" class="animate__animated animate__slideInRight">
             <?php echo $layout->block_map_navigation() ?>
         </div>
         
@@ -488,7 +488,7 @@ echo $layout->page_header($citizen['user_id'], $citizen['citizen_id'], $citizen[
             <span class="dot_number">8</span>
             &#x1F4D1; <span class="text" data-translate="goals">Objectifs</span>
         </a>
-    </section>
+    </main>
     
     <?php
     if ($citizen['user_id'] === NULL) {        
