@@ -340,7 +340,7 @@
     /* On remonte l'hexagone pour l'emboîter dans la ligne du dessus.
        Mieux qu'une position relative "top:-1em", qui créerait un gros blanc 
        sous la carte. */
-    margin-top:-19px; /*-26px;*/
+    margin-top:-26px; /*-25px;*/
 }
 #map_body tr:nth-child(even) td:first-child {
     /* Shift 1 line of 2 to fit the hexagons staggered */
@@ -361,7 +361,7 @@
     width:        40px; /*41px;*/
     /* Let enough height to allow elevating (city zone) or lowering (water, lava)
        the zone without cutting the top or low tip of the hexagon */
-    height:       52px; /*59px;*/
+    height:       59px; /*60px;*/
     /* Assure que le conteneur intérieur ne déborde pas en bas
     (tracer une bordure sur square_container) )*/
     line-height:2.55em;
@@ -402,11 +402,9 @@
 }
 
  /* Add a shadow on each hexagon to make the map look less "flat" */
-#map_body .hexagon:after {
+#map_body .square_container:after {
     content:"";
     position:absolute;
-    left:0;
-    bottom:5px;
     height:100%;
     width:100%;
     background: radial-gradient(circle at 180% 180%,
@@ -421,6 +419,8 @@
                         0% 75%,
                         0% 25%
                         );
+    /* Keep the zone shadow under the city frame */
+    z-index:-1;
 }
 
 .square_container .zombies_amount,
