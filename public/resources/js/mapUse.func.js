@@ -342,11 +342,12 @@ function desactivateMapZombiesView() {
 
 function toggleMapZombiesView() {
     
-    if (window.isMapZombiesViewActive === true) {   
+    if(window.isMapZombiesViewActive === true) {   
         desactivateMapZombiesView();
         window.isMapZombiesViewActive = false;
     } else {
         activateMapZombiesView();
+        document.querySelector("#mapRadarMenu .zombies").classList.add("active");
         window.isMapZombiesViewActive = true;
     }
 }
@@ -395,6 +396,7 @@ function toggleMapNeighborhoodView() {
     } else {
         hide("#map_body .nbr_defenses");
         display(["#map_body .zone_name", "#map_body .city_name"]);
+        document.querySelector("#mapRadarMenu .neighborhood").classList.add("active");
         window.isMapNeighborhoodViewActive = true;
     }
 }
@@ -524,6 +526,7 @@ function toggleMapItemsView() {
         window.isMapItemsViewActive = false;
     } else {
         activateMapItemsView();
+        document.querySelector("#mapRadarMenu .items").classList.add("active");
         window.isMapItemsViewActive = true;
     }
 }
@@ -536,6 +539,7 @@ function toggleMapExplorationsView() {
         window.isMapExplorationsViewActive = false;
     } else {
         activateMapExplorationsView();
+        document.querySelector("#mapRadarMenu .explorations").classList.add("active");
         window.isMapExplorationsViewActive = true;
     }
 }
@@ -574,6 +578,8 @@ function resetMapView() {
     if(window.isActionViewActive !== true) {
         display(["#views_bar, #attack_bar", "#tasks_button"]);
     }
+    
+    document.querySelector("#mapRadarMenu li.active").classList.remove("active");
     
     window.isMapNeighborhoodViewActive = true;
     toggleMapNeighborhoodView();

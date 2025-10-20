@@ -112,14 +112,14 @@
 }
 
 /* Specific sub-menu to select the desired satellite view */
-#map_navigation #mapRadarMenu {
+#mapRadarMenu {
     margin:0.8em 0;
     padding:0;
     font-size:0.9em;
     background:#34495e;
     color:white;
     border:1px solid lightgrey;
-    border-radius:0.2em;
+    border-radius:0.3em;
     list-style-type:none;
     box-shadow: 12px 12px 12px black;
 }
@@ -139,8 +139,16 @@
     /* Avoids having a double border <li> + <ul> */
     border-bottom:none;
 }
+/*
 #mapRadarMenu li:hover {
     background:#5d6d7e;
+}*/
+#mapRadarMenu .active {
+    transform:scale(1.05);
+    background:darkred;
+    outline:2px ridge red;
+    border:none;
+    border-radius:0.2em;
 }
 
 /*
