@@ -505,9 +505,7 @@ echo $layout->page_header($citizen['user_id'], $citizen['citizen_id'], $citizen[
         <div id="floating_wall">
             <?php echo $wall->wall() ?>
         </div>
-        <div aria-label="Barre en pied de page" id="attack_bar" class="animate__animated animate__slideInUp">
-            <?php echo $html['attack_bar'] ?>
-        </div>
+        <?php echo $html['attack_bar'] ?>
     </section>
 
 </div>

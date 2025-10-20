@@ -172,9 +172,11 @@
     width:100%;
     max-width: 51.25em;
     max-height:3.5rem;
-    padding:0.2em;
+    margin-top:-55px;
+    padding:0.2em 0.5em;
     background:linear-gradient(to top, #17202A, #34495E); /*#4a235a*/
     /*border-top:1px ridge darkgrey;*/
+    border-radius: 0 0 0.5em 0.5em;
     color:lightgrey;
     box-shadow:0 -3px 5px dimgrey;
     z-index:50;

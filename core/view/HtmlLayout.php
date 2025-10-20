@@ -125,12 +125,14 @@ class HtmlLayout extends HtmlPage
         $buttons = new HtmlButtons();
         
         return '
-            <div>
+        <ul aria-label="Barre en pied de page" role="none" id="attack_bar" class="animate__animated animate__slideInUp">
+            <li role="none">
                 <button aria-label="Ouvrir/fermer le menu de l\'application" id="appMenu" class="sidenav-trigger" data-target="slide-out">
                     <span class="icon"><i class="material-icons" aria-hidden="true">menu</i></span>
                 </button>
-            </div>
-            <div id="tuto_dayclock">
+            </li>
+            
+            <li id="tuto_dayclock" role="none">
                 <a href="#popdayclock" id="zombie_cores_counter"
                    aria-label="Nombre de noyaux zombies actifs sur la carte"
                    title="Nombre de noyaux zombies actifs sur la carte"
@@ -149,9 +151,9 @@ class HtmlLayout extends HtmlPage
                     <img class="city_img" src="resources/img/free/city.svg" alt="" width="24">
                     <strong class="number" role="none">{?/?}</strong>
                 </a>
-            </div>
-            <p id="messageEndCycle" class="hidden" style="margin:0"></p>
-            <div class="right">
+            </li>
+            
+            <li class="right" role="none">
                 <button aria-label="Ouvrir/fermer le panneau des communications" title="Communications" id="showWall">
                     <span class="icon"><i class="material-icons" aria-hidden="true">sms</i></span>
                     <span class="text" aria-hidden="true">Communications</span>
@@ -165,7 +167,10 @@ class HtmlLayout extends HtmlPage
                 </div>
                 -->
                 
-            </div>';
+            </li>
+        </ul>
+        
+        <p id="messageEndCycle" class="hidden" style="margin:0"></p>';
     }
     
     
