@@ -546,8 +546,8 @@
     align-items:center;
 }
 #map_body .cityframe .frame {
-    height:2.5rem;
-    width: 2.5rem;
+    height:2.4rem;
+    width: 2.4rem;
     margin-bottom:2px;
     border-radius:50%;
     outline:2px outset green;
@@ -565,13 +565,13 @@
                                 rgba(139, 0, 0, 1) 80%);
 }
 #map_body .submerged .nbr_defenses {
-    top:1em;
+    top:0.8em;
 }
 #map_body .submerged .nbr_defenses:before {
     content:"";
     position:absolute;
-    top:7px;
-    left:-13px;
+    top:8px;
+    left:-12px;
     width:3.5em;
     border:1px outset red;
     z-index:-1;
