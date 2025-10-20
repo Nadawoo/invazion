@@ -462,7 +462,7 @@
 }
 #map_body .city_name {
     position:absolute;
-    top:-1.4em;
+    top:-0.6rem;
     padding:0.1em 0.4em;
     width:max-content;
     font-size:0.7em;
