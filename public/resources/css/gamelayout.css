@@ -1306,7 +1306,7 @@ a.localize .material-icons {
     background:darkred;
     border:2px outset red;
     border-radius:1em;
-    box-shadow: 12px 12px 12px black;
+    box-shadow:4px 4px 20px grey; /*12px 12px 12px black;*/
     opacity:0.9;
 }
 #tasks_button .text {
