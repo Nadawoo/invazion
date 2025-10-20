@@ -507,6 +507,9 @@
 /*    display:flex;
     justify-content:center;
     align-items:center;*/
+    display:flex;
+    justify-content:center;
+    align-items:center;
     line-height:normal;
     font-size:0.55em;
     font-weight:bold;
@@ -517,6 +520,10 @@
     text-shadow:black 1px 1px 1px;
     box-shadow:4px 4px 6px black;
     z-index:4;
+}
+#map_body .nbr_items .icon {
+    margin-top:-4px;
+    margin-left:-1px;
 }
 #map_body .nbr_items.safe {
     top:  1.69em;

@@ -152,7 +152,7 @@ class CityConnections {
             }
             else if(Number(zone.dataset.cyclelastvisit) < getCurrentCycle()) {
                 // Icon of an axe
-                html = `<div aria-label="Cette zone peut être fouillée" class="nbr_items pulse animate__animated animate__zoomIn"><span aria-hidden="true">&#x26CF;&#xFE0F;</span></div>`;
+                html = `<div aria-label="Cette zone peut être fouillée" class="nbr_items pulse animate__animated animate__zoomIn"><span class="icon" aria-hidden="true">&#x26CF;&#xFE0F;</span></div>`;
             }
             else if(nbrItems > 0) {
                 html = `<span class="nbr_items">${nbrItems}</span>`;
@@ -195,7 +195,7 @@ class CityConnections {
         }
         else if(cityTypeId === zombieCoreId) {
             // Add a special marker on the zombie cores
-            zone.insertAdjacentHTML("afterbegin", `<div class="nbr_items" style="background:lightgrey">&#x2757;</div>`);
+            zone.insertAdjacentHTML("afterbegin", `<div class="nbr_items" style="background:lightgrey"><span class="icon">&#x2757;</span></div>`);
         }
         else if(cityTypeId !== undiscoveredBuildingId) {
             // Add the number of defenses above each city, excepted above
