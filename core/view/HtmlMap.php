@@ -188,7 +188,8 @@ class HtmlMap
         // - La classe "square_container" est un conteneur carré pour assurer la symétrie du contenu
         // (un hexagone ne peut pas, par définition, être inscrit dans un carré)
         return '<td aria-label="Zone '.$col.','.$row.'" id="zone'.$col.'_'.$row.'" class="hexagon '.$ground.'" style="opacity:'.$opacity.'">
-                    <div role="none" class="square_container"
+                    <button aria-label="Interagir avec cette zone" 
+                        class="square_container"
                         data-coordx="'.$col.'"
                         data-coordy="'.$row.'"
                         data-zombies="'.$cell['zombies'].'"
@@ -202,7 +203,7 @@ class HtmlMap
                         data-cyclelastvisit="'.(int)$cell['cycle_last_visit'].'"
                         >
                         '. $cell_zombies . $cell_content . $cell_name . '
-                    </div>
+                    </button>
                     '.$player_city_marker.'
                 </td>';
     }

@@ -405,6 +405,10 @@
     /* Recentre verticalement le texte à l'intérieur du conteneur.
     Calibrage: le fond coloré sous le texte doit toucher la bordure du bas du conteneur. */
     /*line-height:2.2em;*/
+    /* Remove the styles of the button */
+    background:none;
+    border:none;
+    cursor:default;
     /* Makes sure that the frames around the buildings can't be hidden by the tiles */
     z-index:1;
 }
