@@ -850,7 +850,7 @@ legend {
     width: 3.3em;
     background:lightgrey;
     border: 1px solid white;
-    border-radius:0.3em;
+    border-radius:0.5em;
     cursor:pointer;
 }
 .item_label .close {
@@ -872,8 +872,8 @@ legend {
 }
 .item_label .dot_number {
     position:absolute;
-    bottom:-2px; /*-0.3rem;*/
-    right: -2px; /*-0.3rem;*/
+    bottom:-4px; /*-0.3rem;*/
+    right: -4px; /*-0.3rem;*/
     height:   1.5em;
     min-width:1.5em;
     padding:0 0.2em;

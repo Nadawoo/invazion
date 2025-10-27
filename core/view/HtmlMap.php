@@ -183,6 +183,7 @@ class HtmlMap
         }
         
         $cell_name = ($cell['zone_name'] !== null) ? '<span class="zone_name hidden">'.$cell['zone_name'].'</span>' : '';
+        $nbr_items = ($cell['items'] !== null) ? array_sum($cell['items']) : "";
         
         // - La classe "hexagon" sert à tracer le fond hexgonal
         // - La classe "square_container" est un conteneur carré pour assurer la symétrie du contenu
@@ -194,7 +195,7 @@ class HtmlMap
                         data-coordy="'.$row.'"
                         data-zombies="'.$cell['zombies'].'"
                         data-citizens="'.$cell['citizens'].'"
-                        data-items="'.count($cell['items']).'"
+                        data-items="'.$nbr_items.'"
                         data-controlPointsZombies="'.$cell['controlpoints_zombies'].'"
                         data-controlPointsCitizens="'.$cell['controlpoints_citizens'].'"
                         data-cityid=""
