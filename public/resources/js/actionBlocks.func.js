@@ -328,18 +328,32 @@ async function updateBlockActionDig(mapId, coordX, coordY) {
  * @param {string} domSelector The path in the DOM where to add the items
  * @param {array} itemsAmounts The list of items. Each item is a pair {itemId=>itemAmount}
  * @param {int} nbrSlots The total number of available slots
+ * @param {string} stack Set the value to "stack" for displaying the multiple occurrences 
+ *                       of an item only once, with the number of occurrences.
+ *                       Set to false (or any other value) for displaying each item 
+ *                       as many times as there are occurrences.
+ * 
  * @returns {undefined}
  */
-function populateItemsList(domSelector, itemsAmounts, nbrSlots=null) {
+function populateItemsList(domSelector, itemsAmounts, nbrSlots=null, stack="stack") {
     
     let nbrItemsTotal = 0;
     
+    // Add the item to the items list
     for(let [itemId, itemAmount] of Object.entries(itemsAmounts)) {
-        // Adds the item in the items list
+        
         let item_caracs = _configsItems[itemId];
-        for(let i=0; i<itemAmount; i++) {
-            htmlAddGroundItem(domSelector, itemId, item_caracs);
+        
+        if(stack === "stack") {
+            // Display each item as a stack with amount
+            htmlAddGroundItem(domSelector, itemId, item_caracs, itemAmount);
+        } else {
+            // Repeat the item without stacking its occurrencies
+            for(let i=0; i<itemAmount; i++) {
+                htmlAddGroundItem(domSelector, itemId, item_caracs);
+            }
         }
+        
         nbrItemsTotal += itemAmount;
     }
     
@@ -361,9 +375,9 @@ function populateItemsList(domSelector, itemsAmounts, nbrSlots=null) {
  * @param {array} itemCaracs The caracteristics of the item, as return 
  *                           by the "item" API (name, description...)
  */
-function htmlAddGroundItem(domSelector, itemId, itemCaracs) {
+function htmlAddGroundItem(domSelector, itemId, itemCaracs, itemAmount) {
     
-    document.querySelector(domSelector).prepend(htmlItem(itemId, itemCaracs));
+    document.querySelector(domSelector).prepend(htmlItem(itemId, itemCaracs, itemAmount));
 }
 
 
@@ -378,7 +392,7 @@ function htmlAddGroundItem(domSelector, itemId, itemCaracs) {
  *              innerText doesn't work with fragments, insert in the page like this:
  *              document.querySelector("#myDiv").prepend(htmlitem())
  */
-function htmlItem(itemId, itemCaracs) {
+function htmlItem(itemId, itemCaracs, itemAmount=1) {
     
     // Default values for the items. Useful if an item existing in the database
     // but is not in the list of the items of the current game.
@@ -423,7 +437,13 @@ function htmlItem(itemId, itemCaracs) {
     template.querySelector('.item_name').innerHTML = itemCaracs['name'];
     template.querySelector('.descr_ambiance').innerHTML = itemCaracs['descr_ambiance'];
     template.querySelector('.descr_purpose').innerHTML  = itemCaracs['descr_purpose'];
-//    template.querySelector('.item_amount').innerHTML = itemAmount;
+    
+    // Display the amount of items only if there is more than one
+    if(itemAmount > 1) {
+        template.querySelector('.dot_number').innerHTML = itemAmount;
+//        display('.dot_number');
+        template.querySelector('.dot_number').classList.remove('hidden');
+    }
 
     // Additionally, if the item is rare (no matter its type), add a gold frame
     if(itemCaracs["preciousness"] > 0) {

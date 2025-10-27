@@ -26,6 +26,7 @@ class HtmlItem {
             <template id="tplItem">
                 <li class="item_label z-depth-1" onclick="toggleItem(event)">
                     <var class="icon" aria-label="{item_name}">{icon}</var>
+                    <div class="dot_number z-depth-1 hidden">?</div>
                     <div class="details hidden">
                         <a class="close" onclick="toggleItem(event)">
                             <i class="material-icons">close</i>
