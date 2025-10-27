@@ -161,7 +161,7 @@ class HtmlMap
         $player_city_marker = '';
         
         // The never visited zones always look the same
-        if($cell === null or $cell['date_last_visit'] === null) {
+        if($cell === null or $cell['cycle_last_visit'] === null) {
             $opacity = 0.3;
             $ground  = '';
         }
@@ -287,8 +287,8 @@ class HtmlMap
      * Calcule le coefficient d'opacité CSS (opacity) d'une case.
      * Plus la case a été visitée il y a longtemps, plus elle sera estompée.
      * 
-     * @param string $date_last_visit Date à laquelle la case a été visitée pour 
-     *                                la dernière fois, au format '2019-06-28'
+     * @param string $cycle_last_visit The date when the zone has been visited 
+     *                                 for the last time, in the "yyyy-mm-dd" format
      *
      * @return int Le coefficient d'opacité, entre 0 et 1
      */
