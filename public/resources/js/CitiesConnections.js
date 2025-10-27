@@ -144,26 +144,28 @@ class CityConnections {
             
             let htmlCoords = cityCoordX+"_"+cityCoordY,
                 zone = document.querySelector("#zone"+htmlCoords+" .square_container"),
-                nbrItems = zone.dataset.items;
+                nbrItems = zone.dataset.items,
+                cityTypeId = Number(zone.dataset.citytypeid);
             
             let html = "";            
             if(Number(zone.dataset.cyclelastvisit) === 0) {
                 html = "";
             }
-            else if(Number(zone.dataset.cyclelastvisit) < getCurrentCycle()) {
+            else if(Number(zone.dataset.cyclelastvisit) < getCurrentCycle()
+                    && _configsBuildings[cityTypeId]["is_explorable"] === 1) {
                 // Icon of an axe
                 html = `<div aria-label="Cette zone peut être fouillée" class="nbr_items pulse animate__animated animate__zoomIn"><span class="icon" aria-hidden="true">&#x26CF;&#xFE0F;</span></div>`;
             }
             else if(nbrItems > 0) {
                 html = `<span class="nbr_items">${nbrItems}</span>`;
             }
-            else {
-//                let maxExplorations = 100;
-//                // NB: #108 = ID of the item "Counter of explorations"
-//                let nbrExplorationsDone = zones[htmlCoords]['items'][108] || 0;
-//                let nbrExplorationsRemaining = maxExplorations-nbrExplorationsDone;
-                html = `<span class="nbr_items safe">&#x2705;</span>`;
-            }
+//            else {
+////                let maxExplorations = 100;
+////                // NB: #108 = ID of the item "Counter of explorations"
+////                let nbrExplorationsDone = zones[htmlCoords]['items'][108] || 0;
+////                let nbrExplorationsRemaining = maxExplorations-nbrExplorationsDone;
+//                html = `<span class="nbr_items safe">&#x2705;</span>`;
+//            }
             
             zone.querySelector(".cityframe").insertAdjacentHTML("beforeend", html);
 //        }
