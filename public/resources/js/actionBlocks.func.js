@@ -337,10 +337,14 @@ async function updateBlockActionDig(mapId, coordX, coordY) {
  */
 function populateItemsList(domSelector, itemsAmounts, nbrSlots=null, stack="stack") {
     
-    let nbrItemsTotal = 0;
+    let nbrItemsTotal = 0,
+        entries = Object.entries(itemsAmounts);
+
+    // Sort the items by amount (decreasing)
+    entries.sort((a, b) => b[1] - a[1]);
     
     // Add the item to the items list
-    for(let [itemId, itemAmount] of Object.entries(itemsAmounts)) {
+    for(let [itemId, itemAmount] of entries) {
         
         let item_caracs = _configsItems[itemId];
         
@@ -377,7 +381,7 @@ function populateItemsList(domSelector, itemsAmounts, nbrSlots=null, stack="stac
  */
 function htmlAddGroundItem(domSelector, itemId, itemCaracs, itemAmount) {
     
-    document.querySelector(domSelector).prepend(htmlItem(itemId, itemCaracs, itemAmount));
+    document.querySelector(domSelector).append(htmlItem(itemId, itemCaracs, itemAmount));
 }
 
 
