@@ -44,8 +44,6 @@
     position: absolute;
     top:0;
     right:1px;
-    height:2.5rem;
-    width: 2.5rem;
     display:flex;
     align-items:center;
     justify-content:center;
@@ -942,11 +940,11 @@ legend {
     align-items: center;
     gap:0.4em;
     margin-bottom:0.2em;
-    padding: 0.2em 0 0.2em 0.2em;
+    padding:0.1em;
     font-size:0.9em;
     background:#34495e;
     color:white;
-    border-radius:0.1em;
+    border-radius:1em 0.4em 0.4em 1em;
     box-shadow:4px 4px 4px grey;
 }
 .item_label .details li .material-icons {
@@ -955,7 +953,7 @@ legend {
     font-size:1.2em;
     background:#fbeee6;
     border: 1px solid white;
-    border-radius:0.1em;
+    border-radius:1em;
     color:black;
 }
 
