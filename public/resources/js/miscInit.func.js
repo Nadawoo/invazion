@@ -157,3 +157,20 @@ async function updateZombieCoresCounter() {
     // at the bottom of the map
     document.querySelector("#zombie_cores_counter .number").innerText = `${nbrZombieCores}/${nbrZombieCores}`;
 }
+
+
+/**
+ * Filter the cities data of the "cities" API to keep only the cities
+ * located in a given zone
+ * 
+ * @param {int} coordX
+ * @param {int} coordY
+ * @returns {Object}
+ */
+function filterCitiesByCoords(coordX, coordY) {
+    
+    return Object.fromEntries(
+        Object.entries(_cities)
+          .filter(([id, city]) => city.coord_x === coordX && city.coord_y === coordY)
+      );
+}

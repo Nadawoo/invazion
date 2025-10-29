@@ -31,12 +31,14 @@ async function updateMapRealtime(event, timestamp) {
         displayToast(htmlZones.metas.error_message, htmlZones.metas.error_class);
     } else {
         // Update the HTML for the modified zones
-        for (let coords in htmlZones) {
+        for(let coords in htmlZones) {
             document.getElementById("zone"+coords).outerHTML = htmlZones[coords];
         }
+        // Replace the city in the modified zones
+        for(let coords in htmlZones) {
+            addCitiesOnMap(mapId, coords);
+        }
     }
-    
-    addCitiesOnMap(mapId);
     
     // Place the player on his new zone
     addMeOnMap();

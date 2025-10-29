@@ -56,8 +56,12 @@ async function getMapCitizensOnce(mapId) {
  * to speed up the loading of the map.
  * 
  * @param {int} mapId
+ * @param {string} htmlCoords Give coordinates if you want to place only the cities  
+ *                            located in a specific zone. Example: "5_7" will only 
+ *                            place the city located in the zone X=5 and Y=7.
+ *                            If not set, all the cities of the map will be placed.
  */
-async function addCitiesOnMap(mapId) {
+async function addCitiesOnMap(mapId, htmlCoords=null) {
     
     // #233 is the ID for the "Undiscovered building" in the API.
     let undiscoveredBuildingId = 233;
@@ -65,10 +69,18 @@ async function addCitiesOnMap(mapId) {
     // Get the cities of the map by calling the Azimutant's API
     _cities = await getMapCitiesOnce(mapId);
     
+    // Filter the cities if we want to place only on a given zone
+    if(htmlCoords !== null) {
+        let [coordX, coordY] = htmlCoords.split("_").map(Number);
+        citiesToPlaceCaracs = filterCitiesByCoords(coordX, coordY);
+    } else {
+        citiesToPlaceCaracs = _cities;
+    }
+    
     // Place the cities on the appropriate zones
-    for(let cityId in _cities) {
+    for(let cityId in citiesToPlaceCaracs) {
         
-        let city = _cities[cityId],
+        let city = citiesToPlaceCaracs[cityId],
             htmlCoords = city.coord_x+"_"+city.coord_y,
             zone = document.querySelector("#zone"+htmlCoords+" .square_container");
             
