@@ -612,24 +612,6 @@ function toggleCityframesView() {
 
 function switchCityframesType(typeToActivate) {
     
-    // Add the button over the cities to teleport the citizens
-    if(typeToActivate === "move") {
-        document.querySelectorAll("#map_body .cityframe").forEach((cityframe) => {
-            zone = cityframe.closest(".square_container");
-            // If the teleportation button doesn't exist, create it
-            if(zone.querySelector("button[name=teleport]") === null) {
-                cityId = zone.dataset.cityid;
-                zone.insertAdjacentHTML("afterend", `
-                    <button aria-label="Me déplacer vers ce bâtiment"
-                        name="teleport"
-                        class="animate__animated animate__pulse animate__infinite"
-                        style="border-radius:0.5em"
-                        >Aller<br>-1&#x26A1;</button>
-                `);
-            }
-        });
-    }
-    
     // Display the appropriate legend on the map
     hide('#map_legend_cityframes ul');
     display(`#map_legend_cityframes .${typeToActivate}`);    

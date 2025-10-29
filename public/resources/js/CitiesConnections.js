@@ -237,7 +237,8 @@ class CityConnections {
      */
     #addCityframe(cityCoordX, cityCoordY, cityTypeId, cityDefenses) {
 
-        let zone = document.querySelector(`#zone${cityCoordX}_${cityCoordY} .square_container`),
+        let hexagon = document.querySelector(`#zone${cityCoordX}_${cityCoordY}`),
+            zone = hexagon.querySelector(`.square_container`),
             isExplored = (parseInt(zone.closest(".square_container").dataset.cyclelastvisit) === getCurrentCycle()),
             nbrZombies = zone.closest(".square_container").dataset.zombies,
             cssClassPulse = "animate__animated animate__pulse animate__infinite",
@@ -297,7 +298,7 @@ class CityConnections {
         
         // If the city is definitively submerged by the zombies
         if(nbrZombies > cityDefenses) {
-            zone.parentNode.classList.add("submerged");
+            hexagon.classList.add("submerged");
         }
     }
     
