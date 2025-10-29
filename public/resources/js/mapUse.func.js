@@ -576,6 +576,7 @@ function resetMapView() {
     window.isMapPathsViewActive = false;
     
     hide("#map_body .location");
+    hide("#map_body button[name=teleport]");
     
     if(window.isActionViewActive !== true) {
         display(["#views_bar, #attack_bar", "#tasks_button"]);
@@ -621,7 +622,7 @@ function switchCityframesType(typeToActivate) {
                 zone.insertAdjacentHTML("afterbegin", `
                     <button aria-label="Me déplacer vers ce bâtiment"
                         name="teleport"
-                        class="city_name animate__animated animate__pulse animate__infinite"
+                        class="animate__animated animate__pulse animate__infinite"
                         style="border-radius:0.5em"
                         >Aller<br>-1&#x26A1;</button>
                 `);

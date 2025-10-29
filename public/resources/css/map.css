@@ -473,7 +473,8 @@
     border-radius:0.3em;
     box-shadow:6px 6px 6px black;
 }
-#map_body .city_name {
+#map_body .city_name,
+#map_body button[name=teleport] {
     position:absolute;
     top:-0.6rem;
     padding:0.1em 0.4em;
