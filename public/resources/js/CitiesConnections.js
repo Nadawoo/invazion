@@ -285,11 +285,6 @@ class CityConnections {
             label = "&#x2705;";
         }
         
-        // If the city is definitively submerged by the zombies
-        if(nbrZombies > cityDefenses) {
-            cssClass = "submerged";
-        }
-        
         if(zone.querySelector(".cityframe") === null) {
             zone.insertAdjacentHTML("beforeend",
                 `<div class="cityframe ${cssClass}" role="none">
@@ -298,6 +293,11 @@ class CityConnections {
                     <div class="frame"></div>
                 </div>`
             );
+        }
+        
+        // If the city is definitively submerged by the zombies
+        if(nbrZombies > cityDefenses) {
+            zone.parentNode.classList.add("submerged");
         }
     }
     

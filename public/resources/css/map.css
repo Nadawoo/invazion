@@ -574,7 +574,7 @@
                         rgba(0, 0, 0, 0) 50%
                         );
 }
-#map_body .cityframe.submerged .frame {
+#map_body .submerged .cityframe .frame {
     outline-color:red;
     background: radial-gradient(circle at 50% 50%,
                                 rgba(255, 0, 0, 0), 
@@ -593,6 +593,10 @@
     border:1px outset red;
     z-index:-1;
     transform:rotate(45deg);
+}
+
+#map_body .submerged button[name=teleport] {
+    display:none;
 }
 
 #map_body .submerged .nbr_items {

@@ -76,7 +76,7 @@ function listenToMapZones() {
             
             if(event.target.matches("button[name=teleport]") === true) {
                 // If we click on a teleportation button over a city, teleport the citizen
-                let cityId = Number(event.target.closest(".square_container").dataset.cityid);
+                let cityId = Number(event.target.parentNode.querySelector(".square_container").dataset.cityid);
                 teleportToCity(cityId);
             }
             else if(hexagon.querySelector(".square_container").dataset.citytypeid !== "") {
