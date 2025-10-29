@@ -489,6 +489,9 @@
     box-shadow:4px 4px 6px black;
     z-index:2;
 }
+#map_body button[name=teleport] {
+    left:0;
+}
 #map_body .city_img {
     display:block;
     position:absolute;

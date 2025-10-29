@@ -619,7 +619,7 @@ function switchCityframesType(typeToActivate) {
             // If the teleportation button doesn't exist, create it
             if(zone.querySelector("button[name=teleport]") === null) {
                 cityId = zone.dataset.cityid;
-                zone.insertAdjacentHTML("afterbegin", `
+                zone.insertAdjacentHTML("afterend", `
                     <button aria-label="Me déplacer vers ce bâtiment"
                         name="teleport"
                         class="animate__animated animate__pulse animate__infinite"
