@@ -17,7 +17,7 @@ function listenToActionModeActions() {
 function listenToMovementPaddle() {
 
    // Move the citizen on the map
-    document.querySelector('#block_move [name="move"]').addEventListener("submit", async function() {
+    document.querySelector('#block_move [name="move"]').addEventListener("submit", async function(event) {
         // Desactivate the classic submission button (avoids reloading the page)
         event.preventDefault();
         moveCitizen(event.submitter.value);
@@ -32,7 +32,7 @@ function listenToMovementPaddle() {
 function listenToDigButton() {
     
     // Digs a zone to find items
-    document.querySelector('#block_dig form[name="dig"]').addEventListener("submit", function() {
+    document.querySelector('#block_dig form[name="dig"]').addEventListener("submit", function(event) {
         // Desactivate the classic submission button (avoids reloading the page)
         event.preventDefault();
         dig();
@@ -43,7 +43,7 @@ function listenToDigButton() {
 function listenToDropPickupItem() {
         
     // Drops or pick up an item from the player's bag
-    document.querySelector('#block_dig').addEventListener("submit", function() {
+    document.querySelector('#block_dig').addEventListener("submit", function(event) {
         let formType = event.target.closest("form").className;
         // NB: this condition avoids interferences with the other forms in the block
         // (actions specific to the item, e.g. to eat a burger)
@@ -78,7 +78,7 @@ function listenToExplorationButton() {
  */
 async function listenToLandform() {
     
-    document.getElementById("landform").addEventListener("submit", function() {
+    document.getElementById("landform").addEventListener("submit", function(event) {
         // Desactivate the classic submission button (avoids reloading the page)
         event.preventDefault();
         
@@ -97,7 +97,7 @@ function listenToTeleportButton() {
     
     form = document.querySelector('#popsuccess form[name="teleport"]');
     
-    form.addEventListener("submit", function() {
+    form.addEventListener("submit", function(event) {
         // Desactivate the classic submission button (avoids reloading the page)
         event.preventDefault();
         let destinationCityId = form.querySelector('input[name="params[target_id]"]').value;

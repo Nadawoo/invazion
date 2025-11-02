@@ -10,13 +10,13 @@
  */
 function listenToSendform() {
     // Create a new discussion thread
-    document.getElementById("buttonNewTopic").addEventListener("click", function() {
+    document.getElementById("buttonNewTopic").addEventListener("click", function(event) {
         toggleSendform(event);
     });
-    document.getElementById("hideSendform").addEventListener("click", function() {
+    document.getElementById("hideSendform").addEventListener("click", function(event) {
         toggleSendform(event);
     });
-    document.getElementById("sendform").addEventListener("submit", function() {
+    document.getElementById("sendform").addEventListener("submit", function(event) {
         // Desactivate the classic submission button (avoids reloading the page)
         event.preventDefault();
         createDiscussion();
