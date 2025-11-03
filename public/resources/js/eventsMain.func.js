@@ -142,7 +142,8 @@ function listenToMapZones() {
     // [On mobile] Open the tooltip when tapping on a zone without building,
     // or open the pop-up if the zone contains a building
     document.getElementById("map_body").addEventListener("touchstart", function(){
-            toggleTooltip(event.target.closest(".hexagon"));
+            let tooltip = new Tooltip();
+            tooltip.toggle(event.target.closest(".hexagon"));
         },
         { passive: true }
     );
@@ -151,7 +152,8 @@ function listenToMapZones() {
                 let buildingPopup = new BuildingPopup();
                 buildingPopup.openBuildingPopup(event);
             }
-            toggleTooltip(event.target.closest(".hexagon"));
+            let tooltip = new Tooltip();
+            tooltip.toggle(event.target.closest(".hexagon"));
             touchmoved = false;
         },
         { passive: true }
@@ -208,8 +210,9 @@ function listenToLocationButtons(node) {
     for (var i=0; i<node.length; i++) {
         node[i].addEventListener("click", function() {
             let htmlCoords = event.target.parentNode.dataset.coords;
+            let tooltip = new Tooltip();
             centerMapOnZone(`zone${htmlCoords}`);
-            toggleTooltip(document.querySelector(`#zone${htmlCoords}`));
+            tooltip.toggle(document.querySelector(`#zone${htmlCoords}`));
         });
     }
 }

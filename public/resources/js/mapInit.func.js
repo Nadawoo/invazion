@@ -371,14 +371,17 @@ function triggerTooltip(hexagon) {
             let template = document.querySelector("#tplTooltip").content.cloneNode(true);
             hexagon.querySelector(".square_container").append(template);
             // Will hide the tooltip when the mouse leaves the hexagon
-            hexagon.addEventListener("mouseleave",
-                                    ()=>hideTooltip(hexagon),
-                                    { passive: true }
+            hexagon.addEventListener("mouseleave", function() {
+                    let tooltip = new Tooltip();
+                    tooltip.hide(hexagon);
+                },
+                { passive: true }
             );
         }
         
         // Display the hidden tooltip
-        displayTooltip(hexagon);
+        let tooltip = new Tooltip();
+        tooltip.display(hexagon);
     }
 }
 

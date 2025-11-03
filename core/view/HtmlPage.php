@@ -11,7 +11,7 @@ class HtmlPage
     // Increment those variables when you modify the CSS or JS files. This ensures
     // that the users' browsers reload the up-to-date files, instead of using 
     // the obsolete ones stored in their cache.
-    private $css_js_version = 75;
+    private $css_js_version = 76;
     
     /**
      * Sets HTTP headers to secure the website
@@ -158,6 +158,7 @@ class HtmlPage
                         <script type="text/javascript" src="resources/js/lib/scrollbooster.min.js"></script>
                         <script type="text/javascript" src="resources/js/ZombLib.js?v'.$this->css_js_version.'"></script>
                         <script type="text/javascript" src="resources/js/Tasks.js?v'.$this->css_js_version.'" async></script>
+                        <script type="text/javascript" src="resources/js/Tooltip.js?v'.$this->css_js_version.'" async></script>
                         <script type="text/javascript" src="resources/js/Translator.js?v'.$this->css_js_version.'"></script>
                         <script type="text/javascript" src="resources/js/BuildingPopup.js?v'.$this->css_js_version.'" async></script>
                         <script type="text/javascript" src="resources/js/CitiesConnections.js?v'.$this->css_js_version.'"></script>
@@ -166,7 +167,6 @@ class HtmlPage
                         <script type="text/javascript" src="resources/js/mapInit.func.js?v'.$this->css_js_version.'"></script>
                         <script type="text/javascript" src="resources/js/mapUse.func.js?v'.$this->css_js_version.'" async></script>
                         <script type="text/javascript" src="resources/js/paths.func.js?v'.$this->css_js_version.'" async></script>
-                        <script type="text/javascript" src="resources/js/tooltips.func.js?v'.$this->css_js_version.'" async></script>
                         <script type="text/javascript" src="resources/js/wallTemplate.js?v'.$this->css_js_version.'" async></script>
                         <script type="text/javascript" src="resources/js/actionBlocks.func.js?v'.$this->css_js_version.'" async></script>
                         <script type="text/javascript" src="resources/js/cityEnclosure.func.js?v'.$this->css_js_version.'" async></script>

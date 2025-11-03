@@ -39,7 +39,8 @@ async function updateActionBlocks() {
 
     // Highlights the player's location on page load
 //        let myHexagon = document.getElementById("me").closest(".hexagon");
-//        displayTooltip(myHexagon);
+//        let tooltip = new Tooltip();
+//        tooltip.display(myHexagon);
     // Updates the coordinates of the player in the movement paddle
     updateMovementPaddle(zoneData.coordx, zoneData.coordy);
     // Updates the cards of contextual actions under the movement paddle
