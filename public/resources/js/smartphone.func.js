@@ -28,16 +28,17 @@ function activatePhoneTab(tabId=null) {
     
     // Définir ici l'onglet affiché par défaut dans le smartphone du jeu
     var defaultTab = "minimap";
+    let cookies = new Cookies();
     
     // Si clic sur un onglet du smartphone
     if (tabId !== null) {
         // Mémorise l'onglet actif pour le réafficher après actualisation de la page
-        setCookieConfig('phonetab', tabId);
+        cookies.setCookieConfig('phonetab', tabId);
     }
     // Si c'est le chargement de la page
     else {
         // Récupère l'onglet actif
-        tabId = getCookieConfig('phonetab');
+        tabId = cookies.getCookieConfig('phonetab');
         
         // Si le cookie n'existe pas encore, on fixe un onglet par défaut
         if (tabId === undefined) {

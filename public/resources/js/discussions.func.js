@@ -69,8 +69,9 @@ async function createDiscussion() {
     let title         = document.getElementById("titleNew").value,
         unsafeMessage = document.getElementById("messageNew").value,
         guest_pseudo  = document.getElementById("guestPseudo").value,
-        author_pseudo = document.getElementById("citizenPseudo").innerHTML,
-        token         = getCookie('token');
+        author_pseudo = document.getElementById("citizenPseudo").innerHTML;
+    let cookies = new Cookies(),
+        token   = cookies.getCookie('token');
 
     let json = await callApi("POST", "discuss/threads", `action=create&title=${title}&message=${unsafeMessage}&guest_pseudo=${guest_pseudo}&token=${token}`);
     
@@ -114,8 +115,9 @@ async function replyDiscussion(topicId, nbrMessages) {
     
     let thread = document.querySelector(`#topic${topicId}`),
         citizenPseudo = document.getElementById("citizenPseudo").innerHTML,
-        unsafeMessage  = document.querySelector(`#topic${topicId} textarea`).value,
-        token    = getCookie('token');
+        unsafeMessage  = document.querySelector(`#topic${topicId} textarea`).value;
+    let cookies = new Cookies(),
+        token = cookies.getCookie('token');
         
     let json = await callApi("POST", "discuss/threads", `action=reply&topic_id=${topicId}&message=${unsafeMessage}&token=${token}`);
     

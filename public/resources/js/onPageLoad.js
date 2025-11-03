@@ -136,7 +136,8 @@ if (document.getElementById('map') !== null) {
     }
     
     // Restore the display of the action button before the page was refreshed
-//    toggleActionBlock(getCookieConfig("round_button"));
+//    let cookies = new Cookies();
+//    toggleActionBlock(cookies.getCookieConfig("round_button"));
     
     // By default, the list of objects in the bag and on the ground are reduced
     // UNUSED : the panel is now replaced by the big action button at the right of the map
@@ -213,7 +214,8 @@ if (document.getElementById('editConfig') !== null) {
 if(document.querySelector("#connectionForm") !== null) {
     // Prefill the "email" field
     setTimeout(function() {
-        _userEmail = getCookie("email");
+        let cookies = new Cookies();
+        _userEmail = cookies.getCookie("email");
         if(_userEmail !== null) {
             document.querySelector("#connectionForm input[name='email']").value = _userEmail;
         }

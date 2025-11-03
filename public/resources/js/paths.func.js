@@ -320,7 +320,8 @@ function drawPathsOnMap(pathsCourses) {
  */
 async function submitNewPath(event, controller) {
     
-    let token = getCookie('token');
+    let cookies = new Cookies(),
+        token = cookies.getCookie('token');
     let formData = new FormData(event.target);
     let zonesList = formData.getAll('zones[]');
     let zonesString = zonesList.join('&zones[]=');
@@ -355,7 +356,8 @@ async function submitNewPath(event, controller) {
  */
 async function addPathMembers(event) {
     
-    let token = getCookie('token'),
+    let cookies = new Cookies(),
+        token = cookies.getCookie('token'),
         formData = new FormData(event.target),
         pathId = formData.get('path_id'),
         selectedCitizensIds = formData.getAll('citizens_ids[]'),

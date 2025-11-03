@@ -12,7 +12,8 @@
 async function getMapZonesOnce(mapId) {
     
     if(_jsonMap === null) {
-        let token = getCookie('token'),
+        let cookies = new Cookies(),
+            token = cookies.getCookie('token'),
             json = await callApi("GET", "maps", `action=get&map_id=${mapId}&token=${token}`);
         _jsonMap = json.datas.zones;
     }

@@ -173,7 +173,8 @@ function toggleActionBlock(buttonAlias) {
         document.querySelector(roundId).classList.add("active");
     }
     
-    setCookieConfig("round_button", buttonAlias);
+    let cookies = new Cookies();
+    cookies.setCookieConfig("round_button", buttonAlias);
 }
 
 
@@ -182,15 +183,17 @@ function toggleActionBlock(buttonAlias) {
  */
 function toggleItemsPanel() {
     
+    let cookies = new Cookies();
+    
     if (document.getElementById("bag_panel").style.height === "0px") {
         document.getElementById("bag_panel").style.height    = "10em";
         document.getElementById("ground_panel").style.height = "10em";
-        setCookie('showitemspanel', 1);
+        cookies.setCookie('showitemspanel', 1);
     }
     else {
         document.getElementById("bag_panel").style.height    = 0;
         document.getElementById("ground_panel").style.height = 0;
-        setCookie('showitemspanel', 0);
+        cookies.setCookie('showitemspanel', 0);
     }
 }
 
@@ -200,7 +203,8 @@ function toggleItemsPanel() {
  */
 async function createItem() {
     
-    let token = getCookie('token'),
+    let cookies = new Cookies(),
+        token = cookies.getCookie('token'),
         formData = new FormData(document.querySelector('form')),
         request = {};
     
@@ -220,7 +224,8 @@ async function createItem() {
  */
 async function addZombiesInZone() {
     
-    let token = getCookie('token'),
+    let cookies = new Cookies(),
+        token = cookies.getCookie('token'),
         coordX = Number(document.querySelector("#gameData #citizenCoordX").innerHTML),
         coordY = Number(document.querySelector("#gameData #citizenCoordY").innerHTML);
     
@@ -263,7 +268,8 @@ async function updateDiscussionsNotifs() {
  */
 async function updateLandType(landType, coordX, coordY, radius) {
     
-    let token = getCookie('token'),
+    let cookies = new Cookies(),
+        token = cookies.getCookie('token'),
         mapId = document.getElementById("mapId").innerHTML;
     
     // Sends the characteristics of the new item to the API
@@ -280,7 +286,8 @@ async function updateLandType(landType, coordX, coordY, radius) {
 async function moveCitizen(direction) {
     
     // Ask the API for moving the player
-    let token = getCookie('token'); 
+    let cookies = new Cookies(),
+        token = cookies.getCookie('token');
     let json = await callApi("GET", "zone", `action=move&to=${direction}&token=${token}`);
     
     let current_AP = (document.querySelector("#actionPoints").innerText),
@@ -326,7 +333,8 @@ function updateActionPoints(newAP) {
 async function teleportToCity(destinationCityId) {
     
     // Ask the API for teleporting the player
-    let token = getCookie('token');
+    let cookies = new Cookies(),
+        token = cookies.getCookie('token');
     let json = await callApi("GET", "zone", `action=teleport&to=city&target_id=${destinationCityId}&token=${token}`);
     updateMeAfterMoving(json.datas.new_coord_x, json.datas.new_coord_y);
     
@@ -481,8 +489,11 @@ function updateEnterBuildingButton(cityTypeId, controlPointsCitizens, nbrZombies
  */
 async function killZombies(apiAction) {
     
+    let cookies = new Cookies(),
+        token = cookies.getCookie('token');
+
     // Moves the citizen form the main city to his indivdual home
-    json = await callApi("GET", "zone", "action="+apiAction+"&token="+getCookie('token'));
+    json = await callApi("GET", "zone", "action="+apiAction+"&token="+token);
     
     // Display the explosion effect on the zone
     document.querySelector("#explosionMe").classList.add("scale-in");
@@ -611,8 +622,9 @@ async function getMyZoneOnce(mapId, coordX, coordY) {
     
     // If the API has already be called before, don't re-call it
     if(_myZone === null) {
+        let cookies = new Cookies(),
+            token = cookies.getCookie('token');
         let htmlCoord = coordX+"_"+coordY,
-            token = getCookie('token'),
             json = await callApi("GET", "maps", `action=get&map_id=${mapId}&token=${token}&zones=${htmlCoord}`);    
         _myZone = json.datas.zones[htmlCoord];
     }
@@ -639,7 +651,8 @@ function showFightingZombiesButtons(nbrZombies) {
  */
 async function dig() {
     
-    let token = getCookie('token');
+    let cookies = new Cookies(),
+        token = cookies.getCookie('token');
     
     // Call the API to dig
     let json = await callApi("GET", "zone", `action=dig&token=${token}`);
@@ -689,7 +702,8 @@ function mergeItemsIdsWithAmounts(itemsIds) {
  */
 async function pickupItem(eventSubmitter) {
     
-    let token = getCookie('token'),
+    let cookies = new Cookies(),
+        token = cookies.getCookie('token'),
         itemId = eventSubmitter.value;
     
     // Calls the API to pick up the item
@@ -722,7 +736,8 @@ async function pickupItem(eventSubmitter) {
  */
 async function dropItem(eventSubmitter) {
     
-    let token = getCookie('token'),
+    let cookies = new Cookies(),
+        token = cookies.getCookie('token'),
         itemId = eventSubmitter.value;
     
     // Calls the API to pick up the item
@@ -1079,12 +1094,13 @@ function updateBlockLandType(landType) {
  */
 async function switchToCitizen(targetCitizenId) {
     
-    let token = getCookie('token');
+    let cookies = new Cookies(),
+        token = cookies.getCookie('token');
     let json = await callApi("GET", "me", `action=switch_citizen&target_id=${targetCitizenId}&token=${token}`);
     
     // Update the cookie to write the token corresponding to the now-controlled citizen 
     if(json.metas.error_code === "success") {
-        setCookie("token", json.datas.token);
+        cookies.setCookie("token", json.datas.token);
     }
     
     displayToast(json.metas.error_message, json.metas.error_class);

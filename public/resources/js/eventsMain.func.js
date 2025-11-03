@@ -23,8 +23,9 @@ function listenToForms() {
 
             let formData = new FormData(event.target),
                 apiName  = formData.get("api_name"),
-                action   = formData.get("action"),
-                token    = getCookie("token"),
+                action   = formData.get("action");
+            let cookies   = new Cookies(),
+                token     = cookies.getCookie("token"),
                 popupText = "";
 
             let json = await callApi("GET", apiName, `action=${action}&token=${token}`);
@@ -39,9 +40,9 @@ function listenToForms() {
                 });
                 popupText = `<p>Félicitations ! Vous avez trouvé les objets suivants :</p>
                             <ul>${htmlItems}</ul>
-                            <p>Ces objets ont été déposés au sol.</p>`
+                            <p>Ces objets ont été déposés au sol.</p>`;
             } else {
-               popupText = nl2br(json.metas.error_message);
+               popupText = '<p>'+nl2br(json.metas.error_message)+'</p>';
             }
             document.querySelector("#popsuccess").classList.add("force_visibility");
             document.querySelector("#popsuccess .content").innerHTML = popupText;
