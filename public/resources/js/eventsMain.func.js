@@ -5,6 +5,52 @@
 
 
 /**
+ * Listen to all the forms (avoids creating one event listenener per form)
+ * 
+ * @returns {undefined}
+ */
+function listenToForms() {
+
+    document.addEventListener("submit", async function(event) {      
+        let formSelectors = {
+            "explore": "form[name=explore_building]"
+            };
+            
+        // Execute the "Explore building" action
+        if(event.target.matches(formSelectors.explore)) {
+            // Desactivate the classic submission button (avoids reloading the page)
+            event.preventDefault();
+
+            let formData = new FormData(event.target),
+                apiName  = formData.get("api_name"),
+                action   = formData.get("action"),
+                token    = getCookie("token"),
+                popupText = "";
+
+            let json = await callApi("GET", apiName, `action=${action}&token=${token}`);
+            
+            // Display the result in a pop-up
+            if(json.metas.error_code === "success") {
+                let itemsCaracs = json.datas.found_items_ids.map(id => _configsItems[id]);
+                let htmlItems = "";
+                itemsCaracs.forEach(item => {
+                    let htmlDefenses = (item.defenses > 0) ? `(&#x1F6E1;&#xFE0F;+${item.defenses} défenses)` : "";
+                    htmlItems += `<li><strong>${item.name}</strong> ${htmlDefenses}</li>`;
+                });
+                popupText = `<p>Félicitations ! Vous avez trouvé les objets suivants :</p>
+                            <ul>${htmlItems}</ul>
+                            <p>Ces objets ont été déposés au sol.</p>`
+            } else {
+               popupText = nl2br(json.metas.error_message);
+            }
+            document.querySelector("#popsuccess").classList.add("force_visibility");
+            document.querySelector("#popsuccess .content").innerHTML = popupText;
+        }
+    });
+}
+
+
+/**
  * Events concerning the form to create a new discussion.
  * Must be asynchronous because the form doesn't exist when the page loads.
  */
