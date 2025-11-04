@@ -148,49 +148,6 @@ async function addCitiesOnMap(mapId, htmlCoords=null) {
 
 
 /**
- * Place the citizens on the map. They are not loaded by the PHP to speed up
- * the loading of the map.
- * 
- * @param {int} mapId
- */
-async function addCitizensOnMap(mapId) {
-    
-    // Get the citizens of the map by calling the Azimutant's API
-    _citizens = await getMapCitizensOnce(mapId);
-    
-    // Place the citizens on the appropriate zones
-    for(let citizenId in _citizens) {
-        let citizen = _citizens[citizenId],
-            htmlCoords = citizen.coord_x+"_"+citizen.coord_y,
-            zone = document.querySelector("#zone"+htmlCoords+" .square_container");
-        
-        // Don't add the citizen if an other citizen is already placed in the zone
-        if(zone.querySelector(".map_citizen") === null && zone.dataset.zombies < 1 && zone.dataset.cityid < 1) {
-            
-            let nbrCitizens = zone.dataset.citizens;
-            let label = (nbrCitizens > 1) ? "[Groupe]" : citizen.citizen_pseudo;
-            
-            zone.insertAdjacentHTML("afterbegin", 
-                `<div class="map_citizen">
-                    <span class="nbr_defenses">${label}</span>
-                    ${htmlCitizensImages(nbrCitizens)}
-                </div>
-                <div class="halo inactive">&nbsp;</div>
-                <div class="overlay hidden"></div>
-                `);
-            
-            // Delete the "&nbsp;" required on the empty zones 
-//            if(zone.querySelector(".empty") !== null) {
-//                zone.querySelector(".empty").remove();
-//            }
-        }
-    }
-    
-    return _citizens;
-}
-
-
-/**
  * Displays on the map the wanted item. Useful to show where are important items.
  * 
  * @param {int} itemId The ID of the item, as returned by the "items" API

@@ -146,58 +146,6 @@ function addMeOnMap() {
 
 
 /**
- * Generates the HTML images for X citizens in a zone of a map
- * with natural positions (not just in one line) and avoids overlaps.
- * 
- * @param {int} nbrCitizens
- * @returns {String} HTML
- */
-function htmlCitizensImages(nbrCitizens) {
-    
-    // Set of predefined positions for the images of the citizens 
-    // in a zone, to avoid overlaps.
-    // - First key = the number of citizens in the zone
-    // - Subkeys = citizen 1, citizen 2, citizen 3...
-    var positions = {
-        1: { 1:{"top":"revert-layer", "left":"inherit"} },
-        2: { 1:{"top":"-2.3em", "left":"0.3em"},
-             2:{"top":"-1.8em", "left":"1em"}
-            },
-        3: { 1:{"top":"-2.5em", "left":"0.3em"},
-             2:{"top":"-2.3em", "left":"1.4em"},
-             3:{"top":"-1.8em", "left":"0.9em"}
-            },
-        4: { 1:{"top":"-2.7em", "left":"0.3em"},
-             2:{"top":"-2.3em", "left":"1.4em"},
-             3:{"top":"-1.8em", "left":"0.3em"},
-             4:{"top":"-1.7em", "left":"1.3em"}
-            },
-        5: { 1:{"top":"-2.7em", "left":"0.3em"},
-             2:{"top":"-2.4em", "left":"0.7em"},
-             3:{"top":"-2.7em", "left":"1.6em"},
-             4:{"top":"-1.8em", "left":"0.3em"},
-             5:{"top":"-1.7em", "left":"1.3em"}
-            },
-        };
-        
-    // If there are too many citziens for the cases set, assume that
-    // we use the maximal number of citizens.
-    let maxCitizens = Object.keys(positions).length;
-    nbrCitizens = (nbrCitizens > maxCitizens) ? maxCitizens : nbrCitizens;
-    
-    var content = "";
-    for(let i=0; i<nbrCitizens; i++) {
-        let top  = positions[nbrCitizens][i+1]["top"],
-            left = positions[nbrCitizens][i+1]["left"];
-        content += `<img src="/resources/img/free/human.png" height="48"
-                     style="position:absolute;top:${top};left:${left}">`;
-    }
-    
-    return content;
-}
-
-
-/**
  * Returns the HTML ID of the zone where the player's city is.
  * 
  * @returns {string} The ID of the zone, e.g. "zone10_8"

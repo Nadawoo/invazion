@@ -88,7 +88,8 @@ if (document.getElementById('map') !== null) {
     let cityConnections = new CityConnections();
     cityConnections.addCityframes(mapId);
     // Place the citizens on the appropriate zones of the map
-    _citizens = addCitizensOnMap(mapId).then(() => {
+    let mapCitizens = new MapCitizens();
+    _citizens = mapCitizens.addCitizensOnMap(mapId).then(() => {
         if(isCitizenInGame() === true) { addMeOnMap(); }
         });
     // Display the zombie cores on the map (item ID #106)
