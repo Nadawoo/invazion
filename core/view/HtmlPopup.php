@@ -456,10 +456,34 @@ class HtmlPopup
             'text'  => 'Ce module illumine en permanence les 6 zones autour du bâtiment.',
             ],
             [
+            'icon'  => '&#x1F539;',
+            'title' => 'Autoprotection minimale',
+            'text'  => "Ce module tue automatiquement 5 zombies par jour
+                        sur la zone du bâtiment",
+            ],
+            [
+            'icon'  => '&#x1F537;',
+            'title' => 'Autoprotection étendue',
+            'text'  => "Ce module tue automatiquement 5 zombies par jour sur chacune
+                        des 6 zones autour du bâtiment",
+            ],
+            [
             'icon'  => '&#x2747;&#xFE0F;',
+            'title' => 'Contrôle minimal',
+            'text'  => "Lors de la fouille du bâtiment, ce module empêche l'apparition
+                        de zombies sur la zone du bâtiment.",
+            ],
+            [
+            'icon'  => '&#x2733;&#xFE0F;',
             'title' => 'Contrôle étendu',
-            'text'  => "Ce module empêche l'arrivée de zombies supplémentaires 
-                        dans les 6 zones autour du bâtiment.",
+            'text'  => "Lors de la fouille du bâtiment, ce module empêche l'apparition
+                        de zombies dans les 6 zones alentour.",
+            ],
+            [
+            'icon'  => '&#x1F4AA;&#x1F3FD;',
+            'title' => 'Booster',
+            'text'  => "Donne 3 points d'action supplémentaires à chaque humain 
+                        qui passe par ce bâtiment.",
             ],
             [
             'icon'  => '&#x26CF;&#xFE0F;',
@@ -472,12 +496,12 @@ class HtmlPopup
             'text'  => 'Ce module vous permet de rapporter gratuitement en ville 
                         les objets générés par le bâtiment.',
             ],
-                        [
-            'icon'  => '&#x1F6E1;&#xFE0F;',
-            'title' => 'Entrée du bâtiment',
-            'text'  => "Renforcez l'entrée du bâtiment avec des <strong>objets de défense</strong>
-                        pour empêcher les zombies d'atteindre les modules.",
-            ],
+//            [
+//            'icon'  => '&#x1F6E1;&#xFE0F;',
+//            'title' => 'Entrée du bâtiment',
+//            'text'  => "Renforcez l'entrée du bâtiment avec des <strong>objets de défense</strong>
+//                        pour empêcher les zombies d'atteindre les modules.",
+//            ],
         ];
         
         foreach(array_reverse($modules) as $key=>$module) {
@@ -486,11 +510,11 @@ class HtmlPopup
                 <tr onclick="this.querySelector(\'.text\').classList.toggle(\'hidden\');this.classList.toggle(\'selected\')">
                     <td>
                         <div style="display:flex;justify-content:space-between">
-                            <div style="width:12rem;">
+                            <div style="width:14rem;">
                                 <span class="icon">'.$module['icon'].'</span>
                                 <strong>'.$module['title'].'</strong>
                             </div>
-                            <div>'.(($key+1)*5).'&#x1F6E1;&#xFE0F;</div>
+                            <div>'.(($key+1)*10).'&#x1F6E1;&#xFE0F;</div>
                             <div class="status status_active z-depth-2">Actif</div>
                             <div class="status status_inactive z-depth-2" style="background:red">
                                 Hors service
