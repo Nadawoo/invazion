@@ -858,7 +858,7 @@ legend {
 .item_label>var { /* The clickable icon of the item */
     display:flex;
     margin:auto;
-    font-size:1.8em; /* Magnify the emoji icons */
+    font-size:1.4em; /* Magnify the emoji icons */
     font-style:normal;
 }
 .item_label var::selection {

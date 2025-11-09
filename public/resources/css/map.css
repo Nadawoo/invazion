@@ -241,11 +241,9 @@
     top:0;
     left:4rem;
     min-height:2.7em;
-    width:15.7rem;
-    margin:0.2em 0;
+    width:17.5rem;
+    margin:0;
     padding:0.5em;
-    display:flex;
-    flex-wrap: wrap;
     background:#fbeee6;
     border:2px outset #34495e;
     outline:1px outset white;
@@ -255,9 +253,8 @@
 }
 #statusbar .item_label,
 #bagbar .item_label {
-    height:2em;
-    width: 2em;
-    font-size:1.2em;
+    height:2.5em;
+    width: 2.5em;
 }
 #bagbar .item_label img {
     height:26px;
@@ -299,8 +296,8 @@
     line-height:130%;
 }
 #statusbar .item_label img {
-    height:1.4em;
-    width:100%;
+    height:100%;
+    width: 100%;
     display:flex;
     align-items:center;
     border-radius:0.2em;

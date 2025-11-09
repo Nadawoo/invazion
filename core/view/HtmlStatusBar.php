@@ -12,13 +12,23 @@ class HtmlStatusBar {
      * @param int $nbr_zone_fellows The number of humans in the citizen's zone
      * @return string HTML
      */
-    public function status_bar($items_caracs, $bag_items, $city_id, $is_wounded, $nbr_zone_fellows) {
+    public function status_bar( $items_caracs,
+                                $bag_items,
+                                $city_id,
+                                $is_wounded,
+                                $control_points,
+                                $nbr_zone_fellows) {
         
         $htmlItem = new HtmlItem();
         
         $status_my_caracs = $this->status_image("&#x1F464;", null, null,
                                 "Mes caractéristiques de base",
                                 "popmycaracs");
+        
+        $status_control_points = $this->status_image("&#x1F6E1;&#xFE0F;", null, $control_points,
+                                    "Le nombre de points de contrôle dont vous disposez pour repousser les zombies.",
+                                    "popcontrol");
+        
         $status_defenses = (is_int($city_id))
             ? $this->status_image("Attaque du soir", "resources/img/copyrighted/wolf_64px.png", null,
                                 "Construisez des défenses dans votre ville &#10;pour contrer l'attaque zombie du soir !",
@@ -37,7 +47,7 @@ class HtmlStatusBar {
             ? $this->status_image("&#128101;", null, $nbr_zone_fellows,
                                 "D'autres humains se trouvent dans la même zone que vous ! L'union fait la force...")
             :$this->status_empty();
-
+        
         return '
             <div id="statusbar" onclick="toggleStatus()">
                 <div class="block_icon">
@@ -46,6 +56,7 @@ class HtmlStatusBar {
                 </div>
                 <ul class="items_list hidden">'.
                     $status_my_caracs.
+                    $status_control_points.
                     $status_defenses.
                     $htmlItem->items($bag_items, $items_caracs, ['status']).
                     $status_wounded.
@@ -114,12 +125,12 @@ class HtmlStatusBar {
         
         return '
             <li class="item_label z-depth-1 '.$class.'">
-                <var>
+                <var class="icon">
                     <a title="'.$title.'" '.$popup_link.' '.$cursor_style.'>
-                        <span class="icon">'.$html_icon.'</span>'
-                        .$html_amount.'
+                        '.$html_icon.'
                     </a>
                 </var>
+                '.$html_amount.'
             </li>';
     }
     

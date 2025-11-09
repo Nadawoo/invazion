@@ -387,6 +387,7 @@ echo $layout->page_header($citizen['user_id'], $citizen['citizen_id'], $citizen[
                                             $citizen['bag_items'],
                                             $citizen['city_id'],
                                             $citizen['is_wounded'],
+                                            $citizen['control_points'],
                                             count($zone_fellows)-1
                                             );
                 echo $layout->bag_bar($configs['items'],

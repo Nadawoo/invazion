@@ -105,10 +105,11 @@ function replaceBuildingsPlaceholders() {
 function addMeOnMap() {
     
     let myCoordX = document.querySelector("#citizenCoordX").innerHTML,
-        myCoordY = document.querySelector("#citizenCoordY").innerHTML,    
+        myCoordY = document.querySelector("#citizenCoordY").innerHTML,
+//        myId     = document.querySelector("#citizenId").innerHTML,
         myPseudo = document.querySelector("#citizenPseudo").innerHTML,
         myZone = document.querySelector(`#zone${myCoordX}_${myCoordY}`);
-        
+           
     // If there is no other citizen in the zone
     if(myZone.querySelector(".map_citizen") === null) {
         myZone.querySelector(".square_container").insertAdjacentHTML("afterbegin", 
