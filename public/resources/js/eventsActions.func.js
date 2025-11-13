@@ -7,7 +7,6 @@
 function listenToActionModeActions() {
      
     listenToMovementPaddle();
-    listenToDigButton();
     listenToDropPickupItem();
     listenToExplorationButton();
     listenToLandform();
@@ -25,17 +24,6 @@ function listenToMovementPaddle() {
  //        if(myCityZoneId !== null) {
  //            setTimeout(function() {updateLineBetweenZones("myCity", "#me", "#"+myCityZoneId);}, 1000);
  //        }
-    });
-}
-
-
-function listenToDigButton() {
-    
-    // Digs a zone to find items
-    document.querySelector('#block_dig form[name="dig"]').addEventListener("submit", function(event) {
-        // Desactivate the classic submission button (avoids reloading the page)
-        event.preventDefault();
-        dig();
     });
 }
 

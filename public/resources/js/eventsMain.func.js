@@ -13,6 +13,7 @@ function listenToForms() {
 
     document.addEventListener("submit", async function(event) {      
         let formSelectors = {
+            "dig":"#block_dig form[name=dig]",
             "explore": "form[name=explore_building]"
             };
             
@@ -21,6 +22,10 @@ function listenToForms() {
             // Desactivate the classic submission button (avoids reloading the page)
             event.preventDefault();
             exploreBuilding();
+        }
+        else if(event.target.matches(formSelectors.dig)) {
+            event.preventDefault();
+            dig();
         }
     });
 }
