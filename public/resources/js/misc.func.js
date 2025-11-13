@@ -673,6 +673,36 @@ async function dig() {
 }
 
 
+async function exploreBuilding() {
+    
+    let formData = new FormData(event.target),
+        apiName  = formData.get("api_name"),
+        action   = formData.get("action");
+    let cookies   = new Cookies(),
+        token     = cookies.getCookie("token"),
+        popupText = "";
+
+    let json = await callApi("GET", apiName, `action=${action}&token=${token}`);
+
+    // Display the result in a pop-up
+    if(json.metas.error_code === "success") {
+        let itemsCaracs = json.datas.found_items_ids.map(id => _configsItems[id]);
+        let htmlItems = "";
+        itemsCaracs.forEach(item => {
+            let htmlDefenses = (item.defenses > 0) ? `(&#x1F6E1;&#xFE0F;+${item.defenses} défenses)` : "";
+            htmlItems += `<li><strong>${item.name}</strong> ${htmlDefenses}</li>`;
+        });
+        popupText = `<p>Félicitations ! Vous avez trouvé les objets suivants :</p>
+                    <ul>${htmlItems}</ul>
+                    <p>Ces objets ont été déposés au sol.</p>`;
+    } else {
+       popupText = '<p>'+nl2br(json.metas.error_message)+'</p>';
+    }
+    document.querySelector("#popsuccess").classList.add("force_visibility");
+    document.querySelector("#popsuccess .content").innerHTML = popupText;
+}
+
+
 /**
  * From a list of items IDs, eventually with duplications, bind the amount to each item:
  * - "1" if only one occurrency of the ID
