@@ -24,7 +24,7 @@ class HtmlItem {
         
         return '
             <template id="tplItem">
-                <li class="item_label z-depth-1" onclick="toggleItem(event)">
+                <li class="item_label z-depth-2" onclick="toggleItem(event)">
                     <var class="icon" aria-label="{item_name}">{icon}</var>
                     <div class="dot_number z-depth-1 hidden">?</div>
                     <div class="details hidden">
@@ -225,7 +225,7 @@ class HtmlItem {
         $button_use = $buttons->use_item($button_alias, $item_id, '');
         
         return '
-            <li class="item_label z-depth-1">
+            <li class="item_label z-depth-2">
                 <var onclick="toggleItem(event)">
                     '.$item_image.'
                 </var>

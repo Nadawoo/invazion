@@ -124,7 +124,7 @@ class HtmlStatusBar {
         $html_amount = ($amount !== null) ? '<span class="dot_number">'.$amount.'</span>' : '';
         
         return '
-            <li class="item_label z-depth-1 '.$class.'">
+            <li class="item_label z-depth-2 '.$class.'">
                 <var class="icon">
                     <a title="'.$title.'" '.$popup_link.' '.$cursor_style.'>
                         '.$html_icon.'

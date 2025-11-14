@@ -847,7 +847,7 @@ legend {
     height:3.3em;
     width: 3.3em;
     background:lightgrey;
-    border: 1px solid white;
+    border:3px solid white;
     border-radius:0.5em;
     cursor:pointer;
 }
@@ -972,13 +972,13 @@ legend {
 }
 
 .item_label.precious {
-    border:2px solid #FFD700;
+    border:5px ridge #FFD700;
 }
 .item_label.precious::after {
     content: "★";
     position:absolute;
-    top:   -0.5em;
-    right: -0.3em;
+    top:   -11px;
+    right: -8px;
     font-size:1.2em;
     color:#FFD700;
     -webkit-text-stroke: 1px darkslategrey;

@@ -557,7 +557,7 @@ function toggleItem(event) {
         hide(".item_label .details");
         // Then, display the intended tooltip
         tooltip.classList.remove("hidden");
-        itemLabel.style.border = "2px solid darkred";
+        itemLabel.style.border = "4px solid darkred";
         
         // Avoid the item's tooltip to overflow the parent container
         let parentList = tooltip.closest(".items_list");
@@ -652,14 +652,21 @@ function showFightingZombiesButtons(nbrZombies) {
 async function dig() {
     
     let cookies = new Cookies(),
-        token = cookies.getCookie('token');
+        token = cookies.getCookie('token'),
+        popup = document.querySelector("#popsuccess");
     
     // Call the API to dig
     let json = await callApi("GET", "zone", `action=dig&token=${token}`);
     
     // Display the result of the digging in pop-up
-    document.querySelector("#popsuccess").classList.add("force_visibility");
-    document.querySelector("#popsuccess .content").innerHTML = nl2br(json.metas.error_message);
+    popup.classList.add("force_visibility");
+    popup.querySelector(".content").innerHTML = '<p>Vos fouilles ont été fructueuses ! Vous avez découvert :</p>\
+                                                <ul class="items_list" style="justify-content:center"></ul>\
+                                                <p>Ces objets ont été déposés au sol.</p>';
+    // Add the items
+    json.datas.found_items_ids.forEach(itemId => {
+        popup.querySelector(".items_list").prepend(htmlItem(itemId, _configsItems[itemId]));
+    });
     
     if(json.metas.error_code === "success") {
         // Hide the message "There are no items on the ground..."
