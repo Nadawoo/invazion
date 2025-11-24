@@ -564,6 +564,8 @@
     width: 2.4rem;
     margin-bottom:2px;
     border-radius:50%;
+}
+#map_body .cityframe.undiscovered .frame {
     outline:2px outset green;
     box-shadow: 2px 2px 12px black;
     background: radial-gradient(circle at 5% 5%,
@@ -572,7 +574,7 @@
                         );
 }
 #map_body .submerged .cityframe .frame {
-    outline-color:red;
+    outline:2px outset red;
     background: radial-gradient(circle at 50% 50%,
                                 rgba(255, 0, 0, 0), 
                                 rgba(255, 0, 0, 0) 20%,
@@ -694,6 +696,12 @@
     background-color:#F4D03F;
     border:none;
     font-weight:bold;
+}
+
+#map_body .cityframe.noframe .frame {
+    outline:none;
+    background:none;
+    box-shadow:none;
 }
 
 /*

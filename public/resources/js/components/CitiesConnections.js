@@ -270,6 +270,10 @@ class CityConnections {
             // #11 = the ID of the "Undiscovered building"
             cssClass = `undiscovered`;
             label = `&#x1F50D;`;           
+        } else if(cityTypeId === 244) {
+            // #244 = The ID of the "Road connection"
+//            cssClass = `noframe`;
+//            label = ``;
         } else if(cityTypeId === 5) {
             // #5 = The ID of the "Wood storage"
             cssClass = `resources`;
@@ -280,7 +284,7 @@ class CityConnections {
         
         // #228 = the ID of the "Zombie core", #11 = Outpost
         if(isExplored === true) {
-            cssClass += "explored";
+            cssClass += " explored";
         }
         if(isExplored === true && ![11, 228].includes(cityTypeId)) {
             label = "&#x2705;";
