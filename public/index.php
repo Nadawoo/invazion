@@ -327,7 +327,7 @@ echo $layout->page_header($citizen['user_id'], $citizen['citizen_id'], $citizen[
                             <td>
                                 <!-- Let the SVG *before* the map zones, otherwise the invisible
                                 SVG area will cover it and block all interactions (clicking, hovering...) -->
-                                <svg id="mapSvg" class="hidden"></svg>
+                                <svg id="mapSvg"></svg>
                                 
                                 <!-- Overlay to create the light halos around the cities -->
                                 <svg id="lightOverlay" role="none">
