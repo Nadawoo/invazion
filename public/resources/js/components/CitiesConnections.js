@@ -186,18 +186,26 @@ class CityConnections {
         // #233 is the ID for the "Undiscovered building" in the API.
         let undiscoveredBuildingId = 233,
             zombieCoreId = 228,
-            zombieBaseId = 230;
+            zombieBaseId = 230,
+            roadConnectionId = 244;
         
         let htmlCoords = cityCoordX+"_"+cityCoordY,
-            zone = document.querySelector("#zone"+htmlCoords+" .square_container");
+            zone = document.querySelector("#zone"+htmlCoords+" .square_container"),
+            cityframe = zone.querySelector(".cityframe"),
+            htmlNbrDefenses = "";
                         
         if(cityTypeId === zombieBaseId) {
             // Add the number of zombies of the daily attack 
-            zone.insertAdjacentHTML("afterbegin", `<div class="nbr_defenses" style="background:red">${zone.dataset.zombies} <img src="resources/img/motiontwin/zombie.gif" alt="&#x1F9DF;"></div>`);
+            htmlNbrDefenses = `<div class="nbr_defenses" style="background:red">${zone.dataset.zombies} <img src="resources/img/motiontwin/zombie.gif" alt="&#x1F9DF;"></div>`;
+        }
+        else if(cityTypeId === roadConnectionId) {
+            // Add the cost in action points above the raod connection
+            let apCost = Math.floor(zone.dataset.zombies/2);
+            htmlNbrDefenses = `<div class="sharp_bubble" aria-label="Traverser cette zone coûte ${apCost} points d'action" style=""><span aria-hidden="true">&nbsp;-${apCost}&#x26A1;</span></div>`;
         }
         else if(cityTypeId === zombieCoreId) {
             // Add a special marker on the zombie cores
-            zone.insertAdjacentHTML("afterbegin", `<div class="nbr_items" style="background:lightgrey"><span class="icon">&#x2757;</span></div>`);
+            htmlNbrDefenses = `<div class="nbr_items" style="background:lightgrey"><span class="icon">&#x2757;</span></div>`;
         }
         else if(cityTypeId !== undiscoveredBuildingId) {
             // Add the number of defenses above each city, excepted above
@@ -205,7 +213,6 @@ class CityConnections {
             let nbrDefenses = cityDefenses,
                 nbrZombiesNextAttack = zone.dataset.zombies,
                 defensesExcedent = nbrDefenses - nbrZombiesNextAttack;
-            let htmlNbrDefenses = "";
             
             // Display the label above the map only if the city has at least one defense
             if(defensesExcedent <= 0 && nbrZombiesNextAttack > 0) {
@@ -219,9 +226,9 @@ class CityConnections {
                 // Display the number of defenses for the city if not zero
                 htmlNbrDefenses = `<div aria-label="${defensesExcedent} défenses" class="nbr_defenses animate__animated animate__zoomIn"><span aria-hidden="true">&nbsp; ${defensesExcedent}&#128737;&#65039;</span></div>`;
             }
-
-            zone.querySelector(".cityframe").insertAdjacentHTML("afterbegin", `${htmlNbrDefenses}`);
         }
+        
+        cityframe.insertAdjacentHTML("afterbegin", htmlNbrDefenses);
     }
     
     
@@ -272,8 +279,8 @@ class CityConnections {
             label = `&#x1F50D;`;           
         } else if(cityTypeId === 244) {
             // #244 = The ID of the "Road connection"
-//            cssClass = `noframe`;
-//            label = ``;
+            cssClass = `road_connection`;
+            label = ``;
         } else if(cityTypeId === 5) {
             // #5 = The ID of the "Wood storage"
             cssClass = `resources`;

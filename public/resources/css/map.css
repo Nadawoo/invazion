@@ -501,6 +501,9 @@
     top:-1em;
     line-height:normal;
     font-size:0.7em;
+    display:flex;
+    justify-content:center;
+    align-items:center;
     /*background:green;*/
     /*border:1px solid lightgrey;*/
     background:darkred;
@@ -552,6 +555,31 @@
     box-shadow:none;
     z-index:2;
 }
+/* Cost in action points on the road connections occupied by zombies */
+#map_body .sharp_bubble {
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:2.5em;
+    width: 2.5em;
+    font-size:0.7em;
+    border-radius:50%; /*0.5em;*/
+    background:#6E11B0;
+    border:2px solid mediumpurple;
+    color:white;
+    box-shadow:4px 4px 6px black;
+}
+#map_body .sharp_bubble::after {
+    content:"";
+    position:absolute;
+    top:2.3em;
+    width:0;
+    height:0;
+    border-left: 0.6em solid transparent;
+    border-right:0.6em solid transparent;
+    border-top:  1em solid mediumpurple;
+}
+
 #map_body .cityframe {
     position:absolute;
     bottom:0.1rem;
