@@ -80,8 +80,9 @@ class BuildingPopup {
 //            popup.querySelector(".text_unexplored").classList.add("hidden");
 //        } else {
             // Add the list of items findable in this building
+            let htmlItems = new Items();
             for(let itemId of findableItems) {
-                popup.querySelector(".items_list").prepend(htmlItem(itemId, _configsItems[itemId]));
+                popup.querySelector(".items_list").prepend(htmlItems.item(itemId, _configsItems[itemId]));
             }
 //        }
 

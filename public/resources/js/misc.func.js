@@ -664,8 +664,9 @@ async function dig() {
                                                 <ul class="items_list" style="justify-content:center"></ul>\
                                                 <p>Ces objets ont été déposés au sol.</p>';
     // Add the items
+    let htmlItems = new Items();
     json.datas.found_items_ids.forEach(itemId => {
-        popup.querySelector(".items_list").prepend(htmlItem(itemId, _configsItems[itemId]));
+        popup.querySelector(".items_list").prepend(htmlItems.item(itemId, _configsItems[itemId]));
     });
     
     if(json.metas.error_code === "success") {

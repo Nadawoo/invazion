@@ -158,6 +158,7 @@ class HtmlPage
                         <script type="text/javascript" src="resources/js/lib/scrollbooster.min.js"></script>
                         <script type="text/javascript" src="resources/js/components/BuildingPopup.js?v'.$this->css_js_version.'" async></script>
                         <script type="text/javascript" src="resources/js/components/CitiesConnections.js?v'.$this->css_js_version.'"></script>
+                        <script type="text/javascript" src="resources/js/components/Items.js?v'.$this->css_js_version.'"></script>
                         <script type="text/javascript" src="resources/js/components/MapCitizens.js?v'.$this->css_js_version.'"></script>
                         <script type="text/javascript" src="resources/js/components/Tasks.js?v'.$this->css_js_version.'" async></script>
                         <script type="text/javascript" src="resources/js/components/Tooltip.js?v'.$this->css_js_version.'" async></script>

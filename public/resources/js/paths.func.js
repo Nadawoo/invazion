@@ -84,10 +84,11 @@ async function populatePathsPanel(pathsCourses, pathsMembers) {
         document.querySelector(`#paths_panel .body`).append(template);
         
         // Display the content of the bag of each member of the expedition
+        let htmlItems = new Items();
         for(let member of Object.values(members)) {
             let citizen = _citizens[member.citizen_id];
             for(let bagItem of Object.entries(citizen.bag_items)) {
-                document.querySelector(`#paths_panel .citizen${citizen.citizen_id} .items_list`).prepend( htmlItem(bagItem[0], _configsItems[bagItem[0]]) );
+                document.querySelector(`#paths_panel .citizen${citizen.citizen_id} .items_list`).prepend( htmlItems.item(bagItem[0], _configsItems[bagItem[0]]) );
             }
         }
              
