@@ -66,11 +66,12 @@ class Tooltip {
             nbrItems    = Number(dataset.items),
             nbrZombies  = Number(dataset.zombies),
             nbrCitizens = Number(dataset.citizens),
-            cityTypeId  = Number(dataset.citytypeid);
+            cityTypeId  = Number(dataset.citytypeid),
+            strings = new Strings();
 
-        let htmlItems    = (nbrItems > 0)    ? `<br>• ${plural(nbrItems, "objet")} au sol` : "",
-            htmlZombies  = (nbrZombies > 0)  ? `<br>• ${plural(nbrZombies, "zombie")} dans la zone` : "",
-            htmlCitizens = (nbrCitizens > 0) ? `<br>• ${plural(nbrCitizens, "humain")} dans la zone` : "";
+        let htmlItems    = (nbrItems > 0)    ? `<br>• ${strings.plural(nbrItems, "objet")} au sol` : "",
+            htmlZombies  = (nbrZombies > 0)  ? `<br>• ${strings.plural(nbrZombies, "zombie")} dans la zone` : "",
+            htmlCitizens = (nbrCitizens > 0) ? `<br>• ${strings.plural(nbrCitizens, "humain")} dans la zone` : "";
 
         let htmlRoleplay = "";
 
@@ -84,7 +85,7 @@ class Tooltip {
 
             htmlRoleplay = `<h5 class="name">${buildingName}</h5>
                             <hr>
-                            <div class="descr_ambiance">${nl2br(buildingDescr)}</div>`;
+                            <div class="descr_ambiance">${strings.nl2br(buildingDescr)}</div>`;
         } else {
             htmlRoleplay = "Zone explorable";
         }

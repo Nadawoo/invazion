@@ -247,6 +247,7 @@ async function updateDiscussionsNotifs() {
     
     var length = jsonTopics.datas.length;
     var titles = "";
+    var strings = new Strings();
     
     for (let i=0; i<length; i++) {        
         let topic        = jsonTopics.datas[i];
@@ -254,7 +255,7 @@ async function updateDiscussionsNotifs() {
         let authorPseudo = topic.last_message.author_pseudo;
         let authorId     = topic.last_message.author_id;
         let lastMessage  = topic.last_message.message;
-        let localDate    = dateIsoToString(topic.last_message.datetime_utc);
+        let localDate    = strings.dateIsoToString(topic.last_message.datetime_utc);
 
         titles += htmlDiscussionNotif(topic.title, localDate, topicUrl, authorId, authorPseudo, lastMessage);
     }
@@ -689,7 +690,8 @@ async function exploreBuilding() {
     let cookies   = new Cookies(),
         token     = cookies.getCookie("token"),
         popupText = "";
-
+    let strings = new Strings();
+    
     let json = await callApi("GET", apiName, `action=${action}&token=${token}`);
 
     // Display the result in a pop-up
@@ -704,7 +706,7 @@ async function exploreBuilding() {
                     <ul>${htmlItems}</ul>
                     <p>Ces objets ont été déposés au sol.</p>`;
     } else {
-       popupText = '<p>'+nl2br(json.metas.error_message)+'</p>';
+       popupText = `<p>${strings.nl2br(json.metas.error_message)}</p>`;
     }
     document.querySelector("#popsuccess").classList.add("force_visibility");
     document.querySelector("#popsuccess .content").innerHTML = popupText;

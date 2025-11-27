@@ -46,6 +46,7 @@ class BuildingPopup {
         let building = _configsBuildings[cityTypeId];
         let findableItems = (_configsBuildingsFindableItems[cityTypeId] !== undefined) ? _configsBuildingsFindableItems[cityTypeId] : [];
         let buildingConfig = _configsBuildings[cityTypeId];
+        let strings = new Strings();
         
         // Update the content of the pop-up
         let tplPopupBuilding = document.querySelector('#tplPopupBuilding').content.cloneNode(true),
@@ -66,7 +67,7 @@ class BuildingPopup {
         }
         
         if(building["descr_ambiance"] !== "") {
-            popup.querySelector(".descr_ambiance").innerHTML = nl2br(building.descr_ambiance);
+            popup.querySelector(".descr_ambiance").innerHTML = strings.nl2br(building.descr_ambiance);
         }
         
         // Add the city ID on the button to teleport the citizen

@@ -11,7 +11,7 @@ class HtmlPage
     // Increment those variables when you modify the CSS or JS files. This ensures
     // that the users' browsers reload the up-to-date files, instead of using 
     // the obsolete ones stored in their cache.
-    private $css_js_version = 80;
+    private $css_js_version = 81;
     
     /**
      * Sets HTTP headers to secure the website
@@ -163,9 +163,9 @@ class HtmlPage
                         <script type="text/javascript" src="resources/js/components/Tasks.js?v'.$this->css_js_version.'" async></script>
                         <script type="text/javascript" src="resources/js/components/Tooltip.js?v'.$this->css_js_version.'" async></script>
                         <script type="text/javascript" src="resources/js/utils/Cookies.js?v'.$this->css_js_version.'"></script>
+                        <script type="text/javascript" src="resources/js/utils/Strings.js?v'.$this->css_js_version.'" async></script>
                         <script type="text/javascript" src="resources/js/utils/Translator.js?v'.$this->css_js_version.'"></script>
                         <script type="text/javascript" src="resources/js/ZombLib.js?v'.$this->css_js_version.'"></script>
-                        <script type="text/javascript" src="resources/js/strings.func.js?v'.$this->css_js_version.'" async></script>
                         <script type="text/javascript" src="resources/js/mapInit.func.js?v'.$this->css_js_version.'"></script>
                         <script type="text/javascript" src="resources/js/mapUse.func.js?v'.$this->css_js_version.'" async></script>
                         <script type="text/javascript" src="resources/js/paths.func.js?v'.$this->css_js_version.'" async></script>

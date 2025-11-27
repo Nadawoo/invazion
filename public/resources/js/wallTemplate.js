@@ -58,9 +58,11 @@ function htmlDiscussion(topicId, topicType, nbrReplies) {
 function htmlDiscussionMessage(message, isJson, pseudo, utcDate, replyNum) {
     
     let tplMessage = document.querySelector("#tplMessage").content.cloneNode(true);
+    let strings = new Strings();
+    
     tplMessage.querySelector(".reply_num").textContent = "#"+replyNum;
     tplMessage.querySelector(".pseudo strong").textContent = pseudo;
-    tplMessage.querySelector(".time").textContent = dateIsoToString(utcDate);
+    tplMessage.querySelector(".time").textContent = strings.dateIsoToString(utcDate);
     
     if(isJson === 1) {
         // If the message is JSON-formatted (raw data of an event: agression...),
@@ -78,7 +80,7 @@ function htmlDiscussionMessage(message, isJson, pseudo, utcDate, replyNum) {
         // we simply display it.
         // WARNING: the message MUST have been sanitized (by javascript or by the server) 
         // We can't use textContent here, as it would break carriage rutrns, HTML links, etc.
-        tplMessage.querySelector(".text").innerHTML = text2HTML(message);
+        tplMessage.querySelector(".text").innerHTML = strings.text2HTML(message);
     }
     
     return tplMessage;
