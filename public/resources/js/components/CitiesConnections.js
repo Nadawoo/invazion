@@ -154,7 +154,7 @@ class CityConnections {
             else if(Number(zone.dataset.cyclelastvisit) < getCurrentCycle()
                     && _configsBuildings[cityTypeId]["is_explorable"] === 1) {
                 // Icon of an axe
-                html = `<div aria-label="Cette zone peut être fouillée" class="nbr_items pulse animate__animated animate__zoomIn"><span class="icon" aria-hidden="true">&#x26CF;&#xFE0F;</span></div>`;
+                html = `<div aria-label="Cette zone peut être fouillée" class="sharp_bubble diggable animate__animated animate__pulse animate__infinite"><span class="icon" aria-hidden="true">&#x26CF;&#xFE0F;</span></div>`;
             }
             else if(nbrItems > 0) {
                 html = `<span class="nbr_items">${nbrItems}</span>`;
@@ -167,7 +167,7 @@ class CityConnections {
 //                html = `<span class="nbr_items safe">&#x2705;</span>`;
 //            }
             
-            zone.querySelector(".cityframe").insertAdjacentHTML("beforeend", html);
+            zone.querySelector(".cityframe").insertAdjacentHTML("afterbegin", html);
 //        }
     }
     
@@ -200,7 +200,7 @@ class CityConnections {
         }
         else if(cityTypeId === roadConnectionId) {
             // Add the cost in action points above the raod connection
-            let apCost = Math.floor(zone.dataset.zombies/2);
+            let apCost = Math.max(1, Math.floor(zone.dataset.zombies/2));
             htmlNbrDefenses = `<div class="sharp_bubble" aria-label="Traverser cette zone coûte ${apCost} points d'action" style=""><span aria-hidden="true">&nbsp;-${apCost}&#x26A1;</span></div>`;
         }
         else if(cityTypeId === zombieCoreId) {
