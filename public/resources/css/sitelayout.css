@@ -12,13 +12,34 @@ html, body {
 }
 
 header {
+    margin-bottom:0.4rem;
+    padding-bottom:0.5rem;
     display:flex;
-    justify-content: space-between;
+    justify-content:space-between;
+    background: #f0d5c7;
+    border-bottom:1px solid grey;
 }
 header .site_name {
     /* Keep the site name at the first place in the DOM for accessibility, but 
        display it between the menu and help button */
     order:2;
+}
+header h1 {
+    text-align:center;
+    margin:0;
+    font-family:"Courier New";
+    font-weight:bold;
+    font-size:2.5em;
+}
+header h1 a, header h1 a:hover {
+    color:black;
+}
+#slogan {
+    text-align:center;
+    font-weight:bold;
+    font-size:1.1em;
+    letter-spacing:1px;
+    color:grey;
 }
 header .menu_button {
     order:1;
@@ -103,29 +124,6 @@ nav::selection, nav ::selection {
     /* Le fond du contenu de la page doit toujours remplir au minimum toute la hauteur de l'écran.
        Pour fonctionner, nécessite : html,body{ height:100% } */
     min-height:100vh;
-}
-header {
-    background: #f0d5c7;
-    margin-bottom:0.4rem;
-    padding-bottom:0.5rem;
-    border-bottom:1px solid grey;
-}
-header h1 {
-    text-align:center;
-    margin:0;
-    font-family:"Courier New";
-    font-weight:bold;
-    font-size:2.5em;
-}
-header h1 a, header h1 a:hover {
-    color:black;
-}
-#slogan {
-    text-align:center;
-    font-weight:bold;
-    font-size:1.1em;
-    letter-spacing:1px;
-    color:grey;
 }
 
 h2 {
