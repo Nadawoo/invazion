@@ -386,7 +386,7 @@
     /* The top and bottom lines of the square must touch the top and bottom tips 
       of the hexagon */
     height: 46px; /*3rem;*/
-    width: 42px;
+    width: 100%;
     /* Evite que les éventuelles marges intérieures agrandissent le conteneur */
     box-sizing: border-box;
     /* Centre le conteneur horizontalement */
@@ -572,8 +572,6 @@
     content:"";
     position:absolute;
     top:2.2em;
-    width:0;
-    height:0;
     border-left: 0.6em solid transparent;
     border-right:0.6em solid transparent;
     border-top:  1em solid mediumpurple;
