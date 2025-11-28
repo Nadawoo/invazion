@@ -902,7 +902,7 @@ legend {
     border-top-right-radius:0;
     box-shadow:8px 8px 15px black;
     cursor:auto;
-    z-index:2;
+    z-index:30;
 }
 .item_label .details var { /* The icon & name inside the item's tooltip */
     display:flex;

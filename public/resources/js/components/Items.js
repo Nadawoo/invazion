@@ -156,6 +156,10 @@ class Items {
         
         tooltip.classList.add("hidden");
         itemLabel.style.border = null;
+        
+        // Reactivate the scroll previously desactivated by opentooltip()
+        const itemsList = itemLabel.closest("#actions fieldset");
+        itemsList.style.overflow = "auto";
     }
     
     
@@ -174,6 +178,10 @@ class Items {
         
         tooltip.classList.remove("hidden");
         itemLabel.style.border = "4px solid darkred";
+        
+        // Desactivate the scroll while the tooltip is open (to avoid shifting)
+        const itemsList = itemLabel.closest("#actions fieldset");
+        itemsList.style.overflow = "visible";
     }
     
     
@@ -185,21 +193,52 @@ class Items {
      */
     #handleTooltipOverflow(tooltip) {
         
-        let parentList = tooltip.closest(".items_list");
+        const parent = tooltip.closest(".items_list");
+        if (!parent) return;
 
-        let tooltipRect = tooltip.getBoundingClientRect(),
-            parentListRect = parentList.getBoundingClientRect();
+        // Reset previous adjustments (important!)
+        tooltip.style.transform = "";
 
-        // Avoid right overflow
-        let rightGap = parentListRect.right - tooltipRect.right;
-        if(rightGap < 0) {
-            tooltip.style.marginLeft = `${rightGap}px`;
+        const parentRect = parent.getBoundingClientRect();
+        let rect = tooltip.getBoundingClientRect();
+
+        let deltaX = 0;
+        let deltaY = 0;
+
+        // -----------------------------
+        // HORIZONTAL CORRECTION
+        // -----------------------------
+
+        // Overflowing right
+        if (rect.right > parentRect.right) {
+            deltaX = parentRect.right - rect.right - 4; 
         }
-
-        // Avoid bottom overflow
-        let bottomGap = parentListRect.bottom - tooltipRect.bottom;
-        if(bottomGap < 0) {
-            tooltip.style.marginTop = `${bottomGap}px`;
+        // Overflowing left
+        if (rect.left + deltaX < parentRect.left) {
+            deltaX = parentRect.left - rect.left + 4;
         }
+        // Apply both X corrections
+        tooltip.style.transform = `translate(${deltaX}px, 0px)`;
+
+        // Re-measure after those adjustments
+        rect = tooltip.getBoundingClientRect();
+
+        // -----------------------------
+        // VERTICAL CORRECTION
+        // -----------------------------
+        
+        // Overflowing top
+        if (rect.bottom > parentRect.bottom) {
+            deltaY = parentRect.bottom - rect.bottom - 4;
+        }
+        // Overflowing bottom
+        if (rect.top + deltaY < parentRect.top) {
+            deltaY = parentRect.top - rect.top + 4;
+        }
+        // Apply both Y corrections
+        tooltip.style.transform = `translate(${deltaX}px, ${deltaY}px)`;
+
+        // Optional final re-measure if you want to log/debug :
+        // console.log(tooltip.getBoundingClientRect());
     }
 }
