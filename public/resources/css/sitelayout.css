@@ -5,21 +5,29 @@
  */
 
 html, body {
-    /* Indispensable pour que le fond du contenu de la page occupe au minimun 
+    /* Indispensable pour que le fond du contenu de la page occupe au minimum 
        toute la hauteur de l'écran (v. plus bas) */
     height:100%;
     font-size:16px;
 }
 
 header {
+    height:8rem;
     margin-bottom:0.4rem;
-    padding-bottom:0.5rem;
     display:flex;
     justify-content:space-between;
-    background: #f0d5c7;
-    border-bottom:1px solid grey;
+    align-items:center;
+    background:#f0d5c7;
+    background-image:url('/resources/img/copyrighted/banner_city.avif');
+    background-position:40% 65%;
+    border-top:   1px solid grey;
+    border-bottom:2px solid grey;
+    box-shadow:0px 8px 18px black;
 }
 header .site_name {
+    font-size:1.2em;
+    box-shadow:8px 8px 18px black;
+    border-radius:0.5em;
     /* Keep the site name at the first place in the DOM for accessibility, but 
        display it between the menu and help button */
     order:2;
@@ -27,19 +35,26 @@ header .site_name {
 header h1 {
     text-align:center;
     margin:0;
+    padding:0 0.3em;
+    font-size:2.5em;
     font-family:"Courier New";
     font-weight:bold;
-    font-size:2.5em;
+    background:#f0d5c7;
+    border-radius:0.3em 0.3em 0 0;
 }
 header h1 a, header h1 a:hover {
     color:black;
+    border-bottom:1px ridge darkgrey;
 }
 #slogan {
+    padding:0.1em;
     text-align:center;
     font-weight:bold;
-    font-size:1.1em;
+    font-size:0.9em;
     letter-spacing:1px;
+    background:#f0d5c7;
     color:grey;
+    border-radius:0 0 0.3em 0.3em;
 }
 header .menu_button {
     order:1;
@@ -49,17 +64,18 @@ header .help_button {
 }
 
 header a,
-header a:hover  
-{
-    color:slategrey;
+header a:hover {
+    color:#f0d5c7;
 }
 header .menu_button .material-icons,
 header .help_button .material-icons
 {
     margin:0.3em;
-    font-size:2.5em;
+    font-size:2.2em;
     border:1px solid grey;
     border-radius:10%;
+    background:black;
+    box-shadow:8px 8px 18px black;
 }
 
 body {
@@ -119,8 +135,8 @@ nav::selection, nav ::selection {
     margin:auto;
     max-width:52rem;
     background:#fafafa;
-    border-left:3px ridge lightgrey;
-    border-right:3px ridge black;
+    border-left:2px solid grey;
+    border-right:2px solid grey;
     /* Le fond du contenu de la page doit toujours remplir au minimum toute la hauteur de l'écran.
        Pour fonctionner, nécessite : html,body{ height:100% } */
     min-height:100vh;
