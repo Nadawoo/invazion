@@ -1,6 +1,8 @@
-
-class ItemsConfig {
-    
+/**
+ * Methods for the page for creating/editing the game items 
+ * @type type
+ */
+class ItemsConfig {   
     
     /**
     * Returns all the tags present in the table of items, without duplicates
@@ -28,7 +30,8 @@ class ItemsConfig {
 
         return uniqueTagsWithCount;
     }
-
+    
+    
     writeHtmlTagsList(tags) {
         
         let htmlTags = "";
@@ -39,5 +42,3 @@ class ItemsConfig {
         document.querySelector('#tags').innerHTML = htmlTags;
     }
 }
-
-

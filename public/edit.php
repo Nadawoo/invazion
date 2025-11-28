@@ -392,7 +392,7 @@ echo '
 </div>
 
 
-<script type="text/javascript" src="resources/js/ItemsConfig.js?v1"></script>
+<script type="text/javascript" src="resources/js/services/ItemsConfig.js?v1"></script>
 
 <script>
     // Filter the items by tag in the table of items
