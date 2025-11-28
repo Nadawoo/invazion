@@ -125,43 +125,81 @@ class Items {
      * @param {object} event
      * @returns {undefined}
      */
-    toggleDetails(event) {
+    toggleTooltip(event) {
 
-        let itemLabel = event.target.closest(".item_label");
-        var tooltip = itemLabel.querySelector(".details");
+        let itemLabel = event.target.closest(".item_label"),
+            tooltip = itemLabel.querySelector(".details");
         
         // If the item's tooltip is already opened, we just hide it
-        if(!tooltip.classList.contains("hidden")) {
-            tooltip.classList.add("hidden");
-            itemLabel.style.border = null;
+        if (this.#isTooltipOpen(tooltip)) {
+            this.#closeTooltip(tooltip, itemLabel);
             // Avoids instant re-opening of the tooltip, as it is a click in .item_label too
             event.stopPropagation();
         }
         else {
-            // If we want to open a new tooltip, first close all the other open tooltips.
-            let classes = document.querySelectorAll(".item_label .details:not(.hidden)");
-            for (let i=0; i < classes.length; i++) {
-                classes[i].closest(".item_label").style.border = null;
-            }
-            hide(".item_label .details");
+            // If we want to open a new tooltip, first close all the other open tooltips
+            this.#closeAllTooltips();
             // Then, display the intended tooltip
-            tooltip.classList.remove("hidden");
-            itemLabel.style.border = "4px solid darkred";
+            this.#openTooltip(tooltip, itemLabel);
+            this.#handleTooltipOverflow(tooltip);
+        }
+    }
+    
+    
+    #isTooltipOpen(tooltip) {
+        
+        return !tooltip.classList.contains("hidden");
+    }
+    
+    
+    #closeTooltip(tooltip, itemLabel) {
+        
+        tooltip.classList.add("hidden");
+        itemLabel.style.border = null;
+    }
+    
+    
+    #closeAllTooltips() {
+        
+        const visibleTooltips = document.querySelectorAll(".item_label .details:not(.hidden)");
 
-            // Avoid the item's tooltip to overflow the parent container
-            let parentList = tooltip.closest(".items_list");
-            let tooltipRect = tooltip.getBoundingClientRect();
-            let parentListRect = parentList.getBoundingClientRect();
-            // Avoid overflowing on the right
-            let rightGap = parentListRect.right - tooltipRect.right;
-            if(rightGap < 0) {
-                tooltip.style.marginLeft = `${rightGap}px`;
-            }
-            // Avoid overflowing at the bottom
-            let bottomGap = parentListRect.bottom - tooltipRect.bottom;
-            if(bottomGap < 0) {
-                tooltip.style.marginTop = `${bottomGap}px`;
-            }
+        visibleTooltips.forEach(tooltip => {
+            tooltip.classList.add("hidden");
+            tooltip.closest(".item_label").style.border = null;
+        });
+    }
+    
+    
+    #openTooltip(tooltip, itemLabel) {
+        
+        tooltip.classList.remove("hidden");
+        itemLabel.style.border = "4px solid darkred";
+    }
+    
+    
+    /**
+     * Correct the position of the tootip if it owerflows the current box
+     * 
+     * @param {type} tooltip
+     * @returns {undefined}
+     */
+    #handleTooltipOverflow(tooltip) {
+        
+        let parentList = tooltip.closest(".items_list");
+
+        let tooltipRect = tooltip.getBoundingClientRect(),
+            parentListRect = parentList.getBoundingClientRect();
+
+        // Avoid right overflow
+        let rightGap = parentListRect.right - tooltipRect.right;
+        if(rightGap < 0) {
+            tooltip.style.marginLeft = `${rightGap}px`;
+        }
+
+        // Avoid bottom overflow
+        let bottomGap = parentListRect.bottom - tooltipRect.bottom;
+        if(bottomGap < 0) {
+            tooltip.style.marginTop = `${bottomGap}px`;
         }
     }
 }
