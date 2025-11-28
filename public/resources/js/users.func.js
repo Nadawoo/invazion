@@ -25,7 +25,8 @@ async function connectUser() {
     }
     else {
         // Calls the connection API
-        let json = await callApi("POST", "user", `action=connect&email=${email}&password=${password}`);
+        let zombLib = new ZombLib();
+        let json = await zombLib.callApi("POST", "user", `action=connect&email=${email}&password=${password}`);
 
         if (json.metas.error_code !== "success") {
 

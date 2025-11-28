@@ -55,7 +55,8 @@ async function changeCityDoor(value) {
     let cookies = new Cookies(),
         token = cookies.getCookie('token');
     // Execute the action of opening or closing
-    let json = await callApi("GET", "city", `action=${action}&token=${token}`);
+    let zombLib = new ZombLib();
+    let json = await zombLib.callApi("GET", "city", `action=${action}&token=${token}`);
     // Update the GUI after the openng or closing
     if(json.metas.error_code === "success") {
         let oldDoorStatus = (value === true) ? "door_closed" : "door_open";

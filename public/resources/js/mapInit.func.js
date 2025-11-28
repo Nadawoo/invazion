@@ -14,7 +14,8 @@ async function getMapZonesOnce(mapId) {
     if(_jsonMap === null) {
         let cookies = new Cookies(),
             token = cookies.getCookie('token'),
-            json = await callApi("GET", "maps", `action=get&map_id=${mapId}&token=${token}`);
+            zombLib = new ZombLib(),
+            json = await zombLib.callApi("GET", "maps", `action=get&map_id=${mapId}&token=${token}`);
         _jsonMap = json.datas.zones;
     }
     
@@ -29,7 +30,8 @@ async function getMapCitiesOnce(mapId) {
     
     // If the API has already be called before, don't re-call it
     if(_cities === null) {
-        let json = await callApi("GET", "cities", `action=get&map_id=${mapId}`);    
+        let zombLib = new ZombLib();
+        let json = await zombLib.callApi("GET", "cities", `action=get&map_id=${mapId}`);    
         _cities = json.datas;
     }
     
@@ -44,7 +46,8 @@ async function getMapCitizensOnce(mapId) {
     
     // If the API has already be called before, don't re-call it
     if(_citizens === null) {
-        let json = await callApi("GET", "citizens", `action=get&map_id=${mapId}`);    
+        let zombLib = new ZombLib()
+        let json = await zombLib.callApi("GET", "citizens", `action=get&map_id=${mapId}`);    
         _citizens = json.datas;
     }
     

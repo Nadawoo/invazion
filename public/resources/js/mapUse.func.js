@@ -14,17 +14,19 @@ async function updateMapRealtime(event, timestamp) {
     let citizenPseudo = document.getElementById("citizenPseudo").innerHTML,
         citizenId     = document.getElementById("citizenId").innerHTML,
         mapId         = document.getElementById("mapId").innerHTML;
+    let zombLib = new ZombLib();
 
     // If event notified, get the new HTML contents for the modified zones
     let options = { method: "GET",
                     headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
                     };
-    let htmlZones = await fetch("/generators/zone.php?map_id="+mapId+"&newerthan="+timestamp+"&citizen_id="+citizenId+"&citizen_pseudo="+citizenPseudo, options).then(toJson);
+    let response = await fetch(`/generators/zone.php?map_id=${mapId}&newerthan=${timestamp}&citizen_id=${citizenId}&citizen_pseudo=${citizenPseudo}`, options);
+    let htmlZones = await zombLib.toJson(response);
     // Get the citizens in the zone (not included in the main zone datas)
     // TODO: don't call this when not needed:
     //      => needed when a citizen moves to another zone
     //      => NOT needed when a citizen kills a zombie
-    let json = await callApi("GET", "citizens", `action=get&map_id=${mapId}`);   
+    let json = await zombLib.callApi("GET", "citizens", `action=get&map_id=${mapId}`);   
     _citizens = json.datas;
     
     if(htmlZones.metas !== undefined && htmlZones.metas.error_code !== "success") {

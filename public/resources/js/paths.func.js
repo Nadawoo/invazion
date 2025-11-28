@@ -328,7 +328,8 @@ async function submitNewPath(event, controller) {
     let zonesString = zonesList.join('&zones[]=');
     
     // Send the data to the Azimutant's API
-    let json = await callApi("GET", "paths", `action=add&zones[]=${zonesString}&token=${token}`);
+    let zombLib = new ZombLib();
+    let json = await zombLib.callApi("GET", "paths", `action=add&zones[]=${zonesString}&token=${token}`);
     
     // Display the message of result (success or error) in a toast
     displayToast(json.metas.error_message, json.metas.error_class);
@@ -365,7 +366,8 @@ async function addPathMembers(event) {
         citizensString = selectedCitizensIds.join('&citizens_ids[]=');
     
     // Send the data to the Azimutant's API
-    let json = await callApi("GET", "paths", `action=add_members&path_id=${pathId}&citizens_ids[]=${citizensString}&token=${token}`);
+    let zombLib = new ZombLib();
+    let json = await zombLib.callApi("GET", "paths", `action=add_members&path_id=${pathId}&citizens_ids[]=${citizensString}&token=${token}`);
     
     // Display the message of result (success or error) in a toast
     displayToast(json.metas.error_message, json.metas.error_class);
@@ -382,7 +384,8 @@ async function movePath(event) {
     
     let pathId = event.target.querySelector('input[name="params[path_id]"]').value;
     
-    let json = await callApi("GET", "paths", `action=move&path_id=${pathId}`);
+    let zombLib = new ZombLib();
+    let json = await zombLib.callApi("GET", "paths", `action=move&path_id=${pathId}`);
 
     // Display the eventual error in a toast
     if(json.metas.error_code !== "success") {
@@ -421,8 +424,9 @@ function displayPathsPanel() {
 async function activateMapPathsView() {
     
     // Get the datas about the expeditions
+    let zombLib = new ZombLib();
     let mapId = await document.querySelector("#mapId").innerText;
-    let json = await callApi("GET", "paths", "action=get&map_id="+mapId);
+    let json = await zombLib.callApi("GET", "paths", "action=get&map_id="+mapId);
     
     // Draw the course of each expedition on the map
     drawPathsOnMap(json.datas.courses);

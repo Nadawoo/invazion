@@ -213,7 +213,8 @@ async function createItem() {
     }
     
     // Sends the characteristics of the new item to the API
-    let json = await callApi("POST", "configs", `action=create&type=item&token=${token}&${request}`);
+    let zombLib = new ZombLib();
+    let json = await zombLib.callApi("POST", "configs", `action=create&type=item&token=${token}&${request}`);
     
     document.getElementById("error").innerHTML = json.metas.error_message;
 }
@@ -229,7 +230,8 @@ async function addZombiesInZone() {
         coordX = Number(document.querySelector("#gameData #citizenCoordX").innerHTML),
         coordY = Number(document.querySelector("#gameData #citizenCoordY").innerHTML);
     
-    let json = await callApi("GET", "zone", `action=add&stuff=zombies&zones=${coordX}_${coordY}&token=${token}`);
+    let zombLib = new ZombLib();
+    let json = await zombLib.callApi("GET", "zone", `action=add&stuff=zombies&zones=${coordX}_${coordY}&token=${token}`);
     
     displayToast(json.metas.error_message, json.metas.error_class);
 }
@@ -274,7 +276,8 @@ async function updateLandType(landType, coordX, coordY, radius) {
         mapId = document.getElementById("mapId").innerHTML;
     
     // Sends the characteristics of the new item to the API
-    let json = await callApi("GET", "zone", `action=edit&stuff=${landType}&coord_x=${coordX}&coord_y=${coordY}&radius=${radius}&token=${token}`);
+    let zombLib = new ZombLib();
+    let json = await zombLib.callApi("GET", "zone", `action=edit&stuff=${landType}&coord_x=${coordX}&coord_y=${coordY}&radius=${radius}&token=${token}`);
 }
 
 
@@ -289,7 +292,9 @@ async function moveCitizen(direction) {
     // Ask the API for moving the player
     let cookies = new Cookies(),
         token = cookies.getCookie('token');
-    let json = await callApi("GET", "zone", `action=move&to=${direction}&token=${token}`);
+        
+    let zombLib = new ZombLib();
+    let json = await zombLib.callApi("GET", "zone", `action=move&to=${direction}&token=${token}`);
     
     let current_AP = (document.querySelector("#actionPoints").innerText),
         lost_AP    = json.datas.action_points_lost;
@@ -336,7 +341,9 @@ async function teleportToCity(destinationCityId) {
     // Ask the API for teleporting the player
     let cookies = new Cookies(),
         token = cookies.getCookie('token');
-    let json = await callApi("GET", "zone", `action=teleport&to=city&target_id=${destinationCityId}&token=${token}`);
+
+    let zombLib = new ZombLib();
+    let json = await zombLib.callApi("GET", "zone", `action=teleport&to=city&target_id=${destinationCityId}&token=${token}`);
     updateMeAfterMoving(json.datas.new_coord_x, json.datas.new_coord_y);
     
     // Display the result (error or success) in a toast
@@ -349,7 +356,8 @@ async function teleportToCity(destinationCityId) {
 //    let options = { method: "GET",
 //                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
 //                    };            
-//    jsonCityEnclosure = await fetch("/generators/city_enclosure.php?city_id="+cityId+"&map_id="+mapId+"&coord_x="+coordX+"&coord_y="+coordY, options).then(toJson);
+//    let response = await fetch("/generators/city_enclosure.php?city_id="+cityId+"&map_id="+mapId+"&coord_x="+coordX+"&coord_y="+coordY, options);
+//    let jsonCityEnclosure = await zombLib.toJson(response);
 //    document.getElementById("blockHomeStorage").innerHTML = jsonCityEnclosure.datas.html_home_storage;
 //    document.getElementById("blockCityStorage").innerHTML = jsonCityEnclosure.datas.html_city_storage;
 }
@@ -494,7 +502,8 @@ async function killZombies(apiAction) {
         token = cookies.getCookie('token');
 
     // Moves the citizen form the main city to his indivdual home
-    json = await callApi("GET", "zone", "action="+apiAction+"&token="+token);
+    let zombLib = new ZombLib();
+    let json = await zombLib.callApi("GET", "zone", "action="+apiAction+"&token="+token);
     
     // Display the explosion effect on the zone
     document.querySelector("#explosionMe").classList.add("scale-in");
@@ -592,7 +601,9 @@ async function getCyclicAttacks(nbrExecutions) {
     let options = { method: "GET",
                     headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
                     };
-    let htmlElements = await fetch("/generators/log_attacks.php?action=get&type=cyclicattack&sort=desc", options).then(toJson);
+    let zombLib = zombLib();
+    let response = await fetch("/generators/log_attacks.php?action=get&type=cyclicattack&sort=desc", options);
+    let htmlElements = await zombLib.toJson(response);
     
     // Display the log of attacks
     document.getElementById("wallAttacks").innerHTML += htmlElements.join("\n");
@@ -605,7 +616,8 @@ async function getCyclicAttacks(nbrExecutions) {
  */
 async function getLogEvents(htmlContainerId) {
     
-    var json = await callApi("GET", "discuss/threads", "action=get&type=event"),
+    let zombLib = new ZombLib();
+    var json = await zombLib.callApi("GET", "discuss/threads", "action=get&type=event"),
         html = "";
         
     for (let i in json.datas) {
@@ -625,8 +637,9 @@ async function getMyZoneOnce(mapId, coordX, coordY) {
     if(_myZone === null) {
         let cookies = new Cookies(),
             token = cookies.getCookie('token');
-        let htmlCoord = coordX+"_"+coordY,
-            json = await callApi("GET", "maps", `action=get&map_id=${mapId}&token=${token}&zones=${htmlCoord}`);    
+        let zombLib = new ZombLib(),
+            htmlCoord = coordX+"_"+coordY,
+            json = await zombLib.callApi("GET", "maps", `action=get&map_id=${mapId}&token=${token}&zones=${htmlCoord}`);    
         _myZone = json.datas.zones[htmlCoord];
     }
     
@@ -657,7 +670,8 @@ async function dig() {
         popup = document.querySelector("#popsuccess");
     
     // Call the API to dig
-    let json = await callApi("GET", "zone", `action=dig&token=${token}`);
+    let zombLib = new ZombLib();
+    let json = await zombLib.callApi("GET", "zone", `action=dig&token=${token}`);
     
     // Display the result of the digging in pop-up
     popup.classList.add("force_visibility");
@@ -692,7 +706,8 @@ async function exploreBuilding() {
         popupText = "";
     let strings = new Strings();
     
-    let json = await callApi("GET", apiName, `action=${action}&token=${token}`);
+    let zombLib = new ZombLib();
+    let json = await zombLib.callApi("GET", apiName, `action=${action}&token=${token}`);
 
     // Display the result in a pop-up
     if(json.metas.error_code === "success") {
@@ -747,7 +762,8 @@ async function pickupItem(eventSubmitter) {
         itemId = eventSubmitter.value;
     
     // Calls the API to pick up the item
-    let json = await callApi("GET", "zone", `action=pickup&item_id=${itemId}&token=${token}`);
+    let zombLib = new ZombLib();
+    let json = await zombLib.callApi("GET", "zone", `action=pickup&item_id=${itemId}&token=${token}`);
     
     if(json.metas.error_code === "success") {
         // HTML: moves the item from the ground list to the bag list
@@ -781,7 +797,8 @@ async function dropItem(eventSubmitter) {
         itemId = eventSubmitter.value;
     
     // Calls the API to pick up the item
-    let json = await callApi("GET", "zone", `action=drop&item_id=${itemId}&token=${token}`);
+    let zombLib = new ZombLib();
+    let json = await zombLib.callApi("GET", "zone", `action=drop&item_id=${itemId}&token=${token}`);
     
     if(json.metas.error_code === "success") {
         // HTML: moves the item from the ground list to the bag list
@@ -1136,7 +1153,9 @@ async function switchToCitizen(targetCitizenId) {
     
     let cookies = new Cookies(),
         token = cookies.getCookie('token');
-    let json = await callApi("GET", "me", `action=switch_citizen&target_id=${targetCitizenId}&token=${token}`);
+        
+    let zombLib = new ZombLib();
+    let json = await zombLib.callApi("GET", "me", `action=switch_citizen&target_id=${targetCitizenId}&token=${token}`);
     
     // Update the cookie to write the token corresponding to the now-controlled citizen 
     if(json.metas.error_code === "success") {

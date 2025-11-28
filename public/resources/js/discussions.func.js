@@ -16,8 +16,9 @@
  */
 async function callDiscussionApiOnce(topicType, refresh=false) {
     
-    if (_jsonDiscussionApi === null || refresh === true) {        
-        _jsonDiscussionApi = await callApi("GET", "discuss/threads", "action=get&sort=last_message_date&fullmsg=1&type="+topicType);
+    if (_jsonDiscussionApi === null || refresh === true) {
+        let zombLib = new ZombLib();
+        _jsonDiscussionApi = await zombLib.callApi("GET", "discuss/threads", "action=get&sort=last_message_date&fullmsg=1&type="+topicType);
     }
     return _jsonDiscussionApi;
 }
@@ -43,7 +44,8 @@ async function initiateDiscussTab() {
  */
 async function loadDiscussion(topicId) {
     
-    var json = await callApi("GET", "discuss/threads", `action=get&topic_id=${topicId}`),
+    let zombLib = new ZombLib();
+    var json = await zombLib.callApi("GET", "discuss/threads", `action=get&topic_id=${topicId}`),
         messages = json["datas"]["messages"],
         i = 0;
     
@@ -70,11 +72,12 @@ async function createDiscussion() {
         unsafeMessage = document.getElementById("messageNew").value,
         guest_pseudo  = document.getElementById("guestPseudo").value,
         author_pseudo = document.getElementById("citizenPseudo").innerHTML;
-    let strings = new Strings(),
+    let zombLib = new ZombLib(),
+        strings = new Strings(),
         cookies = new Cookies(),
         token   = cookies.getCookie('token');
     
-    let json = await callApi("POST", "discuss/threads", `action=create&title=${title}&message=${unsafeMessage}&guest_pseudo=${guest_pseudo}&token=${token}`);
+    let json = await zombLib.callApi("POST", "discuss/threads", `action=create&title=${title}&message=${unsafeMessage}&guest_pseudo=${guest_pseudo}&token=${token}`);
     
     let topicId = json.datas.topic_id;    
     // We sanitize the user's message with javascipt, as it has not been 
@@ -117,11 +120,12 @@ async function replyDiscussion(topicId, nbrMessages) {
     let thread = document.querySelector(`#topic${topicId}`),
         citizenPseudo = document.getElementById("citizenPseudo").innerHTML,
         unsafeMessage  = document.querySelector(`#topic${topicId} textarea`).value;
-    let strings = new Strings(),
+    let zombLib = new ZombLib(),
+        strings = new Strings(),
         cookies = new Cookies(),
         token = cookies.getCookie('token');
         
-    let json = await callApi("POST", "discuss/threads", `action=reply&topic_id=${topicId}&message=${unsafeMessage}&token=${token}`);
+    let json = await zombLib.callApi("POST", "discuss/threads", `action=reply&topic_id=${topicId}&message=${unsafeMessage}&token=${token}`);
     
     // We sanitize the user's message with javascipt, as it has not been 
     // sanitized by the server in this specific case.
@@ -178,7 +182,8 @@ function toggleSendform(event) {
  */
 async function urlDiscussion(discussionId, messageId="") {
     
-    return await getOfficialServerRoot()+'/discuss/topic?topic='+discussionId+'#msg'+messageId;
+    let zombLib = new ZombLib();
+    return await zombLib.getOfficialServerRoot()+'/discuss/topic?topic='+discussionId+'#msg'+messageId;
 }
 
 
