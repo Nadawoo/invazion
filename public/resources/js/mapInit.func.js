@@ -158,11 +158,12 @@ async function addCitiesOnMap(mapId, htmlCoords=null) {
  */
 async function displayItemOnMap(itemId) {
     
+    let items = new Items();
     let itemCoords = getItemCoords(itemId);
     
     for(let coords of Object.values(await itemCoords)) {
-        let img = image(itemId, 38);
-        document.querySelector(`#map_body #zone${coords} .square_container`).insertAdjacentHTML('afterBegin', `<div style="position:absolute;top:-0.1rem;font-size:1.9em;">${img}</div>`);
+        let itemIcon = items.icon(_configsItems[itemId], 38);
+        document.querySelector(`#map_body #zone${coords} .square_container`).insertAdjacentHTML('afterBegin', `<div style="position:absolute;top:-0.1rem;font-size:1.9em;">${itemIcon}</div>`);
     }
 }
 

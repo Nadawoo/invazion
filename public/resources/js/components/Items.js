@@ -29,7 +29,7 @@ class Items {
 
         // Gets a blank HTML template of an item entry
         let template = document.querySelector("#tplItem").content.cloneNode(true);
-        let icon = this.#itemIcon(itemCaracs['icon_path'], itemCaracs['icon_symbol']),
+        let icon = this.icon(itemCaracs['icon_path'], itemCaracs['icon_symbol']),
             itemTypeClass = null,
             bgColor = "";
 
@@ -99,13 +99,15 @@ class Items {
      *                         as returned by the "configs" API of Azimutant
      * @param {string} iconSymbol The code for the HTML icon (&#...), 
      *                          as returned by the "configs" API of Azimutant
+     * @param {int} height The dimensions to resize the image
      * @returns {string} HTML for the icon (<img> tag HTML symbol)
      */
-    #itemIcon(iconPath, iconSymbol) {
+    icon(iconPath, iconSymbol, height=null) {
 
         if(iconPath !== null) {
             // If an image file is set (PNG, GIF, display it as icon
-            return `<img src="../resources/img/${iconPath}" alt="${iconSymbol}">`;
+            let dimensions = (height !== null) ? `height="${height}" width="${height}"`  : "";
+            return `<img src="../resources/img/${iconPath}" ${dimensions}>`;
         }
         else if(iconSymbol !== null) {
             // If there is no file but a HTML symbol, display it as icon
