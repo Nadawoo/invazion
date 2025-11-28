@@ -24,11 +24,11 @@ class HtmlItem {
         
         return '
             <template id="tplItem">
-                <li class="item_label z-depth-2" onclick="toggleItem(event)">
+                <li class="item_label z-depth-2" onclick="items = new Items(); items.toggleDetails(event)">
                     <var class="icon" aria-label="{item_name}">{icon}</var>
                     <div class="dot_number z-depth-1 hidden">?</div>
                     <div class="details hidden">
-                        <a class="close" onclick="toggleItem(event)">
+                        <a class="close" onclick="items = new Items(); items.toggleDetails(event)">
                             <i class="material-icons">close</i>
                         </a>
                         <var><span class="icon">{icon}</span>&nbsp;<span class="item_name">{item_name}</span></var>
@@ -226,11 +226,11 @@ class HtmlItem {
         
         return '
             <li class="item_label z-depth-2">
-                <var onclick="toggleItem(event)">
+                <var onclick="items = new Items(); items.toggleDetails(event)">
                     '.$item_image.'
                 </var>
                 <div class="details hidden">
-                    <a class="close" onclick="toggleItem(event)">
+                    <a class="close" onclick="items = new Items(); items.toggleDetails(event)">
                         <i class="material-icons">close</i>
                     </a>
                     <var>'.$item_image.'&nbsp;'.$item_caracs['name'].'</var>

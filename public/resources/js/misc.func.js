@@ -541,53 +541,6 @@ async function killZombies(apiAction) {
 
 
 /**
- * Display/hide the tootip of an item by clicking on its icon
- * 
- * @param {object} event
- * @returns {undefined}
- */
-function toggleItem(event) {
-    
-    let itemLabel = event.target.closest(".item_label");
-    var tooltip = itemLabel.querySelector(".details");
-    // If the item's tooltip is already opened, we just hide it
-    
-    if(!tooltip.classList.contains("hidden")) {
-        tooltip.classList.add("hidden");
-        itemLabel.style.border = null;
-        // Avoids instant re-opening of the tooltip, as it is a click in .item_label too
-        event.stopPropagation();
-    }
-    else {
-        // If we want to open a new tooltip, first close all the other open tooltips.
-        let classes = document.querySelectorAll(".item_label .details:not(.hidden)");
-        for (let i=0; i < classes.length; i++) {
-            classes[i].closest(".item_label").style.border = null;
-        }
-        hide(".item_label .details");
-        // Then, display the intended tooltip
-        tooltip.classList.remove("hidden");
-        itemLabel.style.border = "4px solid darkred";
-        
-        // Avoid the item's tooltip to overflow the parent container
-        let parentList = tooltip.closest(".items_list");
-        let tooltipRect = tooltip.getBoundingClientRect();
-        let parentListRect = parentList.getBoundingClientRect();
-        // Avoid overflowing on the right
-        let rightGap = parentListRect.right - tooltipRect.right;
-        if(rightGap < 0) {
-            tooltip.style.marginLeft = `${rightGap}px`;
-        }
-        // Avoid overflowing at the bottom
-        let bottomGap = parentListRect.bottom - tooltipRect.bottom;
-        if(bottomGap < 0) {
-            tooltip.style.marginTop = `${bottomGap}px`;
-        }
-    }
-}
-
-
-/**
  * Gets the log of attacks with the API and write it in the communications panel
  */
 async function getCyclicAttacks(nbrExecutions) {
