@@ -165,7 +165,6 @@
 #attack_bar {
     position:relative;
     display:flex;
-    align-items:end;
     justify-content:space-between;
     max-height:3.5rem;
     margin-top:-55px;
@@ -184,23 +183,22 @@
     display:flex;
     justify-content:center;
     align-items: center;
-    height:3.2rem;
+    height:2.9rem;
     background:none;
     border:2px outset lightslategrey;
+    border-radius:0.5em;
     color:white;
-    box-shadow: 3px 3px 5px black;
-}
-#appMenu,
-#showWall {
-    opacity: 0.8;
+    box-shadow:3px 3px 5px black;
+    opacity:0.8;
 }
 #appMenu {
-    width: 3.2rem; /* Equal to the height */
-    border-radius:50%;
+    width:2.9rem; /* Equal to the height */
+}
+#appMenu .icon {
+    display:flex;
 }
 #appMenu .material-icons {
-    font-size: 1.8em;
-    margin-top:0.2em;
+    font-size:1.8em;
 }
 #tuto_dayclock {
     display:flex;
@@ -260,7 +258,6 @@ a#dayclock {
 }
 #showWall {
     padding:0 0.3rem;
-    border-radius:2em;
 }
 #showWall .icon {
     font-size:2em;
