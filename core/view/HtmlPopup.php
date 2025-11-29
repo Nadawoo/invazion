@@ -122,7 +122,7 @@ class HtmlPopup
             <hr>
             <h3>Quand pourra-t-on y jouer ?</h3>
             <p>Le jeu est en développement actif. Une première version
-            alpha jouable est prévue pour <strong>fin 2024</strong>.
+            alpha jouable est prévue pour <strong>2026</strong>.
             Rejoignez 
             <strong><a href=\"https://discord.gg/2GRPTyM\">le Discord d'Azimutant</a></strong>
             pour suivre son avancement !</p>
