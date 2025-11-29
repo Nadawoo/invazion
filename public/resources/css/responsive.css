@@ -28,6 +28,14 @@
 }
 
 @media (max-width:575px) {
+    header {
+        height:initial; /* Smaller banner */
+        padding:0.5rem 0;
+        border-top:none;
+    }
+    header .site_name {
+        font-size:initial; /* Avoid banner overflow on small screens */
+    }
     #page_container {
         border:none;
     }

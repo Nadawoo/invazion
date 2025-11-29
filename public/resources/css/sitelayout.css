@@ -17,7 +17,6 @@ header {
     display:flex;
     justify-content:space-between;
     align-items:center;
-    background:#f0d5c7;
     background-image:url('/resources/img/copyrighted/banner_city.avif');
     background-position:40% 65%;
     border-top:   1px solid grey;
@@ -25,9 +24,17 @@ header {
     box-shadow:0px 8px 18px black;
 }
 header .site_name {
-    font-size:1.2em;
-    box-shadow:8px 8px 18px black;
-    border-radius:0.5em;
+    padding:0 1em;
+    font-size:1.1em;
+    background:#f0d5c7;
+    background: linear-gradient(to bottom,
+                                lightgrey 0%,
+                                grey 65%,
+                                lightgrey 100%
+                                );
+    border:2px solid white;
+    border-radius:5em;
+    box-shadow:0px 0px 500px 1px orange;
     /* Keep the site name at the first place in the DOM for accessibility, but 
        display it between the menu and help button */
     order:2;
@@ -39,8 +46,6 @@ header h1 {
     font-size:2.5em;
     font-family:"Courier New";
     font-weight:bold;
-    background:#f0d5c7;
-    border-radius:0.3em 0.3em 0 0;
 }
 header h1 a, header h1 a:hover {
     color:black;
@@ -52,9 +57,7 @@ header h1 a, header h1 a:hover {
     font-weight:bold;
     font-size:0.9em;
     letter-spacing:1px;
-    background:#f0d5c7;
-    color:grey;
-    border-radius:0 0 0.3em 0.3em;
+    color:dimgrey;
 }
 header .menu_button {
     order:1;
@@ -65,16 +68,17 @@ header .help_button {
 
 header a,
 header a:hover {
-    color:#f0d5c7;
+    color:lightgrey;
 }
 header .menu_button .material-icons,
 header .help_button .material-icons
 {
     margin:0.3em;
-    font-size:2.2em;
-    border:1px solid grey;
-    border-radius:10%;
-    background:black;
+    padding:0.1em;
+    font-size:2em;
+    border:2px outset lightslategrey;
+    border-radius:0.2em;
+    background:linear-gradient(to top, #17202A, #34495E);
     box-shadow:8px 8px 18px black;
 }
 

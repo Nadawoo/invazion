@@ -9,8 +9,9 @@
     overflow-x:hidden;
     overflow-y:hidden; /*scroll;*/
     font-size:1.05em;
-    border-radius:0.5em;
     background:black;
+    border-top:1px solid grey;
+    border-radius:0.5em;
     box-shadow:0px 8px 18px black;
     /* Pour que la largeur de la ville en surimpression soit calculée 
        par rapport celle la carte et pas à celle de la page */
