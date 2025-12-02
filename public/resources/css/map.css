@@ -556,7 +556,7 @@
 /* Cost in action points on the road connections occupied by zombies */
 #map_body .sharp_bubble {
     position:absolute;
-    top:-2.7em;
+    top:-2.5em;
     display:flex;
     justify-content:center;
     align-items:center;
@@ -764,13 +764,12 @@
     pointer-events:none;
 }
 #mapSvg line {
-    stroke:white;
-    stroke-width:4px;
-    /*stroke-linecap:round;*/
+    stroke:#2B1F1F;
+    stroke-width:10px;
 }
 #mapSvg .animated-line {
-    stroke-width:3px;
-    /*stroke-dasharray:5,5;*/
+    stroke-width:1px;
+    stroke-dasharray:5,5;
     /*animation:dash-animation 1s linear infinite;*/
 }
 @keyframes dash-animation {
@@ -780,7 +779,7 @@
 }
 
 #mapSvg .defenses.animated-line {
-    stroke:darkslategrey;
+    stroke:darkgrey;
 }
 #mapSvg .zombie_core {
     stroke-width:10px;
