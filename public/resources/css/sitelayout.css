@@ -46,7 +46,9 @@ header h1 {
     font-family:"Courier New";
     font-weight:bold;
 }
-header h1 a, header h1 a:hover {
+header h1 a,
+header h1 a:hover {
+    font-size:0.9em;
     color:black;
     border-bottom:1px ridge darkgrey;
 }
