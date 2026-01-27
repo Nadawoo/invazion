@@ -619,7 +619,7 @@
                         );
 }
 #map_body .submerged .zombies {
-    outline:2px outset red;
+    outline:3px outset red;
     background: radial-gradient(circle at 50% 50%,
                                 rgba(255, 0, 0, 0), 
                                 rgba(255, 0, 0, 0) 20%,
@@ -635,7 +635,7 @@
     top:8px;
     left:-12px;
     width:3.5em;
-    border:1px outset red;
+    border:2px outset red;
     z-index:-1;
     transform:rotate(45deg);
 }
