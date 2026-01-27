@@ -307,8 +307,12 @@ class CityConnections {
             );
         }
         
-        // If the city is definitively submerged by the zombies
-        if(nbrZombies > cityDefenses) {
+        // If the city is occupied by the zombies
+        if(nbrZombies > 1 && nbrZombies > cityDefenses) {
+            // Make the red circle bigger as the zombies are numerous in the zone
+            let scale = 0.7 + Math.min(0.9, Math.floor(nbrZombies/2)*0.1);
+            scale = Math.min(1.3, scale);
+            hexagon.querySelector(".zombies").style.transform = `scale(${scale})`;
             hexagon.classList.add("submerged");
         }
     }

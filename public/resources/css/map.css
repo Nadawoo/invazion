@@ -618,12 +618,13 @@
                         rgba(0, 0, 0, 0) 50%
                         );
 }
-#map_body .submerged .cityframe .frame {
+#map_body .submerged .zombies {
     outline:2px outset red;
     background: radial-gradient(circle at 50% 50%,
                                 rgba(255, 0, 0, 0), 
                                 rgba(255, 0, 0, 0) 20%,
                                 rgba(139, 0, 0, 1) 80%);
+    border-radius:1em;
 }
 #map_body .submerged .nbr_defenses {
     top:0.8em;
