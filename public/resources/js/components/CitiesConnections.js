@@ -154,7 +154,19 @@ class CityConnections {
             else if(Number(zone.dataset.cyclelastvisit) < getCurrentCycle()
                     && _configsBuildings[cityTypeId]["is_explorable"] === 1) {
                 // Icon of an axe
-                html = `<div aria-label="Cette zone peut être fouillée" class="sharp_bubble diggable animate__animated animate__pulse animate__infinite"><span class="icon" aria-hidden="true">&#x26CF;&#xFE0F;</span></div>`;
+                // <div class="sharp_bubble ..." aria-label="..."></div>
+                const div = document.createElement('div');
+                div.className = 'sharp_bubble diggable animate__animated animate__pulse animate__infinite';
+                div.setAttribute('aria-label', 'Cette zone peut être fouillée');
+                // <span class="icon" aria-hidden="true"></span>
+                const span = document.createElement('span');
+                span.className = 'icon';
+                span.setAttribute('aria-hidden', 'true');
+                div.appendChild(span);
+                // Add the icon of an axe inside the <span>
+                span.append("⛏️");
+                // Add the bubble for digging above the city
+                zone.querySelector(".cityframe").appendChild(div);
             }
             else if(nbrItems > 0) {
                 html = `<span class="nbr_items">${nbrItems}</span>`;
