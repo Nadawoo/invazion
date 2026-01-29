@@ -579,19 +579,27 @@
 }
 /* Marker over the diggable buildings on the map */
 #map_body .sharp_bubble.diggable {
-    height:2.1em;
-    width: 2.1em;
+    height:auto;
+    width:auto;
+    padding:1px;
     background:royalblue;
     border:2px solid aliceblue;
-    border-radius:0.3em;
+    border-radius:4px;
     text-shadow:black 1px 1px 1px;
-}
-#map_body .sharp_bubble.diggable::after {
-    top:1.9em;
-    border-top-color:aliceblue;
+    z-index:2;
 }
 #map_body .diggable .icon {
-    font-size:1.2em;
+    display:flex;
+    align-items:center;
+    height: 100%;
+    margin:1px;
+    padding:2px;
+    background:aliceblue;
+    border-radius:2px;
+    font-size:1.2em; /* Applies when the icon is an emoji */
+}
+#map_body .sharp_bubble.diggable::after {
+    border-top-color:aliceblue;
 }
 #map_body .submerged .diggable {
     display:none;
@@ -632,7 +640,7 @@
 #map_body .submerged .nbr_defenses:before {
     content:"";
     position:absolute;
-    top:8px;
+    top:6px;
     left:-12px;
     width:3.5em;
     border:2px outset red;
@@ -934,9 +942,10 @@
 }
 #map_body .map_citizen .nbr_defenses { /* Pseudo of the player on the map */
     width:6em;
-    margin-top:-30px;
-    background:lightgreen;
-    border:1px solid lightgrey;
+    margin-top:-33px;
+    background:aliceblue;
+    border:2px solid green;
+    outline:1px solid white;
     color:revert;
     overflow:hidden;
 }

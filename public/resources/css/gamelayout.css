@@ -845,6 +845,7 @@ legend {
     width: 3.3em;
     background:lightgrey;
     border:3px solid white;
+    outline:1px solid darkgrey;
     border-radius:0.5em;
     cursor:pointer;
 }
