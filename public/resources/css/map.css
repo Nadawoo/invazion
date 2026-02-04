@@ -562,12 +562,13 @@
     align-items:center;
     height:2.5em;
     width: 2.5em;
-    font-size:0.7em;
+    font-size:0.75em;
     border-radius:50%; /*0.5em;*/
     background:#6E11B0;
     border:2px solid mediumpurple;
     color:white;
     box-shadow:4px 4px 6px black;
+    z-index:1;
 }
 #map_body .sharp_bubble::after {
     content:"";

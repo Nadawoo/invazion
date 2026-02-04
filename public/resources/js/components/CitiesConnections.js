@@ -153,6 +153,41 @@ class CityConnections {
             if(Number(zone.dataset.cyclelastvisit) === 0) {
                 html = "";
             }
+            // If the building is a construction requiring components
+            else if(cityTypeId in _configsBuildingsComponents) {    
+                // Icons of the items required for building
+                const htmlFindableItems = Object.keys(_configsBuildingsComponents[cityTypeId])
+                                            .map(id => {
+                                                id = Number(id);
+                                                
+                                                if(!_configsItems[id]) {
+                                                    var item_name = "Objet inconnu",
+                                                        icon_path = null,
+                                                        icon_symbol = null;
+                                                } else {
+                                                    var item_name = _configsItems[id]["name"],
+                                                        icon_path = _configsItems[id]["icon_path"],
+                                                        icon_symbol = _configsItems[id]["icon_symbol"];
+                                                }
+                                                
+                                                return `
+                                                <span class="icon" arial-label="${item_name}">
+                                                    ${htmlItems.icon(icon_path, icon_symbol, 18)}
+                                                </span>
+                                                `;
+                                            })
+                                            .join('');
+                                    
+                // <div class="sharp_bubble ..." aria-label="..."></div>
+                const div = document.createElement('div');
+                div.className = 'sharp_bubble diggable animate__animated animate__pulse animate__infinite';
+                div.setAttribute('aria-label', 'Liste des composants requis pour construire ce bâtiment');
+                div.style.background = "orangered";
+                div.innerHTML = `🛠️&nbsp; ${htmlFindableItems}`;
+                // Add the bubble for digging above the city
+                zone.querySelector(".cityframe").appendChild(div);
+            }
+            // If the building is explorable
             else if(Number(zone.dataset.cyclelastvisit) < getCurrentCycle()
                     && _configsBuildings[cityTypeId]["is_explorable"] === 1) {
                 
