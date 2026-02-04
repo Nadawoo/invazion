@@ -141,6 +141,10 @@
     margin:auto;
 }
 
+.popup .block_ground_items .items_list {
+    margin:1em;
+}
+
 .popup .block_plans .cards {
     display:flex;
     justify-content:space-between;

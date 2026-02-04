@@ -27,7 +27,7 @@ class BuildingPopup {
             toggleCityframesView();
         }
         else if(cityTypeId !== "") {
-            this.populateBuildingPopup(cityId, cityTypeId, dataset.zombies, dataset.cyclelastvisit);
+            this.populateBuildingPopup(cityId, cityTypeId, dataset.zombies, mapId, dataset.coordx, dataset.coordy);
             window.location.href = "#popsuccess";
             listenToTeleportButton();
         }
@@ -41,7 +41,7 @@ class BuildingPopup {
      * @param {int} cityTypeId The ID of the building, as returned by the Azimutant's API
      * @returns {undefined}
      */
-    populateBuildingPopup(cityId, cityTypeId, nbrZombiesInZone, cycleLastVisit) {
+    populateBuildingPopup(cityId, cityTypeId, nbrZombiesInZone, mapId, coordX, coordY) {
         
         let building = _configsBuildings[cityTypeId];
         let findableItems = (_configsBuildingsFindableItems[cityTypeId] !== undefined) ? _configsBuildingsFindableItems[cityTypeId] : [];
@@ -86,7 +86,10 @@ class BuildingPopup {
                 popup.querySelector(".items_list").prepend(htmlItems.item(itemId, _configsItems[itemId]));
             }
 //        }
-
+        
+        // Add the ground items in the popup
+        htmlItems.populateList(".block_ground_items .items_list", mapId, coordX, coordY);
+        
         // Add the line of zombies after the last invaded module
         let lastInvadedModuleId = this.getLastInvadedModuleId(nbrZombiesInZone);
         this.markInactiveModules(popup, lastInvadedModuleId);

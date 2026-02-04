@@ -322,3 +322,26 @@ div.center {
 .pointer {
     cursor:pointer;
 }
+
+/* Indicates that loading is in progress.
+ * Don't forget the appropriate aria tags for accessibility:
+ * <p class="loader" aria-busy="true" aria-live="polite">Chargement…</p>
+ */
+.loader {
+    display:inline-flex;
+    align-items:center;
+    gap:0.5em;
+    color:grey;
+}
+.loader::before {
+    content: "";
+    width: 1em;
+    height: 1em;
+    border: 2px solid darkgrey;
+    border-top-color: darkslategrey;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}

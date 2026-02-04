@@ -557,6 +557,12 @@ class HtmlPopup
                     <p><strong>&#x2705; Vous avez déjà exploré ce bâtiment aujourd\'hui.</strong></p>
                 </div>
             </div>
+            <div class="block_ground_items frame z-depth-2">
+                <h3 class="z-depth-1">Objets au sol</h3>
+                <ul class="items_list">
+                    <li class="loader" aria-busy="true" aria-live="polite">Chargement…</li>
+                </ul>
+            </div>
             <div class="block_modules frame z-depth-2">
                 <div onclick="this.querySelector(\'.help\').classList.toggle(\'hidden\')">
                     <h3 class="z-depth-1">Modules <a>[?]</a></h3>

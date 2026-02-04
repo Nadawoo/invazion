@@ -1,6 +1,31 @@
 class Items {
     
     /**
+     * Add the items inside a <ul class="items_list"></ul>
+     * 
+     * @param {string} domSelector The unique DOM selector of the block to populate.
+     *                             Ex: "#ground .items_list"
+     * @param {int} mapId
+     * @param {int} coordX
+     * @param {int} coordY
+     * @returns {undefined}
+     */
+    async populateList(domSelector, mapId, coordX, coordY) {
+        
+        const cookies = new Cookies(),
+              token = cookies.getCookie('token');
+        const zombLib = new ZombLib(),
+              htmlCoord = coordX+"_"+coordY;
+        
+        const json = await zombLib.callApi("GET", "maps", `action=get&map_id=${mapId}&token=${token}&zones=${htmlCoord}`);    
+        const zone = json.datas.zones[htmlCoord];
+        
+        populateItemsList(domSelector, zone.items);
+        hide(`${domSelector} .loader`);
+    }
+    
+    
+    /**
      * Builds the complete HTML to display an item (icon inside a square and with 
      * an explicative pop-up when clicking on it)
      * 
