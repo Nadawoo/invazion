@@ -580,26 +580,24 @@
 }
 /* Marker over the diggable buildings on the map */
 #map_body .sharp_bubble.diggable {
-    height:auto;
     width:auto;
-    padding:1px;
+    padding:0 1px;
     background:royalblue;
-    border:2px solid aliceblue;
+    border:1px solid aliceblue;
     border-radius:4px;
     text-shadow:black 1px 1px 1px;
     z-index:2;
 }
 #map_body .diggable .icon {
-    display:flex;
-    align-items:center;
-    height: 100%;
-    margin:1px;
+    height:25px;
+    margin:0 1px;
     padding:2px;
     background:aliceblue;
     border-radius:2px;
-    font-size:1.2em; /* Applies when the icon is an emoji */
+    font-size:1.3em; /* Applies when the icon is an emoji */
 }
 #map_body .sharp_bubble.diggable::after {
+    top:2.3em;
     border-top-color:aliceblue;
 }
 #map_body .submerged .diggable {

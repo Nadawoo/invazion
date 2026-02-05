@@ -145,7 +145,8 @@ class CityConnections {
             let htmlCoords = cityCoordX+"_"+cityCoordY,
                 zone = document.querySelector("#zone"+htmlCoords+" .square_container"),
                 nbrItems = zone.dataset.items,
-                cityTypeId = Number(zone.dataset.citytypeid);
+                cityTypeId = Number(zone.dataset.citytypeid),
+                icon_size = 22;
                 
             let htmlItems = new Items();
             
@@ -172,7 +173,7 @@ class CityConnections {
                                                 
                                                 return `
                                                 <span class="icon" arial-label="${item_name}">
-                                                    ${htmlItems.icon(icon_path, icon_symbol, 18)}
+                                                    ${htmlItems.icon(icon_path, icon_symbol, icon_size)}
                                                 </span>
                                                 `;
                                             })
@@ -195,7 +196,7 @@ class CityConnections {
                 const htmlFindableItems = _configsBuildingsFindableItems[cityTypeId]
                                             .map(id => `
                                                 <span class="icon">
-                                                    ${htmlItems.icon(_configsItems[id]["icon_path"], _configsItems[id]["icon_symbol"], 18)}
+                                                    ${htmlItems.icon(_configsItems[id]["icon_path"], _configsItems[id]["icon_symbol"], icon_size)}
                                                 </span>
                                             `)
                                             .join('');
