@@ -170,6 +170,10 @@
     the background of the block */
     z-index:1;
 }
+.city_block .items_list {
+    margin:0;
+}
+
 /* Button to hide all the city blocks */
 .city_row>.close {
     top:4.5em;

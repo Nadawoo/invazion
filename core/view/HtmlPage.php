@@ -11,7 +11,7 @@ class HtmlPage
     // Increment those variables when you modify the CSS or JS files. This ensures
     // that the users' browsers reload the up-to-date files, instead of using 
     // the obsolete ones stored in their cache.
-    private $css_js_version = 94;
+    private $css_js_version = 95;
     
     /**
      * Sets HTTP headers to secure the website
@@ -95,6 +95,7 @@ class HtmlPage
                 <link rel="stylesheet" type="text/css" href="resources/css/gamelayout.css?v'.$this->css_js_version.'" rel="preload" as="style">
                 <link rel="stylesheet" type="text/css" href="resources/css/map.css?v'.$this->css_js_version.'">
                 <link rel="stylesheet" type="text/css" href="resources/css/paths.css?v'.$this->css_js_version.'">
+                <link rel="stylesheet" type="text/css" href="resources/css/items.css?v'.$this->css_js_version.'">
                 <link rel="stylesheet" type="text/css" href="resources/css/smartphone.css?v'.$this->css_js_version.'">
                 <link rel="stylesheet" type="text/css" href="resources/css/city.css?v'.$this->css_js_version.'">
                 <link rel="stylesheet" type="text/css" href="resources/css/cityiso.css?v'.$this->css_js_version.'">
