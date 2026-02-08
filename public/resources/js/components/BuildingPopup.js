@@ -93,21 +93,24 @@ class BuildingPopup {
         // Add the items required for building the construction
         if(_configsBuildingsComponents[cityTypeId] !== "undefined") {
             const { 23:_, ...buildingComponentsButAp } = _configsBuildingsComponents[cityTypeId];        
-            const componentsFragment = document.createDocumentFragment();
+            
             Object.entries(buildingComponentsButAp).forEach(
                 ([itemId, amount]) => {
+                    const tplItemTableRow = document.querySelector("#tplItemTableRow").content.cloneNode(true);
+                    // Name of the item
+                    tplItemTableRow.querySelector(".item_name").innerText = `❌ ${_configsItems[itemId]["name"]}`;
                     // Repeat the item if required in multiple copies
                     for(let i = 0; i < amount; i++) {
-                        componentsFragment.appendChild(
+                        tplItemTableRow.querySelector(".items_list").appendChild(
                             htmlItems.item(itemId, _configsItems[itemId], 1, true)
                         );
                     }
+                    popup.querySelector(".block_construction .components tbody").appendChild(tplItemTableRow);
                 }
             );
-            popup.querySelector(".block_construction .items_list").appendChild(componentsFragment);
-        
+            
             // Hide the "Loading..." bar
-            popup.querySelector(".block_construction .items_list .loader").remove();
+            popup.querySelector(".block_construction .components .loader").remove();
         }
         
         

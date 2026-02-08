@@ -559,9 +559,23 @@ class HtmlPopup
             </div>
             <div class="block_construction frame z-depth-2">
                 <p><strong>Ce bâtiment doit être réparé pour être utilisable. Objets requis :</strong></p>
-                <ul class="items_list">
-                    <li class="loader" aria-busy="true" aria-live="polite">Chargement…</li>
-                </ul>
+                <table class="components">
+                    <tbody>
+                        <tr class="loader" aria-busy="true" aria-live="polite">
+                            <td>Chargement…</td>
+                        </tr>
+
+                        <template id="tplItemTableRow">
+                            <tr>
+                                <td class="item_name"></td>
+                                <td class="item_occurrencies">
+                                    <ul class="items_list"></ul>
+                                </td>
+                            </tr>
+                        </template>
+                        
+                    </tbody>
+                </table>
             </div>
             <div class="block_ground_items frame z-depth-2">
                 <p><strong>Objets au sol :</strong></p>

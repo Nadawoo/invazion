@@ -145,6 +145,21 @@
     margin:1em;
 }
 
+.popup .block_construction .item_name {
+    width:7em;
+    font-weight:bold;
+}
+
+.popup .components {
+    margin:0 0.5em 1em 0.1em;
+}
+.popup .components tr {
+    border:none;
+}
+.popup .components .items_list {
+    margin:auto;
+}
+
 .popup .block_plans .cards {
     display:flex;
     justify-content:space-between;

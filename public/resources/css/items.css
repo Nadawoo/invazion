@@ -46,7 +46,7 @@
     background:none;
 }
 .item_label var[disabled] {
-    opacity:0.4;
+    opacity:0.3;
 }
 .item_label img {
     height:32px;
