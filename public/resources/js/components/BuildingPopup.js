@@ -90,6 +90,27 @@ class BuildingPopup {
         // Add the ground items in the popup
         htmlItems.populateList(".block_ground_items .items_list", mapId, coordX, coordY);
         
+        // Add the items required for building the construction
+        if(_configsBuildingsComponents[cityTypeId] !== "undefined") {
+            const { 23:_, ...buildingComponentsButAp } = _configsBuildingsComponents[cityTypeId];        
+            const componentsFragment = document.createDocumentFragment();
+            Object.entries(buildingComponentsButAp).forEach(
+                ([itemId, amount]) => {
+                    // Repeat the item if required in multiple copies
+                    for(let i = 0; i < amount; i++) {
+                        componentsFragment.appendChild(
+                            htmlItems.item(itemId, _configsItems[itemId], 1, true)
+                        );
+                    }
+                }
+            );
+            popup.querySelector(".block_construction .items_list").appendChild(componentsFragment);
+        
+            // Hide the "Loading..." bar
+            popup.querySelector(".block_construction .items_list .loader").remove();
+        }
+        
+        
         // Add the line of zombies after the last invaded module
         let lastInvadedModuleId = this.getLastInvadedModuleId(nbrZombiesInZone);
         this.markInactiveModules(popup, lastInvadedModuleId);
@@ -97,7 +118,7 @@ class BuildingPopup {
         
         // If the building can't be explored (city), hide the useless frames 
         // in the pop-up.
-        if(_configsBuildings[cityTypeId]["is_explorable"] === 0) {
+        if(buildingConfig["is_explorable"] === 0) {
             popup.querySelector(".block_explore").classList.add("hidden");
         } else {
             popup.querySelector(".block_plans").classList.add("hidden");

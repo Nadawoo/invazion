@@ -862,6 +862,9 @@ legend {
 .item_label var::selection {
     background:none;
 }
+.item_label var[disabled] {
+    opacity:0.4;
+}
 .item_label img {
     height:32px;
     width: 32px;

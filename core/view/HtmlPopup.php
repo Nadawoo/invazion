@@ -557,8 +557,14 @@ class HtmlPopup
                     <p><strong>&#x2705; Vous avez déjà exploré ce bâtiment aujourd\'hui.</strong></p>
                 </div>
             </div>
+            <div class="block_construction frame z-depth-2">
+                <p><strong>Ce bâtiment doit être réparé pour être utilisable. Objets requis :</strong></p>
+                <ul class="items_list">
+                    <li class="loader" aria-busy="true" aria-live="polite">Chargement…</li>
+                </ul>
+            </div>
             <div class="block_ground_items frame z-depth-2">
-                <h3 class="z-depth-1">Objets au sol</h3>
+                <p><strong>Objets au sol :</strong></p>
                 <ul class="items_list">
                     <li class="loader" aria-busy="true" aria-live="polite">Chargement…</li>
                 </ul>

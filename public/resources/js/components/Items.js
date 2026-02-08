@@ -37,7 +37,7 @@ class Items {
      *              innerText doesn't work with fragments, insert in the page like this:
      *              document.querySelector("#myDiv").prepend(Items.item())
      */
-    item(itemId, itemCaracs, itemAmount=1) {
+    item(itemId, itemCaracs, itemAmount=1, disabled=false) {
 
         // Default values for the items. Useful if an item existing in the database
         // but is not in the list of the items of the current game.
@@ -82,6 +82,10 @@ class Items {
         template.querySelector('.item_name').innerHTML = itemCaracs['name'];
         template.querySelector('.descr_ambiance').innerHTML = itemCaracs['descr_ambiance'];
         template.querySelector('.descr_purpose').innerHTML  = itemCaracs['descr_purpose'];
+        
+        if(disabled === true) {
+            template.querySelector('.icon').setAttribute('disabled', '');
+        }
 
         // Display the amount of items only if there is more than one
         if(itemAmount > 1) {
