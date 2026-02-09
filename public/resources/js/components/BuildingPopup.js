@@ -96,6 +96,7 @@ class BuildingPopup {
             
             Object.entries(buildingComponentsButAp).forEach(
                 ([itemId, amount]) => {
+                    itemId = Number(itemId);
                     const tplItemTableRow = document.querySelector("#tplItemTableRow").content.cloneNode(true);
                     // Name of the item
                     tplItemTableRow.querySelector(".item_name").innerText = `❌ ${_configsItems[itemId]["name"]}`;
@@ -105,6 +106,9 @@ class BuildingPopup {
                             htmlItems.item(itemId, _configsItems[itemId], 1, true)
                         );
                     }
+                    
+                    tplItemTableRow.querySelector(".items_list").addEventListener("click", () => listenToComponents(itemId));
+                    
                     popup.querySelector(".block_construction .components tbody").appendChild(tplItemTableRow);
                 }
             );

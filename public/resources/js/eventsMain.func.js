@@ -406,3 +406,18 @@ function listenToMapLegendSwitches() {
         }
     });
 }
+
+/**
+ * When we click on a component required for building a construction, goes to
+ * the map and displays markers over the zones containing the itm
+ * 
+ * @param {int} itemId
+ * @returns {undefined}
+ */
+function listenToComponents(itemId) {
+    
+    closePopup();
+    window.location.hash = "Outside";
+    // Display markers over each zone containing the item
+    toggleMapItemMarker(itemId);
+}

@@ -102,7 +102,7 @@ function toggleMapMarker(objectToMark) {
         "citizens": ".square_container:not([data-citizens='0'])",
         "boost":    "#map_body [data-markerboost='1']",
         "resource": "#map_body [data-markerresource='1']",
-        "generic":  "#map_body [data-marker='1']"
+        "generic":  "#map_body [data-markergeneric='1']"
         };
         
     if (window.areMapMarkersActive !== true) {
