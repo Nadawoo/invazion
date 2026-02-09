@@ -316,13 +316,16 @@ function toggleMapZombiesView() {
  */
 async function toggleMapItemMarker(itemId) {
     
-    let markerType = "generic";
+    let markerType = "generic",
+        markerValue = 1;
     
     // If the items are not already marked, get their coordinates
     if(window.areMapMarkersActive !== true) {
         
         var itemsCoords = [];
         if(Number.isInteger(itemId)) {
+            markerType = "itemid";
+            markerValue = itemId;
             itemsCoords = getItemCoords(itemId);
         } else {
             markerType = itemId;
@@ -332,7 +335,7 @@ async function toggleMapItemMarker(itemId) {
         for(let coords of Object.values(await itemsCoords)) {
             let zone = document.querySelector("#map_body #zone"+coords);
             zone.style.opacity = 1;
-            zone.dataset["marker"+markerType] = 1;
+            zone.dataset["marker"+markerType] = markerValue;
         }
     }
     

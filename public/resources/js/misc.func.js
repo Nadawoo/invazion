@@ -102,6 +102,7 @@ function toggleMapMarker(objectToMark) {
         "citizens": ".square_container:not([data-citizens='0'])",
         "boost":    "#map_body [data-markerboost='1']",
         "resource": "#map_body [data-markerresource='1']",
+        "itemid":   "#map_body [data-markeritemid]",
         "generic":  "#map_body [data-markergeneric='1']"
         };
         
@@ -110,9 +111,17 @@ function toggleMapMarker(objectToMark) {
         // an other type of item (boosts, resources...)
         deleteMapMarkers();
         // Add the HTML for the icons in the zones
-        document.querySelectorAll(markableObjects[objectToMark]).forEach(element =>
-            element.innerHTML += '<img src="resources/img/free/map_location.svg" class="location animate__animated animate__slideInDown">'
-        );
+        document.querySelectorAll(markableObjects[objectToMark]).forEach(element => {
+            if(objectToMark === "itemid") {
+                // Bubble with the icon of the item
+                const itemId = element.dataset.markeritemid;
+                element.querySelector(".square_container").appendChild( itemsBubbleFragment([itemId]) );
+            }
+            else {
+                // Generic location pin marker
+                element.innerHTML += '<img src="resources/img/free/map_location.svg" class="location animate__animated animate__slideInDown">';
+            }
+        });
         
         display("#map_body .location");
 //        hide("#map_body .nbr_defenses");
@@ -123,6 +132,34 @@ function toggleMapMarker(objectToMark) {
         hide("#map_body .location");
         window.areMapMarkersActive = false;
     }
+}
+
+
+/**
+ * Add bubbles on the map containing the icons of given items
+ * 
+ * @param {Array} itemsIds List of the IDs of the items to display
+ *                         Ex: [23, 48]
+ * @returns {HtmlFragment}
+ */
+function itemsBubbleFragment(itemsIds) {
+    
+    const htmlItems = new Items();
+    
+    const htmlFindableItems = itemsIds.map(itemId => `
+                                    <span class="icon">
+                                        ${htmlItems.icon(_configsItems[itemId]["icon_path"], _configsItems[itemId]["icon_symbol"], 22)}
+                                    </span>
+                                `)
+                                .join('');
+
+    // <div class="sharp_bubble ..." aria-label="..."></div>
+    const div = document.createElement('div');
+    div.className = 'sharp_bubble diggable animate__animated animate__pulse animate__infinite';
+    div.setAttribute('aria-label', 'Cette zone peut être fouillée');
+    div.innerHTML = htmlFindableItems;
+    
+    return div;
 }
 
 

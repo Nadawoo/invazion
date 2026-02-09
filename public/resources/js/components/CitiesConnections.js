@@ -191,23 +191,8 @@ class CityConnections {
             // If the building is explorable
             else if(Number(zone.dataset.cyclelastvisit) < getCurrentCycle()
                     && _configsBuildings[cityTypeId]["is_explorable"] === 1) {
-                
-                // Icons of the items findable in the building
-                const htmlFindableItems = _configsBuildingsFindableItems[cityTypeId]
-                                            .map(id => `
-                                                <span class="icon">
-                                                    ${htmlItems.icon(_configsItems[id]["icon_path"], _configsItems[id]["icon_symbol"], icon_size)}
-                                                </span>
-                                            `)
-                                            .join('');
-                                    
-                // <div class="sharp_bubble ..." aria-label="..."></div>
-                const div = document.createElement('div');
-                div.className = 'sharp_bubble diggable animate__animated animate__pulse animate__infinite';
-                div.setAttribute('aria-label', 'Cette zone peut être fouillée');
-                div.innerHTML = htmlFindableItems;
-                // Add the bubble for digging above the city
-                zone.querySelector(".cityframe").appendChild(div);
+                // Add the icons of the findable items above the building
+                zone.querySelector(".cityframe").appendChild( itemsBubbleFragment(_configsBuildingsFindableItems[cityTypeId]) );
             }
             else if(nbrItems > 0) {
                 html = `<span class="nbr_items">${nbrItems}</span>`;
