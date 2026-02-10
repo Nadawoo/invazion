@@ -31,7 +31,7 @@ header .site_name {
                                 rgba(225, 225, 225, 1),
                                 lightgrey,
                                 grey);
-    border:1px outset white;
+    border:2px outset lightgrey;
     border-radius:0.4em;
     box-shadow:0px 0px 500px 1px orange;
     /* Keep the site name at the first place in the DOM for accessibility, but 

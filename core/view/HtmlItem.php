@@ -27,45 +27,47 @@ class HtmlItem {
                 <li class="item_label z-depth-2" onclick="items = new Items(); items.toggleTooltip(event)">
                     <var class="icon" aria-label="{item_name}">{icon}</var>
                     <div class="dot_number z-depth-1 hidden">?</div>
-                    <div class="details hidden">
-                        <a class="close" onclick="items = new Items(); items.toggleTooltip(event)">
-                            <i class="material-icons">close</i>
-                        </a>
-                        <var><span class="icon">{icon}</span>&nbsp;<span class="item_name">{item_name}</span></var>
-                        <p class="descr_ambiance">{descr_ambiance}</p>
-                        <p class="descr_purpose z-depth-1">{descr_purpose}</p>
-                        <ul>
-                            <li class="hidden type_booster">
-                                <i class="material-icons">bolt</i>
-                                Cet objet donne de l\'énergie
-                            </li>
-                            <li class="hidden type_resource">
-                                <i class="material-icons">construction</i>
-                                Cet objet est une ressource
-                            </li>
-                            <li class="hidden type_weapon">
-                                <i class="material-icons">sports_kabaddi</i>
-                                Cet objet est une arme
-                            </li>
-                            <li class="hidden preciousness">
-                                <i class="material-icons">star</i>
-                                Cet objet est précieux
-                            </li>
-                            <li class="hidden defenses">
-                                <i class="material-icons">shield</i>
-                                Objet de défense (+<span class="nbr_defenses"></span> pts)
-                            </li>
-                            <li class="hidden heaviness">
-                                <i class="material-icons">fitness_center</i>
-                                Encombrant dans le sac
-                            </li>
-                        </ul>
-                        '.$button_fight
-                         .$button_use
-                         .$button_drop
-                         .$button_pickup.'
-                    </div>
+                    <div class="details hidden"></div>
                 </li>
+            </template>
+            
+            <template id="tplItemDetails">
+                <a class="close" onclick="items = new Items(); items.toggleTooltip(event)">
+                    <i class="material-icons">close</i>
+                </a>
+                <var><span class="icon">{icon}</span>&nbsp;<span class="item_name">{item_name}</span></var>
+                <p class="descr_ambiance">{descr_ambiance}</p>
+                <p class="descr_purpose z-depth-1">{descr_purpose}</p>
+                <ul>
+                    <li class="hidden type_booster">
+                        <i class="material-icons">bolt</i>
+                        Cet objet donne de l\'énergie
+                    </li>
+                    <li class="hidden type_resource">
+                        <i class="material-icons">construction</i>
+                        Cet objet est une ressource
+                    </li>
+                    <li class="hidden type_weapon">
+                        <i class="material-icons">sports_kabaddi</i>
+                        Cet objet est une arme
+                    </li>
+                    <li class="hidden preciousness">
+                        <i class="material-icons">star</i>
+                        Cet objet est précieux
+                    </li>
+                    <li class="hidden defenses">
+                        <i class="material-icons">shield</i>
+                        Objet de défense (+<span class="nbr_defenses"></span> pts)
+                    </li>
+                    <li class="hidden heaviness">
+                        <i class="material-icons">fitness_center</i>
+                        Encombrant dans le sac
+                    </li>
+                </ul>
+                '.$button_fight
+                 .$button_use
+                 .$button_drop
+                 .$button_pickup.'
             </template>';
     }
     

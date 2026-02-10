@@ -38,50 +38,18 @@ class Items {
      *              document.querySelector("#myDiv").prepend(Items.item())
      */
     item(itemId, itemCaracs, itemAmount=1, disabled=false) {
-
-        // Default values for the items. Useful if an item existing in the database
-        // but is not in the list of the items of the current game.
-        if(itemCaracs === undefined) {
-            itemCaracs = {
-                "name":"(Objet inconnu)",
-                "icon_path":null,
-                "icon_symbol":`<span class="red">#${itemId}</span>`,
-                "descr_ambiance":"",
-                "descr_purpose":"[Bug] Cet objet est inconnu.\
-                                 Signalez-le au responsable du jeu."
-            };
-        }
-
+        
+        itemCaracs = (itemCaracs === undefined) ? this.#defaultItemCaracs(itemId) : itemCaracs;
+        
         // Gets a blank HTML template of an item entry
         let template = document.querySelector("#tplItem").content.cloneNode(true);
-        let icon = this.icon(itemCaracs['icon_path'], itemCaracs['icon_symbol']),
-            itemTypeClass = null,
-            bgColor = "";
-
-        if(itemCaracs["item_type"] === "resource" || itemCaracs["item_type"] === "resource_rare") {
-            itemTypeClass = "type_resource";
-            bgColor = "#7FB3D5";
-        } else if(itemCaracs["item_type"] === "weapon") {
-            itemTypeClass = "type_weapon";
-            bgColor = "#EC7063";
-        } else if(itemCaracs["item_type"] === "food" || itemCaracs["item_type"] === "water") {
-            itemTypeClass = "type_booster";
-            bgColor = "orange";
-        }
-    //    else if(itemCaracs["item_type"] === "tool") {
-    //        bgColor = "#27AE60"; 
-    //    }
-
+        let icon = this.icon(itemCaracs['icon_path'], itemCaracs['icon_symbol']);
+        let bgColor = this.#itemBackgroundColor(itemCaracs["item_type"]); 
+        
         // Populates the blank template with the item data
         template.querySelector('.item_label').style.background = `radial-gradient(white 0%, ${bgColor} 100%)`;
-        template.querySelector('.form_drop button[name="params[item_id]"]').value  = itemId;
-        template.querySelector('.form_pickup button[name="params[item_id]"]').value = itemId;
         template.querySelector('.icon').innerHTML = icon;
         template.querySelector('.icon').setAttribute('aria-label', itemCaracs['name']);
-        template.querySelector('.details .icon').innerHTML = icon;
-        template.querySelector('.item_name').innerHTML = itemCaracs['name'];
-        template.querySelector('.descr_ambiance').innerHTML = itemCaracs['descr_ambiance'];
-        template.querySelector('.descr_purpose').innerHTML  = itemCaracs['descr_purpose'];
         
         if(disabled === true) {
             template.querySelector('.icon').setAttribute('disabled', '');
@@ -97,30 +65,15 @@ class Items {
         // Additionally, if the item is rare (no matter its type), add a gold frame
         if(itemCaracs["preciousness"] > 0) {
             template.querySelector('.item_label').classList.add("precious");
-            template.querySelector('.item_label .preciousness').classList.remove("hidden");
         }
-        // Display the type of item (resource, weapon...)
-        if(itemTypeClass !== null) {
-            template.querySelector(`.item_label .${itemTypeClass}`).classList.remove("hidden");
-        }
-        // Display if the item is heavy
-        if(itemCaracs["heaviness"] > 0) {
-            template.querySelector('.item_label .heaviness').classList.remove("hidden");
-        }
-        // Display the button to use the item as a weapon
-        if(itemCaracs["item_type"] === "weapon") {
-            template.querySelector("form[name='fight'] input[name='params[item_id]']").value = itemId;
-        }
-        // Display if the item gives defenses
-        if(itemCaracs["defenses"] > 0) {
-            template.querySelector('.item_label .defenses').classList.remove("hidden");
-            template.querySelector('.item_label .defenses .nbr_defenses').innerText = itemCaracs["defenses"];
-        }
-
+        
+        // Add the tooltip for details about the item
+        template.querySelector('.details').appendChild(this.#itemTooltip(itemId, itemCaracs));
+        
         return template;
     }
     
-
+    
     /**
      * Generates the icon for an item
      * 
@@ -175,6 +128,107 @@ class Items {
     }
     
     
+    /**
+     * Default values for an item. Useful if an item existing in the database
+     * but is not in the list of the items of the current game.
+     * 
+     * @param {Int} itemId
+     * @returns {Object}
+     */
+    #defaultItemCaracs(itemId) {
+        
+        return {
+            "name":"(Objet inconnu)",
+            "icon_path":null,
+            "icon_symbol":`<span class="red">#${itemId}</span>`,
+            "descr_ambiance":"",
+            "descr_purpose":"[Bug] Cet objet est inconnu.\
+                             Signalez-le au responsable du jeu."
+        };
+    }
+    
+    
+    /**
+     * Get the background of the item icon according to the type of item
+     * (resource, weapon...)
+     * 
+     * @param {String} itemType
+     * @returns {String}
+     */
+    #itemBackgroundColor(itemType) {
+        
+        let bgColor = "";
+        
+        if(itemType === "resource" || itemType === "resource_rare") {
+            bgColor = "#7FB3D5";
+        } else if(itemType === "weapon") {
+            bgColor = "#EC7063";
+        } else if(itemType === "food" || itemType === "water") {
+            bgColor = "orange";
+        }
+//        else if(itemType === "tool") {
+//            bgColor = "#27AE60"; 
+//        }
+
+        return bgColor;
+    }
+    
+    
+    /**
+     * Tooltip when we click on an item
+     * 
+     * @param {Int} itemId
+     * @param {Object} itemCaracs
+     * @returns {Items.#itemTooltip.template}
+     */
+    #itemTooltip(itemId, itemCaracs) {
+        
+        let icon = this.icon(itemCaracs['icon_path'], itemCaracs['icon_symbol']);
+        
+        let itemTypeClass = null;
+        if(itemCaracs["item_type"] === "resource" || itemCaracs["item_type"] === "resource_rare") {
+            itemTypeClass = "type_resource";
+        } else if(itemCaracs["item_type"] === "weapon") {
+            itemTypeClass = "type_weapon";
+        } else if(itemCaracs["item_type"] === "food" || itemCaracs["item_type"] === "water") {
+            itemTypeClass = "type_booster";
+        }
+        
+        let template = document.querySelector("#tplItemDetails").content.cloneNode(true);
+        
+        template.querySelector('.form_drop button[name="params[item_id]"]').value  = itemId;
+        template.querySelector('.form_pickup button[name="params[item_id]"]').value = itemId;
+        template.querySelector('.icon').innerHTML = icon;
+        template.querySelector('.item_name').innerHTML = itemCaracs['name'];
+        template.querySelector('.descr_ambiance').innerHTML = itemCaracs['descr_ambiance'];
+        template.querySelector('.descr_purpose').innerHTML  = itemCaracs['descr_purpose'];
+        
+        // Display the type of item (resource, weapon...)
+        if(itemTypeClass !== null) {
+            template.querySelector(`.${itemTypeClass}`).classList.remove("hidden");
+        }
+        // Display if the item is heavy
+        if(itemCaracs["heaviness"] > 0) {
+            template.querySelector('.heaviness').classList.remove("hidden");
+        }
+        // Display the button to use the item as a weapon
+        if(itemCaracs["item_type"] === "weapon") {
+            template.querySelector("form[name='fight'] input[name='params[item_id]']").value = itemId;
+        }
+        // Display if the item gives defenses
+        if(itemCaracs["defenses"] > 0) {
+            template.querySelector('.defenses').classList.remove("hidden");
+            template.querySelector('.defenses .nbr_defenses').innerText = itemCaracs["defenses"];
+        }
+        // Display if the item is rare
+        if(itemCaracs["preciousness"] > 0) {
+            template.querySelector('.preciousness').classList.remove("hidden");
+        }
+        
+        return template;
+    }
+    
+    
     #isTooltipOpen(tooltip) {
         
         return !tooltip.classList.contains("hidden");
@@ -187,8 +241,8 @@ class Items {
         itemLabel.style.border = null;
         
         // Reactivate the scroll previously desactivated by opentooltip()
-        const itemsList = itemLabel.closest("#actions fieldset");
-        itemsList.style.overflow = "auto";
+//        const itemsList = itemLabel.closest("#actions fieldset");
+//        itemsList.style.overflow = "auto";
     }
     
     
@@ -209,8 +263,8 @@ class Items {
         itemLabel.style.border = "4px solid darkred";
         
         // Desactivate the scroll while the tooltip is open (to avoid shifting)
-        const itemsList = itemLabel.closest("#actions fieldset");
-        itemsList.style.overflow = "visible";
+//        const itemsList = itemLabel.closest("#actions fieldset");
+//        itemsList.style.overflow = "visible";
     }
     
     
