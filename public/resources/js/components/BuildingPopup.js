@@ -90,8 +90,11 @@ class BuildingPopup {
         // Add the ground items in the popup
         htmlItems.populateList(".block_ground_items .items_list", mapId, coordX, coordY);
         
-        // Add the items required for building the construction
-        if(_configsBuildingsComponents[cityTypeId] !== "undefined") {
+        // Display or not the items required for building the construction
+        if(_configsBuildingsComponents[cityTypeId] === undefined) {
+            popup.querySelector(".block_construction").classList.add("hidden");
+        }
+        else {
             const { 23:_, ...buildingComponentsButAp } = _configsBuildingsComponents[cityTypeId];        
             
             Object.entries(buildingComponentsButAp).forEach(
