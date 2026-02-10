@@ -23,20 +23,32 @@ header {
     box-shadow:0px 8px 18px black;
 }
 header .site_name {
+    position:relative;
     padding:0 1em;
     font-size:1.3em;
     background:#f0d5c7;
-    background: linear-gradient(to bottom,
-                                lightgrey 0%,
-                                grey 65%,
-                                lightgrey 100%
-                                );
-    border:2px solid white;
-    border-radius:5em;
+    background: radial-gradient(circle at 50% 5%,
+                                rgba(225, 225, 225, 1),
+                                lightgrey,
+                                grey);
+    border:1px outset white;
+    border-radius:0.4em;
     box-shadow:0px 0px 500px 1px orange;
     /* Keep the site name at the first place in the DOM for accessibility, but 
        display it between the menu and help button */
     order:2;
+}
+header .screw {
+    position:absolute;
+    display:block;
+    width: 9px;
+    height:9px;
+    border:1px solid dimgrey;
+    border-radius:50%;
+    background: radial-gradient(circle at 25% 25%,
+                                lightgrey,
+                                dimgrey, grey
+                                );
 }
 header h1 {
     text-align:center;
@@ -50,7 +62,7 @@ header h1 a,
 header h1 a:hover {
     font-size:0.9em;
     color:black;
-    border-bottom:1px ridge darkgrey;
+    border-bottom:1px ridge grey;
 }
 #slogan {
     padding:0.1em;
@@ -58,7 +70,7 @@ header h1 a:hover {
     font-weight:bold;
     font-size:0.9em;
     letter-spacing:1px;
-    color:dimgrey;
+    color:darkslategrey;
 }
 header .menu_button {
     order:1;

@@ -11,7 +11,7 @@ class HtmlPage
     // Increment those variables when you modify the CSS or JS files. This ensures
     // that the users' browsers reload the up-to-date files, instead of using 
     // the obsolete ones stored in their cache.
-    private $css_js_version = 99;
+    private $css_js_version = 101;
     
     /**
      * Sets HTTP headers to secure the website
@@ -113,7 +113,11 @@ class HtmlPage
                     <header data-section="header">
                         <div class="site_name" role="none">
                             <h1><a href="/">Azimutant</a></h1>
-                            <div aria-label="Slogan du jeu" id="slogan" data-translate="slogan">Gérez l\'apocalypse.</div>
+                            <div aria-label="Slogan du jeu" id="slogan" data-translate="slogan">Gérez l\'apocalypse</div>
+                            <span class="screw" style="top:5px;left:5px"></span>
+                            <span class="screw" style="top:5px;right:5px"></span>
+                            <span class="screw" style="bottom:5px;right:5px"></span>
+                            <span class="screw" style="bottom:5px;left:5px"></span>
                         </div>
                         <a aria-label="Ouvrir la fenêtre de présentation rapide du jeu" href="#poppresentation" class="help_button">
                             <i class="material-icons" aria-hidden="true">help</i>
