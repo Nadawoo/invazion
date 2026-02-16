@@ -1,16 +1,14 @@
 class Items {
     
+    
     /**
-     * Add the items inside a <ul class="items_list"></ul>
      * 
-     * @param {string} domSelector The unique DOM selector of the block to populate.
-     *                             Ex: "#ground .items_list"
      * @param {int} mapId
      * @param {int} coordX
      * @param {int} coordY
      * @returns {undefined}
      */
-    async populateList(domSelector, mapId, coordX, coordY) {
+    async getGroundItems(mapId, coordX, coordY) {
         
         const cookies = new Cookies(),
               token = cookies.getCookie('token');
@@ -18,9 +16,23 @@ class Items {
               htmlCoord = coordX+"_"+coordY;
         
         const json = await zombLib.callApi("GET", "maps", `action=get&map_id=${mapId}&token=${token}&zones=${htmlCoord}`);    
-        const zone = json.datas.zones[htmlCoord];
         
-        populateItemsList(domSelector, zone.items);
+        return json.datas.zones[htmlCoord]["items"];
+    }
+    
+    
+    /**
+     * Add the items inside a <ul class="items_list"></ul>
+     * 
+     * @param {string} domSelector The unique DOM selector of the block to populate.
+     *                             Ex: "#ground .items_list"
+     */
+    async populateList(domSelector, groundItems) {
+        
+        // Display the other items on the ground
+        populateItemsList(domSelector, await groundItems);
+        
+        // Hide the "Loading..." indicator
         hide(`${domSelector} .loader`);
     }
     

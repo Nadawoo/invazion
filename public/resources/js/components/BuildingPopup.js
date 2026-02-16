@@ -19,6 +19,7 @@ class BuildingPopup {
         let dataset = zone.dataset;
         let cityId = dataset.cityid;
         let cityTypeId = dataset.citytypeid;
+        
         // #12 = ID of the building type "city" in the Azimutant's API
         if(parseInt(cityTypeId) === 12) {
             let cityConnections = new CityConnections();
@@ -87,8 +88,10 @@ class BuildingPopup {
             }
 //        }
         
+        const groundItemsPromise = htmlItems.getGroundItems(mapId, coordX, coordY);
+        
         // Add the ground items in the popup
-        htmlItems.populateList(".block_ground_items .items_list", mapId, coordX, coordY);
+        htmlItems.populateList(".block_ground_items .items_list", groundItemsPromise);
         
         // Display or not the items required for building the construction
         if(_configsBuildingsComponents[cityTypeId] === undefined) {
@@ -96,7 +99,7 @@ class BuildingPopup {
         }
         else {
             // Display the components
-            this.#populateBuildingComponentsTable(popup, cityTypeId);
+            this.#populateBuildingComponentsTable(popup, cityTypeId, groundItemsPromise);
             // Hide the "Loading..." bar
             popup.querySelector(".block_construction .components .loader").remove();
         }
@@ -118,11 +121,12 @@ class BuildingPopup {
     }
     
     
-    #populateBuildingComponentsTable(popupSelector, cityTypeId) {
+    async #populateBuildingComponentsTable(popupSelector, cityTypeId, groundItemsPromise) {
         
         const htmlItems = new Items();
         const template = document.querySelector("#tplItemTableRow");
         const rowsFragment = document.createDocumentFragment();
+        const groundItems = await groundItemsPromise;
         
         // Remove the item #23 (ID of the "actions points" item in the database)
         const { 23:_, ...buildingComponentsButAp } = _configsBuildingsComponents[cityTypeId];  
@@ -131,16 +135,19 @@ class BuildingPopup {
                 const itemId = Number(itemIdString);
                 const configItem = _configsItems[itemId];
                 const tplItemTableRow = template.content.cloneNode(true);
+                const amountOnGround = groundItems[itemId] || 0;
                 
                 // Name of the item
-                tplItemTableRow.querySelector(".item_name").innerText = `❌ ${configItem["name"]}`;
+                const enoughIcon = `${amountOnGround >= amount ? "✅" : "❌"}`;
+                tplItemTableRow.querySelector(".item_name").innerText = `${enoughIcon} ${configItem["name"]}`;
                 
                 // Repeat the item if required in multiple copies
                 const itemsListSelector = tplItemTableRow.querySelector(".items_list");
                 const itemsFragment = document.createDocumentFragment();
-                const itemNode = htmlItems.item(itemId, configItem, 1, true);
                 for(let i = 0; i < amount; i++) {
-                    itemsFragment.appendChild(itemNode.cloneNode(true));
+                    // Gray the item if not enough on the ground
+                    const isDisabled = (i >= amountOnGround);
+                    itemsFragment.appendChild(htmlItems.item(itemId, configItem, 1, isDisabled));
                 }
                 itemsListSelector.appendChild(itemsFragment);
                 // Add an event listener on each item
