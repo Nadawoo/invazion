@@ -27,7 +27,7 @@ class BuildingPopup {
             toggleCityframesView();
         }
         else if(cityTypeId !== "") {
-            this.populateBuildingPopup(cityId, cityTypeId, dataset.zombies, mapId, dataset.coordx, dataset.coordy);
+            this.#populateBuildingPopup(cityId, cityTypeId, dataset.zombies, mapId, dataset.coordx, dataset.coordy);
             window.location.href = "#popsuccess";
             listenToTeleportButton();
         }
@@ -41,7 +41,7 @@ class BuildingPopup {
      * @param {int} cityTypeId The ID of the building, as returned by the Azimutant's API
      * @returns {undefined}
      */
-    populateBuildingPopup(cityId, cityTypeId, nbrZombiesInZone, mapId, coordX, coordY) {
+    #populateBuildingPopup(cityId, cityTypeId, nbrZombiesInZone, mapId, coordX, coordY) {
         
         let building = _configsBuildings[cityTypeId];
         let findableItems = (_configsBuildingsFindableItems[cityTypeId] !== undefined) ? _configsBuildingsFindableItems[cityTypeId] : [];
@@ -95,27 +95,8 @@ class BuildingPopup {
             popup.querySelector(".block_construction").classList.add("hidden");
         }
         else {
-            const { 23:_, ...buildingComponentsButAp } = _configsBuildingsComponents[cityTypeId];        
-            
-            Object.entries(buildingComponentsButAp).forEach(
-                ([itemId, amount]) => {
-                    itemId = Number(itemId);
-                    const tplItemTableRow = document.querySelector("#tplItemTableRow").content.cloneNode(true);
-                    // Name of the item
-                    tplItemTableRow.querySelector(".item_name").innerText = `❌ ${_configsItems[itemId]["name"]}`;
-                    // Repeat the item if required in multiple copies
-                    for(let i = 0; i < amount; i++) {
-                        tplItemTableRow.querySelector(".items_list").appendChild(
-                            htmlItems.item(itemId, _configsItems[itemId], 1, true)
-                        );
-                    }
-                    
-                    tplItemTableRow.querySelector(".items_list").addEventListener("click", () => listenToComponents(itemId));
-                    
-                    popup.querySelector(".block_construction .components tbody").appendChild(tplItemTableRow);
-                }
-            );
-            
+            // Display the components
+            this.#populateBuildingComponentsTable(popup, cityTypeId);
             // Hide the "Loading..." bar
             popup.querySelector(".block_construction .components .loader").remove();
         }
@@ -135,7 +116,43 @@ class BuildingPopup {
             popup.querySelector(".block_modules").classList.add("hidden");
         }
     }
-
+    
+    
+    #populateBuildingComponentsTable(popupSelector, cityTypeId) {
+        
+        const htmlItems = new Items();
+        const template = document.querySelector("#tplItemTableRow");
+        const rowsFragment = document.createDocumentFragment();
+        
+        // Remove the item #23 (ID of the "actions points" item in the database)
+        const { 23:_, ...buildingComponentsButAp } = _configsBuildingsComponents[cityTypeId];  
+        
+        Object.entries(buildingComponentsButAp).forEach(([itemIdString, amount]) => {
+                const itemId = Number(itemIdString);
+                const configItem = _configsItems[itemId];
+                const tplItemTableRow = template.content.cloneNode(true);
+                
+                // Name of the item
+                tplItemTableRow.querySelector(".item_name").innerText = `❌ ${configItem["name"]}`;
+                
+                // Repeat the item if required in multiple copies
+                const itemsListSelector = tplItemTableRow.querySelector(".items_list");
+                const itemsFragment = document.createDocumentFragment();
+                const itemNode = htmlItems.item(itemId, configItem, 1, true);
+                for(let i = 0; i < amount; i++) {
+                    itemsFragment.appendChild(itemNode.cloneNode(true));
+                }
+                itemsListSelector.appendChild(itemsFragment);
+                // Add an event listener on each item
+                itemsListSelector.addEventListener("click", () => listenToComponents(itemId));
+                
+                rowsFragment.appendChild(tplItemTableRow);
+            }
+        );
+        
+        popupSelector.querySelector(".block_construction .components tbody").appendChild(rowsFragment);
+    }
+    
     
     getLastInvadedModuleId(nbrZombiesInBuilding) {
         // TODO: temporary hardcoded value for the tests. Number of zombies that are
