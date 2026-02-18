@@ -24,7 +24,7 @@ class HtmlItem {
         
         return '
             <template id="tplItem">
-                <li class="item_label z-depth-2" onclick="items = new Items(); items.toggleTooltip(event)">
+                <li class="item_label z-depth-2" onclick="items = new Items(); items.toggleTooltip(event)" data-itemid="">
                     <var class="icon" aria-label="{item_name}">{icon}</var>
                     <div class="dot_number z-depth-1 hidden">?</div>
                     <div class="details hidden"></div>
@@ -38,7 +38,7 @@ class HtmlItem {
                 <var><span class="icon">{icon}</span>&nbsp;<span class="item_name">{item_name}</span></var>
                 <p class="descr_ambiance">{descr_ambiance}</p>
                 <p class="descr_purpose z-depth-1">{descr_purpose}</p>
-                <ul>
+                <ul class="caracs">
                     <li class="hidden type_booster">
                         <i class="material-icons">bolt</i>
                         Cet objet donne de l\'énergie
@@ -68,6 +68,7 @@ class HtmlItem {
                  .$button_use
                  .$button_drop
                  .$button_pickup.'
+                <button name="search" class="redbutton" onclick="searchItemOnMap(event)">🔍 Chercher sur la carte</button>
             </template>';
     }
     

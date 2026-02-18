@@ -45,9 +45,17 @@
 .item_label var::selection {
     background:none;
 }
+
 .item_label var[disabled] {
     opacity:0.3;
 }
+.item_label var[disabled] ~ .details form,
+.item_label var[disabled] ~ .details .caracs,
+.item_label var[disabled] ~ .details .descr_ambiance,
+.item_label var[disabled] ~ .details .descr_purpose {
+    display:none;
+}
+
 .item_label img {
     height:32px;
     width: 32px;

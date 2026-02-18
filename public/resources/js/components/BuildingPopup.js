@@ -150,8 +150,6 @@ class BuildingPopup {
                     itemsFragment.appendChild(htmlItems.item(itemId, configItem, 1, isDisabled));
                 }
                 itemsListSelector.appendChild(itemsFragment);
-                // Add an event listener on each item
-                itemsListSelector.addEventListener("click", () => listenToComponents(itemId));
                 
                 rowsFragment.appendChild(tplItemTableRow);
             }

@@ -559,7 +559,7 @@ class HtmlPopup
             </div>
             <div class="block_construction frame z-depth-2">
                 <p><strong>Ce bâtiment doit être réparé pour être utilisable. Objets requis :</strong></p>
-                <table class="components">
+                <table class="components" style="border-collapse:separate">
                     <tbody>
                         <tr class="loader" aria-busy="true" aria-live="polite">
                             <td>Chargement…</td>
@@ -568,7 +568,7 @@ class HtmlPopup
                         <template id="tplItemTableRow">
                             <tr>
                                 <td class="item_name"></td>
-                                <td class="item_occurrencies">
+                                <td class="item_occurrencies" style="border-left:1px solid darkgrey;border-radius:0.8em">
                                     <ul class="items_list"></ul>
                                 </td>
                             </tr>

@@ -1174,3 +1174,25 @@ function populateDefensesDetails() {
 //    defenses.querySelector(".attack_details .zombies").innerText = nbrZombiesInZone;
 //    defenses.querySelector(".controlpoints_citizens").innerText = controlPointsCitizens;
 }
+
+
+
+/**
+ * When we click on the "Search on map" button of an item, goes to
+ * the map and displays markers over the zones containing the item
+ * 
+ * @param {int} itemId
+ * @returns {undefined}
+ */
+function searchItemOnMap(event) {
+    
+    const itemId = Number(event.target.closest(".item_label").dataset.itemid);
+    
+    // Close the popup to go back to the map
+    closePopup();
+    window.location.hash = "Outside";
+    // Hide the useless elements on the map to focus on the item bubbles
+    hide([".sharp_bubble", ".nbr_defenses", ".nbr_items"]);
+    // Display markers over each zone containing the item
+    toggleMapItemMarker(itemId);
+}

@@ -59,6 +59,7 @@ class Items {
         let bgColor = this.#itemBackgroundColor(itemCaracs["item_type"]); 
         
         // Populates the blank template with the item data
+        template.querySelector('li').dataset.itemid = itemId;
         template.querySelector('.item_label').style.background = `radial-gradient(white 0%, ${bgColor} 100%)`;
         template.querySelector('.icon').innerHTML = icon;
         template.querySelector('.icon').setAttribute('aria-label', itemCaracs['name']);

@@ -406,21 +406,3 @@ function listenToMapLegendSwitches() {
         }
     });
 }
-
-/**
- * When we click on a component required for building a construction, goes to
- * the map and displays markers over the zones containing the itm
- * 
- * @param {int} itemId
- * @returns {undefined}
- */
-function listenToComponents(itemId) {
-    
-    // Close the popup to go back to the map
-    closePopup();
-    window.location.hash = "Outside";
-    // Hide the useless elements on the map to focus on the item bubbles
-    hide([".sharp_bubble", ".nbr_defenses", ".nbr_items"]);
-    // Display markers over each zone containing the item
-    toggleMapItemMarker(itemId);
-}
