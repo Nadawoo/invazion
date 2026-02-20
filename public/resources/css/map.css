@@ -412,6 +412,33 @@
     z-index:1;
 }
 
+/* Health bars above the buildings */
+#map_body .healthbar {
+    position:absolute;
+    bottom:100%;
+    left:50%;
+    transform:translateX(-50%);
+    width: 33px;
+    height:9px;
+    display:flex;
+    gap:1px;
+    padding:1px;
+    background:darkslategrey;
+    border:1px solid aliceblue;
+    border-radius:3px;
+    box-shadow:8px 8px 8px black;
+    z-index:1;
+}
+#map_body .healthbar .chunk {
+    flex:1;
+    background:dodgerblue;
+    transition:background 0.15s linear, opacity 0.15s linear;
+}
+#map_body .healthbar .chunk.lost {
+    background:#300;
+    opacity:0.3;
+}
+
  /* Add a shadow on each hexagon to make the map look less "flat" */
 #map_body .hexagon:after {
     content:"";
@@ -616,6 +643,13 @@
     width: 2.4rem;
     margin-bottom:2px;
     border-radius:50%;
+}
+#map_body .cityframe.highlight .frame {
+    border:1px outset darkgrey;
+    background: radial-gradient(circle at 5% 5%,
+                        rgba(255, 255, 255, 0.8),
+                        rgba(0, 0, 0, 0) 50%
+                        );
 }
 #map_body .cityframe.undiscovered .frame {
     outline:2px outset green;

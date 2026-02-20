@@ -528,6 +528,8 @@ function resetMapView() {
     window.isMapExplorationsViewActive = false;
     desactivateMapPathsView();
     window.isMapPathsViewActive = false;
+    desactivateMapDefensesView();
+    window.isMapDefensesViewActive = false;
     
     hide("#map_body .location");
     hide("#map_body button[name=teleport]");
@@ -675,4 +677,49 @@ function switchToMapView() {
     document.querySelector("#map").classList.remove("action_view");
     
     window.isActionViewActive = false;
+}
+
+
+function switchToMapDefensesView() {
+    
+    // Display the health bars
+    const healthBars = new HealthBars();
+    healthBars.displayHealthBars();
+    
+    // Highlight all the buildings
+    document.querySelectorAll(".cityframe").forEach((cityframe) => cityframe.classList.add("highlight"));
+    
+    // Hide secondary informations for more clarity
+    hide([".nbr_defenses", ".nbr_items", ".sharp_bubble", ".location"]);
+    
+    // Highlight the button
+    document.querySelector("#views_bar .defenses").classList.add("active");
+}
+
+
+function desactivateMapDefensesView() {
+    
+    // Hide the health bars
+    hide("#map_body .healthbar");
+    
+    // Remove the highlight on the building
+    document.querySelectorAll(".cityframe").forEach((cityframe) => cityframe.classList.remove("highlight"));
+    
+    // Show the previously hidden informations 
+    display([".nbr_defenses", ".nbr_items", ".sharp_bubble", ".location"]);
+    
+    // Light off the button
+    document.querySelector("#views_bar .defenses").classList.remove("active");
+}
+
+
+function toggleMapDefensesView() {
+    
+    if(window.isMapdefensesViewActive === true) {
+        desactivateMapDefensesView();
+        window.isMapdefensesViewActive = false;
+    } else {
+        switchToMapDefensesView();
+        window.isMapdefensesViewActive = true;
+    }
 }

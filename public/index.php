@@ -405,6 +405,9 @@ echo $layout->page_header($citizen['user_id'], $citizen['citizen_id'], $citizen[
                     <i class="material-icons small" aria-hidden="true">web</i>
                 </button>
             </li>
+            <li role="none" class="defenses" onclick="toggleMapDefensesView()">
+                <button aria-label="Voir les défenses des bâtiments"><span aria-hidden="true">🛡️</span></button>
+            </li>
             <li role="none" id="action_mode_button" class="my_zone">
                 <button aria-label="Passer en mode action de zone">
                     <span class="pickaxe" aria-hidden="true">&#x26CF;&#xFE0F;</span>

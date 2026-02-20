@@ -338,6 +338,7 @@ class CityConnections {
         if(zone.querySelector(".cityframe") === null) {
             zone.insertAdjacentHTML("beforeend",
                 `<div class="cityframe ${cssClass}" role="none">
+                    <div class="healthbar hidden animate__animated animate__fadeIn"></div>
                     <span class="dot_notif">!</span>
                     <div class="label hidden">${label}</div>
                     <div class="frame"></div>
