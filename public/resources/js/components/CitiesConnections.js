@@ -159,21 +159,21 @@ class CityConnections {
                 // Icons of the items required for building
                 const htmlFindableItems = Object.keys(_configsBuildingsComponents[cityTypeId])
                                             .map(id => {
-                                                id = Number(id);
+                                                const itemId = Number(id);
                                                 
-                                                if(!_configsItems[id]) {
+                                                if(!_configsItems[itemId]) {
                                                     var item_name = "Objet inconnu",
                                                         icon_path = null,
                                                         icon_symbol = null;
                                                 } else {
-                                                    var item_name = _configsItems[id]["name"],
-                                                        icon_path = _configsItems[id]["icon_path"],
-                                                        icon_symbol = _configsItems[id]["icon_symbol"];
+                                                    var item_name = _configsItems[itemId]["name"],
+                                                        icon_path = _configsItems[itemId]["icon_path"],
+                                                        icon_symbol = _configsItems[itemId]["icon_symbol"];
                                                 }
                                                 
                                                 return `
                                                 <span class="icon" arial-label="${item_name}">
-                                                    ${htmlItems.icon(icon_path, icon_symbol, icon_size)}
+                                                    ${htmlItems.icon(itemId, icon_size)}
                                                 </span>
                                                 `;
                                             })

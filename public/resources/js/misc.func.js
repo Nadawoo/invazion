@@ -148,7 +148,7 @@ function itemsBubbleFragment(itemsIds) {
     
     const htmlFindableItems = itemsIds.map(itemId => `
                                     <span class="icon">
-                                        ${htmlItems.icon(_configsItems[itemId]["icon_path"], _configsItems[itemId]["icon_symbol"], 22)}
+                                        ${htmlItems.icon(itemId, 22)}
                                     </span>
                                 `)
                                 .join('');

@@ -55,7 +55,7 @@ class Items {
         
         // Gets a blank HTML template of an item entry
         let template = document.querySelector("#tplItem").content.cloneNode(true);
-        let icon = this.icon(itemCaracs['icon_path'], itemCaracs['icon_symbol']);
+        let icon = this.icon(itemId);
         let bgColor = this.#itemBackgroundColor(itemCaracs["item_type"]); 
         
         // Populates the blank template with the item data
@@ -97,10 +97,20 @@ class Items {
      * @param {int} height The dimensions to resize the image
      * @returns {string} HTML for the icon (<img> tag HTML symbol)
      */
-    icon(iconPath, iconSymbol, height=null) {
-
+    icon(itemId, height=null) {
+        
+        // If the item is unknown on this map. Happens on a bugged configuration: 
+        // the item exists on the map but is not in the list of items allowed 
+        // for the current game.
+        if(_configsItems[itemId] === undefined) {
+            return `<span class="red">#${itemId}</span>`;
+        }
+        
+        const iconPath   = _configsItems[itemId]["icon_path"],
+              iconSymbol = _configsItems[itemId]["icon_symbol"];
+        
         if(iconPath !== null) {
-            // If an image file is set (PNG, GIF, display it as icon
+            // If an image file is set (PNG, GIF...), display it as icon
             let dimensions = (height !== null) ? `height="${height}" width="${height}"`  : "";
             return `<img src="../resources/img/${iconPath}" ${dimensions}>`;
         }
@@ -196,7 +206,7 @@ class Items {
      */
     #itemTooltip(itemId, itemCaracs) {
         
-        let icon = this.icon(itemCaracs['icon_path'], itemCaracs['icon_symbol']);
+        let icon = this.icon(itemId);
         
         let itemTypeClass = null;
         if(itemCaracs["item_type"] === "resource" || itemCaracs["item_type"] === "resource_rare") {
