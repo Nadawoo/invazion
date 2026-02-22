@@ -510,7 +510,9 @@ class HtmlCityEnclosure
                 </select>
             </form>';
         
-        $advanced_gui_elements = (count($completed_buildings_ids) > 0) ? $html_tips.$html_display_mode : '';
+//        // Hide those the buttons for beginners
+//        $advanced_gui_elements = (count($completed_buildings_ids) > 0) ? $html_tips.$html_display_mode : '';
+        $advanced_gui_elements = $html_tips.$html_display_mode;
         
         return '
             <div id="constructions_block" class="city_block" style="width:21.5em">
