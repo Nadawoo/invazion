@@ -501,16 +501,19 @@
 #map_body .city_name,
 #map_body button[name=teleport] {
     position:absolute;
-    top:-0.6rem;
+    height:40px;
+    width: 40px;
     padding:0.1em 0.4em;
-    width:max-content;
-    font-size:0.7em;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:0.5em;
     white-space:break-spaces;
-    background:darkred;
+    background:midnightblue;
+    border:2px solid grey;
+    border-radius:0.5em;
     color:white;
     line-height:normal;
-    border:1px solid red;
-    border-radius:2em;
     box-shadow:4px 4px 6px black;
     z-index:2;
 }
@@ -526,18 +529,17 @@
 
 #map_body .nbr_defenses {
     position:absolute;
-    top:-1em;
+    top:-0.8em;
+    width:50px;
     line-height:normal;
     font-size:0.7em;
     display:flex;
     justify-content:center;
     align-items:center;
-    /*background:green;*/
-    /*border:1px solid lightgrey;*/
     background:darkred;
-    border:1px outset red;
+    border:1px solid lightgrey;
+    border-radius:0.4em;
     color:white;
-    border-radius:1em;
     box-shadow:4px 4px 6px black;
     z-index:2;
 }

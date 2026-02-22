@@ -350,7 +350,7 @@ function toggleMapNeighborhoodView() {
         hide(["#map_body .zone_name", "#map_body .city_name"]);
         window.isMapNeighborhoodViewActive = false;
     } else {
-        hide("#map_body .nbr_defenses");
+        hide(["#map_body .nbr_defenses", "#map_body .sharp_bubble"]);
         display(["#map_body .zone_name", "#map_body .city_name"]);
         document.querySelector("#mapRadarMenu .neighborhood").classList.add("active");
         window.isMapNeighborhoodViewActive = true;
