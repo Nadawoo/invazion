@@ -616,12 +616,20 @@
     z-index:2;
 }
 #map_body .diggable .icon {
+    display:flex;
+    align-items:center;
     height:25px;
     margin:0 1px;
     padding:2px;
     background:aliceblue;
     border-radius:2px;
     font-size:1.3em; /* Applies when the icon is an emoji */
+}
+#map_body .diggable .additional {
+    font-size:1em;
+    font-weight:bold;
+    color:royalblue;
+    text-shadow:none;
 }
 #map_body .sharp_bubble.diggable::after {
     top:2.3em;

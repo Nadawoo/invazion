@@ -146,13 +146,21 @@ function itemsBubbleFragment(itemsIds) {
     
     const htmlItems = new Items();
     
-    const htmlFindableItems = itemsIds.map(itemId => `
-                                    <span class="icon">
-                                        ${htmlItems.icon(itemId, 22)}
-                                    </span>
-                                `)
-                                .join('');
-
+    // If too many items to show in the bubble, we will add a "+00" indicator
+    const max_items = 3;
+    const nbr_additional_items = itemsIds.length - max_items;
+    
+    let htmlFindableItems = itemsIds
+                            .slice(0, max_items)
+                            .map(itemId => `
+                                <span class="icon">
+                                    ${htmlItems.icon(itemId, 22)}
+                                </span>
+                            `)
+                            .join('');
+    
+    htmlFindableItems += `<span class="icon additional">+${nbr_additional_items}</span>`;
+    
     // <div class="sharp_bubble ..." aria-label="..."></div>
     const div = document.createElement('div');
     div.className = 'sharp_bubble diggable animate__animated animate__pulse animate__infinite';
