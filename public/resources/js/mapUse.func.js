@@ -347,11 +347,11 @@ function toggleMapNeighborhoodView() {
     
     if(window.isMapNeighborhoodViewActive === true) {
         display("#map_body .nbr_defenses");
-        hide(["#map_body .zone_name", "#map_body .city_name"]);
+        hide(["#map_body .zone_name", "#map_body .city_name", "#map_body .nbr_defenses"]);
         window.isMapNeighborhoodViewActive = false;
     } else {
-        hide(["#map_body .nbr_defenses", "#map_body .sharp_bubble"]);
-        display(["#map_body .zone_name", "#map_body .city_name"]);
+        hide(["#map_body .sharp_bubble"]);
+        display(["#map_body .zone_name", "#map_body .city_name", "#map_body .nbr_defenses"]);
         document.querySelector("#mapRadarMenu .neighborhood").classList.add("active");
         window.isMapNeighborhoodViewActive = true;
     }
@@ -706,7 +706,7 @@ function desactivateMapDefensesView() {
     document.querySelectorAll(".cityframe").forEach((cityframe) => cityframe.classList.remove("highlight"));
     
     // Show the previously hidden informations 
-    display([".nbr_defenses", ".nbr_items", ".sharp_bubble", ".location"]);
+    display([".nbr_items", ".sharp_bubble", ".location"]);
     
     // Light off the button
     document.querySelector("#views_bar .defenses").classList.remove("active");

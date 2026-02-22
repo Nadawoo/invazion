@@ -248,7 +248,6 @@ function switchToTeleportView() {
                 <button aria-label="Me déplacer vers ce bâtiment"
                     name="teleport"
                     class="animate__animated animate__pulse animate__infinite"
-                    style="border-radius:0.5em"
                     >Aller<br>-1&#x26A1;</button>
             `);
         } else {
