@@ -686,9 +686,6 @@ function switchToMapDefensesView() {
     const healthBars = new HealthBars();
     healthBars.displayHealthBars();
     
-    // Highlight all the buildings
-    document.querySelectorAll(".cityframe").forEach((cityframe) => cityframe.classList.add("highlight"));
-    
     // Hide secondary informations for more clarity
     hide([".nbr_defenses", ".nbr_items", ".sharp_bubble", ".location"]);
     

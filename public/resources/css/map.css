@@ -510,8 +510,8 @@
     font-size:0.5em;
     white-space:break-spaces;
     background:midnightblue;
-    border:1px solid grey;
-    border-radius:0.5em;
+    border:1px outset grey;
+    border-radius:5px 5px 50% 50%;
     color:white;
     line-height:normal;
     box-shadow:4px 4px 6px black;
@@ -539,7 +539,7 @@
     align-items:center;
     background:darkred;
     border:1px solid grey;
-    border-radius:50% 50% 0 0;
+    border-radius:6px 6px 0 0;
     color:white;
     /*box-shadow:4px 4px 6px black;*/
     z-index:2;
@@ -653,10 +653,8 @@
     height:40px;
     width: 40px;
     margin-bottom:2px;
-    border-radius:50%;
-}
-#map_body .cityframe.highlight .frame {
     border:1px outset darkgrey;
+    border-radius:50%;
     background: radial-gradient(circle at 5% 5%,
                         rgba(255, 255, 255, 0.8),
                         rgba(0, 0, 0, 0) 50%
