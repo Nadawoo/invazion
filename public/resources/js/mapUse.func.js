@@ -528,8 +528,8 @@ function resetMapView() {
     window.isMapExplorationsViewActive = false;
     desactivateMapPathsView();
     window.isMapPathsViewActive = false;
-    desactivateMapDefensesView();
-    window.isMapDefensesViewActive = false;
+//    desactivateMapDefensesView();
+//    window.isMapDefensesViewActive = false;
     
     hide("#map_body .location");
     hide("#map_body button[name=teleport]");
@@ -680,34 +680,34 @@ function switchToMapView() {
 }
 
 
-function switchToMapDefensesView() {
-    
-    // Display the health bars
-    const healthBars = new HealthBars();
-    healthBars.displayHealthBars();
-    
-    // Hide secondary informations for more clarity
-    hide([".nbr_defenses", ".nbr_items", ".sharp_bubble", ".location"]);
-    
-    // Highlight the button
-    document.querySelector("#views_bar .defenses").classList.add("active");
-}
+//function switchToMapDefensesView() {
+//    
+//    // Display the health bars
+//    const healthBars = new HealthBars();
+//    healthBars.displayHealthBars();
+//    
+//    // Hide secondary informations for more clarity
+//    hide([".nbr_defenses", ".nbr_items", ".sharp_bubble", ".location"]);
+//    
+//    // Highlight the button
+//    document.querySelector("#views_bar .defenses").classList.add("active");
+//}
 
 
-function desactivateMapDefensesView() {
-    
-    // Hide the health bars
-    hide("#map_body .healthbar");
-    
-    // Remove the highlight on the building
-    document.querySelectorAll(".cityframe").forEach((cityframe) => cityframe.classList.remove("highlight"));
-    
-    // Show the previously hidden informations 
-    display([".nbr_items", ".sharp_bubble", ".location"]);
-    
-    // Light off the button
-    document.querySelector("#views_bar .defenses").classList.remove("active");
-}
+//function desactivateMapDefensesView() {
+//    
+//    // Hide the health bars
+//    hide("#map_body .healthbar");
+//    
+//    // Remove the highlight on the building
+//    document.querySelectorAll(".cityframe").forEach((cityframe) => cityframe.classList.remove("highlight"));
+//    
+//    // Show the previously hidden informations 
+//    display([".nbr_items", ".sharp_bubble", ".location"]);
+//    
+//    // Light off the button
+//    document.querySelector("#views_bar .defenses").classList.remove("active");
+//}
 
 
 function toggleMapDefensesView() {

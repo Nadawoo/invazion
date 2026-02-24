@@ -86,6 +86,14 @@ if (document.getElementById('map') !== null) {
     
     // Place on the map the buildings and cities
     _cities = addCitiesOnMap(mapId);
+    
+    // Add health bars over the cities
+    setTimeout(() => {
+            const healthBars = new HealthBars();
+            healthBars.displayHealthBars();
+        }, 500);
+
+    // Add the roads
     let cityConnections = new CityConnections();
     cityConnections.addCityframes(mapId);
     cityConnections.updateConnectedCitiesLines(mapId);

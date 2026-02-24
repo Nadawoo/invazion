@@ -267,6 +267,7 @@ class CityConnections {
         }
         
         cityframe.insertAdjacentHTML("afterbegin", htmlNbrDefenses);
+        cityframe.dataset.defenses = cityDefenses;
     }
     
     

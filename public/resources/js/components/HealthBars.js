@@ -1,6 +1,6 @@
 class HealthBars {
     
-    static MAX_HEALTHPOINTS = 10;
+    static NBR_CHUNKS = 10;
 
     displayHealthBars() {
         
@@ -13,16 +13,17 @@ class HealthBars {
 
     #displayHealthBar(healthBar) {
 
-        const zombies = healthBar.closest('.square_container').dataset.zombies;
-        const healthPoints = this.constructor.MAX_HEALTHPOINTS - zombies;
-
+        const zombies = healthBar.closest(".square_container").dataset.zombies;
+        const cityDefenses = healthBar.closest(".cityframe").dataset.defenses;
+        const missingChunks = cityDefenses - zombies;
+        
         // Display the the healthbar only if not full
-        if(zombies > 0) {
+        if(missingChunks > 0) {
             healthBar.classList.remove("hidden");
             // Create the chunks if not already done
             if(healthBar.innerHTML === "") {
                 this.#createChunks(healthBar);
-                this.#updateHealth(healthBar, healthPoints);
+                this.#updateHealth(healthBar, missingChunks);
             }
         }
     }
@@ -30,7 +31,7 @@ class HealthBars {
 
     #createChunks(healthbar) {
 
-        for(let i = 0; i < this.constructor.MAX_HEALTHPOINTS; i++) {
+        for(let i = 0; i < this.constructor.NBR_CHUNKS; i++) {
             const chunk = document.createElement("div");
             chunk.classList.add("chunk");
             healthbar.appendChild(chunk);
@@ -38,11 +39,11 @@ class HealthBars {
     }
 
 
-    #updateHealth(healthBar, currentHealthpoints) {
+    #updateHealth(healthBar, missingDefenses) {
 
         const chunks = healthBar.querySelectorAll(".chunk");
         chunks.forEach((chunk, i) => {
-            if (i < currentHealthpoints) {
+            if(i < missingDefenses) {
                 chunk.classList.remove("lost");
             } else {
                 chunk.classList.add("lost");

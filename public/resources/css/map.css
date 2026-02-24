@@ -418,20 +418,20 @@
     bottom:100%;
     left:50%;
     transform:translateX(-50%);
-    width: 40px;
+    width: 38px;
     height:9px;
     display:flex;
     gap:1px;
     padding:1px;
     background:darkslategrey;
-    border:1px solid aliceblue;
+    border:1px solid deepskyblue;
     border-radius:3px;
     box-shadow:8px 8px 8px black;
     z-index:1;
 }
 #map_body .healthbar .chunk {
     flex:1;
-    background:dodgerblue;
+    background:deepskyblue;
     transition:background 0.15s linear, opacity 0.15s linear;
 }
 #map_body .healthbar .chunk.lost {
