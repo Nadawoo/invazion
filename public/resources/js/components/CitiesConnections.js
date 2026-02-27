@@ -262,7 +262,7 @@ class CityConnections {
 //                }
             else if(nbrDefenses > 0) {
                 // Display the number of defenses for the city if not zero
-                htmlNbrDefenses = `<div aria-label="${defensesExcedent} défenses" class="nbr_defenses animate__animated animate__zoomIn hidden"><span aria-hidden="true">&nbsp;${defensesExcedent}&#128737;&#65039;</span></div>`;
+                htmlNbrDefenses = `<div aria-label="${defensesExcedent} défenses" class="nbr_defenses animate__animated animate__zoomIn hidden"><span aria-hidden="true">&nbsp;+${defensesExcedent}&#128737;&#65039;</span></div>`;
             }
         }
         

@@ -426,7 +426,7 @@
     background:darkslategrey;
     border:1px solid deepskyblue;
     border-radius:3px;
-    box-shadow:8px 8px 8px black;
+    box-shadow:4px 4px 6px black;
     z-index:1;
 }
 #map_body .healthbar .chunk {
@@ -529,11 +529,11 @@
 
 #map_body .nbr_defenses {
     position:absolute;
-    top:-0.8em;
+    top:-1em;
     height:20px;
     width:40px;
     line-height:normal;
-    font-size:0.7em;
+    font-size:0.6em;
     display:flex;
     justify-content:center;
     align-items:center;
@@ -983,12 +983,12 @@
     z-index:3;
 }
 #map_body .map_citizen .nbr_defenses { /* Pseudo of the player on the map */
-    width:6em;
     margin-top:-33px;
     background:aliceblue;
     border:2px solid green;
     outline:1px solid white;
     border-radius:4px;
+    box-shadow:4px 4px 6px black;
     color:revert;
     overflow:hidden;
 }
