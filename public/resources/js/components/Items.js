@@ -17,7 +17,11 @@ class Items {
         
         const json = await zombLib.callApi("GET", "maps", `action=get&map_id=${mapId}&token=${token}&zones=${htmlCoord}`);    
         
-        return json.datas.zones[htmlCoord]["items"];
+        if (json.datas === null) {
+            throw new Error(`[Azmt] Error while executing getGroundItems(): ${json.metas.error_message}`);
+        }
+        
+        return (json.datas.zones === null) ? false : json.datas.zones[htmlCoord]["items"];
     }
     
     
