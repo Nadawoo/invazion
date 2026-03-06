@@ -62,20 +62,19 @@
 }
 .item_label .dot_number {
     position:absolute;
-    bottom:-4px; /*-0.3rem;*/
-    right: -4px; /*-0.3rem;*/
-    height:   1.5em;
-    min-width:1.5em;
+    bottom:-2px;
+    right: -2px;
+    height:   18px;
+    min-width:18px;
     padding:0 0.2em;
     display:flex;
     align-items:center;
     justify-content:center;
     font-size:0.8em;
     font-weight:bold;
-    background:powderblue; /* #28b463; */
-    border-left:1px solid white;
-    border-top: 1px solid white;
-    border-radius:1rem; /*0.3em 0 0.3em 0;*/
+    background:aliceblue;
+    /*border:1px solid darkgrey;*/
+    border-radius:2px;
 }
 .item_label.empty_slot {
     background-color:#fafafa;
@@ -170,8 +169,8 @@
 .item_label.precious::after {
     content: "★";
     position:absolute;
-    top:   -11px;
-    right: -8px;
+    top:  -14px;
+    right:-11px;
     font-size:1.2em;
     color:#FFD700;
     -webkit-text-stroke: 1px darkslategrey;
