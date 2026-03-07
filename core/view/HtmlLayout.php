@@ -130,7 +130,7 @@ class HtmlLayout extends HtmlPage
         <ul aria-label="Barre en pied de page" role="none" id="attack_bar" class="animate__animated animate__slideInUp">
             <li role="none">
                 <button aria-label="Ouvrir/fermer le menu de l\'application" id="appMenu" class="sidenav-trigger" data-target="slide-out">
-                    <span class="icon"><i class="material-icons" aria-hidden="true">menu</i></span>
+                    <span class="icon"><i class="material-icons" role="img">menu</i></span>
                 </button>
             </li>
             
@@ -144,7 +144,7 @@ class HtmlLayout extends HtmlPage
                 </a>
                 <a href="#popdayclock" id="dayclock">
                     <span data-translate="day">Jour</span> <strong id="current_day" class="number" role="none">'.(int)$day.'</strong>
-                    <span aria-label="Avancer au jour suivant" class="dot_number"><i class="material-icons" aria-hidden="true">fast_forward</i></span>
+                    <span aria-label="Avancer au jour suivant" class="dot_number"><i class="material-icons" role="img">fast_forward</i></span>
                 </a>
                 <a href="#popdayclock" id="city_counter"
                    aria-label="Nombre de bâtiments découverts sur la carte"
@@ -157,8 +157,8 @@ class HtmlLayout extends HtmlPage
             
             <li class="right" role="none">
                 <button aria-label="Ouvrir/fermer le panneau des communications" title="Communications" id="showWall">
-                    <span class="icon"><i class="material-icons" aria-hidden="true">sms</i></span>
-                    <span class="text" aria-hidden="true">Communications</span>
+                    <span class="icon"><i class="material-icons" role="img">sms</i></span>
+                    <span class="text" role="img">Communications</span>
                 </button>
                 
                 <!--

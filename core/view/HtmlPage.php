@@ -11,7 +11,7 @@ class HtmlPage
     // Increment those variables when you modify the CSS or JS files. This ensures
     // that the users' browsers reload the up-to-date files, instead of using 
     // the obsolete ones stored in their cache.
-    private $css_js_version = 115;
+    private $css_js_version = 116.1;
     
     /**
      * Sets HTTP headers to secure the website
@@ -120,10 +120,10 @@ class HtmlPage
                             <span class="screw" style="bottom:5px;left:5px"></span>
                         </div>
                         <a aria-label="Ouvrir la fenêtre de présentation rapide du jeu" href="#poppresentation" class="help_button">
-                            <i class="material-icons" aria-hidden="true">help</i>
+                            <i class="material-icons" role="img">help</i>
                         </a>
                         <a aria-label="Ouvrir le menu principal" href="#" data-target="slide-out" class="menu_button sidenav-trigger">
-                            <i class="material-icons" aria-hidden="true">menu</i>
+                            <i class="material-icons" role="img">menu</i>
                         </a>
                         '.$this->site_menu($user_id, $citizen_id, $citizen_pseudo).'
                     </header>';
@@ -276,7 +276,7 @@ class HtmlPage
     private function site_menu_item($name, $href, $googlefont_icon, $title="") {
         
         return '<li role="none">
-            <a href="'.$href.'" title="'.$title.'"><i class="material-icons black-text" aria-hidden="true">'.$googlefont_icon.'</i>'.$name.'</a>
+            <a href="'.$href.'" title="'.$title.'"><i class="material-icons black-text" role="img">'.$googlefont_icon.'</i>'.$name.'</a>
             </li>';
     }
 }

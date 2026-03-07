@@ -121,7 +121,7 @@ class Items {
         }
         else if(iconSymbol !== null) {
             // If there is no file but a HTML symbol, display it as icon
-            return `<span aria-label="${itemName}">${iconSymbol}</span>`;
+            return `<span role="img" aria-label="${itemName}">${iconSymbol}</span>`;
         }
         else {
             // If nothing is set, display a "?" as icon
