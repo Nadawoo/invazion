@@ -111,16 +111,17 @@ class Items {
         }
         
         const iconPath   = _configsItems[itemId]["icon_path"],
-              iconSymbol = _configsItems[itemId]["icon_symbol"];
+              iconSymbol = _configsItems[itemId]["icon_symbol"],
+              itemName = _configsItems[itemId]["name"];
         
         if(iconPath !== null) {
             // If an image file is set (PNG, GIF...), display it as icon
-            let dimensions = (height !== null) ? `height="${height}" width="${height}"`  : "";
-            return `<img src="../resources/img/${iconPath}" ${dimensions}>`;
+            let dimensions = (height !== null) ? `height="${height}" width="${height}"` : "";
+            return `<img src="../resources/img/${iconPath}" alt="${itemName}" ${dimensions}>`;
         }
         else if(iconSymbol !== null) {
             // If there is no file but a HTML symbol, display it as icon
-            return iconSymbol;
+            return `<span aria-label="${itemName}">${iconSymbol}</span>`;
         }
         else {
             // If nothing is set, display a "?" as icon

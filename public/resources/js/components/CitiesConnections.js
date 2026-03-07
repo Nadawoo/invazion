@@ -162,17 +162,15 @@ class CityConnections {
                                                 const itemId = Number(id);
                                                 
                                                 if(!_configsItems[itemId]) {
-                                                    var item_name = "Objet inconnu",
-                                                        icon_path = null,
+                                                    var icon_path = null,
                                                         icon_symbol = null;
                                                 } else {
-                                                    var item_name = _configsItems[itemId]["name"],
-                                                        icon_path = _configsItems[itemId]["icon_path"],
+                                                    var icon_path = _configsItems[itemId]["icon_path"],
                                                         icon_symbol = _configsItems[itemId]["icon_symbol"];
                                                 }
                                                 
                                                 return `
-                                                <span class="icon" arial-label="${item_name}">
+                                                <span class="icon">
                                                     ${htmlItems.icon(itemId, icon_size)}
                                                 </span>
                                                 `;
