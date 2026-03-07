@@ -159,7 +159,9 @@ function itemsBubbleFragment(itemsIds) {
                             `)
                             .join('');
     
-    htmlFindableItems += `<span class="icon additional">+${nbr_additional_items}</span>`;
+    if(nbr_additional_items > 0) {
+        htmlFindableItems += `<span class="icon additional">+${nbr_additional_items}</span>`;
+    }
     
     // <div class="sharp_bubble ..." aria-label="..."></div>
     const div = document.createElement('div');
