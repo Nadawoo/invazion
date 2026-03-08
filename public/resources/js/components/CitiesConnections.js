@@ -16,19 +16,81 @@ class CityConnections {
               json = await zombLib.callApi("GET", "connections", `action=get&map_id=${mapId}`),
               roads = json.datas.roads;
         
-        roads.forEach(road => {
-            const sourceCity = cities[road.source],
-                  targetCity = cities[road.target],
-                  targetZoneId = `zone${targetCity.coord_x}_${targetCity.coord_y}`,
-                  sourceZoneId = `zone${sourceCity.coord_x}_${sourceCity.coord_y}`;
+        const graph = this.#buildGraph(roads);
+        
+        const drawnRoads = new Set();
+        // For each city from the graph
+        Object.keys(graph).forEach(sourceCityId => {
+            // For each neighbor of the current city
+            graph[sourceCityId].forEach(targetCityId => {
+                // Don't draw the same road twice
+                const key         = `${sourceCityId}To${targetCityId}`;
+                const reversedKey = `${targetCityId}To${sourceCityId}`;
+                
+                if(drawnRoads.has(key) || drawnRoads.has(reversedKey)) return;
 
-            this.#updateLineBetweenZones(
+                const sourceCity = cities[sourceCityId];
+                const targetCity = cities[targetCityId];
+                const sourceZoneId = `zone${sourceCity.coord_x}_${sourceCity.coord_y}`;
+                const targetZoneId = `zone${targetCity.coord_x}_${targetCity.coord_y}`;
+
+                this.#updateLineBetweenZones(
                     `${targetZoneId}To${sourceZoneId}`,
                     `#${sourceZoneId}`,
                     `#${targetZoneId}`,
-                     this.#getLineType(targetCity.city_type_id)
-                    );
+                    this.#getLineType(targetCity.city_type_id)
+                );
+
+                drawnRoads.add(key, reversedKey);
+            });
+
         });
+    }
+    
+    
+    /**
+     * Build a graph giving the neighbors for each city. Useful for pathfinding.
+     * 
+     * @param {Object} roads The roads as returned by the "connections" API
+     *                       (pairs of source/target)
+     * @returns {unresolved} Example of result:
+     *   {
+     *      1216: [1220, 1221, 1222],
+     *      1220: [1216],
+     *      1221: [1216],
+     *      1222: [1216, 1217],
+     *      1217: [1222]
+     *   }
+     */
+    #buildGraph(roads) {
+
+        const graph = {};
+
+        roads.forEach(road => {
+
+            if (!graph[road.source]) graph[road.source] = [];
+            if (!graph[road.target]) graph[road.target] = [];
+            
+            // NB: the road can be bidirectional
+            graph[road.source].push(road.target);
+            graph[road.target].push(road.source);
+
+        });
+
+        return graph;
+    }
+    
+    
+    /**
+     * Get the neighbors cities' IDs for one given city.
+     * 
+     * @param {int} cityId The ID of the city for which you want the neighbors
+     * @param {Object} graph A graph as returned by the buildGraph() method
+     * @returns {Array|CityConnections.#getNeighbors.graph}
+     */
+    #getNeighbors(cityId, graph) {
+        
+        return graph[cityId] || [];
     }
     
     
