@@ -96,7 +96,9 @@ if (document.getElementById('map') !== null) {
     // Add the roads
     let cityConnections = new CityConnections();
     cityConnections.addCityframes(mapId);
-    cityConnections.updateConnectedCitiesLines(mapId);
+    _cities.then(cities => {
+        cityConnections.updateConnectedCitiesLines(mapId, cities);
+    });
     // Place the citizens on the appropriate zones of the map
     let mapCitizens = new MapCitizens();
     _citizens = mapCitizens.addCitizensOnMap(mapId).then(() => {

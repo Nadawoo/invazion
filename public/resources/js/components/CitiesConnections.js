@@ -7,28 +7,28 @@ class CityConnections {
     /**
      * Draws a line between the cities connected over the map
      * 
-     * @param {int} mapId
+     * @param {int} mapId The ID of the map for which you want the roads
+     * @param {Object} cities The data of the cities, as returned by the "cities" API
      */
-    async updateConnectedCitiesLines(mapId) {
+    async updateConnectedCitiesLines(mapId, cities) {
+        
+        const zombLib = new ZombLib(),
+              json = await zombLib.callApi("GET", "connections", `action=get&map_id=${mapId}`),
+              roads = json.datas.roads;
+        
+        roads.forEach(road => {
+            const sourceCity = cities[road.source],
+                  targetCity = cities[road.target],
+                  targetZoneId = `zone${targetCity.coord_x}_${targetCity.coord_y}`,
+                  sourceZoneId = `zone${sourceCity.coord_x}_${sourceCity.coord_y}`;
 
-        _cities = await getMapCitiesOnce(mapId);
-
-        for(let city of Object.entries(_cities)) {
-            let childCity = city[1];
-            
-            if(childCity["connected_city_id"] !== null) {
-                let parentCity = _cities[childCity["connected_city_id"]],
-                    childCityZoneId  = `zone${childCity["coord_x"]}_${childCity["coord_y"]}`,
-                    parentCityZoneId = `zone${parentCity["coord_x"]}_${parentCity["coord_y"]}`;
-                
-                this.#updateLineBetweenZones(
-                                    `${childCityZoneId}To${parentCityZoneId}`,
-                                    `#${parentCityZoneId}`,
-                                    `#${childCityZoneId}`,
-                                     this.#getLineType(childCity.city_type_id)
-                                     );
-            }
-        }
+            this.#updateLineBetweenZones(
+                    `${targetZoneId}To${sourceZoneId}`,
+                    `#${sourceZoneId}`,
+                    `#${targetZoneId}`,
+                     this.#getLineType(targetCity.city_type_id)
+                    );
+        });
     }
     
     
