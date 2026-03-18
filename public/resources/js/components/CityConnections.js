@@ -68,7 +68,7 @@ class CityConnections {
         const path = graphClass.getPath(graph, await _cities, sourceCityId, targetCityId);
         
         // If the city is not connected by any road, do nothing
-        if(path === null) return;
+        if(path === null) return path;
         
         // For each city of the path
         for(let i=0; i<path.length-1; i++) {       
@@ -91,6 +91,8 @@ class CityConnections {
                 roadReversed.classList.add("highlight");
             }
         }
+        
+        return path;
     }
     
     

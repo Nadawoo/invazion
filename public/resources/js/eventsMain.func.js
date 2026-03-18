@@ -422,21 +422,25 @@ function listenToRoads(hexagon) {
         "#map_body .sharp_bubble"
     ];
     
-    hexagon.addEventListener("pointerenter", (event)=>{
+    hexagon.addEventListener("pointerenter", async (event)=>{
         _roadActiveHexagon = hexagon;
-        
-        connections.highlightRoad(event);
-        hide(elementsToHide);
-        
-        // Stops the execution of the display() below if the mouse leaves then 
-        // hovers again the city
-        if(_roadDisplayTimeout) {
-            clearTimeout(_roadDisplayTimeout);
-            _roadDisplayTimeout = null;
+        // Highlight the road to the city
+        let path = await connections.highlightRoad(event);
+        // Hide the useless elements, unless there is a road to highlight
+        if(path !== null) {
+            hide(elementsToHide);
+            // Stop the execution of the display() below if the mouse leaves then 
+            // hovers again the city
+            if(_roadDisplayTimeout) {
+                clearTimeout(_roadDisplayTimeout);
+                _roadDisplayTimeout = null;
+            }
+        } else {
+            display(elementsToHide);
         }
     });
     
-    hexagon.addEventListener("pointerleave", ()=>{        
+    hexagon.addEventListener("pointerleave", ()=>{
         connections.turnoffRoad();
         
         _roadDisplayTimeout = setTimeout(()=>{
@@ -444,7 +448,7 @@ function listenToRoads(hexagon) {
                 display(elementsToHide);
             }
             _roadDisplayTimeout = null;
-        }, 800);
+        }, 500);
         
         _roadActiveHexagon = null;
     });
