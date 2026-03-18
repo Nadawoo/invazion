@@ -66,7 +66,10 @@ class CityConnections {
         const graphClass = new Graph();
         const graph = graphClass.buildGraph(_roads);
         const path = graphClass.getPath(graph, await _cities, sourceCityId, targetCityId);
-
+        
+        // If the city is not connected by any road, do nothing
+        if(path === null) return;
+        
         // For each city of the path
         for(let i=0; i<path.length-1; i++) {       
             let currentCity = _cities[path[i]],
