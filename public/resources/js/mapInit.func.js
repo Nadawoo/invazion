@@ -55,6 +55,19 @@ async function getMapCitizensOnce(mapId) {
 }
 
 
+async function getMapRoadsOnce(mapId) {
+    
+    // If the API has already be called before, don't re-call it
+    if(_roads === null) {
+        let zombLib = new ZombLib();
+        let json = await zombLib.callApi("GET", "connections", `action=get&map_id=${mapId}`);  
+        _roads = json.datas.roads;
+    }
+    
+    return _roads;
+}
+
+
 /**
  * Place the cities and buildings on the map. They are not loaded by the PHP 
  * to speed up the loading of the map.
@@ -144,6 +157,9 @@ async function addCitiesOnMap(mapId, htmlCoords=null) {
         // Used to memorize the type of building in HTML
         // TODO: we could remove this attribute by using the attribute data-cityid
         zone.dataset.citytypeid = city.city_type_id;
+        
+        // Will highlight the road leading to the city when hovering it
+        listenToRoads(zone.closest(".hexagon"));
     }
     
     return _cities;

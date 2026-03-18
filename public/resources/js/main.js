@@ -10,6 +10,7 @@ let lang = "fr";
 // Permanently stores the results returned by the Azimutant's APIs.
 var _citizens = null;
 var _cities = null;
+var _roads = null;
 var _myZone = null;
 var _jsonMap = null;
 var _isPathDrawingActive = false;

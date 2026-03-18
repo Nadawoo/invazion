@@ -405,3 +405,22 @@ function listenToMapLegendSwitches() {
         }
     });
 }
+
+
+/**
+ * Highlight the road leading to a city when hovering the city
+ * 
+ * @param {type} hexagon HTML node of the heaxagon containing a city
+ * @returns {undefined}
+ */
+function listenToRoads(hexagon) {
+    
+    const connections = new CityConnections();
+    
+    hexagon.addEventListener("pointerenter", function(event) {
+        connections.highlightRoad(event);
+    });
+    hexagon.addEventListener("pointerleave", function() {
+        connections.turnoffRoad();
+    });
+}

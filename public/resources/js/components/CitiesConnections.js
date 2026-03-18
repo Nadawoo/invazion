@@ -16,7 +16,8 @@ class CityConnections {
               json = await zombLib.callApi("GET", "connections", `action=get&map_id=${mapId}`),
               roads = json.datas.roads;
         
-        const graph = this.#buildGraph(roads);
+        const graphClass = new Graph();
+        const graph = graphClass.buildGraph(roads);
         
         const drawnRoads = new Set();
         // For each city from the graph
@@ -49,48 +50,56 @@ class CityConnections {
     
     
     /**
-     * Build a graph giving the neighbors for each city. Useful for pathfinding.
+     * Highlight the road to city
      * 
-     * @param {Object} roads The roads as returned by the "connections" API
-     *                       (pairs of source/target)
-     * @returns {unresolved} Example of result:
-     *   {
-     *      1216: [1220, 1221, 1222],
-     *      1220: [1216],
-     *      1221: [1216],
-     *      1222: [1216, 1217],
-     *      1217: [1222]
-     *   }
+     * @param {type} event
+     * @returns {undefined}
      */
-    #buildGraph(roads) {
+    async highlightRoad(event) {
 
-        const graph = {};
+        const sourceCityId = document.querySelector("#me").parentNode.dataset.cityid,
+              targetCityId = event.target.querySelector('.square_container').dataset.cityid;
 
-        roads.forEach(road => {
+        // Call the API to get the connections between cities
+        _roads = await getMapRoadsOnce(mapId);
 
-            if (!graph[road.source]) graph[road.source] = [];
-            if (!graph[road.target]) graph[road.target] = [];
-            
-            // NB: the road can be bidirectional
-            graph[road.source].push(road.target);
-            graph[road.target].push(road.source);
+        const graphClass = new Graph();
+        const graph = graphClass.buildGraph(_roads);
+        const path = graphClass.getPath(graph, await _cities, sourceCityId, targetCityId);
 
-        });
+        // For each city of the path
+        for(let i=0; i<path.length-1; i++) {       
+            let currentCity = _cities[path[i]],
+                nextCity    = _cities[path[i+1]];
 
-        return graph;
+            let currentCityHtmlId = `zone${currentCity.coord_x}_${currentCity.coord_y}`,
+                nextCityHtmlId    = `zone${nextCity.coord_x}_${nextCity.coord_y}`;
+
+            let roadName         = `${currentCityHtmlId}To${nextCityHtmlId}`;
+            let roadNameReversed = `${nextCityHtmlId}To${currentCityHtmlId}`;
+
+            let road         = document.querySelector(`#mapSvg line[name="${roadName}"]:not(.animated-line)`);
+            let roadReversed = document.querySelector(`#mapSvg line[name="${roadNameReversed}"]:not(.animated-line)`);
+
+            // Hide the road "A to B". If not found, try in the reversed direction "B to A".
+            if(road !== null) {
+                road.classList.add("highlight");
+            } else {
+                roadReversed.classList.add("highlight");
+            }
+        }
     }
     
     
     /**
-     * Get the neighbors cities' IDs for one given city.
+     * Cancel the highlighting of a road to a city
      * 
-     * @param {int} cityId The ID of the city for which you want the neighbors
-     * @param {Object} graph A graph as returned by the buildGraph() method
-     * @returns {Array|CityConnections.#getNeighbors.graph}
+     * @returns {undefined}
      */
-    #getNeighbors(cityId, graph) {
-        
-        return graph[cityId] || [];
+    turnoffRoad() {
+
+        const highlightedRoads = document.querySelectorAll("#mapSvg .highlight");    
+        highlightedRoads.forEach((road)=>{ road.classList.remove("highlight") });
     }
     
     
