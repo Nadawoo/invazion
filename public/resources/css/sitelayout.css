@@ -226,6 +226,7 @@ li {
 }
 .hidden {
     display:none !important;
+    pointer-events:none;
 }
 .center {
     text-align:center;

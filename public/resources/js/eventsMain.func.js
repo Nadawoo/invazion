@@ -416,11 +416,36 @@ function listenToMapLegendSwitches() {
 function listenToRoads(hexagon) {
     
     const connections = new CityConnections();
+    const elementsToHide = [
+        "#map_body .healthbar",
+        "#map_body .location",
+        "#map_body .sharp_bubble"
+    ];
     
-    hexagon.addEventListener("pointerenter", function(event) {
+    hexagon.addEventListener("pointerenter", (event)=>{
+        _roadActiveHexagon = hexagon;
+        
         connections.highlightRoad(event);
+        hide(elementsToHide);
+        
+        // Stops the execution of the display() below if the mouse leaves then 
+        // hovers again the city
+        if(_roadDisplayTimeout) {
+            clearTimeout(_roadDisplayTimeout);
+            _roadDisplayTimeout = null;
+        }
     });
-    hexagon.addEventListener("pointerleave", function() {
+    
+    hexagon.addEventListener("pointerleave", ()=>{        
         connections.turnoffRoad();
+        
+        _roadDisplayTimeout = setTimeout(()=>{
+            if(_roadActiveHexagon === null) { 
+                display(elementsToHide);
+            }
+            _roadDisplayTimeout = null;
+        }, 800);
+        
+        _roadActiveHexagon = null;
     });
 }

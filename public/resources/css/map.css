@@ -429,6 +429,9 @@
     box-shadow:4px 4px 6px black;
     z-index:1;
 }
+#map_body .healthbar:empty {
+    display:none;
+}
 #map_body .healthbar .chunk {
     flex:1;
     background:deepskyblue;
@@ -817,6 +820,8 @@
     stroke:#2B1F1F;
     stroke-width:10px;
     opacity:0.8;
+    transition:stroke 0.1s ease-in;
+    transform-origin:center;
 }
 #mapSvg .animated-line {
     stroke-width:1px;
