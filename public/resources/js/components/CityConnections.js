@@ -313,7 +313,7 @@ class CityConnections {
         else if(cityTypeId === roadConnectionId) {
             // Add the cost in action points above the raod connection
             let apCost = Math.max(1, Math.floor(zone.dataset.zombies/2));
-            htmlNbrDefenses = `<div class="sharp_bubble" aria-label="Coût pour traverser cette zone">&nbsp;-${apCost}<span role="img" aria-label="points d'action">⚡</span></div>`;
+            htmlNbrDefenses = `<div class="move_cost sharp_bubble hidden" aria-label="Coût pour traverser cette zone">&nbsp;-${apCost}<span role="img" aria-label="points d'action">⚡</span></div>`;
         }
         else if(cityTypeId === zombieCoreId) {
             // Add a special marker on the zombie cores

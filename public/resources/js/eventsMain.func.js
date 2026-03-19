@@ -419,22 +419,34 @@ function listenToRoads(hexagon) {
     const elementsToHide = [
         "#map_body .healthbar",
         "#map_body .location",
-        "#map_body .sharp_bubble"
+        "#map_body .diggable"
     ];
     
     hexagon.addEventListener("pointerenter", async (event)=>{
         _roadActiveHexagon = hexagon;
+        
         // Highlight the road to the city
         let path = await connections.highlightRoad(event);
-        // Hide the useless elements, unless there is a road to highlight
+        
+        // If there is a road to highlight
         if(path !== null) {
+            // Hide the useless elements to enlighten the GUI
             hide(elementsToHide);
+            
             // Stop the execution of the display() below if the mouse leaves then 
             // hovers again the city
             if(_roadDisplayTimeout) {
                 clearTimeout(_roadDisplayTimeout);
                 _roadDisplayTimeout = null;
             }
+            
+            // Display the cost in action points above each city of the path
+            path.forEach((cityId)=> {
+                const moveCost = document.querySelector(`#map_body .square_container[data-cityid="${cityId}"] .move_cost`);
+                if(moveCost !== null) {
+                    moveCost.classList.remove("hidden");
+                }
+            });
         } else {
             display(elementsToHide);
         }
@@ -449,6 +461,8 @@ function listenToRoads(hexagon) {
             }
             _roadDisplayTimeout = null;
         }, 500);
+        
+        hide("#map_body .move_cost");
         
         _roadActiveHexagon = null;
     });
