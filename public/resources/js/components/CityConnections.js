@@ -413,6 +413,13 @@ class CityConnections {
         if(zone.querySelector(".cityframe") === null) {
             zone.insertAdjacentHTML("beforeend",
                 `<div class="cityframe ${cssClass}" role="none">
+                    <div class="radial_menu hidden">
+                        <button aria-label="Me déplacer vers ce bâtiment"
+                            name="teleport"
+                            class="animate__animated animate__fadeInUp animate__faster"
+                            >Aller<br> -0⚡
+                        </button>
+                    </div>
                     <div class="healthbar hidden animate__animated animate__fadeIn"></div>
                     <span class="dot_notif">!</span>
                     <div class="label hidden">${label}</div>

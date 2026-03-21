@@ -504,24 +504,33 @@
 #map_body .city_name,
 #map_body button[name=teleport] {
     position:absolute;
-    height:40px;
     width: 40px;
     padding:0.1em 0.4em;
     display:flex;
     align-items:center;
     justify-content:center;
-    font-size:0.5em;
-    white-space:break-spaces;
-    background:midnightblue;
     border:1px outset grey;
-    border-radius:5px 5px 50% 50%;
     color:white;
-    line-height:normal;
     box-shadow:4px 4px 6px black;
     z-index:2;
 }
+#map_body .city_name {
+    height:40px;
+    font-size:0.5em;
+    line-height:normal;
+    white-space:break-spaces;
+    background:midnightblue;
+    border-radius:5px 5px 50% 50%;
+}
 #map_body button[name=teleport] {
-    left:0;
+    top:-32px;
+    left:-3px;
+    height:auto;
+    width:auto;
+    font-size:0.7em;
+    background:darkred;
+    border:2px outset red;
+    border-radius:5px;
 }
 #map_body .city_img {
     display:block;
@@ -610,6 +619,16 @@
     border-left: 0.6em solid transparent;
     border-right:0.6em solid transparent;
     border-top:  1em solid mediumpurple;
+}
+#map_body .sharp_bubble.move_cost {
+    top:-1.9em;
+    height:auto;
+    width:auto;
+    padding:2px 1px;
+    border-radius:5px;
+}
+#map_body .sharp_bubble.move_cost:after {
+    top:1.5em;
 }
 /* Marker over the diggable buildings on the map */
 #map_body .sharp_bubble.diggable {

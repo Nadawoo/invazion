@@ -126,7 +126,7 @@ if (document.getElementById('map') !== null) {
             var myCityZoneId = getMyCityZoneId();
             centerMapOnMe();
             // Add a location sign above the city of the player
-            addCityLocationMarker(myCityZoneId);
+//            addCityLocationMarker(myCityZoneId);
             // Start in the "action" mode (centered on the current player)
 //            setTimeout(switchToActionView, 500);
 

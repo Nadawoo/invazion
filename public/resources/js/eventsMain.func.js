@@ -436,6 +436,8 @@ function listenToRoads(hexagon) {
             // Hide the useless elements to enlighten the GUI
             hide(elementsToHide);
             display("#personal_block_wrapper");
+            // Display the "Go to" menu
+            hexagon.querySelector(".radial_menu").classList.remove("hidden");
             
             // Stop the execution of the display() below if the mouse leaves then 
             // hovers again the city
@@ -456,7 +458,7 @@ function listenToRoads(hexagon) {
         }
     });
     
-    hexagon.addEventListener("pointerleave", ()=>{
+    hexagon.addEventListener("pointerleave", (event)=>{
         connections.turnoffRoad();
         
         _roadDisplayTimeout = setTimeout(()=>{
@@ -468,6 +470,7 @@ function listenToRoads(hexagon) {
         }, 500);
         
         hide("#map_body .move_cost");
+        event.target.querySelector(".radial_menu").classList.add("hidden");
         
         _roadActiveHexagon = null;
     });
