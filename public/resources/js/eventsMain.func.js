@@ -419,7 +419,10 @@ function listenToRoads(hexagon) {
     const elementsToHide = [
         "#map_body .healthbar",
         "#map_body .location",
-        "#map_body .diggable"
+        "#map_body .diggable",
+        "#tasks_button",
+        "#views_bar",
+        "#map_navigation"
     ];
     
     hexagon.addEventListener("pointerenter", async (event)=>{
@@ -432,6 +435,7 @@ function listenToRoads(hexagon) {
         if(path !== null) {
             // Hide the useless elements to enlighten the GUI
             hide(elementsToHide);
+            display("#personal_block_wrapper");
             
             // Stop the execution of the display() below if the mouse leaves then 
             // hovers again the city
@@ -458,6 +462,7 @@ function listenToRoads(hexagon) {
         _roadDisplayTimeout = setTimeout(()=>{
             if(_roadActiveHexagon === null) { 
                 display(elementsToHide);
+                hide("#personal_block_wrapper");
             }
             _roadDisplayTimeout = null;
         }, 500);

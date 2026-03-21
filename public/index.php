@@ -380,7 +380,7 @@ echo $layout->page_header($citizen['user_id'], $citizen['citizen_id'], $citizen[
             <div class="body"></div>
         </section>
         
-        <section id="personal_block_wrapper" class="animate__animated animate__slideInDown hidden">
+        <section id="personal_block_wrapper" class="animate__animated animate__slideInLeft hidden">
             <div id="personal_block">
                 <?php
                 echo $statusbar->actionpoints_bar($citizen['bag_items']);
