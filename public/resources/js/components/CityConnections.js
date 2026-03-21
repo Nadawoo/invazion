@@ -417,7 +417,7 @@ class CityConnections {
                         <button aria-label="Me déplacer vers ce bâtiment"
                             name="teleport"
                             class="animate__animated animate__fadeInUp animate__faster"
-                            >Aller<br> -0⚡
+                            >Aller
                         </button>
                     </div>
                     <div class="healthbar hidden animate__animated animate__fadeIn"></div>

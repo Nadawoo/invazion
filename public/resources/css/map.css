@@ -524,9 +524,9 @@
 }
 #map_body button[name=teleport] {
     top:-32px;
-    left:-3px;
-    height:auto;
-    width:auto;
+    left:0;
+    height:38px;
+    width: 38px;
     font-size:0.7em;
     background:darkred;
     border:2px outset red;

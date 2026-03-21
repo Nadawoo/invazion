@@ -420,6 +420,7 @@ function listenToRoads(hexagon) {
         "#map_body .healthbar",
         "#map_body .location",
         "#map_body .diggable",
+        "#me .nbr_defenses",
         "#tasks_button",
         "#views_bar",
         "#map_navigation"
@@ -435,7 +436,7 @@ function listenToRoads(hexagon) {
         if(path !== null) {
             // Hide the useless elements to enlighten the GUI
             hide(elementsToHide);
-            display("#personal_block_wrapper");
+//            display("#personal_block_wrapper");
             // Display the "Go to" menu
             hexagon.querySelector(".radial_menu").classList.remove("hidden");
             
@@ -464,7 +465,7 @@ function listenToRoads(hexagon) {
         _roadDisplayTimeout = setTimeout(()=>{
             if(_roadActiveHexagon === null) { 
                 display(elementsToHide);
-                hide("#personal_block_wrapper");
+//                hide("#personal_block_wrapper");
             }
             _roadDisplayTimeout = null;
         }, 500);

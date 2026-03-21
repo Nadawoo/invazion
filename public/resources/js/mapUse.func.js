@@ -106,10 +106,11 @@ function replaceBuildingsPlaceholders() {
  */
 function addMeOnMap() {
     
-    let myCoordX = document.querySelector("#citizenCoordX").innerHTML,
-        myCoordY = document.querySelector("#citizenCoordY").innerHTML,
-//        myId     = document.querySelector("#citizenId").innerHTML,
-        myPseudo = document.querySelector("#citizenPseudo").innerHTML,
+    let myCoordX = document.querySelector("#citizenCoordX").innerText,
+        myCoordY = document.querySelector("#citizenCoordY").innerText,
+//        myId     = document.querySelector("#citizenId").innerText,
+        myPseudo = document.querySelector("#citizenPseudo").innerText,
+        myActionPoints = document.querySelector("#actionPoints").innerText,
         myZone = document.querySelector(`#zone${myCoordX}_${myCoordY}`);
            
     // If there is no other citizen in the zone
@@ -129,6 +130,7 @@ function addMeOnMap() {
                 </div>
                 -->
                 <span class="nbr_defenses">${myPseudo}</span>
+                <span class="action_points sharp_bubble move_cost hidden" style="top:-4.1em"> ${myActionPoints}⚡</span>
                 <img src="resources/img/free/human.png">
                 <img id="explosionMe" class="scale-transition scale-out" src="resources/img/thirdparty/notoemoji/collision-512.webp" width="38">
             </div>
