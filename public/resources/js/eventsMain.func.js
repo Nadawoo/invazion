@@ -439,7 +439,7 @@ function listenToRoads(hexagon) {
 //            display("#personal_block_wrapper");
             // Display the "Go to" menu
             const radialMenu = hexagon.querySelector(".radial_menu");
-            if(radialMenu !== null) {
+            if(radialMenu !== null && radialMenu.closest(".square_container").querySelector("#me") === null) {
                 radialMenu.classList.remove("hidden");
             }
             
