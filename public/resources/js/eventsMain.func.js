@@ -103,7 +103,7 @@ function listenToMapZones() {
             
             if(event.target.matches("button[name=teleport]") === true) {
                 // If we click on a teleportation button over a city, teleport the citizen
-                let cityId = Number(event.target.parentNode.querySelector(".square_container").dataset.cityid);
+                let cityId = Number(event.target.closest(".square_container").dataset.cityid);
                 teleportToCity(cityId);
             }
             else if(hexagon.querySelector(".square_container").dataset.citytypeid !== "") {
@@ -438,7 +438,10 @@ function listenToRoads(hexagon) {
             hide(elementsToHide);
 //            display("#personal_block_wrapper");
             // Display the "Go to" menu
-            hexagon.querySelector(".radial_menu").classList.remove("hidden");
+            const radialMenu = hexagon.querySelector(".radial_menu");
+            if(radialMenu !== null) {
+                radialMenu.classList.remove("hidden");
+            }
             
             // Stop the execution of the display() below if the mouse leaves then 
             // hovers again the city
@@ -471,7 +474,11 @@ function listenToRoads(hexagon) {
         }, 500);
         
         hide("#map_body .move_cost");
-        event.target.querySelector(".radial_menu").classList.add("hidden");
+        // Hide the "Go to" menu
+        const radialMenu = event.target.querySelector(".radial_menu");
+        if(radialMenu !== null) {
+            radialMenu.classList.add("hidden");
+        }
         
         _roadActiveHexagon = null;
     });

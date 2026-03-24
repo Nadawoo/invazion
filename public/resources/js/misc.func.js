@@ -396,8 +396,6 @@ async function teleportToCity(destinationCityId) {
     // Display the result (error or success) in a toast
     displayToast(json.metas.error_message, json.metas.error_class);
     
-    hide("#map_body button[name=teleport]");
-    
     // Refresh the contents of the chest (replaces the contents of 
     // the city repository by the contents of the personal chest)
 //    let options = { method: "GET",

@@ -79,16 +79,3 @@ async function listenToLandform() {
         updateLandType(landType, x, y, radius);
     });
 }
-
-
-function listenToTeleportButton() {
-    
-    form = document.querySelector('#popsuccess form[name="teleport"]');
-    
-    form.addEventListener("submit", function(event) {
-        // Desactivate the classic submission button (avoids reloading the page)
-        event.preventDefault();
-        let destinationCityId = form.querySelector('input[name="params[target_id]"]').value;
-        teleportToCity(destinationCityId);
-    });
-}

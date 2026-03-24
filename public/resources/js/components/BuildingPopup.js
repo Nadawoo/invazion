@@ -30,7 +30,6 @@ class BuildingPopup {
         else if(cityTypeId !== "") {
             this.#populateBuildingPopup(cityId, cityTypeId, dataset.zombies, mapId, dataset.coordx, dataset.coordy);
             window.location.href = "#popsuccess";
-            listenToTeleportButton();
         }
     }
     
@@ -70,9 +69,6 @@ class BuildingPopup {
         if(building["descr_ambiance"] !== "") {
             popup.querySelector(".descr_ambiance").innerHTML = strings.nl2br(building.descr_ambiance);
         }
-        
-        // Add the city ID on the button to teleport the citizen
-        popup.querySelector("form[name='teleport'] input[name='params[target_id]']").value = cityId;
         
         // Display/hide the button for exploring the building
         // TODO: Bug to fix building is considered "explored" as soon as the citizen 
