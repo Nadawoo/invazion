@@ -16,6 +16,8 @@ class CityConnections {
               json = await zombLib.callApi("GET", "connections", `action=get&map_id=${mapId}`),
               roads = json.datas.roads;
         
+        if(roads.length === 0) return;
+        
         const graphClass = new Graph();
         const graph = graphClass.buildGraph(roads);
         
