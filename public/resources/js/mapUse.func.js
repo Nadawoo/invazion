@@ -130,7 +130,7 @@ function addMeOnMap() {
                 </div>
                 -->
                 <span class="nbr_defenses">${myPseudo}</span>
-                <span class="action_points sharp_bubble move_cost hidden" style="top:-4.1em"> ${myActionPoints}⚡</span>
+                <span class="action_points sharp_bubble move_cost hidden"> ${myActionPoints}⚡</span>
                 <img src="resources/img/free/human.png">
                 <img id="explosionMe" class="scale-transition scale-out" src="resources/img/thirdparty/notoemoji/collision-512.webp" width="38">
             </div>

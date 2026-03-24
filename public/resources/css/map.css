@@ -625,14 +625,22 @@
     border-top:  1em solid mediumpurple;
 }
 #map_body .sharp_bubble.move_cost {
-    top:-1.9em;
-    height:auto;
-    width:auto;
+    top:3px;
+    height:32px;
+    width: 32px;
     padding:2px 1px;
-    border-radius:5px;
+    border-radius:50%;
 }
 #map_body .sharp_bubble.move_cost:after {
-    top:1.5em;
+    content:none;
+}
+/* Action points above the player when moving */
+#me .sharp_bubble.move_cost {
+    top:-60px;
+    border-radius:4px;
+}
+#me .sharp_bubble.move_cost:after {
+    content:"";
 }
 /* Marker over the diggable buildings on the map */
 #map_body .sharp_bubble.diggable {
