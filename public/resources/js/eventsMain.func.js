@@ -433,7 +433,7 @@ function listenToRoads(hexagon) {
         let path = await connections.highlightRoad(event);
         
         // If there is a road to highlight
-        if(path !== null) {
+        if(path !== null && path !== undefined) {
             // Hide the useless elements to enlighten the GUI
             hide(elementsToHide);
 //            display("#personal_block_wrapper");

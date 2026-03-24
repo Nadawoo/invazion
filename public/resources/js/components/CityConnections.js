@@ -61,6 +61,9 @@ class CityConnections {
 
         const sourceCityId = document.querySelector("#me").parentNode.dataset.cityid,
               targetCityId = event.target.querySelector('.square_container').dataset.cityid;
+        
+        // Don't search a road if the player is not on a city yet
+        if(sourceCityId === "") return;
 
         // Call the API to get the connections between cities
         _roads = await getMapRoadsOnce(mapId);
