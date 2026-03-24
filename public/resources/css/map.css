@@ -520,12 +520,14 @@
     z-index:2;
 }
 #map_body .city_name {
-    height:40px;
+    height:46px;
+    width: 46px;
     font-size:0.5em;
     line-height:normal;
     white-space:break-spaces;
     background:midnightblue;
-    border-radius:5px 5px 50% 50%;
+    border:4px ridge dimgrey;
+    border-radius:5px;
 }
 #map_body .radial_menu button {
     top:-24px;
@@ -547,15 +549,15 @@
     position:absolute;
     top:-1em;
     height:20px;
-    width:40px;
+    width:46px;
     line-height:normal;
     font-size:0.6em;
     display:flex;
     justify-content:center;
     align-items:center;
     background:darkred;
-    border:1px solid grey;
-    border-radius:6px 6px 0 0;
+    border:2px outset dimgrey;
+    border-radius:5px;
     color:white;
     /*box-shadow:4px 4px 6px black;*/
     z-index:2;
