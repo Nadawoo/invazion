@@ -268,9 +268,6 @@ class CityConnections {
                 // Add the icons of the findable items above the building
                 zone.querySelector(".cityframe").appendChild( itemsBubbleFragment(_configsBuildingsFindableItems[cityTypeId]) );
             }
-            else if(nbrItems > 0) {
-                html = `<span class="nbr_items">${nbrItems}</span>`;
-            }
 //            else {
 ////                let maxExplorations = 100;
 ////                // NB: #108 = ID of the item "Counter of explorations"
