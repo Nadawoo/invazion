@@ -411,6 +411,10 @@
     /* Makes sure that the frames around the buildings can't be hidden by the tiles */
     z-index:1;
 }
+#map_body .square_container:hover {
+    /* Ensure that the radial menu won't be overlayed by the neighbour zones */
+    z-index:2;
+}
 
 /* Health bars above the buildings */
 #map_body .healthbar {
