@@ -420,6 +420,7 @@ function listenToRoads(hexagon) {
         "#map_body .healthbar",
         "#map_body .location",
         "#map_body .diggable",
+        "#map_body img.zombies",
         "#me .nbr_defenses",
         "#tasks_button",
         "#views_bar",

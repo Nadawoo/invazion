@@ -964,8 +964,12 @@
                 1px 1px 0 darkgrey;    /* Bottom right */
 }
 #map_body .zombies {
-    opacity:0.7;
+    animation: fadeInOpacity 1s forwards;
     z-index:1;
+}
+@keyframes fadeInOpacity {
+    0%   { opacity: 0;   }
+    100% { opacity: 0.7;   }
 }
 
 /*
