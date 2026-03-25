@@ -525,18 +525,21 @@
     font-size:0.5em;
     line-height:normal;
     white-space:break-spaces;
-    background:midnightblue;
+    background:#2E3A8C;
     border:4px ridge dimgrey;
     border-radius:5px;
 }
 #map_body .radial_menu button {
     top:-24px;
-    left:-5px;
+    left:-7px;
     width:52px;
     font-size:0.7em;
-    background:darkred;
-    border:1px outset red;
+    background:#2E3A8C;
+    border:1px outset dodgerblue;
     border-radius:5px;
+}
+#map_body .radial_menu button:hover {
+    background:#3F4FB3;
 }
 #map_body .city_img {
     display:block;
@@ -695,6 +698,10 @@
                         rgba(255, 255, 255, 0.8),
                         rgba(0, 0, 0, 0) 50%
                         );
+}
+#map_body .square_container:hover .cityframe .frame {
+    border-radius:4px;
+    border:3px outset #3A5E9F;
 }
 #map_body .cityframe.undiscovered .frame {
     outline:2px outset green;

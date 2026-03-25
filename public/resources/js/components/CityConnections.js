@@ -422,8 +422,8 @@ class CityConnections {
                         </button>
                         <button name=""
                             class="animate__animated animate__fadeInDown animate__faster"
-                            style="top:35px"
-                            >&#x1F441;&#xFE0F; Voir
+                            style="top:28px;left:7px;width:25px;border-radius:50%;"
+                            >&#x1F441;&#xFE0F;
                         </button>
                     </div>
                     <div class="healthbar hidden animate__animated animate__fadeIn"></div>
