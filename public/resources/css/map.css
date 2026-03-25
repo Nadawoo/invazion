@@ -720,14 +720,18 @@
     border-radius:1em;
 }
 #map_body .submerged .nbr_defenses {
-    top:0.8em;
+    top:10px;
+    width:20px;
+    background:red;
+    border:2px outset darkred;
+    border-radius:50%;
 }
-#map_body .submerged .nbr_defenses:before {
+#map_body .submerged .nbr_defenses:after {
     content:"";
     position:absolute;
     top:6px;
-    left:-12px;
-    width:3.5em;
+    left:-9px;
+    width:34px;
     border:2px outset red;
     z-index:-1;
     transform:rotate(45deg);
