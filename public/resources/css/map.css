@@ -615,8 +615,8 @@
     width: 2.5em;
     font-size:0.75em;
     border-radius:50%; /*0.5em;*/
-    background:#6E11B0;
-    border:2px solid mediumpurple;
+    background:#2E3A8C;
+    border:2px outset dodgerblue;
     color:white;
     box-shadow:4px 4px 6px black;
     z-index:1;
@@ -627,7 +627,7 @@
     top:2.2em;
     border-left: 0.6em solid transparent;
     border-right:0.6em solid transparent;
-    border-top:  1em solid mediumpurple;
+    border-top:  1em solid royalblue;
 }
 #map_body .sharp_bubble.move_cost {
     top:3px;
@@ -893,8 +893,10 @@
 }
 
 #mapSvg line.highlight {
-    stroke:darkviolet;
-    opacity:1;
+    stroke:#CBB27A;
+    stroke-width:9;
+    filter: drop-shadow(0 2px 0 rgba(0,0,0,0.4))
+            drop-shadow(0 0 8px rgba(255, 223, 32, 0.6));
 }
 
 /*
