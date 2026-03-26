@@ -553,6 +553,14 @@ form[name="end_cycle"] button {
     text-align:right;
 }
 
+#block_build .collapsible-body {
+    padding:15px 10px;
+}
+#builder .items_list {
+    flex-direction:column;
+    margin-left:0;
+}
+
 /*
  * The cards under the movement paddle, indicating the main actions
  * (to explore a building, to dig the zone...)

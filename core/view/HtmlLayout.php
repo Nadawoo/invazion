@@ -328,7 +328,7 @@ class HtmlLayout extends HtmlPage
         
         $buttons = new HtmlButtons;
         $popup   = new HtmlPopup;
-        $table = '<strong>Bâtiments spéciaux</strong>';
+        $table = '';
         
 //        // If there is a TENT in the zone, display the button to enter.
 //        if ($city_size === 1) {
@@ -651,7 +651,6 @@ class HtmlLayout extends HtmlPage
         }
         
         return '
-            <p><strong>Changer le type de terrain</strong></p>
             <form action="" method="GET" id="landform">
                 '.$html_lands.'
                 <br>

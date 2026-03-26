@@ -299,6 +299,10 @@ function switchToActionView() {
         document.querySelector("#map_mode_button").addEventListener("click",
             switchToMapView
         );
+        
+        // Listen to the collapsible elements
+        const elems = document.querySelectorAll("#block_build .collapsible");
+        const instances = M.Collapsible.init(elems);
     }    
     
     // Activate the "Move" tab action

@@ -66,16 +66,38 @@ class HtmlActionBlocks {
         
         return '
             <fieldset role="tabpanel" aria-labelledby="block_build" id="block_build" class="z-depth-2 hidden">
-                <div id="builder">
-                    <strong>Construire</strong>
-                    <ul class="items_list" style="flex-direction:column"></ul>
-                </div>
-                <hr>
-                '.$this->layout->block_actions_build()
-                .'<hr>'
-                . $this->layout->block_edit_land($coord_x, $coord_y)
-                .'<hr>'
-                . $this->layout->block_zombie_powers().'
+                <ul id="builder" class="collapsible">
+                    <li>
+                        <div class="collapsible-header"><strong>&#x1F6E0;&#xFE0F; Construire (tous)</strong> <strong>&gt;</strong></div>
+                        <div class="collapsible-body">
+                            <ul class="items_list"></ul>
+                        </div>
+                    <li>
+                </ul>
+                <ul class="collapsible">
+                    <li>
+                        <div class="collapsible-header"><strong>&#x1F6E0;&#xFE0F; Construire (spéciaux)</strong> <strong>&gt;</strong></div>
+                        <div class="collapsible-body">
+                            '.$this->layout->block_actions_build().'
+                        </div>
+                    <li>
+                </ul>
+                <ul class="collapsible">
+                    <li>
+                        <div class="collapsible-header"><strong>&#x26F0;&#xFE0F; Modifier le terrain</strong> <strong>&gt;</strong></div>
+                        <div class="collapsible-body">
+                            '.$this->layout->block_edit_land($coord_x, $coord_y).'
+                        </div>
+                    <li>
+                </ul>
+                <ul class="collapsible">
+                    <li>
+                        <div class="collapsible-header"><strong>&#x1F9DF; Pouvoirs (joueur zombie)</strong> <strong>&gt;</strong></div>
+                        <div class="collapsible-body">
+                            '.$this->layout->block_zombie_powers().'
+                        </div>
+                    <li>
+                </ul>
             </fieldset>';
     }
 }
