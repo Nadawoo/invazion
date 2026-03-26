@@ -230,7 +230,7 @@ echo $layout->page_header($citizen['user_id'], $citizen['citizen_id'], $citizen[
         </template>
         <template id="tplBuilderButton">
             <li style="display:flex;flex-direction:row;align-items:center;gap:10px;">
-                <button class="item_label z-depth-2">
+                <button type="button" name="build_city" class="item_label z-depth-2" data-citytypeid="">
                     <var class="icon"></var>
                 </button>
                 <span class="item_name"></span>

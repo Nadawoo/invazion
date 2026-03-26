@@ -11,8 +11,8 @@
  */
 function listenToForms() {
 
-    document.addEventListener("submit", async function(event) {      
-        let formSelectors = {
+    document.addEventListener("submit", (event) => {      
+        const formSelectors = {
             "dig":"#block_dig form[name=dig]",
             "explore": "form[name=explore_building]"
             };
@@ -26,6 +26,31 @@ function listenToForms() {
         else if(event.target.matches(formSelectors.dig)) {
             event.preventDefault();
             dig();
+        }
+    });
+}
+
+
+/**
+ * Listen to all the clicks (avoids creating one event listener per button)
+ * 
+ * @returns {undefined}
+ */
+function listenToButtons() {
+    
+    document.addEventListener("click", (event) => {
+        
+        const buttonSelectors = {
+            "buildCity":"#builder button[name=build_city]",
+            };
+        
+        const button = event.target.closest("button");
+        
+        if(button === null) return;
+        
+        // Build a city on the map (not a construction inside a city)
+        if(button.matches(buttonSelectors.buildCity)) {
+            buildOnMap(Number(button.dataset.citytypeid));
         }
     });
 }

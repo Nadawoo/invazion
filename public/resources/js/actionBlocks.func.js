@@ -489,20 +489,21 @@ async function populateBuilderBlock() {
     
     const buildingsCaracs = JSON.parse(document.querySelector("#configs .buildings").innerText);
     
-    Object.values(buildingsCaracs).forEach((building) => {
+    Object.entries(buildingsCaracs).forEach(([buildingId, caracs]) => {        
         const tplButton = document.querySelector("#tplBuilderButton").content.cloneNode(true);
         
         // Icon of the building
         let icon = "❓";
-        if(building.icon_path !== null) {
-            icon = `<img src="resources/img/${building.icon_path}" alt="${building.name}">`;
-        } else if(building.icon_html !== null) {
-            icon = building.icon_html;
+        if(caracs.icon_path !== null) {
+            icon = `<img src="resources/img/${caracs.icon_path}" alt="${caracs.name}">`;
+        } else if(caracs.icon_html !== null) {
+            icon = caracs.icon_html;
         }
         
+        tplButton.querySelector("button").dataset.citytypeid = buildingId;
         tplButton.querySelector(".icon").innerHTML = icon;
-        tplButton.querySelector(".item_name").innerText = building.name;
+        tplButton.querySelector(".item_name").innerText = caracs.name;
         
         document.querySelector("#builder .items_list").appendChild(tplButton);
-    })
+    });
 }

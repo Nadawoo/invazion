@@ -64,8 +64,9 @@ if (document.getElementById('map') !== null) {
 //        displayMessageEndCycle();
 //    });
     
-    // Listen to all forms
+    // Listen to all forms & buttons
     listenToForms();
+    listenToButtons();
     
     // Actions in the horizontal bar of expeditions
     document.querySelector('#paths_bar').addEventListener("submit", function(event) {

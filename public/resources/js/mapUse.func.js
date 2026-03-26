@@ -722,3 +722,15 @@ function toggleMapDefensesView() {
         window.isMapdefensesViewActive = true;
     }
 }
+
+
+async function buildOnMap(cityTypeId) {
+    
+    const zombLib = new ZombLib(),
+          cookies = new Cookies(),
+          token = cookies.getCookie("token");
+        
+    const json = await zombLib.callApi("GET", "city", `action=build&city_type_id=${cityTypeId}&token=${token}`);
+    
+    displayToast(json.metas.error_message, json.metas.error_class);
+}
