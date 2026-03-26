@@ -24,8 +24,9 @@
     display:flex;
     justify-content: flex-start; /* The tooltip must start at the left of the icon (not centered)*/
     align-items: center;
-    height:3.3em;
-    width: 3.3em;
+    height:48px;
+    width: 48px;
+    padding:0;
     background:lightgrey;
     border:2px solid #f0f0f0;
     outline:1px solid rgba(0,0,0,.1);
@@ -39,7 +40,7 @@
 .item_label>var { /* The clickable icon of the item */
     display:flex;
     margin:auto;
-    font-size:1.4em; /* Magnify the emoji icons */
+    font-size:1.7em; /* Magnify the emoji icons */
     font-style:normal;
 }
 .item_label var::selection {
@@ -57,8 +58,8 @@
 }
 
 .item_label img {
-    height:32px;
-    width: 32px;
+    max-height:32px;
+    max-width: 32px;
 }
 .item_label .dot_number {
     position:absolute;

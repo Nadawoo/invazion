@@ -477,3 +477,32 @@ function moveBuildingBlockBelowPaddle() {
     toggle("#card_building .ignore_button");
     display(["#card_dig", "#card_ap_cost", "#card_citizens"]);
 }
+
+
+/**
+ * Display the complete list of buildings constructible on the map
+ * (not inside the city)
+ * 
+ * @returns {undefined}
+ */
+async function populateBuilderBlock() {
+    
+    const buildingsCaracs = JSON.parse(document.querySelector("#configs .buildings").innerText);
+    
+    Object.values(buildingsCaracs).forEach((building) => {
+        const tplButton = document.querySelector("#tplBuilderButton").content.cloneNode(true);
+        
+        // Icon of the building
+        let icon = "❓";
+        if(building.icon_path !== null) {
+            icon = `<img src="resources/img/${building.icon_path}" alt="${building.name}">`;
+        } else if(building.icon_html !== null) {
+            icon = building.icon_html;
+        }
+        
+        tplButton.querySelector(".icon").innerHTML = icon;
+        tplButton.querySelector(".item_name").innerText = building.name;
+        
+        document.querySelector("#builder .items_list").appendChild(tplButton);
+    })
+}

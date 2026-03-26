@@ -328,7 +328,7 @@ class HtmlLayout extends HtmlPage
         
         $buttons = new HtmlButtons;
         $popup   = new HtmlPopup;
-        $table = '<strong>Construire</strong>';
+        $table = '<strong>Bâtiments spéciaux</strong>';
         
 //        // If there is a TENT in the zone, display the button to enter.
 //        if ($city_size === 1) {

@@ -228,6 +228,14 @@ echo $layout->page_header($citizen['user_id'], $citizen['citizen_id'], $citizen[
                 <div class="triangle_down"></div>
             </div>
         </template>
+        <template id="tplBuilderButton">
+            <li style="display:flex;flex-direction:row;align-items:center;gap:10px;">
+                <button class="item_label z-depth-2">
+                    <var class="icon"></var>
+                </button>
+                <span class="item_name"></span>
+            </li>
+        </template>
     </div>
 </section>
 

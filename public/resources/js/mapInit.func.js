@@ -291,6 +291,8 @@ function switchToActionView() {
         // Populate the HTML for the action block (move, dig...)
         let tplActions = document.querySelector("#tplActions").content.cloneNode(true);
         document.querySelector("#actions").appendChild(tplActions);
+        // Add the list of buildable buildings
+        populateBuilderBlock();
         // Load the event listeners for move, dig, etc
         listenToActionModeActions();
         // Load event listener to go back to the map
