@@ -100,7 +100,10 @@ class Graph {
             }
 
             openSet.delete(current);
-
+            
+            // If no road connects the start and the goal
+            if(graph[current] === undefined) return null;
+            
             for(const neighbor of graph[current]) {
 
                 const tentativeG = gScore[current] + 1;
