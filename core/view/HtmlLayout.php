@@ -392,8 +392,9 @@ class HtmlLayout extends HtmlPage
     
     function block_zombie_powers() {
         
-        return '<p><strong>Pouvoirs (joueur zombie)</strong></p>
-            <p><em>[Ces fonctions sont en cours de développement, pas encore actives]</em></p>
+        return '
+            <em>[Ces fonctions sont en cours de développement, pas encore actives]</em><br>
+            <br>
             <img src="resources\img\copyrighted\wolf_64px.png" alt="&#128200;" height="32" width="32"> Augmenter l\'attaque quotidienne <abbr title="Augmente le nombre de zombies qui attaqueront la ville lors de la prochaine attaque de fin de cycle.">[?]</abbr><br>
             <img src="resources\img\motiontwin\zombie6.gif" alt="&#129503;" height="32" width="32"> Ajouter des zombies sur la carte <abbr title="Ajoute aléatoirement des zombies sur la carte du jeu.">[?]</abbr><br>
             <img src="resources\img\motiontwin\zombie2.gif" alt="&#129503;" height="32" width="32"> Punir l\'extermination <abbr title="Chaque fois qu\'un humain tue un zombie sur une zone, deux nouveaux zombies apparaissent sur une zone voisine. L\'effet dure pendant 1 cycle.">[?]</abbr><br>

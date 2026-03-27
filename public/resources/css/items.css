@@ -33,12 +33,33 @@
     border-radius:0.5em;
     cursor:pointer;
 }
+/* Wider if the name is included after the icon */
+.item_label.large {
+    width:230px;
+    gap:6px;
+    background:seagreen;
+    color:white;
+}
+.item_label.large>var {
+    height:38px;
+    width: 38px;
+    margin:3px;
+    background:palegreen;
+    border:1px outset darkgrey;
+    border-radius:4px;
+}
+.item_label.large .name {
+    text-align:left;
+}
+
 .item_label .close {
     top:  -1em;
     right:-1em;
 }
 .item_label>var { /* The clickable icon of the item */
     display:flex;
+    justify-content:center;
+    align-items:center;
     margin:auto;
     font-size:1.7em; /* Magnify the emoji icons */
     font-style:normal;

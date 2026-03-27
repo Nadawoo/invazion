@@ -502,7 +502,7 @@ async function populateBuilderBlock() {
         
         tplButton.querySelector("button").dataset.citytypeid = buildingId;
         tplButton.querySelector(".icon").innerHTML = icon;
-        tplButton.querySelector(".item_name").innerText = caracs.name;
+        tplButton.querySelector(".name").innerText = caracs.name;
         
         document.querySelector("#builder .items_list").appendChild(tplButton);
     });
