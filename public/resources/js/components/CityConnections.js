@@ -13,8 +13,7 @@ class CityConnections {
     async updateConnectedCitiesLines(mapId, cities) {
         
         const zombLib = new ZombLib(),
-              json = await zombLib.callApi("GET", "connections", `action=get&map_id=${mapId}`),
-              roads = json.datas.roads;
+              roads = await getMapRoadsOnce(mapId);
         
         if(roads.length === 0) return;
         
