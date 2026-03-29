@@ -242,37 +242,6 @@ async function listenToMainActionModeButton() {
 
 
 /**
- * Event listener when clicking on the player on his map zone
- * @returns {undefined}
- */
-function listenToMeOnMap() {
-    
-    document.querySelector("#me").addEventListener("click", switchToTeleportView);
-}
-
-
-function switchToTeleportView() {
-    
-    // Add the button over the cities to teleport the citizens
-    document.querySelectorAll("#map_body .cityframe").forEach((cityframe) => {
-        hexagon = cityframe.closest(".hexagon");
-        // If the teleportation button doesn't exist, create it
-        if(hexagon.querySelector("button[name=teleport]") === null) {
-            cityId = hexagon.querySelector(".square_container").dataset.cityid;
-            hexagon.insertAdjacentHTML("beforeend", `
-                <button aria-label="Me déplacer vers ce bâtiment"
-                    name="teleport"
-                    class="animate__animated animate__pulse animate__infinite"
-                    >Aller<br>-1&#x26A1;</button>
-            `);
-        } else {
-            display("#map_body button[name=teleport]");
-        }
-    }); 
-}
-
-
-/**
  * Filter the list of constructions inside the city (by defenses, by resources, etc.)
  * 
  * @param {string} selectedValue The HTML value of the <option> selected 

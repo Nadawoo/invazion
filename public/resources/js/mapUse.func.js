@@ -145,8 +145,6 @@ function addMeOnMap() {
     
     // Ensure the player is visible just after spawning
     myZone.style.opacity = 1;
-    // Event listener when clicking on the player on his map zone
-//    listenToMeOnMap();
 }
 
 
