@@ -31,11 +31,6 @@ if (document.getElementById('map') !== null) {
         document.querySelector("#map_body").addEventListener("touchstart", listenToAddMapPathStage, { signal });
     });
     
-    if(_isPathDrawingActive === false) {
-        // Displays/hides the tooltip of any zone when the mouse hovers one
-        listenToMapZones();
-    }
-    
     // When submitting the form to save a new expedition on the map
     document.querySelector("#formPathDrawing").addEventListener("submit",  function(event){
         event.preventDefault();

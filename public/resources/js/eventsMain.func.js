@@ -125,64 +125,6 @@ function listenToSendform() {
 
 
 /**
- * Displays/hides the tooltip of any zone when the mouse hovers one
- */
-function listenToMapZones() {
-    // Check whether the user moves his finger rather than tapping
-    var touchmoved = false;
-    document.getElementById("map_body").addEventListener("touchmove", function(){
-        touchmoved = true;
-    });
-    
-    // [On PC] Show/hide toolip on hovering the zone
-//    // Store the timeouts associated to each element
-//    const tooltipTimers = new WeakMap();
-//    document.querySelector("#map_body").addEventListener("mouseover", function(){
-//        const hexagon = event.target.closest(".hexagon");
-//        if(!hexagon) return;
-//        // Start a timeout for this hexagon
-//        const timerId = setTimeout(() => {
-//            triggerTooltip(hexagon);
-//        }, 500);
-//        // Save the timeout to be able to cancel it
-//        tooltipTimers.set(hexagon, timerId);
-//    }, { passive: true });
-//    
-//    document.querySelector("#map_body").addEventListener("mouseout", function(event) {
-//        const hexagon = event.target.closest(".hexagon");
-//        if (!hexagon) return;
-//        // Destroys the timeout if exists
-//        const timerId = tooltipTimers.get(hexagon);
-//        if (timerId) {
-//            clearTimeout(timerId);
-//            tooltipTimers.delete(hexagon);
-//        }
-//    }, { passive: true });
-    
-    
-    // [On mobile] Open the tooltip when tapping on a zone without building,
-    // or open the pop-up if the zone contains a building
-//    document.getElementById("map_body").addEventListener("touchstart", function(){
-//            let tooltip = new Tooltip();
-//            tooltip.toggle(event.target.closest(".hexagon"));
-//        },
-//        { passive: true }
-//    );
-//    document.getElementById("map_body").addEventListener("touchend", function(){
-//            if(touchmoved === false) {
-//                let buildingPopup = new BuildingPopup();
-//                buildingPopup.openBuildingPopup(event);
-//            }
-//            let tooltip = new Tooltip();
-//            tooltip.toggle(event.target.closest(".hexagon"));
-//            touchmoved = false;
-//        },
-//        { passive: true }
-//    );
-}
-
-
-/**
  * Allows to move the map by dragging it with the mouse
  * 
  * @returns {ScrollBooster|listenToMapDragging.sb}
