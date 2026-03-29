@@ -40,17 +40,35 @@ function listenToClick() {
     
     document.addEventListener("click", (event) => {
         
-        const buttonSelectors = {
+        const selectors = {
             "buildCity":"#builder button[name=build_city]",
+            "teleport": "button[name=teleport]"
             };
         
-        let button = null;
+        let hexagon = event.target.closest(".hexagon"),
+            button = null;
         
         // Build a city on the map (not a construction inside a city)
-        if(button = event.target.closest(buttonSelectors.buildCity)) {
+        if(button = event.target.closest(selectors.buildCity)) {
             buildOnMap(Number(button.dataset.citytypeid));
         }
-    });
+        else if(event.target.matches(selectors.teleport) === true) {
+            // If we click on a teleportation button over a city, teleport the citizen
+            let cityId = Number(event.target.closest(".square_container").dataset.cityid);
+            teleportToCity(cityId);
+        }
+        else if(hexagon && hexagon.querySelector(".square_container").dataset.citytypeid !== "") {
+            // If we click on a city, open the city pop-up
+            let buildingPopup = new BuildingPopup();
+            buildingPopup.openBuildingPopup(event);
+        }
+        else if(hexagon) {
+            // Display the red tooltip above the zone
+            triggerTooltip(hexagon);
+        }
+    },
+    { passive: true }
+    );
 }
 
 
@@ -115,32 +133,6 @@ function listenToMapZones() {
 //        }
 //    }, { passive: true });
     
-    // [On PC] Action when clicking on a zone
-    document.getElementById("map_body").addEventListener("click", function(){
-            const hexagon = event.target.closest(".hexagon");
-            
-            // Avoid error if we clicked on a border of the map without zone
-            if(hexagon === null) {
-                return;
-            }
-            
-            if(event.target.matches("button[name=teleport]") === true) {
-                // If we click on a teleportation button over a city, teleport the citizen
-                let cityId = Number(event.target.closest(".square_container").dataset.cityid);
-                teleportToCity(cityId);
-            }
-//            else if(hexagon.querySelector(".square_container").dataset.citytypeid !== "") {
-//                // If we click on a city, open the city pop-up
-//                let buildingPopup = new BuildingPopup();
-//                buildingPopup.openBuildingPopup(event);
-//            }
-            else {
-                // Else, display the tooltip of the zone
-                triggerTooltip(hexagon);
-            }
-        },
-        { passive: true }
-    );
     
     // [On mobile] Open the tooltip when tapping on a zone without building,
     // or open the pop-up if the zone contains a building
