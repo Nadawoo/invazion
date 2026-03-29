@@ -131,11 +131,11 @@ function listenToMapZones() {
                 let cityId = Number(event.target.closest(".square_container").dataset.cityid);
                 teleportToCity(cityId);
             }
-            else if(hexagon.querySelector(".square_container").dataset.citytypeid !== "") {
-                // If we click on a city, open the city pop-up
-                let buildingPopup = new BuildingPopup();
-                buildingPopup.openBuildingPopup(event);
-            }
+//            else if(hexagon.querySelector(".square_container").dataset.citytypeid !== "") {
+//                // If we click on a city, open the city pop-up
+//                let buildingPopup = new BuildingPopup();
+//                buildingPopup.openBuildingPopup(event);
+//            }
             else {
                 // Else, display the tooltip of the zone
                 triggerTooltip(hexagon);
@@ -146,23 +146,23 @@ function listenToMapZones() {
     
     // [On mobile] Open the tooltip when tapping on a zone without building,
     // or open the pop-up if the zone contains a building
-    document.getElementById("map_body").addEventListener("touchstart", function(){
-            let tooltip = new Tooltip();
-            tooltip.toggle(event.target.closest(".hexagon"));
-        },
-        { passive: true }
-    );
-    document.getElementById("map_body").addEventListener("touchend", function(){
-            if(touchmoved === false) {
-                let buildingPopup = new BuildingPopup();
-                buildingPopup.openBuildingPopup(event);
-            }
-            let tooltip = new Tooltip();
-            tooltip.toggle(event.target.closest(".hexagon"));
-            touchmoved = false;
-        },
-        { passive: true }
-    );
+//    document.getElementById("map_body").addEventListener("touchstart", function(){
+//            let tooltip = new Tooltip();
+//            tooltip.toggle(event.target.closest(".hexagon"));
+//        },
+//        { passive: true }
+//    );
+//    document.getElementById("map_body").addEventListener("touchend", function(){
+//            if(touchmoved === false) {
+//                let buildingPopup = new BuildingPopup();
+//                buildingPopup.openBuildingPopup(event);
+//            }
+//            let tooltip = new Tooltip();
+//            tooltip.toggle(event.target.closest(".hexagon"));
+//            touchmoved = false;
+//        },
+//        { passive: true }
+//    );
 }
 
 
@@ -440,7 +440,6 @@ function listenToMapLegendSwitches() {
  */
 function listenToRoads(hexagon) {
     
-    const connections = new CityConnections();
     const elementsToHide = [
         "#map_body .healthbar",
         "#map_body .location",
@@ -453,59 +452,106 @@ function listenToRoads(hexagon) {
     ];
     
     hexagon.addEventListener("pointerenter", async (event)=>{
-        _roadActiveHexagon = hexagon;
+        if(event.pointerType !== "mouse") return;
         
-        // Highlight the road to the city
-        let path = await connections.highlightRoad(event);
+        // Open the radial menu of the newly clicked hexagon
+        displayRadialMenu(hexagon, event, elementsToHide);
+    });
+    hexagon.addEventListener("pointerdown", (event) => {
+        if(event.pointerType !== "touch") return;
         
-        // If there is a road to highlight
-        if(path !== null && path !== undefined) {
-            // Hide the useless elements to enlighten the GUI
-            hide(elementsToHide);
-//            display("#personal_block_wrapper");
-            // Display the "Go to" menu
-            const radialMenu = hexagon.querySelector(".radial_menu");
-            if(radialMenu !== null && radialMenu.closest(".square_container").querySelector("#me") === null) {
-                radialMenu.classList.remove("hidden");
-            }
-            
-            // Stop the execution of the display() below if the mouse leaves then 
-            // hovers again the city
-            if(_roadDisplayTimeout) {
-                clearTimeout(_roadDisplayTimeout);
-                _roadDisplayTimeout = null;
-            }
-            
-            // Display the cost in action points above each city of the path
-            path.forEach((cityId)=> {
-                const moveCost = document.querySelector(`#map_body .square_container[data-cityid="${cityId}"] .move_cost`);
-                if(moveCost !== null) {
-                    moveCost.classList.remove("hidden");
-                }
-            });
-        } else {
-            display(elementsToHide);
+        // Hide the road and close the previously open radial menu
+        if (_roadActiveHexagon && _roadActiveHexagon !== hexagon) {
+            hideRadialMenu(elementsToHide);
         }
+        
+        // Open the radial menu of the newly clicked hexagon
+        displayRadialMenu(hexagon, event, elementsToHide);
     });
     
     hexagon.addEventListener("pointerleave", (event)=>{
-        connections.turnoffRoad();
+        if (event.pointerType !== "mouse") return;
         
-        _roadDisplayTimeout = setTimeout(()=>{
-            if(_roadActiveHexagon === null) { 
-                display(elementsToHide);
-//                hide("#personal_block_wrapper");
-            }
-            _roadDisplayTimeout = null;
-        }, 500);
-        
-        hide("#map_body .move_cost");
-        // Hide the "Go to" menu
-        const radialMenu = event.target.querySelector(".radial_menu");
-        if(radialMenu !== null) {
-            radialMenu.classList.add("hidden");
-        }
-        
-        _roadActiveHexagon = null;
+        // Hide the road and close the previously open radial menu
+        hideRadialMenu(elementsToHide);
     });
+    
+    // Close the radial menu when tapping anywhere out of the active hexagon
+    document.addEventListener("pointerdown", (event) => {
+        if (event.pointerType !== "touch") return;
+        
+        const hexagon = event.target.closest(".hexagon");
+        
+        // Hide the road and close the previously open radial menu
+        if(_roadActiveHexagon && _roadActiveHexagon !== hexagon) {
+            hideRadialMenu(elementsToHide);
+        }
+    });
+}
+
+
+/**
+ * Show the radial menu over a city (Go to/See...)
+ * 
+ * @param {Object} hexagon
+ * @param {Event} event
+ * @param {Array} elementsToHide
+ * @returns {undefined}
+ */
+async function displayRadialMenu(hexagon, event, elementsToHide) {
+    const connections = new CityConnections();
+    _roadActiveHexagon = hexagon;
+    
+    // Highlight the road to the city
+    let path = await connections.highlightRoad(event);
+
+    // If there is a road to highlight
+    if(path !== null && path !== undefined) {
+        // Hide the useless elements to enlighten the GUI
+        hide(elementsToHide);
+//            display("#personal_block_wrapper");
+        // Display the "Go to" menu
+        const radialMenu = hexagon.querySelector(".radial_menu");
+        if(radialMenu !== null && radialMenu.closest(".square_container").querySelector("#me") === null) {
+            radialMenu.classList.remove("hidden");
+        }
+
+        // Stop the execution of the display() below if the mouse leaves then 
+        // hovers again the city
+        if(_roadDisplayTimeout) {
+            clearTimeout(_roadDisplayTimeout);
+            _roadDisplayTimeout = null;
+        }
+
+        // Display the cost in action points above each city of the path
+        path.forEach((cityId)=> {
+            const moveCost = document.querySelector(`#map_body .square_container[data-cityid="${cityId}"] .move_cost`);
+            if(moveCost !== null) {
+                moveCost.classList.remove("hidden");
+            }
+        });
+    } else {
+        display(elementsToHide);
+    }
+}
+
+
+/**
+ * Close the radial menu around a city (Go to, See...)
+ * 
+ * @param {type} otherElementsToHide
+ * @returns {undefined}
+ */
+function hideRadialMenu(otherElementsToHide) {
+    
+    const connections = new CityConnections();
+    connections.turnoffRoad();
+
+    const oldMenu = _roadActiveHexagon.querySelector(".radial_menu");
+    oldMenu?.classList.add("hidden");
+
+    hide("#map_body .move_cost");
+    display(otherElementsToHide);
+
+    _roadActiveHexagon = null;
 }

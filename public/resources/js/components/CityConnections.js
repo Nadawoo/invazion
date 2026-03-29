@@ -60,7 +60,7 @@ class CityConnections {
     async highlightRoad(event) {
 
         const sourceCityId = document.querySelector("#me").parentNode.dataset.cityid,
-              targetCityId = event.target.querySelector('.square_container').dataset.cityid;
+              targetCityId = event.currentTarget.querySelector('.square_container').dataset.cityid;
         
         // Don't search a road if the player is not on a city yet
         if(sourceCityId === "") return;
