@@ -32,7 +32,8 @@ function listenToForms() {
 
 
 /**
- * Listen to all the clicks (avoids creating one event listener per button)
+ * Listen to all the "click" events
+ * (avoids creating one event listener per button)
  * 
  * @returns {undefined}
  */
@@ -65,6 +66,31 @@ function listenToClick() {
         else if(hexagon) {
             // Display the red tooltip above the zone
             triggerTooltip(hexagon);
+        }
+    },
+    { passive: true }
+    );
+}
+
+
+/**
+ * Listen to all the "pointerdown" events
+ * (avoids creating one event listener per button)
+ * 
+ * @returns {undefined}
+ */
+function listenToPointerdown() {
+    
+    // Close the radial menu when tapping anywhere out of the active hexagon
+    document.addEventListener("pointerdown", (event) => {
+        if(event.pointerType !== "touch") return;
+
+        const radialMenu = new cityRadialMenu();
+        const hexagon = event.target.closest(".hexagon");
+
+        // Hide the road and close the previously open radial menu
+        if(_roadActiveHexagon && _roadActiveHexagon !== hexagon) {
+            radialMenu.close(_elementsToHideInRoadView);
         }
     },
     { passive: true }
@@ -399,53 +425,30 @@ function listenToMapLegendSwitches() {
  */
 function listenToRoads(hexagon) {
     
-    const elementsToHide = [
-        "#map_body .healthbar",
-        "#map_body .location",
-        "#map_body .diggable",
-        "#map_body img.zombies",
-        "#me .nbr_defenses",
-        "#tasks_button",
-        "#views_bar",
-        "#map_navigation"
-    ];
-    
     const radialMenu = new cityRadialMenu();
     
     hexagon.addEventListener("pointerenter", async (event)=>{
         if(event.pointerType !== "mouse") return;
         
         // Open the radial menu of the newly clicked hexagon
-        radialMenu.open(hexagon, event, elementsToHide);
+        radialMenu.open(hexagon, event, _elementsToHideInRoadView);
     });
     hexagon.addEventListener("pointerdown", (event) => {
         if(event.pointerType !== "touch") return;
         
         // Hide the road and close the previously open radial menu
         if (_roadActiveHexagon && _roadActiveHexagon !== hexagon) {
-            radialMenu.close(elementsToHide);
+            radialMenu.close(_elementsToHideInRoadView);
         }
         
         // Open the radial menu of the newly clicked hexagon
-        radialMenu.open(hexagon, event, elementsToHide);
+        radialMenu.open(hexagon, event, _elementsToHideInRoadView);
     });
     
     hexagon.addEventListener("pointerleave", (event)=>{
         if(event.pointerType !== "mouse") return;
         
         // Hide the road and close the previously open radial menu
-        radialMenu.close(elementsToHide);
-    });
-    
-    // Close the radial menu when tapping anywhere out of the active hexagon
-    document.addEventListener("pointerdown", (event) => {
-        if (event.pointerType !== "touch") return;
-        
-        const hexagon = event.target.closest(".hexagon");
-        
-        // Hide the road and close the previously open radial menu
-        if(_roadActiveHexagon && _roadActiveHexagon !== hexagon) {
-            radialMenu.close(elementsToHide);
-        }
+        radialMenu.close(_elementsToHideInRoadView);
     });
 }

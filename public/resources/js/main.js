@@ -24,6 +24,16 @@ var _configsServer = null;
 
 var _defaultMapZoomPercent = 130;
 
+var _elementsToHideInRoadView = [
+    "#map_body .healthbar",
+    "#map_body .location",
+    "#map_body .diggable",
+    "#map_body img.zombies",
+    "#me .nbr_defenses",
+    "#tasks_button",
+    "#views_bar",
+    "#map_navigation"
+    ];
 
 // Main burger menu (uses Materialize.css)
 document.addEventListener('DOMContentLoaded', function() {

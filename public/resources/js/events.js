@@ -67,8 +67,9 @@ if (document.getElementById('map') !== null) {
     // Listen to all forms
     listenToForms();
     
-    // Global listener for the "click" event
+    // One global listener for each type of event
     listenToClick();
+    listenToPointerdown();
     
     // Actions in the horizontal bar of expeditions
     document.querySelector('#paths_bar').addEventListener("submit", function(event) {
