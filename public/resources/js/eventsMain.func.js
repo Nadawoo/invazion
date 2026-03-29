@@ -36,7 +36,7 @@ function listenToForms() {
  * 
  * @returns {undefined}
  */
-function listenToButtons() {
+function listenToClick() {
     
     document.addEventListener("click", (event) => {
         
@@ -44,12 +44,10 @@ function listenToButtons() {
             "buildCity":"#builder button[name=build_city]",
             };
         
-        const button = event.target.closest("button");
-        
-        if(button === null) return;
+        let button = null;
         
         // Build a city on the map (not a construction inside a city)
-        if(button.matches(buttonSelectors.buildCity)) {
+        if(button = event.target.closest(buttonSelectors.buildCity)) {
             buildOnMap(Number(button.dataset.citytypeid));
         }
     });

@@ -64,9 +64,11 @@ if (document.getElementById('map') !== null) {
 //        displayMessageEndCycle();
 //    });
     
-    // Listen to all forms & buttons
+    // Listen to all forms
     listenToForms();
-    listenToButtons();
+    
+    // Global listener for the "click" event
+    listenToClick();
     
     // Actions in the horizontal bar of expeditions
     document.querySelector('#paths_bar').addEventListener("submit", function(event) {
