@@ -699,7 +699,7 @@
                         rgba(0, 0, 0, 0) 50%
                         );
 }
-#map_body .square_container:hover .cityframe .frame {
+#map_body .cityframe.active .frame {
     border-radius:4px;
     border:3px outset #3A5E9F;
     transform:rotate(45deg);

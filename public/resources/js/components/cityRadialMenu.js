@@ -19,6 +19,11 @@ class cityRadialMenu {
 
         // If there is a road to highlight
         if(path !== null && path !== undefined) {
+            // Mark the clicked city frame as active (useful for adding a visible
+            // border around the city)
+            const cityframe = event.target.closest("#map_body .hexagon").querySelector(".cityframe");
+            cityframe.classList.add("active");
+            
             // Hide the useless elements to enlighten the GUI
             hide(elementsToHide);
             // Display the "Go to" menu
@@ -63,7 +68,12 @@ class cityRadialMenu {
 
         hide("#map_body .move_cost");
         display(otherElementsToHide);
-
+        
+        // Hide the city frame previously marked as active
+        document.querySelectorAll("#map_body .cityframe.active").forEach((cityframe) => 
+            cityframe.classList.remove("active")
+        );
+        
         _roadActiveHexagon = null;
     }
 }
