@@ -11,7 +11,7 @@ class HtmlPage
     // Increment those variables when you modify the CSS or JS files. This ensures
     // that the users' browsers reload the up-to-date files, instead of using 
     // the obsolete ones stored in their cache.
-    private $css_js_version = 143;
+    private $css_js_version = 144;
     
     /**
      * Sets HTTP headers to secure the website
@@ -164,6 +164,7 @@ class HtmlPage
                         <script type="text/javascript" src="resources/js/lib/ZombLib.js?v'.$this->css_js_version.'"></script>
                         <script type="text/javascript" src="resources/js/components/BuildingPopup.js?v'.$this->css_js_version.'" async></script>
                         <script type="text/javascript" src="resources/js/components/CityConnections.js?v'.$this->css_js_version.'"></script>
+                        <script type="text/javascript" src="resources/js/components/CityRadialMenu.js?v'.$this->css_js_version.'"></script>
                         <script type="text/javascript" src="resources/js/components/HealthBars.js?v'.$this->css_js_version.'"></script>
                         <script type="text/javascript" src="resources/js/components/Items.js?v'.$this->css_js_version.'"></script>
                         <script type="text/javascript" src="resources/js/components/MapCitizens.js?v'.$this->css_js_version.'"></script>
