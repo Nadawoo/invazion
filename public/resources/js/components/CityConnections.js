@@ -426,7 +426,6 @@ class CityConnections {
                         </button>
                     </div>
                     <div class="healthbar hidden animate__animated animate__fadeIn"></div>
-                    <span class="dot_notif">!</span>
                     <div class="label hidden">${label}</div>
                     <div class="frame"></div>
                 </div>`

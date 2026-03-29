@@ -698,10 +698,12 @@
                         rgba(255, 255, 255, 0.4),
                         rgba(0, 0, 0, 0) 50%
                         );
+    box-shadow:4px 4px 6px black;
 }
 #map_body .cityframe.active .frame {
-    border-radius:4px;
     border:3px outset #3A5E9F;
+    outline:1px outset lightgrey;
+    border-radius:4px;
     transform:rotate(45deg);
 }
 #map_body .cityframe.undiscovered .frame {
@@ -744,13 +746,6 @@
 
 #map_body .submerged .nbr_items {
     display:none;
-}
-
-.cityframe.active .frame {
-    height:3em;
-    border:4px outset white;
-    outline:2px outset white;
-    border-radius: 0.2em;
 }
 
 .cityframe.resources .frame,
@@ -812,15 +807,6 @@
 }
 .cityframe.active.explored .frame {
     outline-width:1px;
-}
-.cityframe .dot_notif {
-    display:none;
-}
-.cityframe.active .dot_notif {
-    display:flex;
-}
-.cityframe.explored .dot_notif {
-    display:none;
 }
 
 #map_body .cityframe.zombie_core .frame {
