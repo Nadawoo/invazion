@@ -526,7 +526,7 @@
     line-height:normal;
     white-space:break-spaces;
     background:#2E3A8C;
-    border:4px ridge dimgrey;
+    border:4px ridge grey;
     border-radius:5px;
 }
 #map_body .radial_menu button {
@@ -746,6 +746,9 @@
 
 #map_body .submerged .nbr_items {
     display:none;
+}
+#map_body .submerged .city_name {
+    background:grey;
 }
 
 .cityframe.resources .frame,
