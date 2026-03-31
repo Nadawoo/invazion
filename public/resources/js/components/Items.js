@@ -34,7 +34,11 @@ class Items {
     async populateList(domSelector, groundItems) {
         
         // Display the other items on the ground
-        populateItemsList(domSelector, await groundItems);
+        const nbrItems = populateItemsList(domSelector, await groundItems);
+        
+        if(nbrItems === 0) {
+            document.querySelector(domSelector).innerHTML = '<li class="greytext center">(Aucun objet)</li>';
+        }
         
         // Hide the "Loading..." indicator
         hide(`${domSelector} .loader`);

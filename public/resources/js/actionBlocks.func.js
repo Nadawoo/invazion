@@ -334,7 +334,7 @@ async function updateBlockActionDig(mapId, coordX, coordY) {
  *                       Set to false (or any other value) for displaying each item 
  *                       as many times as there are occurrences.
  * 
- * @returns {undefined}
+ * @returns {int} Number of items on the ground
  */
 function populateItemsList(domSelector, itemsAmounts, nbrSlots=null, stack="stack") {
     
@@ -369,6 +369,8 @@ function populateItemsList(domSelector, itemsAmounts, nbrSlots=null, stack="stac
             document.querySelector("#bagbar .items_list").appendChild(tplEmptySlot);
         }
     }
+    
+    return nbrItemsTotal;
 }
 
 
