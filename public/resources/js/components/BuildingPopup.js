@@ -104,7 +104,7 @@ class BuildingPopup {
         // Add the line of zombies after the last invaded module
         let lastInvadedModuleId = this.getLastInvadedModuleId(nbrZombiesInZone);
         this.markInactiveModules(popup, lastInvadedModuleId);
-        this.updateModulesZombieRow(popup, nbrZombiesInZone, lastInvadedModuleId);
+        this.#updateModulesZombieRow(popup, nbrZombiesInZone, lastInvadedModuleId);
         
         // If the building can't be explored (city), hide the useless frames 
         // in the pop-up.
@@ -180,10 +180,14 @@ class BuildingPopup {
     }
 
 
-    updateModulesZombieRow(popup, nbrZombiesInBuilding, lastInvadedModuleId) {
+    #updateModulesZombieRow(popup, nbrZombiesInBuilding, lastInvadedModuleId) {
         
-        let table = popup.querySelector(".block_modules table");
-        let zombiesRow = table.querySelector(".zombies_row");
+        const table = popup.querySelector(".block_modules table"),
+              zombiesRow = table.querySelector(".zombies_row"),
+              nbrModules = table.querySelectorAll("tr").length;
+        
+        // Avoid error if zombies exceeds the number of existing rows
+        lastInvadedModuleId = Math.min(nbrModules-1, lastInvadedModuleId);
         
         if(parseInt(nbrZombiesInBuilding) === 0) {
             zombiesRow.remove();
