@@ -1,5 +1,5 @@
 
-class cityRadialMenu {
+class CityRadialMenu {
     
     /**
      * Open the radial menu over a city (Go to/See...)

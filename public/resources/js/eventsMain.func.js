@@ -85,7 +85,7 @@ function listenToPointerdown() {
     document.addEventListener("pointerdown", (event) => {
         if(event.pointerType !== "touch") return;
 
-        const radialMenu = new cityRadialMenu();
+        const radialMenu = new CityRadialMenu();
         const hexagon = event.target.closest(".hexagon");
 
         // Hide the road and close the previously open radial menu
@@ -367,7 +367,7 @@ function listenToMapLegendSwitches() {
  */
 function listenToRoads(hexagon) {
     
-    const radialMenu = new cityRadialMenu();
+    const radialMenu = new CityRadialMenu();
     
     hexagon.addEventListener("pointerenter", async (event)=>{
         if(event.pointerType !== "mouse") return;
