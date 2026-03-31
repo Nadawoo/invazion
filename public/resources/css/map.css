@@ -857,7 +857,7 @@
     transition:stroke 0.1s ease-in;
     transform-origin:center;
 }
-#mapSvg .animated-line {
+#mapSvg .secondary_line {
     stroke-width:1px;
     stroke-dasharray:5,5;
     /*animation:dash-animation 1s linear infinite;*/
@@ -868,25 +868,30 @@
     }
 }
 
-#mapSvg .defenses.animated-line {
+#mapSvg .road .secondary_line {
     stroke:darkgrey;
 }
 #mapSvg .zombie_core {
     stroke-width:10px;
 }
-#mapSvg .zombie_core.animated-line {
+#mapSvg .zombie_core .secondary_line {
     stroke:red;
     stroke-width:8px;
 }
-#mapSvg .transportations.animated-line {
+#mapSvg .transportations .secondary_line {
     stroke:black;
 }
 
-#mapSvg line.highlight {
+#mapSvg g.highlight .main_line {
     stroke:#CBB27A;
     stroke-width:9;
     filter: drop-shadow(0 2px 0 rgba(0,0,0,0.4))
             drop-shadow(0 0 8px rgba(255, 223, 32, 0.6));
+}
+#mapSvg g.highlight .secondary_line {
+    stroke:#2E3A8C;
+    stroke-dasharray:0;
+    opacity:0.7;
 }
 
 /*

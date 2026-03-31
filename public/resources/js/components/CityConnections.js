@@ -85,8 +85,8 @@ class CityConnections {
             let roadName         = `${currentCityHtmlId}To${nextCityHtmlId}`;
             let roadNameReversed = `${nextCityHtmlId}To${currentCityHtmlId}`;
 
-            let road         = document.querySelector(`#mapSvg line[name="${roadName}"]:not(.animated-line)`);
-            let roadReversed = document.querySelector(`#mapSvg line[name="${roadNameReversed}"]:not(.animated-line)`);
+            let road         = document.querySelector(`#mapSvg g[data-name="${roadName}"]`);
+            let roadReversed = document.querySelector(`#mapSvg g[data-name="${roadNameReversed}"]`);
 
             // Hide the road "A to B". If not found, try in the reversed direction "B to A".
             if(road !== null) {
@@ -122,7 +122,7 @@ class CityConnections {
      */
     #getLineType(cityTypeId) {
         
-        let lineType = "defenses";
+        let lineType = "road";
         
         if(cityTypeId === 228) {
             // #228 = the ID of the "Zombie core"
@@ -156,27 +156,33 @@ class CityConnections {
         // Erase the existing line in the <svg>
         let lineNodes = document.querySelectorAll(`#mapSvg line[name=${lineName}]`);
         lineNodes.forEach(lineNode => lineNode.remove());
-
+        
         // Create an animated line between origin and destination
-        // Create the base line
-        let baseLine = document.createElementNS("http://www.w3.org/2000/svg", "line");
-        baseLine.setAttribute("name", lineName);
+        const svgNameSpace = "http://www.w3.org/2000/svg";
+        
+        // Create the container for each group of 2 lines
+        const group = document.createElementNS(svgNameSpace, "g");
+        group.setAttribute("data-name", lineName);
+        group.setAttribute("class", lineType);
+        document.querySelector("#mapSvg").appendChild(group);
+        
+        // Create the wide line
+        const baseLine = document.createElementNS(svgNameSpace, "line");
         baseLine.setAttribute("x1", orig.x);
         baseLine.setAttribute("y1", orig.y);
         baseLine.setAttribute("x2", destin.x);
         baseLine.setAttribute("y2", destin.y);
-        baseLine.setAttribute("class", lineType);
-        document.querySelector("#mapSvg").appendChild(baseLine);
+        baseLine.setAttribute("class", "main_line");
+        group.appendChild(baseLine);
 
-        // Create the animated line
-        let animatedLine = document.createElementNS("http://www.w3.org/2000/svg", "line");
-        animatedLine.setAttribute("name", lineName);
+        // Create the central line
+        const animatedLine = document.createElementNS(svgNameSpace, "line");
         animatedLine.setAttribute("x1", orig.x);
         animatedLine.setAttribute("y1", orig.y);
         animatedLine.setAttribute("x2", destin.x);
         animatedLine.setAttribute("y2", destin.y);
-        animatedLine.setAttribute("class", `animated-line ${lineType}`);
-        document.querySelector("#mapSvg").appendChild(animatedLine);
+        animatedLine.setAttribute("class", "secondary_line");
+        group.appendChild(animatedLine);
     }
     
     
