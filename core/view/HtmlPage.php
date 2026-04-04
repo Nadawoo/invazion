@@ -22,6 +22,14 @@ class HtmlPage
         // Doc : https://infosec.mozilla.org/guidelines/web_security#x-frame-options
         header("Content-Security-Policy: frame-ancestors 'none'; object-src 'none';");
         header("X-Frame-Options: DENY");
+        
+        // Disable caching of the global page (doesn't affect the caching of files
+        // like JS, images, etc.)
+        // NB: see the HTML tags <meta http-equiv> too for other caching parameters
+        header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+        header("Cache-Control: post-check=0, pre-check=0", false);
+        header("Pragma: no-cache");
+        header("Expires: 0");
     }
     
     
@@ -67,6 +75,10 @@ class HtmlPage
                 <meta name="title" content="'.$metas['meta_title'].'">
                 <meta name="description" content="'.$metas['description'].'">
                 <meta name="keywords" content="Jeu, Hordes, collaboration, équipe, construction, défenses, zombies">
+                
+                <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate">
+                <meta http-equiv="Pragma" content="no-cache">
+                <meta http-equiv="Expires" content="0">
                 
                 <meta property="og:site_name" content="'.$metas['site_name'].'">
                 <meta property="og:url" content="'.$metas['canonical'].'">
