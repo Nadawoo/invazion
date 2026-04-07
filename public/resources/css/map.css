@@ -33,6 +33,20 @@
                                                     #17202a 4px);
 }
 
+#map[data-viewmode=addRoad] .zombies,
+#map[data-viewmode=addRoad] .sharp_bubble,
+#map[data-viewmode=addRoad] .healthbar,
+#map[data-viewmode=addRoad] .radial_menu {
+    display:none;
+}
+#map[data-viewmode=addRoad] .cityframe .frame {
+    border:2px outset deepskyblue;
+    background:radial-gradient(circle at 5% 5%,
+                        rgba(0, 50, 255, 0.5),
+                        rgba(0, 0, 0, 0) 100%
+                        );
+}
+
 /*
  * Zooming on the map
  */
@@ -511,6 +525,7 @@
     height:25px;
     width: 40px;
     padding:0.1em 0.4em;
+    line-height:normal;
     display:flex;
     align-items:center;
     justify-content:center;
@@ -535,7 +550,7 @@
     width:52px;
     font-size:0.7em;
     background:#2E3A8C;
-    border:1px outset dodgerblue;
+    border:1px outset lightgrey; /* dodgerblue */
     border-radius:5px;
 }
 #map_body .radial_menu button:hover {

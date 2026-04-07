@@ -17,6 +17,7 @@ var _myZone = null;
 var _jsonMap = null;
 var _isPathDrawingActive = false;
 var _userEmail = null;
+var _newRoadSource = null;
 // Permanently stores the result of the API whichs gives the discussions list 
 var _jsonDiscussionApi = null;
 var _scrollBoosterInstance = null;

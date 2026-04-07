@@ -427,8 +427,13 @@ class CityConnections {
                         </button>
                         <button name=""
                             class="animate__animated animate__fadeInDown animate__faster"
-                            style="top:37px;left:7px;width:25px;border-radius:50%;"
+                            style="top:38px;left:7px;width:25px;border-radius:50%;"
                             >&#x1F441;&#xFE0F;
+                        </button>
+                        <button name="road"
+                            class="animate__animated animate__fadeInRight animate__faster"
+                            style="top:8px;left:-24px;width:25px;border-radius:50%;font-size:0.9em"
+                            >&#x1F6E3;&#xFE0F;
                         </button>
                     </div>
                     <div class="healthbar hidden animate__animated animate__fadeIn"></div>

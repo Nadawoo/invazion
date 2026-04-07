@@ -43,7 +43,8 @@ function listenToClick() {
         
         const selectors = {
             "buildCity":"#builder button[name=build_city]",
-            "teleport": "button[name=teleport]"
+            "teleport": "button[name=teleport]",
+            "addRoad": "button[name=road]"
             };
         
         let hexagon = event.target.closest(".hexagon"),
@@ -58,10 +59,35 @@ function listenToClick() {
             let cityId = Number(event.target.closest(".square_container").dataset.cityid);
             teleportToCity(cityId);
         }
+        else if(event.target.matches(selectors.addRoad) === true) {
+            _newRoadSource = Number(hexagon.querySelector(".square_container").dataset.cityid);
+            displayToast("Sélectionnez la ville de destination de la route", "info");
+            
+            document.querySelector("#map").dataset.viewmode = "addRoad";
+        }
         else if(hexagon && hexagon.querySelector(".square_container").dataset.citytypeid !== "") {
-            // If we click on a city, open the city pop-up
-            let buildingPopup = new BuildingPopup();
-            buildingPopup.openBuildingPopup(event);
+            
+            if(_newRoadSource !== null) {
+                // Trace a new road
+                const newRoadTarget = Number(hexagon.querySelector(".square_container").dataset.cityid),
+                      cookies = new Cookies(),
+                      token = cookies.getCookie("token"),
+                      zombLib = new ZombLib();
+                      
+                const json = zombLib.callApi("GET", "connections", `action=add&source=${_newRoadSource}&target=${newRoadTarget}&token=${token}`);                
+                json.then(result => displayToast(result.metas.error_message, result.metas.error_class));
+                
+                document.querySelector("#map").dataset.viewmode = "";
+            } else {
+                // If we click on a city, open the city pop-up
+                let buildingPopup = new BuildingPopup();
+                buildingPopup.openBuildingPopup(event);
+            }
+        }
+        else if(hexagon.querySelector(".square_container").dataset.cityid === "") {
+            // Exit the "Add road" view mode
+            console.log(hexagon.querySelector(".square_container").dataset.cityid);
+            document.querySelector("#map").dataset.viewmode = "";
         }
         else if(hexagon) {
             // Display the red tooltip above the zone
