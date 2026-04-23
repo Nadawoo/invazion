@@ -111,7 +111,7 @@ class Items {
         // the item exists on the map but is not in the list of items allowed 
         // for the current game.
         if(_configsItems[itemId] === undefined) {
-            return `<span class="red">#${itemId}</span>`;
+            return `<span class="unknown_item">#${itemId}</span>`;
         }
         
         const iconPath   = _configsItems[itemId]["icon_path"],

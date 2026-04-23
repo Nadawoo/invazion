@@ -627,16 +627,18 @@
     justify-content:center;
     align-items:center;
     height:2.5em;
-    width: 2.5em;
     font-size:0.75em;
-    border-radius:50%; /*0.5em;*/
-    background:#2E3A8C;
-    border:2px outset dodgerblue;
+    padding:0 1px;
+    background:royalblue;
+    border:1px solid aliceblue;
+    border-radius:5em;
     color:white;
     box-shadow:4px 4px 6px black;
+    text-shadow:black 1px 1px 1px;
     z-index:1;
 }
-#map_body .sharp_bubble::after {
+#map_body .sharp_bubble::after,
+#me .move_cost::after {
     content:"";
     position:absolute;
     top:2.2em;
@@ -644,50 +646,65 @@
     border-right:0.6em solid transparent;
     border-top:  1em solid royalblue;
 }
-#map_body .sharp_bubble.move_cost {
+
+#map_body .move_cost {
+    position:absolute;
     top:3px;
-    height:32px;
-    width: 32px;
+    height:34px;
+    width: 34px;
     padding:2px 1px;
+    font-size:0.75em;
+    display:flex;
+    justify-content:center;
+    align-items:center;
     border-radius:50%;
-}
-#map_body .sharp_bubble.move_cost:after {
-    content:none;
-}
-/* Action points above the player when moving */
-#me .sharp_bubble.move_cost {
-    top:-60px;
-    border-radius:4px;
-}
-#me .sharp_bubble.move_cost:after {
-    content:"";
-}
-/* Marker over the diggable buildings on the map */
-#map_body .sharp_bubble.diggable {
-    width:auto;
-    padding:0 1px;
-    background:royalblue;
-    border:1px solid aliceblue;
-    border-radius:4px;
-    text-shadow:black 1px 1px 1px;
+    background:#2E3A8C;
+    color:white;
+    border:2px outset dodgerblue;
+    outline:1px solid aliceblue;
     z-index:2;
 }
-#map_body .diggable .icon {
+
+/* Action points above the player when moving */
+#me .move_cost {
+    top:-62px;
+    border-radius:4px;
+}
+#me .move_cost::after {
+    top:30px;
+}
+
+/* Marker over the diggable buildings on the map */
+#map_body .sharp_bubble.diggable .icon {
     display:flex;
     align-items:center;
     height:25px;
     margin:0 1px;
     padding:2px;
     background:aliceblue;
-    border-radius:2px;
     font-size:1.3em; /* Applies when the icon is an emoji */
+    border-radius:5em;
 }
-#map_body .diggable .additional {
+#map_body .sharp_bubble .additional {
     font-size:1em;
     font-weight:bold;
     color:royalblue;
     text-shadow:none;
 }
+#map_body .sharp_bubble .unknown_item {
+    padding:1px 4px;
+    background-color:#F44336 !important;
+    border-radius:5em;
+}
+
+#map_body .sharp_bubble.buildable {
+    background:orangered;
+    border-radius:4px;
+}
+#map_body .sharp_bubble.buildable .icon {
+    border-radius:2px;
+}
+    
 #map_body .sharp_bubble.diggable::after {
     top:2.3em;
     border-top-color:aliceblue;

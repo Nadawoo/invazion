@@ -265,9 +265,8 @@ class CityConnections {
                                     
                 // <div class="sharp_bubble ..." aria-label="..."></div>
                 const div = document.createElement('div');
-                div.className = 'sharp_bubble diggable animate__animated animate__pulse animate__infinite';
+                div.className = 'sharp_bubble diggable buildable animate__animated animate__pulse animate__infinite';
                 div.setAttribute('aria-label', 'Liste des composants requis pour construire ce bâtiment');
-                div.style.background = "orangered";
                 div.innerHTML = `🛠️&nbsp; ${htmlFindableItems}`;
                 // Add the bubble for digging above the city
                 zone.querySelector(".cityframe").appendChild(div);
@@ -320,7 +319,7 @@ class CityConnections {
         else if(cityTypeId === roadConnectionId) {
             // Add the cost in action points above the raod connection
             let apCost = Math.max(1, Math.floor(zone.dataset.zombies/2));
-            htmlNbrDefenses = `<div class="move_cost sharp_bubble hidden" aria-label="Coût pour traverser cette zone">&nbsp;-${apCost}<span role="img" aria-label="points d'action">⚡</span></div>`;
+            htmlNbrDefenses = `<div class="move_cost hidden" aria-label="Coût pour traverser cette zone">&nbsp;-${apCost}<span role="img" aria-label="points d'action">⚡</span></div>`;
         }
         else if(cityTypeId === zombieCoreId) {
             // Add a special marker on the zombie cores
