@@ -664,6 +664,9 @@
     outline:1px solid aliceblue;
     z-index:2;
 }
+#map_body .move_cost.negative {
+    background:darkred;
+}
 
 /* Action points above the player when moving */
 #me .move_cost {
