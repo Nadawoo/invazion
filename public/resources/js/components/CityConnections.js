@@ -316,7 +316,7 @@ class CityConnections {
             // Add the number of zombies of the daily attack 
             htmlNbrDefenses = `<div class="nbr_defenses" style="background:red">${zone.dataset.zombies} <img src="resources/img/motiontwin/zombie.gif" alt="&#x1F9DF;"></div>`;
         }
-        else if(cityTypeId === roadConnectionId) {
+        else if(cityTypeId !== "") {
             // Add the cost in action points above the raod connection
             let apCost = Math.max(1, Math.floor(zone.dataset.zombies/2));
             htmlNbrDefenses = `<div class="move_cost negative hidden" aria-label="Coût pour traverser cette zone">&nbsp;-${apCost}<span role="img" aria-label="points d'action">⚡</span></div>`;

@@ -775,9 +775,11 @@
     transform:rotate(45deg);
 }
 
+/*
 #map_body .submerged button[name=teleport] {
     display:none;
 }
+*/
 
 #map_body .submerged .nbr_items {
     display:none;
