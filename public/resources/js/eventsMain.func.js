@@ -77,6 +77,8 @@ function listenToClick() {
                 const json = zombLib.callApi("GET", "connections", `action=add&source=${_newRoadSource}&target=${newRoadTarget}&token=${token}`);                
                 json.then(result => displayToast(result.metas.error_message, result.metas.error_class));
                 
+                // Exit the "Add road" view mode
+                _newRoadSource = null;
                 document.querySelector("#map").dataset.viewmode = "";
             } else {
                 // If we click on a city, open the city pop-up
@@ -84,9 +86,9 @@ function listenToClick() {
                 buildingPopup.openBuildingPopup(event);
             }
         }
-        else if(hexagon.querySelector(".square_container").dataset.cityid === "") {
+        else if(_newRoadSource !== null && hexagon.querySelector(".square_container").dataset.cityid === "") {
             // Exit the "Add road" view mode
-            console.log(hexagon.querySelector(".square_container").dataset.cityid);
+            _newRoadSource = null;
             document.querySelector("#map").dataset.viewmode = "";
         }
         else if(hexagon) {
