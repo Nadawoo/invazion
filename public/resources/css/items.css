@@ -186,7 +186,7 @@
 }
 
 .item_label.precious {
-    border:5px ridge #FFD700;
+    outline:3px ridge #FFD700;
 }
 .item_label.precious::after {
     content: "★";
