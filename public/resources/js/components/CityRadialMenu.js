@@ -46,6 +46,9 @@ class CityRadialMenu {
                     moveCost.classList.remove("hidden");
                 }
             });
+            
+            // Memorize the path in the "Go to" button
+            event.target.closest(".hexagon").querySelector(".radial_menu button[name=drive]").dataset.path = path;
         } else {
             display(elementsToHide);
         }

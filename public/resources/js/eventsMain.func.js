@@ -43,6 +43,7 @@ function listenToClick() {
         
         const selectors = {
             "buildCity":"#builder button[name=build_city]",
+            "drive": "button[name=drive]",
             "teleport": "button[name=teleport]",
             "addRoad": "button[name=road]"
             };
@@ -53,6 +54,11 @@ function listenToClick() {
         // Build a city on the map (not a construction inside a city)
         if(button = event.target.closest(selectors.buildCity)) {
             buildOnMap(Number(button.dataset.citytypeid));
+        }
+        else if(event.target.matches(selectors.drive) === true) {
+            // If we click on a "drive" button over a city (move on the roads)
+            const path = event.target.dataset.path;
+            driveToCity(path);
         }
         else if(event.target.matches(selectors.teleport) === true) {
             // If we click on a teleportation button over a city, teleport the citizen

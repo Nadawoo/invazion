@@ -58,7 +58,7 @@ class CityConnections {
      */
     async highlightRoad(event) {
 
-        const sourceCityId = document.querySelector("#me").parentNode.dataset.cityid,
+        const sourceCityId = Number(document.querySelector("#me").parentNode.dataset.cityid),
               targetCityId = event.currentTarget.querySelector('.square_container').dataset.cityid;
         
         // Don't search a road if the player is not on a city yet
@@ -420,13 +420,18 @@ class CityConnections {
             zone.insertAdjacentHTML("beforeend",
                 `<div class="cityframe ${cssClass}" role="none">
                     <div class="radial_menu hidden">
-                        <button name="teleport"
+                        <button name="drive"
                             class="animate__animated animate__fadeInUp animate__faster"
                             >&#x1F97E; Aller
                         </button>
+                        <button name="teleport"
+                            class="animate__animated animate__fadeInLeft animate__faster"
+                            style="top:8px;left:38px;width:25px;border-radius:50%;font-size:0.9em"
+                            >&#x1F681;
+                        </button>
                         <button name=""
                             class="animate__animated animate__fadeInDown animate__faster"
-                            style="top:38px;left:7px;width:25px;border-radius:50%;"
+                            style="top:38px;left:7px;width:25px;border-radius:50%"
                             >&#x1F441;&#xFE0F;
                         </button>
                         <button name="road"
