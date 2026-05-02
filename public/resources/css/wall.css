@@ -8,10 +8,9 @@
 #floating_wall {
     position:absolute;
     bottom:0;
+    right: 0;
     height:0;
-    overflow:auto;
     width:24.6rem;
-    margin-left:26.2rem;
     border-top-left-radius:1rem;
     border-top-right-radius:1rem;
     box-shadow:4px -4px 10px black;
@@ -22,6 +21,7 @@
     height:100%;
     width: 100%;
     margin:0;
+    border-radius:15px;
 }
 #floating_wall #wallHeader {
     font-size:1.5em;
@@ -47,21 +47,24 @@
     padding: 0 12px; 
 }
 #wall h2 {
-    margin:0;
-    padding:0.4rem 0;
+    margin:0 2px;
+    padding:10px 0;
     text-align:center;
+    border-radius: 15px 15px 0 0;
 }
 #wall h2 .arrow {
     float:right;
-    height:1.1em;
-    width: 1.1em;
-    line-height:1.6em;
-    margin:0.2em 0.2rem 0 0;
+    height:30px;
+    width: 30px;
+    margin-right:5px;
+    padding-top:10px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
     border-radius:1em;
-    font-size:0.9em;
     background:white;
     color:darkred;
-    transition-duration: 1s;
+    transition-duration:1s;
 }
 #wall .contents {
     display:flex;

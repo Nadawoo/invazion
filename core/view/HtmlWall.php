@@ -17,7 +17,7 @@ class HtmlWall
         return $this->message_template().
             $this->events_templates().
             '<div id="wall" class="city_block">
-                <h2 id="wallHeader">
+                <h2 id="wallHeader" data-action="enlargeWall">
                     <div class="arrow">&#8963;</div>
                     Communications
                 </h2>

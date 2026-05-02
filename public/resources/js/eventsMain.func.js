@@ -45,7 +45,8 @@ function listenToClick() {
             "buildCity":"#builder button[name=build_city]",
             "drive": "button[name=drive]",
             "teleport": "button[name=teleport]",
-            "addRoad": "button[name=road]"
+            "addRoad": "button[name=road]",
+            "enlargeWall": "enlargeWall"
             };
         
         let hexagon = event.target.closest(".hexagon"),
@@ -72,6 +73,9 @@ function listenToClick() {
             displayToast("Sélectionnez la ville de destination de la route", "info");
             
             document.querySelector("#map").dataset.viewmode = "addRoad";
+        }
+        else if(event.target.dataset.action === selectors.enlargeWall) {
+            enlargeWall();
         }
         else if(hexagon && hexagon.querySelector(".square_container").dataset.citytypeid !== "") {
             
