@@ -19,7 +19,8 @@ function listenToMovementPaddle() {
     document.querySelector('#block_move [name="move"]').addEventListener("submit", async function(event) {
         // Desactivate the classic submission button (avoids reloading the page)
         event.preventDefault();
-        moveCitizen(event.submitter.value);
+        const move = new Move();
+        move.walk(event.submitter.value);
  //        let myCityZoneId = await getMyCityZoneId();
  //        if(myCityZoneId !== null) {
  //            setTimeout(function() {updateLineBetweenZones("myCity", "#me", "#"+myCityZoneId);}, 1000);

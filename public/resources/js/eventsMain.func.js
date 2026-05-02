@@ -58,12 +58,14 @@ function listenToClick() {
         else if(event.target.matches(selectors.drive) === true) {
             // If we click on a "drive" button over a city (move on the roads)
             const path = event.target.dataset.path;
-            driveToCity(path);
+            const move = new Move();
+            move.driveToCity(path);
         }
         else if(event.target.matches(selectors.teleport) === true) {
             // If we click on a teleportation button over a city, teleport the citizen
-            let cityId = Number(event.target.closest(".square_container").dataset.cityid);
-            teleportToCity(cityId);
+            const cityId = Number(event.target.closest(".square_container").dataset.cityid);
+            const move = new Move();
+            move.teleportToCity(cityId);
         }
         else if(event.target.matches(selectors.addRoad) === true) {
             _newRoadSource = Number(hexagon.querySelector(".square_container").dataset.cityid);
