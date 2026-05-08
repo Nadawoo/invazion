@@ -192,7 +192,7 @@ class CityConnections {
      * 
      * @param {int} mapId The ID of the concerned map
      * @param {int} clickedCityId The ID of the parent city. Frames will be added 
-     *                  around it and all the cities connectcted to it.
+     *                  around it and all the cities connected to it.
      *                  If not set, frames will be added around all the buildings
      *                  on the map.
      */
@@ -231,7 +231,6 @@ class CityConnections {
             
             let htmlCoords = cityCoordX+"_"+cityCoordY,
                 zone = document.querySelector("#zone"+htmlCoords+" .square_container"),
-                nbrItems = zone.dataset.items,
                 cityTypeId = Number(zone.dataset.citytypeid),
                 icon_size = 22;
                 
@@ -244,7 +243,7 @@ class CityConnections {
             // If the building is a construction requiring components
             else if(cityTypeId in _configsBuildingsComponents) {    
                 // Icons of the items required for building
-                const htmlFindableItems = Object.keys(_configsBuildingsComponents[cityTypeId])
+                const htmlComponents =  Object.keys(_configsBuildingsComponents[cityTypeId])
                                             .map(id => {
                                                 const itemId = Number(id);
                                                 
@@ -268,7 +267,7 @@ class CityConnections {
                 const div = document.createElement('div');
                 div.className = 'sharp_bubble diggable buildable animate__animated animate__pulse animate__infinite';
                 div.setAttribute('aria-label', 'Liste des composants requis pour construire ce bâtiment');
-                div.innerHTML = `🛠️&nbsp; ${htmlFindableItems}`;
+                div.innerHTML = `🛠️&nbsp; ${htmlComponents}`;
                 // Add the bubble for digging above the city
                 zone.querySelector(".cityframe").appendChild(div);
             }

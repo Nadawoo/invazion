@@ -28,7 +28,7 @@ class BuildingPopup {
             toggleCityframesView();
         }
         else if(cityTypeId !== "") {
-            this.#populateBuildingPopup(cityId, cityTypeId, dataset.zombies, mapId, dataset.coordx, dataset.coordy);
+            this.#populateBuildingPopup(cityTypeId, dataset.zombies, mapId, dataset.coordx, dataset.coordy);
             window.location.href = "#popsuccess";
         }
     }
@@ -41,7 +41,7 @@ class BuildingPopup {
      * @param {int} cityTypeId The ID of the building, as returned by the Azimutant's API
      * @returns {undefined}
      */
-    #populateBuildingPopup(cityId, cityTypeId, nbrZombiesInZone, mapId, coordX, coordY) {
+    #populateBuildingPopup(cityTypeId, nbrZombiesInZone, mapId, coordX, coordY) {
         
         let building = _configsBuildings[cityTypeId];
         let findableItems = (_configsBuildingsFindableItems[cityTypeId] !== undefined) ? _configsBuildingsFindableItems[cityTypeId] : [];
