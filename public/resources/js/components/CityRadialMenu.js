@@ -14,31 +14,30 @@ class CityRadialMenu {
         const connections = new CityConnections();
         _roadActiveHexagon = hexagon;
 
+        // Mark the clicked city frame as active (useful for adding a visible
+        // border around the city)
+        const cityframe = event.target.closest("#map_body .hexagon").querySelector(".cityframe");
+        cityframe.classList.add("active");
+
+        // Hide the useless elements to enlighten the GUI
+        hide(elementsToHide);
+        // Display the "Go to" menu
+        const radialMenu = hexagon.querySelector(".radial_menu");
+        if(radialMenu !== null && radialMenu.closest(".square_container").querySelector("#me") === null) {
+            radialMenu.classList.remove("hidden");
+        }
+
+        // Stop the execution of the display() below if the mouse leaves then 
+        // hovers again the city
+        if(_roadDisplayTimeout) {
+            clearTimeout(_roadDisplayTimeout);
+            _roadDisplayTimeout = null;
+        }
+
         // Highlight the road to the city
         let path = await connections.highlightRoad(event);
-
-        // If there is a road to highlight
+        
         if(path !== null && path !== undefined) {
-            // Mark the clicked city frame as active (useful for adding a visible
-            // border around the city)
-            const cityframe = event.target.closest("#map_body .hexagon").querySelector(".cityframe");
-            cityframe.classList.add("active");
-            
-            // Hide the useless elements to enlighten the GUI
-            hide(elementsToHide);
-            // Display the "Go to" menu
-            const radialMenu = hexagon.querySelector(".radial_menu");
-            if(radialMenu !== null && radialMenu.closest(".square_container").querySelector("#me") === null) {
-                radialMenu.classList.remove("hidden");
-            }
-
-            // Stop the execution of the display() below if the mouse leaves then 
-            // hovers again the city
-            if(_roadDisplayTimeout) {
-                clearTimeout(_roadDisplayTimeout);
-                _roadDisplayTimeout = null;
-            }
-
             // Display the cost in action points above each city of the path
             path.forEach((cityId)=> {
                 const moveCost = document.querySelector(`#map_body .square_container[data-cityid="${cityId}"] .move_cost`);
@@ -49,9 +48,10 @@ class CityRadialMenu {
             
             // Memorize the path in the "Go to" button
             event.target.closest(".hexagon").querySelector(".radial_menu button[name=drive]").dataset.path = path;
-        } else {
-            display(elementsToHide);
         }
+//        else {
+//            display(elementsToHide);
+//        }
     }
     
     

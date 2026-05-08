@@ -70,6 +70,9 @@ class Graph {
      */
     getPath(graph, cities, start, goal) {
 
+        // If the citizen is not located on a city, don't try to look for a path
+        if(start == null) return null;
+        
         const openSet = new Set([start]);
         const cameFrom = {};
         const gScore = {};

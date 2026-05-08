@@ -58,11 +58,12 @@ class CityConnections {
      */
     async highlightRoad(event) {
 
-        const sourceCityId = Number(document.querySelector("#me").parentNode.dataset.cityid),
+        const htmlSourceCityId = document.querySelector("#me").parentNode.dataset.cityid,
+              sourceCityId = (htmlSourceCityId !== "") ? Number(htmlSourceCityId) : null,
               targetCityId = event.currentTarget.querySelector('.square_container').dataset.cityid;
         
-        // Don't search a road if the player is not on a city yet
-        if(sourceCityId === "") return;
+        // If the citizen is not located on a city, don't try to look for a path
+        if(sourceCityId === null) return;
 
         // Call the API to get the connections between cities
         _roads = await getMapRoadsOnce(mapId);
