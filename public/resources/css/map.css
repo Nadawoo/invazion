@@ -535,8 +535,8 @@
     z-index:2;
 }
 #map_body .city_name {
-    height:46px;
-    width: 46px;
+    height:42px;
+    width: 42px;
     font-size:0.5em;
     line-height:normal;
     white-space:break-spaces;
