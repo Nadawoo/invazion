@@ -664,8 +664,15 @@
     outline:1px solid aliceblue;
     z-index:2;
 }
+#map_body .move_cost.positive {
+    background:lightgreen;
+    border-color:lightgrey;
+    color:black;
+    font-weight:bold;
+}
 #map_body .move_cost.negative {
     background:darkred;
+    border-color:mediumvioletred;
 }
 
 /* Action points above the player when moving */
