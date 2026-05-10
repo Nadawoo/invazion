@@ -218,26 +218,6 @@ if (document.getElementById("controlCountdown") !== null) {
 }
 
 
-//If we are on the panel to edit the items available in game
-if (document.getElementById('editConfig') !== null) {
-    
-    // On page load, we hide by default all the secondary options of the form
-    hide([  '#block_findable',
-            '#block_findable_advanced',
-            '#block_compo',
-            '#block_apgain',
-            '#block_malus',
-            '#block_healing',
-            '#block_weapon',
-            '#block_bag',
-            '#block_drop',
-            '#block_loads',
-            '#block_solidity_custom',
-            '#block_killing_rate'
-            ]);
-}
-
-
 // If we are on the connection page
 if(document.querySelector("#connectionForm") !== null) {
     // Prefill the "email" field

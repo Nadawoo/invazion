@@ -13,15 +13,22 @@
     RewriteRule \.git/ - [F,NC]
     # Forbids access to the .gitignore (could contain sensitive file names)
     RewriteRule ^\.gitignore$ - [F,NC]
+
+    # Router
+    # If the file or folder exists, serve it normally
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    # Else, redirect to the JS router
+    RewriteRule ^ router.php [L]
 </IfModule>
 
 # Performance : compression gzip des fichiers texte, html, css, javascript, json
 # NB : le "deflate_module" d'Apache doit être activé
 <IfModule mod_deflate.c>
-	AddOutputFilterByType DEFLATE text/plain
-	AddOutputFilterByType DEFLATE text/html application/xhtml+xml text/css
-	AddOutputFilterByType DEFLATE application/javascript application/x-javascript
-	AddOutputFilterByType DEFLATE application/json
+    AddOutputFilterByType DEFLATE text/plain
+    AddOutputFilterByType DEFLATE text/html application/xhtml+xml text/css
+    AddOutputFilterByType DEFLATE application/javascript application/x-javascript
+    AddOutputFilterByType DEFLATE application/json
 </IfModule>
 
 

@@ -3,7 +3,7 @@
  * Page to edit the configuration of the game (list of items...)
  */
 
-require_once '../core/controller/autoload.php';
+require_once __DIR__.'/../../core/controller/autoload.php';
 safely_require('/core/view/html_options.php');
 safely_require('/core/model/Server.php');
 safely_require('/core/ZombLib.php');
@@ -79,7 +79,6 @@ $boost_types = [null        => '–',
 $server = new Server();
 $official_server_root = $server->official_server_root();
 $api        = new ZombLib($official_server_root.'/api');
-$html       = new HtmlPage();
 $htmlItem   = new HtmlConfigItems();
 $htmlTags   = new HtmlTags();
 $items      = $api->call_api('configs', 'get', ['map_id'=>$map_id])['datas']['items'];
@@ -102,9 +101,6 @@ foreach ($items as $id=>$caracs) {
             <td>'.$htmlTags->tags_item($caracs, 'html').'</td>
         </tr>';
 }
-
-
-echo $html->page_header();
 ?>
 
 
@@ -390,43 +386,3 @@ echo '
 
 <!-- End of the page container #editConfig -->
 </div>
-
-
-<script type="text/javascript" src="resources/js/services/ItemsConfig.js?v1"></script>
-
-<script>
-    // Filter the items by tag in the table of items
-    document.addEventListener('DOMContentLoaded', function() {
-        
-        let itemsConfig = new ItemsConfig(),
-            tags = itemsConfig.getTagsList();
-            
-        itemsConfig.writeHtmlTagsList(tags);
-        
-        const filterButtons = document.querySelectorAll('#tags .chip');
-        const tableRows = document.querySelectorAll('#items_table tbody tr');
-
-        filterButtons.forEach(button => {
-            button.addEventListener('click', function() {
-                this.classList.toggle('active');
-                filterTableByTag();
-            });
-        });
-
-        function filterTableByTag() {
-            const activeTags = Array.from(filterButtons)
-                .filter(button => button.classList.contains('active'))
-                .map(button => button.dataset.tag);
-
-            tableRows.forEach(row => {
-                const rowTags = row.dataset.tags.split(' ');
-                const isVisible = activeTags.every(tag => rowTags.includes(tag));
-
-                row.style.display = isVisible || activeTags.length === 0 ? '' : 'none';
-            });
-        }
-    });
-</script>
-
-<?php
-echo $html->page_footer();

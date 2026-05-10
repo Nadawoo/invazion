@@ -2,7 +2,7 @@
  * Methods for the page for creating/editing the game items 
  * @type type
  */
-class ItemsConfig {   
+export class ItemsConfig {   
     
     /**
     * Returns all the tags present in the table of items, without duplicates
