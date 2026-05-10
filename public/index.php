@@ -538,6 +538,8 @@ echo $layout->page_header($citizen['user_id'], $citizen['citizen_id'], $citizen[
     <br>
     <a href="edit" title="Paramétrez les objets disponibles dans le jeu (bêta)">Créer des objets</a>
     <br>
+    <a href="games">Rejoindre une autre partie</a>
+    <br>
     
     <br>
     

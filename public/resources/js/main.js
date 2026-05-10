@@ -85,7 +85,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 // If we are on the main game page (those elements don't exist on the connection page)
-if (document.getElementById('map') !== null) {
+if(document.getElementById("map") !== null) {
     
     // Default map to show if the visitor is not connected
     var mapId = document.querySelector("#gameData #mapId").innerHTML;
@@ -250,6 +250,16 @@ if(document.querySelector("#connectionForm") !== null) {
     }, 1000);
 }
 
+// If we are on the page for joining a game
+if(document.querySelector("#games") !== null) {
+    zombLib = new ZombLib;
+    json = zombLib.callApi("GET", "games", `action=get`);
+    
+    json.then((result) => {
+        const gameSelector = new GameSelector;
+        gameSelector.populateGamesList(result.datas);
+     });
+}
 
 // Translate the game in the appropriate language
 translator = new Translator();
