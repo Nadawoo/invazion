@@ -730,27 +730,28 @@ class HtmlLayout extends HtmlPage
             </button>
             
             <ul id="mapRadarMenu" class="hidden">
-                <li class="active"
-                    onclick="resetMapView();toggleMapMarker();this.classList.add(\'active\')"
+                <li data-view="realMap"
+                    data-action="switchMapView"
+                    class="active"
                     >&#x1F5FA;&#xFE0F; Carte réelle
                 </li>
-                <li class="neighborhood"
-                    onclick="resetMapView();toggleMapNeighborhoodView()"
+                <li data-view="neighborhood"
+                    data-action="switchMapView"
                     title="Afficher des informations sur les bâtiments"
                     >&#x1F3E2; Bâtiments
                 </li>
-                <li class="explorations"
-                    onclick="resetMapView();toggleMapExplorationsView()"
+                <li data-view="explorations"
+                    data-action="switchMapView"
                     title="Voir les zones explorées de la carte"
                     >&#x26CF;&#xFE0F; Fouilles
                 </li>
-                <li class="items"
-                    onclick="resetMapView();toggleMapItemsView();"
+                <li data-view="items"
+                    data-action="switchMapView"
                     title="Voir les objets au sol sur la carte"
                     >&#x1F392; Objets au sol
                 </li>
-                <li class="zombies"
-                    onclick="resetMapView();toggleMapZombiesView();toggleMapItemMarker(106)"
+                <li data-view="zombies"
+                    data-action="switchMapView"
                     title="Voir les zombies sur la carte"
                     >&nbsp;<img src="resources/img/motiontwin/zombie.gif" alt="&#x1F9DF;">&nbsp; Zombies
                 </li>

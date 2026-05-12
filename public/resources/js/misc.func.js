@@ -97,7 +97,7 @@ function sleep(milliseconds) {
  *                               See the dictionary "markableObjects" in the present 
  *                               function to know the available aliases.
  */
-function toggleMapMarker(objectToMark) {
+export function toggleMapMarker(objectToMark) {
     
     // Here are listed the DOM selectors to mark the zones you want (e.g. class name...)
     var markableObjects = {

@@ -230,7 +230,7 @@ export function zoomMapRange(newZoomPercent) {
  * @returns {array} The coordinates of the zones containing the item
  *                  Exemple: [0_3, 4_1, 5_8, ...]
  */
-async function getItemCoords(itemId) {
+export async function getItemCoords(itemId) {
     
     _jsonMap = await getMapZonesOnce(mapId);    
     let itemCoords = [];

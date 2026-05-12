@@ -9,7 +9,22 @@ import { BuildingPopup } from "./components/BuildingPopup.js";
 import { CityRadialMenu } from "./components/CityRadialMenu.js";
 import { Move } from "./services/Move.js";
 import { initiateDiscussTab, listenToDiscussTabs, toggleSendform } from "./discussions.func.js";
-import { closePopup, displayToast, exploreBuilding } from "./misc.func.js";
+import {
+    resetMapView,
+    toggleMapExplorationsView,
+    toggleMapItemsView,
+    toggleMapNeighborhoodView,
+    toggleMapZombiesView,
+    toggleMapItemMarker
+    }
+    from "./mapUse.func.js";
+import {
+    closePopup,
+    displayToast,
+    exploreBuilding,
+    toggleMapMarker
+    }
+    from "./misc.func.js";
 
 
 /**
@@ -58,9 +73,10 @@ export function listenToClick() {
             "enlargeWall": "enlargeWall"
             };
         
+        const target = event.target;
         let hexagon = event.target.closest(".hexagon"),
             button = null;
-        
+            
         // Build a city on the map (not a construction inside a city)
         if(button = event.target.closest(selectors.buildCity)) {
             buildOnMap(Number(button.dataset.citytypeid));
@@ -82,6 +98,29 @@ export function listenToClick() {
             displayToast("Sélectionnez la ville de destination de la route", "info");
             
             document.querySelector("#map").dataset.viewmode = "addRoad";
+        }
+        else if(target.dataset.action === "switchMapView") {
+            const view = target.dataset.view;
+            
+            resetMapView();
+            // Highlight the active view in the menu
+            target.classList.add("active");
+            
+            if(view === "neighborhood") {
+                toggleMapNeighborhoodView();
+            }
+            else if(view === "explorations") {
+                toggleMapExplorationsView();
+            }
+            else if(view === "items") {
+                toggleMapItemsView();
+            }
+            else if(view === "zombies") {
+                toggleMapZombiesView();
+                toggleMapItemMarker(106);
+            } else if(view === "realMap") {
+                toggleMapMarker();
+            }
         }
         else if(event.target.dataset.action === selectors.closePopup) {
             closePopup();

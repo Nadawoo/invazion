@@ -6,8 +6,8 @@
 
 import { ZombLib } from "./lib/ZombLib.js";
 import { updateBlockAlertControl } from "./actionBlocks.func.js"; 
-import { addCitiesOnMap, zoomMapRange } from "./mapInit.func.js";
-import { displayToast } from "./misc.func.js";
+import { addCitiesOnMap, getItemCoords, zoomMapRange } from "./mapInit.func.js";
+import { displayToast, toggleMapMarker } from "./misc.func.js";
 
 
 /**
@@ -298,14 +298,13 @@ function desactivateMapZombiesView() {
 }
 
 
-function toggleMapZombiesView() {
+export function toggleMapZombiesView() {
     
     if(window.isMapZombiesViewActive === true) {   
         desactivateMapZombiesView();
         window.isMapZombiesViewActive = false;
     } else {
         activateMapZombiesView();
-        document.querySelector("#mapRadarMenu .zombies").classList.add("active");
         window.isMapZombiesViewActive = true;
     }
 }
@@ -319,7 +318,7 @@ function toggleMapZombiesView() {
  *                            containg items giving action points (water, food...)
  * @returns {undefined}
  */
-async function toggleMapItemMarker(itemId) {
+export async function toggleMapItemMarker(itemId) {
     
     let markerType = "generic",
         markerValue = 1;
@@ -348,7 +347,7 @@ async function toggleMapItemMarker(itemId) {
 }
 
 
-function toggleMapNeighborhoodView() {
+export function toggleMapNeighborhoodView() {
     
     if(window.isMapNeighborhoodViewActive === true) {
         display("#map_body .nbr_defenses");
@@ -357,7 +356,6 @@ function toggleMapNeighborhoodView() {
     } else {
         hide(["#map_body .sharp_bubble"]);
         display(["#map_body .zone_name", "#map_body .city_name", "#map_body .nbr_defenses"]);
-        document.querySelector("#mapRadarMenu .neighborhood").classList.add("active");
         window.isMapNeighborhoodViewActive = true;
     }
 }
@@ -480,27 +478,25 @@ export function desactivateMapPathsView() {
 }
 
 
-function toggleMapItemsView() {
+export function toggleMapItemsView() {
     
     if (window.isMapItemsViewActive === true) {   
         desactivateMapItemsView();
         window.isMapItemsViewActive = false;
     } else {
         activateMapItemsView();
-        document.querySelector("#mapRadarMenu .items").classList.add("active");
         window.isMapItemsViewActive = true;
     }
 }
 
 
-function toggleMapExplorationsView() {
+export function toggleMapExplorationsView() {
     
     if (window.isMapExplorationsViewActive === true) {   
         desactivateMapExplorationsView();
         window.isMapExplorationsViewActive = false;
     } else {
         activateMapExplorationsView();
-        document.querySelector("#mapRadarMenu .explorations").classList.add("active");
         window.isMapExplorationsViewActive = true;
     }
 }
@@ -523,7 +519,7 @@ function toggleMapPathsView() {
  * 
  * @returns {undefined}
  */
-function resetMapView() {
+export function resetMapView() {
     
     desactivateMapZombiesView();
     window.isMapZombiesViewActive = false;
