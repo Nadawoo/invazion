@@ -249,28 +249,6 @@ function toggleItemsPanel() {
 
 
 /**
- * Sends the data to create a new item in game
- */
-async function createItem() {
-    
-    let cookies = new Cookies(),
-        token = cookies.getCookie('token'),
-        formData = new FormData(document.querySelector('form')),
-        request = {};
-    
-    for (var pair of formData.entries()) {
-        request += "&"+pair[0]+"="+pair[1];
-    }
-    
-    // Sends the characteristics of the new item to the API
-    let zombLib = new ZombLib();
-    let json = await zombLib.callApi("POST", "configs", `action=create&type=item&token=${token}&${request}`);
-    
-    document.getElementById("error").innerHTML = json.metas.error_message;
-}
-
-
-/**
  * Add zombies in one given zone
  */
 async function addZombiesInZone() {

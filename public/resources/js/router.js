@@ -1,4 +1,4 @@
-import { EditScreen, initEditPage } from "/resources/js/screens/edit.js";
+import { editScreen, initEditPage } from "/resources/js/screens/edit.js";
 import { gamesScreen, initGamesPage } from "/resources/js/screens/games.js";
 
 const routes = {
@@ -8,7 +8,7 @@ const routes = {
         init: initGamesPage
     },
     "/edit": {
-        view: EditScreen,
+        view: editScreen,
         init: initEditPage
     }
 };
