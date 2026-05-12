@@ -1,7 +1,12 @@
 import { EditScreen, initEditPage } from "/resources/js/screens/edit.js";
+import { gamesScreen, initGamesPage } from "/resources/js/screens/games.js";
 
 const routes = {
 //  "/": HomeScreen,
+    "/games": {
+        view: gamesScreen,
+        init: initGamesPage
+    },
     "/edit": {
         view: EditScreen,
         init: initEditPage

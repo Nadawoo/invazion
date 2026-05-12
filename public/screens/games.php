@@ -1,10 +1,3 @@
-<?php
-require_once '../core/controller/autoload.php';
-
-$html = new HtmlLayout();
-
-echo $html->page_header() 
-?>
 
 <template id="tplGame">
     <div class="col s12 m6">
@@ -36,6 +29,3 @@ echo $html->page_header()
     <h2 style="font-size:2em;text-align:center;color:black;font-weight:bold">Rejoindre une partie</h2>
     <div id="games_list" class="row"></div>
 </section>
-
-
-<?php echo $html->page_footer() ?>
