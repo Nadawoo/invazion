@@ -740,7 +740,7 @@ async function dropItem(eventSubmitter) {
 /**
  * Hides the pop-up over the map
  */
-function closePopup() {
+export function closePopup() {
     
     document.querySelector("#popsuccess").classList.remove("force_visibility");
 }

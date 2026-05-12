@@ -9,7 +9,7 @@ import { BuildingPopup } from "./components/BuildingPopup.js";
 import { CityRadialMenu } from "./components/CityRadialMenu.js";
 import { Move } from "./services/Move.js";
 import { initiateDiscussTab, listenToDiscussTabs, toggleSendform } from "./discussions.func.js";
-import { displayToast, exploreBuilding } from "./misc.func.js";
+import { closePopup, displayToast, exploreBuilding } from "./misc.func.js";
 
 
 /**
@@ -51,6 +51,7 @@ export function listenToClick() {
         
         const selectors = {
             "buildCity":"#builder button[name=build_city]",
+            "closePopup": "close_popup",
             "drive": "button[name=drive]",
             "teleport": "button[name=teleport]",
             "addRoad": "button[name=road]",
@@ -81,6 +82,9 @@ export function listenToClick() {
             displayToast("Sélectionnez la ville de destination de la route", "info");
             
             document.querySelector("#map").dataset.viewmode = "addRoad";
+        }
+        else if(event.target.dataset.action === selectors.closePopup) {
+            closePopup();
         }
         else if(event.target.dataset.action === selectors.enlargeWall) {
             enlargeWall();

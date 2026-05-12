@@ -139,7 +139,7 @@ class HtmlPopup
             la réutilisation du concept et des éléments graphiques, mais Azimutant
             n'est pas affilié à Motion Twin.<p>";
             
-            $button_close = '<p class="center"><a href="#" onclick="closePopup()">[Fermer]</a></p>';
+            $button_close = '<p class="center"><a href="#" data-action="close_popup">[Fermer]</a></p>';
         
         return $msg_popup.$button_close;
     }
@@ -674,7 +674,7 @@ class HtmlPopup
         <div id="'.$popup_alias.'" class="overlay '.$css_class.'">
             <div class="popup z-depth-2">
                 '.$html_title.'
-                <a class="close" href="'.$anchor.'" onclick="closePopup()">
+                <a class="close" href="'.$anchor.'" data-action="closePopup">
                     <i class="material-icons">close</i>
                 </a>
                 <div class="content">'.$text.'</div>
