@@ -3,6 +3,7 @@
  * Don't put executable code in this file, only functions.
  */
 
+import { displayToast } from "./misc.func.js";
 
 /**
  * Create a card for each expedition in the list of expeditions (lateral panel)
@@ -397,7 +398,7 @@ async function movePath(event) {
 }
 
 
-function togglePathsBar() {
+export function togglePathsBar() {
     
     toggle(["#paths_bar", "#game_footer", "#tasks_button"]);
     document.querySelector("#views_bar .paths").classList.toggle("active");

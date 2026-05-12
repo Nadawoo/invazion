@@ -4,6 +4,9 @@
  * on loading the page (see onPageLoad.js)
  */
 
+import { ZombLib } from "./lib/ZombLib.js";
+import { Items } from "./components/Items.js";
+import { centerMapOnMe } from "./mapUse.func.js";
 
 /*
  * Button to enlarge/reduce the bag (hide the overflowing items)
@@ -142,7 +145,7 @@ function toggleMapMarker(objectToMark) {
  *                         Ex: [23, 48]
  * @returns {HtmlFragment}
  */
-function itemsBubbleFragment(itemsIds) {
+export function itemsBubbleFragment(itemsIds) {
     
     const htmlItems = new Items();
     
@@ -191,7 +194,7 @@ function deleteMapMarkers() {
  * Displays/hides the blocks of actions at the right of the map
  * (digging, zombies, citizens in zone, build tent...)
  */
-function toggleActionBlock(buttonAlias) {
+export function toggleActionBlock(buttonAlias) {
     
     let blockId = "#block_"+buttonAlias;
     let roundId = "#round_"+buttonAlias;
@@ -377,7 +380,7 @@ function animateCss(cssSelector, effectName) {
  * @param {int} newCoordY
  * @returns {undefined}
  */
-async function updateMeAfterMoving(newCoordX, newCoordY) {
+export async function updateMeAfterMoving(newCoordX, newCoordY) {
         
     // Delete the informations about the previous zone (obsolete)
     _myZone = null;    
@@ -427,7 +430,7 @@ async function updateActionBlocksAfterMoving(newCoordX, newCoordY) {
  *                                (including the current player)
  * @returns {undefined}
  */
-function updateCardCitizensInZone(nbrCitizensInZone) {
+export function updateCardCitizensInZone(nbrCitizensInZone) {
     
     (nbrCitizensInZone <= 1) ? hide("#card_citizens") : display("#card_citizens");
 }
@@ -438,7 +441,7 @@ function updateCardCitizensInZone(nbrCitizensInZone) {
  * 
  * @param {int} cityTypeId The ID of the city type in the zone (not the ID of the city)
  */
-function updateEnterBuildingButton(cityTypeId, controlPointsCitizens, nbrZombies) {
+export function updateEnterBuildingButton(cityTypeId, controlPointsCitizens, nbrZombies) {
     
     // Displays the building's name under the movement paddle
     if(cityTypeId === "") {
@@ -521,7 +524,7 @@ async function killZombies(apiAction) {
 /**
  * Gets the log of attacks with the API and write it in the communications panel
  */
-async function getCyclicAttacks(nbrExecutions) {
+export async function getCyclicAttacks(nbrExecutions) {
     
     // Don't run the function more than once (it calls the API)
     if (nbrExecutions >= 1) {
@@ -562,7 +565,7 @@ async function getLogEvents(htmlContainerId) {
 /*
  * Get the data about the player's zone by calling the Azimutant's API
  */
-async function getMyZoneOnce(mapId, coordX, coordY) {
+export async function getMyZoneOnce(mapId, coordX, coordY) {
     
     // If the API has already be called before, don't re-call it
     if(_myZone === null) {
@@ -583,7 +586,7 @@ async function getMyZoneOnce(mapId, coordX, coordY) {
  * 
  * @param {int} nbrZombies The number of zombies in the player's zone
  */
-function showFightingZombiesButtons(nbrZombies) {
+export function showFightingZombiesButtons(nbrZombies) {
     
     if(nbrZombies > 0) {
         display("#action_zombies");
@@ -627,7 +630,7 @@ async function dig() {
 }
 
 
-async function exploreBuilding() {
+export async function exploreBuilding() {
     
     let formData = new FormData(event.target),
         apiName  = formData.get("api_name"),
@@ -828,7 +831,7 @@ function attackCountdown() {
  * @param {int} citizenCoordX
  * @param {int} citizenCoordY
  */
-async function updateCityDistance(citizenCoordX, citizenCoordY) {
+export async function updateCityDistance(citizenCoordX, citizenCoordY) {
     
     let myCityId = document.querySelector("#gameData #cityId").innerHTML,
         myCityNode = document.querySelector(`[data-cityid="${myCityId}"]`),
@@ -1019,7 +1022,7 @@ function launchTutorial(elems, instances, step) {
  * @param {int} coordX
  * @param {int} coordY
  */
-async function sumControlpoints(citizens, mapId, coordX, coordY) {
+export async function sumControlpoints(citizens, mapId, coordX, coordY) {
     
     var sumControlpoints = 0;
     
@@ -1091,7 +1094,7 @@ async function switchToCitizen(targetCitizenId) {
  *                           of the alert.
  * @returns {undefined}
  */
-function displayToast(message, error_class) {
+export function displayToast(message, error_class) {
     
     M.toast({
         html: message,

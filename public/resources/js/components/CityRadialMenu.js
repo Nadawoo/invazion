@@ -1,5 +1,6 @@
+import {CityConnections } from "./CityConnections.js";
 
-class CityRadialMenu {
+export class CityRadialMenu {
     
     /**
      * Open the radial menu over a city (Go to/See...)

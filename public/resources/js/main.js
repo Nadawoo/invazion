@@ -1,3 +1,25 @@
+import { ZombLib } from "./lib/ZombLib.js";
+import { CityConnections } from "./components/CityConnections.js";
+import { MapCitizens } from "./components/MapCitizens.js"
+import { Tasks } from "./components/Tasks.js";
+import {
+    addCitiesOnMap,
+    displayItemOnMap,
+    getMapZonesOnce,
+    updateLightHalos,
+    zoomMapRange
+    }
+    from "./mapInit.func.js";
+import {
+    addMeOnMap,
+    centerMapOnMe,
+    getMyCityZoneId,
+    updateMapRealtime
+    }
+    from "./mapUse.func.js";
+import { listenToMapDragging } from "./eventsMain.func.js";
+import { isCitizenInGame } from "./users.func.js";
+
 /**
  * This script gathers all the actions automatically executed as soon as the page loads.
  * Don't put functions here (see scripts.js) nor events listeners (see events.js)
@@ -8,24 +30,25 @@
 let lang = "fr";
 
 // Permanently stores the results returned by the Azimutant's APIs.
-var _citizens = null;
-var _cities = null;
-var _roads = null;
-var _roadDisplayTimeout = null;
-var _roadActiveHexagon = null;
-var _myZone = null;
-var _jsonMap = null;
-var _isPathDrawingActive = false;
-var _userEmail = null;
-var _newRoadSource = null;
+window._citizens = null;
+window._cities = null;
+window._roads = null;
+window.roadDisplayTimeout = null;
+window._roadActiveHexagon = null;
+window._myZone = null;
+window._jsonMap = null;
+window._isPathDrawingActive = false;
+window._userEmail = null;
+window._newRoadSource = null;
 // Permanently stores the result of the API whichs gives the discussions list 
-var _jsonDiscussionApi = null;
-var _scrollBoosterInstance = null;
-var _configsServer = null;
+window._jsonDiscussionApi = null;
+window._scrollBoosterInstance = null;
+window._configsServer = null;
+window._roadDisplayTimeout = null;
 
-var _defaultMapZoomPercent = 130;
+window._defaultMapZoomPercent = 130;
 
-var _elementsToHideInRoadView = [
+window._elementsToHideInRoadView = [
     "#map_body .healthbar",
     "#map_body .location",
     "#map_body .diggable",
@@ -90,11 +113,11 @@ if(document.getElementById("map") !== null) {
     // Default map to show if the visitor is not connected
     var mapId = document.querySelector("#gameData #mapId").innerHTML;
     // Get the unvariable data of the game (building names...) stored in the HTML
-    var _configsBuildings = JSON.parse(document.querySelector("#configs .buildings").innerHTML);
-    var _configsBuildingsFindableItems = JSON.parse(document.querySelector("#configs .buildings_findable_items").innerHTML);
-    var _configsBuildingsComponents    = JSON.parse(document.querySelector("#configs .buildings_components").innerHTML);
-    var _configsItems     = JSON.parse(document.querySelector("#configs .items").innerHTML);
-    var _configsMap       = JSON.parse(document.querySelector("#configs .map").innerHTML);
+    window._configsBuildings = JSON.parse(document.querySelector("#configs .buildings").innerHTML);
+    window._configsBuildingsFindableItems = JSON.parse(document.querySelector("#configs .buildings_findable_items").innerHTML);
+    window._configsBuildingsComponents    = JSON.parse(document.querySelector("#configs .buildings_components").innerHTML);
+    window._configsItems     = JSON.parse(document.querySelector("#configs .items").innerHTML);
+    window._configsMap       = JSON.parse(document.querySelector("#configs .map").innerHTML);
     
     _jsonMap = getMapZonesOnce(mapId);
     
@@ -232,15 +255,9 @@ if(document.querySelector("#connectionForm") !== null) {
 
 // If we are on the page for joining a game
 if(document.querySelector("#games") !== null) {
-    zombLib = new ZombLib;
-    json = zombLib.callApi("GET", "games", `action=get`);
-    
-    json.then((result) => {
-        const gameSelector = new GameSelector;
-        gameSelector.populateGamesList(result.datas);
-     });
+
 }
 
 // Translate the game in the appropriate language
-translator = new Translator();
+const translator = new Translator();
 translator.translate(lang);

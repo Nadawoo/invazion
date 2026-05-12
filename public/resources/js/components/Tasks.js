@@ -1,7 +1,11 @@
 /**
  * Class relative to the list of tasks (goals) displayed to the player.
  */
-class Tasks {
+
+import { getMyCityZoneId } from "../mapUse.func.js";
+
+
+export class Tasks {
     
     /**
      * Add the number of defenses required in the "Build defenses" task

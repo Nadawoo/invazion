@@ -1,5 +1,7 @@
-class Items {
-    
+import { ZombLib } from "../lib/ZombLib.js";
+import { populateItemsList } from "../actionBlocks.func.js";
+
+export class Items {
     
     /**
      * 

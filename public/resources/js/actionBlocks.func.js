@@ -3,6 +3,14 @@
  * move, items, zombies, humans, building)
  */
 
+import {
+    updateCardCitizensInZone,
+    updateCityDistance,
+    updateEnterBuildingButton,
+    showFightingZombiesButtons,
+    sumControlpoints
+    }
+    from "./misc.func.js";
 
 /**
  * Main function : pdate the content of the actions blocks next to the map 
@@ -10,7 +18,7 @@
  * 
  * @param {string} blockAlias The name of the action block to update 
  */
-async function updateBlockAction(blockAlias) {
+export async function updateBlockAction(blockAlias) {
     
     if(blockAlias === "citizens") {
         
@@ -32,7 +40,7 @@ async function updateBlockAction(blockAlias) {
 }
 
 
-async function updateActionBlocks() {
+export async function updateActionBlocks() {
     
     // Get informations about the current zone through the "data-*" HTML attributes
     let zoneData = await document.querySelector("#me").parentNode.dataset;
@@ -115,7 +123,7 @@ function updateMoveCost(newNbrZombies) {
  * 
  * @param {int} controlpointsZombies  The sum of control points of the zombies in the zone
  */
-async function updateBlockAlertControl(controlpointsZombies, mapId, coordX, coordY) {
+export async function updateBlockAlertControl(controlpointsZombies, mapId, coordX, coordY) {
     
     let actionPoints = Number(document.querySelector("#gameData #actionPoints").innerHTML);
     let controlpointsCitizens = await sumControlpoints(await _citizens, mapId, coordX, coordY);
@@ -175,7 +183,7 @@ function updateZombiesGauge(nbrZombies) {
  * @param {int} is_visited_today Values "1" if the player has already visited 
  *                               the zone today(comes from the Azimutant's API) 
  */
-function updateDigButtons(is_visited_today) {
+export function updateDigButtons(is_visited_today) {
     
     let digButton = document.querySelector('#block_dig form[name="dig"] .redbutton');
     
@@ -336,7 +344,7 @@ async function updateBlockActionDig(mapId, coordX, coordY) {
  * 
  * @returns {int} Number of items on the ground
  */
-function populateItemsList(domSelector, itemsAmounts, nbrSlots=null, stack="stack") {
+export function populateItemsList(domSelector, itemsAmounts, nbrSlots=null, stack="stack") {
     
     let nbrItemsTotal = 0,
         entries = Object.entries(itemsAmounts);
@@ -487,7 +495,7 @@ function moveBuildingBlockBelowPaddle() {
  * 
  * @returns {undefined}
  */
-async function populateBuilderBlock() {
+export async function populateBuilderBlock() {
     
     const buildingsCaracs = JSON.parse(document.querySelector("#configs .buildings").innerText);
     

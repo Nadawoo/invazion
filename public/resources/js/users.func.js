@@ -3,6 +3,8 @@
  * Put only functions here, no executable code.
  */
 
+import { ZombLib } from "./lib/ZombLib.js";
+
 
 /**
  * Connects the user to his account (sends logins and gets the API result)
@@ -50,7 +52,7 @@ async function connectUser() {
  * 
  * @returns {Boolean}
  */
-function isCitizenInGame() {
+export function isCitizenInGame() {
     
     let citizenIdNode = document.querySelector("#citizenId");
     

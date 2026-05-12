@@ -3,6 +3,20 @@
  * Put nothing else than events listeners.
  */
 
+import {
+    listenToMapLegendSwitches,
+    listenToForms,
+    listenToClick,
+    listenToPointerdown,
+    listenToMainActionModeButton
+    }
+    from "./eventsMain.func.js"
+import { zoomMapRange } from "./mapInit.func.js";
+import { zoomMapStep } from "./mapUse.func.js";
+import { displayToast } from "./misc.func.js";
+import { isCitizenInGame } from "./users.func.js";
+
+
 var nbrExecutionsGetCyclicAttacks = 0;
 
 // If we are on the main game page (those elements don't exist on the connection page)

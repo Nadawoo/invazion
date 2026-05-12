@@ -3,13 +3,21 @@
  * Put only functions here, no immediatly executable code.
  */
 
+import { ZombLib } from "./lib/ZombLib.js";
+import { triggerTooltip, switchToActionView } from "./mapInit.func.js";
+import { BuildingPopup } from "./components/BuildingPopup.js";
+import { CityRadialMenu } from "./components/CityRadialMenu.js";
+import { Move } from "./services/Move.js";
+import { initiateDiscussTab, listenToDiscussTabs, toggleSendform } from "./discussions.func.js";
+import { displayToast, exploreBuilding } from "./misc.func.js";
+
 
 /**
  * Listen to all the forms (avoids creating one event listenener per form)
  * 
  * @returns {undefined}
  */
-function listenToForms() {
+export function listenToForms() {
 
     document.addEventListener("submit", (event) => {      
         const formSelectors = {
@@ -37,7 +45,7 @@ function listenToForms() {
  * 
  * @returns {undefined}
  */
-function listenToClick() {
+export function listenToClick() {
     
     document.addEventListener("click", (event) => {
         
@@ -119,7 +127,7 @@ function listenToClick() {
  * 
  * @returns {undefined}
  */
-function listenToPointerdown() {
+export function listenToPointerdown() {
     
     // Close the radial menu when tapping anywhere out of the active hexagon
     document.addEventListener("pointerdown", (event) => {
@@ -142,7 +150,7 @@ function listenToPointerdown() {
  * Events concerning the form to create a new discussion.
  * Must be asynchronous because the form doesn't exist when the page loads.
  */
-function listenToSendform() {
+export function listenToSendform() {
     // Create a new discussion thread
     document.getElementById("buttonNewTopic").addEventListener("click", function(event) {
         toggleSendform(event);
@@ -169,7 +177,7 @@ function listenToSendform() {
  * 
  * @returns {ScrollBooster|listenToMapDragging.sb}
  */
-function listenToMapDragging() {
+export function listenToMapDragging() {
     // Warning: don't set the "viewport" on #map, otherwise the floating blocks
     // disposed inside #map (connection block, action blocks, navigation...)
     // won't be tappable on mobile.
@@ -242,7 +250,7 @@ function listenToActionModeButtons(node) {
  * Event listener for the #action_mode_button (HTML ID, not class)
  * @returns {undefined}
  */
-async function listenToMainActionModeButton() {
+export async function listenToMainActionModeButton() {
     
     // Zoom on the map to the player
     document.querySelector("#action_mode_button").addEventListener("click", switchToActionView);
@@ -378,7 +386,7 @@ async function enlargeWall() {
 }
 
 
-function listenToMapLegendSwitches() {
+export function listenToMapLegendSwitches() {
     
     // When we (des)activate a switch button
     document.querySelector("#map_legend_items .switches").addEventListener("change", function() {
@@ -405,7 +413,7 @@ function listenToMapLegendSwitches() {
  * @param {type} hexagon HTML node of the heaxagon containing a city
  * @returns {undefined}
  */
-function listenToRoads(hexagon) {
+export function listenToRoads(hexagon) {
     
     const radialMenu = new CityRadialMenu();
     

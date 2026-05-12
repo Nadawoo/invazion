@@ -2,7 +2,7 @@
  * Javacript version of the ZombLib (library to easily use the API of Azimutant)
  * v. 2
  */
-class ZombLib {
+export class ZombLib {
 
     /**
      * Send a request to the Azimutant's server API, through the GET or POST method

@@ -1,9 +1,13 @@
+import { ZombLib } from "../lib/ZombLib.js";
+import { displayToast, updateMeAfterMoving  } from "../misc.func.js";
+
+
 /**
  * Various methods for moving a citizen from a zone to an other.
  * 
  * @type type
  */
-class Move {
+export class Move {
     
     /**
      * Move a citizen to an adjacent zone

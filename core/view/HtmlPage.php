@@ -11,7 +11,7 @@ class HtmlPage
     // Increment those variables when you modify the CSS or JS files. This ensures
     // that the users' browsers reload the up-to-date files, instead of using 
     // the obsolete ones stored in their cache.
-    private $css_js_version = 166;
+    private $css_js_version = 167;
     
     /**
      * Sets HTTP headers to secure the website
@@ -173,37 +173,36 @@ class HtmlPage
 
                         <script type="text/javascript" src="resources/js/lib/materialize.min.js"></script>
                         <script type="text/javascript" src="resources/js/lib/scrollbooster.min.js"></script>
-                        <script type="text/javascript" src="resources/js/lib/ZombLib.js?v'.$this->css_js_version.'"></script>
-                        <script type="text/javascript" src="resources/js/components/BuildingPopup.js?v'.$this->css_js_version.'" async></script>
-                        <script type="text/javascript" src="resources/js/components/CityConnections.js?v'.$this->css_js_version.'"></script>
-                        <script type="text/javascript" src="resources/js/components/CityRadialMenu.js?v'.$this->css_js_version.'"></script>
+                        <script type="module" src="resources/js/components/BuildingPopup.js?v'.$this->css_js_version.'" async></script>
+                        <script type="module" src="resources/js/components/CityConnections.js?v'.$this->css_js_version.'"></script>
+                        <script type="module" src="resources/js/components/CityRadialMenu.js?v'.$this->css_js_version.'"></script>
                         <script type="text/javascript" src="resources/js/components/GameSelector.js?v'.$this->css_js_version.'"></script>
                         <script type="text/javascript" src="resources/js/components/HealthBars.js?v'.$this->css_js_version.'"></script>
-                        <script type="text/javascript" src="resources/js/components/Items.js?v'.$this->css_js_version.'"></script>
-                        <script type="text/javascript" src="resources/js/components/MapCitizens.js?v'.$this->css_js_version.'"></script>
-                        <script type="text/javascript" src="resources/js/components/Tasks.js?v'.$this->css_js_version.'" async></script>
+                        <script type="module" src="resources/js/components/Items.js?v'.$this->css_js_version.'"></script>
+                        <script type="module" src="resources/js/components/MapCitizens.js?v'.$this->css_js_version.'"></script>
+                        <script type="module" src="resources/js/components/Tasks.js?v'.$this->css_js_version.'" async></script>
                         <script type="text/javascript" src="resources/js/components/Tooltip.js?v'.$this->css_js_version.'" async></script>
-                        <script type="text/javascript" src="resources/js/services/Move.js?v'.$this->css_js_version.'" async></script>
+                        <script type="module" src="resources/js/services/Move.js?v'.$this->css_js_version.'" async></script>
                         <script type="text/javascript" src="resources/js/utils/Cookies.js?v'.$this->css_js_version.'"></script>
                         <script type="text/javascript" src="resources/js/utils/Graph.js?v'.$this->css_js_version.'"></script>
                         <script type="text/javascript" src="resources/js/utils/Strings.js?v'.$this->css_js_version.'" async></script>
                         <script type="text/javascript" src="resources/js/utils/Translator.js?v'.$this->css_js_version.'"></script>
-                        <script type="text/javascript" src="resources/js/mapInit.func.js?v'.$this->css_js_version.'"></script>
-                        <script type="text/javascript" src="resources/js/mapUse.func.js?v'.$this->css_js_version.'" async></script>
-                        <script type="text/javascript" src="resources/js/paths.func.js?v'.$this->css_js_version.'" async></script>
+                        <script type="module" src="resources/js/mapInit.func.js?v'.$this->css_js_version.'"></script>
+                        <script type="module" src="resources/js/mapUse.func.js?v'.$this->css_js_version.'" async></script>
+                        <script type="module" src="resources/js/paths.func.js?v'.$this->css_js_version.'" async></script>
                         <script type="text/javascript" src="resources/js/wallTemplate.js?v'.$this->css_js_version.'" async></script>
-                        <script type="text/javascript" src="resources/js/actionBlocks.func.js?v'.$this->css_js_version.'" async></script>
+                        <script type="module" src="resources/js/actionBlocks.func.js?v'.$this->css_js_version.'" async></script>
                         <script type="text/javascript" src="resources/js/cityEnclosure.func.js?v'.$this->css_js_version.'" async></script>
                         <script type="text/javascript" src="resources/js/cityEnclosureInit.func.js?v'.$this->css_js_version.'"></script>
-                        <script type="text/javascript" src="resources/js/discussions.func.js?v'.$this->css_js_version.'" async></script>
+                        <script type="module" src="resources/js/discussions.func.js?v'.$this->css_js_version.'" async></script>
                         <script type="text/javascript" src="resources/js/smartphone.func.js?v'.$this->css_js_version.'" async></script>
-                        <script type="text/javascript" src="resources/js/eventsMain.func.js?v'.$this->css_js_version.'"></script>
+                        <script type="module" src="resources/js/eventsMain.func.js?v'.$this->css_js_version.'"></script>
                         <script type="text/javascript" src="resources/js/eventsActions.func.js?v'.$this->css_js_version.'" async></script>
-                        <script type="text/javascript" src="resources/js/users.func.js?v'.$this->css_js_version.'"></script>
+                        <script type="module" src="resources/js/users.func.js?v'.$this->css_js_version.'"></script>
                         <script type="text/javascript" src="resources/js/miscInit.func.js?v'.$this->css_js_version.'"></script>
-                        <script type="text/javascript" src="resources/js/misc.func.js?v'.$this->css_js_version.'" async></script>
-                        <script type="text/javascript" src="resources/js/main.js?v'.$this->css_js_version.'"></script>
-                        <script type="text/javascript" src="resources/js/events.js?v'.$this->css_js_version.'"></script>
+                        <script type="module" src="resources/js/misc.func.js?v'.$this->css_js_version.'" async></script>
+                        <script type="module" src="resources/js/main.js?v'.$this->css_js_version.'"></script>
+                        <script type="module" src="resources/js/events.js?v'.$this->css_js_version.'"></script>
                     </div>
                 </body>
             </html>';

@@ -5,11 +5,29 @@
  * Don't put executable code in this file, only functions.
  */
 
+import { ZombLib } from "./lib/ZombLib.js";
+import { Items } from "./components/Items.js";
+import {
+    populateBuilderBlock,
+    updateActionBlocks,
+    updateBlockAction,
+    updateDigButtons
+    }
+    from "./actionBlocks.func.js";
+import { listenToRoads } from "./eventsMain.func.js";
+import {
+    centerMapOnMe,
+    desactivateMapPathsView,
+    getZonePositions,
+    switchToMapView
+    }
+    from "./mapUse.func.js";
+import { displayToast, toggleActionBlock, getMyZoneOnce } from "./misc.func.js";
 
 /*
  * Get all the zones of the map by calling the Azimutant's API
  */
-async function getMapZonesOnce(mapId) {
+export async function getMapZonesOnce(mapId) {
     
     if(_jsonMap === null) {
         let cookies = new Cookies(),
@@ -26,7 +44,7 @@ async function getMapZonesOnce(mapId) {
 /*
  * Get the cities of the map by calling the Azimutant's API
  */
-async function getMapCitiesOnce(mapId) {
+export async function getMapCitiesOnce(mapId) {
     
     // If the API has already be called before, don't re-call it
     if(_cities === null) {
@@ -42,7 +60,7 @@ async function getMapCitiesOnce(mapId) {
 /*
  * Get the citizens of the map by calling the Azimutant's API
  */
-async function getMapCitizensOnce(mapId) {
+export async function getMapCitizensOnce(mapId) {
     
     // If the API has already be called before, don't re-call it
     if(_citizens === null) {
@@ -55,7 +73,7 @@ async function getMapCitizensOnce(mapId) {
 }
 
 
-async function getMapRoadsOnce(mapId) {
+export async function getMapRoadsOnce(mapId) {
     
     // If the API has already be called before, don't re-call it
     if(_roads === null) {
@@ -78,10 +96,11 @@ async function getMapRoadsOnce(mapId) {
  *                            place the city located in the zone X=5 and Y=7.
  *                            If not set, all the cities of the map will be placed.
  */
-async function addCitiesOnMap(mapId, htmlCoords=null) {
+export async function addCitiesOnMap(mapId, htmlCoords=null) {
     
     // #233 is the ID for the "Undiscovered building" in the API.
     let undiscoveredBuildingId = 233;
+    let citiesToPlaceCaracs = null;
     
     // Get the cities of the map by calling the Azimutant's API
     _cities = await getMapCitiesOnce(mapId);
@@ -139,7 +158,7 @@ async function addCitiesOnMap(mapId, htmlCoords=null) {
         }
         
         // Adds the name of the building
-        cityName = (city["city_name"] === null) ? buildingName : city["city_name"];
+        let cityName = (city["city_name"] === null) ? buildingName : city["city_name"];
         zone.insertAdjacentHTML("afterbegin", `<span class="hidden city_name animate__animated animate__zoomIn">${cityName}</span>`);
         
         // Make the building's zone always visible, even when never visited
@@ -172,7 +191,7 @@ async function addCitiesOnMap(mapId, htmlCoords=null) {
  * @param {int} itemId The ID of the item, as returned by the "items" API
  * @returns {undefined}
  */
-async function displayItemOnMap(itemId) {
+export async function displayItemOnMap(itemId) {
     
     let items = new Items();
     let itemCoords = getItemCoords(itemId);
@@ -189,7 +208,7 @@ async function displayItemOnMap(itemId) {
  * 
  * @param {int} newZoomPercent
  */
-function zoomMapRange(newZoomPercent) {
+export function zoomMapRange(newZoomPercent) {
     
     document.querySelector("#map_body").classList.add("zoomedIn");
     document.querySelector("#map_body").style.transform = `scale(${newZoomPercent}%)`;
@@ -277,7 +296,7 @@ function getItemsIdsByType(itemType) {
 /*
  * Zoom on the player to show the "action" buttons
  */
-function switchToActionView() {
+export function switchToActionView() {
     
     // Zoom the map on the player
     zoomMapRange(220);
@@ -342,7 +361,7 @@ function switchToActionView() {
  * @param {object} hexagon
  * @returns {undefined}
  */
-function triggerTooltip(hexagon) { 
+export function triggerTooltip(hexagon) { 
     
     if(hexagon !== null
         && (hexagon.querySelector(".bubble") === null || hexagon.querySelector(".bubble").classList.contains("block") === false)
@@ -372,7 +391,7 @@ function triggerTooltip(hexagon) {
 /**
  * Add light halos on the map around the cities
  */
-function updateLightHalos() {
+export function updateLightHalos() {
     
     const mask = document.querySelector("#lightMask");
 
@@ -384,11 +403,11 @@ function updateLightHalos() {
     
     zones.forEach(zone => {
         // Get the pixel coordinates of the zone
-        hexagon = zone.closest(".hexagon");
-        positions = getZonePositions(`#${hexagon.id}`);
+        let hexagon = zone.closest(".hexagon");
+        let positions = getZonePositions(`#${hexagon.id}`);
 
         let {x, y} = positions;
-            circle = document.createElementNS(namespace, 'circle');
+        let circle = document.createElementNS(namespace, 'circle');
 
         circle.setAttribute('cx', x);
         circle.setAttribute('cy', y);

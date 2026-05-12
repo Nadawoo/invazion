@@ -4,6 +4,10 @@
  * Put only functions here, no immediatly executable code or events listeners.
  */
 
+import { ZombLib } from "./lib/ZombLib.js";
+import { listenToSendform } from "./eventsMain.func.js";
+import { getCyclicAttacks } from "./misc.func.js";
+
 
 /**
  * Calls the API to get the list of the discussions, in the most performant way:
@@ -28,7 +32,7 @@ async function callDiscussionApiOnce(topicType, refresh=false) {
  * Gets the discussions and write them in the "discussions" tab.
  * Note that this function doesn't display the tab: this task is handled by Materialize.css
  */
-async function initiateDiscussTab() {
+export async function initiateDiscussTab() {
     updateDiscussionsList("all");
     // Add the listener on the form to create a topic.
     // TODO: make a cleaner code with DOMContentLoaded
@@ -151,7 +155,7 @@ async function replyDiscussion(topicId, nbrMessages) {
 /**
  * Show/hide the form to create a new discussion thread
  */
-function toggleSendform(event) {
+export function toggleSendform(event) {
     
     // Display the form for writing a new thread
     toggle("#send");
@@ -197,7 +201,7 @@ async function urlDiscussion(discussionId, messageId="") {
 async function updateDiscussionsList(topicType) {
     
     // Gets the titles of the discussions, by calling the Azimutant's API
-    var jsonTopics = await callDiscussionApiOnce(topicType, refresh=true);
+    var jsonTopics = await callDiscussionApiOnce(topicType, true);
     
     var citizenPseudo = document.getElementById("citizenPseudo").innerHTML;
     var length = jsonTopics.datas.length;
@@ -250,7 +254,7 @@ async function updateDiscussionsList(topicType) {
 /**
  * Switch tabs in the communications panel
  */
-function listenToDiscussTabs() {
+export function listenToDiscussTabs() {
     
     document.querySelector("#wall .tabs a[href='#wallDiscuss']").addEventListener("click",
         initiateDiscussTab

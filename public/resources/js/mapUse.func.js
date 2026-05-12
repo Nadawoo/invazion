@@ -4,13 +4,18 @@
  * Don't put executable code in this file, only functions.
  */
 
+import { ZombLib } from "./lib/ZombLib.js";
+import { updateBlockAlertControl } from "./actionBlocks.func.js"; 
+import { addCitiesOnMap, zoomMapRange } from "./mapInit.func.js";
+import { displayToast } from "./misc.func.js";
+
 
 /**
  * Refreshes the HTML of the concerned zones when a player moves (server-sent events)
  * param {array} event The event given by an EventSource() object
  *                     Doc : https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events
  */
-async function updateMapRealtime(event, timestamp) {
+export async function updateMapRealtime(event, timestamp) {
     let citizenPseudo = document.getElementById("citizenPseudo").innerHTML,
         citizenId     = document.getElementById("citizenId").innerHTML,
         mapId         = document.getElementById("mapId").innerHTML;
@@ -104,7 +109,7 @@ function replaceBuildingsPlaceholders() {
 /**
  * Adds the connected player on the appropriate zone of the map
  */
-function addMeOnMap() {
+export function addMeOnMap() {
     
     let myCoordX = document.querySelector("#citizenCoordX").innerText,
         myCoordY = document.querySelector("#citizenCoordY").innerText,
@@ -153,7 +158,7 @@ function addMeOnMap() {
  * 
  * @returns {string} The ID of the zone, e.g. "zone10_8"
  */
-function getMyCityZoneId() {
+export function getMyCityZoneId() {
 
     let myCityId = document.querySelector("#gameData #cityId").innerHTML, 
         result = null;
@@ -176,7 +181,7 @@ function getMyCityZoneId() {
  *                            Don't forget the hashtag (e.g. "#zone5_11")
  * @returns {dict} zonePositions The X and Y position of the zone
  */
-function getZonePositions(zoneHtmlId) {
+export function getZonePositions(zoneHtmlId) {
     
     let mapElement = document.querySelector("#map_body"),
         zoneElement = document.querySelector(`${zoneHtmlId} .square_container`);
@@ -462,7 +467,7 @@ function desactivateMapExplorationsView() {
 }
 
 
-function desactivateMapPathsView() {
+export function desactivateMapPathsView() {
     
     // Hide the stages of expeditions drawn on the map
     hide(".path_stage");
@@ -609,7 +614,7 @@ function addCityLocationMarker(myCityZoneId) {
  * 
  * @param {string} direction Set to "in" to zoom in, "out" to zoom out.
  */
-function zoomMapStep(direction) {
+export function zoomMapStep(direction) {
     // Default zoom level
     if(window.currentZoomPercent === undefined) {        
         window.currentZoomPercent = _defaultMapZoomPercent;
@@ -630,7 +635,7 @@ function zoomMapStep(direction) {
  * @param {int} centeringCoeff
  * @returns {undefined}
  */
-function centerMapOnMe(centeringCoeff=7) {
+export function centerMapOnMe(centeringCoeff=7) {
     
     centerMapOnZone(document.querySelector("#me").closest(".hexagon").id, centeringCoeff);
 }
@@ -660,7 +665,7 @@ function centerMapOnZone(zoneHtmlId, centeringCoeff=7) {
 /*
  * Unzoom to display the large map
  */
-function switchToMapView() {
+export function switchToMapView() {
     // Display the large map (unzoom)
     zoomMapRange(_defaultMapZoomPercent);
     setTimeout(() => centerMapOnMe(), 500);

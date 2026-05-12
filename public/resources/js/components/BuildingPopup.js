@@ -1,7 +1,9 @@
+import { Items } from "./Items.js";
+
 /**
  * Generates the graphical interface for a dersert building (outpost...)
  */
-class BuildingPopup {
+export class BuildingPopup {
     
     
     /**

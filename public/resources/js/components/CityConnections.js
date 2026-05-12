@@ -1,7 +1,13 @@
+import { ZombLib } from "../lib/ZombLib.js";
+import { Items } from "../components/Items.js";
+import { getMapCitiesOnce, getMapRoadsOnce } from "../mapInit.func.js";
+import { getZonePositions } from "../mapUse.func.js";
+import { itemsBubbleFragment } from "../misc.func.js";
+
 /**
  * Adds the lines between the connected cities on the map when clicking on a city.
  */
-class CityConnections {
+export class CityConnections {
     
     
     /**

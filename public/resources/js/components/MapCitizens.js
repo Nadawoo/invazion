@@ -1,7 +1,9 @@
+import { getMapCitizensOnce } from "../mapInit.func.js";
+
 /**
  * This class places the citizens on the map
  */
-class MapCitizens {
+export class MapCitizens {
     
     /**
      * Place the citizens on the map. They are not loaded by the PHP to speed up
