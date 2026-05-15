@@ -13,11 +13,11 @@
                 <a href="index">Rejoindre</a>
             </div>
             <div class="card-reveal">
-                <span class="card-title grey-text text-darken-4">Détails<i class="material-icons right">close</i></span>
-                <ul>
+                <span class="card-title grey-text text-darken-4"><i class="material-icons right">close</i></span>
+                <ul style="margin-bottom:0">
                     <li>&#x1F551; Jour 23</li>
                     <li>&#x1F5FA;&#xFE0F; <span class="dimensions"></span> zones</li>
-                    <li>&#x1F465; Joueur1, Joueur2, Joueur3, Joueur4</li>
+                    <li style="display:flex;gap:4px">&#x1F465; <ul class="citizens" style="display:flex;gap:4px;flex-wrap:wrap;">(En attente de joueurs)</ul></li>
                 </ul>
             </div>
         </div>
