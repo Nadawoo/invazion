@@ -1,5 +1,6 @@
 import { editScreen, initEditPage } from "/resources/js/screens/edit.js";
 import { gamesScreen, initGamesPage } from "/resources/js/screens/games.js";
+import { Router } from "./utils/Router.js";
 
 const routes = {
 //  "/": HomeScreen,
@@ -13,33 +14,9 @@ const routes = {
     }
 };
 
-
-export function navigate(path) {
-    
-    history.pushState({}, "", path);
-    render();
-}
-
-
-async function render() {
-    
-    const route = routes[location.pathname];
-
-    if(!route) {
-        document.querySelector("#app").innerHTML = "404";
-        return;
-    }
-
-    const html = await route.view();
-    document.querySelector("#app").innerHTML = html;
-
-    if(route.init) {
-        route.init();
-    }
-}
-
+const router = new Router(routes);
 
 // Handle the previous/next button of the browser
-window.addEventListener("popstate", render);
+window.addEventListener("popstate", router.render);
 // Display the page asked in the URL
-render();
+router.render();
