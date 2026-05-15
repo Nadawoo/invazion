@@ -533,7 +533,6 @@ echo $layout->page_header($citizen['user_id'], $citizen['citizen_id'], $citizen[
 
     <?php
     echo $buttons->button('create_game');
-    echo $buttons->button('join_game');
     echo $buttons->button('add_mass_zombies');
     ?>
     <br>

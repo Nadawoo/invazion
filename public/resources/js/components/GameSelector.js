@@ -2,8 +2,6 @@ class GameSelector {
     
     populateGamesList(games) {
         
-        console.log();
-        
         Object.entries(games).forEach(([mapId, game]) => {
             const tplGame = document.querySelector("#tplGame").content.cloneNode(true);
             let citizens = "";
@@ -17,6 +15,7 @@ class GameSelector {
             tplGame.querySelector(".map_name").innerText = game.name;
             tplGame.querySelector(".description").innerText = game.descr_purpose;
             tplGame.querySelector(".dimensions").innerText = `${game.map_cols} × ${game.map_rows}`;
+            tplGame.querySelector('input[name="params[map_id]"]').value = mapId;
             
             if(citizens !== "") {
                 tplGame.querySelector(".citizens").innerHTML = citizens;

@@ -10,7 +10,12 @@
                 <p class="description"></p>
             </div>
             <div class="card-action" style="text-align:center">
-                <a href="index">Rejoindre</a>
+                <form method="post" action="index" name="join_game">
+                    <input type="hidden" name="api_name" value="events">
+                    <input type="hidden" name="action" value="joingame">
+                    <input type="hidden" name="params[map_id]" value="">
+                    <button type="submit" style="font-size:1.1rem;background:none;color:#ffab40;border:none;text-transform:uppercase;">Rejoindre</button>
+                </form>
             </div>
             <div class="card-reveal">
                 <span class="card-title grey-text text-darken-4"><i class="material-icons right">close</i></span>
