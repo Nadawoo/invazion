@@ -18,7 +18,7 @@ class HtmlActionCards {
         
         return '
             <a id="card_citizens" class="card animate__animated animate__slideInLeft"
-                onclick="toggleActionBlock(\'citizens\'); updateBlockAction(\'citizens\')">
+                data-action="switchActionBlock" data-name="citizens">
                 <img src="/resources/img/copyrighted/city_fellows.png" alt="&#x1F465;" height="48">
                 Humains dans la zone !
                 <i class="material-icons">chevron_right</i>
@@ -38,7 +38,7 @@ class HtmlActionCards {
                     .$this->buttons->button('destroy_city', 'no_icon')
                     .$this->popup->link('popsuccess', 'Explorer', 'button_explore', '&#x1F50E;')
                     .$this->popup->link('popvault', 'Pouvoir cryptique', 'button_crypt').
-                    '<button class="ignore_button bluebutton" onclick="moveBuildingBlockBelowPaddle()">Ignorer</button>
+                    '<button class="ignore_button bluebutton" data-action="moveBuildingBlockBelowPaddle">Ignorer</button>
                 </div>
             </div>';
     }
@@ -48,7 +48,7 @@ class HtmlActionCards {
         
         return '
             <a id="card_dig" class="hidden card animate__animated animate__slideInLeft"
-                onclick="toggleActionBlock(\'dig\'); updateBlockAction(\'dig\')">
+                data-action="switchActionBlock" data-name="dig">
                 <img src="/resources/img/copyrighted/pickaxe_48px.png" alt="&#9935;&#65039;" height="48">
                 La zone peut être fouillée.
                 <i class="material-icons">chevron_right</i>

@@ -569,7 +569,9 @@ class HtmlButtons
                        onclick="'.$onclick.'"
                        '.$disabled.'>
             </div>
-            <button role="tab" aria-controls="block_'.$button_alias.'" onclick="'.$onclick.'">'.$button['label'].'</button>
+            <button role="tab" aria-controls="block_'.$button_alias.'"
+                data-action="switchActionBlock" data-name="'.$button_alias.'"
+                >'.$button['label'].'</button>
             '.$dot_number.'
         </li>';
     }

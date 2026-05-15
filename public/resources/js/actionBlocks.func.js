@@ -3,7 +3,9 @@
  * move, items, zombies, humans, building)
  */
 
+import { Items } from "./components/Items.js";
 import {
+    getMyZoneOnce,
     updateCardCitizensInZone,
     updateCityDistance,
     updateEnterBuildingButton,
@@ -481,7 +483,7 @@ function updateMapEditor(coordX, coordY) {
 }
 
 
-function moveBuildingBlockBelowPaddle() {
+export function moveBuildingBlockBelowPaddle() {
     
     document.querySelector("#card_building").classList.remove("above_paddle");
     toggle("#card_building .ignore_button");

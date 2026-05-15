@@ -8,7 +8,8 @@ import { triggerTooltip, switchToActionView } from "./mapInit.func.js";
 import { BuildingPopup } from "./components/BuildingPopup.js";
 import { CityRadialMenu } from "./components/CityRadialMenu.js";
 import { Items } from "./components/Items.js";
-import { searchItemOnMap } from "./misc.func.js";
+import { moveBuildingBlockBelowPaddle, updateBlockAction } from "./actionBlocks.func.js";
+import { dig, searchItemOnMap, toggleActionBlock } from "./misc.func.js";
 import { Move } from "./services/Move.js";
 import { initiateDiscussTab, listenToDiscussTabs, toggleSendform } from "./discussions.func.js";
 import {
@@ -100,6 +101,14 @@ export function listenToClick() {
             displayToast("Sélectionnez la ville de destination de la route", "info");
             
             document.querySelector("#map").dataset.viewmode = "addRoad";
+        }
+        else if(event.target.dataset.action === "moveBuildingBlockBelowPaddle") {
+            moveBuildingBlockBelowPaddle();
+        }
+        else if(event.target.dataset.action === "switchActionBlock") {
+            const blockName = event.target.dataset.name;
+            toggleActionBlock(blockName);
+            updateBlockAction(blockName);
         }
         else if(target.closest(".item_label")){
             const itemLabel = target.closest(".item_label");

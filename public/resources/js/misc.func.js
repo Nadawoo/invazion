@@ -455,7 +455,7 @@ export function updateEnterBuildingButton(cityTypeId, controlPointsCitizens, nbr
  * 
  * @param {string} apiAction The "action" parameter for the API url (e.g. "kill_zombies")
  */
-async function killZombies(apiAction) {
+export async function killZombies(apiAction) {
     
     let cookies = new Cookies(),
         token = cookies.getCookie('token');
@@ -575,7 +575,7 @@ export function showFightingZombiesButtons(nbrZombies) {
 /**
  * Digs to find an item in the zone
  */
-async function dig() {
+export async function dig() {
     
     let cookies = new Cookies(),
         token = cookies.getCookie('token'),

@@ -464,7 +464,7 @@ class HtmlLayout extends HtmlPage
                     Les zombies sont trop nombreux et vous empêchent de quitter la zone !
                     <p>
                         <button class="bluebutton" 
-                               onclick="toggleActionBlock(\'zombies\'); updateBlockAction(\'zombies\')" 
+                               data-action="switchActionBlock" data-name="zombies"
                                >Éliminer des zombies <i class="material-icons">chevron_right</i></button>
                     </p>
                 </div>
