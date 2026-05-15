@@ -364,13 +364,23 @@ class HtmlButtons
                     'params[type]'  => 'zombie_excavator',
                     ],
                 ],
-            'start_game' => [
+            'join_game' => [
                 'icon'  => '',
-                'name'  => "Nouvel essai (réincarnation)",
-                'title' => "Essayez à nouveau de survivre dans la même partie",
+                'name'  => "Rejoindre la carte n° 73",
+                'title' => "Tentez à nouveau de survivre sur la carte n° 73",
                 'fields' => [
                     'api_name'      => 'events',
-                    'action'        => 'startgame',
+                    'action'        => 'joingame',
+                    'params[map_id]' => 73,
+                    ],
+                ],
+            'create_game' => [
+                'icon'  => '',
+                'name'  => "Générer une nouvelle carte",
+                'title' => "",
+                'fields' => [
+                    'api_name'      => 'events',
+                    'action'        => 'creategame',
                     ],
                 ],
             'switch_citizen' => [
