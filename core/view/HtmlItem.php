@@ -24,7 +24,7 @@ class HtmlItem {
         
         return '
             <template id="tplItem">
-                <li class="item_label z-depth-2" onclick="items = new Items(); items.toggleTooltip(event)" data-itemid="">
+                <li class="item_label z-depth-2" data-action="toggleTooltip" data-itemid="">
                     <var class="icon" aria-label="{item_name}">{icon}</var>
                     <div class="dot_number z-depth-1 hidden">?</div>
                     <div class="details hidden"></div>
@@ -32,8 +32,8 @@ class HtmlItem {
             </template>
             
             <template id="tplItemDetails">
-                <a class="close" onclick="items = new Items(); items.toggleTooltip(event)">
-                    <i class="material-icons">close</i>
+                <a class="close" data-action="closeTooltip">
+                    <i class="material-icons" style="pointer-events:none">close</i>
                 </a>
                 <var><span class="icon">{icon}</span>&nbsp;<span class="item_name">{item_name}</span></var>
                 <p class="descr_ambiance">{descr_ambiance}</p>
@@ -68,7 +68,7 @@ class HtmlItem {
                  .$button_use
                  .$button_drop
                  .$button_pickup.'
-                <button name="search" class="redbutton" onclick="searchItemOnMap(event)">🔍 Chercher sur la carte</button>
+                <button name="search" class="redbutton" data-action="searchItemOnMap">🔍 Chercher sur la carte</button>
             </template>';
     }
     
@@ -229,11 +229,11 @@ class HtmlItem {
         
         return '
             <li class="item_label z-depth-2">
-                <var onclick="items = new Items(); items.toggleTooltip(event)">
+                <var data-action="toggleTooltip">
                     '.$item_image.'
                 </var>
                 <div class="details hidden">
-                    <a class="close" onclick="items = new Items(); items.toggleTooltip(event)">
+                    <a class="close" data-action="toggleTooltip">
                         <i class="material-icons">close</i>
                     </a>
                     <var>'.$item_image.'&nbsp;'.$item_caracs['name'].'</var>

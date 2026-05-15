@@ -6,7 +6,7 @@
 
 import { ZombLib } from "./lib/ZombLib.js";
 import { Items } from "./components/Items.js";
-import { centerMapOnMe } from "./mapUse.func.js";
+import { centerMapOnMe, toggleMapItemMarker } from "./mapUse.func.js";
 
 /*
  * Button to enlarge/reduce the bag (hide the overflowing items)
@@ -1106,7 +1106,7 @@ function populateDefensesDetails() {
  * @param {int} itemId
  * @returns {undefined}
  */
-function searchItemOnMap(event) {
+export function searchItemOnMap(event) {
     
     const itemId = Number(event.target.closest(".item_label").dataset.itemid);
     
@@ -1114,7 +1114,7 @@ function searchItemOnMap(event) {
     closePopup();
     window.location.hash = "Outside";
     // Hide the useless elements on the map to focus on the item bubbles
-    hide([".sharp_bubble", ".nbr_defenses", ".nbr_items"]);
+    hide([".sharp_bubble", ".nbr_defenses", ".nbr_items", ".healthbar", ".zombies"]);
     // Display markers over each zone containing the item
     toggleMapItemMarker(itemId);
 }

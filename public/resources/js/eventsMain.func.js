@@ -7,6 +7,8 @@ import { ZombLib } from "./lib/ZombLib.js";
 import { triggerTooltip, switchToActionView } from "./mapInit.func.js";
 import { BuildingPopup } from "./components/BuildingPopup.js";
 import { CityRadialMenu } from "./components/CityRadialMenu.js";
+import { Items } from "./components/Items.js";
+import { searchItemOnMap } from "./misc.func.js";
 import { Move } from "./services/Move.js";
 import { initiateDiscussTab, listenToDiscussTabs, toggleSendform } from "./discussions.func.js";
 import {
@@ -98,6 +100,21 @@ export function listenToClick() {
             displayToast("Sélectionnez la ville de destination de la route", "info");
             
             document.querySelector("#map").dataset.viewmode = "addRoad";
+        }
+        else if(target.closest(".item_label")){
+            const itemLabel = target.closest(".item_label");
+            
+            if(target.dataset.action === "searchItemOnMap") {
+                searchItemOnMap(event);
+            }
+            else if(target.dataset.action === "closeTooltip") {
+                const items = new Items();
+                items.toggleTooltip(event);
+            }
+            else if(itemLabel.dataset.action === "toggleTooltip") {
+                const items = new Items();
+                items.toggleTooltip(event);
+            }
         }
         else if(target.dataset.action === "switchMapView") {
             const view = target.dataset.view;
