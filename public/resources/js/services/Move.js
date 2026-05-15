@@ -1,5 +1,11 @@
 import { ZombLib } from "../lib/ZombLib.js";
-import { displayToast, updateMeAfterMoving  } from "../misc.func.js";
+import {
+    displayToast,
+    updateActionBlocksAfterMoving,
+    updateActionPoints,
+    updateMeAfterMoving 
+    }
+    from "../misc.func.js";
 
 
 /**

@@ -158,7 +158,7 @@ export async function updateBlockAlertControl(controlpointsZombies, mapId, coord
  * @param {int} nbrZombies
  * @returns {undefined}
  */
-function updateZombiesGauge(nbrZombies) {
+export function updateZombiesGauge(nbrZombies) {
     
     let oldActiveNode = document.querySelector(`#zombies_gauge li[class="active"]`);
     let newActiveNode = document.querySelector(`#zombies_gauge li[aria-label="${nbrZombies}"]`);
@@ -409,7 +409,7 @@ function htmlAddGroundItem(domSelector, itemId, itemCaracs, itemAmount) {
  * @param {int} coordY The Y coordinate of the zone to get. Ignored if coordX 
  *                     was not set.
  */
-function updateRoundActionButtons(coordX=null, coordY=null) {
+export function updateRoundActionButtons(coordX=null, coordY=null) {
     
     // NB: forcing the X/Y coordinates is useful to get the data of the good zone 
     // (= the landing zone) after moving.
@@ -463,7 +463,7 @@ function updateRoundButtonDotNumber(roundButtonId, amount, forceHighlight=false)
  * @param {int} coordX The X coordinate of the player
  * @param {int} coordY The Y coordinate of the player
  */
-function updateMovementPaddle(coordX, coordY) {
+export function updateMovementPaddle(coordX, coordY) {
     
     // Updates the coordinates of the player in the movement paddle
     document.querySelector('form[name="move"] .coords').innerHTML = coordX+":"+coordY;
@@ -476,7 +476,7 @@ function updateMovementPaddle(coordX, coordY) {
  * @param {int} coordX The X coordinate of the player
  * @param {int} coordY The Y coordinate of the player
  */
-function updateMapEditor(coordX, coordY) {
+export function updateMapEditor(coordX, coordY) {
     
     // Sets the current coordinates of the player as the default zone to edit
     document.querySelector('#landform input[name="coord_x"]').value = coordX;

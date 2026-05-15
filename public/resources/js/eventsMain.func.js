@@ -8,6 +8,7 @@ import { triggerTooltip, switchToActionView } from "./mapInit.func.js";
 import { BuildingPopup } from "./components/BuildingPopup.js";
 import { CityRadialMenu } from "./components/CityRadialMenu.js";
 import { Items } from "./components/Items.js";
+import { Move } from "./services/Move.js";
 import { moveBuildingBlockBelowPaddle, updateBlockAction } from "./actionBlocks.func.js";
 import {
     dig,
@@ -16,7 +17,6 @@ import {
     toggleActionBlock
     }
     from "./misc.func.js";
-import { Move } from "./services/Move.js";
 import { initiateDiscussTab, listenToDiscussTabs, toggleSendform } from "./discussions.func.js";
 import {
     resetMapView,
@@ -46,7 +46,8 @@ export function listenToForms() {
     document.addEventListener("submit", (event) => {      
         const formSelectors = {
             "dig":"#block_dig form[name=dig]",
-            "explore": "form[name=explore_building]"
+            "explore": "form[name=explore_building]",
+            "move": "#block_move form[name=move]"
             };
             
         // Execute the "Explore building" action
@@ -58,6 +59,11 @@ export function listenToForms() {
         else if(event.target.matches(formSelectors.dig)) {
             event.preventDefault();
             dig();
+        }
+        else if(event.target.matches(formSelectors.move)) {
+            event.preventDefault();
+            const move = new Move();
+            move.walk(event.submitter.value);
         }
     });
 }

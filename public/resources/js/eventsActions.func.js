@@ -5,27 +5,10 @@
  */
 
 function listenToActionModeActions() {
-     
-    listenToMovementPaddle();
+    
     listenToDropPickupItem();
     listenToExplorationButton();
     listenToLandform();
- }
- 
- 
-function listenToMovementPaddle() {
-
-   // Move the citizen on the map
-    document.querySelector('#block_move [name="move"]').addEventListener("submit", async function(event) {
-        // Desactivate the classic submission button (avoids reloading the page)
-        event.preventDefault();
-        const move = new Move();
-        move.walk(event.submitter.value);
- //        let myCityZoneId = await getMyCityZoneId();
- //        if(myCityZoneId !== null) {
- //            setTimeout(function() {updateLineBetweenZones("myCity", "#me", "#"+myCityZoneId);}, 1000);
- //        }
-    });
 }
 
 

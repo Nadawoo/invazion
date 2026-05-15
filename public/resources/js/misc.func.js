@@ -7,9 +7,14 @@
 import { ZombLib } from "./lib/ZombLib.js";
 import { Items } from "./components/Items.js";
 import {
+    updateBlockAction,
     updateBlockActionZombies,
     updateBlockAlertControl,
-    updateMoveCost
+    updateMapEditor,
+    updateMoveCost,
+    updateMovementPaddle,
+    updateRoundActionButtons,
+    updateZombiesGauge
     }
     from "./actionBlocks.func.js"; 
 import { centerMapOnMe, toggleMapItemMarker } from "./mapUse.func.js";
@@ -320,7 +325,7 @@ async function updateLandType(landType, coordX, coordY, radius) {
  * 
  * @param {int} newAP The new amount of action points after making the action
  */
-function updateActionPoints(newAP) {
+export function updateActionPoints(newAP) {
     
     document.querySelector("#actionPoints").innerText = newAP;
     document.querySelector("#personal_block .actionpoints .icon").innerText = newAP;
@@ -384,7 +389,7 @@ export async function updateMeAfterMoving(newCoordX, newCoordY) {
  * @param {int} newCoordY
  * @returns {undefined}
  */
-async function updateActionBlocksAfterMoving(newCoordX, newCoordY) {
+export async function updateActionBlocksAfterMoving(newCoordX, newCoordY) {
     
     // Update the coordinates of the player in the movement paddle
     updateMovementPaddle(newCoordX, newCoordY);
@@ -392,8 +397,8 @@ async function updateActionBlocksAfterMoving(newCoordX, newCoordY) {
     updateMapEditor(newCoordX, newCoordY);
     
     // Update the attribute "data-citizen" of the destination zone to add the player
-    let htmlCoord = newCoordX+"_"+newCoordY;
-        myZone = document.querySelector("#zone"+htmlCoord+" .square_container");
+    const htmlCoord = newCoordX+"_"+newCoordY,
+          myZone = document.querySelector("#zone"+htmlCoord+" .square_container");
     myZone.dataset.citizens = parseInt(myZone.dataset.citizens, 10) + 1;
     
     updateRoundActionButtons(newCoordX, newCoordY);
