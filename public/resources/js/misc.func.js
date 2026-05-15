@@ -6,6 +6,12 @@
 
 import { ZombLib } from "./lib/ZombLib.js";
 import { Items } from "./components/Items.js";
+import {
+    updateBlockActionZombies,
+    updateBlockAlertControl,
+    updateMoveCost
+    }
+    from "./actionBlocks.func.js"; 
 import { centerMapOnMe, toggleMapItemMarker } from "./mapUse.func.js";
 
 /*
@@ -478,9 +484,9 @@ export async function killZombies(apiAction) {
             newNbrZombies = Math.max(0, oldNbrZombies - json.datas.nbr_zombies_removed);
         let mapId = Number(document.querySelector("#gameData #mapId").innerHTML);
         
-        let current_AP = (document.querySelector("#actionPoints").innerText),
-            lost_AP    = json.datas.action_points_lost;
-            newAP     = current_AP - lost_AP;
+        const current_AP = (document.querySelector("#actionPoints").innerText),
+              lost_AP    = json.datas.action_points_lost,
+              newAP     = current_AP - lost_AP;
         
         // Update the action blocks (round buttons next to the map)
         updateBlockActionZombies(newNbrZombies);
@@ -491,7 +497,7 @@ export async function killZombies(apiAction) {
         
         // Update the zombie silhouettes on the map zone
         if(newNbrZombies > 0) {
-            myZone.querySelector(".zombies").getAttribute("src").innerHTML = "resources/img/motiontwin/zombie"+newNbrZombies+".gif";
+            myZone.querySelector(".zombies").src = "resources/img/motiontwin/zombie"+newNbrZombies+".gif";
         }
         // Update the hidden data about the zone
         myZone.dataset.zombies = newNbrZombies;

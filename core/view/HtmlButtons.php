@@ -704,11 +704,11 @@ class HtmlButtons
             $title = "Il n'y a aucun zombie dans la zone";
         }
                 
-        return
-        '<form method="post" action="#Outside" onclick="killZombies(\''.$button['fields']['action'].'\'); return false;">
-            <input type="submit" value="'.$button['icon'].' '.$button['name'] . $text_nbr_ap.'" 
-                   class="redbutton"  title="'.$title.'">
-        </form>';
+        return '
+            <button class="redbutton" title="'.$title.'"
+                onclick="killZombies(\''.$button['fields']['action'].'\'); return false;">
+                '.$button['icon'].' '.$button['name'] . $text_nbr_ap.'
+            </button>';
     }
     
     

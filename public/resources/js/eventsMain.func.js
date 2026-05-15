@@ -9,7 +9,13 @@ import { BuildingPopup } from "./components/BuildingPopup.js";
 import { CityRadialMenu } from "./components/CityRadialMenu.js";
 import { Items } from "./components/Items.js";
 import { moveBuildingBlockBelowPaddle, updateBlockAction } from "./actionBlocks.func.js";
-import { dig, searchItemOnMap, toggleActionBlock } from "./misc.func.js";
+import {
+    dig,
+    killZombies,
+    searchItemOnMap,
+    toggleActionBlock
+    }
+    from "./misc.func.js";
 import { Move } from "./services/Move.js";
 import { initiateDiscussTab, listenToDiscussTabs, toggleSendform } from "./discussions.func.js";
 import {
@@ -104,6 +110,15 @@ export function listenToClick() {
         }
         else if(event.target.dataset.action === "moveBuildingBlockBelowPaddle") {
             moveBuildingBlockBelowPaddle();
+        }
+        else if(event.target.dataset.action === "killZombies") {
+            killZombies("fight");
+        }
+        else if(event.target.dataset.action === "killMassZombies") {
+            killZombies("bigfight");
+        }
+        else if(event.target.dataset.action === "repelZombies") {
+            killZombies("repel");
         }
         else if(event.target.dataset.action === "switchActionBlock") {
             const blockName = event.target.dataset.name;

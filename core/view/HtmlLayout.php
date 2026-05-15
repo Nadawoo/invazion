@@ -266,11 +266,24 @@ class HtmlLayout extends HtmlPage
                     &nbsp;<a href="#popcontrol" class="bold" style="font-size:1.2em">[?]</a>
                 </div>
                 <div class="zombies_visual">'. str_repeat('<span class="zombie">&#x1F9DF;</span>', $zone_zombies) .'</div>
-                <div class="buttons_kill">'
-                    . $buttons->kill_zombies($zone_zombies, 'kill_zombie', $ap_cost)
-                    . $buttons->kill_zombies($zone_zombies, 'kill_mass_zombies') 
-                    . $buttons->kill_zombies($zone_zombies, 'repel_zombie')
-                    .'
+                <div class="buttons_kill">
+                    <button class="redbutton"
+                        data-action="killZombies"
+                        title="Attaquer un zombie à mains nues. Vous gagnerez un picto en cas de succès.">
+                        &#x1F91C;&#x1F3FC; Attaquer à mains nues ! [-'.$ap_cost.'&#x26A1;]
+                    </button>
+                    <button class="redbutton"
+                        data-action="killMassZombies"
+                        title="Comme les zombies sont particulièrement nombreux ici, vous pouvez 
+                            les attaquer par groupe. C\'est très efficace, mais en contrepartie 
+                            vous ne gagnerez aucun trophée.">
+                        &#x1F525; Nettoyer au lance-flammes
+                    </button>
+                    <button class="redbutton"
+                        data-action="repelZombies"
+                        title="Repousser un zombie vers une case voisine">
+                        &#x1F4A8; Chasser un zombie
+                    </button>
                 </div>
             </div>';
     }

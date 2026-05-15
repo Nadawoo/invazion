@@ -79,7 +79,7 @@ export async function updateActionBlocks() {
  * Updates the cost (in action points) for leaving the zone
  * @param {int} newNbrZombies The number of zombies in the zone after the action
  */
-function updateMoveCost(newNbrZombies) {
+export function updateMoveCost(newNbrZombies) {
     
     // Updates the block showing the AP before=>after moving
     let currentAp = document.querySelector("#actionPoints").innerHTML,
@@ -205,7 +205,7 @@ export function updateDigButtons(is_visited_today) {
  * Update the content of the action block "Zombies" 
  * @param {int} newNbrZombies The number of zombies in the zone after the action
  */
-function updateBlockActionZombies(newNbrZombies) {
+export function updateBlockActionZombies(newNbrZombies) {
     
     // Activates the big round action button "Zombies"
     let zombiesButton = document.querySelector("#round_zombies");
