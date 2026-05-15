@@ -4,6 +4,7 @@
  */
 
 import { Items } from "./components/Items.js";
+import { getMapCitizensOnce } from "./mapInit.func.js";
 import {
     getMyZoneOnce,
     updateCardCitizensInZone,
@@ -251,13 +252,13 @@ async function updateBlockActionCitizens(coordX, coordY) {
         _citizens = await getMapCitizensOnce(mapId);    
         
         // Keeps only the citizens who are in the player's zone
-        citizensInMyZone = Object.values(_citizens).filter(citizen => citizen.coord_x == coordX 
-                                                                    && citizen.coord_y == coordY
-                                                                    && citizen.citizen_id != myCitizenId);
+        const citizensInMyZone = Object.values(_citizens).filter(citizen => citizen.coord_x == coordX 
+                                                                            && citizen.coord_y == coordY
+                                                                            && citizen.citizen_id != myCitizenId);
         // All the other citizens (not in my zone)
-        citizensInOtherZones = Object.values(_citizens).filter(citizen => citizen.coord_x != coordX 
-                                                                        && citizen.coord_y != coordY
-                                                                        && citizen.citizen_id != myCitizenId);
+        const citizensInOtherZones = Object.values(_citizens).filter(citizen => citizen.coord_x != coordX 
+                                                                                && citizen.coord_y != coordY
+                                                                                && citizen.citizen_id != myCitizenId);
         
         // Shows me in the list of the citizens
         if(citizensInMyZone.length <= 0) {
