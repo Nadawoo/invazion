@@ -694,9 +694,10 @@
     background:aliceblue;
     font-size:1.3em; /* Applies when the icon is an emoji */
     border-radius:5em;
+    overflow:hidden;
 }
-#map_body .sharp_bubble .additional {
-    font-size:1em;
+#map_body .sharp_bubble .icon.additional {
+    font-size:1.1em;
     font-weight:bold;
     color:royalblue;
     text-shadow:none;
