@@ -19,6 +19,12 @@ import { isCitizenInGame } from "./users.func.js";
 
 var nbrExecutionsGetCyclicAttacks = 0;
 
+// Listen to all forms
+listenToForms();
+// One global listener for each type of event
+listenToClick();
+listenToPointerdown();
+
 // If we are on the main game page (those elements don't exist on the connection page)
 if (document.getElementById('map') !== null) {
     
@@ -72,13 +78,6 @@ if (document.getElementById('map') !== null) {
 //        //event.preventDefault();
 //        displayMessageEndCycle();
 //    });
-    
-    // Listen to all forms
-    listenToForms();
-    
-    // One global listener for each type of event
-    listenToClick();
-    listenToPointerdown();
     
     // Actions in the horizontal bar of expeditions
     document.querySelector('#paths_bar').addEventListener("submit", function(event) {

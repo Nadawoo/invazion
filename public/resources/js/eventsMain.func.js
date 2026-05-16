@@ -42,14 +42,15 @@ import {
  * @returns {undefined}
  */
 export function listenToForms() {
-
-    document.addEventListener("submit", (event) => {      
+    
+    document.addEventListener("submit", (event) => {        
         const formSelectors = {
             "dig":"#block_dig form[name=dig]",
             "explore": "form[name=explore_building]",
-            "move": "#block_move form[name=move]"
+            "move": "#block_move form[name=move]",
+            "joinGame": "form[name=join_game]",
             };
-            
+        
         // Execute the "Explore building" action
         if(event.target.matches(formSelectors.explore)) {
             // Desactivate the classic submission button (avoids reloading the page)
@@ -64,6 +65,18 @@ export function listenToForms() {
             event.preventDefault();
             const move = new Move();
             move.walk(event.submitter.value);
+        }
+        else if(event.target.matches(formSelectors.joinGame)) {
+            event.preventDefault();
+            
+            const zombLib = new ZombLib(),
+                  cookies = new Cookies(),
+                  formData = new FormData(event.target);
+            const mapId = formData.get("params[map_id]"),
+                  token = cookies.getCookie('token');
+            
+            const json = zombLib.callApi("GET", "games", `action=join&map_id=${mapId}&token=${token}`)
+                    .then((res) => displayToast(res.metas.error_message, res.metas.error_class));
         }
     });
 }
