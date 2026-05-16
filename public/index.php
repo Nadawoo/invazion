@@ -33,7 +33,12 @@ $citizen            = set_default_variables('citizen');
 $city_fellows       = [];
 $zone_fellows       = [];
 $healing_items      = [];
-$msg_popup          = NULL;
+$citizens_by_coord  = [];
+$maps               = [];
+$configs            = [];
+$speciality_caracs  = [];
+$specialities       = [];
+$msg_popup          = null;
 $msg_move           = '';
 $is_custom_popup_visible = false;
 
@@ -92,23 +97,30 @@ if ($api->user_seems_connected() === true) {
 }
 
 // Get the game data by calling the APIs
+$maps_api = $api->call_api('maps', 'get', ['map_id'=>$citizen['map_id']]);
+
+// If the citizen is not in game, go to the page for joining a game
+if($maps_api['metas']['error_code'] !== 'success') {
+    header('Location: /games');
+    exit;
+}
+
+$maps               = $maps_api['datas'];
 $citizens           = $api->call_api('citizens', 'get', ['map_id'=>$citizen['map_id']])['datas'];
 $citizens_by_coord  = $sort->sort_citizens_by_coord($citizens);
-$maps               = $api->call_api('maps', 'get', ['map_id'=>$citizen['map_id']])['datas'];
 $configs            = $api->call_api('configs', 'get', ['map_id'=>$citizen['map_id']])['datas'];
 $specialities       = $configs['specialities'];
 $speciality_caracs  = $specialities[$citizen['speciality']];
 $current_cycle      = $maps['current_cycle'];
 $map->set_config_buildings($configs['buildings']);
 
-
 // If the player is connected and has already created his citizen
 if ($citizen['citizen_id'] !== null) {
-    
+
     $zone_fellows       = $citizens_by_coord[$citizen['coord_x'].'_'.$citizen['coord_y']];
     $zone               = $maps['zones'][$citizen['coord_x'].'_'.$citizen['coord_y']];
     $healing_items      = $sort->filter_bag_items('healing_wound', $configs['items'], $citizen['bag_items']);
-    
+
     // If the citizen is inside a city
     if ($citizen['inside_city_id'] !== null) {
         // Gets the characteristics of this city (well, storage...)
@@ -119,7 +131,7 @@ if ($citizen['citizen_id'] !== null) {
         $city_fellows = $sort->get_child_citizens($citizen['city_id'], $city_data['child_cities_ids'], $cities_data, $citizens);
         // TRUE if the player has connected his habitation to this city
         $is_citizen_home_connected = in_array($citizen['city_id'], $city_data['child_cities_ids']) ? true : false;
-        
+
         // Keep only the game's buildings related to the city (ID #12)
         $city_buildings_caracs = $sort->filter_buildings_by_parent($configs['buildings'], $configs['map']['city_buildings_set_id']);
         // Idem for the personal house (ID #13)
@@ -131,11 +143,11 @@ if ($citizen['citizen_id'] !== null) {
         $well_current_water = get_well_current_water($items_inside_constructions, $well_construction_id);
         // Amount of items in the main city storage (bank)
         $nbr_ground_items = array_sum($zone['items']);
-        
+
         $cityIso->set_city_well($well_current_water);
         $cityIso->set_city_storage($nbr_ground_items);
     }
-    
+
     // Show the ending popup when the citizen is dead
     if($citizen['unvalidated_death_cause'] !== null) {    
         $msg_popup = $popup->popdeath($citizen['unvalidated_death_cause']);    
@@ -174,8 +186,7 @@ $html = [
     'smartphone'        => $phone->smartphone($maps['map_width'], $maps['map_height'], $citizen, $speciality_caracs, $zone),
     ];
 
-
-unset($maps, $citizens, $citizens_by_coord);
+unset($maps_api, $maps, $citizens, $citizens_by_coord);
 ?>
 
 
