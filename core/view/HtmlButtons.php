@@ -369,8 +369,8 @@ class HtmlButtons
                 'name'  => "Rejoindre la carte n° 73",
                 'title' => "Tentez à nouveau de survivre sur la carte n° 73",
                 'fields' => [
-                    'api_name'      => 'events',
-                    'action'        => 'joingame',
+                    'api_name'      => 'games',
+                    'action'        => 'join',
                     'params[map_id]' => 73,
                     ],
                 ],
@@ -379,8 +379,8 @@ class HtmlButtons
                 'name'  => "Générer une nouvelle carte",
                 'title' => "",
                 'fields' => [
-                    'api_name'      => 'events',
-                    'action'        => 'creategame',
+                    'api_name'      => 'games',
+                    'action'        => 'create',
                     ],
                 ],
             'switch_citizen' => [
@@ -456,8 +456,8 @@ class HtmlButtons
                 'name'  => "Monter dans la voiture !",
                 'title' => "",
                 'fields' => [
-                    'api_name'      => 'events',
-                    'action'        => 'wingame',
+                    'api_name'      => 'games',
+                    'action'        => 'win',
                     ],
                 ],
             'explore_building' => [

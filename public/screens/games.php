@@ -11,8 +11,8 @@
             </div>
             <div class="card-action" style="text-align:center">
                 <form method="post" action="index" name="join_game">
-                    <input type="hidden" name="api_name" value="events">
-                    <input type="hidden" name="action" value="joingame">
+                    <input type="hidden" name="api_name" value="games">
+                    <input type="hidden" name="action" value="join">
                     <input type="hidden" name="params[map_id]" value="">
                     <button type="submit" style="font-size:1.1rem;background:none;color:#ffab40;border:none;text-transform:uppercase;">Rejoindre</button>
                 </form>
