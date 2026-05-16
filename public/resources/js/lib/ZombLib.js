@@ -1,8 +1,12 @@
 /**
- * Javacript version of the ZombLib (library to easily use the API of Azimutant)
- * v. 2
+ * Javascript version of the ZombLib (library to easily use the API of Azimutant)
+ * v. 2.1
  */
 export class ZombLib {
+
+    constructor() {
+        this.configsServer = null;
+    }
 
     /**
      * Send a request to the Azimutant's server API, through the GET or POST method
@@ -79,9 +83,9 @@ export class ZombLib {
      * @returns {json}
      */
     async #getConfigFile() {
-
-        if (!_configsServer) {
-            _configsServer = fetch('/config.json')
+        
+        if (!this.configsServer) {
+            this.configsServer = fetch('/config.json')
                 .then(res => {
                     if (!res.ok) throw new Error("[Azimutant] Error while loading configuration file");
                     return res.json();
@@ -91,7 +95,7 @@ export class ZombLib {
     //        console.log("Using cached config");
     //    }
 
-        return _configsServer;
+        return this.configsServer;
     }
 
 

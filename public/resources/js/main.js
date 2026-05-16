@@ -43,7 +43,6 @@ window._newRoadSource = null;
 // Permanently stores the result of the API whichs gives the discussions list 
 window._jsonDiscussionApi = null;
 window._scrollBoosterInstance = null;
-window._configsServer = null;
 window._roadDisplayTimeout = null;
 
 window._defaultMapZoomPercent = 130;
