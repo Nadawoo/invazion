@@ -4,9 +4,7 @@
  */
 export class ZombLib {
 
-    constructor() {
-        this.configsServer = null;
-    }
+    static configsServer;
 
     /**
      * Send a request to the Azimutant's server API, through the GET or POST method
@@ -84,8 +82,10 @@ export class ZombLib {
      */
     async #getConfigFile() {
         
-        if (!this.configsServer) {
-            this.configsServer = fetch('/config.json')
+        // NB: this.constructor allows sharing the result of the fetch with
+        // all the instances, and so avoid multiple calls from diffrent instances
+        if (!this.constructor.configsServer) {
+            this.constructor.configsServer = fetch('/config.json')
                 .then(res => {
                     if (!res.ok) throw new Error("[Azimutant] Error while loading configuration file");
                     return res.json();
@@ -95,7 +95,7 @@ export class ZombLib {
     //        console.log("Using cached config");
     //    }
 
-        return this.configsServer;
+        return this.constructor.configsServer;
     }
 
 
