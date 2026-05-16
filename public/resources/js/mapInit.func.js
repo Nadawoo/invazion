@@ -34,7 +34,13 @@ export async function getMapZonesOnce(mapId) {
             token = cookies.getCookie('token'),
             zombLib = new ZombLib(),
             json = await zombLib.callApi("GET", "maps", `action=get&map_id=${mapId}&token=${token}`);
-        _jsonMap = json.datas.zones;
+    
+        if(json.metas.error_code === "success") {
+            _jsonMap = json.datas.zones;
+        } else {
+            _jsonMap = false;
+            displayToast(json.metas.error_message, json.metas.error_class);
+        }
     }
     
     return _jsonMap;
