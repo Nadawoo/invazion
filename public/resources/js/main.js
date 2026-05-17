@@ -252,10 +252,6 @@ if(document.querySelector("#connectionForm") !== null) {
     }, 1000);
 }
 
-// If we are on the page for joining a game
-if(document.querySelector("#games") !== null) {
-
-}
 
 // Translate the game in the appropriate language
 const translator = new Translator();

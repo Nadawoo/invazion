@@ -1,4 +1,5 @@
 import { ZombLib } from "../lib/ZombLib.js";
+import { displayToast, getMe } from "../misc.func.js";
 
 
 /**
@@ -15,11 +16,43 @@ export async function gamesScreen() {
 
 export function initGamesPage() {
     
+    populateGamesList();
+}
+
+
+async function getMyCurrentGameId() {
+    
+    let myCurrentGameId = null;
+    
+    const jsonMe = await getMe();
+    
+    if(jsonMe.metas.error_code !== "success") {
+        displayToast(jsonMe.metas.error_message, jsonMe.metas.error_class);
+    }
+    else {
+        myCurrentGameId = jsonMe.datas.map_id;
+        
+        
+//        const gameSelector = new GameSelector;
+//        gameSelector.populateMyGamesList(result.datas);
+//        
+//        console.log(citizenMapId);
+    }
+    
+    return myCurrentGameId;
+}
+
+
+function populateGamesList() {
+    
     const zombLib = new ZombLib;
     const json = zombLib.callApi("GET", "games", `action=get`);
     
+    const myCurrentGameId = getMyCurrentGameId();
+    
     json.then((result) => {
         const gameSelector = new GameSelector;
-        gameSelector.populateGamesList(result.datas);
+        gameSelector.populateAllGamesList(result.datas);
+        gameSelector.populateMyGamesList(result.datas, myCurrentGameId);
     });
 }

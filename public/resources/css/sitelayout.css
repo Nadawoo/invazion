@@ -161,8 +161,10 @@ nav::selection, nav ::selection {
 }
 
 h2 {
+    margin-left:13px;
+    font-size:2em;
     color:navy;
-    margin-top:1em;
+    font-weight:bold;
 }
 h3 {
     color:navy;

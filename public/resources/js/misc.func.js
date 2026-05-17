@@ -1129,3 +1129,13 @@ export function searchItemOnMap(event) {
     // Display markers over each zone containing the item
     toggleMapItemMarker(itemId);
 }
+
+
+export function getMe() {
+    
+    const zombLib = new ZombLib();
+    const cookies = new Cookies(),
+          token = cookies.getCookie('token');
+    
+    return zombLib.callApi("GET", "me", `action=get&token=${token}`);
+}

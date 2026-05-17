@@ -31,6 +31,9 @@
 
 
 <section id="games">
-    <h2 style="font-size:2em;text-align:center;color:black;font-weight:bold">Rejoindre une partie</h2>
+    <h2>Mes parties en cours</h2>
+    <div id="my_games_list" class="row"></div>
+    
+    <h2>Rejoindre une nouvelle partie</h2>
     <div id="games_list" class="row"></div>
 </section>

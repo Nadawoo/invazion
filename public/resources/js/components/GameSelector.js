@@ -1,27 +1,47 @@
 class GameSelector {
     
-    populateGamesList(games) {
+    async populateAllGamesList(games) {
         
-        Object.entries(games).forEach(([mapId, game]) => {
-            const tplGame = document.querySelector("#tplGame").content.cloneNode(true);
-            let citizens = "";
-            
-            // List of the citizens in this game
-            Object.values(game.citizens).forEach((citizen) => {
-                citizens += `<li>${citizen} ·</li>`;
-            });
-            
-            tplGame.querySelector(".map_id").innerText = mapId;
-            tplGame.querySelector(".map_name").innerText = game.name;
-            tplGame.querySelector(".description").innerText = game.descr_purpose;
-            tplGame.querySelector(".dimensions").innerText = `${game.map_cols} × ${game.map_rows}`;
-            tplGame.querySelector('input[name="params[map_id]"]').value = mapId;
-            
-            if(citizens !== "") {
-                tplGame.querySelector(".citizens").innerHTML = citizens;
-            }
-            
-            document.querySelector("#games_list").append(tplGame);
+        const fragment = document.createDocumentFragment();
+        
+        Object.entries(games).forEach(([gameId, gameDatas]) => {
+            const tplGame = this.#populateGameCardTemplate(gameId, gameDatas);
+            fragment.appendChild(tplGame); 
         });
+        
+        document.querySelector("#games_list").appendChild(fragment);
+    }
+    
+    
+    async populateMyGamesList(games, myCurrentGameId) {
+        
+        const gameId = await myCurrentGameId;
+        
+        const tplGame = this.#populateGameCardTemplate(gameId, games[gameId]);
+        document.querySelector("#my_games_list").appendChild(tplGame);
+    }
+    
+    
+    #populateGameCardTemplate(gameId, gameDatas) {
+        
+        const tplGame = document.querySelector("#tplGame").content.cloneNode(true);
+        let citizens = "";
+
+        // List of the citizens in this game
+        Object.values(gameDatas.citizens).forEach((citizen) => {
+            citizens += `<li>${citizen} ·</li>`;
+        });
+
+        tplGame.querySelector(".map_id").innerText = gameId;
+        tplGame.querySelector(".map_name").innerText = gameDatas.name;
+        tplGame.querySelector(".description").innerText = gameDatas.descr_purpose;
+        tplGame.querySelector(".dimensions").innerText = `${gameDatas.map_cols} × ${gameDatas.map_rows}`;
+        tplGame.querySelector('input[name="params[map_id]"]').value = gameId;
+
+        if(citizens !== "") {
+            tplGame.querySelector(".citizens").innerHTML = citizens;
+        }
+        
+        return tplGame;
     }
 }
