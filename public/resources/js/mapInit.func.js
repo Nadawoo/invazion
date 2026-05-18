@@ -36,7 +36,7 @@ export async function getMapZonesOnce(mapId) {
             json = await zombLib.callApi("GET", "maps", `action=get&map_id=${mapId}&token=${token}`);
     
         if(json.metas.error_code === "success") {
-            _jsonMap = json.datas.zones;
+            _jsonMap = json.datas;
         } else {
             _jsonMap = false;
             displayToast(json.metas.error_message, json.metas.error_class);
@@ -247,7 +247,7 @@ export async function getItemCoords(itemId) {
         let itemType = itemId;
         let itemsIds = getItemsIdsByType(itemType);
         
-        for(let zone of Object.entries(_jsonMap)) {
+        for(let zone of Object.entries(_jsonMap.zones)) {
             // If the item ID is in the zone, memorize its coordinates
             if(zone[1].items !== null && itemsIds.some(element => Object.keys(zone[1].items).includes(element))) {
                 itemCoords.push(zone[0]);
@@ -255,7 +255,7 @@ export async function getItemCoords(itemId) {
         }
     } else {
         // If we try to get only one specific item ID
-        for(let zone of Object.entries(_jsonMap)) {
+        for(let zone of Object.entries(_jsonMap.zones)) {
             // If the item ID is in the zone, memorize its coordinates
             if(zone[1].items !== null && itemId in zone[1].items) {
                 itemCoords.push(zone[0]);
@@ -421,4 +421,17 @@ export function updateLightHalos() {
         circle.setAttribute('fill', 'url(#penumbra)');
         mask.appendChild(circle);
     });
+}
+
+
+/**
+ * Add the name of the map at the top of the map
+ * 
+ * @returns {undefined}
+ */
+export async function populateMapTitle(mapId) {
+
+    const mapName = await _jsonMap.map_name ?? "";
+
+    document.querySelector("#map_title").innerText = `Carte ${mapId}. ${mapName}`;
 }

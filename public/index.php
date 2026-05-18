@@ -339,6 +339,9 @@ echo $layout->page_header($citizen['user_id'], $citizen['citizen_id'], $citizen[
     
     <!-- The map -->
     <main id="map" aria-label="Carte du jeu et outils liés à celle-ci">
+        
+        <h2 id="map_title" class="animate__animated animate__slideOutUp animate__delay-2s"></h2>
+        
         <div id="map_viewport" role="none">
             <div id="map_body_wrapper" role="none">
                 <table id="map_body" aria-label="Carte du jeu" aria-description="La carte du jeu se compose de zones hexagonales dont la pointe est orientée vers le haut. La carte est globalement de forme rectangulaire. Notez que la coordonnée X progresse de 2 en 2 afin de maintenir une numérotation logique avec des zones hexagonales. Ces sauts ne signifient pas que des zones sont manquantes.">

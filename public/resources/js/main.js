@@ -6,6 +6,7 @@ import {
     addCitiesOnMap,
     displayItemOnMap,
     getMapZonesOnce,
+    populateMapTitle,
     updateLightHalos,
     zoomMapRange
     }
@@ -110,7 +111,7 @@ document.addEventListener('DOMContentLoaded', function() {
 if(document.getElementById("map") !== null) {
     
     // Default map to show if the visitor is not connected
-    var mapId = document.querySelector("#gameData #mapId").innerHTML;
+    const mapId = document.querySelector("#gameData #mapId").innerHTML;
     // Get the unvariable data of the game (building names...) stored in the HTML
     window._configsBuildings = JSON.parse(document.querySelector("#configs .buildings").innerHTML);
     window._configsBuildingsFindableItems = JSON.parse(document.querySelector("#configs .buildings_findable_items").innerHTML);
@@ -152,6 +153,8 @@ if(document.getElementById("map") !== null) {
     
     // Allows to move the map by dragging it with the mouse
     _scrollBoosterInstance = listenToMapDragging();
+    
+    populateMapTitle(mapId);
     
     // Only if the visitor is connected
     if(isCitizenInGame() === true) {
