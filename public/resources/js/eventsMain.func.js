@@ -75,8 +75,18 @@ export function listenToForms() {
             const mapId = formData.get("params[map_id]"),
                   token = cookies.getCookie('token');
             
-            const json = zombLib.callApi("GET", "games", `action=join&map_id=${mapId}&token=${token}`)
-                    .then((res) => displayToast(res.metas.error_message, res.metas.error_class));
+            zombLib.callApi("GET", "games", `action=join&map_id=${mapId}&token=${token}`)
+                .then((json) => {
+                    // If the player is already in a game, simply redirect to the map page
+                    if(json.metas.error_code === "game_already_started"
+                       && event.target.closest("#my_games_list") !== null
+                       ) {
+                       window.location.href = "/index#Outside";
+                    }
+                    else {
+                        displayToast(json.metas.error_message, json.metas.error_class);
+                    }
+                });
         }
     });
 }
