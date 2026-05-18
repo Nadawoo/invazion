@@ -573,34 +573,6 @@ echo $layout->page_header($citizen['user_id'], $citizen['citizen_id'], $citizen[
     </p>
     -->
     
-    <hr>
-    
-    <section>
-        <h3 id="Help">Mémo des règles</h3>
-        <strong>Se déplacer</strong>
-        <ul class="expanded">
-            <li>Le contrôle d'une zone dépend du nombre d'humains et de zombies présents
-                sur la case&nbsp;: 10 points par humain et 1 point par zombie.</li>
-            <li>Les humains ne peuvent pas quitter une zone dont ils n'ont pas le contrôle 
-                (forces zombies supérieures aux forces humaines). Il faudra tuer des zombies 
-                jusqu'à ce que le rapport de force s'inverse.</li>
-            <li>Se déplacer sur une case qui contient un zombie ou plus coûte 1 point d'action,
-                même si les humains en ont le contrôle de la zone. Si vous n'avez plus de point d'action,
-                vous ne pouvez pas quitter la zone.</li>
-            <li>S'il n'y a aucun zombie sur la case, le déplacement ne coûte aucun point d'action.</li>
-        </ul>
-        <strong>L'attaque de la horde</strong>
-        <ul class="expanded">
-            <li>La horde progresse chaque jour du nord vers le sud, 
-                à&nbsp;raison d'une ligne par&nbsp;heure.</li>
-            <li>Les citoyens qui ne sont pas abrités dans une ville ou une tente
-                au moment où la horde passe sur leur zone meurent. Ils se réincarnent 
-                dans la zone 0:0 (en haut à gauche).</li>
-            <li>Les tentes sont à usage unique&nbsp;: elles protègent les citoyens
-                qui sont à l'intérieur, mais elles sont détruites par l'attaque.</li>
-        </ul>
-    </section>
-
 </div>
     
 <?php echo $layout->page_footer();
