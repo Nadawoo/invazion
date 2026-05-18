@@ -67,18 +67,6 @@ export function listenToForms() {
             const move = new Move();
             move.walk(event.submitter.value);
         }
-        else if(event.target.matches(formSelectors.createGame)) {
-            event.preventDefault();
-            
-            const zombLib = new ZombLib(),
-                  cookies = new Cookies(),
-                  token = cookies.getCookie('token');
-            
-            zombLib.callApi("GET", "games", `action=create&token=${token}`)
-                .then((json) => {
-                    displayToast(json.metas.error_message, json.metas.error_class);
-                });
-        }
         else if(event.target.matches(formSelectors.joinGame)) {
             event.preventDefault();
             
@@ -166,6 +154,18 @@ export function listenToClick() {
             const blockName = event.target.dataset.name;
             toggleActionBlock(blockName);
             updateBlockAction(blockName);
+        }
+        else if(event.target.dataset.action === "createGame") {
+            event.preventDefault();
+            
+            const zombLib = new ZombLib(),
+                  cookies = new Cookies(),
+                  token = cookies.getCookie('token');
+            
+            zombLib.callApi("GET", "games", `action=create&token=${token}`)
+                .then((json) => {
+                    displayToast(json.metas.error_message, json.metas.error_class);
+                });
         }
         else if(target.closest(".item_label")){
             const itemLabel = target.closest(".item_label");

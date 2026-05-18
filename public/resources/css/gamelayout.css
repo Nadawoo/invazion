@@ -1165,6 +1165,31 @@ a.localize .material-icons {
 }
 
 /*
+ * Cards created with Materialize
+ */
+.card .card-action button {
+    font-size:1.1rem;
+    background:none;
+    color:#ffab40;
+    border:none;
+    text-transform:uppercase;
+}
+.card .card-content .create_button {
+    height:2em;
+    width:2em;
+    margin:auto;
+    margin-top:8px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:white;
+    color:darkslategrey;
+    border: 2px solid lightgrey;
+    border-radius:50%;
+    cursor:default;
+}
+
+/*
  * Page to edit the configuration of the game (list of items...))
  */
 #editConfig {

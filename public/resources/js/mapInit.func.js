@@ -430,8 +430,8 @@ export function updateLightHalos() {
  * @returns {undefined}
  */
 export async function populateMapTitle(mapId) {
-
-    const mapName = await _jsonMap.map_name ?? "";
-
+    
+    const mapName = (await _jsonMap).map_name ?? "";
+    
     document.querySelector("#map_title").innerText = `Carte ${mapId}. ${mapName}`;
 }
