@@ -1085,9 +1085,11 @@ async function switchToCitizen(targetCitizenId) {
  */
 export function displayToast(message, error_class) {
     
+    // NB: we force casting to string to avoid error in Materialize when the value 
+    // is "null"
     M.toast({
-        html: message,
-        classes: error_class,
+        html: String(message),
+        classes: String(error_class),
         displayLength: 2500,
         outDuration: 800
         });

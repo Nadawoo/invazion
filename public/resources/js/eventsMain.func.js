@@ -45,6 +45,7 @@ export function listenToForms() {
     
     document.addEventListener("submit", (event) => {        
         const formSelectors = {
+            "createGame": "form[name=create_game]",
             "dig":"#block_dig form[name=dig]",
             "explore": "form[name=explore_building]",
             "move": "#block_move form[name=move]",
@@ -65,6 +66,18 @@ export function listenToForms() {
             event.preventDefault();
             const move = new Move();
             move.walk(event.submitter.value);
+        }
+        else if(event.target.matches(formSelectors.createGame)) {
+            event.preventDefault();
+            
+            const zombLib = new ZombLib(),
+                  cookies = new Cookies(),
+                  token = cookies.getCookie('token');
+            
+            zombLib.callApi("GET", "games", `action=create&token=${token}`)
+                .then((json) => {
+                    displayToast(json.metas.error_message, json.metas.error_class);
+                });
         }
         else if(event.target.matches(formSelectors.joinGame)) {
             event.preventDefault();
