@@ -47,10 +47,14 @@ if ($api->user_seems_connected() === TRUE) {
     ?>
     
     <form method="post">
-        <input type="hidden" name="action" value="disconnect">
         <p>Vous êtes connecté en tant que joueur n°&nbsp;<?php echo $user_id ?></p>
-        <p><a href="index" class="bold">&gt;&gt;&nbsp;Retourner au jeu</a></p>
-        <p class="center"><input type="submit" value="Me déconnecter" /></p>
+        <p><a href="index#Outside" class="bold">&gt;&gt;&nbsp;Continuer ma partie en cours</a></p>
+        <p><a href="games" class="bold">&gt;&gt;&nbsp;Voir toutes les parties</a></p>
+        <p><a href="edit" class="bold" title="Paramétrez les objets disponibles dans le jeu (bêta)">&gt;&gt;&nbsp;Créer des objets</a></p>
+        <p class="center">
+            <input type="hidden" name="action" value="disconnect">
+            <input type="submit" value="Me déconnecter" />
+        </p>
     </form>
     
     <?php
