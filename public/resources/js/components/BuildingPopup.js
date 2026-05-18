@@ -21,6 +21,7 @@ export class BuildingPopup {
         let dataset = zone.dataset;
         let cityId = dataset.cityid;
         let cityTypeId = dataset.citytypeid;
+        let mapId = document.querySelector("#gameData #mapId").innerHTML;
         
         // #12 = ID of the building type "city" in the Azimutant's API
         if(parseInt(cityTypeId) === 12) {

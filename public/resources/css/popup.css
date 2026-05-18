@@ -80,12 +80,12 @@
     border:1px solid darkgrey;
 }
 .popup .block_building h2 {
-    margin-top:0;
-    margin-bottom:0.1em;
+    margin:0 0 0.1em 0;
     padding:0.15em;
     border-radius:4px 4px 0 0;
     background:#34495e;
     color:white;
+    font-weight:normal;
     box-shadow:4px 4px 8px black;
 }
 .popup .block_building .body {
