@@ -1167,6 +1167,9 @@ a.localize .material-icons {
 /*
  * Cards created with Materialize
  */
+#games_list .card .card-content {
+    height:8em;
+}
 .card .card-action button {
     font-size:1.1rem;
     background:none;

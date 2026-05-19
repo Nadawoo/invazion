@@ -39,7 +39,7 @@
         <div class="col s12 m6">
             <div class="card blue-grey darken-1">
                 <div class="card-content white-text">
-                    <span class="card-title">
+                    <span class="card-title" style="margin-top:0.8em">
                         <i class="material-icons create_button">add</i>
                     </span>
                     <p class="description"></p>
