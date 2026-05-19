@@ -102,14 +102,13 @@ class HtmlLayout extends HtmlPage
         
         return '
             <div id="identification_near_map">
-                <form method="post" action="#popsuccess">
-                    Donnez un nom à votre citoyen&nbsp;:
+                <form method="post" name="create_citizen" action="#popsuccess">
                     <input type="hidden" name="method" value="POST">
                     <input type="hidden" name="api_name" value="user">
                     <input type="hidden" name="action" value="create_citizen"><br>
-                    <input type="text" name="params[pseudo]" placeholder="Votre pseudo"><br>
+                    <input type="text" name="params[pseudo]" placeholder="Nom de votre citoyen" style="font-size:1.4em;color:white;"><br>
                     <br>
-                    <input type="submit" value="Valider">
+                    <input type="submit" class="redbutton" value="Valider">
                 </form>
             </div>';
     }
