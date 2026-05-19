@@ -79,10 +79,13 @@ export function listenToForms() {
             zombLib.callApi("GET", "games", `action=join&map_id=${mapId}&token=${token}`)
                 .then((json) => {
                     // If the player is already in a game, simply redirect to the map page
-                    if(json.metas.error_code === "game_already_started"
+                    if(json.metas.error_code === "already_in_game"
                        && event.target.closest("#my_games_list") !== null
                        ) {
                        window.location.href = "/index#Outside";
+                    }
+                    else if(json.metas.error_code === "success") {
+                        window.location.href = "/index#Outside";
                     }
                     else {
                         displayToast(json.metas.error_message, json.metas.error_class);
