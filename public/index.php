@@ -99,8 +99,11 @@ if ($api->user_seems_connected() === true) {
 // Get the game data by calling the APIs
 $maps_api = $api->call_api('maps', 'get', ['map_id'=>$citizen['map_id']]);
 
-// If the citizen is not in game, go to the page for joining a game
-if($maps_api['metas']['error_code'] !== 'success') {
+// If the citizen is not in game, go to the page for joining a game,
+// unless he has not validated his death yet
+if($maps_api['metas']['error_code'] !== 'success'
+    and $api_me['datas']['unvalidated_death_cause'] === null
+    ) {
     header('Location: /games');
     exit;
 }
