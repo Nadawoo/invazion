@@ -20,10 +20,14 @@ class SortGameData
      */
     function sort_citizens_by_coord($citizens)
     {
-
+        
+        if($citizens === null) {
+            return false;
+        }
+        
         $citizens_by_coord = [];
 
-        foreach ($citizens as $val) {
+        foreach($citizens as $val) {
 
             $coords = $val['coord_x'].'_'.$val['coord_y'];
             $citizens_by_coord[$coords][] = $val;
