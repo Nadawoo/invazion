@@ -424,8 +424,8 @@ class HtmlButtons
                 ],
             'validate_death' => [
                 'icon'  => '',
-                'name'  => 'Mort sans réincarnation',
-                'title' => "Valide votre mort sans lancer de nouvelle partie",
+                'name'  => 'Valider ma mort',
+                'title' => '',
                 'fields' => [
                     'api_name'      => 'me',
                     'action'        => 'validate_death',
@@ -487,13 +487,13 @@ class HtmlButtons
      * 
      * @return string HTML
      */
-    function button($button_alias, $show_icon=true, $class='', $is_active=true)
+    function button($button_alias, $show_icon=true, $class='', $is_active=true, $has_notif=true)
     {
         
         $button = $this->buttons[$button_alias];
         $icon   = ($show_icon !== true) ? '' : $button['icon'].'&nbsp;';
         $disabled = ($is_active !== true) ? 'disabled' : '';
-        $dot_notif = ($is_active !== true) ? '' : '<span class="dot_notif"></span>';
+        $dot_notif = ($has_notif !== true) ? '' : '<span class="dot_notif"></span>';
         
         // Generates the hidden fields for the HTML form
         $hidden_fields = '';
