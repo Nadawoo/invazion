@@ -2,9 +2,10 @@
 require_once '../core/controller/autoload.php';
 safely_require('/core/model/set_default_variables.php');
 safely_require('/core/model/Server.php');
+safely_require('/core/controller/SortGameData.php');
 safely_require('/core/controller/get_game_day.php');
 safely_require('/core/controller/get_well_current_water.php');
-safely_require('/core/controller/SortGameData.php');
+safely_require('/core/controller/is_in_game.php');
 safely_require('/core/ZombLib.php');
 
 $server = new Server();
@@ -40,6 +41,7 @@ $speciality_caracs  = [];
 $specialities       = [];
 $msg_popup          = null;
 $msg_move           = '';
+$unvalidated_death_cause = null;
 $is_custom_popup_visible = false;
 
 
@@ -87,6 +89,7 @@ if ($api->user_seems_connected() === true) {
     
     if ($api_me['metas']['error_code'] === 'success') {
         $citizen = $api_me['datas'];
+        $unvalidated_death_cause = $api_me['datas']['unvalidated_death_cause'];
     }
     elseif ($api_me['metas']['error_code'] === 'citizen_not_created') {
         $citizen['user_id'] = $api_me['datas']['user_id'];
@@ -96,30 +99,26 @@ if ($api->user_seems_connected() === true) {
     }
 }
 
-// Get the game data by calling the APIs
-$maps_api = $api->call_api('maps', 'get', ['map_id'=>$citizen['map_id']]);
+$is_in_game = is_in_game($citizen['map_id'], $unvalidated_death_cause);
 
-// If the citizen is not in game, go to the page for joining a game,
-// unless he has not validated his death yet
-if($maps_api['metas']['error_code'] !== 'success'
-    and $api_me['datas']['unvalidated_death_cause'] === null
-    ) {
-    header('Location: /games');
-    exit;
-}
+// If the citizen is not in game, go to the map #1 by default
+$map_id = ($is_in_game) ? $citizen['map_id'] : 1;
+
+// Get the game data by calling the APIs
+$maps_api = $api->call_api('maps', 'get', ['map_id'=>$map_id]);
 
 $maps               = $maps_api['datas'];
-$citizens           = $api->call_api('citizens', 'get', ['map_id'=>$citizen['map_id']])['datas'];
+$citizens           = $api->call_api('citizens', 'get', ['map_id'=>$map_id])['datas'];
 $citizens_by_coord  = $sort->sort_citizens_by_coord($citizens);
-$configs            = $api->call_api('configs', 'get', ['map_id'=>$citizen['map_id']])['datas'];
+$configs            = $api->call_api('configs', 'get', ['map_id'=>$map_id])['datas'];
 $specialities       = $configs['specialities'];
 $speciality_caracs  = $specialities[$citizen['speciality']];
 $current_cycle      = $maps['current_cycle'];
 $map->set_config_buildings($configs['buildings']);
 
 // If the player is connected and has already created his citizen
-if ($citizen['citizen_id'] !== null) {
-
+if ($citizen['citizen_id'] !== null and $is_in_game === true) {
+    
     $zone_fellows       = $citizens_by_coord[$citizen['coord_x'].'_'.$citizen['coord_y']];
     $zone               = $maps['zones'][$citizen['coord_x'].'_'.$citizen['coord_y']];
     $healing_items      = $sort->filter_bag_items('healing_wound', $configs['items'], $citizen['bag_items']);
@@ -127,7 +126,7 @@ if ($citizen['citizen_id'] !== null) {
     // If the citizen is inside a city
     if ($citizen['inside_city_id'] !== null) {
         // Gets the characteristics of this city (well, storage...)
-        $cities_data  = $api->call_api('cities', 'get', ['map_id'=>$citizen['map_id']])['datas'];
+        $cities_data  = $api->call_api('cities', 'get', ['map_id'=>$map_id])['datas'];
         $items_inside_constructions = $api->call_api('items', 'get', [])['datas'];
         $city_data = $cities_data[$citizen['inside_city_id']];
         // Gets the citizens linked to this city
@@ -150,17 +149,18 @@ if ($citizen['citizen_id'] !== null) {
         $cityIso->set_city_well($well_current_water);
         $cityIso->set_city_storage($nbr_ground_items);
     }
-
-    // Show the ending popup when the citizen is dead
-    if($citizen['unvalidated_death_cause'] !== null) {    
-        $msg_popup = $popup->popdeath($citizen['unvalidated_death_cause']);    
-        $is_custom_popup_visible = true;
-    }
+    
     // If there is a car (ID=1) in the zone
     // TODO: don't hardcode this ID
 //    elseif($zone['building_id'] == 1) {
 //        $msg_popup = $popup->popcar($msg_popup);
 //    }
+}
+
+// Show the ending popup when the citizen is dead
+if($unvalidated_death_cause !== null) {    
+    $msg_popup = $popup->popdeath($unvalidated_death_cause);    
+    $is_custom_popup_visible = true;
 }
 
 
@@ -169,7 +169,7 @@ if ($citizen['citizen_id'] !== null) {
  */
 $html = [
     // Data about the player for javascript treatments (his coordinates...)
-    'hidden_player_data' => $layout->hidden_player_data($citizen, $speciality_caracs['action_points']),
+    'hidden_player_data' => $layout->hidden_player_data($map_id, $citizen, $speciality_caracs['action_points']),
     // The unvariable data of the game (buildings names...)
     'json_configs'      => $layout->json_configs(json_encode($configs['map']),
                                                  json_encode($configs['buildings']),
@@ -179,7 +179,7 @@ $html = [
     // Assembling the HTML for the map
     'map' => $map->hexagonal_map($maps['map_width'], $maps['map_height'], $maps['zones'], $citizen, $maps['next_attack_hour']),
 //    'map_citizens'      => $layout->map_citizens($citizens),
-    'attack_bar'        => $layout->attack_bar($citizen['map_id'], $configs['map']['current_cycle']),
+    'attack_bar'        => $layout->attack_bar($map_id, $configs['map']['current_cycle']),
     // Contents of the round action buttons at the right of the map
     'ground_items'      => $layout->block_ground_items($citizen['coord_x'], $citizen['coord_y']),
     // TODO: merge_zone_items with ground_items
@@ -210,7 +210,7 @@ echo $layout->page_header($citizen['user_id'], $citizen['citizen_id'], $citizen[
 
     <div id="popups">
         <?php echo $popup->all_popups(  $msg_popup,
-                                        $citizen['map_id'],
+                                        $map_id,
                                         $citizen['citizen_id'], 
                                         $configs['map'],
                                         $specialities,
@@ -263,7 +263,7 @@ echo $layout->page_header($citizen['user_id'], $citizen['citizen_id'], $citizen[
         echo '
             <div id="city_container">
                 <nav id="city_menu">
-                    '.$enclosure->city_menu($citizen['map_id'], $city_data['connected_city_id'], $citizen['city_id']).'
+                    '.$enclosure->city_menu($map_id, $city_data['connected_city_id'], $citizen['city_id']).'
                     '.$enclosure->city_submenu($city_data['city_type_id'], $city_data['connected_city_id'], $is_citizen_home_connected, $completed_buildings_ids).'
                     <div id="city_defenses" class="city_row">
                         '.$enclosure->block_defenses($city_data['total_defenses'], $zone['zombies']).'
@@ -531,7 +531,11 @@ echo $layout->page_header($citizen['user_id'], $citizen['citizen_id'], $citizen[
         // If the player is connected but has not created his citizen yet,
         // display the panel for creating a citizen
         echo $layout->block_create_citizen();
-    } ?>
+    }
+    elseif($is_in_game === false) {
+        echo $layout->block_join_game();
+    }
+    ?>
     
     <section id="game_footer">
         <div id="floating_wall">

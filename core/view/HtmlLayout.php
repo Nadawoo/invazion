@@ -114,6 +114,17 @@ class HtmlLayout extends HtmlPage
     }
     
     
+    function block_join_game() {
+        
+        return '
+            <div id="identification_near_map">
+                <a href="games" class="redbutton z-depth-5" style="width:15em;font-size:1.5em;">
+                    Rejoindre une partie
+                </a>
+            </div>';
+    }
+    
+    
     /**
      * Bar above the map showing the countdown before the next attack, the current day...
      * @param  int $map_id The ID of the map on which the player is
@@ -679,9 +690,6 @@ class HtmlLayout extends HtmlPage
     }
     
     
-
-    
-    
     /**
      * Data about the player for javascript treatments (his coordinates...)
      * 
@@ -690,7 +698,7 @@ class HtmlLayout extends HtmlPage
      * @param int $max_action_points The maximum amount of AP stockable by the player
      * @return string HTML
      */
-    function hidden_player_data($citizen, $max_action_points) {
+    function hidden_player_data($map_id, $citizen, $max_action_points) {
         
         // #23 = ID of the item "action points" in the citizen's bag
         $citizen_action_points = isset($citizen['bag_items'][23]) ? $citizen['bag_items'][23] : 0;
@@ -703,7 +711,7 @@ class HtmlLayout extends HtmlPage
                 <li id="citizenCoordY">'.$citizen['coord_y'].'</li>
                 <li id="actionPoints">'.$citizen_action_points.'</li>
                 <li id="maxActionPoints">'.$max_action_points.'</li>
-                <li id="mapId">'.$citizen['map_id'].'</li>
+                <li id="mapId">'.$map_id.'</li>
                 <li id="cityId">'.$citizen['city_id'].'</li>
             </ul>';
     }
