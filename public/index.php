@@ -35,7 +35,6 @@ $city_fellows       = [];
 $zone_fellows       = [];
 $healing_items      = [];
 $citizens_by_coord  = [];
-$maps               = [];
 $configs            = [];
 $speciality_caracs  = [];
 $specialities       = [];
@@ -105,9 +104,10 @@ $is_in_game = is_in_game($citizen['map_id'], $unvalidated_death_cause);
 $map_id = ($is_in_game) ? $citizen['map_id'] : 1;
 
 // Get the game data by calling the APIs
-$maps_api = $api->call_api('maps', 'get', ['map_id'=>$map_id]);
+$maps_api = $api->call_api('maps', 'get', ['map_id'=>$map_id], 'GET', 'no_token');
 
-$maps               = $maps_api['datas'];
+$maps = $maps_api['datas'];
+
 $citizens           = $api->call_api('citizens', 'get', ['map_id'=>$map_id])['datas'];
 $citizens_by_coord  = $sort->sort_citizens_by_coord($citizens);
 $configs            = $api->call_api('configs', 'get', ['map_id'=>$map_id])['datas'];
