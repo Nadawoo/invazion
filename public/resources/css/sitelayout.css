@@ -338,6 +338,32 @@ div.center {
     cursor:pointer;
 }
 
+
+/**
+ * Text with a seprarating line at the left and the right
+ * Usage:
+ * <div class="separator">
+ *      <span>My text</span>
+ *  </div>
+ */
+.separator {
+    margin: 1.2em auto;
+    display:flex;
+    align-items:center;
+    text-align:center;
+    gap:1rem;
+    color:lightgrey;
+}
+.separator::before,
+.separator::after {
+    content: "";
+    width:10em;
+    border-bottom:1px solid lightgrey;
+}
+.separator span {
+    white-space: nowrap;
+}
+
 /* Indicates that loading is in progress.
  * Don't forget the appropriate aria tags for accessibility:
  * <p class="loader" aria-busy="true" aria-live="polite">Chargement…</p>

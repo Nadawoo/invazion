@@ -84,10 +84,10 @@ class HtmlLayout extends HtmlPage
         
         return '
             <div id="identification_near_map">
-                Identifiez-vous pour commencer à&nbsp;jouer...
-                <a href="register" id="register" class="z-depth-5">Créer un&nbsp;compte</a>
-                ou
-                <a href="connect" id="connect">Connectez-vous</a> si vous êtes déjà inscrit.
+                <p><a href="register" id="register" class="z-depth-5">Créer un&nbsp;compte</a></p>
+                <p style="opacity:0.8">
+                    Déjà inscrit ? <a href="connect" id="connect">Me connecter</a>
+                </p>
             </div>';
     }
     
