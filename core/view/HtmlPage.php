@@ -11,7 +11,7 @@ class HtmlPage
     // Increment those variables when you modify the CSS or JS files. This ensures
     // that the users' browsers reload the up-to-date files, instead of using 
     // the obsolete ones stored in their cache.
-    private $css_js_version = 185.1;
+    private $css_js_version = 186;
     
     /**
      * Sets HTTP headers to secure the website
@@ -213,7 +213,10 @@ class HtmlPage
         
         $user_name = ($citizen_id === null)
                     ? '[Non connecté]'
-                    : '<span title="Vous êtes connecté au compte #'.$user_id."\nVous contrôlez actuellement le citoyen #".$citizen_id.' « '.$citizen_pseudo.' »">Compte #'.$user_id.'<br>Citoyen #'.$citizen_id.'</span>';
+                    : '<span title="Vous êtes connecté au compte #'.$user_id."\nVous contrôlez actuellement le citoyen #".$citizen_id.' « '.$citizen_pseudo.' »">
+                            Compte #'.$user_id.'<br>Citoyen #'.$citizen_id.'</span>
+                            <i class="material-icons gear">settings</i>
+                       </span>';
                     
         return '
             <ul aria-label="Menu principal" id="slide-out" class="sidenav">

@@ -144,6 +144,11 @@ footer {
     border-radius:3em;
     box-shadow:4px 4px 12px black;
 }
+.sidenav .user .gear {
+    margin-left:auto;
+    margin-right:15px;
+    color:lightgrey;
+}
 
 nav::selection, nav ::selection {
     background:none;
