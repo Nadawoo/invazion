@@ -142,6 +142,7 @@ footer {
     color:white;
     line-height:1.5em;
     border-radius:3em;
+    background:linear-gradient(to bottom right, #372AAC 0%, #162456 80%);
     box-shadow:4px 4px 12px black;
 }
 .sidenav .user .gear {
