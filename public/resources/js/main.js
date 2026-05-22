@@ -31,19 +31,19 @@ import { isCitizenInGame } from "./users.func.js";
 let lang = "fr";
 
 // Permanently stores the results returned by the Azimutant's APIs.
-window._citizens = null;
-window._cities = null;
-window._roads = null;
-window._roadActiveHexagon = null;
-window._myZone = null;
-window._jsonMap = null;
+window._citizens            = null;
+window._cities              = null;
+window._roads               = null;
+window._roadActiveHexagon   = null;
+window._myZone              = null;
+window._jsonMap             = null;
 window._isPathDrawingActive = false;
-window._userEmail = null;
-window._newRoadSource = null;
+window._userEmail           = null;
+window._newRoadSource       = null;
+window._roadDisplayTimeout  = null;
 // Permanently stores the result of the API whichs gives the discussions list 
-window._jsonDiscussionApi = null;
+window._jsonDiscussionApi   = null;
 window._scrollBoosterInstance = null;
-window._roadDisplayTimeout = null;
 
 window._defaultMapZoomPercent = 130;
 
@@ -112,11 +112,11 @@ if(document.getElementById("map") !== null) {
     // Default map to show if the visitor is not connected
     const mapId = document.querySelector("#gameData #mapId").innerHTML;
     // Get the unvariable data of the game (building names...) stored in the HTML
-    window._configsBuildings = JSON.parse(document.querySelector("#configs .buildings").innerHTML);
-    window._configsBuildingsFindableItems = JSON.parse(document.querySelector("#configs .buildings_findable_items").innerHTML);
-    window._configsBuildingsComponents    = JSON.parse(document.querySelector("#configs .buildings_components").innerHTML);
-    window._configsItems     = JSON.parse(document.querySelector("#configs .items").innerHTML);
-    window._configsMap       = JSON.parse(document.querySelector("#configs .map").innerHTML);
+    window._configsBuildings                = JSON.parse(document.querySelector("#configs .buildings").innerHTML);
+    window._configsBuildingsFindableItems   = JSON.parse(document.querySelector("#configs .buildings_findable_items").innerHTML);
+    window._configsBuildingsComponents      = JSON.parse(document.querySelector("#configs .buildings_components").innerHTML);
+    window._configsItems                    = JSON.parse(document.querySelector("#configs .items").innerHTML);
+    window._configsMap                      = JSON.parse(document.querySelector("#configs .map").innerHTML);
     
     _jsonMap = getMapZonesOnce(mapId);
     
