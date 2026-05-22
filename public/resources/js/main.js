@@ -34,7 +34,6 @@ let lang = "fr";
 window._citizens = null;
 window._cities = null;
 window._roads = null;
-window.roadDisplayTimeout = null;
 window._roadActiveHexagon = null;
 window._myZone = null;
 window._jsonMap = null;
