@@ -28,6 +28,7 @@ import {
     }
     from "./mapInit.func.js";
 import {
+    centerMapOnMe,
     resetMapView,
     toggleMapExplorationsView,
     toggleMapItemsView,
@@ -176,13 +177,16 @@ export function listenToClick() {
             toggleActionBlock(blockName);
             updateBlockAction(blockName);
         }
-        else if(button = event.target.closest("#zoom_form button")) {
+        else if(button = event.target.closest("button")) {
             
             if(button.dataset.action === "zoomMapStepIn") {
                 zoomMapStep("in");
             }
             else if(button.dataset.action === "zoomMapStepOut") {
                 zoomMapStep("out");
+            }
+            else if(button.dataset.action === "centerMapOnMe") {
+                centerMapOnMe();
             }
         }
         else if(event.target.dataset.action === "createGame") {

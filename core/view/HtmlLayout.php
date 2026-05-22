@@ -753,7 +753,10 @@ class HtmlLayout extends HtmlPage
                 </button>
             </form>
             
-            <button onclick="centerMapOnMe()" aria-label="Centrer la carte sur ma zone" title="Centrer la carte sur ma zone">
+            <button aria-label="Centrer la carte sur ma zone"
+                    title="Centrer la carte sur ma zone"
+                    data-action="centerMapOnMe"
+                    >
                 <i class="material-icons small">my_location</i>
             </button>
             
