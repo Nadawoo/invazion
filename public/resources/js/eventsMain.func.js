@@ -11,10 +11,14 @@ import { Items } from "./components/Items.js";
 import { Move } from "./services/Move.js";
 import { moveBuildingBlockBelowPaddle, updateBlockAction } from "./actionBlocks.func.js";
 import {
+    closePopup,
     dig,
+    displayToast,
+    exploreBuilding,
     killZombies,
     searchItemOnMap,
-    toggleActionBlock
+    toggleActionBlock,
+    toggleMapMarker
     }
     from "./misc.func.js";
 import { initiateDiscussTab, listenToDiscussTabs, toggleSendform } from "./discussions.func.js";
@@ -27,13 +31,6 @@ import {
     toggleMapItemMarker
     }
     from "./mapUse.func.js";
-import {
-    closePopup,
-    displayToast,
-    exploreBuilding,
-    toggleMapMarker
-    }
-    from "./misc.func.js";
 
 
 /**
