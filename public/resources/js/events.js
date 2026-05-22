@@ -4,8 +4,9 @@
  */
 
 import {
+    listenToInput,
     listenToMapLegendSwitches,
-    listenToForms,
+    listenToSubmit,
     listenToClick,
     listenToPointerdown,
     listenToMainActionModeButton
@@ -20,7 +21,8 @@ import { isCitizenInGame } from "./users.func.js";
 var nbrExecutionsGetCyclicAttacks = 0;
 
 // Listen to all forms
-listenToForms();
+listenToSubmit();
+listenToInput();
 // One global listener for each type of event
 listenToClick();
 listenToPointerdown();
@@ -55,20 +57,6 @@ if (document.getElementById('map') !== null) {
     document.querySelector("#formPathDrawing").addEventListener("submit",  function(event){
         event.preventDefault();
         submitNewPath(event, controller);
-    });
-    
-    // Zoom/unzoom on the map
-    let mapRange = document.querySelector("#zoom_range");    
-    mapRange.addEventListener("input", function() {
-        zoomMapRange(mapRange.value);
-    });
-    document.querySelector("#zoomMapStepIn").addEventListener("click", function(event) {
-        event.preventDefault();
-        zoomMapStep("in");
-    });
-    document.querySelector("#zoomMapStepOut").addEventListener("click", function(event) {
-        event.preventDefault();
-        zoomMapStep("out");
     });
     
     listenToMapLegendSwitches();

@@ -4,7 +4,6 @@
  */
 
 import { ZombLib } from "./lib/ZombLib.js";
-import { triggerTooltip, switchToActionView } from "./mapInit.func.js";
 import { BuildingPopup } from "./components/BuildingPopup.js";
 import { CityRadialMenu } from "./components/CityRadialMenu.js";
 import { Items } from "./components/Items.js";
@@ -23,12 +22,19 @@ import {
     from "./misc.func.js";
 import { initiateDiscussTab, listenToDiscussTabs, toggleSendform } from "./discussions.func.js";
 import {
+    switchToActionView,
+    triggerTooltip,
+    zoomMapRange
+    }
+    from "./mapInit.func.js";
+import {
     resetMapView,
     toggleMapExplorationsView,
     toggleMapItemsView,
     toggleMapNeighborhoodView,
     toggleMapZombiesView,
-    toggleMapItemMarker
+    toggleMapItemMarker,
+    zoomMapStep
     }
     from "./mapUse.func.js";
 
@@ -38,7 +44,7 @@ import {
  * 
  * @returns {undefined}
  */
-export function listenToForms() {
+export function listenToSubmit() {
     
     document.addEventListener("submit", (event) => {        
         const formSelectors = {
@@ -89,7 +95,22 @@ export function listenToForms() {
                     }
                 });
         }
-    });
+    },
+    { passive: true }
+    );
+}
+
+
+export function listenToInput() {
+    
+    document.addEventListener("input", (event) => {
+        
+        if(event.target.dataset.action === "zoomRange") {
+            zoomMapRange(event.target.value);
+        }
+    },
+    { passive: true }
+    );
 }
 
 
@@ -154,6 +175,15 @@ export function listenToClick() {
             const blockName = event.target.dataset.name;
             toggleActionBlock(blockName);
             updateBlockAction(blockName);
+        }
+        else if(button = event.target.closest("#zoom_form button")) {
+            
+            if(button.dataset.action === "zoomMapStepIn") {
+                zoomMapStep("in");
+            }
+            else if(button.dataset.action === "zoomMapStepOut") {
+                zoomMapStep("out");
+            }
         }
         else if(event.target.dataset.action === "createGame") {
             event.preventDefault();

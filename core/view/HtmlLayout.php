@@ -729,14 +729,26 @@ class HtmlLayout extends HtmlPage
         
         return '
             <form action="#" id="zoom_form">
-                <button id="zoomMapStepIn" aria-label="Zoomer sur la carte" title="Agrandir la carte">
+                <button type="button"
+                        aria-label="Zoomer sur la carte"
+                        title="Agrandir la carte"
+                        data-action="zoomMapStepIn"
+                        >
                     <i class="material-icons small">add</i>
                 </button>
                 <p class="range-field hidden">
-                    <input id="zoom_range" type="range" value="100" min="70" max="220" step="30">
+                    <input type="range"
+                           value="100" min="70" max="220" step="30"
+                           id="zoom_range"
+                           data-action="zoomRange"
+                           >
                 </p>
                 <hr onclick="toggle(\'#zoom_form .range-field\')">
-                <button id="zoomMapStepOut" aria-label="Dézoomer sur la carte" title="Dézoomer sur la carte">
+                <button type="button"
+                        aria-label="Dézoomer sur la carte"
+                        title="Dézoomer sur la carte"
+                        data-action="zoomMapStepOut"
+                        >
                     <i class="material-icons small">remove</i>
                 </button>
             </form>
