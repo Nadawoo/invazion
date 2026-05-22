@@ -36,6 +36,11 @@
     header .site_name {
         font-size:initial; /* Avoid banner overflow on small screens */
     }
+    header .menu_button .material-icons,
+    header .help_button .material-icons
+    {
+        margin:0.1em; /* Avoid overflow on very thin screens */
+    }
     #page_container {
         border:none;
     }
