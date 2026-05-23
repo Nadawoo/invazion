@@ -434,7 +434,7 @@ export async function listenToMainActionModeButton() {
  *                               in the <select> menu
  * @returns {undefined}
  */
-function filterConstructions(selectedValue) {
+export function filterConstructions(selectedValue) {
     if(selectedValue === "none") {
         hide("#constructions .defenses");
     } else if(selectedValue === "effects") {

@@ -5,6 +5,7 @@
 
 import {
     enlargeWall,
+    filterConstructions,
     listenToInput,
     listenToMapLegendSwitches,
     listenToSubmit,
