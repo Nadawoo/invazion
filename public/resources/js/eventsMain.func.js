@@ -175,7 +175,8 @@ export function listenToClick() {
             toggleActionBlock(blockName);
             updateBlockAction(blockName);
         }
-        else if(button = event.target.closest("button")) {
+        else if(event.target.closest("#map_navigation")) {            
+            const button = event.target.closest("button");
             
             if(button.dataset.action === "zoomMapStepIn") {
                 zoomMapStep("in");
@@ -259,6 +260,8 @@ export function listenToClick() {
                 _newRoadSource = null;
                 document.querySelector("#map").dataset.viewmode = "";
             } else {
+                
+
                 // If we click on a city, open the city pop-up
                 let buildingPopup = new BuildingPopup();
                 buildingPopup.openBuildingPopup(event);
