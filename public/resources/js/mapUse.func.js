@@ -550,7 +550,7 @@ export function resetMapView() {
  * Display/hide the frames around the cities on the map and the bar to filter them
  * (defensense, transportations, weather...)
  */
-function toggleCityframesView() {
+export function toggleCityframesView() {
 
     toggle(["#views_bar", "#tasks_button", "#attack_bar"]);
     toggle(["#cityframes_bar", "#map_legend_cityframes"]);

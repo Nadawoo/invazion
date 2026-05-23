@@ -1,4 +1,4 @@
-import {CityConnections } from "./CityConnections.js";
+import { CityConnections } from "./CityConnections.js";
 
 export class CityRadialMenu {
     

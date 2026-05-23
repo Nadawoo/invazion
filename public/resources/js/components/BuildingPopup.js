@@ -1,4 +1,6 @@
 import { Items } from "./Items.js";
+import { CityConnections } from "./CityConnections.js";
+import { toggleCityframesView } from "../mapUse.func.js";
 
 /**
  * Generates the graphical interface for a dersert building (outpost...)
