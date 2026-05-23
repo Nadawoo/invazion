@@ -124,7 +124,9 @@ class HtmlPaths {
                 <span class="icon">&#x2753;</span>
                 <span class="label">Inexploré</span>
             </button>
-            <a class="close z-depth-2"><i class="material-icons">close</i></a>
+            <a class="close z-depth-2">
+                <i class="material-icons" data-action="closeCityframesBar">close</i>
+            </a>
         </div>';
     }
     

@@ -30,6 +30,7 @@ import {
 import {
     centerMapOnMe,
     resetMapView,
+    toggleCityframesView,
     toggleMapExplorationsView,
     toggleMapItemsView,
     toggleMapNeighborhoodView,
@@ -170,6 +171,9 @@ export function listenToClick() {
         }
         else if(action === "repelZombies") {
             killZombies("repel");
+        }
+        else if(action === "closeCityframesBar") {
+            toggleCityframesView();
         }
         else if(action === "switchActionBlock") {
             const blockName = target.dataset.name;
