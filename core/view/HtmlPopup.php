@@ -928,11 +928,16 @@ class HtmlPopup
         
         return "<p>&#x1F5FA;&#xFE0F; Vous êtes incarné sur la <strong>carte n° ".$params['map_id']."</strong>.<p>
                 <p>&#x1F551; Vous y vivez actuellement votre <strong>".$params['current_cycle']."<sup>e</sup> jour</strong> de survie.</p>
-                <p>".$buttons->button('end_cycle', false)."</p>"
-                ."<hr>
+                <p>".$buttons->button('end_cycle', false)."</p>
                 <br>
-                <h3>Scores</h3>"
-                .$gameStats->stats();
+                <ul class=\"collapsible\">
+                    <li>
+                        <div class=\"collapsible-header\"><strong>Scores</strong> <strong>&gt;</strong></div>
+                        <div class=\"collapsible-body\">
+                            ".$gameStats->stats()."
+                        </div>
+                    <li>
+                </ul>";
     }
     
     

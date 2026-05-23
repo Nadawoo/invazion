@@ -7,7 +7,9 @@ class HtmlGameStats {
     public function stats() {
         
         return '
-            <p class="red">[Note : ces chiffres sont fictifs pour le moment car la fonctionnalité est en cours de développement]</p>
+            <div class="red-text">
+                [Note : ces chiffres sont fictifs pour le moment car la fonctionnalité est en cours de développement]
+            </div>
             <table id="gameStats">
                 <tbody>
                     <tr>
