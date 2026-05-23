@@ -43,16 +43,20 @@ async function getMyCurrentGameId() {
 }
 
 
-function populateGamesList() {
+async function populateGamesList() {
     
     const zombLib = new ZombLib;
     const json = zombLib.callApi("GET", "games", `action=get`);
     
-    const myCurrentGameId = getMyCurrentGameId();
+    const myCurrentGameId = await getMyCurrentGameId();
     
     json.then((result) => {
         const gameSelector = new GameSelector;
         gameSelector.populateAllGamesList(result.datas);
-        gameSelector.populateMyGamesList(result.datas, myCurrentGameId);
+        
+        if(myCurrentGameId !== null) {
+            display("#myGames");
+            gameSelector.populateMyGamesList(result.datas, myCurrentGameId);
+        }
     });
 }

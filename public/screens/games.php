@@ -30,12 +30,14 @@
 </template>
 
 
-<section id="games">
+<section id="myGames" class="hidden">
     <h2>Mes parties en cours</h2>
-    <div id="my_games_list" class="row"></div>
-    
+    <div class="row games_list"></div>
+</section>
+
+<section id="allGames">
     <h2>Rejoindre une nouvelle partie</h2>
-    <div id="games_list" class="row">
+    <div class="row games_list">
         <div class="col s12 m6">
             <div class="card blue-grey darken-1">
                 <div class="card-content white-text">
@@ -58,5 +60,4 @@
             </div>
         </div>
     </div>
-    <div id="games_list" class="row"></div>
 </section>

@@ -84,7 +84,7 @@ export function listenToSubmit() {
                 .then((json) => {
                     // If the player is already in a game, simply redirect to the map page
                     if(json.metas.error_code === "already_in_game"
-                       && event.target.closest("#my_games_list") !== null
+                       && event.target.closest("#myGames .games_list") !== null
                        ) {
                        window.location.href = "/index#Outside";
                     }

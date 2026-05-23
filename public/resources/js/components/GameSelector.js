@@ -9,16 +9,16 @@ class GameSelector {
             fragment.appendChild(tplGame); 
         });
         
-        document.querySelector("#games_list").appendChild(fragment);
+        document.querySelector("#allGames .games_list").appendChild(fragment);
     }
     
     
-    async populateMyGamesList(games, myCurrentGameId) {
+    populateMyGamesList(games, myCurrentGameId) {
         
-        const gameId = await myCurrentGameId;
-        
-        const tplGame = this.#populateGameCardTemplate(gameId, games[gameId]);
-        document.querySelector("#my_games_list").appendChild(tplGame);
+        if(myCurrentGameId !== null) {        
+            const tplGame = this.#populateGameCardTemplate(myCurrentGameId, games[myCurrentGameId]);
+            document.querySelector("#myGames .games_list").appendChild(tplGame);
+        }
     }
     
     
@@ -26,7 +26,7 @@ class GameSelector {
         
         const tplGame = document.querySelector("#tplGame").content.cloneNode(true);
         let citizens = "";
-
+        
         // List of the citizens in this game
         Object.values(gameDatas.citizens).forEach((citizen) => {
             citizens += `<li>${citizen} ·</li>`;
