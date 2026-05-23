@@ -1020,9 +1020,15 @@
                 1px 1px 0 darkgrey;    /* Bottom right */
 }
 #map_body .zombies {
-    animation: fadeInOpacity 1s forwards;
+    /*animation: fadeInOpacity 1s forwards;*/
+    opacity:0.7;
     z-index:1;
 }
+#map:not(.action_view) td:not(.submerged) .zombies {
+    animation:fadeOut 2s ease forwards;
+    animation-delay:3s;
+}
+
 @keyframes fadeInOpacity {
     0%   { opacity: 0;   }
     100% { opacity: 0.7;   }

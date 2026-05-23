@@ -345,7 +345,7 @@ export function switchToActionView() {
     
     // Hide some elements of the GUI to make the interface look lighter
     hide(["#views_bar", "#map_navigation", "#tasks_button", "#game_footer"]);
-    hide([".bubble"]);
+    hide([".sharp_bubble, .bubble, .healthbar"]);
     desactivateMapPathsView();
     // Display the button which switches to the Map mode
     display("#map_mode_button");

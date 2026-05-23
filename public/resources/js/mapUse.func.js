@@ -668,8 +668,17 @@ export function switchToMapView() {
     // Hide the actions panel in large mode
     hide(["#actions_panel", "#personal_block_wrapper", "#map_mode_button"]);
     // Display again the general elements of the GUI
-    display(["#views_bar", "#map_navigation", "#tasks_button", "#game_footer", "#attack_bar",
-             "#map_body .nbr_defenses", "#map_body .bubble"]);
+    display([
+            "#views_bar",
+            "#map_navigation",
+            "#tasks_button",
+            "#game_footer",
+            "#attack_bar",
+            "#map_body .nbr_defenses",
+            "#map_body .bubble",
+            "#map_body .sharp_bubble",
+            "#map_body .healthbar"
+            ]);
     // Restore the illumination on the button which displays the map navigation
     document.querySelector("#views_bar .map").classList.add("active");  
     // Desactivate the zombies/items view eventually activated while player in action mode
