@@ -4,6 +4,7 @@
  */
 
 import {
+    enlargeWall,
     listenToInput,
     listenToMapLegendSwitches,
     listenToSubmit,

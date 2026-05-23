@@ -527,7 +527,7 @@ function addMapPathStage(event, currentStageId) {
 /**
  * Show/hide the vertical panel for the discussions and events
  */
-async function enlargeWall() {
+export async function enlargeWall() {
     
     let minBarHeight = "2.5rem",
         maxBarHeight = "100vh";
