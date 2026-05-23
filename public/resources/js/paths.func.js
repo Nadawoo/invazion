@@ -3,6 +3,12 @@
  * Don't put executable code in this file, only functions.
  */
 
+import { ZombLib } from "./lib/ZombLib.js";
+import {
+    listenToActionModeButtons,
+    listenToLocationButtons
+    }
+    from "./eventsMain.func.js"; 
 import { displayToast } from "./misc.func.js";
 
 /**
@@ -119,7 +125,7 @@ async function populatePathsPanel(pathsCourses, pathsMembers) {
  */
 async function htmlcitizensForExpedition() {
     
-    htmlAvailableCitizens = "";
+    let htmlAvailableCitizens = "";
 
     for(let citizenId in await _citizens) {
         let citizen = _citizens[citizenId];

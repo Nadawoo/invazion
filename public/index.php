@@ -441,8 +441,8 @@ echo $layout->page_header($citizen['user_id'], $citizen['citizen_id'], $citizen[
                     <img src="resources/img/free/human.png" height="48" alt="">
                 </button>
             </li>
-            <li role="none" class="paths" onclick="togglePathsBar()">
-                <button role="img" aria-label="Ouvrir le mode Expéditions">&#x1F97E;</button>
+            <li role="none" class="paths">
+                <button role="img" data-action="togglePathsBar" aria-label="Ouvrir le mode Expéditions">&#x1F97E;</button>
             </li>
         </ul>
         

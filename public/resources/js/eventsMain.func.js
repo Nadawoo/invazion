@@ -9,6 +9,7 @@ import { CityRadialMenu } from "./components/CityRadialMenu.js";
 import { Items } from "./components/Items.js";
 import { Move } from "./services/Move.js";
 import { moveBuildingBlockBelowPaddle, updateBlockAction } from "./actionBlocks.func.js";
+import { togglePathsBar } from "./paths.func.js";
 import {
     closePopup,
     dig,
@@ -178,6 +179,9 @@ export function listenToClick() {
         }
         else if(action === "populateDefensesDetails") {
             populateDefensesDetails();
+        }
+        else if(action === "togglePathsBar") {
+            togglePathsBar();
         }
         else if(action === "switchActionBlock") {
             const blockName = target.dataset.name;
@@ -386,7 +390,7 @@ export function listenToMapDragging() {
  *                      ex: document.querySelectorAll("#paths_panel .localize");
  * @returns {undefined}
  */
-function listenToLocationButtons(node) {
+export function listenToLocationButtons(node) {
 
     for (var i=0; i<node.length; i++) {
         node[i].addEventListener("click", function() {
@@ -406,7 +410,7 @@ function listenToLocationButtons(node) {
  * @param {type} node
  * @returns {undefined}
  */
-function listenToActionModeButtons(node) {
+export function listenToActionModeButtons(node) {
 
     for(var i=0; i<node.length; i++) {
         node[i].addEventListener("click", function() {
