@@ -200,6 +200,29 @@ export function listenToClick() {
             else if(button?.dataset.action === "centerMapOnMe") {
                 centerMapOnMe();
             }
+            else if(action === "switchMapView") {
+                const view = target.dataset.view;
+
+                resetMapView();
+                // Highlight the active view in the menu
+                target.classList.add("active");
+
+                if(view === "neighborhood") {
+                    toggleMapNeighborhoodView();
+                }
+                else if(view === "explorations") {
+                    toggleMapExplorationsView();
+                }
+                else if(view === "items") {
+                    toggleMapItemsView();
+                }
+                else if(view === "zombies") {
+                    toggleMapZombiesView();
+                    toggleMapItemMarker(106);
+                } else if(view === "realMap") {
+                    toggleMapMarker();
+                }
+            }
         }
         else if(action === "createGame") {
             event.preventDefault();
@@ -226,29 +249,6 @@ export function listenToClick() {
             else if(itemLabel.dataset.action === "toggleTooltip") {
                 const items = new Items();
                 items.toggleTooltip(event);
-            }
-        }
-        else if(action === "switchMapView") {
-            const view = target.dataset.view;
-            
-            resetMapView();
-            // Highlight the active view in the menu
-            target.classList.add("active");
-            
-            if(view === "neighborhood") {
-                toggleMapNeighborhoodView();
-            }
-            else if(view === "explorations") {
-                toggleMapExplorationsView();
-            }
-            else if(view === "items") {
-                toggleMapItemsView();
-            }
-            else if(view === "zombies") {
-                toggleMapZombiesView();
-                toggleMapItemMarker(106);
-            } else if(view === "realMap") {
-                toggleMapMarker();
             }
         }
         else if(action === selectors.closePopup) {
