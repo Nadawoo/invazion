@@ -154,3 +154,20 @@ if(isCitizenInGame() === true) {
 //    minimap.addEventListener("mouseout",  function() { let tooltip = new Tooltip(); tooltip.hide(myHexagon);    });
 //    minimap.addEventListener("click",     function() { let tooltip = new Tooltip(); tooltip.toggle(myHexagon);  });
 }
+
+
+// Display the catched JS errors in a toast
+window.addEventListener("error", (event) => {
+    const message = event.message || "Une erreur inattendue s'est produite.";
+    
+    displayToast(`Une erreur technique est survenue. L'affichage est peut être incorrect.`, "warning");
+});
+
+// Display the not catched JS errors in a toast
+window.addEventListener("unhandledrejection", (event) => {
+    const message = event.reason?.message ||
+                    String(event.reason) ||
+                    "Une erreur asynchrone s'est produite.";
+    
+    displayToast(`Une erreur technique est survenue. L'affichage est peut être incorrect.`, "warning");
+});
