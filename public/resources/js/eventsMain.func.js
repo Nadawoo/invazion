@@ -96,9 +96,7 @@ export function listenToSubmit() {
                     }
                 });
         }
-    },
-    { passive: true }
-    );
+    });
 }
 
 
