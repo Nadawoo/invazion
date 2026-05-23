@@ -133,62 +133,63 @@ export function listenToClick() {
             };
         
         const target = event.target;
-        let hexagon = event.target.closest(".hexagon"),
+        const action = target.dataset.action;
+        let hexagon = target.closest(".hexagon"),
             button = null;
             
         // Build a city on the map (not a construction inside a city)
-        if(button = event.target.closest(selectors.buildCity)) {
+        if(button = target.closest(selectors.buildCity)) {
             buildOnMap(Number(button.dataset.citytypeid));
         }
-        else if(event.target.matches(selectors.drive) === true) {
+        else if(target.matches(selectors.drive) === true) {
             // If we click on a "drive" button over a city (move on the roads)
-            const path = event.target.dataset.path;
+            const path = target.dataset.path;
             const move = new Move();
             move.driveToCity(path);
         }
-        else if(event.target.matches(selectors.teleport) === true) {
+        else if(target.matches(selectors.teleport) === true) {
             // If we click on a teleportation button over a city, teleport the citizen
-            const cityId = Number(event.target.closest(".square_container").dataset.cityid);
+            const cityId = Number(target.closest(".square_container").dataset.cityid);
             const move = new Move();
             move.teleportToCity(cityId);
         }
-        else if(event.target.matches(selectors.addRoad) === true) {
+        else if(target.matches(selectors.addRoad) === true) {
             _newRoadSource = Number(hexagon.querySelector(".square_container").dataset.cityid);
             displayToast("Sélectionnez la ville de destination de la route", "info");
             
             document.querySelector("#map").dataset.viewmode = "addRoad";
         }
-        else if(event.target.dataset.action === "moveBuildingBlockBelowPaddle") {
+        else if(action === "moveBuildingBlockBelowPaddle") {
             moveBuildingBlockBelowPaddle();
         }
-        else if(event.target.dataset.action === "killZombies") {
+        else if(action === "killZombies") {
             killZombies("fight");
         }
-        else if(event.target.dataset.action === "killMassZombies") {
+        else if(action === "killMassZombies") {
             killZombies("bigfight");
         }
-        else if(event.target.dataset.action === "repelZombies") {
+        else if(action === "repelZombies") {
             killZombies("repel");
         }
-        else if(event.target.dataset.action === "switchActionBlock") {
-            const blockName = event.target.dataset.name;
+        else if(action === "switchActionBlock") {
+            const blockName = target.dataset.name;
             toggleActionBlock(blockName);
             updateBlockAction(blockName);
         }
-        else if(event.target.closest("#map_navigation")) {            
-            const button = event.target.closest("button");
+        else if(target.closest("#map_navigation")) {            
+            const button = target.closest("button");
             
-            if(button.dataset.action === "zoomMapStepIn") {
+            if(button?.dataset.action === "zoomMapStepIn") {
                 zoomMapStep("in");
             }
-            else if(button.dataset.action === "zoomMapStepOut") {
+            else if(button?.dataset.action === "zoomMapStepOut") {
                 zoomMapStep("out");
             }
-            else if(button.dataset.action === "centerMapOnMe") {
+            else if(button?.dataset.action === "centerMapOnMe") {
                 centerMapOnMe();
             }
         }
-        else if(event.target.dataset.action === "createGame") {
+        else if(action === "createGame") {
             event.preventDefault();
             
             const zombLib = new ZombLib(),
@@ -203,10 +204,10 @@ export function listenToClick() {
         else if(target.closest(".item_label")){
             const itemLabel = target.closest(".item_label");
             
-            if(target.dataset.action === "searchItemOnMap") {
+            if(action === "searchItemOnMap") {
                 searchItemOnMap(event);
             }
-            else if(target.dataset.action === "closeTooltip") {
+            else if(action === "closeTooltip") {
                 const items = new Items();
                 items.toggleTooltip(event);
             }
@@ -215,7 +216,7 @@ export function listenToClick() {
                 items.toggleTooltip(event);
             }
         }
-        else if(target.dataset.action === "switchMapView") {
+        else if(action === "switchMapView") {
             const view = target.dataset.view;
             
             resetMapView();
@@ -238,10 +239,10 @@ export function listenToClick() {
                 toggleMapMarker();
             }
         }
-        else if(event.target.dataset.action === selectors.closePopup) {
+        else if(action === selectors.closePopup) {
             closePopup();
         }
-        else if(event.target.dataset.action === selectors.enlargeWall) {
+        else if(action === selectors.enlargeWall) {
             enlargeWall();
         }
         else if(hexagon && hexagon.querySelector(".square_container").dataset.citytypeid !== "") {
