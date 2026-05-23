@@ -15,6 +15,7 @@ import {
     displayToast,
     exploreBuilding,
     killZombies,
+    populateDefensesDetails,
     searchItemOnMap,
     toggleActionBlock,
     toggleMapMarker
@@ -174,6 +175,9 @@ export function listenToClick() {
         }
         else if(action === "closeCityframesBar") {
             toggleCityframesView();
+        }
+        else if(action === "populateDefensesDetails") {
+            populateDefensesDetails();
         }
         else if(action === "switchActionBlock") {
             const blockName = target.dataset.name;

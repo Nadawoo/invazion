@@ -1100,7 +1100,7 @@ export function displayToast(message, error_class) {
  * Add the data in the pop-up detailing the sources of the city defenses
  * @returns {undefined}
  */ 
-function populateDefensesDetails() {
+export function populateDefensesDetails() {
     
     let popup = document.querySelector("#popdefenses");
     let defenses = popup.querySelector(".defenses_list");
