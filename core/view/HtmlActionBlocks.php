@@ -94,6 +94,9 @@ class HtmlActionBlocks {
                     <li>
                         <div class="collapsible-header"><strong>&#x1F9DF; Pouvoirs (joueur zombie)</strong> <strong>&gt;</strong></div>
                         <div class="collapsible-body">
+                            '.$this->buttons->button('add_zone_zombies', true, null, true, 'no_notif').'
+                            '.$this->buttons->button('add_mass_zombies', true, null, true, 'no_notif').'
+                            <br>
                             '.$this->layout->block_zombie_powers().'
                         </div>
                     <li>

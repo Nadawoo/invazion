@@ -86,8 +86,8 @@ class HtmlButtons
                     ],
                 ],
             'add_mass_zombies' => [
-                'icon'  => '',
-                'name'  => 'Ajouter des zombies sur toute la carte',
+                'icon'  => '&#x1F30D;',
+                'name'  => 'Ajouter des zombies sur la carte',
                 'title' => "Bouton spécial béta-test",
                 'fields' => [
                     'api_name'           => 'zone',

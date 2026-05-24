@@ -550,18 +550,12 @@ echo $layout->page_header($citizen['user_id'], $citizen['citizen_id'], $citizen[
     <br>
     <br>
     <br>
-    <br>
-
-    <?php
-    echo $buttons->button('add_mass_zombies');
-    ?>
-    <br>
     
     <br>
     
     <form method="post" action="<?php echo $official_server_root.'/apis-list' ?>" target="_blank">
         <input type="hidden" name="token" value="<?php echo $api->get_token() ?>" />
-        <input type="submit" value="Debugage"  class="formlink" style="color:grey"
+        <input type="submit" value="Débugage API"  class="formlink" style="color:grey"
                title="Lien spécial pour le débugage - Ignorez-le sauf si un administrateur du jeu vous le demande." />
     </form>
     

@@ -405,10 +405,6 @@ class HtmlLayout extends HtmlPage
             <tr>
                 <td>'.$buttons->icon('add_vault').'</td>
                 <td>'.$buttons->button('add_vault', 'no_icon').'</td>
-            </tr>
-            <tr>
-                <td>'.$buttons->icon('add_zone_zombies').'</td>
-                <td>'.$buttons->add_zone_zombies().'</td>
             </tr>';
 //        }
         
@@ -420,7 +416,7 @@ class HtmlLayout extends HtmlPage
     function block_zombie_powers() {
         
         return '
-            <em>[Ces fonctions sont en cours de développement, pas encore actives]</em><br>
+            <em>[Les actions suivantes sont en cours de développement, pas encore actives]</em><br>
             <br>
             <img src="resources\img\copyrighted\wolf_64px.png" alt="&#128200;" height="32" width="32"> Augmenter l\'attaque quotidienne <abbr title="Augmente le nombre de zombies qui attaqueront la ville lors de la prochaine attaque de fin de cycle.">[?]</abbr><br>
             <img src="resources\img\motiontwin\zombie6.gif" alt="&#129503;" height="32" width="32"> Ajouter des zombies sur la carte <abbr title="Ajoute aléatoirement des zombies sur la carte du jeu.">[?]</abbr><br>
