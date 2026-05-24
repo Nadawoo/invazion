@@ -11,7 +11,7 @@ class HtmlPage
     // Increment those variables when you modify the CSS or JS files. This ensures
     // that the users' browsers reload the up-to-date files, instead of using 
     // the obsolete ones stored in their cache.
-    private $css_js_version = 194;
+    private $css_js_version = 195;
     
     /**
      * Sets HTTP headers to secure the website
@@ -151,6 +151,13 @@ class HtmlPage
     {
         
         return '
+                            <section id="jsLog">
+                                <textarea name="log" readonly>Débugage : log javascript</textarea>
+                                <button class="copy"  title="Copier" data-action="copyTextarea" data-target="#jsLog textarea">
+                                    <i class="material-icons">content_copy</i>
+                                </button>
+                            </section>
+
                             <footer>
                                 <p>Ce jeu est issu d\'<a href="https://invazion.nadazone.fr">Azimutant</a>, 
                                 créé par <strong>Nadawoo</strong> (développeur indépendant).<br> 

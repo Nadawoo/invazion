@@ -392,3 +392,27 @@ div.center {
 @keyframes spin {
     to { transform: rotate(360deg); }
 }
+
+#jsLog {
+    position:relative;
+    display:flex;
+}
+#jsLog textarea {
+    height:10em;
+    margin:2em 1em;
+    padding:0.5em;
+    overflow:auto;
+    background:lightyellow;
+    border:1px dashed darkgrey;
+    color:dimgrey;
+}
+#jsLog .copy {
+    position:absolute;
+    top:2.5em;
+    right:2em;
+    height:2.5em;
+    background:none;
+    border:none;
+    color:grey;
+    cursor:pointer;
+}

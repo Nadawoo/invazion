@@ -8,6 +8,7 @@ import { BuildingPopup } from "./components/BuildingPopup.js";
 import { CityRadialMenu } from "./components/CityRadialMenu.js";
 import { Items } from "./components/Items.js";
 import { Move } from "./services/Move.js";
+import { Clipboard } from "./utils/Clipboard.js";
 import { moveBuildingBlockBelowPaddle, updateBlockAction } from "./actionBlocks.func.js";
 import { togglePathsBar } from "./paths.func.js";
 import {
@@ -138,11 +139,11 @@ export function listenToClick() {
         const target = event.target;
         const action = target.dataset.action;
         let hexagon = target.closest(".hexagon"),
-            button = null;
+            button = target.closest("button");
             
         // Build a city on the map (not a construction inside a city)
-        if(button = target.closest(selectors.buildCity)) {
-            buildOnMap(Number(button.dataset.citytypeid));
+        if(target.closest(selectors.buildCity)) {
+            buildOnMap(Number(target.closest(selectors.buildCity).dataset.citytypeid));
         }
         else if(target.matches(selectors.drive) === true) {
             // If we click on a "drive" button over a city (move on the roads)
@@ -182,6 +183,10 @@ export function listenToClick() {
         }
         else if(action === "togglePathsBar") {
             togglePathsBar();
+        }
+        else if(button?.dataset.action === "copyTextarea") {
+            const clipboard = new Clipboard();
+            clipboard.copyTextarea(button.dataset.target);
         }
         else if(action === "switchActionBlock") {
             const blockName = target.dataset.name;

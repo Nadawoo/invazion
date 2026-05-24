@@ -3,6 +3,7 @@
  * Put nothing else than events listeners.
  */
 
+import { LogJsErrors } from "./services/LogJsErrors.js";
 import {
     enlargeWall,
     filterConstructions,
@@ -158,18 +159,5 @@ if(isCitizenInGame() === true) {
 }
 
 
-// Display the catched JS errors in a toast
-window.addEventListener("error", (event) => {
-    const message = event.message || "Une erreur inattendue s'est produite.";
-    
-    displayToast(`Une erreur technique est survenue. L'affichage est peut être incorrect.`, "warning");
-});
-
-// Display the not catched JS errors in a toast
-window.addEventListener("unhandledrejection", (event) => {
-    const message = event.reason?.message ||
-                    String(event.reason) ||
-                    "Une erreur asynchrone s'est produite.";
-    
-    displayToast(`Une erreur technique est survenue. L'affichage est peut être incorrect.`, "warning");
-});
+const logJsErrors = new LogJsErrors();
+logJsErrors.listenToErrors();
