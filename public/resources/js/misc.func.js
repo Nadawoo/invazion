@@ -262,7 +262,7 @@ function toggleItemsPanel() {
 /**
  * Add zombies in one given zone
  */
-async function addZombiesInZone() {
+export async function addZombiesInZone() {
     
     let cookies = new Cookies(),
         token = cookies.getCookie('token'),
@@ -308,15 +308,14 @@ async function updateDiscussionsNotifs() {
 /**
  * Change the ground type of the zone (grass, peeble, lava...)
  */
-async function updateLandType(landType, coordX, coordY, radius) {
+export async function updateLandType(landType, coordX, coordY, radius) {
     
     let cookies = new Cookies(),
-        token = cookies.getCookie('token'),
-        mapId = document.getElementById("mapId").innerHTML;
+        token = cookies.getCookie('token');
     
     // Sends the characteristics of the new item to the API
     let zombLib = new ZombLib();
-    let json = await zombLib.callApi("GET", "zone", `action=edit&stuff=${landType}&coord_x=${coordX}&coord_y=${coordY}&radius=${radius}&token=${token}`);
+    return await zombLib.callApi("GET", "zone", `action=edit&stuff=${landType}&coord_x=${coordX}&coord_y=${coordY}&radius=${radius}&token=${token}`);
 }
 
 

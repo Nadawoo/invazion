@@ -8,7 +8,6 @@ function listenToActionModeActions() {
     
     listenToDropPickupItem();
     listenToExplorationButton();
-    listenToLandform();
 }
 
 
@@ -41,25 +40,4 @@ function listenToExplorationButton() {
         },
         { passive: true }
     );
-}
-
-
-/**
- * The form to edit the ground type of a zone (lava, grass...)
- * @returns {undefined}
- */
-async function listenToLandform() {
-    
-    document.getElementById("landform").addEventListener("submit", function(event) {
-        // Desactivate the classic submission button (avoids reloading the page)
-        event.preventDefault();
-        
-        let fields = document.getElementById("landform").elements,
-            landType = event.submitter.value,
-            x = fields["coord_x"].value,
-            y = fields["coord_y"].value,
-            radius = fields["radius"].value;
-        
-        updateLandType(landType, x, y, radius);
-    });
 }

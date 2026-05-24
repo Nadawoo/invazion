@@ -732,7 +732,7 @@ function toggleMapDefensesView() {
 }
 
 
-async function buildOnMap(cityTypeId) {
+export async function buildOnMap(cityTypeId) {
     
     const zombLib = new ZombLib(),
           cookies = new Cookies(),

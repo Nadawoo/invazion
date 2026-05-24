@@ -992,7 +992,7 @@ class HtmlButtons
         $button = $this->buttons['add_zone_zombies'];
         $fields = $button['fields'];
         
-        return '<button class="redbutton" title="'.$button['title'].'" onclick="addZombiesInZone()">'.$button['name'].'</button>';
+        return '<button class="redbutton" title="'.$button['title'].'" data-action="addZombiesInZone">'.$button['name'].'</button>';
     }
     
     

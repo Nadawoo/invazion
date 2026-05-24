@@ -12,6 +12,7 @@ import { Clipboard } from "./utils/Clipboard.js";
 import { moveBuildingBlockBelowPaddle, updateBlockAction } from "./actionBlocks.func.js";
 import { togglePathsBar } from "./paths.func.js";
 import {
+    addZombiesInZone,
     closePopup,
     dig,
     displayToast,
@@ -20,7 +21,8 @@ import {
     populateDefensesDetails,
     searchItemOnMap,
     toggleActionBlock,
-    toggleMapMarker
+    toggleMapMarker,
+    updateLandType
     }
     from "./misc.func.js";
 import { initiateDiscussTab, listenToDiscussTabs, toggleSendform } from "./discussions.func.js";
@@ -31,6 +33,7 @@ import {
     }
     from "./mapInit.func.js";
 import {
+    buildOnMap,
     centerMapOnMe,
     resetMapView,
     toggleCityframesView,
@@ -58,6 +61,7 @@ export function listenToSubmit() {
             "explore": "form[name=explore_building]",
             "move": "#block_move form[name=move]",
             "joinGame": "form[name=join_game]",
+            "updateLandType": "#landform"
             };
         
         // Execute the "Explore building" action
@@ -74,6 +78,19 @@ export function listenToSubmit() {
             event.preventDefault();
             const move = new Move();
             move.walk(event.submitter.value);
+        }
+        else if(event.target.matches(formSelectors.updateLandType)) {
+            event.preventDefault();
+        
+            const fields = event.target.elements,
+                  landType = event.submitter.value,
+                  x = fields["coord_x"].value,
+                  y = fields["coord_y"].value,
+                  radius = fields["radius"].value;
+
+            updateLandType(landType, x, y, radius).then((json) => 
+                displayToast(json.metas.error_message, json.metas.error_class)
+            );
         }
         else if(event.target.matches(formSelectors.joinGame)) {
             event.preventDefault();
@@ -192,6 +209,9 @@ export function listenToClick() {
             const blockName = target.dataset.name;
             toggleActionBlock(blockName);
             updateBlockAction(blockName);
+        }
+        else if(action === "addZombiesInZone") {
+            addZombiesInZone();
         }
         else if(target.closest("#map_navigation")) {            
             const button = target.closest("button");
