@@ -259,7 +259,7 @@ export function listenToClick() {
         else if(action === selectors.closePopup) {
             closePopup();
         }
-        else if(action === selectors.enlargeWall) {
+        else if(action === selectors.enlargeWall || button?.dataset.action === "enlargeWall") {
             enlargeWall();
         }
         else if(hexagon && hexagon.querySelector(".square_container").dataset.citytypeid !== "") {

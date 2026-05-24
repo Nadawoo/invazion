@@ -166,9 +166,13 @@ class HtmlLayout extends HtmlPage
             </li>
             
             <li class="right" role="none">
-                <button aria-label="Ouvrir/fermer le panneau des communications" title="Communications" id="showWall">
+                <button title="Communications"
+                    aria-label="Ouvrir/fermer le panneau des communications"
+                    id="showWall"
+                    data-action="enlargeWall"
+                    >
                     <span class="icon"><i class="material-icons" role="img">sms</i></span>
-                    <span class="text" role="img" data-action="enlargeWall">Communications</span>
+                    <span class="text" role="img">Communications</span>
                 </button>
                 
                 <!--
