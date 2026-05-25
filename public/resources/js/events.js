@@ -11,8 +11,7 @@ import {
     listenToMapLegendSwitches,
     listenToSubmit,
     listenToClick,
-    listenToPointerdown,
-    listenToMainActionModeButton
+    listenToPointerdown
     }
     from "./eventsMain.func.js"
 import { zoomMapRange } from "./mapInit.func.js";
@@ -139,9 +138,6 @@ if (document.getElementById('map') !== null) {
 
 // If the player is connected
 if(isCitizenInGame() === true) {
-    
-    // Button to zoom the map on the player
-    listenToMainActionModeButton();
     
 //    let myHexagon = document.getElementById("me").closest(".hexagon");
     

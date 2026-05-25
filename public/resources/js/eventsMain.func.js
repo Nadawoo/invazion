@@ -157,7 +157,7 @@ export function listenToClick() {
         const action = target.dataset.action;
         let hexagon = target.closest(".hexagon"),
             button = target.closest("button");
-            
+             
         // Build a city on the map (not a construction inside a city)
         if(target.closest(selectors.buildCity)) {
             buildOnMap(Number(target.closest(selectors.buildCity).dataset.citytypeid));
@@ -200,6 +200,9 @@ export function listenToClick() {
         }
         else if(action === "togglePathsBar") {
             togglePathsBar();
+        }
+        else if(button?.dataset.action === "switchToActionView") {
+            switchToActionView();
         }
         else if(button?.dataset.action === "copyTextarea") {
             const clipboard = new Clipboard();
@@ -442,17 +445,6 @@ export function listenToActionModeButtons(node) {
             switchToActionView();
         });
     }
-}
-
-
-/**
- * Event listener for the #action_mode_button (HTML ID, not class)
- * @returns {undefined}
- */
-export async function listenToMainActionModeButton() {
-    
-    // Zoom on the map to the player
-    document.querySelector("#action_mode_button").addEventListener("click", switchToActionView);
 }
 
 

@@ -436,7 +436,7 @@ echo $layout->page_header($citizen['user_id'], $citizen['citizen_id'], $citizen[
             </li>
             -->
             <li role="none" id="action_mode_button" class="my_zone">
-                <button aria-label="Passer en mode action de zone">
+                <button aria-label="Passer en mode action de zone" data-action="switchToActionView">
                     <span class="pickaxe" role="img">&#x26CF;&#xFE0F;</span>
                     <img src="resources/img/free/human.png" height="48" alt="">
                 </button>
