@@ -610,7 +610,7 @@ export async function dig() {
         // Hide the message "There are no items on the ground..."
         hide("#items_ground .greytext");
         // Add the new item(s) in the ground items list
-        newItemsWithAmounts = mergeItemsIdsWithAmounts(json.datas.found_items_ids);
+        const newItemsWithAmounts = mergeItemsIdsWithAmounts(json.datas.found_items_ids);
         populateItemsList("#items_ground .items_list", newItemsWithAmounts);
         // Make the digging button inactive
         updateDigButtons(1);
@@ -874,7 +874,7 @@ function getDistance(cityX, cityY, citizenX, citizenY) {
  *                               next to the user chips
  * @returns {string} HTML
  */
-function getHtmlActionBlockFellow(citizen, bigChips=false, displayActionButtons=true, displayItsMe=false) {
+export function getHtmlActionBlockFellow(citizen, bigChips=false, displayActionButtons=true, displayItsMe=false) {
     
     // The model for the HTML is located in a <template> tag
     template = document.querySelector("#tplActionBlockFellow").content.cloneNode(true);

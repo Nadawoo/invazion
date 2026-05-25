@@ -6,6 +6,7 @@
 import { Items } from "./components/Items.js";
 import { getMapCitizensOnce } from "./mapInit.func.js";
 import {
+    getHtmlActionBlockFellow,
     getMyZoneOnce,
     updateCardCitizensInZone,
     updateCityDistance,
