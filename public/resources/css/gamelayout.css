@@ -342,7 +342,7 @@ form[name="end_cycle"] button {
 #identification_near_map {
     position:sticky;
     bottom:0;
-    /*height:10em;*/
+    min-height:5.5em;
     width:100%;
     padding:0.5em;
     display:flex;

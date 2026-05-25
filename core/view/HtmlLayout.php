@@ -118,7 +118,7 @@ class HtmlLayout extends HtmlPage
         
         return '
             <div id="identification_near_map">
-                <a href="games" class="redbutton z-depth-5" style="width:15em;font-size:1.5em;">
+                <a href="games" class="redbutton z-depth-5" style="width:15em;font-size:1.3em;">
                     Rejoindre une partie
                 </a>
             </div>';
