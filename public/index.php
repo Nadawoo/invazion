@@ -516,7 +516,7 @@ echo $layout->page_header($citizen['user_id'], $citizen['citizen_id'], $citizen[
         
         <div id="message_move"><?php echo $msg_move ?></div>
         
-        <a href="#poptasks" id="tasks_button" class="animate__animated animate__slideInLeft">
+        <a href="#poptasks" id="tasks_button" class="animate__animated animate__slideInLeft" style="display:none">
             <span class="dot_number">8</span>
             &#x1F4D1; <span class="text" data-translate="goals">Objectifs</span>
         </a>

@@ -136,9 +136,8 @@ if(document.getElementById("map") !== null) {
     });
     // Place the citizens on the appropriate zones of the map
     let mapCitizens = new MapCitizens();
-    _citizens = mapCitizens.addCitizensOnMap(mapId).then(() => {
-        if(isCitizenInGame() === true) { addMeOnMap(); }
-        });
+    _citizens = mapCitizens.addCitizensOnMap(mapId);
+    
     // Display the zombie cores on the map (item ID #106)
     displayItemOnMap(106);
     
@@ -155,36 +154,41 @@ if(document.getElementById("map") !== null) {
     populateMapTitle(mapId);
     
     // Only if the visitor is connected
-    if(isCitizenInGame() === true) {
-        setTimeout(function() {
-            centerMapOnMe();
-            
-//            var myCityZoneId = getMyCityZoneId();
-            // Add a location sign above the city of the player
-//            addCityLocationMarker(myCityZoneId);
-            // Start in the "action" mode (centered on the current player)
-//            setTimeout(switchToActionView, 500);
+    isCitizenInGame(mapId).then((isInGame) => {
+        if(!isInGame) {
+            document.querySelector("#views_bar").classList.add("hidden");
+            document.querySelector("#map_navigation").classList.add("hidden");
+            document.querySelector("#tasks_button").classList.add("hidden");
+        }
+        else {
+            addMeOnMap();
 
-            // Draws a line between the player and his city
-//            if(myCityZoneId !== null) {
-//                updateLineBetweenZones("myCity", "#me", "#"+myCityZoneId);
-//            }
-            // Add the number of defenses required in the tasks list
-            let tasks = new Tasks();
-            tasks.populateTaskDefenses();
-            
-            // Ask for chosing a citizen speciality (builder, digger...)
-            let citizenId = Number(document.querySelector("#citizenId").innerText),
-                lastSpecializationCycle = _citizens[citizenId]["last_specialization_cycle"];
-            if(lastSpecializationCycle === null || Number(lastSpecializationCycle) < getCurrentCycle()) {
-                window.location.hash = "#popspecialize";
-            }
-        }, 1000);
-    } else {
-        document.querySelector("#views_bar").classList.add("hidden");
-        document.querySelector("#map_navigation").classList.add("hidden");
-        document.querySelector("#tasks_button").classList.add("hidden");
-    }
+            setTimeout(function() {
+                centerMapOnMe();
+
+    //            var myCityZoneId = getMyCityZoneId();
+                // Add a location sign above the city of the player
+    //            addCityLocationMarker(myCityZoneId);
+                // Start in the "action" mode (centered on the current player)
+    //            setTimeout(switchToActionView, 500);
+
+                // Draws a line between the player and his city
+    //            if(myCityZoneId !== null) {
+    //                updateLineBetweenZones("myCity", "#me", "#"+myCityZoneId);
+    //            }
+                // Add the number of defenses required in the tasks list
+                let tasks = new Tasks();
+                tasks.populateTaskDefenses();
+
+                // Ask for chosing a citizen speciality (builder, digger...)
+                let citizenId = Number(document.querySelector("#citizenId").innerText),
+                    lastSpecializationCycle = _citizens[citizenId]["last_specialization_cycle"];
+                if(lastSpecializationCycle === null || Number(lastSpecializationCycle) < getCurrentCycle()) {
+                    window.location.hash = "#popspecialize";
+                }
+            }, 1000);
+        }
+    });
     
     // Restore the display of the action button before the page was refreshed
 //    let cookies = new Cookies();

@@ -17,7 +17,6 @@ import {
 import { zoomMapRange } from "./mapInit.func.js";
 import { zoomMapStep } from "./mapUse.func.js";
 import { displayToast } from "./misc.func.js";
-import { isCitizenInGame } from "./users.func.js";
 
 
 var nbrExecutionsGetCyclicAttacks = 0;
@@ -137,22 +136,22 @@ if (document.getElementById('map') !== null) {
 }
 
 // If the player is connected
-if(isCitizenInGame() === true) {
-    
+//if(isCitizenInGame() === true) {
+//    
 //    let myHexagon = document.getElementById("me").closest(".hexagon");
-    
-    // Displays the tooltip of the player's zone when hovering the movement paddle
+//    
+//    // Displays the tooltip of the player's zone when hovering the movement paddle
 //    let paddle = document.getElementById("central");
 //    paddle.addEventListener("mouseover", function() { let tooltip = new Tooltip(); tooltip.display(myHexagon); });
 //    paddle.addEventListener("mouseout",  function() { let tooltip = new Tooltip(); tooltip.hide(myHexagon);    });
 //    paddle.addEventListener("click",     function() { let tooltip = new Tooltip(); tooltip.toggle(myHexagon);  });
-
-    // Same thing when hovering the GPS on the smartphone
+//
+//    // Same thing when hovering the GPS on the smartphone
 //    let minimap = document.getElementById("minimap");
 //    minimap.addEventListener("mouseover", function() { let tooltip = new Tooltip(); tooltip.display(myHexagon); });
 //    minimap.addEventListener("mouseout",  function() { let tooltip = new Tooltip(); tooltip.hide(myHexagon);    });
 //    minimap.addEventListener("click",     function() { let tooltip = new Tooltip(); tooltip.toggle(myHexagon);  });
-}
+//}
 
 
 const logJsErrors = new LogJsErrors();

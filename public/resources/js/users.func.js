@@ -4,6 +4,7 @@
  */
 
 import { ZombLib } from "./lib/ZombLib.js";
+import { getMapCitizensOnce } from "./mapInit.func.js";
 
 
 /**
@@ -52,11 +53,13 @@ async function connectUser() {
  * 
  * @returns {Boolean}
  */
-export function isCitizenInGame() {
+export async function isCitizenInGame(mapId) {
     
-    let citizenIdNode = document.querySelector("#citizenId");
+    const _citizens = await getMapCitizensOnce(mapId);
     
-    return (citizenIdNode === null) ? false : Number.isInteger(parseInt(citizenIdNode.innerText));
+    const citizenId = Number(document.querySelector("#citizenId").innerText);
+    
+    return (_citizens !== undefined && _citizens[citizenId] !== undefined);
 }
 
 

@@ -68,7 +68,7 @@ export async function getMapCitiesOnce(mapId) {
  */
 export async function getMapCitizensOnce(mapId) {
     
-    // If the API has already be called before, don't re-call it
+    // If the API has already be called before, don't call it again
     if(_citizens === null) {
         let zombLib = new ZombLib()
         let json = await zombLib.callApi("GET", "citizens", `action=get&map_id=${mapId}`);    
