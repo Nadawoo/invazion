@@ -31,8 +31,9 @@ export class LogJsErrors {
             const message = event.reason?.message ||
                             String(event.reason) ||
                             "Une erreur asynchrone s'est produite.";
-            const stack = event.error.stack;
-
+            
+            const stack = event.reason?.stack || "(stack indisponible)";
+            
             displayToast(`Une erreur technique est survenue. L'affichage est peut être incorrect.`, "warning");
 
             this.#writeErrorInLog(message, stack);
