@@ -238,6 +238,7 @@
     position:relative;
     height:2.8em;
     width: 2.8em;
+    padding:0;
     text-align:center;
     background:#fbeee6;
     border:3px inset #34495e;
@@ -253,7 +254,7 @@
 }
 #statusbar .block_icon .icon,
 #bagbar .block_icon .icon {
-    margin-top:-0.15em;
+    margin-top:-12px;
     font-size:1.6em;
 }
 #personal_block .block_icon .name {

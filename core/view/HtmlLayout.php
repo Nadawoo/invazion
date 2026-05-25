@@ -603,10 +603,10 @@ class HtmlLayout extends HtmlPage
         
         return '
             <div id="bagbar">
-                <div class="block_icon" onclick="toggleBag()">
+                <button class="block_icon" data-action="toggleBag">
                     <div class="icon">&#x1F392;</div>
                     <div class="name">Sac</div>
-                </div>
+                </button>
                 <ul class="items_list hidden"></ul>
             </div>';
     }

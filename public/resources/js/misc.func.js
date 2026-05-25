@@ -6,6 +6,7 @@
 
 import { ZombLib } from "./lib/ZombLib.js";
 import { Items } from "./components/Items.js";
+import { populateItemsList } from "./actionBlocks.func.js";
 import {
     updateBlockAction,
     updateBlockActionZombies,
@@ -23,7 +24,7 @@ import { centerMapOnMe, toggleMapItemMarker } from "./mapUse.func.js";
  * Button to enlarge/reduce the bag (hide the overflowing items)
  * @returns {undefined}
  */
-function toggleBag() {
+export function toggleBag() {
     
     let citizenId = document.querySelector("#citizenId").innerText;
     let bagItems = _citizens[citizenId]["bag_items"];
@@ -46,7 +47,7 @@ function toggleBag() {
 }
 
 
-function toggleStatus() {
+export function toggleStatus() {
     
     toggle("#statusbar .items_list");
     document.querySelector("#statusbar").classList.remove("inactive");

@@ -23,7 +23,9 @@ import {
     populateDefensesDetails,
     searchItemOnMap,
     toggleActionBlock,
+    toggleBag,
     toggleMapMarker,
+    toggleStatus,
     updateLandType
     }
     from "./misc.func.js";
@@ -219,6 +221,12 @@ export function listenToClick() {
         }
         else if(button?.dataset.action === "switchToActionView") {
             switchToActionView();
+        }
+        else if(button?.dataset.action === "toggleBag") {
+            toggleBag(); 
+        }
+        else if(button?.dataset.action === "toggleStatus") {
+            toggleStatus(); 
         }
         else if(button?.dataset.action === "copyTextarea") {
             const clipboard = new Clipboard();

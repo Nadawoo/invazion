@@ -49,11 +49,11 @@ class HtmlStatusBar {
             :$this->status_empty();
         
         return '
-            <div id="statusbar" onclick="toggleStatus()">
-                <div class="block_icon">
+            <div id="statusbar">
+                <button class="block_icon" data-action="toggleStatus">
                     <div class="icon">&#9877;&#65039;</div>
                     <div class="name">États</div>
-                </div>
+                </button>
                 <ul class="items_list hidden">'.
                     $status_my_caracs.
                     $status_control_points.
