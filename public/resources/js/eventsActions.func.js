@@ -7,7 +7,6 @@
 function listenToActionModeActions() {
     
     listenToDropPickupItem();
-    listenToExplorationButton();
 }
 
 
@@ -28,16 +27,4 @@ function listenToDropPickupItem() {
             pickupItem(event.submitter);
         }
     });
-}
-
-
-function listenToExplorationButton() {
-    
-    // [On PC] Open the details of a building when clicking on it
-    document.getElementById("button_explore").addEventListener("click", function(){
-            let buildingPopup = new BuildingPopup();
-            buildingPopup.openBuildingPopup(event);
-        },
-        { passive: true }
-    );
 }

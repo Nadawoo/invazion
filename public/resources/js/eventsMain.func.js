@@ -150,14 +150,15 @@ export function listenToClick() {
             "drive": "button[name=drive]",
             "teleport": "button[name=teleport]",
             "addRoad": "button[name=road]",
-            "enlargeWall": "enlargeWall"
+            "enlargeWall": "enlargeWall",
+            "explore":"#button_explore",
             };
         
         const target = event.target;
         const action = target.dataset.action;
         let hexagon = target.closest(".hexagon"),
             button = target.closest("button");
-             
+            
         // Build a city on the map (not a construction inside a city)
         if(target.closest(selectors.buildCity)) {
             buildOnMap(Number(target.closest(selectors.buildCity).dataset.citytypeid));
@@ -167,6 +168,10 @@ export function listenToClick() {
             const path = target.dataset.path;
             const move = new Move();
             move.driveToCity(path);
+        }
+        else if(target.matches(selectors.explore) === true) {
+            let buildingPopup = new BuildingPopup();
+            buildingPopup.openBuildingPopup(event);
         }
         else if(target.matches(selectors.teleport) === true) {
             // If we click on a teleportation button over a city, teleport the citizen
