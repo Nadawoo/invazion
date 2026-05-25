@@ -14,6 +14,7 @@
     border-top-left-radius:1rem;
     border-top-right-radius:1rem;
     box-shadow:4px -4px 10px black;
+    overflow:auto; /* Ensures that the height is really 0 after reducing the panel */
     z-index:40;
     transition-duration: 0.3s;
 }
