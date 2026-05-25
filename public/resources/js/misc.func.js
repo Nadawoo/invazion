@@ -34,7 +34,9 @@ export function toggleBag() {
     let allBagItemsButTags = filterAllItemsButTags(bagItems, _configsItems, ["actionPoints", "status"]);
     
     // Populate the list of items in the bag if not already done
-    if(document.querySelector(bagItemsSelector).innerText === "") {
+    if(document.querySelector(bagItemsSelector).innerText === ""
+        && document.querySelector(bagItemsSelector).classList.contains("hidden")
+        ) {
         populateItemsList(bagItemsSelector, allBagItemsButTags, _citizens[citizenId]["bag_size"]);
     }
     
