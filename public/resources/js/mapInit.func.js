@@ -318,8 +318,6 @@ export function switchToActionView() {
         document.querySelector("#actions").appendChild(tplActions);
         // Add the list of buildable buildings
         populateBuilderBlock();
-        // Load the event listeners for move, dig, etc
-        listenToActionModeActions();
         // Load event listener to go back to the map
         document.querySelector("#map_mode_button").addEventListener("click",
             switchToMapView

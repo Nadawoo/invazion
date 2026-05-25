@@ -16,8 +16,10 @@ import {
     closePopup,
     dig,
     displayToast,
+    dropItem,
     exploreBuilding,
     killZombies,
+    pickupItem,
     populateDefensesDetails,
     searchItemOnMap,
     toggleActionBlock,
@@ -58,6 +60,8 @@ export function listenToSubmit() {
         const formSelectors = {
             "createGame": "form[name=create_game]",
             "dig":"#block_dig form[name=dig]",
+            "dropItem":"form[name=form_drop]",
+            "pickupItem":"form[name=form_pickup]",
             "explore": "form[name=explore_building]",
             "move": "#block_move form[name=move]",
             "joinGame": "form[name=join_game]",
@@ -73,6 +77,14 @@ export function listenToSubmit() {
         else if(event.target.matches(formSelectors.dig)) {
             event.preventDefault();
             dig();
+        }
+        else if(event.target.matches(formSelectors.dropItem)) {
+            event.preventDefault();
+            dropItem(event.submitter);
+        }
+        else if(event.target.matches(formSelectors.pickupItem)) {
+            event.preventDefault();
+            pickupItem(event.submitter);
         }
         else if(event.target.matches(formSelectors.move)) {
             event.preventDefault();
@@ -146,7 +158,6 @@ export function listenToClick() {
         
         const selectors = {
             "buildCity":"#builder button[name=build_city]",
-            "closePopup": "close_popup",
             "drive": "button[name=drive]",
             "teleport": "button[name=teleport]",
             "addRoad": "button[name=road]",
@@ -284,7 +295,7 @@ export function listenToClick() {
                 items.toggleTooltip(event);
             }
         }
-        else if(action === selectors.closePopup) {
+        else if(action === "closePopup" || target.closest("a")?.dataset.action === "closePopup") {
             closePopup();
         }
         else if(action === selectors.enlargeWall || button?.dataset.action === "enlargeWall") {

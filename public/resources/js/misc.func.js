@@ -677,7 +677,7 @@ function mergeItemsIdsWithAmounts(itemsIds) {
  * 
  * @param {object} eventSubmitter The event.submitter returned by the eventListener
  */
-async function pickupItem(eventSubmitter) {
+export async function pickupItem(eventSubmitter) {
     
     let cookies = new Cookies(),
         token = cookies.getCookie('token'),
@@ -712,7 +712,7 @@ async function pickupItem(eventSubmitter) {
  * 
  * @param {object} eventSubmitter The event.submitter returned by the eventListener
  */
-async function dropItem(eventSubmitter) {
+export async function dropItem(eventSubmitter) {
     
     let cookies = new Cookies(),
         token = cookies.getCookie('token'),

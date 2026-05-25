@@ -637,7 +637,7 @@ class HtmlButtons
     {
         
         return '
-            <form class="form_drop" method="post" action="#Outside">
+            <form name="form_drop" class="form_drop" method="post" action="#Outside">
                 <input type="hidden" name="api_name" value="zone">
                 <input type="hidden" name="action" value="drop">
                 <button type="submit" name="params[item_id]" value="'.$item_id.'" class="redbutton">&veeeq; Déposer</button>
@@ -649,7 +649,7 @@ class HtmlButtons
     {
         
         return '
-            <form class="form_pickup" method="post" action="#Outside">
+            <form name="form_pickup" class="form_pickup" method="post" action="#Outside">
                 <input type="hidden" name="api_name" value="zone">
                 <input type="hidden" name="action" value="pickup">
                 <button type="submit" name="params[item_id]" value="'.$item_id.'" class="redbutton">&wedgeq; Ramasser</button>
