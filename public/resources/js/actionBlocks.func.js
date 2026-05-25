@@ -246,8 +246,8 @@ async function updateBlockActionCitizens(coordX, coordY) {
     if(block.dataset.coordx !== coordX || block.dataset.coordy !== coordY) {
         
         let myCitizenId     = document.querySelector("#citizenId").innerHTML,
-            myCitizenPseudo = document.querySelector("#citizenPseudo").innerHTML,
-            mapId           = document.querySelector("#mapId").innerHTML;
+            mapId           = document.querySelector("#mapId").innerHTML,
+            template        = null;
             
         // Get the citizens of the map by calling the Azimutant's API
         _citizens = await getMapCitizensOnce(mapId);    
@@ -271,20 +271,20 @@ async function updateBlockActionCitizens(coordX, coordY) {
             // Hide the generic text
             hide("#block_citizens .greytext");
             // Add the player's pseudo at the top of the list of citizens
-            template = getHtmlActionBlockFellow(_citizens[myCitizenId], bigChips=true, displayActionButtons=false, displayItsMe=true);
+            template = getHtmlActionBlockFellow(_citizens[myCitizenId], true, false, true);
             document.querySelector("#block_citizens #citizensInMyZone").appendChild(template);
         }
         
         // Shows the list of the other citizens in my zone
         for(let i in citizensInMyZone) {
-            template = getHtmlActionBlockFellow(citizensInMyZone[i], bigChips=true);
+            template = getHtmlActionBlockFellow(citizensInMyZone[i], true);
             document.querySelector("#block_citizens #citizensInMyZone").appendChild(template);
         }
         
         // Shows the list of the other citizens in the zone
         document.querySelector("#block_citizens #citizensInOtherZones").innerHTML = "";
         for(let i in citizensInOtherZones) {
-            template = getHtmlActionBlockFellow(citizensInOtherZones[i], bigChips=false, displayActionButtons=false);
+            template = getHtmlActionBlockFellow(citizensInOtherZones[i], false, false);
             document.querySelector("#block_citizens #citizensInOtherZones").appendChild(template);
         }
         

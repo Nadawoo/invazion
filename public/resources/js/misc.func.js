@@ -877,7 +877,7 @@ function getDistance(cityX, cityY, citizenX, citizenY) {
 export function getHtmlActionBlockFellow(citizen, bigChips=false, displayActionButtons=true, displayItsMe=false) {
     
     // The model for the HTML is located in a <template> tag
-    template = document.querySelector("#tplActionBlockFellow").content.cloneNode(true);
+    const template = document.querySelector("#tplActionBlockFellow").content.cloneNode(true);
     
     // Populates the template with the citizen's data
     template.querySelector(".pseudo").innerHTML = citizen.citizen_pseudo;
