@@ -14,7 +14,6 @@ import {
 import {
     addMeOnMap,
     centerMapOnMe,
-    getMyCityZoneId,
     updateMapRealtime
     }
     from "./mapUse.func.js";
@@ -158,8 +157,9 @@ if(document.getElementById("map") !== null) {
     // Only if the visitor is connected
     if(isCitizenInGame() === true) {
         setTimeout(function() {
-            var myCityZoneId = getMyCityZoneId();
             centerMapOnMe();
+            
+//            var myCityZoneId = getMyCityZoneId();
             // Add a location sign above the city of the player
 //            addCityLocationMarker(myCityZoneId);
             // Start in the "action" mode (centered on the current player)
