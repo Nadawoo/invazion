@@ -181,7 +181,6 @@ class HtmlPage
                         <script type="text/javascript" src="resources/js/lib/materialize.min.js"></script>
                         <script type="text/javascript" src="resources/js/lib/scrollbooster.min.js"></script>
                         <script type="text/javascript" src="resources/js/components/GameSelector.js?v'.$this->css_js_version.'"></script>
-                        <script type="text/javascript" src="resources/js/components/HealthBars.js?v'.$this->css_js_version.'"></script>
                         <script type="text/javascript" src="resources/js/components/Tooltip.js?v'.$this->css_js_version.'" async></script>
                         <script type="text/javascript" src="resources/js/utils/Cookies.js?v'.$this->css_js_version.'"></script>
                         <script type="text/javascript" src="resources/js/utils/Graph.js?v'.$this->css_js_version.'"></script>

@@ -1,5 +1,6 @@
 import { ZombLib } from "./lib/ZombLib.js";
 import { CityConnections } from "./components/CityConnections.js";
+import { HealthBars }  from "./components/HealthBars.js";
 import { MapCitizens } from "./components/MapCitizens.js"
 import { Tasks } from "./components/Tasks.js";
 import {

@@ -1,4 +1,4 @@
-class HealthBars {
+export class HealthBars {
     
     static NBR_CHUNKS = 10;
 
