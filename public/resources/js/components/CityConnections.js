@@ -63,6 +63,9 @@ export class CityConnections {
      * @returns {undefined}
      */
     async highlightRoad(event) {
+        
+        // If the citizen is not on the map, don't try to trace a road from him
+        if(!document.querySelector("#me")) return;
 
         const htmlSourceCityId = document.querySelector("#me").parentNode.dataset.cityid,
               sourceCityId = (htmlSourceCityId !== "") ? Number(htmlSourceCityId) : null,
