@@ -36,7 +36,7 @@ class HtmlActionCards {
                     <br>'
                     .$this->buttons->button('enter_city')
                     .$this->buttons->button('destroy_city', 'no_icon')
-                    .$this->popup->link('popsuccess', 'Explorer', 'button_explore', '&#x1F50E;')
+                    .'<button type="button" id="button_explore" class="redbutton" data-action="openBuildingPopup">&#x1F50E; Explorer</button>'
                     .$this->popup->link('popvault', 'Pouvoir cryptique', 'button_crypt').
                     '<button class="ignore_button bluebutton" data-action="moveBuildingBlockBelowPaddle">Ignorer</button>
                 </div>

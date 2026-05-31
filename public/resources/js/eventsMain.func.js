@@ -164,7 +164,6 @@ export function listenToClick() {
             "teleport": "button[name=teleport]",
             "addRoad": "button[name=road]",
             "enlargeWall": "enlargeWall",
-            "explore":"#button_explore",
             };
         
         const target = event.target;
@@ -184,7 +183,7 @@ export function listenToClick() {
             const move = new Move();
             move.driveToCity(path);
         }
-        else if(target.matches(selectors.explore) === true) {
+        else if(action === "openBuildingPopup") {
             let buildingPopup = new BuildingPopup();
             buildingPopup.openBuildingPopup(event);
         }
