@@ -425,7 +425,11 @@ echo $layout->page_header($citizen['user_id'], $citizen['citizen_id'], $citizen[
         </section>
         
         <ul aria-label="Modes d'affichage de la carte" id="views_bar" class="animate__animated animate__slideInDown">
-            <li role="none" class="map active" onclick="toggle(['#map_navigation', '#game_footer', '#tasks_button']);this.classList.toggle('active')">
+            <li role="none"
+                class="map active"
+                onclick="toggle(['#map_navigation', '#game_footer', '#tasks_button']);this.classList.toggle('active')"
+                style="display:none"
+                >
                 <button aria-label="Masquer les boutons de navigation">
                     <i class="material-icons small" role="img">web</i>
                 </button>
@@ -441,7 +445,10 @@ echo $layout->page_header($citizen['user_id'], $citizen['citizen_id'], $citizen[
                     <img src="resources/img/free/human.png" height="48" alt="">
                 </button>
             </li>
-            <li role="none" class="paths">
+            <li role="none"
+                class="paths"
+                style="display:none"
+                >
                 <button role="img" data-action="togglePathsBar" aria-label="Ouvrir le mode Expéditions">&#x1F97E;</button>
             </li>
         </ul>

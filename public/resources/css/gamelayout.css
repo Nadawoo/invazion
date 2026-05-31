@@ -104,12 +104,13 @@
  */
 #views_bar {
     position:absolute;
-    top:0.4em;
-    display:flex;
-    justify-content: center;
-    gap:12px;
+    top:0;
     width:100%;
     margin:0;
+    padding:10px;
+    display:flex;
+    justify-content:end;
+    gap:12px;
 }
 #views_bar li {
     display:flex;
@@ -139,6 +140,11 @@
     height: 4rem;
     width:  4rem;
     font-size:2.2em;
+    background: radial-gradient(circle at 50% 5%,
+                               rgba(255, 255, 255, 1),
+                               brown,
+                               rgba(0, 0, 50, 1));
+    border-radius:50%;
 }
 #views_bar .my_zone .pickaxe {
     position:absolute;
