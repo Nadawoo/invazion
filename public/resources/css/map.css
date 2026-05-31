@@ -1016,10 +1016,10 @@
     position:absolute;
     margin-bottom:0.2em;
     z-index:1;
-    text-shadow:-1px -1px 0 darkgrey,  /* Top left */
-                1px -1px 0 darkgrey,   /* Top right */
-                -1px 1px 0 darkgrey,   /* Bottom left */
-                1px 1px 0 darkgrey;    /* Bottom right */
+    text-shadow: -1px -1px 1px greenyellow, /* Top left */
+                 1px -1px 1px greenyellow,  /* Top right */
+                 -1px 1px 1px greenyellow,  /* Bottom left */
+                 1px 1px 1px greenyellow;   /* Bottom right */
 }
 #map_body .zombies {
     /*animation: fadeInOpacity 1s forwards;*/
@@ -1348,7 +1348,7 @@
 }
 #map.action_view .icon_html {
     top:-2px;
-    transform:scale(0.55);
+    transform:scale(0.65);
 }
 #map.action_view .zombies {
     position:absolute;
