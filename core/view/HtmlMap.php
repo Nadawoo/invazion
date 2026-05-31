@@ -51,7 +51,13 @@ class HtmlMap
                                     <img src="resources/img/free/human.png">
                                 </div>',
             'items'         => '&nbsp;',
-            'zombies'       => '<img src="resources/img/motiontwin/zombie'.$string2.'.gif" alt="'.$string1.' zombies" height="30" class="zombies">',
+            'zombies'       => '<img src="resources/img/motiontwin/zombie'.$string2.'.gif"
+                                     alt="'.$string1.' zombies"
+                                     height="30"
+                                     class="zombies"
+                                     data-action="switchActionBlock"
+                                     data-name="zombies"
+                                     >',
         ];
         
         return (isset($templates[$cell_alias])) ? "    ".$templates[$cell_alias]."\n" : '{'.$cell_alias.'}';

@@ -1354,8 +1354,9 @@
     position:absolute;
     bottom:4px;
     right:30%;
-    transform:scale(0.6);
+    transform:scale(0.5) !important;
     opacity:0.8;
+    cursor:pointer;
 }
 
 #map.action_view .cityframe:not(.submerged) .nbr_defenses,

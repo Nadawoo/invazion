@@ -172,6 +172,8 @@ export function listenToClick() {
         let hexagon = target.closest(".hexagon"),
             button = target.closest("button");
             
+        const isActionViewActive = document.querySelector("#map").classList.contains("action_view");
+        
         // Build a city on the map (not a construction inside a city)
         if(target.closest(selectors.buildCity)) {
             buildOnMap(Number(target.closest(selectors.buildCity).dataset.citytypeid));
@@ -232,7 +234,7 @@ export function listenToClick() {
             const clipboard = new Clipboard();
             clipboard.copyTextarea(button.dataset.target);
         }
-        else if(action === "switchActionBlock") {
+        else if(isActionViewActive && action === "switchActionBlock") {
             const blockName = target.dataset.name;
             toggleActionBlock(blockName);
             updateBlockAction(blockName);
