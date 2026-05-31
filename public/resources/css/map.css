@@ -187,12 +187,13 @@
  */
 #resizeMap {
     position:absolute;
-    top:  0.9em;
-    right:0.3em;
+    top:  13px;
+    right:13px;
 }
 #resizeMap button {
     background:darkred;
     outline:2px outset white;
+    border-radius:0.1em;
 }
 #resizeMap i {
     font-size:0.9em;
@@ -774,7 +775,7 @@
                         rgba(0, 0, 0, 0) 50%
                         );
 }
-#map_body .submerged .zombies {
+#map:not(.action_view) .submerged .zombies {
     outline:3px outset red;
     background: radial-gradient(circle at 50% 50%,
                                 rgba(255, 0, 0, 0), 
@@ -1182,7 +1183,7 @@
 
 #map_body .halo {
     position:absolute;
-    top:1.4em;
+    bottom:4px;
     border: 5px solid green;
     border-radius: 50%;
     height:40%;
@@ -1332,16 +1333,29 @@
 #map .overlay {
     display:none;
 }
-#map.action_view #me {
-    transform:scale(0.5);
-    top:1.3rem;
-}
 #map.action_view .overlay {
     display:block;
 }
+#map.action_view #me {
+    transform:scale(0.3);
+    bottom:0;
+    left:30%;
+}
 #map.action_view .halo {
-    transform:scale(0.5);
-    top:1.2rem;
+    bottom:5px;
+    left:20%;
+    transform:scale(0.3);
+}
+#map.action_view .icon_html {
+    top:-2px;
+    transform:scale(0.55);
+}
+#map.action_view .zombies {
+    position:absolute;
+    bottom:4px;
+    right:30%;
+    transform:scale(0.6);
+    opacity:0.8;
 }
 
 #map.action_view .cityframe:not(.submerged) .nbr_defenses,

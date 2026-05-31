@@ -305,7 +305,7 @@ function getItemsIdsByType(itemType) {
 export function switchToActionView() {
     
     // Zoom the map on the player
-    zoomMapRange(220);
+    zoomMapRange(500);
     setTimeout(() => centerMapOnMe(10), 2000);
     
     // Display the action blocks (move, dig...)
@@ -343,14 +343,19 @@ export function switchToActionView() {
     
     // Hide some elements of the GUI to make the interface look lighter
     hide(["#views_bar", "#map_navigation", "#tasks_button", "#game_footer"]);
-    hide([".sharp_bubble, .bubble, .healthbar"]);
+    hide(["#map_body .sharp_bubble",
+          "#map_body .bubble", 
+          "#map_body .healthbar",
+          "#map_body .cityframe",
+          "#me .nbr_defenses"
+          ]);
     desactivateMapPathsView();
     // Display the button which switches to the Map mode
     display("#map_mode_button");
     // Remove the illumination on the button which displays the map navigation
     document.querySelector("#views_bar .map").classList.remove("active");     
     document.querySelector("#views_bar .paths").classList.remove("active");
-    
+    // NB: See the CSS file to see the modifications implied by adding this class
     document.querySelector("#map").classList.add("action_view");
     
     updateActionBlocks();
