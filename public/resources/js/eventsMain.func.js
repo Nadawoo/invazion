@@ -362,10 +362,15 @@ export function listenToPointerdown() {
 
         const radialMenu = new CityRadialMenu();
         const hexagon = event.target.closest(".hexagon");
-
+        
         // Hide the road and close the previously open radial menu
         if(_roadActiveHexagon && _roadActiveHexagon !== hexagon) {
             radialMenu.close(_elementsToHideInRoadView);
+        }
+        
+        // Open the radial menu of the newly clicked hexagon
+        if(hexagon !== null && hexagon.querySelector(".square_container").dataset.cityid !== "") {
+            radialMenu.open(hexagon, event, _elementsToHideInRoadView);
         }
     },
     { passive: true }
@@ -635,17 +640,6 @@ export function listenToRoads(hexagon) {
     
     hexagon.addEventListener("pointerenter", async (event)=>{
         if(event.pointerType !== "mouse") return;
-        
-        // Open the radial menu of the newly clicked hexagon
-        radialMenu.open(hexagon, event, _elementsToHideInRoadView);
-    });
-    hexagon.addEventListener("pointerdown", (event) => {
-        if(event.pointerType !== "touch") return;
-        
-        // Hide the road and close the previously open radial menu
-        if (_roadActiveHexagon && _roadActiveHexagon !== hexagon) {
-            radialMenu.close(_elementsToHideInRoadView);
-        }
         
         // Open the radial menu of the newly clicked hexagon
         radialMenu.open(hexagon, event, _elementsToHideInRoadView);
