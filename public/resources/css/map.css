@@ -1122,7 +1122,6 @@
     cursor:pointer;
 }
 #me.alert {
-    width:150%;
     background:darkred;
     z-index:-1; /* Put the player behind the zombies */
 }
@@ -1192,8 +1191,6 @@
     animation: citizen_blinker 1s linear infinite;
 }
 #map_body .halo.alert {
-    border-width:0.8em;
-    width:180%;
     animation-name: citizen_blinker_alert;
     z-index:-2; /* Put the halo behind the zombies */
 }
