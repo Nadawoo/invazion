@@ -1153,7 +1153,8 @@
 }
 #explosionMe {
     position:absolute;
-    top:-1.9em;
+    top: -30px;
+    left:-55px;
     z-index:10;
 }
 /* Ligne de zombies (zombies de l'attaque') */
