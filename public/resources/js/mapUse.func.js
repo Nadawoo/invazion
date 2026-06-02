@@ -539,7 +539,7 @@ export function resetMapView() {
         display(["#views_bar, #attack_bar", "#tasks_button"]);
     }
     
-    document.querySelector("#mapRadarMenu li.active").classList.remove("active");
+    document.querySelector("#mapRadarMenu li.active")?.classList.remove("active");
     
     window.isMapNeighborhoodViewActive = true;
     toggleMapNeighborhoodView();
