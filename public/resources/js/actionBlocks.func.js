@@ -31,8 +31,12 @@ export async function updateBlockAction(blockAlias) {
     }
     else if(blockAlias === "zombies") {
         
-        let nbrZombies = document.querySelector("#me").parentNode.dataset.zombies; 
-        updateBlockActionZombies(nbrZombies); 
+        const nbrZombies = document.querySelector("#me").parentNode.dataset.zombies;
+        updateBlockActionZombies(nbrZombies);
+        addControlpointsOnZone();
+        toggle([".hexagon .cp_zombies",
+                ".hexagon .cp_citizens"
+                ]);
     }
     else if(blockAlias === "dig") {
         
@@ -218,7 +222,7 @@ export function updateBlockActionZombies(newNbrZombies) {
     }
     
     // Update the number of zombies in the round button
-    document.querySelector("#round_zombies .dot_number").innerHTML = newNbrZombies;
+    zombiesButton.querySelector(".dot_number").innerHTML = newNbrZombies;
     
     // Update the content of the "zombies" frame
     if(newNbrZombies > 0) {
@@ -228,6 +232,30 @@ export function updateBlockActionZombies(newNbrZombies) {
     } else {
         // If there is no more zombies, hide the buttons & infos about killing zombies
         hide("#action_zombies");
+    }
+}
+
+
+export function addControlpointsOnZone() {
+    
+    const zone = document.querySelector("#me").parentNode;
+    
+    if(zone.querySelector(".cp_citizens") === null) {
+        const cpCitizens = Number(zone.dataset.controlpointscitizens);
+        const htmlCpNbr = document.createElement("div");
+        htmlCpNbr.classList.add("cp_citizens", "hidden");
+        htmlCpNbr.innerHTML = `${cpCitizens} pts`;
+
+        zone.append(htmlCpNbr);
+    }
+    
+    if(zone.querySelector(".cp_zombies") === null) {
+        const cpZombies = Number(zone.dataset.controlpointszombies);
+        const htmlCpNbr = document.createElement("div");
+        htmlCpNbr.classList.add("cp_zombies", "hidden");
+        htmlCpNbr.innerHTML = `${cpZombies} pts`;
+
+        zone.append(htmlCpNbr);
     }
 }
 
