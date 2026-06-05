@@ -233,6 +233,9 @@ export function listenToClick() {
             const clipboard = new Clipboard();
             clipboard.copyTextarea(button.dataset.target);
         }
+        else if(isActionViewActive && hexagon && hexagon.querySelector("#me") === null) {
+            toggleActionBlock("move");
+        }
         else if(isActionViewActive && action === "switchActionBlock") {
             const blockName = target.dataset.name;
             toggleActionBlock(blockName);

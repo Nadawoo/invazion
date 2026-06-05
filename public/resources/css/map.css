@@ -206,7 +206,6 @@
 #personal_block_wrapper {
     position:absolute;
     top:0;
-    width:100%;
     margin-top:0.5em;
     display:flex;
     /*background: rgba(0,0,0,0.3);*/
@@ -1336,6 +1335,7 @@
     /* Adds a smooth transition between the light and the shadow*/
     background: radial-gradient(rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 1) 80%);
     transform:translate(-50%, -50%);
+    pointer-events:none;
 }
 
 /* SVG overlay for drawing the light halos around the cities */

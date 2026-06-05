@@ -230,7 +230,9 @@ export function toggleActionBlock(buttonAlias) {
         hide("#actions fieldset");
         document.querySelectorAll("#round_actions input").forEach(
             element => element.parentNode.parentNode.classList.remove("active")
-        );        
+        );
+        // ... Hides the elements of the action view
+        hide([".cp_citizens", ".cp_zombies"]);
         // ... Then displays the only action block we want
         display(blockId);
         // ... and hightlights the active button
