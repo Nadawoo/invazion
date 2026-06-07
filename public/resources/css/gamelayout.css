@@ -577,10 +577,11 @@ form[name="end_cycle"] button {
     align-items:center;
     justify-content: space-between;
     /*min-height:4rem;*/
+    margin:0;
     /*padding:0.5em 1em 0.2em 0;*/
     padding:0.1em  0.1em;
     background:#e8eaf6;
-    border: 1px outset steelblue;
+    border: 1px outset grey;
     border-radius:0.5em;
     color:inherit; /* Keeps the text in bleck when the card is a <a> tag */
     box-shadow:5px 5px 8px dimgrey;
