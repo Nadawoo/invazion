@@ -596,22 +596,22 @@ export async function dig() {
         token = cookies.getCookie('token'),
         popup = document.querySelector("#popsuccess");
     
-    // Call the API to dig
+    // Call the API for digging
     let zombLib = new ZombLib();
     let json = await zombLib.callApi("GET", "zone", `action=dig&token=${token}`);
     
-    // Display the result of the digging in pop-up
-    popup.classList.add("force_visibility");
-    popup.querySelector(".content").innerHTML = '<p>Vos fouilles ont été fructueuses ! Vous avez découvert :</p>\
-                                                <ul class="items_list" style="justify-content:center"></ul>\
-                                                <p>Ces objets ont été déposés au sol.</p>';
-    // Add the items
-    let htmlItems = new Items();
-    json.datas.found_items_ids.forEach(itemId => {
-        popup.querySelector(".items_list").prepend(htmlItems.item(itemId, _configsItems[itemId]));
-    });
-    
     if(json.metas.error_code === "success") {
+        // Display the result of the digging in pop-up
+        popup.classList.add("force_visibility");
+        popup.querySelector(".content").innerHTML = '<p>Vos fouilles ont été fructueuses ! Vous avez découvert :</p>\
+                                                    <ul class="items_list" style="justify-content:center"></ul>\
+                                                    <p>Ces objets ont été déposés au sol.</p>';
+        // Add the list of found items in the pop-up
+        let htmlItems = new Items();
+        json.datas.found_items_ids.forEach(itemId => {
+            popup.querySelector(".items_list").prepend(htmlItems.item(itemId, _configsItems[itemId]));
+        });
+        
         // Hide the message "There are no items on the ground..."
         hide("#items_ground .greytext");
         // Add the new item(s) in the ground items list
@@ -619,6 +619,9 @@ export async function dig() {
         populateItemsList("#items_ground .items_list", newItemsWithAmounts);
         // Make the digging button inactive
         updateDigButtons(1);
+    }
+    else {
+        displayToast(json.metas.error_message, json.metas.error_class);
     }
 }
 
