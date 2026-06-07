@@ -834,6 +834,25 @@
     background:darkgreen;
 }
 
+#map .items_icon {
+    display:none;
+}
+#map.action_view .items_icon {
+    display:unset;
+    position:absolute;
+    top:12px;
+    right:3px;
+    padding:1px;
+    font-size:6px;
+    background:none;
+    border:none;
+    text-shadow: 0 0 1px greenyellow, /* Top left */
+                 0 0 1px greenyellow,  /* Top right */
+                 0 0 1px greenyellow,  /* Bottom left */
+                 0 0 1px greenyellow;
+}
+
+
 .cityframe.resources .frame,
 .cityframe.resources .label {
     border-color:cornflowerblue;
@@ -1144,6 +1163,9 @@
 #me.alert {
     background:darkred;
     z-index:-1; /* Put the player behind the zombies */
+}
+#map.action_view #me .nbr_defenses {
+    display:none !important;
 }
 #me.alert .nbr_defenses {
     background:darkred;

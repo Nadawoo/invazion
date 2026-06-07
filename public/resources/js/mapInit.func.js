@@ -22,7 +22,13 @@ import {
     switchToMapView
     }
     from "./mapUse.func.js";
-import { displayToast, toggleActionBlock, getMyZoneOnce } from "./misc.func.js";
+import {
+    addItemsIconInZone,
+    displayToast,
+    toggleActionBlock,
+    getMyZoneOnce
+    }
+    from "./misc.func.js";
 
 /*
  * Get all the zones of the map by calling the Azimutant's API
@@ -304,6 +310,9 @@ function getItemsIdsByType(itemType) {
  */
 export function switchToActionView() {
     
+    const mapId = Number(document.querySelector("#mapId").innerHTML);
+    const zoneData = document.querySelector("#me").parentNode.dataset;
+    
     // Zoom the map on the player
     zoomMapRange(500);
     setTimeout(() => centerMapOnMe(10), 2000);
@@ -318,6 +327,8 @@ export function switchToActionView() {
         document.querySelector("#actions").appendChild(tplActions);
         // Add the list of buildable buildings
         populateBuilderBlock();
+        // Add an icon on the zone to show there are items here
+        addItemsIconInZone(zoneData.coordx, zoneData.coordy, zoneData.items);
         // Load event listener to go back to the map
         document.querySelector("#map_mode_button").addEventListener("click",
             switchToMapView
@@ -334,10 +345,7 @@ export function switchToActionView() {
         toggleActionBlock('move');
         updateBlockAction('move');
         // Hide the card for digging if the zone is not diggable
-        let mapId = Number(document.querySelector("#mapId").innerHTML),
-            coordX = Number(document.querySelector("#citizenCoordX").innerHTML),
-            coordY = Number(document.querySelector("#citizenCoordY").innerHTML);
-        _myZone = await getMyZoneOnce(mapId, coordX, coordY);
+        _myZone = await getMyZoneOnce(mapId, zoneData.coordx, zoneData.coordy);
         updateDigButtons(_myZone.user_specific.is_visited_today); 
     }, 1000);    
     

@@ -1145,3 +1145,19 @@ export function getMe() {
     
     return zombLib.callApi("GET", "me", `action=get&token=${token}`);
 }
+
+
+export function addItemsIconInZone(coordX, coordY, nbrItems) {
+    
+    const zone = document.querySelector(`#zone${coordX}_${coordY} .square_container`);
+    
+    if(nbrItems > 0 && zone.querySelector(".items_icon") === null) {
+        const fragment = document.createElement("button");
+        fragment.classList.add("items_icon", "animate__animated", "animate__pulse", "animate__infinite");
+        fragment.dataset.action = "switchActionBlock";
+        fragment.dataset.name = "dig";
+        fragment.innerHTML = `&#x1F9F0;`;
+
+        zone.append(fragment);
+    }
+}

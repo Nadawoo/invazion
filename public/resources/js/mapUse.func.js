@@ -6,8 +6,18 @@
 
 import { ZombLib } from "./lib/ZombLib.js";
 import { updateBlockAlertControl } from "./actionBlocks.func.js"; 
-import { addCitiesOnMap, getItemCoords, zoomMapRange } from "./mapInit.func.js";
-import { displayToast, toggleMapMarker } from "./misc.func.js";
+import {
+    addCitiesOnMap,
+    getItemCoords,
+    zoomMapRange
+    }
+    from "./mapInit.func.js";
+import {
+    addItemsIconInZone,
+    displayToast,
+    toggleMapMarker 
+    }
+    from "./misc.func.js";
 
 
 /**
@@ -16,6 +26,7 @@ import { displayToast, toggleMapMarker } from "./misc.func.js";
  *                     Doc : https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events
  */
 export async function updateMapRealtime(event, timestamp) {
+    
     let citizenPseudo = document.getElementById("citizenPseudo").innerHTML,
         citizenId     = document.getElementById("citizenId").innerHTML,
         mapId         = document.getElementById("mapId").innerHTML;
@@ -51,9 +62,11 @@ export async function updateMapRealtime(event, timestamp) {
     addMeOnMap();
     
     // Get informations about the current zone through the "data-*" HTML attributes
-    let zoneData = document.querySelector("#me").parentNode.dataset;
+    const zoneData = document.querySelector("#me").parentNode.dataset;
     // Display an alert over the movement paddle if the player is blocked
     updateBlockAlertControl(Number(zoneData.controlpointszombies), mapId, zoneData.coordx, zoneData.coordy);  
+    // Add an icon on the zone to show there are items here
+    addItemsIconInZone(zoneData.coordx, zoneData.coordy, zoneData.items);
     
     // Refresh the timestamp to memorize that these actions have been treated
     return timestamp = await JSON.parse(event.data).zones;
