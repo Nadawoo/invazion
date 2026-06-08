@@ -384,6 +384,13 @@
     margin-left:20px;
 }
 
+#map_body button {
+    background:none;
+    border:none;
+    margin:0;
+    padding:0;
+}
+
 #map_body .hexagon {
     
     /* Pour le débogage : décommenter cette ligne pour afficher le conteneur*/
@@ -844,8 +851,6 @@
     right:3px;
     padding:1px;
     font-size:6px;
-    background:none;
-    border:none;
     text-shadow: 0 0 1px greenyellow, /* Top left */
                  0 0 1px greenyellow,  /* Top right */
                  0 0 1px greenyellow,  /* Bottom left */
@@ -1411,12 +1416,9 @@
     right:2px;
     width:12px;
     margin-top:5px;
-    padding:0;
     display:flex;
     justify-content:right;
     flex-wrap:wrap;
-    background:none;
-    border:none;
     z-index:2;
 }
 

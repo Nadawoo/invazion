@@ -184,7 +184,7 @@ export function listenToClick() {
             const move = new Move();
             move.driveToCity(path);
         }
-        else if(action === "openBuildingPopup" || target.closest("div").dataset.action === "openBuildingPopup") {
+        else if(button?.dataset.action === "openBuildingPopup") {
             let buildingPopup = new BuildingPopup();
             buildingPopup.openBuildingPopup(event);
         }
