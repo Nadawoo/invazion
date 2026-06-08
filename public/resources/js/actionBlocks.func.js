@@ -227,7 +227,6 @@ export function updateBlockActionZombies(newNbrZombies) {
     // Update the content of the "zombies" frame
     if(newNbrZombies > 0) {
         document.querySelector("#block_zombies .nbr_zombies").innerHTML = newNbrZombies+" zombies";
-        document.querySelector("#block_zombies .zombies_visual").innerHTML = '<span class="zombie">&#x1F9DF;</span>'.repeat(newNbrZombies);
         display("#action_zombies");
     } else {
         // If there is no more zombies, hide the buttons & infos about killing zombies

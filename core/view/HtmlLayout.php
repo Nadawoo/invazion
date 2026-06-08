@@ -286,9 +286,7 @@ class HtmlLayout extends HtmlPage
                     <strong class="nbr_zombies">'.plural($zone_zombies, 'zombie').'</strong> dans votre zone !
                     &nbsp;<a href="#popcontrol" class="bold" style="font-size:1.2em">[?]</a>
                 </div>
-                <div class="zombies_visual">'. str_repeat('<span class="zombie">&#x1F9DF;</span>', $zone_zombies) .'</div>
-                <hr>
-                <p><strong>Attaquer les zombies avec :</strong></p>
+                <p><strong>Attaquer avec :</strong></p>
                 <div class="buttons_kill">
                     <button class="redbutton"
                         data-action="killZombies"
