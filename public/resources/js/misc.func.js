@@ -409,7 +409,7 @@ export async function updateActionBlocksAfterMoving(newCoordX, newCoordY) {
     updateCityDistance(newCoordX, newCoordY);
 //    updateBlockLandType(myZone.dataset.landtype);
     updateZombiesGauge(Number(myZone.dataset.zombies));
-    updateEnterBuildingButton(myZone.dataset.citytypeid, myZone.dataset.controlpointscitizens, myZone.dataset.zombies);
+    updateEnterBuildingButton(myZone.dataset.citytypeid);
     updateMoveCost(parseInt(myZone.dataset.zombies));
     updateCardCitizensInZone(myZone.dataset.citizens);
     updateBlockAction('dig');
@@ -434,7 +434,7 @@ export function updateCardCitizensInZone(nbrCitizensInZone) {
  * 
  * @param {int} cityTypeId The ID of the city type in the zone (not the ID of the city)
  */
-export function updateEnterBuildingButton(cityTypeId, controlPointsCitizens, nbrZombies) {
+export function updateEnterBuildingButton(cityTypeId) {
     
     // Displays the building's name under the movement paddle
     if(cityTypeId === "") {
@@ -1014,20 +1014,22 @@ function launchTutorial(elems, instances, step) {
  * Calculate the number of action points of the citizens in a zone
  * 
  * @param {array} citizens The datas of the "citizens" API
- * @param {int} mapId
  * @param {int} coordX
  * @param {int} coordY
  */
-export async function sumControlpoints(citizens, mapId, coordX, coordY) {
+export function sumControlpoints(citizens, coordX, coordY) {
     
-    var sumControlpoints = 0;
-    
-    for(let citizen of Object.values(citizens)) {
-        if(citizen.coord_x === parseInt(coordX) && citizen.coord_y === parseInt(coordY)) {
+    let sumControlpoints = 0;
+    const x = Number(coordX);
+    const y = Number(coordY);
+    const citizensArray = Object.values(citizens);
+
+    for(let citizen of citizensArray) {
+        if(citizen.coord_x === x && citizen.coord_y === y) {
             sumControlpoints += citizen.control_points;
         }
     }
-
+    
     return sumControlpoints;
 }
 

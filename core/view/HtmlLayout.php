@@ -27,7 +27,13 @@ class HtmlLayout extends HtmlPage
      *                               about the items, as returned by the "configs"  API
      * @return string HTML
      */
-    function json_configs($json_map, $json_buildings, $json_buildings_findable_items, $json_buildings_components, $json_items) {
+    function json_configs(  $json_map,
+                            $json_buildings,
+                            $json_buildings_findable_items,
+                            $json_buildings_components,
+                            $json_items,
+                            $json_specialities
+                            ) {
         
         return '<ul id="configs" class="hidden">
                     <li class="map">'.$json_map.'</li>
@@ -35,6 +41,7 @@ class HtmlLayout extends HtmlPage
                     <li class="buildings_findable_items">'.$json_buildings_findable_items.'</li>
                     <li class="buildings_components">'.$json_buildings_components.'</li>
                     <li class="items">'.$json_items.'</li>
+                    <li class="specialities">'.$json_specialities.'</li>
                 </ul>';
     }
     

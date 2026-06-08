@@ -175,7 +175,9 @@ $html = [
                                                  json_encode($configs['buildings']),
                                                  json_encode($configs['buildings_findable_items']),
                                                  json_encode($configs['buildings_components']),
-                                                 json_encode($configs['items'])),
+                                                 json_encode($configs['items']),
+                                                 json_encode($configs['specialities'])
+                                                 ),
     // Assembling the HTML for the map
     'map' => $map->hexagonal_map($maps['map_width'], $maps['map_height'], $maps['zones'], $citizen, $maps['next_attack_hour']),
 //    'map_citizens'      => $layout->map_citizens($citizens),

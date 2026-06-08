@@ -134,7 +134,7 @@ export function updateMoveCost(newNbrZombies) {
 export async function updateBlockAlertControl(controlpointsZombies, mapId, coordX, coordY) {
     
     let actionPoints = Number(document.querySelector("#gameData #actionPoints").innerHTML);
-    let controlpointsCitizens = await sumControlpoints(await _citizens, mapId, coordX, coordY);
+    let controlpointsCitizens = await sumControlpoints(await _citizens, coordX, coordY);
     
     // Displays an alert when the player has not enough action points to  move
     if ((   controlpointsZombies === 0 && actionPoints < _configsMap.moving_cost_no_zombies)
@@ -241,7 +241,7 @@ export function addControlpointsOnZone() {
     const zone = document.querySelector("#me").parentNode;
     
     if(zone.querySelector(".cp_citizens") === null) {
-        const cpCitizens = Number(zone.dataset.controlpointscitizens);
+        const cpCitizens = sumControlpoints(_citizens, zone.dataset.coordx, zone.dataset.coordy);
         const htmlCpNbr = document.createElement("div");
         htmlCpNbr.classList.add("cp_citizens", "hidden");
         htmlCpNbr.innerHTML = `${cpCitizens} pts`;
@@ -304,7 +304,6 @@ function populateBlockCitizensInMyZone(citizensInMyZone, myCitizenId) {
     if(citizensInMyZone.length <= 0) {
         // If the connected player is alone, show a generic text
         display("#block_citizens .greytext");
-        block.innerHTML = "";
     }
     else {
         // Hide the generic text
