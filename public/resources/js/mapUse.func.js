@@ -134,7 +134,7 @@ export function addMeOnMap() {
     // If there is no other citizen in the zone
     if(myZone.querySelector(".map_citizen") === null) {
         myZone.querySelector(".square_container").insertAdjacentHTML("afterbegin", 
-            `<div class="map_citizen" id="me">
+            `<button class="map_citizen" id="me" data-action="switchToActionView">
                 <!--
                 <div class="pointer" style="position:absolute;top:-7rem;left:-4rem;z-index:1"
                      onclick="toggleActionBlock('dig');
@@ -151,7 +151,7 @@ export function addMeOnMap() {
                 <span class="action_points move_cost hidden"> ${myActionPoints}⚡</span>
                 <img src="resources/img/free/human.png">
                 <img id="explosionMe" class="scale-transition scale-out" src="resources/img/thirdparty/notoemoji/collision-512.webp" width="38">
-            </div>
+            </button>
             <div class="halo">&nbsp;</div>
             <div class="overlay"></div>
             `);

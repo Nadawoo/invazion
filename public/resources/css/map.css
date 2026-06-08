@@ -700,6 +700,9 @@
 }
 
 /* Action points above the player when moving */
+#map.action_view #me .move_cost {
+    display:none;
+}
 #me .move_cost {
     top:-62px;
     border-radius:4px;

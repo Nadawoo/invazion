@@ -221,7 +221,7 @@ export function listenToClick() {
         else if(action === "togglePathsBar") {
             togglePathsBar();
         }
-        else if(button?.dataset.action === "switchToActionView") {
+        else if(!actionViewActive && button?.dataset.action === "switchToActionView") {
             switchToActionView();
         }
         else if(button?.dataset.action === "toggleBag") {
@@ -234,15 +234,15 @@ export function listenToClick() {
             const clipboard = new Clipboard();
             clipboard.copyTextarea(button.dataset.target);
         }
-        else if(actionViewActive  && hexagon && hexagon.querySelector("#me") === null) {
+        else if(actionViewActive && hexagon && hexagon.querySelector("#me") === null) {
             toggleActionBlock("move");
         }
-        else if(actionViewActive  && action === "switchActionBlock") {
+        else if(actionViewActive && action === "switchActionBlock") {
             const blockName = target.dataset.name;
             toggleActionBlock(blockName);
             updateBlockAction(blockName);
         }
-        else if(actionViewActive  && button?.dataset.action === "switchActionBlock") {
+        else if(actionViewActive && button?.dataset.action === "switchActionBlock") {
             const blockName = button.dataset.name;
             toggleActionBlock(blockName);
             updateBlockAction(blockName);
