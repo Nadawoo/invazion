@@ -488,3 +488,9 @@ export async function populateMapTitle(mapId) {
     
     document.querySelector("#map_title").innerText = `Carte ${mapId}. ${mapName}`;
 }
+
+
+export function isActionViewActive() {
+    
+    return document.querySelector("#map").classList.contains("action_view");
+}

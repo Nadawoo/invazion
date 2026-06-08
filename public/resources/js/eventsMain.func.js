@@ -31,6 +31,7 @@ import {
     from "./misc.func.js";
 import { initiateDiscussTab, listenToDiscussTabs, toggleSendform } from "./discussions.func.js";
 import {
+    isActionViewActive,
     switchToActionView,
     triggerTooltip,
     zoomMapRange
@@ -171,7 +172,7 @@ export function listenToClick() {
         let hexagon = target.closest(".hexagon"),
             button = target.closest("button");
             
-        const isActionViewActive = document.querySelector("#map").classList.contains("action_view");
+        const actionViewActive = isActionViewActive();
         
         // Build a city on the map (not a construction inside a city)
         if(target.closest(selectors.buildCity)) {
@@ -233,15 +234,15 @@ export function listenToClick() {
             const clipboard = new Clipboard();
             clipboard.copyTextarea(button.dataset.target);
         }
-        else if(isActionViewActive && hexagon && hexagon.querySelector("#me") === null) {
+        else if(actionViewActive  && hexagon && hexagon.querySelector("#me") === null) {
             toggleActionBlock("move");
         }
-        else if(isActionViewActive && action === "switchActionBlock") {
+        else if(actionViewActive  && action === "switchActionBlock") {
             const blockName = target.dataset.name;
             toggleActionBlock(blockName);
             updateBlockAction(blockName);
         }
-        else if(isActionViewActive && button?.dataset.action === "switchActionBlock") {
+        else if(actionViewActive  && button?.dataset.action === "switchActionBlock") {
             const blockName = button.dataset.name;
             toggleActionBlock(blockName);
             updateBlockAction(blockName);
@@ -642,6 +643,7 @@ export function listenToRoads(hexagon) {
     
     hexagon.addEventListener("pointerenter", async (event)=>{
         if(event.pointerType !== "mouse") return;
+        if(isActionViewActive() === true) return;
         
         // Open the radial menu of the newly clicked hexagon
         radialMenu.open(hexagon, event, _elementsToHideInRoadView);
@@ -649,6 +651,7 @@ export function listenToRoads(hexagon) {
     
     hexagon.addEventListener("pointerleave", (event)=>{
         if(event.pointerType !== "mouse") return;
+        if(isActionViewActive() === true) return;
         
         // Hide the road and close the previously open radial menu
         radialMenu.close(_elementsToHideInRoadView);
