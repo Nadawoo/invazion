@@ -274,8 +274,7 @@ async function updateBlockActionCitizens(coordX, coordY) {
     if(block.dataset.coordx !== coordX || block.dataset.coordy !== coordY) {
         
         let myCitizenId     = document.querySelector("#citizenId").innerHTML,
-            mapId           = document.querySelector("#mapId").innerHTML,
-            template        = null;
+            mapId           = document.querySelector("#mapId").innerHTML;
             
         // Get the citizens of the map by calling the Azimutant's API
         _citizens = await getMapCitizensOnce(mapId);    
@@ -289,36 +288,47 @@ async function updateBlockActionCitizens(coordX, coordY) {
                                                                                 && citizen.coord_y != coordY
                                                                                 && citizen.citizen_id != myCitizenId);
         
-        // Shows me in the list of the citizens
-        if(citizensInMyZone.length <= 0) {
-            // If the connected player is alone, show a generic text
-            display("#block_citizens .greytext");
-            block.innerHTML = "";
-            
-        } else {
-            // Hide the generic text
-            hide("#block_citizens .greytext");
-            // Add the player's pseudo at the top of the list of citizens
-            template = getHtmlActionBlockFellow(_citizens[myCitizenId], true, false, true);
-            document.querySelector("#block_citizens #citizensInMyZone").appendChild(template);
-        }
-        
-        // Shows the list of the other citizens in my zone
-        for(let i in citizensInMyZone) {
-            template = getHtmlActionBlockFellow(citizensInMyZone[i], true);
-            document.querySelector("#block_citizens #citizensInMyZone").appendChild(template);
-        }
-        
-        // Shows the list of the other citizens in the zone
-        document.querySelector("#block_citizens #citizensInOtherZones").innerHTML = "";
-        for(let i in citizensInOtherZones) {
-            template = getHtmlActionBlockFellow(citizensInOtherZones[i], false, false);
-            document.querySelector("#block_citizens #citizensInOtherZones").appendChild(template);
-        }
+        populateBlockCitizensInMyZone(citizensInMyZone, myCitizenId);
+        populateBlockCitizensInOtherZones(citizensInOtherZones);
         
         // Useful to know if the block is up-to-date after moving the player
         block.dataset.coordx = coordX;
         block.dataset.coordy = coordY;
+    }
+}
+
+
+function populateBlockCitizensInMyZone(citizensInMyZone, myCitizenId) {
+    
+    // Shows me in the list of the citizens
+    if(citizensInMyZone.length <= 0) {
+        // If the connected player is alone, show a generic text
+        display("#block_citizens .greytext");
+        block.innerHTML = "";
+    }
+    else {
+        // Hide the generic text
+        hide("#block_citizens .greytext");
+        // Add the player's pseudo at the top of the list of citizens
+        let template = getHtmlActionBlockFellow(_citizens[myCitizenId], true, false, true);
+        document.querySelector("#block_citizens #citizensInMyZone").appendChild(template);
+        
+        // Shows the list of the other citizens in my zone
+        for(let i in citizensInMyZone) {
+            let template = getHtmlActionBlockFellow(citizensInMyZone[i], true);
+            document.querySelector("#block_citizens #citizensInMyZone").appendChild(template);
+        }
+    }
+}
+
+
+function populateBlockCitizensInOtherZones(citizensInOtherZones) {
+    
+    // Shows the list of citizens located in other zones
+    document.querySelector("#block_citizens #citizensInOtherZones").innerHTML = "";
+    for(let i in citizensInOtherZones) {
+        let template = getHtmlActionBlockFellow(citizensInOtherZones[i], false, false);
+        document.querySelector("#block_citizens #citizensInOtherZones").appendChild(template);
     }
 }
 

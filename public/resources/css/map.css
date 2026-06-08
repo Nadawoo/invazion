@@ -840,7 +840,7 @@
 #map.action_view .items_icon {
     display:unset;
     position:absolute;
-    top:12px;
+    top:10px;
     right:3px;
     padding:1px;
     font-size:6px;
@@ -1051,8 +1051,9 @@
 }
 
 
-#map .icon_html { /* Makes the unicode icons bigger without shifting the map tiles */
+#map_body .icon_html { /* Makes the unicode icons bigger without shifting the map tiles */
     position:absolute;
+    right:5px;
     margin-bottom:0.2em;
     z-index:1;
     text-shadow: -1px -1px 1px greenyellow, /* Top left */
@@ -1403,6 +1404,20 @@
 #map.action_view .cityframe:not(.submerged) .nbr_defenses,
 #map.action_view .hexagon .nbr_items {
     transform:scale(0.7);
+}
+
+#map_body .fellows {
+    position:absolute;
+    right:2px;
+    width:12px;
+    margin-top:5px;
+    padding:0;
+    display:flex;
+    justify-content:right;
+    flex-wrap:wrap;
+    background:none;
+    border:none;
+    z-index:2;
 }
 
 /* Add this class to a .square_container to create a bloody stain on the zone */

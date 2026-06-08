@@ -183,7 +183,7 @@ export function listenToClick() {
             const move = new Move();
             move.driveToCity(path);
         }
-        else if(action === "openBuildingPopup") {
+        else if(action === "openBuildingPopup" || target.closest("div").dataset.action === "openBuildingPopup") {
             let buildingPopup = new BuildingPopup();
             buildingPopup.openBuildingPopup(event);
         }
@@ -238,6 +238,11 @@ export function listenToClick() {
         }
         else if(isActionViewActive && action === "switchActionBlock") {
             const blockName = target.dataset.name;
+            toggleActionBlock(blockName);
+            updateBlockAction(blockName);
+        }
+        else if(isActionViewActive && button?.dataset.action === "switchActionBlock") {
+            const blockName = button.dataset.name;
             toggleActionBlock(blockName);
             updateBlockAction(blockName);
         }
@@ -328,12 +333,6 @@ export function listenToClick() {
                 // Exit the "Add road" view mode
                 _newRoadSource = null;
                 document.querySelector("#map").dataset.viewmode = "";
-            } else {
-                
-
-                // If we click on a city, open the city pop-up
-                let buildingPopup = new BuildingPopup();
-                buildingPopup.openBuildingPopup(event);
             }
         }
         else if(_newRoadSource !== null && hexagon.querySelector(".square_container").dataset.cityid === "") {

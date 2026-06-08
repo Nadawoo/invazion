@@ -366,9 +366,51 @@ export function switchToActionView() {
     // NB: See the CSS file to see the modifications implied by adding this class
     document.querySelector("#map").classList.add("action_view");
     
+    addCitizensOnMyZone();
+    
     updateActionBlocks();
     
     window.isActionViewActive = true;
+}
+
+
+/**
+ * Add icons on the current player's zone for the other citizens here.
+ * This functon doesn't populate the list in the "Citizens" action block
+ * 
+ * @returns {undefined}
+ */
+async function addCitizensOnMyZone() {
+    
+    const myCitizenId = Number(document.querySelector("#citizenId").innerHTML);
+    const myZone = document.querySelector("#me").parentNode.dataset;
+    const coordX = myZone.coordx;
+    const coordY = myZone.coordy;
+    
+    // Get the citizens of the map by calling the Azimutant's API
+    _citizens = await getMapCitizensOnce(mapId);    
+    // Keep only the citizens who are in the player's zone
+    const citizensInMyZone = Object.values(_citizens).filter(citizen => citizen.coord_x == coordX 
+                                                                        && citizen.coord_y == coordY
+                                                                        && citizen.citizen_id != myCitizenId);
+    
+    // Add on the zone the silhouettes of the fellows
+    const citizensContainer = document.createElement("button");
+    citizensContainer.classList.add("fellows");
+    citizensContainer.dataset.action = "switchActionBlock";
+    citizensContainer.dataset.name = "citizens";
+
+    for(const i in citizensInMyZone) {
+        const citizenIcon = document.createElement("img");
+        citizenIcon.src = "resources/img/free/human.png";
+        citizenIcon.height = 8;
+        citizenIcon.width  = 5;
+        citizensContainer.appendChild(citizenIcon);
+
+        if(i >= 2) break;
+    }
+    
+    document.querySelector(`#zone${coordX}_${coordY} .square_container`).appendChild(citizensContainer);
 }
 
 
