@@ -349,14 +349,6 @@ export function switchToActionView() {
         updateDigButtons(_myZone.user_specific.is_visited_today); 
     }, 1000);    
     
-    // Hide some elements of the GUI to make the interface look lighter
-    hide(["#views_bar", "#map_navigation", "#tasks_button", "#game_footer"]);
-    hide(["#map_body .sharp_bubble",
-          "#map_body .bubble", 
-          "#map_body .healthbar",
-          "#map_body .cityframe",
-          "#me .nbr_defenses"
-          ]);
     desactivateMapPathsView();
     // Display the button which switches to the Map mode
     display("#map_mode_button");

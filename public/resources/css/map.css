@@ -1383,6 +1383,22 @@
 #map .overlay {
     display:none;
 }
+
+/*
+ * Hide some elements of the GUI to make the interface look lighter
+ */
+#map.action_view #views_bar,
+#map.action_view #map_navigation,
+#map.action_view #tasks_button,
+#map.action_view #game_footer,
+#map.action_view .sharp_bubble,
+#map.action_view .bubble, 
+#map.action_view .healthbar,
+#map.action_view .cityframe,
+#map.action_view #me .nbr_defenses {
+    display:none;
+}
+
 #map.action_view .overlay {
     display:block;
 }
