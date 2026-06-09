@@ -1,0 +1,61 @@
+/*
+ * Styles related to the "action" view (= map zoomed on the player's zone)
+ */
+
+/* Hide some elements of the GUI to make the interface look lighter */
+#map.action_view #views_bar,
+#map.action_view #map_navigation,
+#map.action_view #tasks_button,
+#map.action_view #game_footer,
+#map.action_view #me .nbr_defenses,
+#map.action_view #me .move_cost,
+#map.action_view .sharp_bubble,
+#map.action_view .bubble, 
+#map.action_view .healthbar,
+#map.action_view .cityframe {
+    display:none;
+}
+
+#map.action_view .overlay {
+    display:block;
+}
+#map.action_view #me {
+    transform:scale(0.3);
+    bottom:0;
+    left:30%;
+}
+#map.action_view .halo {
+    bottom:5px;
+    left:20%;
+    transform:scale(0.3);
+}
+#map.action_view .icon_html {
+    top:-2px;
+    transform:scale(0.65);
+}
+#map.action_view .zombies {
+    position:absolute;
+    bottom:4px;
+    right:30%;
+    transform:scale(0.5) !important;
+    opacity:0.8;
+    cursor:pointer;
+}
+
+#map.action_view .cityframe:not(.submerged) .nbr_defenses,
+#map.action_view .hexagon .nbr_items {
+    transform:scale(0.7);
+}
+
+#map.action_view .items_icon {
+    display:unset;
+    position:absolute;
+    top:10px;
+    right:3px;
+    padding:1px;
+    font-size:6px;
+    text-shadow: 0 0 1px greenyellow, /* Top left */
+                 0 0 1px greenyellow,  /* Top right */
+                 0 0 1px greenyellow,  /* Bottom left */
+                 0 0 1px greenyellow;
+}

@@ -106,6 +106,7 @@ class HtmlPage
                 <link rel="stylesheet" type="text/css" href="resources/css/sitelayout.css?v'.$this->css_js_version.'" rel="preload" as="style">
                 <link rel="stylesheet" type="text/css" href="resources/css/gamelayout.css?v'.$this->css_js_version.'" rel="preload" as="style">
                 <link rel="stylesheet" type="text/css" href="resources/css/map.css?v'.$this->css_js_version.'">
+                <link rel="stylesheet" type="text/css" href="resources/css/actionview.css?v'.$this->css_js_version.'">
                 <link rel="stylesheet" type="text/css" href="resources/css/paths.css?v'.$this->css_js_version.'">
                 <link rel="stylesheet" type="text/css" href="resources/css/items.css?v'.$this->css_js_version.'">
                 <link rel="stylesheet" type="text/css" href="resources/css/smartphone.css?v'.$this->css_js_version.'">
