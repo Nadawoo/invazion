@@ -16,8 +16,8 @@ class HtmlStatusBar {
                                 $bag_items,
                                 $city_id,
                                 $is_wounded,
-                                $control_points,
-                                $nbr_zone_fellows) {
+                                $control_points
+                                ) {
         
         $htmlItem = new HtmlItem();
         
@@ -43,11 +43,6 @@ class HtmlStatusBar {
                                   "popwounded")
             : $this->status_empty();
         
-        $status_fellows = ($nbr_zone_fellows >= 1)
-            ? $this->status_image("&#128101;", null, $nbr_zone_fellows,
-                                "D'autres humains se trouvent dans la même zone que vous ! L'union fait la force...")
-            :$this->status_empty();
-        
         return '
             <div id="statusbar">
                 <button class="block_icon" data-action="toggleStatus">
@@ -64,8 +59,7 @@ class HtmlStatusBar {
                     $this->status_empty().
                     $this->status_empty().
                     $this->status_empty().
-                    $this->status_empty().
-                    $status_fellows.'
+                    $this->status_empty().'
                 </ul>
             </div>';
     }

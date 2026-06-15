@@ -32,9 +32,7 @@ $sort               = new SortGameData();
 $zone               = set_default_variables('zone');
 $citizen            = set_default_variables('citizen');
 $city_fellows       = [];
-$zone_fellows       = [];
 $healing_items      = [];
-$citizens_by_coord  = [];
 $configs            = [];
 $speciality_caracs  = [];
 $specialities       = [];
@@ -109,7 +107,6 @@ $maps_api = $api->call_api('maps', 'get', ['map_id'=>$map_id], 'GET', 'no_token'
 $maps = $maps_api['datas'];
 
 $citizens           = $api->call_api('citizens', 'get', ['map_id'=>$map_id])['datas'];
-$citizens_by_coord  = $sort->sort_citizens_by_coord($citizens);
 $configs            = $api->call_api('configs', 'get', ['map_id'=>$map_id])['datas'];
 $specialities       = $configs['specialities'];
 $speciality_caracs  = $specialities[$citizen['speciality']];
@@ -119,7 +116,6 @@ $map->set_config_buildings($configs['buildings']);
 // If the player is connected and has already created his citizen
 if ($citizen['citizen_id'] !== null and $is_in_game === true) {
     
-    $zone_fellows       = $citizens_by_coord[$citizen['coord_x'].'_'.$citizen['coord_y']];
     $zone               = $maps['zones'][$citizen['coord_x'].'_'.$citizen['coord_y']];
     $healing_items      = $sort->filter_bag_items('healing_wound', $configs['items'], $citizen['bag_items']);
 
@@ -180,7 +176,6 @@ $html = [
                                                  ),
     // Assembling the HTML for the map
     'map' => $map->hexagonal_map($maps['map_width'], $maps['map_height'], $maps['zones'], $citizen, $maps['next_attack_hour']),
-//    'map_citizens'      => $layout->map_citizens($citizens),
     'attack_bar'        => $layout->attack_bar($map_id, $configs['map']['current_cycle']),
     // Contents of the round action buttons at the right of the map
     'ground_items'      => $layout->block_ground_items($citizen['coord_x'], $citizen['coord_y']),
@@ -191,7 +186,7 @@ $html = [
     'smartphone'        => $phone->smartphone($maps['map_width'], $maps['map_height'], $citizen, $speciality_caracs, $zone),
     ];
 
-unset($maps_api, $maps, $citizens, $citizens_by_coord);
+unset($maps_api, $maps, $citizens);
 ?>
 
 
@@ -415,8 +410,7 @@ echo $layout->page_header($citizen['user_id'], $citizen['citizen_id'], $citizen[
                                             $citizen['bag_items'],
                                             $citizen['city_id'],
                                             $citizen['is_wounded'],
-                                            $citizen['control_points'],
-                                            count($zone_fellows)-1
+                                            $citizen['control_points']
                                             );
                 echo $layout->bag_bar($configs['items'],
                                       $citizen['bag_items'],
@@ -567,22 +561,6 @@ echo $layout->page_header($citizen['user_id'], $citizen['citizen_id'], $citizen[
         <input type="submit" value="Débugage API"  class="formlink" style="color:grey"
                title="Lien spécial pour le débugage - Ignorez-le sauf si un administrateur du jeu vous le demande." />
     </form>
-    
-    <!--
-    <section>
-        <h3 id="Citizens"><a href="#Citizens">&Hat;</a>&nbsp;Liste des citoyens</h3>    
-        <?php
-        //echo $html['map_citizens']
-        ?>
-    </section>
-    
-    <hr>
-    
-    <p>Merci à <a href="http://twinoid.com/user/7912453" target="_blank" rel="noopener"><strong>Ross</strong></a> 
-        pour son image de ville <img src="resources/img/free/city.png" alt="city.png">
-    </p>
-    -->
-    
 </div>
     
 <?php echo $layout->page_footer();

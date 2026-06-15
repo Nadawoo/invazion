@@ -256,7 +256,7 @@ class HtmlCityEnclosure
         
         $strings = [
             'in_city' => [
-                'name'  => "En ville",
+                'name'  => "En ville",
                 'title' => "Ce citoyen est actuellement à l'intérieur de la ville",
                 'material_icon' => "apartment",
                 'icon_style'    => "",
@@ -278,7 +278,7 @@ class HtmlCityEnclosure
             }
             
             $action_points = $itemsController->filter($citizen['bag_items'], 'action_points');
-            $wound = ($citizen['is_wounded'] === 0) ? '' : '<li><strong class="red-text">est blessé !</strong></li>';  
+            $wound = ($citizen['is_wounded'] === 0) ? '' : '<li>&#x1FA78; <strong class="red-text">Blessé !</strong></li>';  
             $ap_style = ($action_points === 0) ? "background:darkred;color:white;font-weight:normal" : "";
             
             $html_citizens .= '
