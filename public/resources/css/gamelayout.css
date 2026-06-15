@@ -6,11 +6,7 @@
 /* Bloc contenant la carte et les blocs d'action (nombre de zombies, sac...) */
 #game_container {
     position:relative;
-    height:100vh;
     /*background:url('../img/metal.jpg');*/
-    /*border:1px solid grey;*/
-    border-left:none;
-    border-right:none;
     padding:0 0.2em;
     /* Garantit que les éléments sous la carte (liste des inscrits...) ne remontent
        pas dans la colonne à droite de la carte */
@@ -20,6 +16,13 @@
       (notamment si liste des chantiers trop longue)
        Désactivé pour le moment car cache les infobulles en haut de la carte */
     /*overflow:auto; */
+}
+#game_container.fullscreen {
+    position:absolute;
+    top:0;
+    height:100%;
+    width:100%;
+    padding:0;
 }
 
 .dot_notif {
@@ -173,7 +176,7 @@
     display:flex;
     justify-content:space-between;
     max-height:3.5rem;
-    margin-top:-55px;
+    margin-top:-58px;
     padding:0.2em 0.5em;
     background:linear-gradient(to top, #17202A, #34495E); /*#4a235a*/
     /*border-top:1px ridge darkgrey;*/

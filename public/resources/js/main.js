@@ -162,6 +162,9 @@ if(document.getElementById("map") !== null) {
             document.querySelector("#tasks_button").classList.add("hidden");
         }
         else {
+            
+            document.querySelector("#game_container").classList.add("fullscreen");
+            
             addMeOnMap();
 
             setTimeout(function() {

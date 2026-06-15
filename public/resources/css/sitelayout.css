@@ -398,7 +398,7 @@ div.center {
     display:flex;
 }
 #jsLog textarea {
-    height:10em;
+    height:18em;
     padding:0.5em;
     overflow:auto;
     background:lightyellow;
@@ -408,7 +408,7 @@ div.center {
 #jsLog .copy {
     position:absolute;
     top:  5px;
-    right:5px;
+    right:20px;
     height:2.5em;
     background:none;
     border:none;
