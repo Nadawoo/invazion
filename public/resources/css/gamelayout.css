@@ -3,6 +3,10 @@
  * (carte, pavé de déplacement, contôle de zone...)
  */
 
+/* Desactivate the pull-to-refresh on mobile (interferes with the map) */
+html, body {
+    overscroll-behavior:none;
+}
 /* Bloc contenant la carte et les blocs d'action (nombre de zombies, sac...) */
 #game_container {
     position:relative;
@@ -16,8 +20,6 @@
       (notamment si liste des chantiers trop longue)
        Désactivé pour le moment car cache les infobulles en haut de la carte */
     /*overflow:auto; */
-    /* Desactivate the pull-to-refresh on mobile (interferes with the map) */
-    overscroll-behavior:none;
 }
 #game_container.fullscreen {
     position:absolute;
