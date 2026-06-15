@@ -332,11 +332,6 @@ echo $layout->page_header($citizen['user_id'], $citizen['citizen_id'], $citizen[
         echo '<div id="dark_background"></div>';
      } ?>
     
-    
-    <!-- Let this bar *before* the round action buttons if you want them 
-         to go *below* the bar on small screens -->
-    <div id="Outside" style="line-height:0"></div>
-    
     <!-- The map -->
     <main id="map" aria-label="Carte du jeu et outils liés à celle-ci">
         

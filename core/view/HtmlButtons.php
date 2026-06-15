@@ -1028,9 +1028,7 @@ class HtmlButtons
     function refresh()
     {
         
-        // Le nombre aléatoire assure que la page sera réellement actualisée 
-        // au lieu d'être simplement ramenée au niveau de l'ancre #Outside
-        // (le navigateur considérera que c'est une url différente)
-        return '<a href="index?'.rand(100, 999).'#Outside" style="font-size:55%" title="Actualiser l\'affichage">&#x1F504;</a>';
+        // The random number forces the browser to refresh the page without cache
+        return '<a href="index?'.rand(100, 999).'" style="font-size:55%" title="Actualiser l\'affichage">&#x1F504;</a>';
     }
 }
