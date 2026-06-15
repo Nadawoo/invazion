@@ -4,7 +4,12 @@
  */
 
 /* Desactivate the pull-to-refresh on mobile (interferes with the map) */
-html, body {
+html,
+body,
+#game_container,
+#map,
+#map_viewport,
+#map_body_wrapper {
     overscroll-behavior:none;
 }
 /* Bloc contenant la carte et les blocs d'action (nombre de zombies, sac...) */
