@@ -152,13 +152,6 @@ class HtmlPage
     {
         
         return '
-                            <section id="jsLog">
-                                <textarea name="log" readonly>Débugage : log javascript</textarea>
-                                <button class="copy"  title="Copier" data-action="copyTextarea" data-target="#jsLog textarea">
-                                    <i class="material-icons">content_copy</i>
-                                </button>
-                            </section>
-
                             <footer>
                                 <p>Ce jeu est issu d\'<a href="https://invazion.nadazone.fr">Azimutant</a>, 
                                 créé par <strong>Nadawoo</strong> (développeur indépendant).<br> 

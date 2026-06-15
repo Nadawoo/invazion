@@ -923,8 +923,11 @@ class HtmlPopup
     
     private function popdayclock($params) {
         
-        $buttons = new HtmlButtons();
-        $gameStats = new HtmlGameStats();
+        $buttons    = new HtmlButtons();
+        $gameStats  = new HtmlGameStats();
+        $server     = new Server();
+        $official_server_root = $server->official_server_root();
+        $zombLib    = new ZombLib($official_server_root.'/api');
         
         return "<p>&#x1F5FA;&#xFE0F; Vous êtes incarné sur la <strong>carte n° ".$params['map_id']."</strong>.<p>
                 <p>&#x1F551; Vous y vivez actuellement votre <strong>".$params['current_cycle']."<sup>e</sup> jour</strong> de survie.</p>
@@ -936,8 +939,27 @@ class HtmlPopup
                         <div class=\"collapsible-body\">
                             ".$gameStats->stats()."
                         </div>
+                    </li>
+                </ul>"
+                .'<ul class="collapsible">
                     <li>
-                </ul>";
+                        <div class="collapsible-header"><strong>Débugage</strong> <strong>&gt;</strong></div>
+                        <div class="collapsible-body">
+                            <div id="jsLog">
+                                <textarea name="log" readonly>Débugage : log javascript</textarea>
+                                <button class="copy" title="Copier" data-action="copyTextarea" data-target="#jsLog textarea">
+                                    <i class="material-icons">content_copy</i>
+                                </button>
+                            </div>
+                            <br>
+                            <form method="post" action="'.$official_server_root.'/apis-list" target="_blank">
+                                <input type="hidden" name="token" value="'.$zombLib->get_token().'" />
+                                <input type="submit" value="Débugage API"  class="formlink" style="color:grey"
+                                       title="Lien spécial pour le débugage - Ignorez-le sauf si un administrateur du jeu vous le demande." />
+                            </form>
+                        </div>
+                    </li>
+                </ul>';
     }
     
     

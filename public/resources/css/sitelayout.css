@@ -399,7 +399,6 @@ div.center {
 }
 #jsLog textarea {
     height:10em;
-    margin:2em 1em;
     padding:0.5em;
     overflow:auto;
     background:lightyellow;
@@ -408,8 +407,8 @@ div.center {
 }
 #jsLog .copy {
     position:absolute;
-    top:2.5em;
-    right:2em;
+    top:  5px;
+    right:5px;
     height:2.5em;
     background:none;
     border:none;

@@ -548,19 +548,6 @@ echo $layout->page_header($citizen['user_id'], $citizen['citizen_id'], $citizen[
     </section>
 
 </div>
-    
-<div id="rules">
-    <br>
-    <br>
-    <br>
-    
-    <br>
-    
-    <form method="post" action="<?php echo $official_server_root.'/apis-list' ?>" target="_blank">
-        <input type="hidden" name="token" value="<?php echo $api->get_token() ?>" />
-        <input type="submit" value="Débugage API"  class="formlink" style="color:grey"
-               title="Lien spécial pour le débugage - Ignorez-le sauf si un administrateur du jeu vous le demande." />
-    </form>
-</div>
-    
+
+
 <?php echo $layout->page_footer();

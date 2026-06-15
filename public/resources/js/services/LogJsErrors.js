@@ -42,14 +42,16 @@ export class LogJsErrors {
 
 
     #writeErrorInLog(message, stack) {
-
+        
+        if(!document.querySelector("#jsLog")) return;
+        
         // Store each message only once to avoid having an enormous log
         if(this.alreadyDisplayedErrors.has(message)) return;
 
         this.alreadyDisplayedErrors.add(message);
 
         const entry = `\n---\n**${message}**\n    ${stack}`;
-
+        
         document.querySelector("#jsLog textarea").value += entry;
     }
 }
