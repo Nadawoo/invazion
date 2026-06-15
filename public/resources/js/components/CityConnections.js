@@ -435,20 +435,24 @@ export class CityConnections {
                 `<div class="cityframe ${cssClass}" role="none">
                     <div class="radial_menu hidden">
                         <button name="drive"
+                            data-action="drive"
                             class="animate__animated animate__fadeInUp animate__faster"
                             >&#x1F97E; Aller
                         </button>
                         <button name="teleport"
+                            data-action="teleport"
                             class="animate__animated animate__fadeInLeft animate__faster"
                             style="top:8px;left:38px;width:25px;border-radius:50%;font-size:0.9em"
                             >&#x1F681;
                         </button>
                         <button name=""
+                            data-action="openBuildingPopup"
                             class="animate__animated animate__fadeInDown animate__faster"
                             style="top:38px;left:7px;width:25px;border-radius:50%"
                             >&#x1F441;&#xFE0F;
                         </button>
                         <button name="road"
+                            data-action="addRoad"
                             class="animate__animated animate__fadeInRight animate__faster"
                             style="top:8px;left:-24px;width:25px;border-radius:50%;font-size:0.9em"
                             >&#x1F6E3;&#xFE0F;

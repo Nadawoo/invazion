@@ -161,9 +161,6 @@ export function listenToClick() {
         
         const selectors = {
             "buildCity":"#builder button[name=build_city]",
-            "drive": "button[name=drive]",
-            "teleport": "button[name=teleport]",
-            "addRoad": "button[name=road]",
             "enlargeWall": "enlargeWall",
             };
         
@@ -178,7 +175,7 @@ export function listenToClick() {
         if(target.closest(selectors.buildCity)) {
             buildOnMap(Number(target.closest(selectors.buildCity).dataset.citytypeid));
         }
-        else if(target.matches(selectors.drive) === true) {
+        else if(action === "drive") {
             // If we click on a "drive" button over a city (move on the roads)
             const path = target.dataset.path;
             const move = new Move();
@@ -188,13 +185,13 @@ export function listenToClick() {
             let buildingPopup = new BuildingPopup();
             buildingPopup.openBuildingPopup(event);
         }
-        else if(target.matches(selectors.teleport) === true) {
+        else if(action === "teleport") {
             // If we click on a teleportation button over a city, teleport the citizen
             const cityId = Number(target.closest(".square_container").dataset.cityid);
             const move = new Move();
             move.teleportToCity(cityId);
         }
-        else if(target.matches(selectors.addRoad) === true) {
+        else if(action === "addRoad") {
             _newRoadSource = Number(hexagon.querySelector(".square_container").dataset.cityid);
             displayToast("Sélectionnez la ville de destination de la route", "info");
             
