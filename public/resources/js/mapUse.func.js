@@ -546,7 +546,6 @@ export function resetMapView() {
 //    window.isMapDefensesViewActive = false;
     
     hide("#map_body .location");
-    hide("#map_body button[name=teleport]");
     
     if(window.isActionViewActive !== true) {
         display(["#views_bar, #attack_bar", "#tasks_button"]);
