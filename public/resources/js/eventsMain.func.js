@@ -157,7 +157,7 @@ export function listenToInput() {
  */
 export function listenToClick() {
     
-    document.addEventListener("click", (event) => {
+    document.addEventListener("pointerup", (event) => {
         
         const selectors = {
             "buildCity":"#builder button[name=build_city]",
