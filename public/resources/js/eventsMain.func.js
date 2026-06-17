@@ -59,7 +59,7 @@ import {
  */
 export function listenToSubmit() {
     
-    document.addEventListener("submit", (event) => {        
+    document.addEventListener("submit", (event)=>{
         const formSelectors = {
             "createGame": "form[name=create_game]",
             "dig":"#block_dig form[name=dig]",
@@ -138,7 +138,7 @@ export function listenToSubmit() {
 
 export function listenToInput() {
     
-    document.addEventListener("input", (event) => {
+    document.addEventListener("input", (event)=>{
         
         if(event.target.dataset.action === "zoomRange") {
             zoomMapRange(event.target.value);
@@ -157,7 +157,7 @@ export function listenToInput() {
  */
 export function listenToClick() {
     
-    document.addEventListener("pointerup", (event) => {
+    document.addEventListener("pointerup", (event)=>{
         
         const selectors = {
             "buildCity":"#builder button[name=build_city]",
@@ -357,7 +357,7 @@ export function listenToClick() {
 export function listenToPointerdown() {
     
     // Close the radial menu when tapping anywhere out of the active hexagon
-    document.addEventListener("pointerdown", (event) => {
+    document.addEventListener("pointerdown", (event)=>{
         if(event.pointerType !== "touch") return;
 
         const radialMenu = new CityRadialMenu();
@@ -384,20 +384,20 @@ export function listenToPointerdown() {
  */
 export function listenToSendform() {
     // Create a new discussion thread
-    document.getElementById("buttonNewTopic").addEventListener("click", function(event) {
+    document.getElementById("buttonNewTopic").addEventListener("pointerup", (event)=>{
         toggleSendform(event);
     });
-    document.getElementById("hideSendform").addEventListener("click", function(event) {
+    document.getElementById("hideSendform").addEventListener("pointerup", (event)=>{
         toggleSendform(event);
     });
-    document.getElementById("sendform").addEventListener("submit", function(event) {
+    document.getElementById("sendform").addEventListener("submit", (event)=>{
         // Desactivate the classic submission button (avoids reloading the page)
         event.preventDefault();
         createDiscussion();
     });
 
     // Clear the error messages if the user writes in the form
-    document.getElementById("sendform").addEventListener("input", function() {
+    document.getElementById("sendform").addEventListener("input", (event)=>{
          document.getElementById("errorNewTopicPseudo").innerHTML  = "";
          document.getElementById("errorNewTopicMessage").innerHTML = "";
     });
@@ -426,7 +426,7 @@ export function listenToMapDragging() {
         emulateScroll: false // true = scroll inside the viewport, false = scroll the whole page
     });
 
-    image.addEventListener('load', () => {
+    image.addEventListener('load', (event)=>{
         // Set viewport position to the center of an image
         const offsetX = image.scrollWidth - viewport.offsetWidth;
         const offsetY = image.scrollHeight - viewport.offsetHeight;
@@ -451,7 +451,7 @@ export function listenToMapDragging() {
 export function listenToLocationButtons(node) {
 
     for (var i=0; i<node.length; i++) {
-        node[i].addEventListener("click", function() {
+        node[i].addEventListener("click", (event)=>{
             let htmlCoords = event.target.parentNode.dataset.coords;
             let tooltip = new Tooltip();
             centerMapOnZone(`zone${htmlCoords}`);
@@ -471,7 +471,7 @@ export function listenToLocationButtons(node) {
 export function listenToActionModeButtons(node) {
 
     for(var i=0; i<node.length; i++) {
-        node[i].addEventListener("click", function() {
+        node[i].addEventListener("click", (event)=>{
             switchToActionView();
         });
     }
@@ -610,7 +610,7 @@ export async function enlargeWall() {
 export function listenToMapLegendSwitches() {
     
     // When we (des)activate a switch button
-    document.querySelector("#map_legend_items .switches").addEventListener("change", function() {
+    document.querySelector("#map_legend_items .switches").addEventListener("change", (event)=>{
         // Uncheck all other switches previously activated
         document.querySelectorAll("#map_legend_items .switches input").forEach(element => {
             if(element !== event.target) {
