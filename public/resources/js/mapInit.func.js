@@ -484,5 +484,12 @@ export async function populateMapTitle(mapId) {
 
 export function isActionViewActive() {
     
-    return document.querySelector("#map").classList.contains("action_view");
+    let result = false;
+    let mapNode = document.querySelector("#map");
+    
+    if(mapNode) {
+        result = mapNode.classList.contains("action_view");
+    }
+    
+    return result;
 }
