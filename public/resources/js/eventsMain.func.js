@@ -401,6 +401,9 @@ export function listenToPointerup() {
         
         const radialMenu = new CityRadialMenu();
         const hexagon = event.target.closest(".hexagon");
+        const container = hexagon?.querySelector(".square_container");
+        
+        markZoneAsSelected(hexagon);
         
         // Hide the road and close the previously open radial menu
         if(_roadActiveHexagon && _roadActiveHexagon !== hexagon) {
@@ -414,6 +417,18 @@ export function listenToPointerup() {
     },
     { passive: true }
     );
+}
+
+
+function markZoneAsSelected(hexagon) {
+    
+    // Remove the "selected" mark on the eventual previously selected zone
+    document.querySelector(".square_container.selected")?.classList.remove("selected");
+    
+    // Mark the newly selected zone with "selected"
+    if(hexagon !== null) {
+        hexagon.querySelector(".square_container").classList.add("selected");
+    }
 }
 
 
