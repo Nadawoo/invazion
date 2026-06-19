@@ -11,7 +11,9 @@ import {
     listenToMapLegendSwitches,
     listenToSubmit,
     listenToClick,
-    listenToPointerdown
+    listenToPointerdown,
+    listenToPointermove,
+    listenToPointerup
     }
     from "./eventsMain.func.js"
 import { zoomMapRange } from "./mapInit.func.js";
@@ -27,6 +29,8 @@ listenToInput();
 // One global listener for each type of event
 listenToClick();
 listenToPointerdown();
+listenToPointermove();
+listenToPointerup();
 
 // If we are on the main game page (those elements don't exist on the connection page)
 if (document.getElementById('map') !== null) {

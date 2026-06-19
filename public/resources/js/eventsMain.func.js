@@ -51,6 +51,11 @@ import {
     }
     from "./mapUse.func.js";
 
+const inputState = {
+    dragStartX: 0,
+    dragStartY: 0,
+    isDragging: false
+};
 
 /**
  * Listen to all the forms (avoids creating one event listenener per form)
@@ -157,7 +162,7 @@ export function listenToInput() {
  */
 export function listenToClick() {
     
-    document.addEventListener("pointerup", (event)=>{
+    document.addEventListener("click", (event)=>{
         
         const selectors = {
             "buildCity":"#builder button[name=build_city]",
@@ -358,8 +363,42 @@ export function listenToPointerdown() {
     
     // Close the radial menu when tapping anywhere out of the active hexagon
     document.addEventListener("pointerdown", (event)=>{
-        if(event.pointerType !== "touch") return;
+        
+        inputState.startX = event.clientX;
+        inputState.startY = event.clientY;
+        inputState.isMapDragging = false;
+    },
+    { passive: true }
+    );
+}
 
+
+export function listenToPointermove() {
+    
+    document.addEventListener("pointermove", (event) => {
+        // Detect if the user clicked for dragging rather than for activating something
+        const dx = event.clientX - inputState.startX;
+        const dy = event.clientY - inputState.startY;
+
+        if(Math.abs(dx) > 10 || Math.abs(dy) > 10) {
+            inputState.isMapDragging = true;
+        }
+    });
+}
+
+
+export function listenToPointerup() {
+    
+    document.addEventListener("pointerup", (event)=>{
+        
+        if(event.pointerType !== "touch") return;
+        
+        // Don't trigger actions if the click just intends to drag the map
+        if(inputState.isMapDragging) {
+            inputState.isMapDragging = false;
+            return;
+        }
+        
         const radialMenu = new CityRadialMenu();
         const hexagon = event.target.closest(".hexagon");
         
