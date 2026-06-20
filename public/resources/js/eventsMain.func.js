@@ -255,7 +255,11 @@ export function listenToClick() {
         else if(target.closest("#map_navigation")) {            
             const button = target.closest("button");
             
-            if(button?.dataset.action === "zoomMapStepIn") {
+            if(button?.dataset.action === "displayZoomButtons") {
+                toggle("#zoom_form");
+                hide("#mainZoomButton");
+            }
+            else if(button?.dataset.action === "zoomMapStepIn") {
                 zoomMapStep("in");
             }
             else if(button?.dataset.action === "zoomMapStepOut") {

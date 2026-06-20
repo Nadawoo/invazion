@@ -774,7 +774,14 @@ class HtmlLayout extends HtmlPage
                 <i class="material-icons small">my_location</i>
             </button>
             
-            <form action="#" id="zoom_form">
+            <button id="mainZoomButton"
+                    aria-label="afficher les boutons de zoom"
+                    data-action="displayZoomButtons"
+                    >
+                <i class="material-icons small">zoom_in</i>
+            </button>
+            
+            <form action="#" id="zoom_form" class="hidden">
                 <button type="button"
                         aria-label="Zoomer sur la carte"
                         title="Agrandir la carte"
@@ -782,7 +789,7 @@ class HtmlLayout extends HtmlPage
                         >
                     <i class="material-icons small">add</i>
                 </button>
-                <p class="range-field hidden">
+                <p class="range-field">
                     <input type="range"
                            value="100" min="70" max="220" step="30"
                            id="zoom_range"

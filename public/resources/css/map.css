@@ -85,11 +85,14 @@
  */
 #map_navigation {
     position:absolute;
-    top:  8rem;
+    top:  12rem;
     right:0.5em;
     display:flex;
     flex-direction:column;
     align-items:flex-end;
+    gap:8px;
+    background:darkslategrey;
+    border-radius:8px;
 }
 #map_navigation button,
 #resizeMap button {
@@ -100,32 +103,29 @@
     width: 3rem;
     font-size:3em;
     border:none;
-    border-radius:0.2em;
+    border-radius:8px;
     background:lightgrey;
-    opacity:0.9;
+    border:1px solid black;
     box-shadow: 12px 12px 12px black;
-}
-#map_navigation button {
-    margin-top:0.5rem;
 }
 /* Buttons for zooming on the map */
 #zoom_form {
     width:3rem;
-    margin-top:0.5rem;
     display:flex;
     flex-direction: column;
     align-items:center;
     background:lightgrey;
-    opacity:0.9;
+    border:1px solid black;
+    border-radius:8px;
     box-shadow: 12px 12px 12px black;
-    border-radius:0.5em;
 }
 #zoom_form button {
     height:0.8em;
     margin:0;
     background:none;
-    box-shadow:none;
+    border:none;
     border-radius:0;
+    box-shadow:none;
 }
 #zoom_form .range-field {
     transform:rotate(-90deg);
