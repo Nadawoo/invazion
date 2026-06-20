@@ -735,38 +735,6 @@ class HtmlLayout extends HtmlPage
         $buttons = new HtmlButtons();
         
         return '
-            <form action="#" id="zoom_form">
-                <button type="button"
-                        aria-label="Zoomer sur la carte"
-                        title="Agrandir la carte"
-                        data-action="zoomMapStepIn"
-                        >
-                    <i class="material-icons small">add</i>
-                </button>
-                <p class="range-field hidden">
-                    <input type="range"
-                           value="100" min="70" max="220" step="30"
-                           id="zoom_range"
-                           data-action="zoomRange"
-                           >
-                </p>
-                <hr onclick="toggle(\'#zoom_form .range-field\')">
-                <button type="button"
-                        aria-label="Dézoomer sur la carte"
-                        title="Dézoomer sur la carte"
-                        data-action="zoomMapStepOut"
-                        >
-                    <i class="material-icons small">remove</i>
-                </button>
-            </form>
-            
-            <button aria-label="Centrer la carte sur ma zone"
-                    title="Centrer la carte sur ma zone"
-                    data-action="centerMapOnMe"
-                    >
-                <i class="material-icons small">my_location</i>
-            </button>
-            
             <button onclick="toggle(\'#mapRadarMenu\')" aria-label="Vues satellite" title="Vues satellite">
                 <span style="font-size:50%;margin-top:-0.2em;">&#x1F6F0;&#xFE0F;</span>
             </button>
@@ -798,6 +766,38 @@ class HtmlLayout extends HtmlPage
                     >&nbsp;<img src="resources/img/motiontwin/zombie.gif" alt="&#x1F9DF;">&nbsp; Zombies
                 </li>
             </ul>
+            
+            <button aria-label="Centrer la carte sur ma zone"
+                    title="Centrer la carte sur ma zone"
+                    data-action="centerMapOnMe"
+                    >
+                <i class="material-icons small">my_location</i>
+            </button>
+            
+            <form action="#" id="zoom_form">
+                <button type="button"
+                        aria-label="Zoomer sur la carte"
+                        title="Agrandir la carte"
+                        data-action="zoomMapStepIn"
+                        >
+                    <i class="material-icons small">add</i>
+                </button>
+                <p class="range-field hidden">
+                    <input type="range"
+                           value="100" min="70" max="220" step="30"
+                           id="zoom_range"
+                           data-action="zoomRange"
+                           >
+                </p>
+                <hr onclick="toggle(\'#zoom_form .range-field\')">
+                <button type="button"
+                        aria-label="Dézoomer sur la carte"
+                        title="Dézoomer sur la carte"
+                        data-action="zoomMapStepOut"
+                        >
+                    <i class="material-icons small">remove</i>
+                </button>
+            </form>
             
             <button aria-label="Afficher le smartphone du jeu"
                 style="display:none"
