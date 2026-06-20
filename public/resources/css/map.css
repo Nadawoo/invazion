@@ -87,11 +87,13 @@
     position:absolute;
     top:  12rem;
     right:0.5em;
+    padding:2px 0;
     display:flex;
     flex-direction:column;
     align-items:flex-end;
-    gap:8px;
+    gap:9px;
     background:darkslategrey;
+    border-left:2px solid dimgrey;
     border-radius:8px;
 }
 #map_navigation button,
@@ -145,6 +147,9 @@
 
 /* Specific sub-menu to select the desired satellite view */
 #mapRadarMenu {
+    position: absolute;
+    top: 3.2em;
+    width: 9em;
     margin:0.8em 0;
     padding:0;
     font-size:0.9em;
@@ -154,6 +159,7 @@
     border-radius:0.3em;
     list-style-type:none;
     box-shadow: 12px 12px 12px black;
+    z-index:1;
 }
 #mapRadarMenu:before {
     content: "▲";
