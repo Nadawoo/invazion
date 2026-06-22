@@ -49,6 +49,7 @@ function set_default_variables($variable, $item_id=null) {
             'descr_ambiance'    => '',
             'descr_purpose'     => "[Bug] L'objet #".$item_id." est inconnu sur cette carte. "
                                  . "Signalez-le à l'administrateur.",
+            'item_type'         => '',
             'is_weapon'         => '',
             'healing_wound'     => '',
             'items_inside_min'  => '',
