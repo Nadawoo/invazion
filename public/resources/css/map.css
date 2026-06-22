@@ -226,11 +226,10 @@
     justify-content:center;
     align-items:center;
     gap:0.5em;
-/*    background:#fbeee6;
-    border: 1px solid dimgrey;
-    outline:2px solid #fbeee6;
+    border:1px solid grey;
     border-radius:5em;
-    box-shadow:12px 12px 12px black;*/
+    background:linear-gradient(to right, #17202A, #34495E);
+    box-shadow: 12px 12px 12px black;
 }
 /*#personal_block legend {
     width:100%;
@@ -250,7 +249,6 @@
     background:#fbeee6;
     border:3px inset #34495e;
     border-radius:50%;
-    box-shadow:12px 12px 12px black;
     outline:2px outset #fbeee6;
     cursor:pointer;
 }
