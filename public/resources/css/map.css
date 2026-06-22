@@ -85,16 +85,16 @@
 #map_navigation {
     position:absolute;
     top:  25vh;
-    right:8px;
+    right:2px;
     padding:2px 0;
     display:flex;
     flex-direction:column;
     align-items:flex-end;
     gap:9px;
-    background:darkslategrey;
+    background:linear-gradient(to left, #17202A, #34495E);
     border-left:2px solid dimgrey;
     border-radius:8px;
-    box-shadow:0px 1px 8px darkgrey;
+    box-shadow:-5px 0 12px black;
 }
 #map_navigation button,
 #resizeMap button {

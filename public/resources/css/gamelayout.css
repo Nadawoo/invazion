@@ -131,7 +131,7 @@ body,
     border-right:none;
     border-bottom-left-radius:100%;
     outline:1px solid navajowhite;
-    box-shadow:-2px 8px 12px black;
+    box-shadow:-5px 8px 12px black;
 }
 #views_bar li {
     display:flex;
