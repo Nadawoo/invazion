@@ -118,11 +118,20 @@ body,
     position:absolute;
     top:0;
     right:0;
+    height:100px;
+    width: 100px;
     margin:0;
-    padding:10px;
+    padding:8px;
     display:flex;
     justify-content:end;
     gap:12px;
+    background:linear-gradient(to top, #17202A, #34495E);
+    border: 2px solid dimgrey;
+    border-top:none;
+    border-right:none;
+    border-bottom-left-radius:100%;
+    outline:1px solid navajowhite;
+    box-shadow:-2px 8px 12px black;
 }
 #views_bar li {
     display:flex;
@@ -190,7 +199,7 @@ body,
     background:linear-gradient(to top, #17202A, #34495E); /*#4a235a*/
     /*border-top:1px ridge darkgrey;*/
     border-radius: 0 0 0.5em 0.5em;
-    box-shadow:0 -3px 5px dimgrey;
+    box-shadow:0px -2px 8px darkgrey;
     z-index:50;
 }
 #attack_bar ::selection {

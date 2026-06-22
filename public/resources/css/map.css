@@ -27,7 +27,6 @@
     font-size:1.05em;
     background:black;
     border-top:1px solid grey;
-    border-radius:0.5em;
     box-shadow:0px 8px 18px black;
     /* Pour que la largeur de la ville en surimpression soit calculée 
        par rapport celle la carte et pas à celle de la page */
@@ -85,8 +84,8 @@
  */
 #map_navigation {
     position:absolute;
-    top:  12rem;
-    right:0.5em;
+    top:  25vh;
+    right:8px;
     padding:2px 0;
     display:flex;
     flex-direction:column;
@@ -95,6 +94,7 @@
     background:darkslategrey;
     border-left:2px solid dimgrey;
     border-radius:8px;
+    box-shadow:0px 1px 8px darkgrey;
 }
 #map_navigation button,
 #resizeMap button {
