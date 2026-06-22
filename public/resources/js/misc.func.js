@@ -245,26 +245,6 @@ export function toggleActionBlock(buttonAlias) {
 
 
 /**
- * Displays/hides the items panels (bag and ground) at the bottom of the map 
- */
-function toggleItemsPanel() {
-    
-    let cookies = new Cookies();
-    
-    if (document.getElementById("bag_panel").style.height === "0px") {
-        document.getElementById("bag_panel").style.height    = "10em";
-        document.getElementById("ground_panel").style.height = "10em";
-        cookies.setCookie('showitemspanel', 1);
-    }
-    else {
-        document.getElementById("bag_panel").style.height    = 0;
-        document.getElementById("ground_panel").style.height = 0;
-        cookies.setCookie('showitemspanel', 0);
-    }
-}
-
-
-/**
  * Add zombies in one given zone
  */
 export async function addZombiesInZone() {

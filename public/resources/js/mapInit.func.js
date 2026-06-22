@@ -310,6 +310,7 @@ function getItemsIdsByType(itemType) {
  */
 export function switchToActionView() {
     
+    const cookies = new Cookies();
     const mapId = Number(document.querySelector("#mapId").innerHTML);
     const zoneData = document.querySelector("#me").parentNode.dataset;
     
@@ -362,7 +363,8 @@ export function switchToActionView() {
     
     updateActionBlocks();
     
-    window.isActionViewActive = true;
+    window.isActionViewActive = true;    
+    cookies.setCookieConfig("isActionViewActive", 1);
 }
 
 

@@ -674,6 +674,9 @@ function centerMapOnZone(zoneHtmlId, centeringCoeff=7) {
  * Unzoom to display the large map
  */
 export function switchToMapView() {
+    
+    const cookies = new Cookies();
+
     // Display the large map (unzoom)
     zoomMapRange(_defaultMapZoomPercent);
     setTimeout(() => centerMapOnMe(), 500);
@@ -699,6 +702,7 @@ export function switchToMapView() {
     document.querySelector("#map").classList.remove("action_view");
     
     window.isActionViewActive = false;
+    cookies.setCookieConfig("isActionViewActive", 0);
 }
 
 

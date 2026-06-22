@@ -8,6 +8,7 @@ import {
     displayItemOnMap,
     getMapZonesOnce,
     populateMapTitle,
+    switchToActionView,
     updateLightHalos,
     zoomMapRange
     }
@@ -168,7 +169,14 @@ if(document.getElementById("map") !== null) {
             addMeOnMap();
 
             setTimeout(function() {
-                centerMapOnMe();
+                              
+                const cookies = new Cookies();
+                // Go back to action mode if it was active before reloading the page
+                if(cookies.getCookieConfig("isActionViewActive") === 1) {
+                    switchToActionView();
+                } else {
+                    centerMapOnMe();
+                }
 
     //            var myCityZoneId = getMyCityZoneId();
                 // Add a location sign above the city of the player
@@ -194,16 +202,6 @@ if(document.getElementById("map") !== null) {
         }
     });
     
-    // Restore the display of the action button before the page was refreshed
-//    let cookies = new Cookies();
-//    toggleActionBlock(cookies.getCookieConfig("round_button"));
-    
-    // By default, the list of objects in the bag and on the ground are reduced
-    // UNUSED : the panel is now replaced by the big action button at the right of the map
-//    if (getCookie('showitemspanel') === null || getCookie('showitemspanel') === '0') {
-//        toggleItemsPanel();
-//    }
-      
     // Countdown before the next zombie attack
 //    attackCountdown();
 //    setInterval(attackCountdown, 1000);
