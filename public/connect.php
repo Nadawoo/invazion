@@ -17,14 +17,7 @@ $email      = trim(filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL));
 
 
 // Actions possibles
-if ($action === 'connect') {
-    
-    // The connection form is normally handled by javascript. This PHP code will
-    // send the form only in case the user disabled javascript on his browser. 
-    $json = $api->connect_user($email, $password);
-    $html_error = $json['metas']['error_message'];
-}
-elseif ($action === 'disconnect') {
+if($action === 'disconnect') {
     
     $json = $api->disconnect_user();
     

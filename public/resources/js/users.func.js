@@ -10,7 +10,7 @@ import { getMapCitizensOnce } from "./mapInit.func.js";
 /**
  * Connects the user to his account (sends logins and gets the API result)
  */
-async function connectUser() {
+export async function connectUser() {
     
     let emailField  = document.getElementById("email"),
         email       = emailField.value,

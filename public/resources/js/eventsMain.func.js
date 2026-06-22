@@ -11,6 +11,7 @@ import { Move } from "./services/Move.js";
 import { Clipboard } from "./utils/Clipboard.js";
 import { moveBuildingBlockBelowPaddle, updateBlockAction } from "./actionBlocks.func.js";
 import { togglePathsBar } from "./paths.func.js";
+import { connectUser } from "./users.func.js";
 import {
     addZombiesInZone,
     closePopup,
@@ -66,6 +67,7 @@ export function listenToSubmit() {
     
     document.addEventListener("submit", (event)=>{
         const formSelectors = {
+            "connect": "#connectionForm",
             "createGame": "form[name=create_game]",
             "dig":"#block_dig form[name=dig]",
             "dropItem":"form[name=form_drop]",
@@ -76,8 +78,11 @@ export function listenToSubmit() {
             "updateLandType": "#landform"
             };
         
-        // Execute the "Explore building" action
-        if(event.target.matches(formSelectors.explore)) {
+        if(event.target.matches(formSelectors.connect)) {
+            event.preventDefault();
+            connectUser();
+        }
+        else if(event.target.matches(formSelectors.explore)) {
             // Desactivate the classic submission button (avoids reloading the page)
             event.preventDefault();
             exploreBuilding();
