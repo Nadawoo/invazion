@@ -19,8 +19,6 @@ class HtmlItem {
         $buttons = new HtmlButtons();
         $button_drop = $buttons->drop_item(0);
         $button_pickup = $buttons->pickup_item(0);
-        $button_fight = $buttons->use_item('fight', 0, '');
-        $button_use = $buttons->use_item('{item_alias}', 0, '{item_name}');
         
         return '
             <template id="tplItem">
@@ -63,9 +61,7 @@ class HtmlItem {
                         <i class="material-icons">fitness_center</i>
                         Encombrant dans le sac
                     </li>
-                </ul>
-                '.$button_fight
-                 .$button_use
+                </ul>'
                  .$button_drop
                  .$button_pickup.'
                 <button name="search" class="redbutton" data-action="searchItemOnMap">🔍 Chercher sur la carte</button>
@@ -225,7 +221,6 @@ class HtmlItem {
                         : $item_caracs['icon_symbol'];
         $button_drop = $buttons->drop_item($item_id);
         $button_pickup = $buttons->pickup_item($item_id);
-        $button_use = $buttons->use_item($button_alias, $item_id, '');
         
         return '
             <li class="item_label z-depth-2">
@@ -240,7 +235,9 @@ class HtmlItem {
                     <hr class="line">
                     <p class="descr_ambiance">'.$item_caracs['descr_ambiance'].'</p>
                     <p class="descr_purpose">'.$item_caracs['descr_purpose'].'</p>
-                    '.$button_use . $button_drop . $button_pickup.'
+                    '
+                    .$button_drop
+                    .$button_pickup.'
                 </div>
             </li>';
     }

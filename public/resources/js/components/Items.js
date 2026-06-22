@@ -245,10 +245,6 @@ export class Items {
         if(itemCaracs["heaviness"] > 0) {
             template.querySelector('.heaviness').classList.remove("hidden");
         }
-        // Display the button to use the item as a weapon
-        if(itemCaracs["item_type"] === "weapon") {
-            template.querySelector("form[name='fight'] input[name='params[item_id]']").value = itemId;
-        }
         // Display if the item gives defenses
         if(itemCaracs["defenses"] > 0) {
             template.querySelector('.defenses').classList.remove("hidden");

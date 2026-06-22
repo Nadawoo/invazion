@@ -837,10 +837,12 @@ legend {
     min-width:auto;
     padding:8px 0;
     flex-direction:column;
-    justify-content:space-between;
+    justify-content:flex-start;
+    gap:6px;
     font-size:90%;
     border:2px outset white;
     outline:1px solid grey;
+    overflow:hidden;
 }
 #block_zombies button .icon {
     font-size:185%;
@@ -879,6 +881,9 @@ legend {
 }
 #actions_bag ul {
     margin:0.2em 0;
+    display:flex;
+    flex-wrap:wrap;
+    gap:15px;
     list-style-type:none;
 }
 

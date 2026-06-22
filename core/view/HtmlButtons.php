@@ -604,20 +604,22 @@ class HtmlButtons
      * 
      * @return string HTML
      */
-    function use_item($button_alias, $item_id, $item_name)
+    function use_item($button_alias, $item_id, $item_caracs)
     {
         
         if(isset($this->buttons[$button_alias])) {
             
+            $htmlItem = new HtmlItem();
+            $item_icon = $htmlItem->icon($item_caracs['icon_path'], $item_caracs['icon_symbol'], 32);
             $button = $this->buttons[$button_alias];
             $fields = $button['fields'];
-
+            
             return
             '<form method="post" action="#popsuccess" name="fight">
                 <input type="hidden" name="api_name" value="'.$fields['api_name'].'">
                 <input type="hidden" name="action" value="'.$fields['action'].'">
                 <input type="hidden" name="params[item_id]" value="'.$item_id.'">
-                <button type="submit" class="redbutton">'.$button['name'].' '.$item_name.'</button>
+                <button type="submit" class="redbutton">'.$item_icon.' '.$item_caracs['name'].'</button>
             </form>';
         }
     }

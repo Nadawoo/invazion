@@ -15,7 +15,7 @@ function get_item_action($item_caracs)
     if (isset($item_caracs['triggers']) and in_array('eat', $item_caracs['triggers'])) {
         $button_alias = 'eat';
     }
-    elseif ((bool)$item_caracs['is_weapon'] === true) {
+    elseif ($item_caracs['item_type'] === "weapon") {
         $button_alias = 'fight';
     }
     elseif ($item_caracs['healing_wound'] > 0) {

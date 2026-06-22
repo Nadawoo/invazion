@@ -303,7 +303,7 @@ class HtmlLayout extends HtmlPage
                     <button class="redbutton"
                         data-action="repelZombies"
                         title="Repousser un zombie vers une case voisine">
-                        <div class="icon">&#x1F4A8;</div> Repousser<br><br>
+                        <div class="icon">&#x1F4A8;</div> Repousser
                     </button>
                 </div>
             </div>';
@@ -461,7 +461,7 @@ class HtmlLayout extends HtmlPage
             $button_alias = get_item_action($items_caracs[$id]);
             
             if ($button_alias !== null) {
-                $html_items .= '<li>'.$buttons->use_item($button_alias, $id, $items_caracs[$id]['name']).'</li>';
+                $html_items .= '<li>'.$buttons->use_item($button_alias, $id, $items_caracs[$id]).'</li>';
             }
         }
         
@@ -470,7 +470,7 @@ class HtmlLayout extends HtmlPage
         }            
         
         return '<div id="actions_bag">
-                &#128188; <strong>Utiliser un objet de mon sac</strong>
+                <strong>Attaquer avec une arme de <button data-action="toggleBag" style="height:auto;width:auto;margin:0;padding:0;background:none;border:none;outline:none;font-size:1em;font-weight:bold;color:darkred;text-decoration:underline">&#x1F392;mon sac</button> :</strong>
                 <ul>
                     '.$html_items.'
                 </ul>
