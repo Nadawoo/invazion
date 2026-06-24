@@ -60,3 +60,8 @@
                  0 0 1px greenyellow;
     z-index:1;
 }
+
+#map:not(.action_view) .cp_zombies,
+#map:not(.action_view) .cp_citizens {
+    display:none;
+}
