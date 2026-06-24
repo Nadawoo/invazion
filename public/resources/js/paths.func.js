@@ -4,11 +4,7 @@
  */
 
 import { ZombLib } from "./lib/ZombLib.js";
-import {
-    listenToActionModeButtons,
-    listenToLocationButtons
-    }
-    from "./eventsMain.func.js"; 
+import { listenToLocationButtons } from "./eventsMain.func.js"; 
 import { displayToast } from "./misc.func.js";
 
 /**
@@ -113,8 +109,6 @@ async function populatePathsPanel(pathsCourses, pathsMembers) {
     
     // Add event listeners on the buttons which center the map on a zone
     listenToLocationButtons(document.querySelectorAll("#paths_panel .localize"));
-    // Center + zoom on the map
-    listenToActionModeButtons(document.querySelectorAll("#paths_panel .action_mode_button"));
 }
 
 

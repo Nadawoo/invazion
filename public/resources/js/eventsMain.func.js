@@ -177,7 +177,6 @@ export function listenToPointerup() {
         
         const selectors = {
             "buildCity":"#builder button[name=build_city]",
-            "enlargeWall": "enlargeWall",
             };
         
         const target  = event.target;
@@ -349,7 +348,7 @@ export function listenToPointerup() {
         else if(action === "closePopup" || target.closest("a")?.dataset.action === "closePopup") {
             closePopup();
         }
-        else if(action === selectors.enlargeWall || button?.dataset.action === "enlargeWall") {
+        else if(action === "enlargeWall" || button?.dataset.action === "enlargeWall") {
             enlargeWall();
         }
         else if(hexagon && hexagon.querySelector(".square_container").dataset.citytypeid !== "") {
@@ -495,7 +494,6 @@ export function listenToMapDragging() {
 
 /**
  * Add event listeners on the buttons which center the map on a zone.
- * For the buttons which center AND zoom the map, see listenToActionModeButtons().
  * 
  * @param {object} node The HTML node containing the buttons
  *                      ex: document.querySelectorAll("#paths_panel .localize");
@@ -509,23 +507,6 @@ export function listenToLocationButtons(node) {
             let tooltip = new Tooltip();
             centerMapOnZone(`zone${htmlCoords}`);
             tooltip.toggle(document.querySelector(`#zone${htmlCoords}`));
-        });
-    }
-}
-
-
-/**
- * Add event listeners on the buttons which center the map on a zone then zoom on it.
- * For the buttons which just center the map, see listenToLocationButtons().
- * 
- * @param {type} node
- * @returns {undefined}
- */
-export function listenToActionModeButtons(node) {
-
-    for(var i=0; i<node.length; i++) {
-        node[i].addEventListener("click", (event)=>{
-            switchToActionView();
         });
     }
 }
