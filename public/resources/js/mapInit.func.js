@@ -318,9 +318,6 @@ export function switchToActionView() {
     zoomMapRange(500);
     setTimeout(() => centerMapOnMe(10), 2000);
     
-    // Display the action blocks (move, dig...)
-    display(["#actions_panel", "#personal_block_wrapper"]);
-    
     // If we switch to the action mode for the first time
     if(document.querySelector("#actions").innerHTML === "") {
         // Populate the HTML for the action block (move, dig...)
@@ -350,7 +347,9 @@ export function switchToActionView() {
         updateDigButtons(_myZone.user_specific.is_visited_today); 
     }, 1000);    
     
+    hide("#mapRadarMenu");
     desactivateMapPathsView();
+    display(["#actions_panel", "#personal_block_wrapper"]);
     // Display the button which switches to the Map mode
     display("#map_mode_button");
     // Remove the illumination on the button which displays the map navigation
