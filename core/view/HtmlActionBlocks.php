@@ -55,6 +55,7 @@ class HtmlActionBlocks {
         
         return '
             <fieldset role="tabpanel" aria-labelledby="block_zombies" id="block_zombies" class="z-depth-2 hidden">
+                <p class="greytext message_nozombie"><br>Aucun zombie dans les parages. Vous pouvez vous déplacer librement.</p>
                 '.$html_actions_zombies.'
                 <br>
                 '.$html_actions_bag.'
