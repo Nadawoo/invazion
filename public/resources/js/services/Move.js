@@ -90,16 +90,28 @@ export class Move {
      * @returns {undefined}
      */
     async driveToCity(path) {
+        
+        let errorMessage = "";
+        let errorClass   = "";
+        
+        if(path === undefined) {
+            errorMessage = "Déplacement impossible car aucune route ne relie cette ville à votre zone.";
+            errorClass   = "warning";
+        }
+        else {
+            // Ask the API for teleporting the player
+            const zombLib = new ZombLib();
+            const cookies = new Cookies();
+            const token = cookies.getCookie('token');
 
-        // Ask the API for teleporting the player
-        let cookies = new Cookies(),
-            token = cookies.getCookie('token');
-
-        let zombLib = new ZombLib();
-        let json = await zombLib.callApi("GET", "zone", `action=drive&path=${path}&token=${token}`);
-        updateMeAfterMoving(json.datas.new_coord_x, json.datas.new_coord_y);
-
+            const json = await zombLib.callApi("GET", "zone", `action=drive&path=${path}&token=${token}`);            
+            errorMessage = json.metas.error_message;
+            errorClass   = json.metas.error_class;
+            
+            updateMeAfterMoving(json.datas.new_coord_x, json.datas.new_coord_y);
+        }
+        
         // Display the result (error or success) in a toast
-        displayToast(json.metas.error_message, json.metas.error_class);
+        displayToast(errorMessage, errorClass);
     }
 }
