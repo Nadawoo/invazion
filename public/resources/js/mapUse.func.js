@@ -443,13 +443,13 @@ function activateMapExplorationsView() {
             
             // Mark the zones visited today
             if(Number(squareContainer.dataset.cyclelastvisit) === getCurrentCycle()) {
-                newDiv.innerHTML += "&#x1F97E;";
-                color = "darkred";
+                newDiv.innerHTML += "&#x2714;&#xFE0F;";
+                color = "orange";
             }
-//            else {
-//                newDiv.innerHTML += "&#x26CF;&#xFE0F;";
-//                color = "green";
-//            }
+            else {
+                newDiv.innerHTML += "&#x26CF;&#xFE0F;";
+                color = "green";
+            }
             
             // Color the zones
             squareContainer.querySelector(".explorations_amount").style.background = color;

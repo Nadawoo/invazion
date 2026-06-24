@@ -745,10 +745,10 @@ class HtmlLayout extends HtmlPage
                     class="active"
                     >&#x1F5FA;&#xFE0F; Carte réelle
                 </li>
-                <li data-view="neighborhood"
+                <li data-view="zombies"
                     data-action="switchMapView"
-                    title="Afficher des informations sur les bâtiments"
-                    >&#x1F3E2; Bâtiments
+                    title="Voir les zombies sur la carte"
+                    >&nbsp;<img src="resources/img/motiontwin/zombie.gif" alt="&#x1F9DF;">&nbsp; Zombies
                 </li>
                 <li data-view="explorations"
                     data-action="switchMapView"
@@ -760,10 +760,10 @@ class HtmlLayout extends HtmlPage
                     title="Voir les objets au sol sur la carte"
                     >&#x1F392; Objets au sol
                 </li>
-                <li data-view="zombies"
+                <li data-view="neighborhood"
                     data-action="switchMapView"
-                    title="Voir les zombies sur la carte"
-                    >&nbsp;<img src="resources/img/motiontwin/zombie.gif" alt="&#x1F9DF;">&nbsp; Zombies
+                    title="Afficher des informations sur les bâtiments"
+                    >&#x1F3E2; Bâtiments
                 </li>
             </ul>
             

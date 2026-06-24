@@ -1261,30 +1261,33 @@
 /* Legend for the view of the map (zombies...) */
 .map_legend {
     position:absolute;
-    bottom:0.5em;
-    right: 0.5em;
-    width:16em;
+    bottom:0;
+    right: 0;
+    width:17em;
     padding:0.5em;
     font-size:0.9em;
     border:2px solid grey;
     border-radius:0.5em;
     background:white;
     opacity:0.9;
+    box-shadow:-5px 8px 12px black;
 }
 .map_legend ul {
     margin:0;
 }
 .map_legend li {
+    padding:2px 0;
     display:flex;
     align-items:center;
-    line-height:1.8em;
 }
 
 .map_legend .legend_color {
-    display:inline-block;
-    height:1.7em; /* Superior to the width because an hexagon is not a square */
-    width: 1.4em;
+    height:2.1em; /* Superior to the width because an hexagon is not squared */
+    width: 1.8em;
     margin-right:0.4em;
+    display:flex;
+    align-items:center;
+    justify-content:center;
     text-align:center;
     clip-path: polygon( /* Give the background an hexagonal shape */
                 50% 0%, 
