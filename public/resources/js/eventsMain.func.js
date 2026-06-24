@@ -165,21 +165,43 @@ export function listenToInput() {
  * 
  * @returns {undefined}
  */
-export function listenToClick() {
+export function listenToPointerup() {
     
-    document.addEventListener("click", (event)=>{
+    document.addEventListener("pointerup", (event)=>{
+        
+        // Don't trigger actions if the click just intends to drag the map
+        if(inputState.isMapDragging) {
+            inputState.isMapDragging = false;
+            return;
+        }
         
         const selectors = {
             "buildCity":"#builder button[name=build_city]",
             "enlargeWall": "enlargeWall",
             };
         
-        const target = event.target;
-        const action = target.dataset.action;
-        let hexagon = target.closest(".hexagon"),
-            button = target.closest("button");
-            
+        const target  = event.target;
+        const action  = target.dataset.action;
+        const hexagon = target.closest(".hexagon");
+        const button  = target.closest("button");
         const actionViewActive = isActionViewActive();
+        
+        markZoneAsSelected(hexagon);
+        
+        // Specific actions for touchscreens
+        if(event.pointerType === "touch") {
+            const radialMenu = new CityRadialMenu();
+
+            // Hide the road and close the previously open radial menu
+            if(_roadActiveHexagon && _roadActiveHexagon !== hexagon) {
+                radialMenu.close(_elementsToHideInRoadView);
+            }
+
+            // Open the radial menu of the newly clicked hexagon
+            if(hexagon !== null && hexagon.querySelector(".square_container").dataset.cityid !== "") {
+                radialMenu.open(hexagon, event, _elementsToHideInRoadView);
+            }
+        }
         
         // Build a city on the map (not a construction inside a city)
         if(target.closest(selectors.buildCity)) {
@@ -354,6 +376,7 @@ export function listenToClick() {
         }
         else if(hexagon) {
             // Display the red tooltip above the zone
+            hide("#map_body_wrapper .bubble");
             triggerTooltip(hexagon);
         }
     },
@@ -393,39 +416,6 @@ export function listenToPointermove() {
             inputState.isMapDragging = true;
         }
     });
-}
-
-
-export function listenToPointerup() {
-    
-    document.addEventListener("pointerup", (event)=>{
-        
-        if(event.pointerType !== "touch") return;
-        
-        // Don't trigger actions if the click just intends to drag the map
-        if(inputState.isMapDragging) {
-            inputState.isMapDragging = false;
-            return;
-        }
-        
-        const radialMenu = new CityRadialMenu();
-        const hexagon = event.target.closest(".hexagon");
-        const container = hexagon?.querySelector(".square_container");
-        
-        markZoneAsSelected(hexagon);
-        
-        // Hide the road and close the previously open radial menu
-        if(_roadActiveHexagon && _roadActiveHexagon !== hexagon) {
-            radialMenu.close(_elementsToHideInRoadView);
-        }
-        
-        // Open the radial menu of the newly clicked hexagon
-        if(hexagon !== null && hexagon.querySelector(".square_container").dataset.cityid !== "") {
-            radialMenu.open(hexagon, event, _elementsToHideInRoadView);
-        }
-    },
-    { passive: true }
-    );
 }
 
 

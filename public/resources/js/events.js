@@ -10,7 +10,6 @@ import {
     listenToInput,
     listenToMapLegendSwitches,
     listenToSubmit,
-    listenToClick,
     listenToPointerdown,
     listenToPointermove,
     listenToPointerup
@@ -27,7 +26,6 @@ var nbrExecutionsGetCyclicAttacks = 0;
 listenToSubmit();
 listenToInput();
 // One global listener for each type of event
-listenToClick();
 listenToPointerdown();
 listenToPointermove();
 listenToPointerup();
