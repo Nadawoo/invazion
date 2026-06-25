@@ -247,6 +247,28 @@ echo $layout->page_header($citizen['user_id'], $citizen['citizen_id'], $citizen[
                 </button>
             </li>
         </template>
+        <template id="tplMovementArrows">
+            <div id="movement_arrows" aria-label="Flèches de déplacement">
+                <button class="northwest" aria-label="Nord-ouest" data-action="walk" data-direction="northwest">
+                    <div class="animate__animated animate__pulse animate__infinite infinite">▲</div>
+                </button>
+                <button class="northeast" aria-label="Nord-est" data-action="walk" data-direction="northeast">
+                    <div class="animate__animated animate__pulse animate__infinite infinite">▲</div>
+                </button>
+                <button class="west" aria-label="Ouest" data-action="walk" data-direction="west">
+                    <div class="animate__animated animate__pulse animate__infinite infinite">◀</div>
+                </button>
+                <button class="east" aria-label="Est" data-action="walk" data-direction="east">
+                    <div class="animate__animated animate__pulse animate__infinite infinite">▶</div>
+                </button>
+                <button class="southwest" aria-label="Sud-ouest" data-action="walk" data-direction="southwest">
+                    <div class="animate__animated animate__pulse animate__infinite infinite">▼</div>
+                </button>
+                <button class="southeast" aria-label="Sud-est" data-action="walk" data-direction="southeast">
+                    <div class="animate__animated animate__pulse animate__infinite infinite">▼</div>
+                </button>
+            </div>
+        </template>
     </div>
 </section>
 

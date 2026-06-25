@@ -218,6 +218,11 @@ export function toggleActionBlock(buttonAlias) {
         return false;
     }
     
+    // Specific to the "move" block
+    if(buttonAlias !== "move") {
+        hide("#movement_arrows");
+    }
+    
     if(!document.querySelector(blockId).classList.contains("hidden")) {
         // If the block is already displayed, the button hides it
         hide(blockId);
@@ -1144,5 +1149,16 @@ export function addItemsIconInZone(coordX, coordY, nbrItems) {
         fragment.innerHTML = `&#x1F9F0;`;
 
         zone.append(fragment);
+    }
+}
+
+
+export function addMovementArrows() {
+    
+    if(!document.querySelector("#movement_arrows")) {
+        const myZone = document.querySelector("#me").closest(".square_container");
+        const template = document.querySelector("#tplMovementArrows");
+        const tplArrows = template.content.cloneNode(true);
+        myZone.appendChild(tplArrows);
     }
 }

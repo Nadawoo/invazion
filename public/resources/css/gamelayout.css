@@ -439,7 +439,7 @@ form[name="end_cycle"] button {
     text-align:center;
     background-image:url("../img/copyrighted/tiles/desert/9.png");
     background-repeat:no-repeat;
-    background-size:3em;
+    background-size:3.5em;
     background-position: center;
     background-position-y: 1.9em;
     font-weight:bold;
@@ -480,6 +480,69 @@ form[name="end_cycle"] button {
     top:-1.2em; /* TODO: fix those artificial alignments */
     left:33%;
     height:2.6em;
+}
+
+
+#movement_arrows {
+    display:grid;
+    grid-template-columns:22px 22px 22px;
+    grid-template-rows:   18px 18px 18px;
+    /*gap:4px;*/
+    align-items:center;
+    justify-items:center;
+    z-index:1;
+    pointer-events:none; /* Don't block clicks inside the current zone */
+}
+#movement_arrows .northwest,
+#movement_arrows .southwest {
+    margin-left:22px;
+}
+#movement_arrows .northeast,
+#movement_arrows .southeast {
+    margin-right:22px;
+}
+#movement_arrows .northwest {
+    grid-column:1;
+    grid-row:1;
+    transform:rotate(-30deg);
+}
+#movement_arrows .northeast {
+    grid-column:3;
+    grid-row:1;
+    transform:rotate(30deg);
+}
+#movement_arrows .southwest {
+    grid-column:1;
+    grid-row:3;
+    transform:rotate(30deg);
+}
+#movement_arrows .southeast {
+    grid-column:3;
+    grid-row:3;
+    transform:rotate(-30deg);
+}
+#movement_arrows .west  {
+    grid-column:1;
+    grid-row:2;
+}
+#movement_arrows .east {
+    grid-column:3;
+    grid-row:2;
+}
+#movement_arrows button {
+    min-width:0;
+    padding:0;
+    font-size:0.7em;
+    background:none;
+    border:none;
+    color:darkred;
+    text-shadow: 0px 0px 4px darkgrey, /* Top left */
+                 0px 0px 4px darkgrey,  /* Top right */
+                 0px 0px 4px darkgrey,  /* Bottom left */
+                 0px 0px 4px darkgrey;
+    opacity:0.9;
+    animation:fadeIn 1.5s;
+    pointer-events:all;
 }
 
 #zombies_gauge {

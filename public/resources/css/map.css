@@ -458,6 +458,10 @@
     /* Ensure that the radial menu won't be overlayed by the neighbour zones */
     z-index:2;
 }
+#map_body .square_container:has(#me) {
+    /* Ensure the arrows for moving will be above the neighbor zones */
+    z-index:3;
+}
 #map_body .square_container.selected {
     /* Put the current zone over its neighbors to make sure the click on radial menu 
     won't be intercepted by other zones */

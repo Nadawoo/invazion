@@ -51,26 +51,38 @@ class HtmlMovementPaddle
 
         return '
         <form aria-label="Flèches pour vous déplacer sur la carte" method="post" action="#Outside" name="move" id="movement_paddle">
-        <table role="none">
-            <tr role="none">
+        <table role="presentation">
+            <tr>
                 <td></td>
-                <td>'.$this->arrow('northwest').'</td>
-                <td>'.$this->arrow('northeast').'</td>
+                <td>'
+//                    .$this->arrow('northwest')
+                .'</td>
+                <td>'
+//                    .$this->arrow('northeast')
+                .'</td>
                 <td></td>
             </tr>
-            <tr role="none">
-                <td>'.$this->arrow('west').'</td>
+            <tr>
+                <td>'
+//                    .$this->arrow('west')
+                .'</td>
                 <td colspan="2" id="central" data-action="centerMapOnMe">
                     <br>
                     <img src="resources/img/free/human.png" class="me">
                     <span class="coords"></span>
                 </td>
-                <td>'.$this->arrow('east').'</td>
+                <td>'
+//                    .$this->arrow('east')
+                .'</td>
             </tr>
-            <tr role="none">
+            <tr>
                 <td></td>
-                <td>'.$this->arrow('southwest').'</td>
-                <td>'.$this->arrow('southeast').'</td>
+                <td>'
+//                    .$this->arrow('southwest')
+                .'</td>
+                <td>'
+//                    .$this->arrow('southeast')
+                .'</td>
                 <td></td>
             </tr>
         </table>

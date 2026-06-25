@@ -13,6 +13,7 @@ import { moveBuildingBlockBelowPaddle, updateBlockAction } from "./actionBlocks.
 import { togglePathsBar } from "./paths.func.js";
 import { connectUser } from "./users.func.js";
 import {
+    addMovementArrows,
     addZombiesInZone,
     closePopup,
     dig,
@@ -73,7 +74,6 @@ export function listenToSubmit() {
             "dropItem":"form[name=form_drop]",
             "pickupItem":"form[name=form_pickup]",
             "explore": "form[name=explore_building]",
-            "move": "#block_move form[name=move]",
             "joinGame": "form[name=join_game]",
             "updateLandType": "#landform"
             };
@@ -98,11 +98,6 @@ export function listenToSubmit() {
         else if(event.target.matches(formSelectors.pickupItem)) {
             event.preventDefault();
             pickupItem(event.submitter);
-        }
-        else if(event.target.matches(formSelectors.move)) {
-            event.preventDefault();
-            const move = new Move();
-            move.walk(event.submitter.value);
         }
         else if(event.target.matches(formSelectors.updateLandType)) {
             event.preventDefault();
@@ -202,6 +197,11 @@ export function listenToPointerup() {
             }
         }
         
+        // If we click in the hexagon where the player is
+        if(actionViewActive && hexagon && hexagon.querySelector("#me")) {
+            hide("#movement_arrows");
+        }
+        
         // Build a city on the map (not a construction inside a city)
         if(target.closest(selectors.buildCity)) {
             buildOnMap(Number(target.closest(selectors.buildCity).dataset.citytypeid));
@@ -211,6 +211,10 @@ export function listenToPointerup() {
             const path = target.dataset.path;
             const move = new Move();
             move.driveToCity(path);
+        }
+        else if(button?.dataset.action === "walk") {
+            const move = new Move();
+            move.walk(button.dataset.direction);
         }
         else if(button?.dataset.action === "openBuildingPopup") {
             let buildingPopup = new BuildingPopup();
@@ -263,6 +267,8 @@ export function listenToPointerup() {
             clipboard.copyTextarea(button.dataset.target);
         }
         else if(actionViewActive && hexagon && hexagon.querySelector("#me") === null) {
+            addMovementArrows();
+            display("#movement_arrows");
             toggleActionBlock("move");
         }
         else if(actionViewActive && action === "switchActionBlock") {

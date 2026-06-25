@@ -61,6 +61,7 @@
     z-index:1;
 }
 
+#map:not(.action_view) #movement_arrows,
 #map:not(.action_view) .cp_zombies,
 #map:not(.action_view) .cp_citizens {
     display:none;
