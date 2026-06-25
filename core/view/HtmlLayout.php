@@ -717,6 +717,7 @@ class HtmlLayout extends HtmlPage
                 <li id="citizenCoordX">'.$citizen['coord_x'].'</li>
                 <li id="citizenCoordY">'.$citizen['coord_y'].'</li>
                 <li id="actionPoints">'.$citizen_action_points.'</li>
+                <li id="controlPoints">'.$citizen['control_points'].'</li>
                 <li id="maxActionPoints">'.$max_action_points.'</li>
                 <li id="mapId">'.$map_id.'</li>
                 <li id="cityId">'.$citizen['city_id'].'</li>

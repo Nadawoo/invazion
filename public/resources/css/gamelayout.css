@@ -536,13 +536,27 @@ form[name="end_cycle"] button {
     background:none;
     border:none;
     color:darkred;
-    text-shadow: 0px 0px 4px darkgrey, /* Top left */
-                 0px 0px 4px darkgrey,  /* Top right */
-                 0px 0px 4px darkgrey,  /* Bottom left */
-                 0px 0px 4px darkgrey;
     opacity:0.9;
     animation:fadeIn 1.5s;
     pointer-events:all;
+}
+#movement_arrows button.safe {
+    text-shadow: 0px 0px 4px limegreen,
+                 0px 0px 4px limegreen,
+                 0px 0px 4px greenyellow,
+                 0px 0px 4px greenyellow;
+}
+#movement_arrows button.unsafe {
+    text-shadow: 0px 0px 4px orange,
+                 0px 0px 4px orange,
+                 0px 0px 4px red,
+                 0px 0px 4px red;
+}
+#movement_arrows button.unknown {
+    text-shadow: 0px 0px 4px grey,
+                 0px 0px 4px grey,
+                 0px 0px 4px grey,
+                 0px 0px 4px grey;
 }
 
 #zombies_gauge {

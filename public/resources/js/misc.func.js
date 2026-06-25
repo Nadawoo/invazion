@@ -1156,9 +1156,43 @@ export function addItemsIconInZone(coordX, coordY, nbrItems) {
 export function addMovementArrows() {
     
     if(!document.querySelector("#movement_arrows")) {
+        const tplArrows = document.querySelector("#tplMovementArrows").content.cloneNode(true);
         const myZone = document.querySelector("#me").closest(".square_container");
-        const template = document.querySelector("#tplMovementArrows");
-        const tplArrows = template.content.cloneNode(true);
+        
+        addThreatLevelOnMovementArrows(tplArrows);
+        
         myZone.appendChild(tplArrows);
+    }
+}
+
+
+function addThreatLevelOnMovementArrows(tplArrows) {
+
+    const controlpointsCitizen = Number(document.querySelector("#controlPoints").innerText);            
+    const coordX = Number(document.querySelector("#citizenCoordX").innerText);
+    const coordY = Number(document.querySelector("#citizenCoordY").innerText);
+    const neighbors = {
+        "northwest":`${coordX-1}_${coordY-1}`,
+        "northeast":`${coordX+1}_${coordY-1}`,
+        "west":     `${coordX-2}_${coordY}`,
+        "east":     `${coordX+2}_${coordY}`,
+        "southwest":`${coordX-1}_${coordY+1}`,
+        "southeast":`${coordX+1}_${coordY+1}`,
+        };
+
+    for(const [direction, htmlCoords] of Object.entries(neighbors)) {
+        const stringControlpointsZombies = document.querySelector(`#zone${htmlCoords} .square_container`).dataset.controlpointszombies;
+        const controlpointsZombies = Number(stringControlpointsZombies);
+        let threatLevel = "";
+
+        if(stringControlpointsZombies === "") {
+            threatLevel = "unknown";
+        } else if(controlpointsCitizen >= controlpointsZombies) {
+            threatLevel = "safe";
+        } else if(controlpointsCitizen < controlpointsZombies) {
+            threatLevel = "unsafe";
+        }
+
+        tplArrows.querySelector(`.${direction}`).classList.add(threatLevel);
     }
 }
