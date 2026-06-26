@@ -1181,18 +1181,28 @@ function addThreatLevelOnMovementArrows(tplArrows) {
         };
 
     for(const [direction, htmlCoords] of Object.entries(neighbors)) {
-        const stringControlpointsZombies = document.querySelector(`#zone${htmlCoords} .square_container`).dataset.controlpointszombies;
-        const controlpointsZombies = Number(stringControlpointsZombies);
-        let threatLevel = "";
-
-        if(stringControlpointsZombies === "") {
-            threatLevel = "unknown";
-        } else if(controlpointsCitizen >= controlpointsZombies) {
-            threatLevel = "safe";
-        } else if(controlpointsCitizen < controlpointsZombies) {
-            threatLevel = "unsafe";
+        
+        const zone = document.querySelector(`#zone${htmlCoords}`);
+        const arrow = tplArrows.querySelector(`.${direction}`);
+        
+        if(zone === null) {
+            // If we are at the edge of the main some zone don't exist
+            arrow.classList.add("hidden");
         }
+        else {
+            const stringControlpointsZombies = document.querySelector(`#zone${htmlCoords} .square_container`).dataset.controlpointszombies;
+            const controlpointsZombies = Number(stringControlpointsZombies);
+            let threatLevel = "";
 
-        tplArrows.querySelector(`.${direction}`).classList.add(threatLevel);
+            if(stringControlpointsZombies === "") {
+                threatLevel = "unknown";
+            } else if(controlpointsCitizen >= controlpointsZombies) {
+                threatLevel = "safe";
+            } else if(controlpointsCitizen < controlpointsZombies) {
+                threatLevel = "unsafe";
+            }
+
+            arrow.classList.add(threatLevel);
+        }
     }
 }
