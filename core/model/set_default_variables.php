@@ -12,6 +12,7 @@ function set_default_variables($variable, $item_id=null) {
     $default['citizen'] = [
         'speciality'        => 'weak',
         'action_points'     => 0,
+        'control_points'    => 0,
         'bag_items'         => [],
         'bag_size'          => 4,
         'vision'            => 0,
