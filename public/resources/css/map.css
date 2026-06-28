@@ -1243,12 +1243,15 @@
     border-radius: 50%;
     height:40%;
     width: 100%;
-    z-index:2;
+    z-index:-2;
     animation: citizen_blinker 1s linear infinite;
 }
 #map_body .halo.alert {
-    animation-name: citizen_blinker_alert;
-    z-index:-2; /* Put the halo behind the zombies */
+    box-shadow: 0px 0px 9px red,
+                0px 0px 8px red,
+                0px 0px 8px red,
+                0px 0px 8px red;
+    animation-name:citizen_blinker_alert;
 }
 #map_body .halo.inactive {
     opacity:0.8;
