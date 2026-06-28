@@ -236,9 +236,7 @@ export function zoomMapRange(newZoomPercent) {
 /**
  * Get the coordinates of all the zones containing an exemplary of the given item
  * 
- * @param {int|string} itemId The ID of the item your are looking for.
- *                            Set it to "boost" to get the coordinates of the zones 
- *                            containg items giving action points (water, food...)
+ * @param {int} itemId The ID of the item your are looking for.
  * @returns {array} The coordinates of the zones containing the item
  *                  Exemple: [0_3, 4_1, 5_8, ...]
  */
@@ -247,28 +245,39 @@ export async function getItemCoords(itemId) {
     _jsonMap = await getMapZonesOnce(mapId);    
     let itemCoords = [];
     
-    // If we try to get the items giving action points (water, food...),
-    // the parameter is a string and not an item ID
-    if(Number.isInteger(itemId) === false) {
-        let itemType = itemId;
-        let itemsIds = getItemsIdsByType(itemType);
-        
-        for(let zone of Object.entries(_jsonMap.zones)) {
-            // If the item ID is in the zone, memorize its coordinates
-            if(zone[1].items !== null && itemsIds.some(element => Object.keys(zone[1].items).includes(element))) {
-                itemCoords.push(zone[0]);
-            }
-        }
-    } else {
-        // If we try to get only one specific item ID
-        for(let zone of Object.entries(_jsonMap.zones)) {
-            // If the item ID is in the zone, memorize its coordinates
-            if(zone[1].items !== null && itemId in zone[1].items) {
-                itemCoords.push(zone[0]);
-            }
+    for(let zone of Object.entries(_jsonMap.zones)) {
+        // If the item ID is in the zone, memorize its coordinates
+        if(zone[1].items !== null && itemId in zone[1].items) {
+            itemCoords.push(zone[0]);
         }
     }
     
+    return itemCoords;
+}
+
+
+/**
+ * Get the coordinates of all the zones containing at least one item of
+ * the given type (boost, weapon...)
+ * 
+ * @param {string} itemType The type of item your are looking for.
+ *                          Ex: set it to "boost" to get the coordinates of the zones 
+ *                            containg items giving action points (water, food...)
+ * @returns {array} The coordinates of the zones containing the item
+ *                  Exemple: [0_3, 4_1, 5_8, ...]
+ */
+export async function getItemTypeCoords(itemType) {
+    
+    const itemsIds = getItemsIdsByType(itemType);
+    let itemCoords = [];
+
+    for(let zone of Object.entries(_jsonMap.zones)) {
+        // If the item ID is in the zone, memorize its coordinates
+        if(zone[1].items !== null && itemsIds.some(element => Object.keys(zone[1].items).includes(element))) {
+            itemCoords.push(zone[0]);
+        }
+    }
+
     return itemCoords;
 }
 

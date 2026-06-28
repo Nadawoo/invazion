@@ -1,6 +1,7 @@
 import { switchToMapView } from "../mapUse.func.js";
 import {
     getItemCoords,
+    getItemTypeCoords,
     isActionViewActive
     }  from "../mapInit.func.js";
 import {
@@ -43,25 +44,22 @@ export class MapMarkers {
             // an other type of item (boosts, resources...)
             this.deleteLocationMarkers();
             
-            var itemsCoords = [];
-            if(Number.isInteger(itemId)) {
-                itemsCoords = getItemCoords(itemId);
-            } else {
-                const markerType = itemId;
-                itemsCoords = getItemCoords(markerType);
-            }
+            const itemsCoords = Number.isInteger(itemId)
+                                ? getItemCoords(itemId)
+                                : getItemTypeCoords(itemId);
 
             for(let coords of Object.values(await itemsCoords)) {
                 let zone = document.querySelector("#map_body #zone"+coords);
+                let square = zone.querySelector(".square_container");
                 zone.style.opacity = 1;
                 
                 if(Number.isInteger(itemId)) {
                     // If we look for a specific item
-                    zone.querySelector(".square_container").appendChild( itemsBubbleFragment([itemId]) );
+                    square.appendChild( itemsBubbleFragment([itemId]) );
                 }
                 else {
                     // If we look for a type of item (weapon, resource, food...)
-                    zone.querySelector(".square_container").innerHTML += '<img src="resources/img/free/map_location.svg" class="location animate__animated animate__slideInDown">';
+                    square.innerHTML += '<img src="resources/img/free/map_location.svg" class="location animate__animated animate__slideInDown">';
                 }
             }
             
