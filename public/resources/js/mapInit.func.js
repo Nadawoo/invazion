@@ -291,10 +291,14 @@ function getItemsIdsByType(itemType) {
     // These values must exist in the the "item_type" field in the Azimutant's 
     // items API
     let apiItemsTypes = [];
-    if(itemType === "boost") {
-        apiItemsTypes = ["food", "water"];
+    if(itemType === "water") {
+        apiItemsTypes = ["water"];
+    } else if(itemType === "food") {
+        apiItemsTypes = ["food"];
     } else if(itemType === "resource") {
         apiItemsTypes = ["resource", "resource_rare"];
+    } else if(itemType === "weapon") {
+        apiItemsTypes = ["weapon"];
     } else {
         console.log(`[Azimutant error] Unknown parameter value for \"itemType\"`
                     +`in getItemsIdsByType()`);

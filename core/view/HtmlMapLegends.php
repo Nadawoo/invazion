@@ -46,12 +46,18 @@ class HtmlMapLegends {
                     <hr>
                     <strong>Localiser des objets au sol :</strong>
                     <ul class="switches">
-                        <li class="switch"
-                            title="Localiser sur la carte les objets donnant des points d\'action">
+                        <li class="switch">
                             <label>
-                                <input type="checkbox" name="boost">
+                                <input type="checkbox" name="water">
                                 <span class="lever"></span>
-                                &#x26A1;Regain d\'énergie
+                                &#x1F4A7;Eau
+                            </label>
+                        </li>
+                        <li class="switch">
+                            <label>
+                                <input type="checkbox" name="food">
+                                <span class="lever"></span>
+                               &#x1F354;Nourriture
                             </label>
                         </li>
                         <li class="switch"
@@ -60,6 +66,13 @@ class HtmlMapLegends {
                                 <input type="checkbox" name="resource">
                                 <span class="lever"></span>
                                 &#x1FAB5;Ressources
+                            </label>
+                        </li>
+                        <li class="switch">
+                            <label>
+                                <input type="checkbox" name="weapon">
+                                <span class="lever"></span>
+                                &#x1F52A;Armes
                             </label>
                         </li>
                     </ul>
