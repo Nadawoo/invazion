@@ -7,6 +7,7 @@ import { ZombLib } from "./lib/ZombLib.js";
 import { BuildingPopup } from "./components/BuildingPopup.js";
 import { CityRadialMenu } from "./components/CityRadialMenu.js";
 import { Items } from "./components/Items.js";
+import { MapMarkers } from "./services/MapMarkers.js";
 import { Move } from "./services/Move.js";
 import { Clipboard } from "./utils/Clipboard.js";
 import { moveBuildingBlockBelowPaddle, updateBlockAction } from "./actionBlocks.func.js";
@@ -23,10 +24,8 @@ import {
     killZombies,
     pickupItem,
     populateDefensesDetails,
-    searchItemOnMap,
     toggleActionBlock,
     toggleBag,
-    toggleMapMarker,
     toggleStatus,
     updateLandType
     }
@@ -48,7 +47,6 @@ import {
     toggleMapItemsView,
     toggleMapNeighborhoodView,
     toggleMapZombiesView,
-    toggleMapItemMarker,
     zoomMapStep
     }
     from "./mapUse.func.js";
@@ -318,9 +316,11 @@ export function listenToPointerup() {
                 }
                 else if(view === "zombies") {
                     toggleMapZombiesView();
-                    toggleMapItemMarker(106);
+                    const mark = new MapMarkers();
+                    mark.toggleMapItemMarker(106);
                 } else if(view === "realMap") {
-                    toggleMapMarker();
+                    const mark = new MapMarkers();
+                    mark.toggleMapMarkerByType();
                 }
             }
         }
@@ -340,7 +340,10 @@ export function listenToPointerup() {
             const itemLabel = target.closest(".item_label");
             
             if(action === "searchItemOnMap") {
-                searchItemOnMap(event);
+                const itemId = Number(event.target.closest(".item_label").dataset.itemid);
+                const mark = new MapMarkers();
+                mark.switchToMarkersView(itemId);
+                mark.toggleMapItemMarker(itemId);
             }
             else if(action === "closeTooltip") {
                 const items = new Items();
@@ -658,11 +661,13 @@ export function listenToMapLegendSwitches() {
             }
         });
         // Delete all the markers already placed on the map
-        deleteMapMarkers();
+        const mark = new MapMarkers();
+        mark.deleteMarkers();
         // Add the location markers on the map for the wanted item type 
         // (boosts, resources...)        
         if(event.target.checked === true) {
-            toggleMapItemMarker(event.target.getAttribute("name"));
+            const mark = new MapMarkers();
+            mark.toggleMapItemMarker(event.target.getAttribute("name"));
         }
     });
 }

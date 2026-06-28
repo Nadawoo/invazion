@@ -14,8 +14,7 @@ import {
     from "./mapInit.func.js";
 import {
     addItemsIconInZone,
-    displayToast,
-    toggleMapMarker 
+    displayToast
     }
     from "./misc.func.js";
 
@@ -238,7 +237,8 @@ function switchMapView(actionAlias) {
     } else if(actionAlias === "zombies") {
         resetMapView();
         toggleMapZombiesView();
-        toggleMapItemMarker(106);
+        const mark = new MapMarkers();
+        mark.toggleMapItemMarker(106);
     } else if(actionAlias === "citizens") {
         resetMapView();
     } else if(actionAlias === "build") {
@@ -320,43 +320,6 @@ export function toggleMapZombiesView() {
         activateMapZombiesView();
         window.isMapZombiesViewActive = true;
     }
-}
-
-
-/**
- * Add/remove a location mark on the zones containing the given item
- * 
- * @param {int|string} itemId The ID of the item to mark.
- *                            Set it to "boost" to get the coordinates of the zones 
- *                            containg items giving action points (water, food...)
- * @returns {undefined}
- */
-export async function toggleMapItemMarker(itemId) {
-    
-    let markerType = "generic",
-        markerValue = 1;
-    
-    // If the items are not already marked, get their coordinates
-    if(window.areMapMarkersActive !== true) {
-        
-        var itemsCoords = [];
-        if(Number.isInteger(itemId)) {
-            markerType = "itemid";
-            markerValue = itemId;
-            itemsCoords = getItemCoords(itemId);
-        } else {
-            markerType = itemId;
-            itemsCoords = getItemCoords(markerType);
-        }
-
-        for(let coords of Object.values(await itemsCoords)) {
-            let zone = document.querySelector("#map_body #zone"+coords);
-            zone.style.opacity = 1;
-            zone.dataset["marker"+markerType] = markerValue;
-        }
-    }
-    
-    toggleMapMarker(markerType);
 }
 
 

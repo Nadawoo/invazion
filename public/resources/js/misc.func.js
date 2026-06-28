@@ -18,7 +18,7 @@ import {
     updateZombiesGauge
     }
     from "./actionBlocks.func.js"; 
-import { centerMapOnMe, toggleMapItemMarker } from "./mapUse.func.js";
+import { centerMapOnMe } from "./mapUse.func.js";
 
 /*
  * Button to enlarge/reduce the bag (hide the overflowing items)
@@ -105,54 +105,6 @@ function sleep(milliseconds) {
 
 
 /**
- *  Displays the location icon on every zone which contains the specified element
- *  
- *  @param {string} objectToMark The alias of the object to mark on the map.
- *                               See the dictionary "markableObjects" in the present 
- *                               function to know the available aliases.
- */
-export function toggleMapMarker(objectToMark) {
-    
-    // Here are listed the DOM selectors to mark the zones you want (e.g. class name...)
-    var markableObjects = {
-        "items":    ".square_container:not([data-items='0'])",
-        "citizens": ".square_container:not([data-citizens='0'])",
-        "boost":    "#map_body [data-markerboost='1']",
-        "resource": "#map_body [data-markerresource='1']",
-        "itemid":   "#map_body [data-markeritemid]",
-        "generic":  "#map_body [data-markergeneric='1']"
-        };
-        
-    if (window.areMapMarkersActive !== true) {
-        // Remove the eventual previously created markers, as they can mark 
-        // an other type of item (boosts, resources...)
-        deleteMapMarkers();
-        // Add the HTML for the icons in the zones
-        document.querySelectorAll(markableObjects[objectToMark]).forEach(element => {
-            if(objectToMark === "itemid") {
-                // Bubble with the icon of the item
-                const itemId = element.dataset.markeritemid;
-                element.querySelector(".square_container").appendChild( itemsBubbleFragment([itemId]) );
-            }
-            else {
-                // Generic location pin marker
-                element.innerHTML += '<img src="resources/img/free/map_location.svg" class="location animate__animated animate__slideInDown">';
-            }
-        });
-        
-        display("#map_body .location");
-//        hide("#map_body .nbr_defenses");
-        window.areMapMarkersActive = true;
-    }
-    else {    
-        // Hides the icons added by the previous call to the function
-        hide("#map_body .location");
-        window.areMapMarkersActive = false;
-    }
-}
-
-
-/**
  * Add bubbles on the map containing the icons of given items
  * 
  * @param {Array} itemsIds List of the IDs of the items to display
@@ -187,20 +139,6 @@ export function itemsBubbleFragment(itemsIds) {
     div.innerHTML = htmlFindableItems;
     
     return div;
-}
-
-
-/**
- * Remove all the "location.svg" markers from the map, whatever they mark
- * (boosts, resources...)
- */
-function deleteMapMarkers() {
-    
-    document.querySelectorAll("#map_body .location").forEach(element => 
-        element.remove()
-    );
-    
-    window.areMapMarkersActive = false;
 }
 
 
@@ -1102,28 +1040,6 @@ export function populateDefensesDetails() {
 //    defenses.querySelector(".zombies").innerText = nbrZombiesInZone;
 //    defenses.querySelector(".attack_details .zombies").innerText = nbrZombiesInZone;
 //    defenses.querySelector(".controlpoints_citizens").innerText = controlPointsCitizens;
-}
-
-
-
-/**
- * When we click on the "Search on map" button of an item, goes to
- * the map and displays markers over the zones containing the item
- * 
- * @param {int} itemId
- * @returns {undefined}
- */
-export function searchItemOnMap(event) {
-    
-    const itemId = Number(event.target.closest(".item_label").dataset.itemid);
-    
-    // Close the popup to go back to the map
-    closePopup();
-    window.location.hash = "Outside";
-    // Hide the useless elements on the map to focus on the item bubbles
-    hide([".sharp_bubble", ".nbr_defenses", ".nbr_items", ".healthbar", ".zombies"]);
-    // Display markers over each zone containing the item
-    toggleMapItemMarker(itemId);
 }
 
 
