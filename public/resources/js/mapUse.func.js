@@ -229,6 +229,8 @@ export function getZonePositions(zoneHtmlId) {
  */
 export function switchMapView(view) {
     
+    resetMapView();
+    
     if(view === "neighborhood") {
         toggleMapNeighborhoodView();
     }
@@ -242,6 +244,8 @@ export function switchMapView(view) {
         toggleMapZombiesView();
         const mark = new MapMarkers();
         mark.toggleMapItemMarker(106);
+    } else if(view === "realMap") {
+        // Do nothing special, the map has already been reset
     } else {
         console.log("[Azimutant] Error: unknown parameter value in switchMapView()");
     }

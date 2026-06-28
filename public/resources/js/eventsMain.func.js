@@ -300,10 +300,7 @@ export function listenToPointerup() {
                 centerMapOnMe();
             }
             else if(action === "switchMapView") {
-                const view = target.dataset.view;
-
-                resetMapView();
-                switchMapView(view);
+                switchMapView(target.dataset.view);
                 // Highlight the active view in the menu
                 target.classList.add("active");
             }
