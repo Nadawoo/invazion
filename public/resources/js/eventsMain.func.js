@@ -42,6 +42,7 @@ import {
     buildOnMap,
     centerMapOnMe,
     resetMapView,
+    switchMapView,
     toggleCityframesView,
     toggleMapExplorationsView,
     toggleMapItemsView,
@@ -302,26 +303,9 @@ export function listenToPointerup() {
                 const view = target.dataset.view;
 
                 resetMapView();
+                switchMapView(view);
                 // Highlight the active view in the menu
                 target.classList.add("active");
-
-                if(view === "neighborhood") {
-                    toggleMapNeighborhoodView();
-                }
-                else if(view === "explorations") {
-                    toggleMapExplorationsView();
-                }
-                else if(view === "items") {
-                    toggleMapItemsView();
-                }
-                else if(view === "zombies") {
-                    toggleMapZombiesView();
-                    const mark = new MapMarkers();
-                    mark.toggleMapItemMarker(106);
-                } else if(view === "realMap") {
-                    const mark = new MapMarkers();
-                    mark.toggleMapMarkerByType();
-                }
             }
         }
         else if(action === "createGame") {

@@ -5,6 +5,7 @@
  */
 
 import { ZombLib } from "./lib/ZombLib.js";
+import { MapMarkers } from "./services/MapMarkers.js"
 import { updateBlockAlertControl } from "./actionBlocks.func.js"; 
 import {
     addCitiesOnMap,
@@ -219,30 +220,31 @@ export function getZonePositions(zoneHtmlId) {
 
 
 /**
- * Activate the appropriate map when activating one of the round action buttons.
+ * Activate the appropriate map when activating one of the radar buttons.
  * Ex: Display the number of zombies in the zones when clicking on the "zombie" 
  * button.
  * 
- * @param {string} actionAlias The HTML id of one of the round action buttons
- *                             (move, dig, zombies, citizens, build)
+ * @param {string} view
  * @returns {undefined}
  */
-function switchMapView(actionAlias) {
+export function switchMapView(view) {
     
-    if(actionAlias === "move") {
-        resetMapView();
-    } else if(actionAlias === "dig") {
-        resetMapView();
+    if(view === "neighborhood") {
+        toggleMapNeighborhoodView();
+    }
+    else if(view === "explorations") {
+        toggleMapExplorationsView();
+    }
+    else if(view === "items") {
         toggleMapItemsView();
-    } else if(actionAlias === "zombies") {
-        resetMapView();
+    }
+    else if(view === "zombies") {
         toggleMapZombiesView();
         const mark = new MapMarkers();
         mark.toggleMapItemMarker(106);
-    } else if(actionAlias === "citizens") {
-        resetMapView();
-    } else if(actionAlias === "build") {
-        resetMapView();
+    } else if(view === "realMap") {
+        const mark = new MapMarkers();
+        mark.toggleMapMarkerByType();
     } else {
         console.log("[Azimutant] Error: unknown parameter value in switchMapView()");
     }
