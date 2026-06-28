@@ -1256,7 +1256,6 @@
 #map_body .location {
     height:2em;
     position:absolute;
-    margin-left:-1em;
     margin-top:-2.5em;
     pointer-events:none;
     z-index:1;

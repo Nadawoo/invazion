@@ -242,9 +242,6 @@ export function switchMapView(view) {
         toggleMapZombiesView();
         const mark = new MapMarkers();
         mark.toggleMapItemMarker(106);
-    } else if(view === "realMap") {
-        const mark = new MapMarkers();
-        mark.toggleMapMarkerByType();
     } else {
         console.log("[Azimutant] Error: unknown parameter value in switchMapView()");
     }

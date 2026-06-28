@@ -646,7 +646,7 @@ export function listenToMapLegendSwitches() {
         });
         // Delete all the markers already placed on the map
         const mark = new MapMarkers();
-        mark.deleteMarkers();
+        mark.deleteLocationMarkers();
         // Add the location markers on the map for the wanted item type 
         // (boosts, resources...)        
         if(event.target.checked === true) {
