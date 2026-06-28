@@ -853,15 +853,17 @@
     font-size:0.7em;
     border-radius:3px;
     border:1px outset lightgrey;
-    background:darkred;
     color:white;
     box-shadow:4px 4px 6px black;
     z-index:3;
     transform:scale(0.3) !important;
 }
+#map_body .cp_zombies {
+    background:linear-gradient(to bottom, darkred 0%, #B22222 100%);
+}
 #map_body .cp_citizens {
     left:5px;
-    background:darkgreen;
+    background:linear-gradient(to bottom, darkgreen 0%, #228B22 100%);
 }
 
 #map .items_icon {
@@ -1182,8 +1184,12 @@
 }
 #me.alert .nbr_defenses {
     background:darkred;
-    color:yellowgreen;
-    border: 1px solid red;
+    border:1px solid red;
+    color:lightgrey;
+    box-shadow: 0px 0px 5px red,
+                0px 0px 5px red,
+                0px 0px 5px red,
+                0px 0px 5px red;
 }
 @keyframes citizen_blinker {
     50% {
