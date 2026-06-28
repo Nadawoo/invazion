@@ -547,7 +547,7 @@ form[name="end_cycle"] button {
                  0px 0px 4px greenyellow;
 }
 #movement_arrows button.unsafe {
-    text-shadow: 0px 0px 4px orange,
+    text-shadow: 0px 0px 2px orange,
                  0px 0px 4px orange,
                  0px 0px 4px red,
                  0px 0px 4px red;
