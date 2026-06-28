@@ -846,13 +846,13 @@
 #map_body .cp_zombies,
 #map_body .cp_citizens {
     position: absolute;
-    bottom:1px;
-    left:-8px;
-    width:42px;
+    top:6px;
+    left:-12px;
+    width:48px;
     padding:1px 2px 1px 2px;
     font-size:0.7em;
     border-radius:3px;
-    border:1px solid lightgrey;
+    border:1px outset lightgrey;
     background:darkred;
     color:white;
     box-shadow:4px 4px 6px black;
@@ -860,7 +860,7 @@
     transform:scale(0.3) !important;
 }
 #map_body .cp_citizens {
-    left:7px;
+    left:5px;
     background:darkgreen;
 }
 
