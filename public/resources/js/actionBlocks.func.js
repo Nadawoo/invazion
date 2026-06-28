@@ -145,7 +145,7 @@ export async function updateBlockAlertControl(controlpointsZombies, mapId, coord
         display("#alert_tired");
         // Turn to red the halo under the player on the map
         document.querySelector("#me").classList.add("alert");
-        document.querySelector(".halo").classList.add("alert");
+        document.querySelector(".halo").classList.add("alert");        
     } else {
         hide("#alert_tired");
         document.querySelector("#me").classList.remove("alert");
@@ -153,7 +153,18 @@ export async function updateBlockAlertControl(controlpointsZombies, mapId, coord
     }
     
     // Displays an alert when the citizens have less control points than the zombies on the zone
-    (controlpointsCitizens >= controlpointsZombies) ? hide("#alert_control") : display("#alert_control");
+    if(controlpointsCitizens >= controlpointsZombies) {
+        hide("#alert_control");
+    }
+    else {
+        display("#alert_control");
+        // Turn to red the halo under the player on the map
+        document.querySelector("#me").classList.add("alert");
+        document.querySelector(".halo").classList.add("alert");
+        // Add a red background under the zombies on the zone
+        const hexagon = document.querySelector("#me").closest(".hexagon");
+        hexagon.querySelector(".zombies").classList.add("alert");
+    }
 }
 
 
