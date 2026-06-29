@@ -282,7 +282,8 @@ export class CityConnections {
             }
             // If the building is explorable
             else if(Number(zone.dataset.cyclelastvisit) < getCurrentCycle()
-                    && _configsBuildings[cityTypeId]["is_explorable"] === 1) {
+                    && _configsBuildings[cityTypeId]["is_explorable"] === 1
+                    && _configsBuildingsFindableItems[cityTypeId] !== undefined) {
                 // Add the icons of the findable items above the building
                 zone.querySelector(".cityframe").appendChild( itemsBubbleFragment(_configsBuildingsFindableItems[cityTypeId]) );
             }
