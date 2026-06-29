@@ -363,7 +363,7 @@ export function listenToPointerup() {
             _newRoadSource = null;
             document.querySelector("#map").dataset.viewmode = "";
         }
-        else if(hexagon) {
+        else if(!actionViewActive && hexagon) {
             // Display the red tooltip above the zone
             hide("#map_body_wrapper .bubble");
             triggerTooltip(hexagon);
