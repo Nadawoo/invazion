@@ -6,6 +6,7 @@
 
 import { ZombLib } from "./lib/ZombLib.js";
 import { Items } from "./components/Items.js";
+import { Coordinates } from "./domain/Coordinates.js";
 import { populateItemsList } from "./actionBlocks.func.js";
 import {
     updateBlockAction,
@@ -1084,20 +1085,12 @@ export function addMovementArrows() {
 
 function addThreatLevelOnMovementArrows(tplArrows) {
 
-    const controlpointsCitizen = Number(document.querySelector("#controlPoints").innerText);            
+    const coordinates = new Coordinates();           
     const coordX = Number(document.querySelector("#citizenCoordX").innerText);
     const coordY = Number(document.querySelector("#citizenCoordY").innerText);
-    const neighbors = {
-        "northwest":`${coordX-1}_${coordY-1}`,
-        "northeast":`${coordX+1}_${coordY-1}`,
-        "west":     `${coordX-2}_${coordY}`,
-        "east":     `${coordX+2}_${coordY}`,
-        "southwest":`${coordX-1}_${coordY+1}`,
-        "southeast":`${coordX+1}_${coordY+1}`,
-        };
+    const neighbors = coordinates.getNeighborsHtmlCoords(coordX, coordY);
 
     for(const [direction, htmlCoords] of Object.entries(neighbors)) {
-        
         const zone = document.querySelector(`#zone${htmlCoords}`);
         const arrow = tplArrows.querySelector(`.${direction}`);
         
@@ -1106,6 +1099,7 @@ function addThreatLevelOnMovementArrows(tplArrows) {
             arrow.classList.add("hidden");
         }
         else {
+            const controlpointsCitizen = Number(document.querySelector("#controlPoints").innerText);   
             const stringControlpointsZombies = document.querySelector(`#zone${htmlCoords} .square_container`).dataset.controlpointszombies;
             const controlpointsZombies = Number(stringControlpointsZombies);
             let threatLevel = "";
