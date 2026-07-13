@@ -5,6 +5,7 @@
 
 import { Items } from "./components/Items.js";
 import { getMapCitizensOnce } from "./mapInit.func.js";
+import { getCitizenCoords } from "./users.func.js";
 import {
     getHtmlActionBlockFellow,
     getMyZoneOnce,
@@ -31,12 +32,14 @@ export async function updateBlockAction(blockAlias) {
     }
     else if(blockAlias === "zombies") {
         
+        const myCoords = getCitizenCoords();
         const nbrZombies = document.querySelector("#me").parentNode.dataset.zombies;
         updateBlockActionZombies(nbrZombies);
-        addControlpointsOnZone();
-        toggle([".hexagon .cp_zombies",
-                ".hexagon .cp_citizens"
-                ]);
+        addControlpointsOnZone(myCoords);
+        toggle([
+            ".hexagon .cp_zombies",
+            ".hexagon .cp_citizens"
+        ]);
     }
     else if(blockAlias === "dig") {
         
@@ -254,9 +257,10 @@ export function updateBlockActionZombies(newNbrZombies) {
 }
 
 
-export function addControlpointsOnZone() {
+export function addControlpointsOnZone(coords) {
     
-    const zone = document.querySelector("#me").parentNode;
+    const htmlCoords = `${coords.coordX}_${coords.coordY}`;
+    const zone = document.querySelector(`#zone${htmlCoords} .square_container`);
     
     if(zone.querySelector(".cp_citizens") === null) {
         const cpCitizens = sumControlpoints(_citizens, zone.dataset.coordx, zone.dataset.coordy);

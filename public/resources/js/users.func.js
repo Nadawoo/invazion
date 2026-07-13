@@ -71,3 +71,14 @@ function getCitizenId() {
 
     return parseInt(document.getElementById("citizenId").innerHTML);
 }
+
+
+export function getCitizenCoords() {
+    
+    const myZone = document.querySelector("#me").parentNode;
+    
+    return {
+        "coordX": Number(myZone.dataset.coordx),
+        "coordY": Number(myZone.dataset.coordy)
+    };
+}
