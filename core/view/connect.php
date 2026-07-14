@@ -9,7 +9,7 @@ function connect($email)
 {
     
     return '
-        <form method="post" id="connectionForm" class="z-depth-2">
+        <form method="post" id="connectionForm" class="popup z-depth-2">
             
             <h2>Connexion</h2>
 
@@ -34,12 +34,15 @@ function connect($email)
                 laissez ce champ vide.
             </div>
 
-            <div id="buttonsBlock">
-                <a href="register.php" style="font-variant:small-caps">Créer un compte</a>
-                <input type="submit" value="Me connecter" class="redbutton" />
-            </div>
+            <input type="submit" value="Me connecter" class="redbutton" />
+            
+            <p class="center">
+                <a href="register.php">Créer un compte</a>
+            </p>
 
-            <p style="text-align:right"><a href="index">Annuler</a></p>
+            <p style="text-align:right">
+                <a href="index">Retour</a>
+            </p>
 
         </form>';
 }

@@ -41,6 +41,7 @@
     width: 2.5rem;
 }
 .popup h2 {
+    margin-left:auto;
     margin-top:0.4em;
     text-align:center;
     color: #333;

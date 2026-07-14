@@ -55,10 +55,6 @@
         left:1.5em;
     }
     
-    #connectionForm {
-        max-width:98%;
-    }
-    
     #city_iso {
         display:none;
     }

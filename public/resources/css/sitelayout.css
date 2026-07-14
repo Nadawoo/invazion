@@ -290,21 +290,7 @@ div.center {
  * Form to login
  */
 #connectionForm {
-    border:1px solid lightgrey;
-    border-radius:0.3em;
-    margin:auto;
     padding:0 1rem 1rem 1rem;
-    max-width:60%;
-}
-#connectionForm h2 {
-    margin:0.3em;
-    font-size:1.8em;
-    text-align:center
-}
-#connectionForm fieldset {
-    border-radius: 0.2em;
-    margin-top:1em;
-    padding:0 0.5em 0.2em 0.5em;
 }
 #connectionForm input[type="email"],
 #connectionForm input[type="password"] {
@@ -315,13 +301,8 @@ div.center {
     border:1px solid grey;
     border-radius:0.3em;
 }
-#connectionForm #buttonsBlock {
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    margin-top:1.5rem;
-}
 #connectionForm input[type="submit"] {
+    margin-top:1.5rem;
     font-size:1.2em;
 }
 #connectionForm .aside {
