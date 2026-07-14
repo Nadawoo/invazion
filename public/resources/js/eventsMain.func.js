@@ -9,6 +9,7 @@ import { CityRadialMenu } from "./components/CityRadialMenu.js";
 import { Items } from "./components/Items.js";
 import { Coordinates } from "./domain/Coordinates.js";
 import { Zone } from "./entities/Zone.js";
+import { MapConfigs } from "./services/MapConfigs.js";
 import { MapMarkers } from "./services/MapMarkers.js";
 import { Move } from "./services/Move.js";
 import { Clipboard } from "./utils/Clipboard.js";
@@ -220,6 +221,22 @@ export function listenToPointerup() {
             const path = target.dataset.path;
             const move = new Move();
             move.driveToCity(path);
+        }
+        else if(action === "displayGameParameters") {
+            const mapConfigsNode = document.querySelector("#popdayclock .mapConfigs");
+            
+            if(mapConfigsNode.textContent === "") {
+                const mapConfigs = new MapConfigs();
+                const configs = mapConfigs.get();
+                const fragment = document.createDocumentFragment();
+                // Display the list of the game parameters (map size...)
+                for(let [key, value] of Object.entries(configs)) {
+                    const li = document.createElement("li");
+                    li.textContent = `${key} : ${value}`;
+                    fragment.appendChild(li);
+                }            
+                mapConfigsNode.appendChild(fragment);
+            }
         }
         else if(button?.dataset.action === "walk") {
             const move = new Move();

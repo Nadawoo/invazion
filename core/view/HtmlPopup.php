@@ -940,6 +940,16 @@ class HtmlPopup
                             ".$gameStats->stats()."
                         </div>
                     </li>
+                </ul>
+                <ul class=\"collapsible\">
+                    <li>
+                        <div class=\"collapsible-header\" data-action=\"displayGameParameters\">
+                            <strong>Paramètres de la partie</strong> <strong>&gt;</strong>
+                        </div>
+                        <div class=\"collapsible-body\">
+                            <ul class=\"mapConfigs\"></ul>
+                        </div>
+                    </li>
                 </ul>"
                 .'<ul class="collapsible">
                     <li>
