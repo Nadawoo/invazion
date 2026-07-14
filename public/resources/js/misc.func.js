@@ -1069,10 +1069,9 @@ export function addMovementArrows() {
 
 function addThreatLevelOnMovementArrows(tplArrows) {
 
-    const coordinates = new Coordinates();           
-    const coordX = Number(document.querySelector("#citizenCoordX").innerText);
-    const coordY = Number(document.querySelector("#citizenCoordY").innerText);
-    const neighbors = coordinates.getNeighborsHtmlCoords(coordX, coordY);
+    const coordinates = new Coordinates();
+    const me = new Zone();
+    const neighbors = coordinates.getNeighborsHtmlCoords(me.x, me.y);
 
     for(const [direction, htmlCoords] of Object.entries(neighbors)) {
         const zone = document.querySelector(`#zone${htmlCoords}`);
@@ -1084,7 +1083,7 @@ function addThreatLevelOnMovementArrows(tplArrows) {
         }
         else {
             const controlpointsCitizen = Number(document.querySelector("#controlPoints").innerText);   
-            const stringControlpointsZombies = document.querySelector(`#zone${htmlCoords} .square_container`).dataset.controlpointszombies;
+            const stringControlpointsZombies = zone.querySelector(`.square_container`).dataset.controlpointszombies;
             const controlpointsZombies = Number(stringControlpointsZombies);
             let threatLevel = "";
 
