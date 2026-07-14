@@ -69,9 +69,8 @@ export class CityConnections {
         if(!document.querySelector("#me")) return;
         
         const me = new Zone();
-        const htmlSourceCityId = me.cityId,
-              sourceCityId = (htmlSourceCityId !== "") ? Number(htmlSourceCityId) : null,
-              targetCityId = event.currentTarget.querySelector('.square_container').dataset.cityid;
+        const sourceCityId = me.cityId;
+        const targetCityId = event.currentTarget.querySelector('.square_container').dataset.cityid;
         
         // If the citizen is not located on a city, don't try to look for a path
         if(sourceCityId === null) return;
