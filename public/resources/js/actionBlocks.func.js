@@ -33,12 +33,13 @@ export async function updateBlockAction(blockAlias) {
     else if(blockAlias === "zombies") {
         
         const myCoords = getCitizenCoords();
+        const zoneHtmlId = `#zone${myCoords.coordX}_${myCoords.coordY}`;
         const nbrZombies = document.querySelector("#me").parentNode.dataset.zombies;
         updateBlockActionZombies(nbrZombies);
-        addControlpointsOnZone(myCoords);
+        addControlpointsOnZone(myCoords.coordX, myCoords.coordY);
         toggle([
-            ".hexagon .cp_zombies",
-            ".hexagon .cp_citizens"
+            `${zoneHtmlId} .cp_zombies`,
+            `${zoneHtmlId} .cp_citizens`
         ]);
     }
     else if(blockAlias === "dig") {
@@ -257,9 +258,9 @@ export function updateBlockActionZombies(newNbrZombies) {
 }
 
 
-export function addControlpointsOnZone(coords) {
+export function addControlpointsOnZone(coordX, coordY) {
     
-    const htmlCoords = `${coords.coordX}_${coords.coordY}`;
+    const htmlCoords = `${coordX}_${coordY}`;
     const zone = document.querySelector(`#zone${htmlCoords} .square_container`);
     
     if(zone.querySelector(".cp_citizens") === null) {
