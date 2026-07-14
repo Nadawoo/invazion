@@ -8,6 +8,7 @@ import { BuildingPopup } from "./components/BuildingPopup.js";
 import { CityRadialMenu } from "./components/CityRadialMenu.js";
 import { Items } from "./components/Items.js";
 import { Coordinates } from "./domain/Coordinates.js";
+import { Zone } from "./entities/Zone.js";
 import { MapMarkers } from "./services/MapMarkers.js";
 import { Move } from "./services/Move.js";
 import { Clipboard } from "./utils/Clipboard.js";
@@ -17,10 +18,7 @@ import {
     updateBlockAction
     } from "./actionBlocks.func.js";
 import { togglePathsBar } from "./paths.func.js";
-import {
-    connectUser,
-    getCitizenCoords
-    } from "./users.func.js";
+import { connectUser } from "./users.func.js";
 import {
     addMovementArrows,
     addZombiesInZone,
@@ -278,14 +276,15 @@ export function listenToPointerup() {
             clipboard.copyTextarea(button.dataset.target);
         }
         else if(actionViewActive && hexagon && hexagon.querySelector("#me") === null) {
+            const me = new Zone();
+            const coordinates = new Coordinates();
+            
             addMovementArrows();
             display("#movement_arrows");
             toggleActionBlock("move");
             
             // Display the control points on the 6 neighbor zones
-            const myZone = document.querySelector("#me").closest(".square_container");
-            const coordinates = new Coordinates();
-            const neighbors = coordinates.getNeighborsHtmlCoords(Number(myZone.dataset.coordx), Number(myZone.dataset.coordy));
+            const neighbors = coordinates.getNeighborsHtmlCoords(me.x, me.y);
             
             for(const [direction, htmlCoords] of Object.entries(neighbors)) {
                 const zone = document.querySelector(`#zone${htmlCoords} .square_container`);
@@ -294,11 +293,9 @@ export function listenToPointerup() {
             display([".cp_zombies"]);
             
             // Hide the control points on the zone of the player
-            const myCoords = getCitizenCoords();
-            const zoneHtmlId = `#zone${myCoords.coordX}_${myCoords.coordY}`;
             hide([
-                `${zoneHtmlId} .cp_zombies`,
-                `${zoneHtmlId} .cp_citizens`
+                `${me.zoneHtmlId} .cp_zombies`,
+                `${me.zoneHtmlId} .cp_citizens`
             ]);
         }
         else if(actionViewActive && action === "switchActionBlock") {

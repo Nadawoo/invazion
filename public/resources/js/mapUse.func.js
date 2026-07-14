@@ -5,6 +5,7 @@
  */
 
 import { ZombLib } from "./lib/ZombLib.js";
+import { Zone } from "./entities/Zone.js";
 import { MapMarkers } from "./services/MapMarkers.js"
 import { updateBlockAlertControl } from "./actionBlocks.func.js"; 
 import {
@@ -61,12 +62,11 @@ export async function updateMapRealtime(event, timestamp) {
     // Place the player on his new zone
     addMeOnMap();
     
-    // Get informations about the current zone through the "data-*" HTML attributes
-    const zoneData = document.querySelector("#me").parentNode.dataset;
+    const me = new Zone();
     // Display an alert over the movement paddle if the player is blocked
-    updateBlockAlertControl(Number(zoneData.controlpointszombies), mapId, zoneData.coordx, zoneData.coordy);  
+    updateBlockAlertControl(me.controlPointsZombies, mapId, me.x, me.y);  
     // Add an icon on the zone to show there are items here
-    addItemsIconInZone(zoneData.coordx, zoneData.coordy, zoneData.items);
+    addItemsIconInZone(me.x, me.y, me.nbrItems);
     
     // Refresh the timestamp to memorize that these actions have been treated
     return timestamp = await JSON.parse(event.data).zones;

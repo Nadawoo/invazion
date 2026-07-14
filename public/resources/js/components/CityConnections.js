@@ -1,5 +1,6 @@
 import { ZombLib } from "../lib/ZombLib.js";
 import { Items } from "../components/Items.js";
+import { Zone } from "../entities/Zone.js";
 import { getMapCitiesOnce, getMapRoadsOnce } from "../mapInit.func.js";
 import { getZonePositions } from "../mapUse.func.js";
 import { itemsBubbleFragment } from "../misc.func.js";
@@ -66,8 +67,9 @@ export class CityConnections {
         
         // If the citizen is not on the map, don't try to trace a road from him
         if(!document.querySelector("#me")) return;
-
-        const htmlSourceCityId = document.querySelector("#me").parentNode.dataset.cityid,
+        
+        const me = new Zone();
+        const htmlSourceCityId = me.cityId,
               sourceCityId = (htmlSourceCityId !== "") ? Number(htmlSourceCityId) : null,
               targetCityId = event.currentTarget.querySelector('.square_container').dataset.cityid;
         

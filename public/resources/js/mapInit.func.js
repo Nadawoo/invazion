@@ -7,6 +7,7 @@
 
 import { ZombLib } from "./lib/ZombLib.js";
 import { Items } from "./components/Items.js";
+import { Zone } from "./entities/Zone.js";
 import {
     populateBuilderBlock,
     updateActionBlocks,
@@ -325,7 +326,7 @@ export function switchToActionView() {
     
     const cookies = new Cookies();
     const mapId = Number(document.querySelector("#mapId").innerHTML);
-    const zoneData = document.querySelector("#me").parentNode.dataset;
+    const me = new Zone();
     
     // Zoom the map on the player
     zoomMapRange(500);
@@ -339,7 +340,7 @@ export function switchToActionView() {
         // Add the list of buildable buildings
         populateBuilderBlock();
         // Add an icon on the zone to show there are items here
-        addItemsIconInZone(zoneData.coordx, zoneData.coordy, zoneData.items);
+        addItemsIconInZone(me.x, me.y, me.nbrItems);
         // Load event listener to go back to the map
         document.querySelector("#map_mode_button").addEventListener("click",
             switchToMapView
@@ -356,7 +357,7 @@ export function switchToActionView() {
         toggleActionBlock('move');
         updateBlockAction('move');
         // Hide the card for digging if the zone is not diggable
-        _myZone = await getMyZoneOnce(mapId, zoneData.coordx, zoneData.coordy);
+        _myZone = await getMyZoneOnce(mapId, me.x, me.y);
         updateDigButtons(_myZone.user_specific.is_visited_today); 
     }, 1000);    
     
@@ -389,15 +390,13 @@ export function switchToActionView() {
 async function addCitizensOnMyZone() {
     
     const myCitizenId = Number(document.querySelector("#citizenId").innerHTML);
-    const myZone = document.querySelector("#me").parentNode.dataset;
-    const coordX = myZone.coordx;
-    const coordY = myZone.coordy;
+    const me = new Zone();
     
     // Get the citizens of the map by calling the Azimutant's API
     _citizens = await getMapCitizensOnce(mapId);    
     // Keep only the citizens who are in the player's zone
-    const citizensInMyZone = Object.values(_citizens).filter(citizen => citizen.coord_x == coordX 
-                                                                        && citizen.coord_y == coordY
+    const citizensInMyZone = Object.values(_citizens).filter(citizen => citizen.coord_x == me.x 
+                                                                        && citizen.coord_y == me.y
                                                                         && citizen.citizen_id != myCitizenId);
     
     // Add on the zone the silhouettes of the fellows
@@ -416,7 +415,7 @@ async function addCitizensOnMyZone() {
         if(i >= 2) break;
     }
     
-    document.querySelector(`#zone${coordX}_${coordY} .square_container`).appendChild(citizensContainer);
+    document.querySelector(`${me.zoneHtmlId} .square_container`).appendChild(citizensContainer);
 }
 
 

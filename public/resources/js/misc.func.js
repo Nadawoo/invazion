@@ -7,6 +7,7 @@
 import { ZombLib } from "./lib/ZombLib.js";
 import { Items } from "./components/Items.js";
 import { Coordinates } from "./domain/Coordinates.js";
+import { Zone } from "./entities/Zone.js";
 import { populateItemsList } from "./actionBlocks.func.js";
 import {
     updateBlockAction,
@@ -360,8 +361,12 @@ export function updateCardCitizensInZone(nbrCitizensInZone) {
  */
 export function updateEnterBuildingButton(cityTypeId) {
     
-    // Displays the building's name under the movement paddle
     if(cityTypeId === "") {
+        cityTypeId = null;
+    }
+    
+    // Displays the building's name under the movement paddle
+    if(cityTypeId === null) {
         hide("#block_move #card_building");
     } else {
         document.querySelector("#block_move .building_name").innerHTML = _configsBuildings[cityTypeId]["name"];
@@ -372,19 +377,19 @@ export function updateEnterBuildingButton(cityTypeId) {
     }
     
     // Button to enter in the city
-    let enterCity = (cityTypeId !== "" && _configsBuildings[cityTypeId]["is_enterable"] === 1) ? "block" : "none";
+    let enterCity = (cityTypeId !== null && _configsBuildings[cityTypeId]["is_enterable"] === 1) ? "block" : "none";
     document.querySelector(`#block_move form[name="enter_city"]`).style.display = enterCity;
     
     // Button to destroy the tent (building #13 in the database)
-    let destroyCity = (cityTypeId !== "" && _configsBuildings[cityTypeId]["is_destroyable"] === 1) ? "block" : "none";
+    let destroyCity = (cityTypeId !== null && _configsBuildings[cityTypeId]["is_destroyable"] === 1) ? "block" : "none";
     document.querySelector('#block_move form[name="destroy_city"]').style.display = destroyCity;
     
     // Button to activate a crypt (building ID #2)
-    let enterCrypt = (cityTypeId === "2") ? "block" : "none";
+    let enterCrypt = (cityTypeId === 2) ? "block" : "none";
     document.querySelector('#button_crypt').style.display = enterCrypt;
     
     // Button to explore the building
-    let buildingVisibility = (cityTypeId !== "" && _configsBuildings[cityTypeId]["is_explorable"]) ? "block" : "none";
+    let buildingVisibility = (cityTypeId !== null && _configsBuildings[cityTypeId]["is_explorable"]) ? "block" : "none";
     document.querySelector("#button_explore").style.display = buildingVisibility;
 }
 
@@ -411,11 +416,10 @@ export async function killZombies(apiAction) {
     }, 1500);
     
     if(json.metas.error_code === "success") {  
-        // The main container of the zone where the player is
-        let myZone = document.querySelector("#me").parentNode;
-        let oldNbrZombies = myZone.dataset.zombies,
-            newNbrZombies = Math.max(0, oldNbrZombies - json.datas.nbr_zombies_removed);
-        let mapId = Number(document.querySelector("#gameData #mapId").innerHTML);
+        const me = new Zone();
+        const oldNbrZombies = me.nbrZombies;
+        const newNbrZombies = Math.max(0, oldNbrZombies - json.datas.nbr_zombies_removed);
+        const mapId = Number(document.querySelector("#gameData #mapId").innerHTML);
         
         const current_AP = (document.querySelector("#actionPoints").innerText),
               lost_AP    = json.datas.action_points_lost,
@@ -424,10 +428,11 @@ export async function killZombies(apiAction) {
         // Update the action blocks (round buttons next to the map)
         updateBlockActionZombies(newNbrZombies);
         updateMoveCost(newNbrZombies);
-        updateBlockAlertControl(Number(myZone.dataset.controlpointszombies), mapId, myZone.dataset.coordx, myZone.dataset.coordy);
+        updateBlockAlertControl(me.controlPointsZombies, mapId, me.x, me.y);
         
         updateActionPoints(newAP);
         
+        let myZone = document.querySelector("#me").parentNode;
         // Update the zombie silhouettes on the map zone
         if(newNbrZombies > 0) {
             myZone.querySelector(".zombies").src = "resources/img/motiontwin/zombie"+newNbrZombies+".gif";
