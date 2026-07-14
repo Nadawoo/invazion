@@ -1,9 +1,20 @@
 export class MapConfigs {
     
     // Get the data of the map only once, even with several instances
-    static config = JSON.parse(
-        document.querySelector("#configs .map").textContent
-    );
+    static config = this.#getConfigsOnce();
+    
+    static #getConfigsOnce() {
+        
+        const configsNode = document.querySelector("#configs .map");
+
+        if (!configsNode) {
+//            throw new Error("[Azimutant] Error: Map configs not found");
+            return;
+        }
+
+        return JSON.parse(configsNode.textContent);
+    }
+    
     
     constructor() {
         
