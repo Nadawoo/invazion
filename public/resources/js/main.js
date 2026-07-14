@@ -117,7 +117,6 @@ if(document.getElementById("map") !== null) {
     window._configsBuildingsFindableItems   = JSON.parse(document.querySelector("#configs .buildings_findable_items").innerHTML);
     window._configsBuildingsComponents      = JSON.parse(document.querySelector("#configs .buildings_components").innerHTML);
     window._configsItems                    = JSON.parse(document.querySelector("#configs .items").innerHTML);
-    window._configsMap                      = JSON.parse(document.querySelector("#configs .map").innerHTML);
     
     _jsonMap = getMapZonesOnce(mapId);
     

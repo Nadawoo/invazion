@@ -6,6 +6,7 @@
 import { Items } from "./components/Items.js";
 import { getMapCitizensOnce } from "./mapInit.func.js";
 import { Zone } from "./entities/Zone.js";
+import { MapConfigs } from "./services/MapConfigs.js";
 import {
     getHtmlActionBlockFellow,
     getMyZoneOnce,
@@ -84,6 +85,8 @@ export async function updateActionBlocks() {
  */
 export function updateMoveCost(newNbrZombies) {
     
+    const mapConfigs = new MapConfigs();
+    
     // Updates the block showing the AP before=>after moving
     let currentAp = document.querySelector("#actionPoints").innerHTML,
         ApAfterMove = currentAp - 1;    
@@ -91,10 +94,10 @@ export function updateMoveCost(newNbrZombies) {
     
     // The movement has no AP cost in some situations => hide the card under 
     // the movement paddle
-    if(newNbrZombies === 0 && parseInt(_configsMap.moving_cost_no_zombies) === 0) {
+    if(newNbrZombies === 0 && parseInt(mapConfigs.get("moving_cost_no_zombies")) === 0) {
         hide("#card_ap_cost");
     }
-    else if(newNbrZombies >= 1 && parseInt(_configsMap.moving_cost_zombies) === 0) {
+    else if(newNbrZombies >= 1 && parseInt(mapConfigs.get("moving_cost_zombies")) === 0) {
         hide("#card_ap_cost");
     }
     else if(ApAfterMove < 0) {
@@ -130,13 +133,14 @@ export function updateMoveCost(newNbrZombies) {
  */
 export async function updateBlockAlertControl(controlpointsZombies, mapId, coordX, coordY) {
     
+    const mapConfigs = new MapConfigs();
     let actionPoints = Number(document.querySelector("#gameData #actionPoints").innerHTML);
     let controlpointsCitizens = await sumControlpoints(await _citizens, coordX, coordY);
     
     // Displays an alert when the player has not enough action points to  move
-    if ((   controlpointsZombies === 0 && actionPoints < _configsMap.moving_cost_no_zombies)
-        || (controlpointsZombies === 0 && actionPoints === 0 && _configsMap.moving_cost_no_zombies > 0)
-        || (controlpointsZombies   > 0 && actionPoints < _configsMap.moving_cost_zombies)
+    if ((   controlpointsZombies === 0 && actionPoints < mapConfigs.get("moving_cost_no_zombies"))
+        || (controlpointsZombies === 0 && actionPoints === 0 && mapConfigs.get("moving_cost_no_zombies") > 0)
+        || (controlpointsZombies   > 0 && actionPoints < mapConfigs.get("moving_cost_zombies"))
         ) {
         // Display the alert text above the movement paddle
         display("#alert_tired");
