@@ -61,13 +61,3 @@ export async function isCitizenInGame(mapId) {
     
     return (_citizens !== undefined && _citizens[citizenId] !== undefined);
 }
-
-
-/**
- * Gets the ID of the connected player
- * @returns {int}
- */
-function getCitizenId() {
-
-    return parseInt(document.getElementById("citizenId").innerHTML);
-}
