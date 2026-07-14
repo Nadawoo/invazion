@@ -165,7 +165,9 @@ export class BuildingPopup {
         // needed for invaded one module of a building.
         let defensesPerModule = 5;
         
-        return Math.floor((nbrZombiesInBuilding-1) / defensesPerModule);
+        let moduleId = Math.floor((nbrZombiesInBuilding-1) / defensesPerModule);
+        // NB: Avoids the eventuality of "-1" value
+        return Math.max(moduleId, 0);
     }
 
 
