@@ -13,9 +13,15 @@ import { getMapCitizensOnce } from "./mapInit.func.js";
  */
 export async function isCitizenInGame(mapId) {
     
-    const _citizens = await getMapCitizensOnce(mapId);
+    const citizenIdString = document.querySelector("#citizenId").innerText;
     
-    const citizenId = Number(document.querySelector("#citizenId").innerText);
-    
-    return (_citizens !== undefined && _citizens[citizenId] !== undefined);
+    if(citizenIdString === "") {
+        return false;
+    }
+    else {
+        const citizenId = Number(citizenIdString);
+        const _citizens = await getMapCitizensOnce(mapId);
+        
+        return (_citizens !== undefined && _citizens[citizenId] !== undefined);
+    }
 }
