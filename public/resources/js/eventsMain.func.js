@@ -9,6 +9,7 @@ import { CityRadialMenu } from "./components/CityRadialMenu.js";
 import { Items } from "./components/Items.js";
 import { Coordinates } from "./domain/Coordinates.js";
 import { Zone } from "./entities/Zone.js";
+import { Auth } from "./services/Auth.js";
 import { MapConfigs } from "./services/MapConfigs.js";
 import { MapMarkers } from "./services/MapMarkers.js";
 import { Move } from "./services/Move.js";
@@ -19,7 +20,6 @@ import {
     updateBlockAction
     } from "./actionBlocks.func.js";
 import { togglePathsBar } from "./paths.func.js";
-import { connectUser } from "./users.func.js";
 import {
     addMovementArrows,
     addZombiesInZone,
@@ -86,7 +86,8 @@ export function listenToSubmit() {
         
         if(event.target.matches(formSelectors.connect)) {
             event.preventDefault();
-            connectUser();
+            const auth = new Auth();
+            auth.logIn();
         }
         else if(event.target.matches(formSelectors.explore)) {
             // Desactivate the classic submission button (avoids reloading the page)

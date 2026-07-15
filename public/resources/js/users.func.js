@@ -3,49 +3,7 @@
  * Put only functions here, no executable code.
  */
 
-import { ZombLib } from "./lib/ZombLib.js";
 import { getMapCitizensOnce } from "./mapInit.func.js";
-
-
-/**
- * Connects the user to his account (sends logins and gets the API result)
- */
-export async function connectUser() {
-    
-    let emailField  = document.getElementById("email"),
-        email       = emailField.value,
-        password    = document.getElementById("password").value;
-    
-    if (email === '') {
-        
-        document.getElementById("error").innerHTML = "Veuillez indiquer l'adresse mail que vous aviez utilisée "
-                        +"lors de votre inscription.<br>"
-                        +"<em>Pas encore inscrit ? <a href=\"register.php\">Créez votre compte maintenant !</a></em>";
-    }
-    else if (emailField.checkValidity() !== true) {
-        
-        document.getElementById("error").innerHTML = "L'email que vous avez saisi est invalide. Vérifiez qu'il ne contient pas une faute de frappe...";
-    }
-    else {
-        // Calls the connection API
-        let zombLib = new ZombLib();
-        let json = await zombLib.callApi("POST", "user", `action=connect&email=${email}&password=${password}`);
-
-        if (json.metas.error_code !== "success") {
-
-            document.getElementById("error").innerHTML = json.metas.error_message;
-        }
-        else {
-            let cookies = new Cookies();
-            // Stores the identification token in a cookie
-            cookies.setCookie("token", json.datas.token);
-            // Stores the email adress for prefilling the field at the next connection
-            cookies.setCookie("email", email);
-            // Redirects to the main game page after the connction
-            window.location.replace("index.php#Outside");
-        }
-    }
-}
 
 
 /**
