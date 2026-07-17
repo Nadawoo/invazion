@@ -1,4 +1,4 @@
-class GameSelector {
+export class GameSelector {
     
     async populateAllGamesList(games) {
         
