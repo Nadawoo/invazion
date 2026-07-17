@@ -1,6 +1,7 @@
 import { ZombLib } from "../lib/ZombLib.js";
 import { Items } from "../components/Items.js";
 import { Zone } from "../entities/Zone.js";
+import { Graph } from "../utils/Graph.js";
 import { getMapCitiesOnce, getMapRoadsOnce } from "../mapInit.func.js";
 import { getZonePositions } from "../mapUse.func.js";
 import { itemsBubbleFragment } from "../misc.func.js";

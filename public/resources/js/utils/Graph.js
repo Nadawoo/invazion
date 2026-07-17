@@ -1,7 +1,7 @@
 /**
  * Tools for building graphs and pathfinding
  */
-class Graph {
+export class Graph {
     
     /**
      * Build a graph giving the neighbors for each city. Useful for pathfinding.
