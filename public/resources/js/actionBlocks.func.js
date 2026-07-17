@@ -260,6 +260,11 @@ export function addControlpointsOnZone(coordX, coordY) {
     const htmlCoords = `${coordX}_${coordY}`;
     const zone = document.querySelector(`#zone${htmlCoords} .square_container`);
     
+    // If we are a the edge of the map
+    if(zone === null) return;
+    // If the zone has not been visited yet
+    if(Number(zone.dataset.cyclelastvisit) === 0) return;
+    
     if(zone.querySelector(".cp_citizens") === null) {
         const cpCitizens = sumControlpoints(_citizens, zone.dataset.coordx, zone.dataset.coordy);
         const htmlCpNbr = document.createElement("div");

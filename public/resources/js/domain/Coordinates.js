@@ -35,13 +35,23 @@ export class Coordinates {
      */
     getNeighborsHtmlCoords(coordX, coordY) {
         
-        return {
-            "northwest":`${coordX-1}_${coordY-1}`,
-            "northeast":`${coordX+1}_${coordY-1}`,
-            "west":     `${coordX-2}_${coordY}`,
-            "east":     `${coordX+2}_${coordY}`,
-            "southwest":`${coordX-1}_${coordY+1}`,
-            "southeast":`${coordX+1}_${coordY+1}`,
-            };
+        const allCoords = {
+            northwest: [coordX - 1, coordY - 1],
+            northeast: [coordX + 1, coordY - 1],
+            west:      [coordX - 2, coordY],
+            east:      [coordX + 2, coordY],
+            southwest: [coordX - 1, coordY + 1],
+            southeast: [coordX + 1, coordY + 1],
+        };
+        
+        // Remove the zones which has a negative X (left edge of the map) 
+        // or a negative Y (top edge of the map)
+        // And convert the coords to the "x_y" format
+        return Object.fromEntries(
+            Object.entries(allCoords).map(([direction, [x, y]]) => [
+                direction,
+                (x >= 0 && y >= 0) ? `${x}_${y}` : null
+            ])
+        );
     }
 }

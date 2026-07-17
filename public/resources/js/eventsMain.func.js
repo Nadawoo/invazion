@@ -306,8 +306,10 @@ export function listenToPointerup() {
             const neighbors = coordinates.getNeighborsHtmlCoords(me.x, me.y);
             
             for(const [direction, htmlCoords] of Object.entries(neighbors)) {
-                const zone = document.querySelector(`#zone${htmlCoords} .square_container`);
-                addControlpointsOnZone(zone.dataset.coordx, zone.dataset.coordy);
+                if(htmlCoords !== null) {
+                    const [coordX, coordY] = htmlCoords.split("_");
+                    addControlpointsOnZone(coordX, coordY);
+                }
             }
             display([".cp_zombies"]);
             
