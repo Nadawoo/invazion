@@ -427,59 +427,36 @@ form[name="end_cycle"] button {
     color:green;
 }
 
-/* Boutons de déplacement du joueur */
 #block_move .main_block {
     display:flex;
 }
-#movement_paddle {
+#littleZone {
+    position:relative;
     margin:0 4%;
     width: 7.8rem; /* Fixed width to avoid crushing the paddle when downsizing the window */
     height:7.1rem;
-    border-collapse:collapse;
-    text-align:center;
     background-image:url("../img/copyrighted/tiles/desert/9.png");
     background-repeat:no-repeat;
     background-size:3.5em;
     background-position: center;
     background-position-y: 1.9em;
     font-weight:bold;
-}
-#movement_paddle tr {
-    border:none;
-}
-#movement_paddle td {
-    padding:0;
-    text-align:center;
-    /* Assure un écartement symétrique des flèches */
-    width:2em;
-    height:2.4em;
-    box-sizing:border-box;
-}
-#movement_paddle button {
-    min-width:0;
-    padding:0;
-    font-size:1.8em;
-    color:darkred;
-    background:none;
-    border:none;
-    text-shadow:black 1px 1px 1px;
-}
-#movement_paddle button:hover {
-    color:red;
     cursor:pointer;
 }
-/* L'hexagone central entre les flèches */
-#movement_paddle #central {
-    position:relative;
-    top:-0.2em;
-    cursor:pointer;
-    line-height:1.4em;
-}
-#movement_paddle .me {
+#littleZone .wrapper {
     position:absolute;
-    top:-1.2em; /* TODO: fix those artificial alignments */
-    left:33%;
+    top:15px;
+    left:41%;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+}
+#littleZone .me {
     height:2.6em;
+}
+#littleZone .coords {
+    position:absolute;
+    top:40px;
 }
 
 

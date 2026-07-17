@@ -529,7 +529,7 @@ function updateRoundButtonDotNumber(roundButtonId, amount, forceHighlight=false)
 export function updateMovementPaddle(coordX, coordY) {
     
     // Updates the coordinates of the player in the movement paddle
-    document.querySelector('form[name="move"] .coords').innerHTML = coordX+":"+coordY;
+    document.querySelector('#littleZone .coords').innerHTML = coordX+":"+coordY;
 }
 
 
