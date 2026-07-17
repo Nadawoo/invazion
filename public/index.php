@@ -447,11 +447,6 @@ echo $layout->page_header($citizen['user_id'], $citizen['citizen_id'], $citizen[
                     <i class="material-icons small" role="img">web</i>
                 </button>
             </li>
-            <!--
-            <li role="none" class="defenses" onclick="toggleMapDefensesView()">
-                <button role="img" aria-label="Voir les défenses des bâtiments">🛡</button>
-            </li>
-            -->
             <li role="none" id="action_mode_button" class="my_zone">
                 <button aria-label="Passer en mode action de zone" data-action="switchToActionView">
                     <span class="pickaxe" role="img">&#x26CF;&#xFE0F;</span>
