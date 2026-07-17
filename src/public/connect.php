@@ -1,7 +1,6 @@
 <?php
 require_once '../core/controller/autoload.php';
 safely_require('/core/model/Server.php');
-safely_require('/core/view/connect.php');
 safely_require('/core/ZombLib.php');
 
 $server = new Server();
@@ -52,11 +51,47 @@ if ($api->user_seems_connected() === TRUE) {
     
     <?php
 }
-else { 
+else {
+    ?>
     
-    echo connect($email);
-}
+    <form method="post" id="connectionForm" class="popup z-depth-2">
 
-echo '<p><br><br><br></p>';
+        <h2>Connexion</h2>
+
+        <input type="hidden" name="action" value="connect">
+
+        <label for="email">Mon e-mail</label>
+        <input type="email"
+               name="email"
+               id="email"
+               placeholder="johndoe@gmail.com"
+               autocomplete="username"
+               aria-describedby="username_constraints" required autofocus />
+
+        <br>
+        <br>
+
+        <label for="password">Mot de passe</label>
+        <input type="password" name="password" id="password"
+               autocomplete="current-password" aria-describedby="password_constraints" />
+        <div id="password_constraints" class="aside">
+            Si vous n\'avez pas défini de mot passe lors de la création du compte,
+            laissez ce champ vide.
+        </div>
+
+        <input type="submit" value="Me connecter" class="redbutton" />
+
+        <p class="center">
+            <a href="register.php">Créer un compte</a>
+        </p>
+
+        <p style="text-align:right">
+            <a href="index">Retour</a>
+        </p>
+
+    </form>
+
+    <?php
+}
 
 echo $html->page_footer();
