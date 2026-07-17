@@ -1,5 +1,6 @@
 import { ZombLib } from "./lib/ZombLib.js";
 import { CityConnections } from "./components/CityConnections.js";
+import { FooterBar } from "./components/FooterBar.js";
 import { HealthBars }  from "./components/HealthBars.js";
 import { MapCitizens } from "./components/MapCitizens.js"
 import { Tasks } from "./components/Tasks.js";
@@ -146,8 +147,9 @@ if(document.getElementById("map") !== null) {
     setTimeout(updateLightHalos, 500);
     
     // Update the red counters at the bottom of the map
-    updateCitiesCounter();
-    updateZombieCoresCounter();
+    const footerBar = new FooterBar;
+    footerBar.updateCitiesCounter();
+    footerBar.updateZombieCoresCounter();
     
     // Allows to move the map by dragging it with the mouse
     _scrollBoosterInstance = listenToMapDragging();
