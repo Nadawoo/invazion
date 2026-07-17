@@ -20,8 +20,6 @@ import { zoomMapStep } from "./mapUse.func.js";
 import { displayToast } from "./misc.func.js";
 
 
-var nbrExecutionsGetCyclicAttacks = 0;
-
 // Listen to all forms
 listenToSubmit();
 listenToInput();

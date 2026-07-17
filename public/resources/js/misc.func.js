@@ -446,18 +446,18 @@ export async function killZombies(apiAction) {
 /**
  * Gets the log of attacks with the API and write it in the communications panel
  */
-export async function getCyclicAttacks(nbrExecutions) {
+export async function getCyclicAttacks() {
     
     // Don't run the function more than once (it calls the API)
-    if (nbrExecutions >= 1) {
-        return false;
-    }
+//    if (nbrExecutions >= 1) {
+//        return false;
+//    }
     
     // Get the HTML elements to build the log of attacks
     let options = { method: "GET",
                     headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
                     };
-    let zombLib = zombLib();
+    let zombLib = new ZombLib;
     let response = await fetch("/generators/log_attacks.php?action=get&type=cyclicattack&sort=desc", options);
     let htmlElements = await zombLib.toJson(response);
     

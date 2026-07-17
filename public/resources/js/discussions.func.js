@@ -262,8 +262,7 @@ export function listenToDiscussTabs() {
     
     document.querySelector("#wall .tabs a[href='#wallAttacks']").addEventListener("click", function() {
         // Updates the log of attacks
-        getCyclicAttacks(nbrExecutionsGetCyclicAttacks);
-        nbrExecutionsGetCyclicAttacks++;
+        getCyclicAttacks();
     });
     
     document.querySelector("#wall .tabs a[href='#wallEvents']").addEventListener("click", function() {
