@@ -7,6 +7,7 @@ import { ZombLib } from "./lib/ZombLib.js";
 import { BuildingPopup } from "./components/BuildingPopup.js";
 import { CityRadialMenu } from "./components/CityRadialMenu.js";
 import { Items } from "./components/Items.js";
+import { Phone } from "./components/Phone.js";
 import { Coordinates } from "./domain/Coordinates.js";
 import { Zone } from "./entities/Zone.js";
 import { Auth } from "./services/Auth.js";
@@ -328,6 +329,14 @@ export function listenToPointerup() {
         }
         else if(action === "addZombiesInZone") {
             addZombiesInZone();
+        }
+        else if(action === "displayPhone") {
+            const phone = new Phone();
+            phone.displayPhone();
+        }
+        else if(action === "activatePhoneTab") {
+            const phone = new Phone();
+            phone.activatePhoneTab(target.dataset.tab);
         }
         else if(target.closest("#map_navigation")) {            
             const button = target.closest("button");

@@ -183,7 +183,6 @@ class HtmlPage
                         <script type="text/javascript" src="resources/js/wallTemplate.js?v'.$this->css_js_version.'" async></script>
                         <script type="text/javascript" src="resources/js/cityEnclosure.func.js?v'.$this->css_js_version.'" async></script>
                         <script type="text/javascript" src="resources/js/cityEnclosureInit.func.js?v'.$this->css_js_version.'"></script>
-                        <script type="text/javascript" src="resources/js/smartphone.func.js?v'.$this->css_js_version.'" async></script>
                         <script type="text/javascript" src="resources/js/miscInit.func.js?v'.$this->css_js_version.'"></script>
                         <script type="module" src="resources/js/main.js?v'.$this->css_js_version.'"></script>
                         <script type="module" src="resources/js/events.js?v'.$this->css_js_version.'"></script>

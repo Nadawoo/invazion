@@ -810,7 +810,7 @@ class HtmlLayout extends HtmlPage
             <button aria-label="Afficher le smartphone du jeu"
                 style="display:none"
                 >
-                <a href="#popsmartphone" style="font-size:55%" onclick="displaySmartphone()">&#128241;</a>
+                <a href="#popsmartphone" style="font-size:55%" data-action="displayPhone">&#128241;</a>
             </button>
             
             <button aria-label="Recharger la page">

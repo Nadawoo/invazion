@@ -55,15 +55,15 @@ class HtmlSmartphone
     {
         
         return '
-            <div onclick="activatePhoneTab(\'minimap\')">
+            <div data-action="activatePhoneTab" data-tab="minimap">
                 &#128205;
                 <span>gps</span>
             </div>
-            <div onclick="activatePhoneTab(\'health\')">
+            <div  data-action="activatePhoneTab" data-tab="health">
                 &#x1F489;
                 <span>santé</span>
             </div>
-            <div onclick="activatePhoneTab(\'zone\')">
+            <div data-action="activatePhoneTab" data-tab="zone">
                 &#129503;
                 <span>zone</span>
             </div>';
