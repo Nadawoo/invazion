@@ -328,8 +328,8 @@ class HtmlLayout extends HtmlPage
     function block_zombies_gauge() {
         
         return '
-            <a id="zombies_gauge" title="Indicateur du contrôle de zone"
-                onclick="toggleActionBlock(\'zombies\')"
+            <button id="zombies_gauge" title="Indicateur du contrôle de zone"
+                data-action="switchActionBlock" data-name="zombies"
                 >
                 <img src="resources/img/motiontwin/zombie.gif" height="28" alt="Zombies">
                 <ul aria-label="Nombre de zombies dans la zone">
@@ -341,7 +341,7 @@ class HtmlLayout extends HtmlPage
                     <li aria-label="5">5</li>
                     <li aria-label="Perte de contrôle"><span class="nbr_zombies"></span>&#x1F480;</li>
                 </ul>
-            </a>';
+            </button>';
     }
     
     

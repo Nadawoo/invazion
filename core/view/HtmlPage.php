@@ -11,7 +11,7 @@ class HtmlPage
     // Increment those variables when you modify the CSS or JS files. This ensures
     // that the users' browsers reload the up-to-date files, instead of using 
     // the obsolete ones stored in their cache.
-    private $css_js_version = 222;
+    private $css_js_version = 223;
     
     /**
      * Sets HTTP headers to secure the website
@@ -67,7 +67,8 @@ class HtmlPage
             'image_height'  => "345",
             ];
         
-        return '<!doctype html>
+        return '
+            <!doctype html>
             <html lang="fr">
             <head>
                 <meta charset="utf-8">

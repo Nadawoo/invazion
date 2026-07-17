@@ -560,10 +560,14 @@ form[name="end_cycle"] button {
 }
 
 #zombies_gauge {
+    width:100%;
     margin:0.5em 0 1.5em 0;
+    padding:0;
     display:flex;
     justify-content:space-between;
     align-items:center;
+    background:none;
+    border:none;
 }
 #zombies_gauge ul {
     max-height:2.5em;
