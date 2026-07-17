@@ -460,7 +460,7 @@ class HtmlLayout extends HtmlPage
             
             $button_alias = get_item_action($items_caracs[$id]);
             
-            if ($button_alias !== null) {
+            if($button_alias === 'fight') {
                 $html_items .= '<li>'.$buttons->use_item($button_alias, $id, $items_caracs[$id]).'</li>';
             }
         }
