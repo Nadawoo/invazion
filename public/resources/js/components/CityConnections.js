@@ -217,6 +217,7 @@ export class CityConnections {
                 if(clickedCityId === null || childCity["connected_city_id"] !== null) {
                     this.#addCityframe(childCity.coord_x, childCity.coord_y, childCity.city_type_id, childCity.total_defenses);
                     this.#addNbrDefenses(childCity.coord_x, childCity.coord_y, childCity.city_type_id, childCity.total_defenses);
+                    this.#addApCost(childCity.coord_x, childCity.coord_y, childCity.city_type_id);
                     this.#addNbrItems(childCity.coord_x, childCity.coord_y);
                 }
             }
@@ -302,6 +303,34 @@ export class CityConnections {
     
     
     /**
+     * Add the cost in action points above the road connection
+     * 
+     * @param {int} cityCoordX
+     * @param {int} cityCoordY
+     * @param {int} cityTypeId
+     * @returns {undefined}
+     */
+    #addApCost(cityCoordX, cityCoordY, cityTypeId) {
+        
+        const htmlCoords = cityCoordX+"_"+cityCoordY;
+        const zone = document.querySelector(`#zone${htmlCoords} .square_container`);
+        const cityframe = zone.querySelector(".cityframe");
+        let htmlApCost = "";
+        
+        // Each passage on a well (building type #15 in the API) gives 6 action points
+        if(cityTypeId !== "") {
+            const wellTypeId = 15,
+                  apGivenByWell = 6;
+            let apCost = (cityTypeId === wellTypeId) ? apGivenByWell : -Math.max(1, Math.floor(zone.dataset.zombies/2));
+            const signedApCost = apCost > 0 ? `+${apCost}` : `${apCost}`,
+                  negativeClass   = apCost > 0 ? "positive" : "negative";
+            htmlApCost = `<div class="move_cost hidden ${negativeClass}" aria-label="Coût pour traverser cette zone">&nbsp;${signedApCost}<span role="img" aria-label="points d'action">⚡</span></div>`;
+        }
+        
+        cityframe.insertAdjacentHTML("afterbegin", htmlApCost);
+    }
+    
+    /**
      * Add the "number of defenses" label above each city
      * 
      * @param {int} cityCoordX
@@ -319,23 +348,13 @@ export class CityConnections {
             roadConnectionId = 244;
         
         let htmlCoords = cityCoordX+"_"+cityCoordY,
-            zone = document.querySelector("#zone"+htmlCoords+" .square_container"),
+            zone = document.querySelector(`#zone${htmlCoords} .square_container`),
             cityframe = zone.querySelector(".cityframe"),
             htmlNbrDefenses = "";
-                        
+        
         if(cityTypeId === zombieBaseId) {
             // Add the number of zombies of the daily attack 
             htmlNbrDefenses = `<div class="nbr_defenses" style="background:red">${zone.dataset.zombies} <img src="resources/img/motiontwin/zombie.gif" alt="&#x1F9DF;"></div>`;
-        }
-        else if(cityTypeId !== "") {
-            // Add the cost in action points above the raod connection
-            // Each passage on a well (building type #15 in the API) gives 6 action points
-            const wellTypeId = 15,
-                  apGivenByWell = 6;
-            let apCost = (cityTypeId === wellTypeId) ? apGivenByWell : -Math.max(1, Math.floor(zone.dataset.zombies/2));
-            const htmlApCost = apCost > 0 ? `+${apCost}` : `${apCost}`,
-                  negativeClass   = apCost > 0 ? "positive" : "negative";
-            htmlNbrDefenses = `<div class="move_cost hidden ${negativeClass}" aria-label="Coût pour traverser cette zone">&nbsp;${htmlApCost}<span role="img" aria-label="points d'action">⚡</span></div>`;
         }
         else if(cityTypeId === zombieCoreId) {
             // Add a special marker on the zombie cores
