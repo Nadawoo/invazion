@@ -24,6 +24,12 @@ export class Zone {
     }
     
     
+    get mapId() {
+        
+        return Number(document.querySelector("#mapId").textContent);
+    }
+    
+    
     /**
      * Get the HTML ID of the zone, example : #zone14_10
      * 
@@ -65,6 +71,10 @@ export class Zone {
     }
     
     
+    /**
+     * The ID of the eventual city located on the zone
+     * @returns {unresolved}
+     */
     get cityId() {
         
         const cityId = this.myZone.dataset.cityid;

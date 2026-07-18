@@ -425,9 +425,9 @@ function displayPathsPanel() {
 async function activateMapPathsView() {
     
     // Get the datas about the expeditions
-    let zombLib = new ZombLib();
-    let mapId = await document.querySelector("#mapId").innerText;
-    let json = await zombLib.callApi("GET", "paths", "action=get&map_id="+mapId);
+    const zombLib = new ZombLib();
+    const me = new Zone();
+    const json = await zombLib.callApi("GET", "paths", `action=get&map_id=${me.mapId}`);
     
     // Draw the course of each expedition on the map
     drawPathsOnMap(json.datas.courses);

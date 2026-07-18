@@ -325,7 +325,6 @@ function getItemsIdsByType(itemType) {
 export function switchToActionView() {
     
     const cookies = new Cookies();
-    const mapId = Number(document.querySelector("#mapId").innerHTML);
     const me = new Zone();
     
     // Zoom the map on the player
@@ -357,7 +356,7 @@ export function switchToActionView() {
         toggleActionBlock('move');
         updateBlockAction('move');
         // Hide the card for digging if the zone is not diggable
-        _myZone = await getMyZoneOnce(mapId, me.x, me.y);
+        _myZone = await getMyZoneOnce(me.mapId, me.x, me.y);
         updateDigButtons(_myZone.user_specific.is_visited_today); 
     }, 1000);    
     

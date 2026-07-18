@@ -41,8 +41,7 @@ export async function updateBlockAction(blockAlias) {
     }
     else if(blockAlias === "dig") {
         const me = new Zone();
-        const mapId = Number(document.querySelector("#mapId").innerHTML);
-        updateBlockActionDig(mapId, me.x, me.y); 
+        updateBlockActionDig(me.mapId, me.x, me.y); 
     }
 }
 
@@ -297,12 +296,11 @@ async function updateBlockActionCitizens(coordX, coordY) {
     
     // Update the data only one time per zone
     if(block.dataset.coordx !== coordX || block.dataset.coordy !== coordY) {
-        
-        let myCitizenId     = document.querySelector("#citizenId").innerHTML,
-            mapId           = document.querySelector("#mapId").innerHTML;
+        const me = new Zone();
+        const myCitizenId = document.querySelector("#citizenId").textContent;
             
         // Get the citizens of the map by calling the Azimutant's API
-        _citizens = await getMapCitizensOnce(mapId);    
+        _citizens = await getMapCitizensOnce(me.mapId);    
         
         // Keeps only the citizens who are in the player's zone
         const citizensInMyZone = Object.values(_citizens).filter(citizen => citizen.coord_x == coordX 
