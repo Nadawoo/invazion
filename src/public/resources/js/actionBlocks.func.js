@@ -4,9 +4,10 @@
  */
 
 import { Items } from "./components/Items.js";
-import { getMapCitizensOnce } from "./mapInit.func.js";
+import { Citizen } from "./entities/Citizen.js";
 import { Zone } from "./entities/Zone.js";
 import { MapConfigs } from "./services/MapConfigs.js";
+import { getMapCitizensOnce } from "./mapInit.func.js";
 import {
     getHtmlActionBlockFellow,
     getMyZoneOnce,
@@ -85,11 +86,12 @@ export async function updateActionBlocks() {
 export function updateMoveCost(newNbrZombies) {
     
     const mapConfigs = new MapConfigs();
+    const myCitizen = new Citizen();
     
     // Updates the block showing the AP before=>after moving
-    let currentAp = document.querySelector("#actionPoints").innerHTML,
-        ApAfterMove = currentAp - 1;    
-    document.querySelector("#card_ap_cost .actionspoints_decrease").innerHTML = currentAp+"&#x2794;"+ApAfterMove+"&#9889;";
+    let currentAP = myCitizen.actionPoints,
+        ApAfterMove = currentAP - 1;    
+    document.querySelector("#card_ap_cost .actionspoints_decrease").innerHTML = `${currentAP}&#x2794;${ApAfterMove}&#9889;`;
     
     // The movement has no AP cost in some situations => hide the card under 
     // the movement paddle
@@ -133,13 +135,13 @@ export function updateMoveCost(newNbrZombies) {
 export async function updateBlockAlertControl(controlpointsZombies, mapId, coordX, coordY) {
     
     const mapConfigs = new MapConfigs();
-    let actionPoints = Number(document.querySelector("#gameData #actionPoints").innerHTML);
-    let controlpointsCitizens = await sumControlpoints(await _citizens, coordX, coordY);
+    const myCitizen = new Citizen();
+    const controlpointsCitizens = await sumControlpoints(await _citizens, coordX, coordY);
     
     // Displays an alert when the player has not enough action points to  move
-    if ((   controlpointsZombies === 0 && actionPoints < mapConfigs.get("moving_cost_no_zombies"))
-        || (controlpointsZombies === 0 && actionPoints === 0 && mapConfigs.get("moving_cost_no_zombies") > 0)
-        || (controlpointsZombies   > 0 && actionPoints < mapConfigs.get("moving_cost_zombies"))
+    if ((   controlpointsZombies === 0 && myCitizen.actionPoints < mapConfigs.get("moving_cost_no_zombies"))
+        || (controlpointsZombies === 0 && myCitizen.actionPoints === 0 && mapConfigs.get("moving_cost_no_zombies") > 0)
+        || (controlpointsZombies   > 0 && myCitizen.actionPoints < mapConfigs.get("moving_cost_zombies"))
         ) {
         // Display the alert text above the movement paddle
         display("#alert_tired");
@@ -296,22 +298,21 @@ async function updateBlockActionCitizens(coordX, coordY) {
     
     // Update the data only one time per zone
     if(block.dataset.coordx !== coordX || block.dataset.coordy !== coordY) {
-        const me = new Zone();
-        const myCitizenId = document.querySelector("#citizenId").textContent;
+        const myCitizen = new Citizen();
             
         // Get the citizens of the map by calling the Azimutant's API
-        _citizens = await getMapCitizensOnce(me.mapId);    
+        _citizens = await getMapCitizensOnce(myCitizen.mapId);    
         
         // Keeps only the citizens who are in the player's zone
         const citizensInMyZone = Object.values(_citizens).filter(citizen => citizen.coord_x == coordX 
                                                                             && citizen.coord_y == coordY
-                                                                            && citizen.citizen_id != myCitizenId);
+                                                                            && citizen.citizen_id != myCitizen.id);
         // All the other citizens (not in my zone)
         const citizensInOtherZones = Object.values(_citizens).filter(citizen => citizen.coord_x != coordX 
                                                                                 && citizen.coord_y != coordY
-                                                                                && citizen.citizen_id != myCitizenId);
+                                                                                && citizen.citizen_id != myCitizen.id);
         
-        populateBlockCitizensInMyZone(citizensInMyZone, myCitizenId);
+        populateBlockCitizensInMyZone(citizensInMyZone, myCitizen.id);
         populateBlockCitizensInOtherZones(citizensInOtherZones);
         
         // Useful to know if the block is up-to-date after moving the player

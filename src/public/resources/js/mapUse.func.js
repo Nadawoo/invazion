@@ -5,6 +5,7 @@
  */
 
 import { ZombLib } from "./lib/ZombLib.js";
+import { Citizen } from "./entities/Citizen.js";
 import { Zone } from "./entities/Zone.js";
 import { MapMarkers } from "./services/MapMarkers.js"
 import { updateBlockAlertControl } from "./actionBlocks.func.js"; 
@@ -124,12 +125,8 @@ function replaceBuildingsPlaceholders() {
  */
 export function addMeOnMap() {
     
-    let myCoordX = document.querySelector("#citizenCoordX").innerText,
-        myCoordY = document.querySelector("#citizenCoordY").innerText,
-//        myId     = document.querySelector("#citizenId").innerText,
-        myPseudo = document.querySelector("#citizenPseudo").innerText,
-        myActionPoints = document.querySelector("#actionPoints").innerText,
-        myZone = document.querySelector(`#zone${myCoordX}_${myCoordY}`);
+    const myCitizen = new Citizen;
+    const myZone = document.querySelector(`#zone${myCitizen.x}_${myCitizen.y}`);
            
     // If there is no other citizen in the zone
     if(myZone.querySelector(".map_citizen") === null) {
@@ -147,8 +144,8 @@ export function addMeOnMap() {
                     </div>
                 </div>
                 -->
-                <span class="nbr_defenses">${myPseudo}</span>
-                <span class="action_points move_cost hidden"> ${myActionPoints}⚡</span>
+                <span class="nbr_defenses">${myCitizen.pseudo}</span>
+                <span class="action_points move_cost hidden"> ${myCitizen.actionPoints}⚡</span>
                 <img src="resources/img/free/human.png">
                 <img id="explosionMe" class="scale-transition scale-out" src="resources/img/thirdparty/notoemoji/collision-512.webp" width="38">
             </button>

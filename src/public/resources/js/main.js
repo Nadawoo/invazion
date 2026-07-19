@@ -4,6 +4,7 @@ import { FooterBar } from "./components/FooterBar.js";
 import { HealthBars }  from "./components/HealthBars.js";
 import { MapCitizens } from "./components/MapCitizens.js"
 import { Tasks } from "./components/Tasks.js";
+import { Citizen } from "./entities/Citizen.js";
 import {
     addCitiesOnMap,
     displayItemOnMap,
@@ -112,7 +113,8 @@ document.addEventListener('DOMContentLoaded', function() {
 if(document.getElementById("map") !== null) {
     
     // Default map to show if the visitor is not connected
-    const mapId = document.querySelector("#gameData #mapId").innerHTML;
+    const myCitizen = new Citizen();
+    const mapId = myCitizen.mapId;
     // Get the unvariable data of the game (building names...) stored in the HTML
     window._configsBuildings                = JSON.parse(document.querySelector("#configs .buildings").innerHTML);
     window._configsBuildingsFindableItems   = JSON.parse(document.querySelector("#configs .buildings_findable_items").innerHTML);
@@ -194,8 +196,8 @@ if(document.getElementById("map") !== null) {
                 tasks.populateTaskDefenses();
 
                 // Ask for chosing a citizen speciality (builder, digger...)
-                let citizenId = Number(document.querySelector("#citizenId").innerText),
-                    lastSpecializationCycle = _citizens[citizenId]["last_specialization_cycle"];
+                const myCitizen = new Citizen();
+                const lastSpecializationCycle = _citizens[myCitizen.id]["last_specialization_cycle"];
                 if(lastSpecializationCycle === null || Number(lastSpecializationCycle) < getCurrentCycle()) {
                     window.location.hash = "#popspecialize";
                 }

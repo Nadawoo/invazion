@@ -7,6 +7,7 @@
 import { ZombLib } from "./lib/ZombLib.js";
 import { Items } from "./components/Items.js";
 import { Coordinates } from "./domain/Coordinates.js";
+import { Citizen } from "./entities/Citizen.js";
 import { Zone } from "./entities/Zone.js";
 import { populateItemsList } from "./actionBlocks.func.js";
 import {
@@ -28,8 +29,8 @@ import { centerMapOnMe } from "./mapUse.func.js";
  */
 export function toggleBag() {
     
-    let citizenId = document.querySelector("#citizenId").innerText;
-    let bagItems = _citizens[citizenId]["bag_items"];
+    const myCitizen = new Citizen();
+    let bagItems = _citizens[myCitizen.id]["bag_items"];
     let bagItemsSelector = "#bagbar .items_list";
     
     // Remove the status and the AP from the bag (not real items)
@@ -39,7 +40,7 @@ export function toggleBag() {
     if(document.querySelector(bagItemsSelector).innerText === ""
         && document.querySelector(bagItemsSelector).classList.contains("hidden")
         ) {
-        populateItemsList(bagItemsSelector, allBagItemsButTags, _citizens[citizenId]["bag_size"]);
+        populateItemsList(bagItemsSelector, allBagItemsButTags, _citizens[myCitizen.id]["bag_size"]);
     }
     
     toggle(bagItemsSelector);
@@ -194,13 +195,12 @@ export function toggleActionBlock(buttonAlias) {
  */
 export async function addZombiesInZone() {
     
-    let cookies = new Cookies(),
-        token = cookies.getCookie('token'),
-        coordX = Number(document.querySelector("#gameData #citizenCoordX").innerHTML),
-        coordY = Number(document.querySelector("#gameData #citizenCoordY").innerHTML);
+    const zombLib = new ZombLib();
+    const cookies = new Cookies();
+    const myCitizen = new Citizen();
+    const token = cookies.getCookie('token');
     
-    let zombLib = new ZombLib();
-    let json = await zombLib.callApi("GET", "zone", `action=add&stuff=zombies&zones=${coordX}_${coordY}&token=${token}`);
+    const json = await zombLib.callApi("GET", "zone", `action=add&stuff=zombies&zones=${myCitizen.x}_${myCitizen.y}&token=${token}`);
     
     displayToast(json.metas.error_message, json.metas.error_class);
 }
@@ -416,19 +416,19 @@ export async function killZombies(apiAction) {
     }, 1500);
     
     if(json.metas.error_code === "success") {  
-        const me = new Zone();
-        const oldNbrZombies = me.nbrZombies;
+        const zoneEntity = new Zone();
+        const myCitizen = new Citizen();
+        const oldNbrZombies = zoneEntity.nbrZombies;
         const newNbrZombies = Math.max(0, oldNbrZombies - json.datas.nbr_zombies_removed);
-        const mapId = Number(document.querySelector("#gameData #mapId").innerHTML);
         
-        const current_AP = (document.querySelector("#actionPoints").innerText),
-              lost_AP    = json.datas.action_points_lost,
-              newAP     = current_AP - lost_AP;
+        const currentAP = myCitizen.actionPoints,
+              lostAP    = json.datas.action_points_lost,
+              newAP     = currentAP - lostAP;
         
         // Update the action blocks (round buttons next to the map)
         updateBlockActionZombies(newNbrZombies);
         updateMoveCost(newNbrZombies);
-        updateBlockAlertControl(me.controlPointsZombies, mapId, me.x, me.y);
+        updateBlockAlertControl(zoneEntity.controlPointsZombies, myCitizen.mapId, myCitizen.x, myCitizen.y);
         
         updateActionPoints(newAP);
         

@@ -2,6 +2,7 @@
  * Class relative to the list of tasks (goals) displayed to the player.
  */
 
+import { Citizen } from "../entities/Citizen.js";
 import { getMyCityZoneId } from "../mapUse.func.js";
 
 
@@ -12,19 +13,19 @@ export class Tasks {
      * @returns {undefined}
      */
     populateTaskDefenses() {
-
-        let myCityId = document.querySelector("#cityId").innerHTML,
-            nbrCityDefenses = null,
+        
+        const myCitizen = new Citizen();
+        let nbrCityDefenses = null,
             nbrZombiesNextAttack = null,
             nbrMissingDefenses = null;
             
         // Avoid errors if the player is not attached to a city yet.
-        if(myCityId === "") {
+        if(myCitizen.cityId === null) {
             nbrCityDefenses = "??",
             nbrZombiesNextAttack = "??",
             nbrMissingDefenses = "??";
         } else {        
-            nbrCityDefenses = _cities[myCityId]['total_defenses'],
+            nbrCityDefenses = _cities[myCitizen.cityId]['total_defenses'],
             nbrZombiesNextAttack = parseInt(document.querySelector(`#${getMyCityZoneId()} .square_container`).dataset.zombies),
             nbrMissingDefenses = nbrZombiesNextAttack - nbrCityDefenses;
         }

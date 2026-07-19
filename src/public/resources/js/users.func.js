@@ -3,6 +3,7 @@
  * Put only functions here, no executable code.
  */
 
+import { Citizen } from "./entities/Citizen.js";
 import { getMapCitizensOnce } from "./mapInit.func.js";
 
 
@@ -13,15 +14,10 @@ import { getMapCitizensOnce } from "./mapInit.func.js";
  */
 export async function isCitizenInGame(mapId) {
     
-    const citizenIdString = document.querySelector("#citizenId").innerText;
+    const myCitizen = new Citizen();
     
-    if(citizenIdString === "") {
-        return false;
-    }
-    else {
-        const citizenId = Number(citizenIdString);
-        const _citizens = await getMapCitizensOnce(mapId);
-        
-        return (_citizens !== undefined && _citizens[citizenId] !== undefined);
-    }
+    if(myCitizen.id === null) return false;
+
+    const _citizens = await getMapCitizensOnce(mapId);
+    return (_citizens !== undefined && _citizens[myCitizen.id] !== undefined);
 }

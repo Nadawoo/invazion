@@ -7,6 +7,7 @@
 
 import { ZombLib } from "./lib/ZombLib.js";
 import { Items } from "./components/Items.js";
+import { Citizen } from "./entities/Citizen.js";
 import { Zone } from "./entities/Zone.js";
 import {
     populateBuilderBlock,
@@ -388,15 +389,15 @@ export function switchToActionView() {
  */
 async function addCitizensOnMyZone() {
     
-    const myCitizenId = Number(document.querySelector("#citizenId").innerHTML);
-    const me = new Zone();
+    const myCitizen = new Citizen();
+    const myZone = new Zone();
     
     // Get the citizens of the map by calling the Azimutant's API
-    _citizens = await getMapCitizensOnce(mapId);    
+    _citizens = await getMapCitizensOnce(myCitizen.mapId);    
     // Keep only the citizens who are in the player's zone
-    const citizensInMyZone = Object.values(_citizens).filter(citizen => citizen.coord_x == me.x 
-                                                                        && citizen.coord_y == me.y
-                                                                        && citizen.citizen_id != myCitizenId);
+    const citizensInMyZone = Object.values(_citizens).filter(citizen => citizen.coord_x == myCitizen.x 
+                                                                        && citizen.coord_y == myCitizen.y
+                                                                        && citizen.citizen_id != myCitizen.id);
     
     // Add on the zone the silhouettes of the fellows
     const citizensContainer = document.createElement("button");
@@ -414,7 +415,7 @@ async function addCitizensOnMyZone() {
         if(i >= 2) break;
     }
     
-    document.querySelector(`${me.zoneHtmlId} .square_container`).appendChild(citizensContainer);
+    document.querySelector(`${myZone.zoneHtmlId} .square_container`).appendChild(citizensContainer);
 }
 
 

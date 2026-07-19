@@ -1,4 +1,5 @@
 import { ZombLib } from "../lib/ZombLib.js";
+import { Citizen } from "../entities/Citizen.js";
 import {
     displayToast,
     updateActionBlocksAfterMoving,
@@ -29,20 +30,20 @@ export class Move {
 
         let zombLib = new ZombLib();
         let json = await zombLib.callApi("GET", "zone", `action=move&to=${direction}&token=${token}`);
-
-        let current_AP = (document.querySelector("#actionPoints").innerText),
-            lost_AP    = json.datas.action_points_lost,
-            newAP     = current_AP - lost_AP;
+        
+        const myCitizen = new Citizen();
+        const lostAP    = json.datas.action_points_lost;
+        const newAP     = myCitizen.actionPoints - lostAP;
 
         // Display the eventual error in a toast
-        if(lost_AP > 0 || json.metas.error_code !== "success") {
+        if(lostAP > 0 || json.metas.error_code !== "success") {
             let error_message = (json.metas.error_code === "success")
-                        ? `-${lost_AP} point d'action consommé<br>(${newAP} restants)`
+                        ? `-${lostAP} point d'action consommé<br>(${newAP} restants)`
                         : json.metas.error_message;
             displayToast(error_message, json.metas.error_class);
         }
 
-        if(lost_AP > 0) {
+        if(lostAP > 0) {
             updateActionPoints(newAP);
         }
 
