@@ -451,9 +451,7 @@ echo $layout->page_header($citizen['user_id'], $citizen['citizen_id'], $citizen[
             <?php
         } ?>
         
-        <div aria-label="Outils pour la carte" id="map_navigation" class="animate__animated animate__slideInRight">
-            <?php echo $layout->block_map_navigation() ?>
-        </div>
+        <div id="map_navigation" class="animate__animated animate__slideInRight" aria-label="Outils pour la carte"></div>
         
         <?php echo $legends->all_legends() ?>
         

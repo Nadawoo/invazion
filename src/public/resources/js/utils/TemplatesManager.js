@@ -9,8 +9,8 @@
  *      detection of templates missing an ID or having duplicate IDs.
  * Example of usage:
  *      import { TemplatesManager } from "./utils/TemplatesManager.js";
- *      const dialog = await TemplatesManager.instantiate("ui", "dialog");
- *      document.body.appendChild(dialog);
+ *      const fragment = await TemplatesManager.instantiate("ui", "dialog");
+ *      document.querySelector("#myContainer").appendChild(fragment);
  * NB: Do not instantiate this class with `new`. All members are static and the cache 
  * is shared automatically.
  * 

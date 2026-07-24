@@ -9,6 +9,7 @@ import {
     addCitiesOnMap,
     displayItemOnMap,
     getMapZonesOnce,
+    loadUi,
     populateMapTitle,
     switchToActionView,
     updateLightHalos,
@@ -157,6 +158,8 @@ if(document.getElementById("map") !== null) {
     _scrollBoosterInstance = listenToMapDragging();
     
     populateMapTitle(mapId);
+    
+    loadUi();
     
     // Only if the visitor is connected
     isCitizenInGame(mapId).then((isInGame) => {

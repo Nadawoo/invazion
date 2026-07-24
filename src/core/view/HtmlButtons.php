@@ -1020,17 +1020,4 @@ class HtmlButtons
             <input type="submit" value="Me déconnecter" />
         </form>';
     }
-    
-    
-    /**
-     * Retourne le bouton pour actualiser la page principale du jeu
-     * 
-     * @return string
-     */
-    function refresh()
-    {
-        
-        // The random number forces the browser to refresh the page without cache
-        return '<a href="index?'.rand(100, 999).'" style="font-size:55%" title="Actualiser l\'affichage">&#x1F504;</a>';
-    }
 }

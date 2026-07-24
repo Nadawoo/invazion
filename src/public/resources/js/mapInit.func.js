@@ -9,6 +9,7 @@ import { ZombLib } from "./lib/ZombLib.js";
 import { Items } from "./components/Items.js";
 import { Citizen } from "./entities/Citizen.js";
 import { Zone } from "./entities/Zone.js";
+import { TemplatesManager } from "./utils/TemplatesManager.js";
 import {
     populateBuilderBlock,
     updateActionBlocks,
@@ -505,4 +506,16 @@ export function isActionViewActive() {
     }
     
     return result;
+}
+
+
+export async function loadUi() {
+
+    // Load the bar for manipulating the map (radar, zoom...)
+    const fragment = await TemplatesManager.instantiate("ui", "tplMapNavigation");
+    // Generate a random number to force loading a new url on the "refresh" button
+    const rand = Math.floor(Math.random() * 900) + 100;
+    fragment.querySelector("#refreshLink").href = `index?${rand}`;
+
+    document.querySelector("#map_navigation").appendChild(fragment);
 }
