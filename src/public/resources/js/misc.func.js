@@ -9,6 +9,7 @@ import { Items } from "./components/Items.js";
 import { Coordinates } from "./domain/Coordinates.js";
 import { Citizen } from "./entities/Citizen.js";
 import { Zone } from "./entities/Zone.js";
+import { TemplatesManager } from "./utils/TemplatesManager.js";
 import { populateItemsList } from "./actionBlocks.func.js";
 import {
     updateBlockAction,
@@ -1054,10 +1055,10 @@ export function addItemsIconInZone(coordX, coordY, nbrItems) {
 }
 
 
-export function addMovementArrows() {
+export async function addMovementArrows() {
     
     if(!document.querySelector("#movement_arrows")) {
-        const tplArrows = document.querySelector("#tplMovementArrows").content.cloneNode(true);
+        const tplArrows = await TemplatesManager.instantiate("ui", "tplMovementArrows");
         const myZone = document.querySelector("#me").closest(".square_container");
         
         addThreatLevelOnMovementArrows(tplArrows);
