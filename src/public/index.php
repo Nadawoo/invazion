@@ -21,7 +21,6 @@ $enclosure          = new HtmlCityEnclosure();
 $constructionCards  = new HtmlCityConstructionCards();
 $cityIso            = new HtmlCityIso();
 $buttons            = new HtmlButtons();
-$paddle             = new HtmlMovementPaddle();
 $phone              = new HtmlSmartphone();
 $wall               = new HtmlWall();
 $popup              = new HtmlPopup();
@@ -472,18 +471,25 @@ echo $layout->page_header($citizen['user_id'], $citizen['citizen_id'], $citizen[
                     }
                     echo $layout->block_alert_tired($zone['zombies']);
                     echo $layout->block_alert_control($zone['zombies']);
-
-                    echo '
-                    <div class="main_block">'
-                        .$paddle->paddle($citizen['coord_x'], $citizen['coord_y'])
-                        .'<div style="width:11.5em">'
-                            .$layout->block_zombies_gauge()
-                            .$layout->block_distance()
-                            .$layout->block_landtype()
-                        .'</div>
-                    </div>';
-
-                    echo 
+                    ?>
+                    
+                    <div class="main_block">
+                        <div colspan="2" id="littleZone" data-action="centerMapOnMe">
+                            <div class="wrapper">
+                                <img src="resources/img/free/human.png" class="me">
+                                <span class="coords"></span>
+                            </div>
+                        </div>
+                        <div style="width:11.5em">
+                            <?php echo 
+                            $layout->block_zombies_gauge().
+                            $layout->block_distance().
+                            $layout->block_landtype()
+                            ?>
+                        </div>
+                    </div>
+                    
+                    <?php echo 
                     $actionCards->card_building().
                     $actionCards->card_citizens().
                     $actionCards->card_dig().
