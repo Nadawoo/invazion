@@ -176,7 +176,7 @@ $html = [
                                                  ),
     // Assembling the HTML for the map
     'map' => $map->hexagonal_map($maps['map_width'], $maps['map_height'], $maps['zones'], $citizen, $maps['next_attack_hour']),
-    'attack_bar'        => $layout->attack_bar($map_id, $configs['map']['current_cycle']),
+    'attack_bar'        => $layout->attack_bar(),
     // Contents of the round action buttons at the right of the map
     'ground_items'      => $layout->block_ground_items($citizen['coord_x'], $citizen['coord_y']),
     // TODO: merge_zone_items with ground_items

@@ -138,13 +138,15 @@ class HtmlLayout extends HtmlPage
      * @param  int $day The number of days since the game start
      * @return string HTML
      */
-    function attack_bar($map_id, $day)
+    function attack_bar()
     {
         
-        $buttons = new HtmlButtons();
-        
         return '
-        <ul aria-label="Barre en pied de page" role="none" id="attack_bar" class="animate__animated animate__slideInUp">
+        <ul id="attack_bar"
+            class="animate__animated animate__slideInUp"
+            aria-label="Barre en pied de page"
+            role="none"
+            >
             <li role="none">
                 <button aria-label="Ouvrir/fermer le menu de l\'application" id="appMenu" class="sidenav-trigger" data-target="slide-out">
                     <span class="icon"><i class="material-icons" role="img">menu</i></span>
@@ -160,7 +162,7 @@ class HtmlLayout extends HtmlPage
                     <strong class="number" role="none">{?/?}</strong>
                 </a>
                 <a href="#popdayclock" id="dayclock">
-                    <span data-translate="day">Jour</span> <strong id="current_day" class="number" role="none">'.(int)$day.'</strong>
+                    <span data-translate="day">Jour</span> <strong id="current_day" class="number" role="none"></strong>
                     <span aria-label="Avancer au jour suivant" class="dot_number"><i class="material-icons" role="img">fast_forward</i></span>
                 </a>
                 <a href="#popdayclock" id="city_counter"

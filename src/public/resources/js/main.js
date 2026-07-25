@@ -197,11 +197,15 @@ if(document.getElementById("map") !== null) {
                 // Add the number of defenses required in the tasks list
                 let tasks = new Tasks();
                 tasks.populateTaskDefenses();
-
+                
+                // Add the current cycle (day) in the bottom bar
+                const currentCycle = _jsonMap.current_cycle;
+                document.querySelector("#current_day").textContent = currentCycle;
+                
                 // Ask for chosing a citizen speciality (builder, digger...)
                 const myCitizen = new Citizen();
                 const lastSpecializationCycle = _citizens[myCitizen.id]["last_specialization_cycle"];
-                if(lastSpecializationCycle === null || Number(lastSpecializationCycle) < getCurrentCycle()) {
+                if(lastSpecializationCycle === null || Number(lastSpecializationCycle) < currentCycle) {
                     window.location.hash = "#popspecialize";
                 }
             }, 1000);
