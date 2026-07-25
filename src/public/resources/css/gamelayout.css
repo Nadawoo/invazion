@@ -470,6 +470,9 @@ form[name="end_cycle"] button {
     z-index:1;
     pointer-events:none; /* Don't block clicks inside the current zone */
 }
+#movement_arrows .arrow {
+    display:block; /* Required for animating with Animatecss */
+}
 #movement_arrows .northwest,
 #movement_arrows .southwest {
     margin-left:22px;
