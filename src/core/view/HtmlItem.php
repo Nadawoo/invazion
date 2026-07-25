@@ -6,69 +6,6 @@
  */
 class HtmlItem {
     
-    
-    /**
-     * HTML blank template to display an item (icon + tooltip with description, etc.)
-     * The appropriate data are then fulfilled by the javascript.
-     * 
-     * @return string HTML
-     */
-    function item_template()
-    {
-        
-        $buttons = new HtmlButtons();
-        $button_drop = $buttons->drop_item(0);
-        $button_pickup = $buttons->pickup_item(0);
-        
-        return '
-            <template id="tplItem">
-                <li class="item_label z-depth-2" data-action="toggleTooltip" data-itemid="">
-                    <var class="icon" aria-label="{item_name}">{icon}</var>
-                    <div class="dot_number z-depth-1 hidden">?</div>
-                    <div class="details hidden"></div>
-                </li>
-            </template>
-            
-            <template id="tplItemDetails">
-                <a class="close" data-action="closeTooltip">
-                    <i class="material-icons" style="pointer-events:none">close</i>
-                </a>
-                <var><span class="icon">{icon}</span>&nbsp;<span class="item_name">{item_name}</span></var>
-                <p class="descr_ambiance">{descr_ambiance}</p>
-                <p class="descr_purpose z-depth-1">{descr_purpose}</p>
-                <ul class="caracs">
-                    <li class="hidden type_booster">
-                        <i class="material-icons">bolt</i>
-                        Cet objet donne de l\'énergie
-                    </li>
-                    <li class="hidden type_resource">
-                        <i class="material-icons">construction</i>
-                        Cet objet est une ressource
-                    </li>
-                    <li class="hidden type_weapon">
-                        <i class="material-icons">sports_kabaddi</i>
-                        Cet objet est une arme
-                    </li>
-                    <li class="hidden preciousness">
-                        <i class="material-icons">star</i>
-                        Cet objet est précieux
-                    </li>
-                    <li class="hidden defenses">
-                        <i class="material-icons">shield</i>
-                        Objet de défense (+<span class="nbr_defenses"></span> pts)
-                    </li>
-                    <li class="hidden heaviness">
-                        <i class="material-icons">fitness_center</i>
-                        Encombrant dans le sac
-                    </li>
-                </ul>'
-                 .$button_drop
-                 .$button_pickup.'
-                <button name="search" class="redbutton" data-action="searchItemOnMap">🔍 Chercher sur la carte</button>
-            </template>';
-    }
-    
-    
     /**
      * Gives the image (PNG, JPG...) of an item or construction, or its textual icon 
      * (HTML entity or emoji), or a default icon.
@@ -240,26 +177,6 @@ class HtmlItem {
                     .$button_pickup.'
                 </div>
             </li>';
-    }
-    
-    
-    /**
-     * Generates an empty slot for an item.
-     * Useful when the citizen's bag is not filled.
-     * 
-     * @param int $nbr_empty_slots Number of free slots to generate
-     * @return string
-     */
-    function empty_slots($nbr_empty_slots)
-    {
-        
-        $result = '';
-        
-        for ($i=0; $i<$nbr_empty_slots; $i++) {            
-            $result.= "\n<li class=\"item_label empty_slot\"></li>\n";
-        }
-        
-        return $result;
     }
 }
 

@@ -597,16 +597,12 @@ class HtmlLayout extends HtmlPage
             <div id="items_bag">
                 <ul class="items_list">
                     ' . $htmlItem->items($bag_items, $items_caracs) . '
-                    ' . $htmlItem->empty_slots($nbr_free_slots) . '
                 </ul>
             </div>';
     }
     
     
-    function bag_bar($items_caracs, $bag_items, $max_bag_slots) {
-        
-        $htmlItem = new HtmlItem();
-        $nbr_free_slots = $max_bag_slots - array_sum(array_values($bag_items));
+    function bag_bar() {
         
         return '
             <div id="bagbar">

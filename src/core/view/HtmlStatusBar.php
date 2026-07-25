@@ -71,15 +71,6 @@ class HtmlStatusBar {
         $ap_item_id = 23;
         $ap_nbr = isset($bag_items[$ap_item_id]) ? $bag_items[$ap_item_id] : 0;
         
-        $ap_block = $this->status_image(
-                        $ap_nbr,
-                        null,
-                        "&#9889;",
-                        "Vos points d'action restants. S'ils sont épuisés, &#10;vous "
-                        . "ne pourrez plus vous déplacer dans le désert.",
-                        "popmove",
-                        "actionpoints");
-        
         return '
             <div id="apbar">
                 <a href="#popmove" class="block_icon actionpoints"

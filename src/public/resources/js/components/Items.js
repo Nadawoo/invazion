@@ -1,4 +1,5 @@
 import { ZombLib } from "../lib/ZombLib.js";
+import { TemplatesManager } from "../utils/TemplatesManager.js";
 import { populateItemsList } from "../actionBlocks.func.js";
 
 export class Items {
@@ -59,12 +60,12 @@ export class Items {
      *              innerText doesn't work with fragments, insert in the page like this:
      *              document.querySelector("#myDiv").prepend(Items.item())
      */
-    item(itemId, itemCaracs, itemAmount=1, disabled=false) {
+    async item(itemId, itemCaracs, itemAmount=1, disabled=false) {
         
         itemCaracs = (itemCaracs === undefined) ? this.#defaultItemCaracs(itemId) : itemCaracs;
         
         // Gets a blank HTML template of an item entry
-        let template = document.querySelector("#tplItem").content.cloneNode(true);
+        const template = await TemplatesManager.instantiate("item", "tplItem");
         let icon = this.icon(itemId);
         let bgColor = this.#itemBackgroundColor(itemCaracs["item_type"]); 
         
@@ -91,7 +92,8 @@ export class Items {
         }
         
         // Add the tooltip for details about the item
-        template.querySelector('.details').appendChild(this.#itemTooltip(itemId, itemCaracs));
+        const tooltip = await this.#itemTooltip(itemId, itemCaracs);
+        template.querySelector('.details').appendChild(tooltip);
         
         return template;
     }
@@ -215,7 +217,7 @@ export class Items {
      * @param {Object} itemCaracs
      * @returns {Items.#itemTooltip.template}
      */
-    #itemTooltip(itemId, itemCaracs) {
+    async #itemTooltip(itemId, itemCaracs) {
         
         let icon = this.icon(itemId);
         
@@ -228,7 +230,7 @@ export class Items {
             itemTypeClass = "type_booster";
         }
         
-        let template = document.querySelector("#tplItemDetails").content.cloneNode(true);
+        const template = await TemplatesManager.instantiate("item", "tplItemDetails");
         
         template.querySelector('.form_drop button[name="params[item_id]"]').value  = itemId;
         template.querySelector('.form_pickup button[name="params[item_id]"]').value = itemId;

@@ -220,8 +220,7 @@ echo $layout->page_header($citizen['user_id'], $citizen['citizen_id'], $citizen[
 
     <div id="templates">
         <?php
-        echo $htmlItem->item_template()
-           . $htmlPaths->path_template()
+        echo $htmlPaths->path_template()
            . $htmlPaths->pathsbar_inactive_path_template()
            . $htmlPaths->pathsbar_active_path_template()
            . $layout->block_zone_fellow_template()
@@ -407,10 +406,7 @@ echo $layout->page_header($citizen['user_id'], $citizen['citizen_id'], $citizen[
                                             $citizen['is_wounded'],
                                             $citizen['control_points']
                                             );
-                echo $layout->bag_bar($configs['items'],
-                                      $citizen['bag_items'],
-                                      $citizen['bag_size']
-                                      );
+                echo $layout->bag_bar();
                 ?>
             </div>
         </section>

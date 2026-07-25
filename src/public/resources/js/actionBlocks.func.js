@@ -455,10 +455,10 @@ export function populateItemsList(domSelector, itemsAmounts, nbrSlots=null, stac
  * @param {array} itemCaracs The caracteristics of the item, as return 
  *                           by the "item" API (name, description...)
  */
-function htmlAddGroundItem(domSelector, itemId, itemCaracs, itemAmount) {
+async function htmlAddGroundItem(domSelector, itemId, itemCaracs, itemAmount) {
     
     let htmlItems = new Items();
-    document.querySelector(domSelector).append(htmlItems.item(itemId, itemCaracs, itemAmount));
+    document.querySelector(domSelector).append(await htmlItems.item(itemId, itemCaracs, itemAmount));
 }
 
 
