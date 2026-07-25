@@ -176,7 +176,6 @@ $html = [
                                                  ),
     // Assembling the HTML for the map
     'map' => $map->hexagonal_map($maps['map_width'], $maps['map_height'], $maps['zones'], $citizen, $maps['next_attack_hour']),
-    'attack_bar'        => $layout->attack_bar(),
     // Contents of the round action buttons at the right of the map
     'ground_items'      => $layout->block_ground_items($citizen['coord_x'], $citizen['coord_y']),
     // TODO: merge_zone_items with ground_items
@@ -525,10 +524,20 @@ echo $layout->page_header($citizen['user_id'], $citizen['citizen_id'], $citizen[
     ?>
     
     <section id="game_footer">
+        
         <div id="floating_wall">
             <?php echo $wall->wall() ?>
         </div>
-        <?php echo $html['attack_bar'] ?>
+        
+        <ul id="attack_bar"
+            class="animate__animated animate__slideInUp"
+            aria-label="Barre en pied de page"
+            role="none"
+            >
+        </ul>
+        
+        <p id="messageEndCycle" class="hidden" style="margin:0"></p>
+        
     </section>
 
 </div>

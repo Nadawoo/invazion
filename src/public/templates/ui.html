@@ -21,6 +21,57 @@
     </div>
 </template>
 
+<template id="tplAttackBar">
+    <li role="none">
+        <button aria-label="Ouvrir/fermer le menu de l\'application" id="appMenu" class="sidenav-trigger" data-target="slide-out">
+            <span class="icon"><i class="material-icons" role="img">menu</i></span>
+        </button>
+    </li>
+
+    <li id="tuto_dayclock" role="none">
+        <a href="#popdayclock" id="zombie_cores_counter"
+           aria-label="Nombre de noyaux zombies actifs sur la carte"
+           title="Nombre de noyaux zombies actifs sur la carte"
+           >
+            <img src="resources/img/motiontwin/zombie.gif" alt="" width="14">
+            <strong class="number" role="none">{?/?}</strong>
+        </a>
+        <a href="#popdayclock" id="dayclock">
+            <span data-translate="day">Jour</span>
+            <strong id="current_day" class="number" role="none">&nbsp;</strong>
+            <span aria-label="Avancer au jour suivant" class="dot_number">
+                <i class="material-icons" role="img">fast_forward</i>
+            </span>
+        </a>
+        <a href="#popdayclock" id="city_counter"
+           aria-label="Nombre de bâtiments découverts sur la carte"
+           title="Nombre de bâtiments découverts sur la carte"
+           >
+            <img class="city_img" src="resources/img/free/city.svg" alt="" width="24">
+            <strong class="number" role="none">{?/?}</strong>
+        </a>
+    </li>
+
+    <li class="right" role="none">
+        <button title="Communications"
+            aria-label="Ouvrir/fermer le panneau des communications"
+            id="showWall"
+            data-action="enlargeWall"
+            >
+            <span class="icon"><i class="material-icons" role="img">sms</i></span>
+            <span class="text" role="img">Communications</span>
+        </button>
+
+        <!--
+        <a id="notifsButton" title="Notifications">&#x1F514;</a>
+        <div id="notifsBlock">
+            <a id="notifsClose">X</a>
+            <div id="notifsList"><div style="text-align:center;padding:0.8em;color:grey">Chargement en cours...</div></div>
+        </div>
+        --> 
+    </li>
+</template>
+
 <template id="tplMapNavigation">
     <button onclick="toggle('#mapRadarMenu')" aria-label="Vues satellite" title="Vues satellite">
         <span style="font-size:50%;margin-top:-0.2em;">&#x1F6F0;&#xFE0F;</span>

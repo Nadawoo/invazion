@@ -510,9 +510,15 @@ export function isActionViewActive() {
 
 
 export async function loadUi() {
-
+    
+    let fragment = null;
+    
+    // Load the bar at the bottom of the map
+    fragment = await TemplatesManager.instantiate("ui", "tplAttackBar");
+    document.querySelector("#attack_bar").appendChild(fragment);
+    
     // Load the bar for manipulating the map (radar, zoom...)
-    const fragment = await TemplatesManager.instantiate("ui", "tplMapNavigation");
+    fragment = await TemplatesManager.instantiate("ui", "tplMapNavigation");
     // Generate a random number to force loading a new url on the "refresh" button
     const rand = Math.floor(Math.random() * 900) + 100;
     fragment.querySelector("#refreshLink").href = `index?${rand}`;
