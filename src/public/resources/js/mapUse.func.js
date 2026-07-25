@@ -8,6 +8,7 @@ import { ZombLib } from "./lib/ZombLib.js";
 import { Citizen } from "./entities/Citizen.js";
 import { Zone } from "./entities/Zone.js";
 import { MapMarkers } from "./services/MapMarkers.js"
+import { TemplatesManager } from "./utils/TemplatesManager.js";
 import { updateBlockAlertControl } from "./actionBlocks.func.js"; 
 import {
     addCitiesOnMap,
@@ -123,36 +124,19 @@ function replaceBuildingsPlaceholders() {
 /**
  * Adds the connected player on the appropriate zone of the map
  */
-export function addMeOnMap() {
+export async function addMeOnMap() {
     
     const myCitizen = new Citizen;
     const myZone = document.querySelector(`#zone${myCitizen.x}_${myCitizen.y}`);
            
     // If there is no other citizen in the zone
     if(myZone.querySelector(".map_citizen") === null) {
-        myZone.querySelector(".square_container").insertAdjacentHTML("afterbegin", 
-            `<button class="map_citizen" id="me" data-action="switchToActionView">
-                <!--
-                <div class="pointer" style="position:absolute;top:-7rem;left:-4rem;z-index:1"
-                     onclick="toggleActionBlock('dig');
-                              updateBlockAction('dig');
-                              switchMapView('dig')"
-                    >
-                    <span style="padding:0.1em 0.3em;font-size:0.9em;color:white;background:darkred;border:1px solid red;border-radius:0.2em">Fouiller</span>
-                    <div class="line" style="height:5.8rem;margin:-0.7rem auto auto 1.8rem;border:2px solid red;border-right:none;border-top:none;border-bottom-left-radius:5px;">
-                        <span class="circle" style="position:absolute;bottom:-0.2rem;right:-0.4rem;display:block;height:0.6em;width:0.6em;border:3px solid red;border-radius:50%"></span>
-                    </div>
-                </div>
-                -->
-                <span class="nbr_defenses">${myCitizen.pseudo}</span>
-                <span class="action_points move_cost hidden"> ${myCitizen.actionPoints}⚡</span>
-                <img src="resources/img/free/human.png">
-                <img id="explosionMe" class="scale-transition scale-out" src="resources/img/thirdparty/notoemoji/collision-512.webp" width="38">
-            </button>
-            <div class="halo">&nbsp;</div>
-            <div class="overlay"></div>
-            `);
-    } else {
+        const fragmentMe = await TemplatesManager.instantiate("entities", "tplMe");
+        fragmentMe.querySelector(".nbr_defenses").textContent = myCitizen.pseudo;
+        fragmentMe.querySelector(".action_points").textContent = `${myCitizen.actionPoints}⚡`;
+        myZone.querySelector(".square_container").appendChild(fragmentMe);
+    }
+    else {
         myZone.querySelector(".map_citizen").id = "me";
         myZone.querySelector(".halo").classList.remove("inactive");
         myZone.querySelector(".overlay").classList.remove("hidden");
