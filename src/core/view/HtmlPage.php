@@ -11,7 +11,7 @@ class HtmlPage
     // Increment those variables when you modify the CSS or JS files. This ensures
     // that the users' browsers reload the up-to-date files, instead of using 
     // the obsolete ones stored in their cache.
-    private $css_js_version = 224;
+    private $css_js_version = 225;
     
     /**
      * Sets HTTP headers to secure the website
@@ -139,10 +139,10 @@ class HtmlPage
                         <a aria-label="Ouvrir le menu principal" href="#" data-target="slide-out" class="menu_button sidenav-trigger">
                             <i class="material-icons" role="img">menu</i>
                         </a>
-                        '.$this->site_menu($user_id, $citizen_id, $citizen_pseudo).'
-                    </header>';
+                    </header>
+                    '.$this->site_menu($user_id, $citizen_id, $citizen_pseudo);
     }
-        
+    
     
     /**
      * Pied HTML des pages

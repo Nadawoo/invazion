@@ -170,7 +170,7 @@ if(document.getElementById("map") !== null) {
         }
         else {
             
-            document.querySelector("#game_container").classList.add("fullscreen");
+            document.querySelector("#page_container").classList.add("fullscreen");
             
             addMeOnMap();
 

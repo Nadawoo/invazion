@@ -26,12 +26,11 @@ body,
        Désactivé pour le moment car cache les infobulles en haut de la carte */
     /*overflow:auto; */
 }
-#game_container.fullscreen {
-    position:absolute;
-    top:0;
-    height:100%;
-    width:100%;
-    padding:0;
+
+/* Display the map in fullscreen when the user is logged in */
+#page_container.fullscreen header,
+#page_container.fullscreen footer {
+    display:none;    
 }
 
 .dot_notif {

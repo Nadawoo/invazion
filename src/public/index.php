@@ -79,7 +79,7 @@ if (!empty($_POST)) {
  * wouldn't be taken in account without refreshing (citizen not moved...)
  */
 // If the player is connected *and* his token is not expired
-if ($api->user_seems_connected() === true) {
+if($api->user_seems_connected() === true) {
     // Get the player data from the API
     $api_me = $api->call_api('me', 'get');
     
