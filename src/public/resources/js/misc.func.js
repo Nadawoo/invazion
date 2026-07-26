@@ -1100,3 +1100,34 @@ function addThreatLevelOnMovementArrows(tplArrows) {
         }
     }
 }
+
+
+/**
+ * Make a counter increase from zero to a given number
+ * 
+ * @param {string} domSelector The DOM selector of the counter
+ *                             Example: "#myCouter"
+ * @param {int} endValue The ending value for the counter
+ * @param {int} duration Duration of the animation between the start and end
+ *                       (in milliseconds)
+ * @returns {undefined}
+ */
+export function animateCounter(domSelector, endValue, duration=1000) {
+
+   let startTime = null;
+   
+   function animate(time) {
+       if(!startTime) {
+           startTime = time;
+       }
+
+       const progress = Math.min((time - startTime) / duration, 1);
+       document.querySelector(domSelector).textContent = Math.floor(progress * endValue);
+
+       if(progress < 1) {
+           requestAnimationFrame(animate);
+       }
+   }
+
+   requestAnimationFrame(animate);
+}

@@ -24,6 +24,7 @@ import {
     from "./mapUse.func.js";
 import { listenToMapDragging } from "./eventsMain.func.js";
 import { isCitizenInGame } from "./users.func.js";
+import { animateCounter } from "./misc.func.js";
 
 /**
  * This script gathers all the actions automatically executed as soon as the page loads.
@@ -200,7 +201,7 @@ if(document.getElementById("map") !== null) {
                 
                 // Add the current cycle (day) in the bottom bar
                 const currentCycle = _jsonMap.current_cycle;
-                document.querySelector("#current_day").textContent = currentCycle;
+                animateCounter("#current_day", currentCycle);
                 
                 // Ask for chosing a citizen speciality (builder, digger...)
                 const myCitizen = new Citizen();
