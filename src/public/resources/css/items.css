@@ -102,6 +102,10 @@
     background-color:#fafafa;
     border:1px solid lightgrey;
 }
+.item_label>.icon .unknown_item {
+    font-size:0.7em;
+    color:red;
+}
 
 /* The tooltip for the item */
 .item_label .details {
