@@ -219,7 +219,7 @@ class HtmlLayout extends HtmlPage
             <div id="action_zombies">
                 <div class="zombies_text">
                     <strong class="nbr_zombies">'.plural($zone_zombies, 'zombie').'</strong> dans votre zone !
-                    &nbsp;<button type="button" class="help" data-action="openPopup" data-templatename="tplControl">[?]</button>
+                    &nbsp;<button type="button" class="help" data-action="openPopup" data-templatename="tplPopControl">[?]</button>
                 </div>
                 <p><strong>Attaquer avec :</strong></p>
                 <div class="buttons_kill">
