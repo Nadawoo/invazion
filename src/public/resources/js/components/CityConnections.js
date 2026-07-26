@@ -2,6 +2,7 @@ import { ZombLib } from "../lib/ZombLib.js";
 import { Items } from "../components/Items.js";
 import { Zone } from "../entities/Zone.js";
 import { Graph } from "../utils/Graph.js";
+import { TemplatesManager } from "../utils/TemplatesManager.js";
 import { getMapCitiesOnce, getMapRoadsOnce } from "../mapInit.func.js";
 import { getZonePositions } from "../mapUse.func.js";
 import { itemsBubbleFragment } from "../misc.func.js";
@@ -216,10 +217,11 @@ export class CityConnections {
                 let childCity = city[1];
 
                 if(clickedCityId === null || childCity["connected_city_id"] !== null) {
-                    this.#addCityframe(childCity.coord_x, childCity.coord_y, childCity.city_type_id, childCity.total_defenses);
-                    this.#addNbrDefenses(childCity.coord_x, childCity.coord_y, childCity.city_type_id, childCity.total_defenses);
-                    this.#addApCost(childCity.coord_x, childCity.coord_y, childCity.city_type_id);
-                    this.#addNbrItems(childCity.coord_x, childCity.coord_y);
+                    this.#addCityframe(childCity.coord_x, childCity.coord_y, childCity.city_type_id, childCity.total_defenses).then(() => {
+                        this.#addNbrDefenses(childCity.coord_x, childCity.coord_y, childCity.city_type_id, childCity.total_defenses);
+                        this.#addApCost(childCity.coord_x, childCity.coord_y, childCity.city_type_id);
+                        this.#addNbrItems(childCity.coord_x, childCity.coord_y);
+                    });
                 }
             }
         }
@@ -397,7 +399,7 @@ export class CityConnections {
      *                         Ex: 12 if the building is an "Outpost" type
      * @param {int} cityDefenses The total amount of defenses of the building
      */
-    #addCityframe(cityCoordX, cityCoordY, cityTypeId, cityDefenses) {
+    async #addCityframe(cityCoordX, cityCoordY, cityTypeId, cityDefenses) {
 
         let hexagon = document.querySelector(`#zone${cityCoordX}_${cityCoordY}`),
             zone = hexagon.querySelector(`.square_container`),
@@ -405,40 +407,43 @@ export class CityConnections {
             nbrZombies = zone.closest(".square_container").dataset.zombies,
             cssClassPulse = "animate__animated animate__pulse animate__infinite",
             label = "",
-            cssClass = "";
+            cssClasses = [];
         
         if(cityTypeId === 234) {
             // #234 = the ID of the city type "Drugstore" in the Azimutant's API
-            cssClass = `boosts resources`;
+            cssClasses.push("boosts", "resources");
             label = `&#x26A1;`;
         } else if(cityTypeId === 235) {
             // #235 = the ID of the "Heliport"
-            cssClass = "transportations";
+            cssClasses.push("transportations");
             label = "&#x1F681;";           
         } else if([236, 237, 238, 239].includes(cityTypeId)) {
             // #236 = the ID of the "Training room", #237 = the "Collector",
             // #238 = the "Multiplier", #239 = the "Power plant"
-            cssClass = "technical resources";
+            cssClasses.push("technical resources");
             label = "&#x2699;&#xFE0F;";           
         } else if([11, 12].includes(cityTypeId)) {
             // #12 = the ID of the "City", #11 = Outpost
-            cssClass = (cityDefenses === 0) ? "defenses nolabel" : "defenses";
+            cssClasses.push("defenses");
+            if(cityDefenses === 0) {
+                cssClasses.push("nolabel");
+            }
             label = `${cityDefenses}&#x1F6E1;&#xFE0F;`;           
         } else if(cityTypeId === 228) {
             // #228 = the ID of the "Zombie core"
-            cssClass = `zombie_core defenses ${cssClassPulse} `;
+            cssClasses.push("zombie_core", "defenses", cssClassPulse);
             label = `${nbrZombies}&#x1F9DF;`;           
         } else if(cityTypeId === 233) {
             // #11 = the ID of the "Undiscovered building"
-            cssClass = `undiscovered`;
+            cssClasses.push("undiscovered");
             label = `&#x1F50D;`;           
         } else if(cityTypeId === 244) {
             // #244 = The ID of the "Road connection"
-            cssClass = `road_connection`;
+            cssClasses.push("road_connection");
             label = ``;
         } else if(cityTypeId === 5) {
             // #5 = The ID of the "Wood storage"
-            cssClass = `resources`;
+            cssClasses.push("resources");
             label = `&#x1FAB5;`;
         } else {
             label = `&#x2753;`;
@@ -446,45 +451,19 @@ export class CityConnections {
         
         // #228 = the ID of the "Zombie core", #11 = Outpost
         if(isExplored === true) {
-            cssClass += " explored";
+            cssClasses.push("explored");
         }
         if(isExplored === true && ![11, 228].includes(cityTypeId)) {
             label = "&#x2705;";
         }
         
         if(zone.querySelector(".cityframe") === null) {
-            zone.insertAdjacentHTML("beforeend",
-                `<div class="cityframe ${cssClass}" role="none">
-                    <div class="radial_menu hidden">
-                        <button name="drive"
-                            data-action="drive"
-                            class="animate__animated animate__fadeInUp animate__faster"
-                            >&#x1F97E; Aller
-                        </button>
-                        <button name="teleport"
-                            data-action="teleport"
-                            class="animate__animated animate__fadeInLeft animate__faster"
-                            style="top:8px;left:38px;width:25px;border-radius:50%;font-size:0.9em"
-                            >&#x1F681;
-                        </button>
-                        <button name=""
-                            data-action="openBuildingPopup"
-                            class="animate__animated animate__fadeInDown animate__faster"
-                            style="top:38px;left:7px;width:25px;border-radius:50%"
-                            >&#x1F441;&#xFE0F;
-                        </button>
-                        <button name="road"
-                            data-action="addRoad"
-                            class="animate__animated animate__fadeInRight animate__faster"
-                            style="top:8px;left:-24px;width:25px;border-radius:50%;font-size:0.9em"
-                            >&#x1F6E3;&#xFE0F;
-                        </button>
-                    </div>
-                    <div class="healthbar hidden animate__animated animate__fadeIn"></div>
-                    <div class="label hidden">${label}</div>
-                    <div class="frame"></div>
-                </div>`
-            );
+            const fragmentCityframe = await TemplatesManager.instantiate("entities", "tplCityframe");
+            if(cssClasses !== []) {
+                fragmentCityframe.querySelector(".cityframe").classList.add(...cssClasses);
+            }
+            fragmentCityframe.querySelector(".label").textContent = label;
+            zone.appendChild(fragmentCityframe);
         }
         
         // If the city is occupied by the zombies
