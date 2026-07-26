@@ -20,7 +20,7 @@ class Translator {
         }
         
         // For the other languages, load the appropriation JSON file
-        fetch(`/resources/translations/${lang}.json`)
+        fetch(`/translations/${lang}.json`)
         .then(response => {
             if (!response.ok) {
                 throw new Error('Error while loading the translation file.');
