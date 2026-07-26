@@ -15,7 +15,6 @@ $layout             = new HtmlLayout();
 $actionBlocks       = new HtmlActionBlocks();
 $actionCards        = new HtmlActionCards();
 $map                = new HtmlMap();
-$legends            = new HtmlMapLegends();
 $statusbar          = new HtmlStatusBar();
 $enclosure          = new HtmlCityEnclosure();
 $constructionCards  = new HtmlCityConstructionCards();
@@ -447,7 +446,7 @@ echo $layout->page_header($citizen['user_id'], $citizen['citizen_id'], $citizen[
         
         <div id="map_navigation" class="animate__animated animate__slideInRight" aria-label="Outils pour la carte"></div>
         
-        <?php echo $legends->all_legends() ?>
+        <div id="map_legend"></div>
         
         <div id="actions_panel" class="animate__animated animate__slideInUp hidden">
             <div id="actions"></div>

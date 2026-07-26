@@ -238,7 +238,7 @@ export function switchMapView(view) {
  * 
  * @returns {undefined}
  */
-function activateMapZombiesView() {
+async function activateMapZombiesView() {
     
     // Get only the hexagons wich contain zombies for better performance
     // (not all the hexagons of the map) for better performance
@@ -281,9 +281,12 @@ function activateMapZombiesView() {
         }
     }
     
+    // Add the legend
+    const fragmentLegend = await TemplatesManager.instantiate("mapLegends", "tplMapLegendZombies");
+    document.querySelector("#map_legend").replaceChildren(fragmentLegend);
+    
     hide(["#views_bar, #attack_bar", "#tasks_button"]);
     hide([".nbr_defenses"]);
-    display("#map_legend_zombies");
     display(".zombies_amount");
 }
 
@@ -326,7 +329,7 @@ export function toggleMapNeighborhoodView() {
  * 
  * @returns {undefined}
  */
-function activateMapItemsView() {
+async function activateMapItemsView() {
     
     let hexagons = document.querySelectorAll("#map_body .hexagon");
         
@@ -362,9 +365,12 @@ function activateMapItemsView() {
         squareContainer.querySelector(".items_amount").style.background = color;
     }
     
+    // Add the legend
+    const fragmentLegend = await TemplatesManager.instantiate("mapLegends", "tplMapLegendItems");
+    document.querySelector("#map_legend").replaceChildren(fragmentLegend);
+    
     hide(["#views_bar, #attack_bar", "#tasks_button"]);
     hide(["#map_body .nbr_defenses"]);
-    display("#map_legend_items");
     display(".items_amount");
 }
 
@@ -374,7 +380,7 @@ function activateMapItemsView() {
  * 
  * @returns {undefined}
  */
-function activateMapExplorationsView() {
+async function activateMapExplorationsView() {
     
     let hexagons = document.querySelectorAll("#map_body .hexagon");
      
@@ -403,9 +409,12 @@ function activateMapExplorationsView() {
         }
     }
     
+    // Add the legend
+    const fragmentLegend = await TemplatesManager.instantiate("mapLegends", "tplMapLegendExplorations");
+    document.querySelector("#map_legend").replaceChildren(fragmentLegend);
+    
     hide(["#views_bar, #attack_bar", "#tasks_button"]);
     hide([".nbr_defenses"]);
-    display("#map_legend_explorations");
     display(".explorations_amount");
 }
 
@@ -507,7 +516,11 @@ export function resetMapView() {
  * Display/hide the frames around the cities on the map and the bar to filter them
  * (defensense, transportations, weather...)
  */
-export function toggleCityframesView() {
+export async function toggleCityframesView() {
+
+    // Add the legend
+    const fragmentLegend = await TemplatesManager.instantiate("mapLegends", "tplMapLegendCityframes");
+    document.querySelector("#map_legend").replaceChildren(fragmentLegend);
 
     toggle(["#views_bar", "#tasks_button", "#attack_bar"]);
     toggle(["#cityframes_bar", "#map_legend_cityframes"]);
