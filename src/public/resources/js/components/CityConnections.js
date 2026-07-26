@@ -405,7 +405,7 @@ export class CityConnections {
             zone = hexagon.querySelector(`.square_container`),
             isExplored = (parseInt(zone.closest(".square_container").dataset.cyclelastvisit) === getCurrentCycle()),
             nbrZombies = zone.closest(".square_container").dataset.zombies,
-            cssClassPulse = "animate__animated animate__pulse animate__infinite",
+            cssClassPulse = ["animate__animated", "animate__pulse", "animate__infinite"],
             label = "",
             cssClasses = [];
         
@@ -420,7 +420,7 @@ export class CityConnections {
         } else if([236, 237, 238, 239].includes(cityTypeId)) {
             // #236 = the ID of the "Training room", #237 = the "Collector",
             // #238 = the "Multiplier", #239 = the "Power plant"
-            cssClasses.push("technical resources");
+            cssClasses.push("technical", "resources");
             label = "&#x2699;&#xFE0F;";           
         } else if([11, 12].includes(cityTypeId)) {
             // #12 = the ID of the "City", #11 = Outpost
