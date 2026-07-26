@@ -213,6 +213,7 @@ echo $layout->page_header($citizen['user_id'], $citizen['citizen_id'], $citizen[
                                         $is_custom_popup_visible
                                         ); 
         ?>
+        <div id="popupWrapper"></div>
     </div>
 
     <div id="templates">

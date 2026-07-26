@@ -687,8 +687,10 @@ export async function dropItem(eventSubmitter) {
 
 /**
  * Hides the pop-up over the map
+ * 
+ * TODO: replace this function by /components/Popup.close()
  */
-export function closePopup() {
+export function closePopupOld() {
     
     document.querySelector("#popsuccess").classList.remove("force_visibility");
 }

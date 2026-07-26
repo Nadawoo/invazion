@@ -8,6 +8,7 @@ import { BuildingPopup } from "./components/BuildingPopup.js";
 import { CityRadialMenu } from "./components/CityRadialMenu.js";
 import { Items } from "./components/Items.js";
 import { Phone } from "./components/Phone.js";
+import { Popup } from "./components/Popup.js";
 import { Coordinates } from "./domain/Coordinates.js";
 import { Zone } from "./entities/Zone.js";
 import { Auth } from "./services/Auth.js";
@@ -24,7 +25,7 @@ import { togglePathsBar } from "./paths.func.js";
 import {
     addMovementArrows,
     addZombiesInZone,
-    closePopup,
+    closePopupOld,
     dig,
     displayToast,
     dropItem,
@@ -414,7 +415,16 @@ export function listenToPointerup() {
                 items.toggleTooltip(event);
             }
         }
-        else if(action === "closePopup" || target.closest("a")?.dataset.action === "closePopup") {
+        else if(action === "openPopup") {
+            const popupManager = new Popup();
+            popupManager.open(target.dataset.templatename);
+        }
+        else if(button?.dataset.action === "closePopup") {
+            const popupManager = new Popup();
+            popupManager.close();
+        }
+        // TODO: replace this event with the new "closePopup"
+        else if(action === "closePopupOld" || target.closest("a")?.dataset.action === "closePopupOld") {
             closePopup();
         }
         else if(action === "enlargeWall" || button?.dataset.action === "enlargeWall") {

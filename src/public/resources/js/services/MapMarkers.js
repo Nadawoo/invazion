@@ -5,7 +5,7 @@ import {
     isActionViewActive
     }  from "../mapInit.func.js";
 import {
-    closePopup,
+    closePopupOld,
     itemsBubbleFragment
     } from "../misc.func.js";
 
@@ -19,7 +19,7 @@ export class MapMarkers {
     switchToMarkersView() {
         
         // Close the popup to go back to the map
-        closePopup();
+        closePopupOld();
         if(isActionViewActive()) {
             switchToMapView();
         }

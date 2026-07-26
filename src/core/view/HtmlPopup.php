@@ -48,7 +48,6 @@ class HtmlPopup
             . $this->predefined('popspecialize', 'Action du jour', $specialities)
             . $this->predefined('popmycaracs', 'Mes caractéristiques', $speciality_caracs)
             . $this->predefined('popwounded', '', ['citizen_id'=>$citizen_id, 'healing_items'=>$healing_items])
-            . $this->predefined('popcontrol', '&#8505;&#65039; Le contrôle de zone')
             . $this->predefined('popmove', '&#8505;&#65039; Les points d\'action', 
                                     ['moving_cost_no_zombies' => $configs_map['moving_cost_no_zombies'], 
                                      'moving_cost_zombies'    => $configs_map['moving_cost_zombies']
@@ -139,7 +138,7 @@ class HtmlPopup
             la réutilisation du concept et des éléments graphiques, mais Azimutant
             n'est pas affilié à Motion Twin.<p>";
             
-            $button_close = '<p class="center"><a href="#" data-action="closePopup">[Fermer]</a></p>';
+            $button_close = '<p class="center"><a href="#" data-action="closePopupOld">[Fermer]</a></p>';
         
         return $msg_popup.$button_close;
     }
@@ -163,7 +162,7 @@ class HtmlPopup
             . "</p>";
         
         $button_start = '<a href="#Outside" id="startPathCreation" class="hidden bluebutton"'
-                      . 'onclick="closePopup();startPathCreation()"'
+                      . 'onclick="closePopupOld();startPathCreation()"'
                       . '>Tracer une expédition'
                       . '<i class="material-icons">chevron_right</i>'
                       . '</a>';
@@ -180,7 +179,7 @@ class HtmlPopup
             . "qui suivront le chemin tracé sur la carte.</p>";
         
             $button_start = '<a href="#Outside" class="bluebutton" '
-                          . 'onclick="closePopup();hide([\'#paths_bar\', \'#attack_bar\']);display(\'#paths_panel\')"'
+                          . 'onclick="closePopupOld();hide([\'#paths_bar\', \'#attack_bar\']);display(\'#paths_panel\')"'
                           . '>'
                           . 'Choisir les membres de l\'expédition'
                           . '<i class="material-icons">chevron_right</i>'
@@ -675,7 +674,7 @@ class HtmlPopup
         <div id="'.$popup_alias.'" class="overlay '.$css_class.'">
             <div class="popup z-depth-2">
                 '.$html_title.'
-                <a class="close" href="'.$anchor.'" data-action="closePopup">
+                <a class="close" href="'.$anchor.'" data-action="closePopupOld">
                     <i class="material-icons">close</i>
                 </a>
                 <div class="content">'.$text.'</div>
@@ -784,61 +783,6 @@ class HtmlPopup
             <ul>
                 ' . $html_healing. '
             </ul>';
-    }
-    
-    
-    /**
-     * Text to explain the points of control
-     */
-    private function popcontrol()
-    {
-        
-        return "
-            <div class=\"stageblock\">
-                <div class=\"stageicon\">&#x1F6E1;&#xFE0F;</div>
-                <div class=\"stagetext\">
-                    Les <strong>points de contrôle</strong> déterminent 
-                    si les humains peuvent se déplacer dans la zone.
-                    <ul>
-                        <li><img src=\"/resources/img/free/human.png\" height=\"24\">
-                            Chaque humain (hors bonus) = <strong>2</strong> points.
-                        </li>
-                        <li><img src=\"resources/img/motiontwin/zombie.gif\" height=\"24\">
-                            Chaque zombie = <strong>1</strong> point.
-                        </li>
-                    </ul>
-                    <hr>
-                </div>
-            </div>
-            <div class=\"stageblock\">
-                <div class=\"stageicon\" style=\"text-shadow:red 0 -1px 4px, red 0 1px 4px\">&#x1F480;</div>
-                <div class=\"stagetext\">
-                    Si la somme des points de contrôle des zombies est supérieure 
-                    à celle des humains, <strong>vous ne pouvez plus quitter la zone !</strong>
-                    <hr>
-                </div>
-            </div>
-            <div class=\"stageblock\">
-                <div class=\"stageicon\">&#x270A;&#x1F3FD;</div>
-                <div class=\"stagetext\">
-                    <strong>Si vous êtes bloqué</strong>, reprenez votre liberté en inversant le rapport de forces :
-                    <ul>
-                        <li>• soit en demandant à <strong>d'autres joueurs</strong> de vous rejoindre dans la zone 
-                        (augmentera le contrôle des humains) ;</li>
-                        <li>• soit en <strong>tuant des zombies</strong>
-                        (réduira le contrôle des zombies).</li>
-                    </ul>
-                    <hr>
-                </div>
-            </div>
-            <div class=\"stageblock\">
-                <div class=\"stageicon\"><img src=\"/resources/img/free/human.png\" height=\"32\"></div>
-                <div class=\"stagetext\">
-                    Plus les humains sont nombreux dans votre zone, plus vous disposez 
-                    de <strong>points de contrôle</strong> pour contenir les zombies.
-                    <strong>Sortez groupés</strong> pour éviter les mésaventures...
-                </div>
-            </div>";
     }
     
     
