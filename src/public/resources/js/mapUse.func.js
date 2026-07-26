@@ -674,3 +674,29 @@ export async function buildOnMap(cityTypeId) {
     
     displayToast(json.metas.error_message, json.metas.error_class);
 }
+
+
+/**
+ * Display various resources when clicking on a switch button in the map legend
+ * 
+ * @param {type} event
+ * @returns {undefined}
+ */
+export function switchMapLegendButton(event) {
+
+    // Uncheck all other switches previously activated
+    document.querySelectorAll("#map_legend_items .switches input").forEach(element => {
+        if(element !== event.target) {
+            element.checked = false;
+        }
+    });
+    // Delete all the markers already placed on the map
+    const mark = new MapMarkers();
+    mark.deleteLocationMarkers();
+    // Add the location markers on the map for the wanted item type 
+    // (boosts, resources...)        
+    if(event.target.checked === true) {
+        const mark = new MapMarkers();
+        mark.toggleMapItemMarker(event.target.getAttribute("name"));
+    }
+}

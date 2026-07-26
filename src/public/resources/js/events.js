@@ -7,8 +7,8 @@ import { LogJsErrors } from "./services/LogJsErrors.js";
 import {
     enlargeWall,
     filterConstructions,
+    listenToChange,
     listenToInput,
-    listenToMapLegendSwitches,
     listenToSubmit,
     listenToPointerdown,
     listenToPointermove,
@@ -23,6 +23,7 @@ import { displayToast } from "./misc.func.js";
 // Listen to all forms
 listenToSubmit();
 listenToInput();
+listenToChange();
 // One global listener for each type of event
 listenToPointerdown();
 listenToPointermove();
@@ -59,8 +60,6 @@ if (document.getElementById('map') !== null) {
         event.preventDefault();
         submitNewPath(event, controller);
     });
-    
-    listenToMapLegendSwitches();
     
     // Change cycle (trigger the midnight attack)
 //    document.querySelector('form[name="end_cycle"]').addEventListener("submit", function() {

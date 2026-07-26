@@ -38,7 +38,12 @@ import {
     updateLandType
     }
     from "./misc.func.js";
-import { initiateDiscussTab, listenToDiscussTabs, toggleSendform } from "./discussions.func.js";
+import {
+    initiateDiscussTab,
+    listenToDiscussTabs,
+    toggleSendform
+    }
+    from "./discussions.func.js";
 import {
     isActionViewActive,
     switchToActionView,
@@ -50,6 +55,7 @@ import {
     buildOnMap,
     centerMapOnMe,
     resetMapView,
+    switchMapLegendButton,
     switchMapView,
     toggleCityframesView,
     toggleMapExplorationsView,
@@ -159,6 +165,22 @@ export function listenToInput() {
     },
     { passive: true }
     );
+}
+
+
+/**
+ * Listen to the (des)activation of switch buttons
+ * 
+ * @returns {undefined}
+ */
+export function listenToChange() {
+    
+    document.addEventListener("change", (event)=>{
+        
+        if(event.target.dataset.action === "switchMapLegendButton") {
+            switchMapLegendButton(event);
+        }
+    });
 }
 
 
@@ -685,29 +707,6 @@ export async function enlargeWall() {
     initiateDiscussTab();
     
     listenToDiscussTabs();
-}
-
-
-export function listenToMapLegendSwitches() {
-    
-    // When we (des)activate a switch button
-    document.querySelector("#map_legend_items .switches").addEventListener("change", (event)=>{
-        // Uncheck all other switches previously activated
-        document.querySelectorAll("#map_legend_items .switches input").forEach(element => {
-            if(element !== event.target) {
-                element.checked = false;
-            }
-        });
-        // Delete all the markers already placed on the map
-        const mark = new MapMarkers();
-        mark.deleteLocationMarkers();
-        // Add the location markers on the map for the wanted item type 
-        // (boosts, resources...)        
-        if(event.target.checked === true) {
-            const mark = new MapMarkers();
-            mark.toggleMapItemMarker(event.target.getAttribute("name"));
-        }
-    });
 }
 
 
