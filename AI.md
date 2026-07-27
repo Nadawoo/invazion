@@ -1,6 +1,9 @@
 # Usage of AI in this project
 
-Most of the content in this project, including code and graphical assets, is created by humans. In some cases, we may use AI as described below.
+## General principle
+Most of the content in this project, including code and graphical assets, is created by humans. Although AI can be an invaluable tool for reducing the workload involved in a project like this, we deliberately use it sparingly and only when it provides clear value.
+
+In some cases, we may use AI as described below.
 
 ## AI-assisted use cases
 AI may be used as an assistance tool to support human work, for example:
@@ -23,7 +26,3 @@ AI is NOT used in gameplay mechanics (such as generating dialogue or controlling
 AI is NOT used in any automated development or deployment process (such as automated commits, code generation pipelines, or deployment workflows).
 
 No personal data (e.g. email addresses or usernames) is transmitted to AI services.
-
-## TL;DR
-We consider AI an assistance tool. Humans remain responsible for all design decisions and every contribution included in this project.
-Although AI is an invaluable tool for reducing the workload involved in a project like this, we deliberately use it sparingly and only when it provides clear value.
