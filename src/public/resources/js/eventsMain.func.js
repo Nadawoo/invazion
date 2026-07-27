@@ -83,6 +83,7 @@ export function listenToSubmit() {
     document.addEventListener("submit", (event)=>{
         const formSelectors = {
             "connect": "#connectionForm",
+            "disconnect": "#disconnectionForm",
             "createGame": "form[name=create_game]",
             "dig":"#block_dig form[name=dig]",
             "dropItem":"form[name=form_drop]",
@@ -96,6 +97,11 @@ export function listenToSubmit() {
             event.preventDefault();
             const auth = new Auth();
             auth.logIn();
+        }
+        else if(event.target.matches(formSelectors.disconnect)) {
+            event.preventDefault();
+            const auth = new Auth();
+            auth.logOut();
         }
         else if(event.target.matches(formSelectors.explore)) {
             // Desactivate the classic submission button (avoids reloading the page)
