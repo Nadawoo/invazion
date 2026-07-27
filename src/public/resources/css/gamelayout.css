@@ -383,7 +383,8 @@ form[name="end_cycle"] button {
     color:white;
     z-index:2;
 }
-#identification_near_map a {
+#identification_near_map a,
+#identification_near_map button {
     padding:0.2em 0.5em;
     background:darkred;
     border:1px solid white;

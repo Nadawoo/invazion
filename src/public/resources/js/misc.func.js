@@ -1133,3 +1133,19 @@ export function animateCounter(domSelector, endValue, duration=1000) {
 
    requestAnimationFrame(animate);
 }
+
+
+/**
+ * Prefill the "email" field in the connection form
+ * 
+ * @returns {undefined}
+ */
+export function prefillEmailField() {
+    
+    const cookies = new Cookies();
+    _userEmail = cookies.getCookie("email");
+    
+    if(_userEmail !== null) {
+        document.querySelector("#connectionForm input[name='email']").value = _userEmail;
+    }
+}

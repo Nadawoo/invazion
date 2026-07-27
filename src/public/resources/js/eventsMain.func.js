@@ -33,6 +33,7 @@ import {
     killZombies,
     pickupItem,
     populateDefensesDetails,
+    prefillEmailField,
     toggleActionBlock,
     toggleBag,
     toggleStatus,
@@ -423,7 +424,13 @@ export function listenToPointerup() {
             const templateName = button.dataset.templatename;
             popupManager.open(templateName);
             
-            if(templateName === "tplPopDefenses") {
+            if(templateName === "tplPopConnect") {
+                setTimeout(() => {
+                    prefillEmailField();
+                    document.querySelector("#connectionForm input[name='email']").focus();
+                }, 1000);
+            }
+            else if(templateName === "tplPopDefenses") {
 //                populateDefensesDetails();
             }
         }

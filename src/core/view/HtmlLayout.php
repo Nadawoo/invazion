@@ -93,7 +93,7 @@ class HtmlLayout extends HtmlPage
             <div id="identification_near_map">
                 <p><a href="register" id="register" class="z-depth-5">Créer un&nbsp;compte</a></p>
                 <p style="opacity:0.8">
-                    Déjà inscrit ? <a href="connect" id="connect">Me connecter</a>
+                    Déjà inscrit ? <button id="connect" data-action="openPopup" data-templatename="tplPopConnect">Me connecter</button>
                 </p>
             </div>';
     }

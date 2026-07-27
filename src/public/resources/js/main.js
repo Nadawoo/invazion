@@ -258,20 +258,6 @@ if (document.getElementById("controlCountdown") !== null) {
     setInterval(controlCountdown, 1000);
 }
 
-
-// If we are on the connection page
-if(document.querySelector("#connectionForm") !== null) {
-    // Prefill the "email" field
-    setTimeout(function() {
-        let cookies = new Cookies();
-        _userEmail = cookies.getCookie("email");
-        if(_userEmail !== null) {
-            document.querySelector("#connectionForm input[name='email']").value = _userEmail;
-        }
-    }, 1000);
-}
-
-
 // Translate the game in the appropriate language
 const translator = new Translator();
 translator.translate(lang);
