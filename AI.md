@@ -1,4 +1,4 @@
-# Usage of AI in this project
+# Usage and non-usage of AI in this project
 
 ## General principle
 Most of the content in this project, including code and graphical assets, is created by humans. Although AI can be an invaluable tool for reducing the workload involved in a project like this, we deliberately use it sparingly and only when it provides clear value.
