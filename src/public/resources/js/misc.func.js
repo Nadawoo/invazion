@@ -1024,10 +1024,10 @@ export function populateDefensesDetails() {
     
     let popup = document.querySelector("#popdefenses");
     let defenses = popup.querySelector(".defenses_list");
-    
-//    defenses.querySelector(".zombies").innerText = nbrZombiesInZone;
-//    defenses.querySelector(".attack_details .zombies").innerText = nbrZombiesInZone;
-//    defenses.querySelector(".controlpoints_citizens").innerText = controlPointsCitizens;
+
+    defenses.querySelector(".zombies").innerText = nbrZombiesInZone;
+    defenses.querySelector(".attack_details .zombies").innerText = nbrZombiesInZone;
+    defenses.querySelector(".controlpoints_citizens").innerText = controlPointsCitizens;
 }
 
 

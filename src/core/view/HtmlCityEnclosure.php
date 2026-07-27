@@ -828,14 +828,14 @@ class HtmlCityEnclosure
         $zombies_percent = 100 - $defense_percent;
         
         return '
-            <a href="#popdefenses" id="defenses_bar" data-action="populateDefensesDetails">
+            <button id="defenses_bar" data-action="openPopup" data-templatename="tplPopDefenses">
                 <label>┌ Défenses de la ville</label>
                 <div class="bar_wrapper">
                     <div class="bar_icon z-depth-3">
                         <img src="resources/img/free/city.png" height="24">
                     </div>
                     
-                    <div style="width:100%" class="z-depth-3">
+                    <div class="gauges z-depth-3">
                         <div class="bar_background" style="width:'.$defense_percent.'%;">
                             <span class="number">'.$total_defenses.'</span>
                         </div>'
@@ -849,7 +849,7 @@ class HtmlCityEnclosure
                     </div>
                 </div>
                 <label style="justify-content:flex-end">Zombies attendus ┘</label>
-            </a>';
+            </button>';
     }
     
     

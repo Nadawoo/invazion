@@ -298,9 +298,6 @@ export function listenToPointerup() {
         else if(action === "closeCityframesBar") {
             toggleCityframesView();
         }
-        else if(action === "populateDefensesDetails") {
-            populateDefensesDetails();
-        }
         else if(action === "togglePathsBar") {
             togglePathsBar();
         }
@@ -415,9 +412,14 @@ export function listenToPointerup() {
                 items.toggleTooltip(event);
             }
         }
-        else if(action === "openPopup") {
+        else if(button?.dataset.action === "openPopup") {
             const popupManager = new Popup();
-            popupManager.open(target.dataset.templatename);
+            const templateName = button.dataset.templatename;
+            popupManager.open(templateName);
+            
+            if(templateName === "tplPopDefenses") {
+//                populateDefensesDetails();
+            }
         }
         else if(button?.dataset.action === "closePopup") {
             const popupManager = new Popup();
@@ -425,7 +427,7 @@ export function listenToPointerup() {
         }
         // TODO: replace this event with the new "closePopup"
         else if(action === "closePopupOld" || target.closest("a")?.dataset.action === "closePopupOld") {
-            closePopup();
+            closePopupOld();
         }
         else if(action === "enlargeWall" || button?.dataset.action === "enlargeWall") {
             enlargeWall();
