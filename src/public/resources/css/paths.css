@@ -140,16 +140,21 @@
  * Display the horizontal bar for the expeditions
  */
 .bottom_bar {
-    display:flex;
     position:absolute;
+    top:0;
     width:100%;
-    gap:0.5em;
-    padding:2px;
+    display:flex;
+    justify-content:center;
     background:linear-gradient(to top, #17202A, darkslategrey);
     box-shadow:0 3px 5px dimgrey;
     max-width:100%;
-    overflow:auto;
     z-index:1;
+}
+.bottom_bar .body {
+    padding:4px;
+    display:flex;
+    gap:0.6em;
+    overflow:auto;
 }
 .bottom_bar .paths {
     display:flex;
@@ -238,10 +243,6 @@
     font-weight:bold;
 }
 
-#cityframes_bar {
-    top:0;
-    height:5.5rem;
-}
 #cityframes_bar button {
     padding:0;
     width:85px;
