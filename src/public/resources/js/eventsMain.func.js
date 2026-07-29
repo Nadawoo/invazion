@@ -57,6 +57,7 @@ import {
     buildOnMap,
     centerMapOnMe,
     resetMapView,
+    switchCityframesType,
     switchMapLegendButton,
     switchMapView,
     toggleCityframesView,
@@ -289,6 +290,9 @@ export function listenToPointerup() {
             displayToast("Sélectionnez la ville de destination de la route", "info");
             
             document.querySelector("#map").dataset.viewmode = "addRoad";
+        }
+        else if(button?.dataset.action === "switchCityframesType") {
+            switchCityframesType(button.dataset.frametype);
         }
         else if(action === "moveBuildingBlockBelowPaddle") {
             moveBuildingBlockBelowPaddle();

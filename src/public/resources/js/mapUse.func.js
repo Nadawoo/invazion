@@ -514,7 +514,7 @@ export function resetMapView() {
 
 /**
  * Display/hide the frames around the cities on the map and the bar to filter them
- * (defensense, transportations, weather...)
+ * (defense, transportations, weather...)
  */
 export async function toggleCityframesView() {
 
@@ -537,7 +537,7 @@ export async function toggleCityframesView() {
 }
 
 
-function switchCityframesType(typeToActivate) {
+export function switchCityframesType(typeToActivate) {
     
     // Display the appropriate legend on the map
     hide('#map_legend_cityframes ul');

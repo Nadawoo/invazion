@@ -462,7 +462,7 @@ export class CityConnections {
             if(cssClasses !== []) {
                 fragmentCityframe.querySelector(".cityframe").classList.add(...cssClasses);
             }
-            fragmentCityframe.querySelector(".label").textContent = label;
+            fragmentCityframe.querySelector(".label").innerHTML = label;
             zone.appendChild(fragmentCityframe);
         }
         
