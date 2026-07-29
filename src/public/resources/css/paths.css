@@ -142,14 +142,11 @@
 .bottom_bar {
     display:flex;
     position:absolute;
-    bottom:0;
     width:100%;
     gap:0.5em;
-    padding:1px 5em 1px 1px;
-    background:#4a235a;
-    border-top: 1px solid grey;
-    border-bottom:1px solid grey;
-    outline:1px solid white;
+    padding:2px;
+    background:linear-gradient(to top, #17202A, darkslategrey);
+    box-shadow:0 3px 5px dimgrey;
     max-width:100%;
     overflow:auto;
     z-index:1;
@@ -242,18 +239,13 @@
 }
 
 #cityframes_bar {
-    top:1px;
-    bottom:auto;
+    top:0;
     height:5.5rem;
-    padding:0.1em 0;
-    justify-content:center;
-    border-top:none;
 }
 #cityframes_bar button {
     padding:0;
-    width:6.2em;
-    min-width:auto;
-    
+    width:85px;
+    min-width:85px;
     display:flex;
     flex-direction:column;
     justify-content:flex-end;
@@ -267,7 +259,8 @@
     margin:1px;
     margin-top:0.5em;
     padding:2px 0 5px 0;
-    background:purple;
+    font-size:0.9em;
+    background:darkred;
     color:white;
     border-top:1px solid grey;
     border-radius:0 0 0.3em 0.3em;
