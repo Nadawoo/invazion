@@ -369,10 +369,9 @@ echo $layout->page_header($citizen['user_id'], $citizen['citizen_id'], $citizen[
             </div>
         </div>
         
-        <?php
-        echo $htmlPaths->paths_bar()
-           . $htmlPaths->cityframes_bar()
-        ?>
+        <?php echo $htmlPaths->paths_bar() ?>
+        
+        <div id="cityframes_bar" class="bottom_bar animate__animated animate__slideInDown hidden"></div>
         
         <form method="get" id="formPathDrawing" class="hidden">
             <ul class="center">

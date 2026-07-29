@@ -96,41 +96,6 @@ class HtmlPaths {
     }
     
     
-    function cityframes_bar() {
-        
-        return '
-        <div id="cityframes_bar" class="bottom_bar animate__animated animate__slideInDown hidden">
-            <button name="move" class="path" data-action="switchCityframesType" data-frametype="move">
-                <span class="icon">&#x1F97E;</span>
-                <span class="label">Aller</span>
-            </button>
-            <button name="defenses" class="path" data-action="switchCityframesType" data-frametype="defenses">
-                <span class="icon">&#x1F6E1;&#xFE0F;</span>
-                <span class="label">Défenses</span>
-            </button>
-            <button name="resources" class="path" data-action="switchCityframesType" data-frametype="resources">
-                <span class="icon">&#x26CF;&#xFE0F;</span>
-                <span class="label">Ressources</span>
-            </button>
-            <button name="transportations" class="path" data-action="switchCityframesType" data-frametype="transportations">
-                <span class="icon">&#x1F681;</span>
-                <span class="label">Transports</span>
-            </button>
-            <button name="weather" class="path" data-action="switchCityframesType" data-frametype="weather">
-                <span class="icon">&#x1F327;&#xFE0F;</span>
-                <span class="label">Météo</span>
-            </button>
-            <button name="undiscovered" class="path" data-action="switchCityframesType" data-frametype="undiscovered">
-                <span class="icon">&#x2753;</span>
-                <span class="label">Inexploré</span>
-            </button>
-            <a class="close z-depth-2">
-                <i class="material-icons" data-action="closeCityframesBar">close</i>
-            </a>
-        </div>';
-    }
-    
-    
     /**
      * HTML template for an inactive card in the paths bar
      * (default view for a path card)

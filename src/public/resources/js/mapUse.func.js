@@ -517,7 +517,10 @@ export function resetMapView() {
  * (defense, transportations, weather...)
  */
 export async function toggleCityframesView() {
-
+    
+    // Add the bar for selecting the category of city (transportation...)
+    const fragmentCityframesBar = await TemplatesManager.instantiate("ui", "tplCityframesBar");
+    document.querySelector("#cityframes_bar").replaceChildren(fragmentCityframesBar);
     // Add the legend
     const fragmentLegend = await TemplatesManager.instantiate("mapLegends", "tplMapLegendCityframes");
     document.querySelector("#map_legend").replaceChildren(fragmentLegend);
