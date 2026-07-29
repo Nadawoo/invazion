@@ -773,13 +773,13 @@
     height:40px;
     width: 40px;
     margin-bottom:2px;
-    border:1px outset darkgrey;
-    border-radius:50%;
-    background: radial-gradient(circle at 5% 5%,
+    /*border:1px outset darkgrey;*/
+    /*border-radius:50%;*/
+/*    background: radial-gradient(circle at 5% 5%,
                         rgba(255, 255, 255, 0.4),
                         rgba(0, 0, 0, 0) 50%
-                        );
-    box-shadow:4px 4px 6px black;
+                        );*/
+    /*box-shadow:4px 4px 6px black;*/
 }
 #map_body .cityframe.active .frame {
     border:3px outset #3A5E9F;
@@ -1070,8 +1070,9 @@
 
 #map_body .icon_html { /* Makes the unicode icons bigger without shifting the map tiles */
     position:absolute;
-    right:5px;
+    /*right:5px;*/
     margin-bottom:0.2em;
+    font-size:1.8em;
     z-index:1;
     text-shadow: -1px -1px 1px greenyellow, /* Top left */
                  1px -1px 1px greenyellow,  /* Top right */
