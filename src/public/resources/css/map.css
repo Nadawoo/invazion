@@ -583,13 +583,31 @@
     border-radius:5px;
 }
 #map_body .radial_menu button {
-    top:-26px;
-    left:-7px;
-    width:52px;
+    width:25px;
     font-size:0.7em;
     background:#2E3A8C;
     border:1px outset lightgrey; /* dodgerblue */
+    border-radius:50%;
+}
+#map_body .radial_menu .top {
+    top:-26px;
+    left:-7px;
+    width:52px;
     border-radius:5px;
+}
+#map_body .radial_menu .right {
+    top:8px;
+    left:38px;
+    font-size:0.9em;
+}
+#map_body .radial_menu .bottom {
+    top:38px;
+    left:7px;
+}
+#map_body .radial_menu .left {
+    top:8px;
+    left:-24px;
+    font-size:0.9em;
 }
 #map_body .radial_menu button:hover {
     background:#3F4FB3;
