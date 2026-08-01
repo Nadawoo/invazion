@@ -4,6 +4,7 @@
  */
 
 import { ZombLib } from "./lib/ZombLib.js";
+import { gameStates } from "./states/GameStates.js";
 import { listenToLocationButtons } from "./eventsMain.func.js"; 
 import { displayToast } from "./misc.func.js";
 
@@ -41,7 +42,7 @@ async function populatePathsPanel(pathsCourses, pathsMembers) {
         let htmlMembers = "",
             htmlHumansIcons = "";
         for(let member of Object.values(members)) {
-            let citizen = _citizens[member.citizen_id];
+            let citizen = gameStates.citizens[member.citizen_id];
             let htmlCoords = `${citizen.coord_x}_${citizen.coord_y}`;
             
             htmlMembers += `<li class="card citizen${citizen.citizen_id}">
@@ -89,7 +90,7 @@ async function populatePathsPanel(pathsCourses, pathsMembers) {
         // Display the content of the bag of each member of the expedition
         let htmlItems = new Items();
         for(let member of Object.values(members)) {
-            let citizen = _citizens[member.citizen_id];
+            let citizen = gameStates.citizens[member.citizen_id];
             for(let bagItem of Object.entries(citizen.bag_items)) {
                 document.querySelector(`#paths_panel .citizen${citizen.citizen_id} .items_list`).prepend( htmlItems.item(bagItem[0], _configsItems[bagItem[0]]) );
             }
@@ -121,8 +122,8 @@ async function htmlcitizensForExpedition() {
     
     let htmlAvailableCitizens = "";
 
-    for(let citizenId in await _citizens) {
-        let citizen = _citizens[citizenId];
+    for(let citizenId in await gameStates.citizens) {
+        let citizen = gameStates.citizens[citizenId];
         let htmlCoords = `${citizen.coord_x}_${citizen.coord_y}`;
 
         htmlAvailableCitizens += `<li class="card citizen${citizen.citizen_id}">

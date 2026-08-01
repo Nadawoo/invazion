@@ -1,3 +1,4 @@
+import { gameStates } from "../states/GameStates.js";
 import { getMapCitizensOnce } from "../mapInit.func.js";
 
 /**
@@ -15,11 +16,11 @@ export class MapCitizens {
     async addCitizensOnMap(mapId) {
 
         // Get the citizens of the map by calling the Azimutant's API
-        _citizens = await getMapCitizensOnce(mapId);
+        gameStates.citizens = await getMapCitizensOnce(mapId);
 
         // Place the citizens on the appropriate zones
-        for(let citizenId in _citizens) {
-            let citizen = _citizens[citizenId],
+        for(let citizenId in gameStates.citizens) {
+            let citizen = gameStates.citizens[citizenId],
                 htmlCoords = citizen.coord_x+"_"+citizen.coord_y,
                 zone = document.querySelector("#zone"+htmlCoords+" .square_container");
                 
@@ -38,7 +39,7 @@ export class MapCitizens {
             }
         }
 
-        return _citizens;
+        return gameStates.citizens;
     }
     
     

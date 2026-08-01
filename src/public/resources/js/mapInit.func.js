@@ -9,6 +9,7 @@ import { ZombLib } from "./lib/ZombLib.js";
 import { Items } from "./components/Items.js";
 import { Citizen } from "./entities/Citizen.js";
 import { Zone } from "./entities/Zone.js";
+import { gameStates } from "./states/GameStates.js";
 import { TemplatesManager } from "./utils/TemplatesManager.js";
 import {
     populateBuilderBlock,
@@ -78,13 +79,13 @@ export async function getMapCitiesOnce(mapId) {
 export async function getMapCitizensOnce(mapId) {
     
     // If the API has already be called before, don't call it again
-    if(_citizens === null) {
+    if(gameStates.citizens.size === 0) {
         let zombLib = new ZombLib()
         let json = await zombLib.callApi("GET", "citizens", `action=get&map_id=${mapId}`);    
-        _citizens = json.datas;
+        gameStates.citizens = json.datas;
     }
     
-    return _citizens;
+    return gameStates.citizens;
 }
 
 
@@ -394,9 +395,9 @@ async function addCitizensOnMyZone() {
     const myZone = new Zone();
     
     // Get the citizens of the map by calling the Azimutant's API
-    _citizens = await getMapCitizensOnce(myCitizen.mapId);    
+    gameStates.citizens = await getMapCitizensOnce(myCitizen.mapId);    
     // Keep only the citizens who are in the player's zone
-    const citizensInMyZone = Object.values(_citizens).filter(citizen => citizen.coord_x == myCitizen.x 
+    const citizensInMyZone = Object.values(gameStates.citizens).filter(citizen => citizen.coord_x == myCitizen.x 
                                                                         && citizen.coord_y == myCitizen.y
                                                                         && citizen.citizen_id != myCitizen.id);
     

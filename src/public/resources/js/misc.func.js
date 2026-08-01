@@ -9,6 +9,7 @@ import { Items } from "./components/Items.js";
 import { Coordinates } from "./domain/Coordinates.js";
 import { Citizen } from "./entities/Citizen.js";
 import { Zone } from "./entities/Zone.js";
+import { gameStates } from "./states/GameStates.js";
 import { TemplatesManager } from "./utils/TemplatesManager.js";
 import { populateItemsList } from "./actionBlocks.func.js";
 import {
@@ -31,7 +32,7 @@ import { centerMapOnMe } from "./mapUse.func.js";
 export function toggleBag() {
     
     const myCitizen = new Citizen();
-    let bagItems = _citizens[myCitizen.id]["bag_items"];
+    let bagItems = gameStates.citizens[myCitizen.id]["bag_items"];
     let bagItemsSelector = "#bagbar .items_list";
     
     // Remove the status and the AP from the bag (not real items)
@@ -41,7 +42,7 @@ export function toggleBag() {
     if(document.querySelector(bagItemsSelector).innerText === ""
         && document.querySelector(bagItemsSelector).classList.contains("hidden")
         ) {
-        populateItemsList(bagItemsSelector, allBagItemsButTags, _citizens[myCitizen.id]["bag_size"]);
+        populateItemsList(bagItemsSelector, allBagItemsButTags, gameStates.citizens[myCitizen.id]["bag_size"]);
     }
     
     toggle(bagItemsSelector);

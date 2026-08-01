@@ -4,6 +4,7 @@
  */
 
 import { Citizen } from "./entities/Citizen.js";
+import { gameStates } from "./states/GameStates.js";
 import { getMapCitizensOnce } from "./mapInit.func.js";
 
 
@@ -18,6 +19,7 @@ export async function isCitizenInGame(mapId) {
     
     if(myCitizen.id === null) return false;
 
-    const _citizens = await getMapCitizensOnce(mapId);
-    return (_citizens !== undefined && _citizens[myCitizen.id] !== undefined);
+    gameStates.citizens = await getMapCitizensOnce(mapId);
+    
+    return (gameStates.citizens !== undefined && gameStates.citizens[myCitizen.id] !== undefined);
 }

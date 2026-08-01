@@ -9,6 +9,7 @@ import { Citizen } from "./entities/Citizen.js";
 import { Zone } from "./entities/Zone.js";
 import { MapMarkers } from "./services/MapMarkers.js"
 import { TemplatesManager } from "./utils/TemplatesManager.js";
+import { gameStates } from "./states/GameStates.js";
 import { updateBlockAlertControl } from "./actionBlocks.func.js"; 
 import {
     addCitiesOnMap,
@@ -46,7 +47,7 @@ export async function updateMapRealtime(event, timestamp) {
     //      => needed when a citizen moves to another zone
     //      => NOT needed when a citizen kills a zombie
     let json = await zombLib.callApi("GET", "citizens", `action=get&map_id=${mapId}`);   
-    _citizens = json.datas;
+    gameStates.citizens = json.datas;
     
     if(htmlZones.metas !== undefined && htmlZones.metas.error_code !== "success") {
         displayToast(htmlZones.metas.error_message, htmlZones.metas.error_class);

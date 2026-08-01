@@ -1,4 +1,5 @@
 import { ZombLib } from "./lib/ZombLib.js";
+import { gameStates } from "./states/GameStates.js";
 import { CityConnections } from "./components/CityConnections.js";
 import { FooterBar } from "./components/FooterBar.js";
 import { HealthBars }  from "./components/HealthBars.js";
@@ -36,7 +37,6 @@ import { animateCounter } from "./misc.func.js";
 let lang = "fr";
 
 // Permanently stores the results returned by the Azimutant's APIs.
-window._citizens            = null;
 window._cities              = null;
 window._roads               = null;
 window._roadActiveHexagon   = null;
@@ -142,7 +142,7 @@ if(document.getElementById("map") !== null) {
     });
     // Place the citizens on the appropriate zones of the map
     let mapCitizens = new MapCitizens();
-    _citizens = mapCitizens.addCitizensOnMap(mapId);
+    gameStates.citizens = mapCitizens.addCitizensOnMap(mapId);
     
     // Display the zombie cores on the map (item ID #106)
     displayItemOnMap(106);
@@ -205,7 +205,7 @@ if(document.getElementById("map") !== null) {
                 
                 // Ask for chosing a citizen speciality (builder, digger...)
                 const myCitizen = new Citizen();
-                const lastSpecializationCycle = _citizens[myCitizen.id]["last_specialization_cycle"];
+                const lastSpecializationCycle = gameStates.citizens[myCitizen.id]["last_specialization_cycle"];
                 if(lastSpecializationCycle === null || Number(lastSpecializationCycle) < currentCycle) {
                     window.location.hash = "#popspecialize";
                 }

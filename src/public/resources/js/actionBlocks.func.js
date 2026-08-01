@@ -7,6 +7,7 @@ import { Items } from "./components/Items.js";
 import { Citizen } from "./entities/Citizen.js";
 import { Zone } from "./entities/Zone.js";
 import { MapConfigs } from "./services/MapConfigs.js";
+import { gameStates } from "./states/GameStates.js";
 import { getMapCitizensOnce } from "./mapInit.func.js";
 import {
     getHtmlActionBlockFellow,
@@ -136,7 +137,7 @@ export async function updateBlockAlertControl(controlpointsZombies, mapId, coord
     
     const mapConfigs = new MapConfigs();
     const myCitizen = new Citizen();
-    const controlpointsCitizens = await sumControlpoints(await _citizens, coordX, coordY);
+    const controlpointsCitizens = await sumControlpoints(await gameStates.citizens, coordX, coordY);
     
     // Displays an alert when the player has not enough action points to  move
     if ((   controlpointsZombies === 0 && myCitizen.actionPoints < mapConfigs.get("moving_cost_no_zombies"))
@@ -267,7 +268,7 @@ export function addControlpointsOnZone(coordX, coordY) {
     if(Number(zone.dataset.cyclelastvisit) === 0) return;
     
     if(zone.querySelector(".cp_citizens") === null) {
-        const cpCitizens = sumControlpoints(_citizens, zone.dataset.coordx, zone.dataset.coordy);
+        const cpCitizens = sumControlpoints(gameStates.citizens, zone.dataset.coordx, zone.dataset.coordy);
         const htmlCpNbr = document.createElement("div");
         htmlCpNbr.classList.add("cp_citizens", "hidden");
         htmlCpNbr.innerHTML = `${cpCitizens} pts`;
@@ -301,14 +302,14 @@ async function updateBlockActionCitizens(coordX, coordY) {
         const myCitizen = new Citizen();
             
         // Get the citizens of the map by calling the Azimutant's API
-        _citizens = await getMapCitizensOnce(myCitizen.mapId);    
+        gameStates.citizens = await getMapCitizensOnce(myCitizen.mapId);    
         
         // Keeps only the citizens who are in the player's zone
-        const citizensInMyZone = Object.values(_citizens).filter(citizen => citizen.coord_x == coordX 
+        const citizensInMyZone = Object.values(gameStates.citizens).filter(citizen => citizen.coord_x == coordX 
                                                                             && citizen.coord_y == coordY
                                                                             && citizen.citizen_id != myCitizen.id);
         // All the other citizens (not in my zone)
-        const citizensInOtherZones = Object.values(_citizens).filter(citizen => citizen.coord_x != coordX 
+        const citizensInOtherZones = Object.values(gameStates.citizens).filter(citizen => citizen.coord_x != coordX 
                                                                                 && citizen.coord_y != coordY
                                                                                 && citizen.citizen_id != myCitizen.id);
         
@@ -333,7 +334,7 @@ function populateBlockCitizensInMyZone(citizensInMyZone, myCitizenId) {
         // Hide the generic text
         hide("#block_citizens .greytext");
         // Add the player's pseudo at the top of the list of citizens
-        let template = getHtmlActionBlockFellow(_citizens[myCitizenId], true, false, true);
+        let template = getHtmlActionBlockFellow(gameStates.citizens[myCitizenId], true, false, true);
         document.querySelector("#block_citizens #citizensInMyZone").appendChild(template);
         
         // Shows the list of the other citizens in my zone
