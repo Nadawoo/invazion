@@ -1,6 +1,6 @@
 # Le projet Azimutant, en deux mots
 
-![Capture d'écran](public/resources/img/free/screenshots/map_16_9.png)
+![Capture d'écran](src/public/resources/img/free/screenshots/map_16_9.png)
 
 **Jouer :** https://invaziongame.nadazone.fr/  
 **Discord** : https://discord.gg/2GRPTyM
