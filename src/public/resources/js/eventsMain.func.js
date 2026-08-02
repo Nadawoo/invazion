@@ -21,6 +21,10 @@ import {
     moveBuildingBlockBelowPaddle,
     updateBlockAction
     } from "./actionBlocks.func.js";
+import {
+    hideCityBlocks,
+    switchCitySubmenu
+    } from "./cityEnclosureInit.func.js";
 import { togglePathsBar } from "./paths.func.js";
 import {
     addMovementArrows,
@@ -254,6 +258,14 @@ export function listenToPointerup() {
             const path = target.dataset.path;
             const move = new Move();
             move.driveToCity(path);
+        }
+        else if(action === "switchCitySubmenu") {
+            switchCitySubmenu(target.dataset.submenuname);
+        }
+        else if(button?.dataset.action === "closeCityBlock") {
+            hideCityBlocks();
+            display(["#city_defenses", "#city_submenus"]);
+            updateUrlParam("tab", null);
         }
         else if(action === "displayGameParameters") {
             const mapConfigsNode = document.querySelector("#popdayclock .mapConfigs");

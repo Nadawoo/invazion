@@ -255,7 +255,7 @@ echo $layout->page_header($citizen['user_id'], $citizen['citizen_id'], $citizen[
     if ($citizen['inside_city_id'] !== NULL) {
         
         echo '
-            <div id="city_container">
+            <div id="city_container" data-cityid="'.$citizen['inside_city_id'].'">
                 <nav id="city_menu">
                     '.$enclosure->city_menu($map_id, $city_data['connected_city_id'], $citizen['city_id']).'
                     '.$enclosure->city_submenu($city_data['city_type_id'], $city_data['connected_city_id'], $is_citizen_home_connected, $completed_buildings_ids).'

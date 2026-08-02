@@ -5,7 +5,7 @@
  * @param {string} cityContentsId L'id HTML des éléments à afficher
  * @returns {undefined}
  */
-function switchCitySubmenu(cityContentsId) {
+export function switchCitySubmenu(cityContentsId) {
     // On masque tous les blocs de la ville sans exception...
     hideCityBlocks();
     // ... puis on affiche celui qu'on veut voir
@@ -20,10 +20,10 @@ function switchCitySubmenu(cityContentsId) {
 /**
  * Hides all the blocs inside the city (e.g. list of constructions)
  */
-function hideCityBlocks() {
+export function hideCityBlocks() {
     
     var cityContents = document.getElementById("city_contents").children;
-    for(i=0; i<cityContents.length; i++) {
+    for(let i=0; i<cityContents.length; i++) {
         hide(`#${cityContents[i].id}`);
     }
 }

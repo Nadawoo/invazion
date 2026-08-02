@@ -81,20 +81,20 @@ class HtmlCityConstructionCards
                 <h2>'.$card_icon.'&nbsp;Chantiers constructibles</h2>
                 <p class="descr">Vous pouvez construire ces chantiers car 
                     les ressources requises sont réunies 
-                    <a href="#" onclick="switchCitySubmenu(\'city_storage\')">au dépôt</a> !
+                    <button data-action="switchCitySubmenu" data-submenuname="city_storage">au dépôt</button> !
                 </p>
                 <div class="contents">'.$result_buildable.'</div>
             </div>
             <div id="tip_resources" class="city_block construction_card hidden">
                 <h2>'.$card_icon.'&nbsp;Ressources à compléter</h2>
                 <p class="descr">Rapportez ces objets lors de 
-                    <a href="#" onclick="switchCitySubmenu(\'explore\')">vos explorations</a>
+                    <button data-action="switchCitySubmenu" data-submenuname="explore">vos explorations</button>
                     afin de construire de nouveaux chantiers.
                 </p>
                 <div class="contents">'.$result_resources.'</div>
-                <a class="goto redbutton" onclick="switchCitySubmenu(\'explore\')">
+                <button class="goto redbutton" data-action="switchCitySubmenu" data-submenuname="explore">
                     Trouver les ressources <i class="material-icons">chevron_right</i>
-                </a>
+                </button>
             </div>';
     }
     
@@ -188,7 +188,7 @@ class HtmlCityConstructionCards
         
         return '
             <p>&#x2714;&#xFE0F; Les matériaux requis sont présents 
-                <a href="#" onclick="switchCitySubmenu(\'city_storage\')">au dépôt</a>.
+                <button data-action="switchCitySubmenu" data-submenuname="city_storage">au dépôt</button>.
             </p>';
     }
     

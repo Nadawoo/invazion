@@ -111,19 +111,21 @@ class HtmlCityEnclosure
         
         $icon_path = ($icon_filename !== null) ? $icon_filename : 'copyrighted/'.$item_alias.'.png';
         
-        return '<div class="item" style="background-image:url(\'resources/img/'.$icon_path.'\')" '
-                  . 'onclick="switchCitySubmenu(\''.$item_alias.'\')">'
-                  .'<span class="label">'. $item_name .'</span>'
-                .'</div>';
+        return '<div class="item"
+                    data-action="switchCitySubmenu"
+                    data-submenuname="'.$item_alias.'"
+                    style="background-image:url(\'resources/img/'.$icon_path.'\')"
+                    >
+                    <span class="label">'. $item_name .'</span>
+                </div>';
     }
     
     
     function button_close_block() {
         
-        return '<a class="close" '
-                    . 'onclick="hideCityBlocks();display([\'#city_defenses\', \'#city_submenus\']);updateUrlParam(\'tab\', null);"'
-                    . '><i class="material-icons">close</i>'
-                . '</a>';
+        return '<button class="close" data-action="closeCityBlock">
+                    <i class="material-icons">close</i>
+                </button>';
     } 
     
     
@@ -942,9 +944,9 @@ class HtmlCityEnclosure
                     <span style="font-size:0.9em;font-weight:normal">(+'.abs($zombies_overflow).' défenses)</span>
                 </p>
                 
-                <a class="goto bluebutton" onclick="switchCitySubmenu(\'city_constructions\')">
+                <button class="goto bluebutton" data-action="switchCitySubmenu" data-submenuname="city_constructions">
                     Construire des défenses <i class="material-icons">chevron_right</i>
-                </a>
+                </button>
             </div>';
     }
     
@@ -969,9 +971,13 @@ class HtmlCityEnclosure
                 </p>
                 '.$buttons->button('get_out_home').'
                 <br>
-                <a class="goto bluebutton" style="font-size:0.9em" onclick="switchCitySubmenu(\'city_storage\')">
+                <button class="goto bluebutton"
+                    data-action="switchCitySubmenu"
+                    data-submenuname="city_storage"
+                    style="font-size:0.9em"
+                    >
                     <i class="material-icons">chevron_left</i>M\'équiper au dépôt &nbsp;&nbsp;&nbsp;&nbsp;
-                </a>
+                </button>
             </div>';
     }
     

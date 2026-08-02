@@ -6,6 +6,7 @@ import { HealthBars }  from "./components/HealthBars.js";
 import { MapCitizens } from "./components/MapCitizens.js"
 import { Tasks } from "./components/Tasks.js";
 import { Citizen } from "./entities/Citizen.js";
+import { switchCitySubmenu } from "./cityEnclosureInit.func.js";
 import {
     addCitiesOnMap,
     displayItemOnMap,

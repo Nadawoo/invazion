@@ -11,7 +11,7 @@ class HtmlPage
     // Increment those variables when you modify the CSS or JS files. This ensures
     // that the users' browsers reload the up-to-date files, instead of using 
     // the obsolete ones stored in their cache.
-    private $css_js_version = 230;
+    private $css_js_version = 231;
     
     /**
      * Sets HTTP headers to secure the website
@@ -181,7 +181,6 @@ class HtmlPage
                         <script type="text/javascript" src="resources/js/utils/Translator.js?v'.$this->css_js_version.'"></script>
                         <script type="text/javascript" src="resources/js/wallTemplate.js?v'.$this->css_js_version.'" async></script>
                         <script type="text/javascript" src="resources/js/cityEnclosure.func.js?v'.$this->css_js_version.'" async></script>
-                        <script type="text/javascript" src="resources/js/cityEnclosureInit.func.js?v'.$this->css_js_version.'"></script>
                         <script type="text/javascript" src="resources/js/miscInit.func.js?v'.$this->css_js_version.'"></script>
                         <script type="module" src="resources/js/main.js?v'.$this->css_js_version.'"></script>
                         <script type="module" src="resources/js/events.js?v'.$this->css_js_version.'"></script>
