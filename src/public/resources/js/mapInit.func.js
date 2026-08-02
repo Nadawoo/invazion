@@ -76,16 +76,24 @@ export async function getMapCitiesOnce(mapId) {
 /*
  * Get the citizens of the map by calling the Azimutant's API
  */
-export async function getMapCitizensOnce(mapId) {
+export async function populateGameStates(mapId) {
+    
+    let result = false;
     
     // If the API has already be called before, don't call it again
     if(gameStates.citizens.size === 0) {
         let zombLib = new ZombLib()
-        let json = await zombLib.callApi("GET", "citizens", `action=get&map_id=${mapId}`);    
-        gameStates.citizens = json.datas;
+        let json = await zombLib.callApi("GET", "citizens", `action=get&map_id=${mapId}`);
+        
+        if(json.metas.error_code === "success") {
+            for(const citizenData of Object.values(json.datas)) {
+                gameStates.citizens.set(citizenData.citizen_id, citizenData);
+            }
+            result = true;
+        }
     }
     
-    return gameStates.citizens;
+    return result;
 }
 
 
@@ -374,7 +382,7 @@ export function switchToActionView() {
     // NB: See the CSS file to see the modifications implied by adding this class
     document.querySelector("#map").classList.add("action_view");
     
-    addCitizensOnMyZone();
+//    addCitizensOnMyZone();
     
     updateActionBlocks();
     
@@ -394,12 +402,12 @@ async function addCitizensOnMyZone() {
     const myCitizen = new Citizen();
     const myZone = new Zone();
     
-    // Get the citizens of the map by calling the Azimutant's API
-    gameStates.citizens = await getMapCitizensOnce(myCitizen.mapId);    
     // Keep only the citizens who are in the player's zone
-    const citizensInMyZone = Object.values(gameStates.citizens).filter(citizen => citizen.coord_x == myCitizen.x 
-                                                                        && citizen.coord_y == myCitizen.y
-                                                                        && citizen.citizen_id != myCitizen.id);
+    const citizensInMyZone = [...gameStates.citizens.values()].filter(
+                                                                    citizen => citizen.coord_x == myCitizen.x 
+                                                                    && citizen.coord_y == myCitizen.y
+                                                                    && citizen.citizen_id != myCitizen.id
+                                                                    );
     
     // Add on the zone the silhouettes of the fellows
     const citizensContainer = document.createElement("button");

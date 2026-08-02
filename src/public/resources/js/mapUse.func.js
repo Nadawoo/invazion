@@ -46,8 +46,8 @@ export async function updateMapRealtime(event, timestamp) {
     // TODO: don't call this when not needed:
     //      => needed when a citizen moves to another zone
     //      => NOT needed when a citizen kills a zombie
-    let json = await zombLib.callApi("GET", "citizens", `action=get&map_id=${mapId}`);   
-    gameStates.citizens = json.datas;
+//    let json = await zombLib.callApi("GET", "citizens", `action=get&map_id=${mapId}`);   
+//    gameStates.citizens = json.datas;
     
     if(htmlZones.metas !== undefined && htmlZones.metas.error_code !== "success") {
         displayToast(htmlZones.metas.error_message, htmlZones.metas.error_class);

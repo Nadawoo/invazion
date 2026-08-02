@@ -11,6 +11,7 @@ import {
     displayItemOnMap,
     getMapZonesOnce,
     loadUi,
+    populateGameStates,
     populateMapTitle,
     switchToActionView,
     updateLightHalos,
@@ -25,7 +26,9 @@ import {
     from "./mapUse.func.js";
 import { listenToMapDragging } from "./eventsMain.func.js";
 import { isCitizenInGame } from "./users.func.js";
-import { animateCounter } from "./misc.func.js";
+import {
+    animateCounter
+    } from "./misc.func.js";
 
 /**
  * This script gathers all the actions automatically executed as soon as the page loads.
@@ -123,6 +126,8 @@ if(document.getElementById("map") !== null) {
     window._configsBuildingsComponents      = JSON.parse(document.querySelector("#configs .buildings_components").innerHTML);
     window._configsItems                    = JSON.parse(document.querySelector("#configs .items").innerHTML);
     
+    await populateGameStates(mapId);
+    
     _jsonMap = getMapZonesOnce(mapId);
     
     // Place on the map the buildings and cities
@@ -142,7 +147,7 @@ if(document.getElementById("map") !== null) {
     });
     // Place the citizens on the appropriate zones of the map
     let mapCitizens = new MapCitizens();
-    gameStates.citizens = mapCitizens.addCitizensOnMap(mapId);
+    mapCitizens.addCitizensOnMap();
     
     // Display the zombie cores on the map (item ID #106)
     displayItemOnMap(106);
@@ -163,7 +168,7 @@ if(document.getElementById("map") !== null) {
     loadUi();
     
     // Only if the visitor is connected
-    isCitizenInGame(mapId).then((isInGame) => {
+    isCitizenInGame().then((isInGame) => {
         if(!isInGame) {
             document.querySelector("#views_bar").classList.add("hidden");
             document.querySelector("#map_navigation").classList.add("hidden");
@@ -205,7 +210,7 @@ if(document.getElementById("map") !== null) {
                 
                 // Ask for chosing a citizen speciality (builder, digger...)
                 const myCitizen = new Citizen();
-                const lastSpecializationCycle = gameStates.citizens[myCitizen.id]["last_specialization_cycle"];
+                const lastSpecializationCycle = gameStates.citizens.get(myCitizen.id)["last_specialization_cycle"];
                 if(lastSpecializationCycle === null || Number(lastSpecializationCycle) < currentCycle) {
                     window.location.hash = "#popspecialize";
                 }

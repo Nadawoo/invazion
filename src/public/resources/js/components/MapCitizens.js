@@ -1,5 +1,4 @@
 import { gameStates } from "../states/GameStates.js";
-import { getMapCitizensOnce } from "../mapInit.func.js";
 
 /**
  * This class places the citizens on the map
@@ -9,20 +8,13 @@ export class MapCitizens {
     /**
      * Place the citizens on the map. They are not loaded by the PHP to speed up
      * the loading of the map.
-     * 
-     * @param {Int} mapId
-     * @returns {Array} 
      */
-    async addCitizensOnMap(mapId) {
-
-        // Get the citizens of the map by calling the Azimutant's API
-        gameStates.citizens = await getMapCitizensOnce(mapId);
-
+    async addCitizensOnMap() {
+        
         // Place the citizens on the appropriate zones
-        for(let citizenId in gameStates.citizens) {
-            let citizen = gameStates.citizens[citizenId],
-                htmlCoords = citizen.coord_x+"_"+citizen.coord_y,
-                zone = document.querySelector("#zone"+htmlCoords+" .square_container");
+        for(const citizen of gameStates.citizens.values()) {
+            let htmlCoords = citizen.coord_x+"_"+citizen.coord_y;
+            let zone = document.querySelector("#zone"+htmlCoords+" .square_container");
                 
             // Don't add the citizen if an other citizen is already placed in the zone
             if(zone.querySelector(".map_citizen") === null && zone.dataset.zombies < 1 && zone.dataset.cityid < 1) {
@@ -38,8 +30,6 @@ export class MapCitizens {
     //            }
             }
         }
-
-        return gameStates.citizens;
     }
     
     

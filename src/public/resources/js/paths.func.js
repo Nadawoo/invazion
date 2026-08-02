@@ -42,7 +42,7 @@ async function populatePathsPanel(pathsCourses, pathsMembers) {
         let htmlMembers = "",
             htmlHumansIcons = "";
         for(let member of Object.values(members)) {
-            let citizen = gameStates.citizens[member.citizen_id];
+            let citizen = gameStates.citizens.get(member.citizen_id);
             let htmlCoords = `${citizen.coord_x}_${citizen.coord_y}`;
             
             htmlMembers += `<li class="card citizen${citizen.citizen_id}">
@@ -90,7 +90,7 @@ async function populatePathsPanel(pathsCourses, pathsMembers) {
         // Display the content of the bag of each member of the expedition
         let htmlItems = new Items();
         for(let member of Object.values(members)) {
-            let citizen = gameStates.citizens[member.citizen_id];
+            let citizen = gameStates.citizens.get(member.citizen_id);
             for(let bagItem of Object.entries(citizen.bag_items)) {
                 document.querySelector(`#paths_panel .citizen${citizen.citizen_id} .items_list`).prepend( htmlItems.item(bagItem[0], _configsItems[bagItem[0]]) );
             }
@@ -121,12 +121,12 @@ async function populatePathsPanel(pathsCourses, pathsMembers) {
 async function htmlcitizensForExpedition() {
     
     let htmlAvailableCitizens = "";
-
-    for(let citizenId in await gameStates.citizens) {
-        let citizen = gameStates.citizens[citizenId];
+    
+    for(const citizen of gameStates.citizens.values()) {
         let htmlCoords = `${citizen.coord_x}_${citizen.coord_y}`;
 
-        htmlAvailableCitizens += `<li class="card citizen${citizen.citizen_id}">
+        htmlAvailableCitizens += `
+                        <li class="card citizen${citizen.citizen_id}">
                             <h2 data-coords="${htmlCoords}" style="background:lightgrey">
                                 <label>
                                     <input type="checkbox" class="filled-in" name="citizens_ids[]" value="${citizen.citizen_id}">
