@@ -91,6 +91,9 @@ export async function populateGameStates(mapId) {
             }
             result = true;
         }
+        else {
+            displayToast(json.metas.error_message, json.metas.error_class);
+        }
     }
     
     return result;
