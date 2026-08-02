@@ -46,7 +46,6 @@ window._roadActiveHexagon   = null;
 window._myZone              = null;
 window._jsonMap             = null;
 window._isPathDrawingActive = false;
-window._userEmail           = null;
 window._newRoadSource       = null;
 window._roadDisplayTimeout  = null;
 // Permanently stores the result of the API whichs gives the discussions list 

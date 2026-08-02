@@ -1144,9 +1144,9 @@ export function animateCounter(domSelector, endValue, duration=1000) {
 export function prefillEmailField() {
     
     const cookies = new Cookies();
-    _userEmail = cookies.getCookie("email");
+    const userEmail = cookies.getCookie("email");
     
-    if(_userEmail !== null) {
-        document.querySelector("#connectionForm input[name='email']").value = _userEmail;
+    if(userEmail !== null) {
+        document.querySelector("#connectionForm input[name='email']").value = userEmail;
     }
 }
