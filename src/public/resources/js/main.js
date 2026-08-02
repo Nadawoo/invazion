@@ -120,10 +120,10 @@ if(document.getElementById("map") !== null) {
     const myCitizen = new Citizen();
     const mapId = myCitizen.mapId;
     // Get the unvariable data of the game (building names...) stored in the HTML
-    window._configsBuildings                = JSON.parse(document.querySelector("#configs .buildings").innerHTML);
-    window._configsBuildingsFindableItems   = JSON.parse(document.querySelector("#configs .buildings_findable_items").innerHTML);
-    window._configsBuildingsComponents      = JSON.parse(document.querySelector("#configs .buildings_components").innerHTML);
-    window._configsItems                    = JSON.parse(document.querySelector("#configs .items").innerHTML);
+    window._configsBuildings                = JSON.parse(document.querySelector("#configs .buildings").textContent);
+    window._configsBuildingsFindableItems   = JSON.parse(document.querySelector("#configs .buildings_findable_items").textContent);
+    window._configsBuildingsComponents      = JSON.parse(document.querySelector("#configs .buildings_components").textContent);
+    window._configsItems                    = JSON.parse(document.querySelector("#configs .items").textContent);
     
     await populateGameStates(mapId);
     

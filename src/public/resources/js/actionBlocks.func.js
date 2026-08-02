@@ -562,9 +562,7 @@ export function moveBuildingBlockBelowPaddle() {
  */
 export async function populateBuilderBlock() {
     
-    const buildingsCaracs = JSON.parse(document.querySelector("#configs .buildings").innerText);
-    
-    Object.entries(buildingsCaracs).forEach(([buildingId, caracs]) => {        
+    Object.entries(_configsBuildings).forEach(([buildingId, caracs]) => {        
         const tplButton = document.querySelector("#tplBuilderButton").content.cloneNode(true);
         
         // Icon of the building
