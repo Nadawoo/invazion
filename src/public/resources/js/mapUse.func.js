@@ -63,7 +63,7 @@ export async function updateMapRealtime(event, timestamp) {
     }
     
     // Place the player on his new zone
-    addMeOnMap();
+    await addMeOnMap();
     
     const me = new Zone();
     // Display an alert over the movement paddle if the player is blocked
