@@ -1101,10 +1101,10 @@
     margin-bottom:0.2em;
     font-size:1.8em;
     z-index:1;
-    text-shadow: -1px -1px 1px greenyellow, /* Top left */
-                 1px -1px 1px greenyellow,  /* Top right */
-                 -1px 1px 1px greenyellow,  /* Bottom left */
-                 1px 1px 1px greenyellow;   /* Bottom right */
+    text-shadow:-2px -2px 5px greenyellow,
+                2px -2px 5px greenyellow,
+                -2px 2px 5px greenyellow,
+                2px 2px 5px greenyellow;
 }
 #map_body .zombies {
     /*animation: fadeInOpacity 1s forwards;*/
