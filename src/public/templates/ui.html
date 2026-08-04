@@ -74,7 +74,7 @@
 
 <template id="tplMapNavigation">
     <button onclick="toggle('#mapRadarMenu')" aria-label="Vues satellite" title="Vues satellite">
-        <span style="font-size:50%;margin-top:-0.2em;">&#x1F6F0;&#xFE0F;</span>
+        <span class="emoji" style="font-size:60%;margin:-4px 0 0 2px;">&#x1F6F0;&#xFE0F;</span>
     </button>
 
     <ul id="mapRadarMenu" class="hidden">
@@ -109,14 +109,14 @@
             title="Centrer la carte sur ma zone"
             data-action="centerMapOnMe"
             >
-        <i class="material-icons small">my_location</i>
+        <i class="material-icons" style="font-size:1.7rem">my_location</i>
     </button>
 
     <button id="mainZoomButton"
             aria-label="afficher les boutons de zoom"
             data-action="displayZoomButtons"
             >
-        <i class="material-icons small">zoom_in</i>
+        <i class="material-icons">zoom_in</i>
     </button>
 
     <form action="#" id="zoom_form" class="hidden">
@@ -151,7 +151,7 @@
     </button>
 
     <button aria-label="Recharger la page">
-        <a id="refreshLink" href="" style="font-size:55%" title="Actualiser l'affichage">&#x1F504;</a>
+        <a id="refreshLink" href="" style="font-size:55%" title="Actualiser l'affichage"><span class="emoji">&#x1F504;</span></a>
     </button>
 
     <!-- 

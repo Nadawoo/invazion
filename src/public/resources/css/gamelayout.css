@@ -129,8 +129,7 @@ body,
     border-top:none;
     border-right:none;
     border-bottom-left-radius:100%;
-    outline:1px solid navajowhite;
-    box-shadow:-5px 8px 12px black;
+    box-shadow:-1px 1px 8px darkgrey;
 }
 #views_bar li {
     display:flex;
